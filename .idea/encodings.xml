@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/bima-customer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bima-customer/customer-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bima-customer/customer-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bima-customer/customer-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bims-order" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bims-order/order-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bims-order/order-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bims-order/order-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bims-product" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bims-product/product-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bims-product/product-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bims-product/product-provider" charset="UTF-8" />
+  </component>
+</project>
