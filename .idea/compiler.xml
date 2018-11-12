@@ -10,12 +10,20 @@
         <module name="entrance-fin" />
         <module name="entrance-fin-web" />
         <module name="middle-common" />
-        <module name="middle-customer-api" />
-        <module name="middle-customer-common" />
-        <module name="middle-customer-provider" />
         <module name="middle-fin-api" />
         <module name="middle-fin-common" />
         <module name="middle-fin-provider" />
+        <module name="middle-system-api" />
+        <module name="middle-system-common" />
+        <module name="middle-system-provider" />
+      </profile>
+      <profile name="Annotation profile for bims-backend" enabled="true">
+        <sourceOutputDir name="../target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="middle-customer-api" />
+        <module name="middle-customer-common" />
+        <module name="middle-customer-provider" />
         <module name="middle-order-api" />
         <module name="middle-order-common" />
         <module name="middle-order-provider" />
@@ -27,7 +35,6 @@
     <bytecodeTargetLevel>
       <module name="entrance-fin" target="1.5" />
       <module name="entrance-product-module" target="1.8" />
-      <module name="entrance-product-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

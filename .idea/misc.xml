@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/bims-product/pom.xml" />
         <option value="$PROJECT_DIR$/entrance-module/entrance-fin/pom.xml" />
         <option value="$PROJECT_DIR$/entrance-module/entrance-product-module/pom.xml" />
+        <option value="$PROJECT_DIR$/middle-module/middle-manager/pom.xml" />
       </set>
     </option>
   </component>
