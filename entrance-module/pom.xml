@@ -12,8 +12,7 @@
     <artifactId>entrance-module</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>entrance-fin</module>
-        <module>entrance-fin</module>
+        <module>entrance-fin-web</module>
     </modules>
 
 </project>
