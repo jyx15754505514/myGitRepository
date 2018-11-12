@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.product.api;
+package com.ccicnavi.bims.product.service.api;
 
 public interface DemoService {
 
