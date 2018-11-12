@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Eclipse" />
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="bims-common" />
-        <module name="customer-api" />
-        <module name="customer-common" />
-        <module name="customer-provider" />
-        <module name="order-api" />
-        <module name="order-common" />
-        <module name="order-provider" />
-        <module name="product-api" />
-        <module name="product-common" />
-        <module name="product-provider" />
+        <module name="entrance-fin" />
+        <module name="entrance-fin-web" />
+        <module name="middle-common" />
+        <module name="middle-customer-api" />
+        <module name="middle-customer-common" />
+        <module name="middle-customer-provider" />
+        <module name="middle-fin-api" />
+        <module name="middle-fin-common" />
+        <module name="middle-fin-provider" />
+        <module name="middle-order-api" />
+        <module name="middle-order-common" />
+        <module name="middle-order-provider" />
+        <module name="middle-product-api" />
+        <module name="middle-product-common" />
+        <module name="middle-product-provider" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="bims-product" target="1.8" />
+      <module name="entrance-fin" target="1.5" />
+      <module name="entrance-product-module" target="1.8" />
+      <module name="entrance-product-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

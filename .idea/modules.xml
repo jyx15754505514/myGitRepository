@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/bims-product/bims-product.iml" filepath="$PROJECT_DIR$/bims-product/bims-product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/entrance-module/entrance-fin/entrance-fin.iml" filepath="$PROJECT_DIR$/entrance-module/entrance-fin/entrance-fin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/entrance-module/entrance-product-module/entrance-product-module.iml" filepath="$PROJECT_DIR$/entrance-module/entrance-product-module/entrance-product-module.iml" />
     </modules>
   </component>
 </project>

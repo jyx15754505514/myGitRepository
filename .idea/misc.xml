@@ -7,11 +7,14 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/bims-order/pom.xml" />
         <option value="$PROJECT_DIR$/bima-customer/pom.xml" />
+        <option value="$PROJECT_DIR$/entrance-module/entrance-fin/entrance-fin-web/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/bims-product/pom.xml" />
+        <option value="$PROJECT_DIR$/entrance-module/entrance-fin/pom.xml" />
+        <option value="$PROJECT_DIR$/entrance-module/entrance-product-module/pom.xml" />
       </set>
     </option>
   </component>
