@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.product;
+package com.ccicnavi.bims.product.service;
 
 import org.junit.Test;
 
