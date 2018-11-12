@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.customer-provider;
+package com.ccicnavi.bims.customer;
 
 import org.springframework.boot.SpringApplication;
 

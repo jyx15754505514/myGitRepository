@@ -1,12 +1,10 @@
-package com.ccicnavi.bims.customer-provider.provider;
+package com.ccicnavi.bims.customer.provider;
 
 import java.util.Date;
 
-import com.ccicnavi.bims.customer-api.DemoService;
+import com.ccicnavi.bims.customer.api.DemoService;
 
 import com.alibaba.dubbo.config.annotation.Service;
-
-import org.springframework.stereotype.Component;
 
 @Service(version = "1.0.0")
 public class DemoServiceImpl implements DemoService {
