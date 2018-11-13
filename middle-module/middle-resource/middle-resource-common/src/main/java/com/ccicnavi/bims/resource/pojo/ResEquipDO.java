@@ -4,15 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 设备信息
- */
+
 @Getter
 @Setter
 @ToString
-public class ResEquipDO {
+public class ResEquipDO implements Serializable {
     private String equipUuid;
 
     private String equipName;
