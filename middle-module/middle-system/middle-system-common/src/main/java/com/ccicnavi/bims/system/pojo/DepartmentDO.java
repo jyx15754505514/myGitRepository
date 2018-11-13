@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class Department implements Serializable {
+public class DepartmentDO implements Serializable {
     private String deptUuid;
 
     private String deptCode;

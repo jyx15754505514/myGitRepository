@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class Setting implements Serializable{
+public class SettingDO implements Serializable{
     private String settingUuid;
 
     private String loginTitle;
