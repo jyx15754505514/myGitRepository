@@ -34,8 +34,18 @@
         </dependency>
 
         <dependency>
-            <groupId>middle-product</groupId>
-            <artifactId>middle-product-api</artifactId>
+            <groupId>middle-system</groupId>
+            <artifactId>middle-system-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>middle-system</groupId>
+            <artifactId>middle-system-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>middle-module</groupId>
+            <artifactId>middle-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
