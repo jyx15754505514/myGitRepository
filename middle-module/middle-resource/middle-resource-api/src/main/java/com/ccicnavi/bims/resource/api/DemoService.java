@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.resource.pojo.api;
+package com.ccicnavi.bims.resource.api;
 
 public interface DemoService {
 
