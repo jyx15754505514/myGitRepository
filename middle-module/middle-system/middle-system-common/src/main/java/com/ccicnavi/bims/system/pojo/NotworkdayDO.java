@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class Notworkday implements Serializable{
+public class NotworkdayDO implements Serializable{
     private String notworkdayUuid;
 
     private String year;
