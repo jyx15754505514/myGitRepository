@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <name>middle-resource</name>
-    <description>产品中心</description>
+    <description>资源</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

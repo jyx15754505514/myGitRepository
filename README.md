@@ -26,6 +26,10 @@ bims-backend/  项目根
 │   │   ├── middle-system-api      接口
 │   │   ├── middle-system-common   公共类,可存放DO，DTO
 │   │   ├── middle-system-provider 接口实现,提供者
+│   ├── middle-resource           资源
+│   │   ├── middle-resource-api      接口
+│   │   ├── middle-resource-common   公共类,可存放DO，DTO
+│   │   ├── middle-resource-provider 接口实现,提供者
 ├── pom.xml
 └── README.md
 ```
