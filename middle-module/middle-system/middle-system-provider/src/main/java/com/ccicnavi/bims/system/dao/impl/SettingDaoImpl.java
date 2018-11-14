@@ -5,7 +5,6 @@ import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.SettingDao;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 import lombok.extern.slf4j.Slf4j;
-import org.n3r.eql.Eql;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
