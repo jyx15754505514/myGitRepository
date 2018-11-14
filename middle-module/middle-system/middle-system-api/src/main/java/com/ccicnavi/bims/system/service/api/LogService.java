@@ -15,9 +15,9 @@ public interface LogService {
     /**获取指定的日志*/
     LogDO getLog(LogDO logDO);
     /**新增日志信息*/
-    int insertLog(LogDO logDO);
+    Integer insertLog(LogDO logDO);
     /**更新日志信息*/
-    int updateLog(LogDO logDO);
+    Integer updateLog(LogDO logDO);
     /**删除日志*/
-    int deleteLog(LogDO logDO);
+    Integer deleteLog(LogDO logDO);
 }
