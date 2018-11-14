@@ -58,7 +58,7 @@ public class PersonDaoImpl  implements PersonDao {
 
     /**
      * 根据主键查询人员信息
-     * @param personUuid
+     * @param personDo
      * @return PersonDO
      * @throws Exception
      */
