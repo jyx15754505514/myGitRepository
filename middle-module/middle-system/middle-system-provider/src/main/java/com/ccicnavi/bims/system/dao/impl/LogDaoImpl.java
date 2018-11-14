@@ -47,7 +47,7 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public int insertLog(LogDO logDO) {
+    public Integer insertLog(LogDO logDO) {
         return EqlUtils.getInstance("druid").insert("insertLog").params(logDO).execute();
     }
 
@@ -59,7 +59,7 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public int updateLog(LogDO logDO) {
+    public Integer updateLog(LogDO logDO) {
         return EqlUtils.getInstance("druid").update("updateLog").params(logDO).execute();
     }
 
@@ -71,7 +71,7 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public int deleteLog(LogDO logDO) {
+    public Integer deleteLog(LogDO logDO) {
         return EqlUtils.getInstance("druid").delete("deleteLog").params(logDO).execute();
     }
 }
