@@ -39,7 +39,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     public Integer updateDepartment(DepartmentDO departmentDO){
         Integer integer = null;
         try{
-            integer = EqlUtils.getInstance("DEFAULT").update("insertDept").params(departmentDO).returnType(Integer.class).execute();
+            integer = EqlUtils.getInstance("DEFAULT").update("updateDept").params(departmentDO).returnType(Integer.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }
