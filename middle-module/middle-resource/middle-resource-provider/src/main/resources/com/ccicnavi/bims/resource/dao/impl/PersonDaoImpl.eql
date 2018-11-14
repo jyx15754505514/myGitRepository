@@ -1,0 +1,310 @@
+--[查询人员]
+--[listPerson]
+    select
+    *
+    from
+    res_person
+    where
+    is_delete = 'N'
+    --iff personUuid != null and personUuid != ''
+    and person_uuid = '#personUuid:like#'
+
+--[添加人员]
+--[insertPerson]
+    INSERT INTO res_person
+    --trim prefix= (suffix = ) suffixOverrides=,
+        --iff personUuid != null
+        personUuid,
+        --iff personCode != null
+        personCode,
+        --iff name != null
+        name,
+        --iff personType != null
+        personType,
+        --iff formerName != null
+        formerName,
+        --iff gender != null
+        gender,
+        --iff birthday != null
+        birthday,
+        --iff certType != null
+        certType,
+        --iff certNo != null
+        certNo,
+        --iff age != null
+        age,
+        --iff nationality != null
+        nationality,
+        --iff nation != null
+        nation,
+        --iff birthplace != null
+        birthplace,
+        --iff nativePlace != null
+        nativePlace,
+        --iff domicilePlace != null
+        domicilePlace,
+        --iff homeAddress != null
+        homeAddress,
+        --iff politicsStatus != null
+        politicsStatus,
+        --iff joinPartyTime != null
+        joinPartyTime,
+        --iff maritalStatus != null
+        maritalStatus,
+        --iff phone != null
+        phone,
+        --iff exigencyPerson != null
+        exigencyPerson,
+        --iff exigencyPhone != null
+        exigencyPhone,
+        --iff studyExperience != null
+        studyExperience,
+        --iff degree != null
+        degree,
+        --iff degree != null
+        degree,
+        --iff skillLevel != null
+        skillLevel,
+        --iff comments != null
+        comments,
+        --iff isDeleted != null
+        isDeleted,
+        --iff createdTime != null
+        createdTime,
+        --iff createdUuid != null
+        createdUuid,
+        --iff createdName != null
+        createdName,
+        --iff updatedTime != null
+        updatedTime,
+        --iff updatedName != null
+        updatedName,
+        --iff orgUuid != null
+        orgUuid,
+        --iff appSysUuid != null
+        appSysUuid,
+        --iff businessLine != null
+        businessLine,
+        --iff extend1 != null
+        extend1,
+        --iff extend2 != null
+        extend2,
+        --iff extend3 != null
+        extend3
+    --end
+    -- trim prefix=values ( suffix=) suffixOverrides=,
+        --iff personUuid != null
+            "#personUuid#",
+            --iff personCode != null
+            "#personCode#",
+            --iff name != null
+            "#name#",
+            --iff personType != null
+            "#personType#",
+            --iff formerName != null
+            "#formerName#",
+            --iff gender != null
+            "#gender#",
+            --iff birthday != null
+            "#birthday#",
+            --iff certType != null
+            "#certType#",
+            --iff certNo != null
+            "#certNo#",
+            --iff age != null
+            "#age#",
+            --iff nationality != null
+            "#nationality#",
+            --iff nation != null
+            "#nation#",
+            --iff birthplace != null
+            "#birthplace#",
+            --iff nativePlace != null
+            "#nativePlace#",
+            --iff domicilePlace != null
+            "#domicilePlace#",
+            --iff homeAddress != null
+            "#homeAddress#",
+            --iff politicsStatus != null
+            "#politicsStatus#",
+            --iff joinPartyTime != null
+            "#joinPartyTime#",
+            --iff maritalStatus != null
+            "#maritalStatus#",
+            --iff phone != null
+            "#phone#",
+            --iff exigencyPerson != null
+            "#exigencyPerson#",
+            --iff exigencyPhone != null
+            "#exigencyPhone#",
+            --iff studyExperience != null
+            "#studyExperience#",
+            --iff degree != null
+            "#degree#",
+            --iff degree != null
+            "#degree#",
+            --iff skillLevel != null
+            "#skillLevel#",
+            --iff comments != null
+            "#comments#",
+            --iff isDeleted != null
+            "#isDeleted#",
+            --iff createdTime != null
+            "#createdTime#",
+            --iff createdUuid != null
+            "#createdUuid#",
+            --iff createdName != null
+            "#createdName#",
+            --iff updatedTime != null
+            "#updatedTime#",
+            --iff updatedName != null
+            "#updatedName#",
+            --iff orgUuid != null
+            "#orgUuid#",
+            --iff appSysUuid != null
+            "#appSysUuid#",
+            --iff businessLine != null
+            "#businessLine#",
+            --iff extend1 != null
+            "#extend1#",
+            --iff extend2 != null
+            "#extend2#",
+            --iff extend3 != null
+            "#extend3#"
+     --end
+
+
+-[更新人员]
+--[updatePerson]
+   update res_person_cult_expe
+   -- trim prefix= set suffixOverrides=,
+        --iff personUuid != null
+          person_uuid = "#personUuid#",
+        --iff startTime != null
+          start_time = "#startTime#",
+        --iff endTime != null
+          end_time = "#endTime#",
+        --iff cultName != null
+          cult_name = "#cultName#",
+        --iff cultOrg != null
+          cult_org = "#cultOrg#",
+        --iff qualificationCert != null
+          qualification_cert = "#qualificationCert#",
+        --iff cultType != null
+          cult_type = "#cultType#",
+        --iff isSign != null
+          is_sign = "#isSign#",
+        --iff comments != null
+          comments = "#comments#",
+        --iff isDeleted != null
+          is_deleted = "#isDeleted#",
+        --iff createdTime != null
+          created_time = "#createdTime#",
+        --iff createdUuid != null
+          created_uuid = "#createdUuid#",
+        --iff createdName != null
+          created_name = "#createdName#",
+        --iff updatedTime != null
+          updated_time = "#updatedTime#",
+        --iff updatedName != null
+          updated_name = "#updatedName#",
+        --iff orgUuid != null
+          org_uuid = "#orgUuid#",
+        --iff appSysUuid != null
+          app_sys_uuid = "#appSysUuid#",
+        --iff businessLine != null
+          business_line = "#businessLine#",
+        --iff extend1 != null
+          extend1 = "#extend1#",
+        --iff extend2 != null
+          extend2 = "#extend2#",
+        --iff extend3 != null
+          extend3 = "#extend3#",
+ where
+        is_deleted = 'N'
+        --iff personUuid != null and personUuid != ''
+            and person_uuid = '#personUuid#'
+        --iff personUuids != null
+            and person_uuid in
+        -- for item=item index = index collection=personUuids open=( separator=, close=)
+             '#item#'
+
+--[删除文件]
+--[deletePerson]
+    UPDATE
+        res_person
+    -- trim prefix= set suffixOverrides=,
+        is_deleted = 'Y'.
+    -- end
+    WHERE
+        is_deleted = 'N'
+        --iff personUuid != null and personUuid != ''
+            and person_uuid = '#personUuid#'
+        --iff personUuids != null
+            and person_uuid in
+            -- for item=item index=index collection=personUuids open=( separator=, close=)
+                '#item#'
+-- [getPerson]
+  SELECT
+        person_uuid,
+        person_code,
+        name,
+        person_type,
+        former_name,
+        gender,
+        birthday,
+        cert_type,
+        cert_no,
+        age,
+        nationality,
+        nation,
+        birthplace,
+        native_place,
+        domicile_place,
+        home_address,
+        politics_status,
+        join_party_time,
+        marital_status,
+        phone,
+        exigency_person,
+        exigency_phone,
+        study_experience,
+        degree,
+        skill_name,
+        skill_level,
+        comments,
+        is_deleted,
+        created_time,
+        created_uuid,
+        created_name,
+        updated_time,
+        updated_name,
+        org_uuid,
+        app_sys_uuid,
+        business_line,
+        extend1,
+        extend2,
+        extend3
+    from
+        res_person
+    where
+        is_deleted = 'N'
+        --iff personUuid != null and personUuid != ''
+                  and person_uuid = '#personUuid#'
+              --iff personUuids != null
+                  and person_uuid in
+              -- for item=item index = index collection=personUuids open=( separator=, close=)
+                   '#item#'
+
+
+
+
+
+
+
+
+
+
+
+
+
