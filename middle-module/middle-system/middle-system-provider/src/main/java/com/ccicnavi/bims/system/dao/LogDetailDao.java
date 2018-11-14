@@ -13,11 +13,11 @@ import java.util.List;
 public interface LogDetailDao {
 
     /**获取指定的日志详情*/
-    LogDetailDO getLogDetail(LogDetailDO logDetailDO);
+    LogDetailDO getLogDetail(LogDetailDO logDetailDO) throws Exception;
     /**新增日志详情信息*/
-    int insertLogDetail(LogDetailDO logDetailDO);
+    Integer insertLogDetail(LogDetailDO logDetailDO) throws Exception;
     /**更新日志详情信息*/
-    int updateLogDetail(LogDetailDO logDetailDO);
+    Integer updateLogDetail(LogDetailDO logDetailDO) throws Exception;
     /**删除日志详情*/
-    int deleteLogDetail(LogDetailDO logDetailDO);
+    Integer deleteLogDetail(LogDetailDO logDetailDO) throws Exception;
 }
