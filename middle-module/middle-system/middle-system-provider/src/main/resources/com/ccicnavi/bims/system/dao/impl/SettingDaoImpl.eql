@@ -1,7 +1,30 @@
 --[查询系统设置信息]
 --[listSet]
     SELECT
-    *
+            setting_uuid as  settingUuid,
+            login_title as loginTitle,
+            login_file_uuid as loginFileUuid,
+            main_title as mainTitle,
+            main_file_uuid as mainFileUuid,
+            main_window_style as mainWindowStyle,
+            initial_password as initialPassword,
+            is_force as isForce,
+            start_password_length as startPasswordLength ,
+            end_password_length as endPasswordLength,
+            password_strength as passwordStrength,
+            comments,
+            is_deleted as isDeleted,
+            created_time as createdTime,
+            created_uuid as createdUuid,
+            created_name as createdName,
+            updated_time as updatedTime,
+            updated_name as updatedName,
+            org_uuid as orgUuid,
+            app_sys_uuid as appSysUuid,
+            business_line as businessLine,
+            extend1,
+            extend2,
+            extend3
     FROM
     sys_setting
     WHERE
@@ -210,7 +233,30 @@
 --[根据主键查询系统设置]
 --[getSet]
     SELECT
-        *
+               setting_uuid as  settingUuid,
+               login_title as loginTitle,
+               login_file_uuid as loginFileUuid,
+               main_title as mainTitle,
+               main_file_uuid as mainFileUuid,
+               main_window_style as mainWindowStyle,
+               initial_password as initialPassword,
+               is_force as isForce,
+               start_password_length as startPasswordLength ,
+               end_password_length as endPasswordLength,
+               password_strength as passwordStrength,
+               comments,
+               is_deleted as isDeleted,
+               created_time as createdTime,
+               created_uuid as createdUuid,
+               created_name as createdName,
+               updated_time as updatedTime,
+               updated_name as updatedName,
+               org_uuid as orgUuid,
+               app_sys_uuid as appSysUuid,
+               business_line as businessLine,
+               extend1,
+               extend2,
+               extend3
      FROM
         sys_setting
      WHERE
