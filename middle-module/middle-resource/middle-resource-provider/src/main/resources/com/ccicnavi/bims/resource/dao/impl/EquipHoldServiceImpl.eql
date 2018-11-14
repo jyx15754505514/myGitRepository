@@ -1,4 +1,4 @@
--- [getResEquipHold]
+-- [listResEquipHold]
   SELECT
     equip_hold_uuid equipHoldUuid,
     equip_uuid equipUuid,
