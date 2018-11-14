@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class RoleDo {
+public class RoleDO {
     private String roleUuid;
 
     private String parentRoleUuid;
