@@ -32,7 +32,15 @@
         <module>middle-resource-common</module>
         <module>middle-resource-provider</module>
     </modules>
-
+    <dependencies>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.6</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
 
 </project>

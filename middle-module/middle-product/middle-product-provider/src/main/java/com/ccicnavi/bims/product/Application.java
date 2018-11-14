@@ -1,12 +1,19 @@
 package com.ccicnavi.bims.product;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
 
 import java.util.concurrent.CountDownLatch;
 
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-@SpringBootApplication
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@EnableApolloConfig
+@ComponentScan(basePackages = { "com.ccicnavi.bims.product.*" }) // 将该包下的文件纳入容器中
+@SpringBootApplication()
 public class Application {
 
 	public static void main(String[] args) throws InterruptedException{

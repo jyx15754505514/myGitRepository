@@ -80,7 +80,17 @@
             <artifactId>eql</artifactId>
             <version>0.1.7</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/com.ctrip.framework.apollo/apollo-client -->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
