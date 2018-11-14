@@ -180,3 +180,10 @@ WHERE is_deleted='N'
 
     --end
   where need_uuid = '#needUuid#'
+
+-- [getSpecialNeed]
+SELECT
+
+FROM crm_special_need
+WHERE is_deleted='N'
+    AND need_uuid='#needUuid#'

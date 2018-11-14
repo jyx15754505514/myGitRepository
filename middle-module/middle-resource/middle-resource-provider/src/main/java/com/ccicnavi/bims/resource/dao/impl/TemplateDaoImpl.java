@@ -11,6 +11,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+/**
+ * @program: bims-backend
+ * @description: 模板dao实现类
+ * @author: zhaotao
+ * @create: 2018-11-14 23:33
+ **/
 public class TemplateDaoImpl implements TemplateDao {
 
     private final static Logger log = LoggerFactory.getLogger(TemplateDaoImpl.class);

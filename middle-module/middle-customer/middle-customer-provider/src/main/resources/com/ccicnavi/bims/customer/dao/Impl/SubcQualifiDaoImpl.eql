@@ -200,3 +200,26 @@ WHERE is_deleted='N'
 
     --end
   where subc_qualifi_uuid = '#subcQualifiUuid#'
+
+-- [getSubcQuali]
+SELECT
+    subc_qualifi_uuid,
+    subc_uuid,
+    qualifi_range,
+    qualifi_enm_uuid,
+    qualifi_describe,
+    is_file,
+    is_deleted,
+    created_time,
+    created_uuid,
+    updated_time,
+    updated_name,
+    business_line,
+    org_uuid,
+    app_sys_uuid,
+    extend1,
+    extend2,
+    extend3
+FROM crm_subc_qualification
+WHERE is_deleted='N'
+    AND subc_qualifi_uuid='#subcQualifiUuid#'
