@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.system.dao.AreaDao;
 import com.ccicnavi.bims.system.pojo.AreaDO;
 import com.ccicnavi.bims.system.service.api.AreaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @Description 地区管理
  * @Date 19:59 2018/11/14
  */
+@Slf4j
 @Service
 public class AreaServiceImpl implements AreaService {
 
@@ -27,7 +29,14 @@ public class AreaServiceImpl implements AreaService {
      */
     @Override
     public List<AreaDO> listArea(AreaDO areaDO) {
-        return areaDao.listArea(areaDO);
+        List<AreaDO> listArea = null;
+        try {
+            listArea = areaDao.listArea(areaDO);
+        } catch (Exception e) {
+            log.debug("查询地区失败",e);
+            e.printStackTrace();
+        }
+        return listArea;
     }
 
     /* *
@@ -39,7 +48,14 @@ public class AreaServiceImpl implements AreaService {
      */
     @Override
     public AreaDO getArea(AreaDO areaDO) {
-        return areaDao.getArea(areaDO);
+        AreaDO area = null;
+        try {
+            area = areaDao.getArea(areaDO);
+        } catch (Exception e) {
+            log.debug("获取地区失败",e);
+            e.printStackTrace();
+        }
+        return area;
     }
 
     /* *
@@ -50,8 +66,15 @@ public class AreaServiceImpl implements AreaService {
      * @Return int
      */
     @Override
-    public int insertArea(AreaDO areaDO) {
-        return areaDao.insertArea(areaDO);
+    public Integer insertArea(AreaDO areaDO) {
+        int area = 0;
+        try {
+            area = areaDao.insertArea(areaDO);
+        } catch (Exception e) {
+            log.debug("添加地区失败",e);
+            e.printStackTrace();
+        }
+        return area;
     }
 
     /* *
@@ -62,8 +85,15 @@ public class AreaServiceImpl implements AreaService {
      * @Return int
      */
     @Override
-    public int updateArea(AreaDO areaDO) {
-        return updateArea(areaDO);
+    public Integer updateArea(AreaDO areaDO) {
+        int area = 0;
+        try {
+            area = updateArea(areaDO);
+        } catch (Exception e) {
+            log.debug("更新地区失败",e);
+            e.printStackTrace();
+        }
+        return area;
     }
 
     /* *
@@ -74,7 +104,14 @@ public class AreaServiceImpl implements AreaService {
      * @Return int
      */
     @Override
-    public int deleteArea(AreaDO areaDO) {
-        return areaDao.deleteArea(areaDO);
+    public Integer deleteArea(AreaDO areaDO) {
+        int area = 0;
+        try {
+            area = areaDao.deleteArea(areaDO);
+        } catch (Exception e) {
+            log.debug("删除地区失败",e);
+            e.printStackTrace();
+        }
+        return area;
     }
 }
