@@ -7,8 +7,7 @@ import com.ccicnavi.bims.customer.dao.CustomerDao;
 import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class CustomerServiceImpl implements CustomerService {
 
-    @Resource
+    @Autowired
     CustomerDao customerDao;
 
     @Override

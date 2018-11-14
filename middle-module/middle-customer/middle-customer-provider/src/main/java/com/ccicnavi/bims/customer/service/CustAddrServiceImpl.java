@@ -4,10 +4,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.customer.api.CustAddrService;
 import com.ccicnavi.bims.customer.dao.CustAddrDao;
 import com.ccicnavi.bims.customer.pojo.CustAddrDO;
-import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import lombok.extern.slf4j.Slf4j;
-
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
@@ -18,7 +16,7 @@ import java.util.List;
 public class CustAddrServiceImpl implements CustAddrService {
 
 
-    @Resource
+    @Autowired
     CustAddrDao custAddrDao;
 
     @Override

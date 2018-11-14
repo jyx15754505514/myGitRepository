@@ -5,15 +5,14 @@ import com.ccicnavi.bims.customer.api.LinkmanService;
 import com.ccicnavi.bims.customer.dao.LinkmanDao;
 import com.ccicnavi.bims.customer.pojo.LinkmanDO;
 import lombok.extern.slf4j.Slf4j;
-
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
 @Slf4j
 public class LinkmanServiceImpl implements LinkmanService {
 
-    @Resource
+    @Autowired
     LinkmanDao linkmanDao;
 
     @Override

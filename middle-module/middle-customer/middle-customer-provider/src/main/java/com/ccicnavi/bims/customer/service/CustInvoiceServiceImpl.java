@@ -5,15 +5,14 @@ import com.ccicnavi.bims.customer.api.CustInvoiceService;
 import com.ccicnavi.bims.customer.dao.CustInvoiceDao;
 import com.ccicnavi.bims.customer.pojo.CustInvoiceDO;
 import lombok.extern.slf4j.Slf4j;
-
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
 @Slf4j
 public class CustInvoiceServiceImpl implements CustInvoiceService {
 
-    @Resource
+    @Autowired
     CustInvoiceDao custInvoiceDao;
 
     @Override

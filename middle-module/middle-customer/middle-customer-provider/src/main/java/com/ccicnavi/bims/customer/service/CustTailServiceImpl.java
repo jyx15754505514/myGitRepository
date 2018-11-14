@@ -5,14 +5,16 @@ import com.ccicnavi.bims.customer.api.CustTailService;
 import com.ccicnavi.bims.customer.dao.CustTailDao;
 import com.ccicnavi.bims.customer.pojo.CustTailDO;
 import lombok.extern.slf4j.Slf4j;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
 @Slf4j
 public class CustTailServiceImpl implements CustTailService {
 
+    @Autowired
     CustTailDao custTailDao;
+
 
     @Override
     public List<CustTailDO> listCustTail(CustTailDO custTail) {
