@@ -23,7 +23,7 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
     public int removeSubcuQuali(String subcQualifiUuid) {
         Map<String,Object> data=new HashMap<>();
         data.put("ids",subcQualifiUuid.split(","));
-        return new Eql().delete("removeSubcuQuali").params(data).execute();
+        return new Eql().update("removeSubcuQuali").params(data).execute();
     }
 
     @Override

@@ -1,0 +1,270 @@
+-- [listStandardInfo]
+SELECT
+    std_uuid as stdUuid, std_name as stdName, std_code as stdCode, std_repl_code as stdReplCode, impl_date as implDate,
+    is_cnas as isCnas, is_file as isFile, is_deleted as isDeleted, created_time as createdTime, created_uuid as createdUuid,
+    updated_time as updatedTime, updated_name as updatedName, org_uuid as orgUuid, app_sys_uuid as appSysUuid, extend1 as extend1,
+    extend2 as extend2, extend3 as as extend3
+FROM
+    res_standard_info
+WHERE
+    is_deleted = 'N'
+      --iff stdName != null
+      and std_name = '#stdName#',
+
+      --iff stdCode != null
+      and std_code = '#stdCode#',
+
+      --iff stdReplCode != null
+      and std_repl_code = '#stdReplCode#',
+
+      --iff implDate != null
+      and impl_date = '#implDate#',
+
+      --iff isCnas != null
+      and is_cnas = '#isCnas#',
+
+      --iff isFile != null
+      and is_file = '#isFile#',
+
+      --iff isDeleted != null
+      and is_deleted = '#isDeleted#',
+
+      --iff createdTime != null
+      and created_time = '#createdTime#',
+
+      --iff createdUuid != null
+      and created_uuid = '#createdUuid#',
+
+      --iff updatedTime != null
+      and updated_time = '#updatedTime#',
+
+      --iff updatedName != null
+      and updated_name = '#updatedName#',
+
+      --iff businessLine != null
+      and business_line = '#businessLine#',
+
+      --iff orgUuid != null
+      and org_uuid = '#orgUuid#',
+
+      --iff appSysUuid != null
+      and app_sys_uuid = '#appSysUuid#',
+
+      --iff extend1 != null
+      and extend1 = '#extend1#',
+
+      --iff extend2 != null
+      and extend2 = '#extend2#',
+
+      --iff extend3 != null
+      and extend3 = '#extend3#'
+
+
+--[insertStandardInfo]
+insert into res_standard_info
+    -- trim prefix=( suffix=) suffixOverrides=,
+      --iff stdUuid != null
+        std_uuid,
+
+      --iff stdName != null
+        std_name,
+
+      --iff stdCode != null
+        std_code,
+
+      --iff stdReplCode != null
+        std_repl_code,
+
+      --iff implDate != null
+        impl_date,
+
+      --iff isCnas != null
+        is_cnas,
+
+      --iff isFile != null
+        is_file,
+
+      --iff isDeleted != null
+        is_deleted,
+
+      --iff createdTime != null
+        created_time,
+
+      --iff createdUuid != null
+        created_uuid,
+
+      --iff updatedTime != null
+        updated_time,
+
+      --iff updatedName != null
+        updated_name,
+
+      --iff businessLine != null
+        business_line,
+
+      --iff orgUuid != null
+        org_uuid,
+
+      --iff appSysUuid != null
+        app_sys_uuid,
+
+      --iff extend1 != null
+        extend1,
+
+      --iff extend2 != null
+        extend2,
+
+      --iff extend3 != null
+        extend3,
+
+    end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      --iff stdUuid != null
+        '#stdUuid#',
+
+      --iff stdName != null
+        '#stdName#',
+
+      --iff stdCode != null
+        '#stdCode#',
+
+      --iff stdReplCode != null
+        '#stdReplCode#',
+
+      --iff implDate != null
+        '#implDate#',
+
+      --iff isCnas != null
+        '#isCnas#',
+
+      --iff isFile != null
+        '#isFile#',
+
+      --iff isDeleted != null
+        '#isDeleted#',
+
+      --iff createdTime != null
+        '#createdTime#',
+
+      --iff createdUuid != null
+        '#createdUuid#',
+
+      --iff updatedTime != null
+        '#updatedTime#',
+
+      --iff updatedName != null
+        '#updatedName#',
+
+      --iff businessLine != null
+        '#businessLine#',
+
+      --iff orgUuid != null
+        '#orgUuid#',
+
+      --iff appSysUuid != null
+        '#appSysUuid#',
+
+      --iff extend1 != null
+        '#extend1#',
+
+      --iff extend2 != null
+        '#extend2#',
+
+      --iff extend3 != null
+        '#extend3#',
+
+    end
+
+--[updateStandardInfo]
+update res_standard_info
+    -- trim prefix=SET suffixOverrides=,
+      --iff stdName != null
+        std_name = '#stdName#',
+
+      --iff stdCode != null
+        std_code = '#stdCode#',
+
+      --iff stdReplCode != null
+        std_repl_code = '#stdReplCode#',
+
+      --iff implDate != null
+        impl_date = '#implDate#',
+
+      --iff isCnas != null
+        is_cnas = '#isCnas#',
+
+      --iff isFile != null
+        is_file = '#isFile#',
+
+      --iff isDeleted != null
+        is_deleted = '#isDeleted#',
+
+      --iff createdTime != null
+        created_time = '#createdTime#',
+
+      --iff createdUuid != null
+        created_uuid = '#createdUuid#',
+
+      --iff updatedTime != null
+        updated_time = '#updatedTime#',
+
+      --iff updatedName != null
+        updated_name = '#updatedName#',
+
+      --iff businessLine != null
+        business_line = '#businessLine#',
+
+      --iff orgUuid != null
+        org_uuid = '#orgUuid#',
+
+      --iff appSysUuid != null
+        app_sys_uuid = '#appSysUuid#',
+
+      --iff extend1 != null
+        extend1 = '#extend1#',
+
+      --iff extend2 != null
+        extend2 = '#extend2#',
+
+      --iff extend3 != null
+        extend3 = '#extend3#',
+
+    end
+    where std_uuid = stdUuid,jdbcType=VARCHAR}
+
+--[deleteStandardInfo]
+    UPDATE
+        res_standard_info
+     -- trim prefix= set suffixOverrides=,
+            is_deleted = 'Y'
+      -- end
+      where
+            --iff stdUuid != null and  stdUuid != ''
+                std_uuid = '#stdUuid#'
+            --end
+
+            --iff uuids != null and  uuids != ''
+                std_uuid  in
+                -- for item=item index=index collection=uuids open=( separator=, close=)
+                    '#item#'
+                -- end
+            --end
+
+
+
+--[getStandardInfo]
+    SELECT
+        std_uuid as stdUuid, std_name as stdName, std_code as stdCode, std_repl_code as stdReplCode, impl_date as implDate,
+        is_cnas as isCnas, is_file as isFile, is_deleted as isDeleted, created_time as createdTime, created_uuid as createdUuid,
+        updated_time as updatedTime, updated_name as updatedName, org_uuid as orgUuid, app_sys_uuid as appSysUuid, extend1 as extend1,
+        extend2 as extend2, extend3 as as extend3
+     FROM
+        res_standard_info
+     WHERE
+        is_deleted = 'N'
+        --iff stdUuid != null and  stdUuid != ''
+               and  std_uuid = '#stdUuid#'
+        --end
+        --iff stdName != null and stdName != ''
+                and std_name = '#stdName#'
+        --end

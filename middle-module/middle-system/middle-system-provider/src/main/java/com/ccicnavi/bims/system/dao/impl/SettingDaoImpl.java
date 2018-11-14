@@ -1,11 +1,11 @@
 package com.ccicnavi.bims.system.dao.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
+
+import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.SettingDao;
-import com.ccicnavi.bims.system.pojo.DepartmentDO;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 import lombok.extern.slf4j.Slf4j;
-import org.n3r.eql.Eql;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import java.util.List;
 @Slf4j
 public class SettingDaoImpl implements SettingDao {
     @Override
-    public List<SettingDO> listSetting(SettingDO settingDO) throws Exception {
+    public List<SettingDO> listSetting(SettingDO settingDO)  {
         List<SettingDO> row = null;
         try{
-            row = new Eql().select("listSet").params(settingDO).returnType(SettingDO.class).execute();
+            row = EqlUtils.getInstance("DEFAULT").select("listSet").params(settingDO).returnType(SettingDO.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -24,10 +24,10 @@ public class SettingDaoImpl implements SettingDao {
     }
 
     @Override
-    public Integer insertSetting(SettingDO settingDO) throws Exception {
+    public Integer insertSetting(SettingDO settingDO)  {
         Integer integer = null;
         try{
-            integer = new Eql().insert("insertSet").params(settingDO).returnType(Integer.class).execute();
+            integer = EqlUtils.getInstance("DEFAULT").insert("insertSet").params(settingDO).returnType(Integer.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -35,10 +35,10 @@ public class SettingDaoImpl implements SettingDao {
     }
 
     @Override
-    public Integer updateSetting(SettingDO settingDO) throws Exception {
+    public Integer updateSetting(SettingDO settingDO)  {
         Integer integer = null;
         try{
-            integer = new Eql().update("updateSet").params(settingDO).returnType(Integer.class).execute();
+            integer = EqlUtils.getInstance("DEFAULT").update("updateSet").params(settingDO).returnType(Integer.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -46,10 +46,10 @@ public class SettingDaoImpl implements SettingDao {
     }
 
     @Override
-    public Integer deleteSetting(SettingDO settingDO) throws Exception {
+    public Integer deleteSetting(SettingDO settingDO)  {
         Integer integer = null;
         try{
-            integer = new Eql().delete("deleteSet").params(settingDO).returnType(Integer.class).execute();
+            integer = EqlUtils.getInstance("DEFAULT").delete("deleteSet").params(settingDO).returnType(Integer.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -57,10 +57,10 @@ public class SettingDaoImpl implements SettingDao {
     }
 
     @Override
-    public SettingDO getSetting(SettingDO settingDO) throws Exception {
+    public SettingDO getSetting(SettingDO settingDO)  {
         SettingDO settingDO1 = null;
         try{
-            settingDO1 = new Eql().selectFirst("getSet").params(settingDO).returnType(SettingDO.class).execute();
+            settingDO1 = EqlUtils.getInstance("DEFAULT").selectFirst("getSet").params(settingDO).returnType(SettingDO.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }

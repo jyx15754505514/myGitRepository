@@ -5,13 +5,13 @@ import com.ccicnavi.bims.customer.pojo.LinkmanDO;
 import java.util.List;
 
 public interface LinkmanDao {
-    List<LinkmanDO> listLinkman(LinkmanDO linkmanDO);
+    List<LinkmanDO> listLinkman(LinkmanDO linkmanDO) throws Exception;
 
-    int saveLinkman(LinkmanDO linkmanDO);
+    int saveLinkman(LinkmanDO linkmanDO) throws Exception;
 
-    int removeLinkman(String uuids);
+    int removeLinkman(String uuids) throws Exception;
 
-    int updateLinkman(LinkmanDO linkmanDO);
+    int updateLinkman(LinkmanDO linkmanDO) throws Exception;
 
-    LinkmanDO getLinkman(LinkmanDO linkmanDO);
+    LinkmanDO getLinkman(LinkmanDO linkmanDO) throws Exception;
 }

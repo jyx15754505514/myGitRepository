@@ -3,15 +3,12 @@ package com.ccicnavi.bims.resource.dao.impl;
 import com.ccicnavi.bims.resource.dao.ResPersonWorkExpeDao;
 import com.ccicnavi.bims.resource.pojo.ResPersonWorkExpeDO;
 import org.n3r.eql.Eql;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author:
- * @Description:
- * @Date: Created in ${Time} 2018/11/14
- * @Modified By:
- */
+
+@Service
 public class ResPersonWorkExpeDaoImpl implements ResPersonWorkExpeDao {
     /**
      *查询人员工作经历

@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.customer.provider;
+package com.ccicnavi.bims.customer.service;
 
 import com.ccicnavi.bims.customer.api.SpecialNeedService;
 import com.ccicnavi.bims.customer.pojo.SpecialNeedDO;
@@ -32,6 +32,6 @@ public class SpecialNeedServiceImpl implements SpecialNeedService {
 
     @Override
     public int updateSpecialNeed(SpecialNeedDO specialNeed) {
-        return 0;
+        return specialNeedService.updateSpecialNeed(specialNeed);
     }
 }

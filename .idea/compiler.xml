@@ -7,29 +7,28 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="entrance-common" />
         <module name="entrance-fin" />
         <module name="entrance-fin-web" />
         <module name="middle-common" />
+        <module name="middle-customer-api" />
         <module name="middle-customer-common" />
         <module name="middle-customer-provider" />
         <module name="middle-fin-api" />
         <module name="middle-fin-common" />
         <module name="middle-fin-provider" />
+        <module name="middle-order-api" />
         <module name="middle-order-common" />
         <module name="middle-order-provider" />
+        <module name="middle-product-api" />
         <module name="middle-product-common" />
         <module name="middle-product-provider" />
+        <module name="middle-resource-api" />
+        <module name="middle-resource-common" />
+        <module name="middle-resource-provider" />
         <module name="middle-system-api" />
         <module name="middle-system-common" />
         <module name="middle-system-provider" />
-      </profile>
-      <profile name="Annotation profile for bims-backend" enabled="true">
-        <sourceOutputDir name="../target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="middle-customer-api" />
-        <module name="middle-order-api" />
-        <module name="middle-product-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
