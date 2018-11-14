@@ -36,6 +36,8 @@ public class StandardInfoDO implements Serializable {
 
     private String updatedName;
 
+    private String businessLine;
+
     private String orgUuid;
 
     private String appSysUuid;
