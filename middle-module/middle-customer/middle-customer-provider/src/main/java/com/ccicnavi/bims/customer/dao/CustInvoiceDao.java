@@ -7,13 +7,13 @@ import java.util.List;
 public interface CustInvoiceDao {
 
 
-    List<CustInvoiceDO> listCustInvoice(CustInvoiceDO custInvoice);
+    List<CustInvoiceDO> listCustInvoice(CustInvoiceDO custInvoice) throws Exception;
 
-    int saveCustInvoice(CustInvoiceDO custInvoice);
+    int saveCustInvoice(CustInvoiceDO custInvoice) throws Exception;
 
-    int removeCustInvoice(String uuids);
+    int removeCustInvoice(String uuids) throws Exception;
 
-    int updateCustInvoice(CustInvoiceDO custInvoice);
+    int updateCustInvoice(CustInvoiceDO custInvoice) throws Exception;
 
-    CustInvoiceDO getCustInvoice(CustInvoiceDO custInvoice);
+    CustInvoiceDO getCustInvoice(CustInvoiceDO custInvoice) throws Exception;
 }
