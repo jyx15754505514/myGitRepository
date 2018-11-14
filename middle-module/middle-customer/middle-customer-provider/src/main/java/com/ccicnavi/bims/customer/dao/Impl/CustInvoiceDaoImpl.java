@@ -4,12 +4,12 @@ import com.ccicnavi.bims.customer.dao.CustInvoiceDao;
 import com.ccicnavi.bims.customer.pojo.CustInvoiceDO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
 import org.junit.jupiter.api.Test;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
+@Service
 public class CustInvoiceDaoImpl implements CustInvoiceDao {
 
 
