@@ -8,8 +8,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 设备检定信息
- */
+ * @program: bims-backend
+ * @description: 设备检定信息DO
+ * @author: panyida
+ * @create: 2018-11-14 11:30
+ **/
 @Getter
 @Setter
 @ToString
