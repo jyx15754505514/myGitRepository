@@ -1,0 +1,241 @@
+-- [listLog]
+SELECT
+    log.log_uuid logUuid,
+    log.request_url requestUrl,
+    log.request_uri requesturi,
+    log.request_method requestMethod,
+    log.context_path contextPath,
+    log.client_agent clientAgent,
+    log.client_host_name clientHostName,
+    log.client_ip_addr clientIpAddr,
+    log.client_user_name clientUserName,
+    log.client_locale clientLocale,
+    log.client_referer clientReferer,
+    log.server_host_name serverHostName,
+    log.server_ip_addr serverIpAddr,
+    log.log_type logType,
+    log.created_time createdTime,
+    log.created_uuid createdUuid
+    log.created_name createdName,
+    log.updated_time updatedTime,
+    log.updated_name updatedName,
+    log.org_uuid orgUuid,
+    log.app_sys_uuid appSysUuid,
+    log.business_line businessLine
+from
+    sys_log as log
+where
+    log.is_deleted = 'N'
+
+-- [getLog]
+SELECT
+    log.log_uuid logUuid,
+    log.request_url requestUrl,
+    log.request_uri requesturi,
+    log.request_method requestMethod,
+    log.context_path contextPath,
+    log.client_agent clientAgent,
+    log.client_host_name clientHostName,
+    log.client_ip_addr clientIpAddr,
+    log.client_user_name clientUserName,
+    log.client_locale clientLocale,
+    log.client_referer clientReferer,
+    log.server_host_name serverHostName,
+    log.server_ip_addr serverIpAddr,
+    log.log_type logType,
+    log.created_time createdTime,
+    log.created_uuid createdUuid
+    log.created_name createdName,
+    log.updated_time updatedTime,
+    log.updated_name updatedName,
+    log.org_uuid orgUuid,
+    log.app_sys_uuid appSysUuid,
+    log.business_line businessLine
+from
+    sys_log as log
+where
+    log.is_deleted = 'N'
+--if logUuid != null and logUuid != ''
+and log.log_uuid = '#logUuid#'
+
+-- [insertLog]
+INSERT INTO sys_log
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff logUuid != null and logUuid != ''
+            log_uuid,
+        --iff requestUrl != null and requestUrl != ''
+            request_url,
+        --iff requestUri != null and requestUri != ''
+            request_uri,
+        --iff requestMethod != null and requestMethod != ''
+            request_method,
+        --iff contextPath != null and contextPath != ''
+            context_path,
+        --iff clientAgent != null and clientAgent != ''
+            client_agent,
+        --iff clientHostName != null and clientHostName != ''
+            client_host_name,
+        --iff clientIpAddr != null and clientIpAddr != ''
+            client_ip_addr,
+        --iff clientUserName != null and clientUserName != ''
+            client_user_name,
+        --iff clientLocale != null and clientLocale != ''
+            client_locale,
+        --iff clientReferer != null and clientReferer != ''
+            client_referer,
+        --iff serverHostName != null and serverHostName != ''
+            server_host_name,
+        --iff serverIpAddr != null and serverIpAddr != ''
+            server_ip_addr,
+        --iff logType != null and logType != ''
+            log_type,
+        --iff comments != null and comments != ''
+            comments,
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted,
+        --iff createdTime != null
+            created_time,
+        --iff createdUuid != null and createdUuid !=''
+            created_uuid,
+        --iff createdName != null and createdName != ''
+            created_name,
+        --iff updatedTime != null
+            updated_time,
+        --iff updatedName != null and updatedName != ''
+            updated_name,
+        --iff orgUuid != null and orgUuid != ''
+            org_uuid,
+        --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
+        --iff businessLine != null and businessLine != ''
+            business_line,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff logUuid != null and logUuid != ''
+            '#logUuid#',
+        --iff requestUrl!= null and requestUrl != ''
+            '#requestUrl#',
+        --iff requestUri != null and requestUri != ''
+            '#requestUri#',
+        --iff requestMethod!= null and requestMethod != ''
+            '#requestMethod#',
+        --iff contextPath != null and contextPath != ''
+            '#contextPath#',
+        --iff clientAgent != null and clientAgent != ''
+            '#clientAgent#',
+        --iff clientHostName != null and clientHostName != ''
+            '#clientHostName#',
+        --iff clientIpAddr != null and clientIpAddr != ''
+            '#clientIpAddr#',
+        --iff clientUserName != null and clientUserName != ''
+            '#clientUserName#',
+        --iff clientLocale != null and clientLocale != ''
+            '#clientLocale#',
+        --iff clientReferer != null and clientReferer != ''
+            '#clientReferer#',
+        --iff serverHostName != null and serverHostName != ''
+            '#serverHostName#',
+        --iff serverIpAddr != null and serverIpAddr != ''
+            '#serverIpAddr#',
+        --iff logType != null and logType != ''
+            '#logType#',
+        --iff comments != null and comments != ''
+            '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+        --iff createdTime != null
+            '#createdTime#',
+        --iff createdUuid != null and createdUuid !=''
+            '#createdUuid#',
+        --iff createdName != null and createdName != ''
+            '#createdName#',
+        --iff updatedTime != null
+            '#updatedTime#',
+        --iff updatedName != null and updatedName != ''
+            '#updatedName#',
+        --iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+        --iff businessLine != null and businessLine != ''
+            '#businessLine#',
+    -- end
+
+-- [updateLog]
+UPDATE
+    sys_log
+-- trim prefix= set suffixOverrides=,
+     --iff logUuid != null and logUuid != ''
+         log_uuid = '#logUuid#',
+     --iff requestUrl!= null and requestUrl != ''
+        request_url = '#requestUrl#',
+     --iff requestUri != null and requestUri != ''
+        request_uri = '#requestUri#',
+     --iff requestMethod!= null and requestMethod != ''
+        request_method = '#requestMethod#',
+     --iff contextPath != null and contextPath != ''
+        context_path = '#contextPath#',
+     --iff clientAgent != null and clientAgent != ''
+        client_agent = '#clientAgent#',
+     --iff clientHostName != null and clientHostName != ''
+        client_host_name = '#clientHostName#',
+     --iff clientIpAddr != null and clientIpAddr != ''
+        client_ip_addr = '#clientIpAddr#',
+     --iff clientUserName != null and clientUserName != ''
+        client_user_name = '#clientUserName#',
+     --iff clientLocale != null and clientLocale != ''
+        client_locale = '#clientLocale#',
+     --iff clientReferer != null and clientReferer != ''
+        client_referer = '#clientReferer#',
+     --iff serverHostName != null and serverHostName != ''
+        server_host_name = '#serverHostName#',
+     --iff serverIpAddr != null and serverIpAddr != ''
+        server_ip_addr = '#serverIpAddr#',
+     --iff logType != null and logType != ''
+        log_type = '#logType#',
+     --iff comments != null and comments != ''
+         comments = '#comments#',
+     --iff isDeleted != null and isDeleted != ''
+        is_deleted = '#isDeleted#',
+     --iff createdTime != null
+        created_time = '#createdTime#',
+     --iff createdUuid != null and createdUuid !=''
+        created_uuid = '#createdUuid#',
+     --iff createdName != null and createdName != ''
+        created_name = '#createdName#',
+     --iff updatedTime != null
+        updated_time = '#updatedTime#',
+     --iff updatedName != null and updatedName != ''
+        updated_name = '#updatedName#',
+     --iff orgUuid != null and orgUuid != ''
+        org_uuid = '#orgUuid#',
+     --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
+     --iff businessLine != null and businessLine != ''
+        business_line = '#businessLine#',
+-- end
+where
+    is_deleted = 'N'
+    --iff logUuid != null and logUuid != ''
+        and log_uuid = '#logUuid#'
+    --iff logUuids != null
+        and log_uuid in
+        -- for item=item index=index collection=list open=( separator=, close=)
+            '#item#'
+        -- end
+
+-- [deleteLog]
+UPDATE
+    sys_log
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'
+-- end
+WHERE
+    is_deleted = 'N'
+    --iff logUuid != null and logUuid != ''
+        and log_uuid = '#logUuid#'
+    --iff logUuids != null
+        and log_uuid in
+        -- for item=item index=index collection=list open=( separator=, close=)
+            '#item#'
+        -- end
