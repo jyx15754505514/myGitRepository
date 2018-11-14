@@ -3,7 +3,7 @@ package com.ccicnavi.bims.resource.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.resource.dao.EquipDao;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
-import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +14,6 @@ import java.util.List;
  * @author: panyida
  * @create: 2018-11-14 16:00
  **/
-@Slf4j
 @Service
 public class EquipDaoImpl implements EquipDao {
 
@@ -27,14 +26,7 @@ public class EquipDaoImpl implements EquipDao {
      */
     @Override
     public EquipDO getEquip(String equipUuid){
-        EquipDO equipDO = null;
-        try {
-            equipDO = EqlUtils.getInstance("druid").select("getEquip").params(equipUuid).returnType(EquipDO.class).execute();
-        } catch (Exception e) {
-            log.debug("根据设备信息主键获取设备信息错误",e);
-            e.printStackTrace();
-        }
-        return equipDO;
+        return EqlUtils.getInstance("druid").select("getEquip").params(equipUuid).returnType(EquipDO.class).execute();
     }
 
     /**
@@ -46,14 +38,7 @@ public class EquipDaoImpl implements EquipDao {
      */
     @Override
     public List<EquipDO> listEquip(EquipDO equipDO){
-        List<EquipDO> listEquipDO = null;
-        try {
-            listEquipDO = EqlUtils.getInstance("druid").select("listEquip").params(equipDO).returnType(EquipDO.class).execute();
-        } catch (Exception e) {
-            log.debug("设备信息查询错误",e);
-            e.printStackTrace();
-        }
-        return listEquipDO;
+        return EqlUtils.getInstance("druid").select("listEquip").params(equipDO).returnType(EquipDO.class).execute();
     }
 
     /**
@@ -65,15 +50,8 @@ public class EquipDaoImpl implements EquipDao {
      */
     @Override
     public Integer insertEquip(EquipDO equipDO){
-        Integer count = null;
-        try {
-            count = EqlUtils.getInstance("druid").select("insertEquip").params(equipDO).returnType(Integer.class).execute();
-        } catch (Exception e) {
-            log.debug("新增设备信息错误",e);
-            e.printStackTrace();
-        }
-        return count;
-}
+        return EqlUtils.getInstance("druid").select("insertEquip").params(equipDO).returnType(Integer.class).execute();
+    }
 
     /**
      * @Author panyida
@@ -84,14 +62,7 @@ public class EquipDaoImpl implements EquipDao {
      */
     @Override
     public Integer updateEquip(EquipDO equipDO){
-        Integer count = null;
-        try {
-            count = EqlUtils.getInstance("druid").select("updateEquip").params(equipDO).returnType(EquipDO.class).execute();
-        } catch (Exception e) {
-            log.debug("更新设备信息错误",e);
-            e.printStackTrace();
-        }
-        return count;
+        return EqlUtils.getInstance("druid").select("updateEquip").params(equipDO).returnType(EquipDO.class).execute();
     }
 
     /**
@@ -103,13 +74,13 @@ public class EquipDaoImpl implements EquipDao {
      */
     @Override
     public Integer deleteEquip(EquipDO equipDO){
-        Integer count = null;
-        try {
-            count = EqlUtils.getInstance("druid").select("updateEquip").params(equipDO).returnType(EquipDO.class).execute();
-        } catch (Exception e) {
-            log.debug("根据设备信息主键删除设备信息错误",e);
-            e.printStackTrace();
-        }
-        return count;
+        return EqlUtils.getInstance("druid").select("updateEquip").params(equipDO).returnType(EquipDO.class).execute();
     }
+
+     @Test
+    public void testRun(){
+         System.out.println("开始");
+         EquipDO equipDO = EqlUtils.getInstance("druid").select("getEquip").params("123").returnType(EquipDO.class).execute();
+         System.out.println(equipDO.getComments()+"123");
+     }
 }
