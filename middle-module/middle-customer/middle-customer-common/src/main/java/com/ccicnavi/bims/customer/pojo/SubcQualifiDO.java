@@ -1,32 +1,34 @@
-package com.ccicnavi.bims.resource.pojo;
+package com.ccicnavi.bims.customer.pojo;
+
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 分包方资质信息
+ */
 
 @Getter
 @Setter
 @ToString
-public class StandardInfoDO implements Serializable {
-    private String stdUuid;
+public class SubcQualifiDO {
 
-    private String stdName;
+    private String subcQualifiUuid;
 
-    private String stdCode;
+    private String subcUuid;
 
-    private String stdReplCode;
+    private String qualifiRange;
 
-    private Date implDate;
+    private String qualifiEnmUuid;
 
-    private String isCnas;
+    private String qualifiDescribe;
 
-    private String isFile;
+    private Character isFile;
 
-    private String isDeleted;
+    private Character isDeleted;
 
     private Date createdTime;
 
