@@ -1,0 +1,182 @@
+-- [listSpecialNeed]
+SELECT
+    need_uuid,
+    cust_uuid,
+    need_type,
+    need_content,
+    dept_uuid,
+    comments,
+    is_deleted,
+    created_time,
+    created_uuid,
+    created_name,
+    updated_time,
+    updated_name,
+    extend1,
+    extend2,
+    extend3
+FROM
+    crm_special_need
+WHERE
+    is_deleted='N'
+
+-- [saveSpecialNeed]
+INSERT INTO crm_special_need
+    -- trim prefix=( suffix=) sufficOverrides=,
+     -- iff need_uuid != null and need_uuid != ''
+        need_uuid,
+
+     -- iff cust_uuid != null and cust_uuid != ''
+        cust_uuid,
+
+     -- iff need_type != null and need_type != ''
+        need_type,
+
+     -- iff need_content != null and need_content != ''
+        need_content,
+
+     -- iff dept_uuid != null and dept_uuid != ''
+        dept_uuid,
+
+     -- iff comments != null and comments != ''
+        comments,
+
+     -- iff is_deleted != null and is_deleted != ''
+        is_deleted,
+
+     -- iff created_time != null and created_time != ''
+        created_time,
+
+     -- iff created_uuid != null and created_uuid != ''
+        created_uuid,
+
+     -- iff created_name != null and created_name != ''
+        created_name,
+
+     -- iff updated_time != null and updated_time != ''
+        updated_time,
+
+     -- iff updated_name != null and updated_name != ''
+        updated_name,
+
+     -- iff extend1 != null and extend1 != ''
+        extend1,
+
+     -- iff extend2 != null and extend2 != ''
+        extend2,
+
+     -- iff extend3 != null and extend3 != ''
+        extend3,
+
+    --end
+    -- trim prefix="values"( suffix=) sufficOverrides=,
+     -- iff need_uuid != null and need_uuid != ''
+        '#needUuid#',
+
+     -- iff cust_uuid != null and cust_uuid != ''
+        '#custUuid#',
+
+     -- iff need_type != null and need_type != ''
+        '#needType#',
+
+     -- iff need_content != null and need_content != ''
+        '#needContent#',
+
+     -- iff dept_uuid != null and dept_uuid != ''
+        '#deptUuid#',
+
+     -- iff comments != null and comments != ''
+        '#comments#',
+
+     -- iff is_deleted != null and is_deleted != ''
+        '#isDeleted#',
+
+     -- iff created_time != null and created_time != ''
+        '#createdTime#',
+
+     -- iff created_uuid != null and created_uuid != ''
+        '#createdUuid#',
+
+     -- iff created_name != null and created_name != ''
+        '#createdName#',
+
+     -- iff updated_time != null and updated_time != ''
+        '#updatedTime#',
+
+     -- iff updated_name != null and updated_name != ''
+        '#updatedName#',
+
+     -- iff extend1 != null and extend1 != ''
+        '#extend1#',
+
+     -- iff extend2 != null and extend2 != ''
+        '#extend2#',
+
+     -- iff extend3 != null and extend3 != ''
+        '#extend3#',
+
+    --end
+
+
+-- [removeSpecialNeed]
+UPDATE crm_special_need
+SET is_deleted='Y'
+WHERE is_deleted='N'
+     -- if ids != null
+            AND subc_qualifi_uuid IN
+            -- for item=item index=index collection=ids open=( separator=, close=)
+                '#item#'
+            -- end
+        -- end
+
+
+-- [updateSpecialNeed]
+ update crm_special_need
+	-- trim prefix=SET suffixOverrides=,
+      -- iff need_uuid != null
+        subc_qualifi_uuid = '#needUuid#',
+
+      -- iff cust_uuid != null
+        subc_uuid = '#custUuid#',
+
+      -- iff need_type != null
+        qualifi_range = '#needType#',
+
+       -- iff need_content != null
+         qualifi_enm_uuid = '#needContent#',
+
+      -- iff dept_uuid != null
+        qualifi_describe = '#deptUuid#',
+
+      -- iff comments != null
+        is_file = '#comments#',
+
+      -- iff is_deleted != null
+        is_deleted = '#isDeleted#',
+
+      -- iff created_time != null
+        created_time = '#createdTime#',
+
+      -- iff created_uuid != null  and createdTime!='',
+        created_uuid = '#createdUuid#',
+
+      -- iff created_name != null
+        updated_time = '#createdName#',
+
+      -- iff updated_time != null
+        updated_name = '#updatedTime#',
+
+      -- iff updated_name != null and updatedTime!= '',
+        business_line = '#updatedName#',
+
+      -- iff extend1 != null
+        extend1 = '#extend1#',
+
+      -- iff extend2 != null
+        extend2 = '#extend2#',
+
+      -- iff extend3 != null
+        extend3 = '#extend3#',
+
+    --end
+  where need_uuid = '#needUuid#'
