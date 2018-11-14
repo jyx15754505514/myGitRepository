@@ -17,9 +17,9 @@ public interface AreaDao {
     /**获取指定的地区*/
     AreaDO getArea(AreaDO areaDO);
     /**新增地区信息*/
-    int insertArea(AreaDO areaDO);
+    Integer insertArea(AreaDO areaDO);
     /**更新地区信息*/
-    int updateArea(AreaDO areaDO);
+    Integer updateArea(AreaDO areaDO);
     /**删除地区*/
-    int deleteArea(AreaDO areaDO);
+    Integer deleteArea(AreaDO areaDO);
 }
