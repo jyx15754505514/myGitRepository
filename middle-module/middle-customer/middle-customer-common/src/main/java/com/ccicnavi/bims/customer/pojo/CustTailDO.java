@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.system.pojo;
+package com.ccicnavi.bims.customer.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,21 +6,33 @@ import lombok.ToString;
 
 import java.util.Date;
 
-@Getter
+/**
+ * 客户跟踪POJO
+ */
 @Setter
+@Getter
 @ToString
-public class RoleDo {
-    private String roleUuid;
+public class CustTailDO {
 
-    private String parentRoleUuid;
+    private String tailUuid;
 
-    private String roleName;
+    private String custUuid;
 
-    private String roleCode;
+    private String personUuid;
 
-    private String isSystem;
+    private String personName;
 
-    private String isEnabled;
+    private String statusUuid;
+
+    private String performance;
+
+    private String visitType;
+
+    private String linkmanPurpose;
+
+    private String idea;
+
+    private Date nextLinkTime;
 
     private String comments;
 
@@ -36,15 +48,10 @@ public class RoleDo {
 
     private String updatedName;
 
-    private String orgUuid;
-
-    private String appSysUuid;
-
-    private String businessLine;
-
     private String extend1;
 
     private String extend2;
 
     private String extend3;
+
 }
