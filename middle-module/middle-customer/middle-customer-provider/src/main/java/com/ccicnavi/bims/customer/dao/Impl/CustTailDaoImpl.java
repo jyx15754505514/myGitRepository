@@ -1,13 +1,10 @@
 package com.ccicnavi.bims.customer.dao.Impl;
 
 import com.ccicnavi.bims.customer.dao.CustTailDao;
-import com.ccicnavi.bims.customer.pojo.CustInvoiceDO;
 import com.ccicnavi.bims.customer.pojo.CustTailDO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
 import org.junit.jupiter.api.Test;
-import org.n3r.eql.Eql;
-import org.springframework.stereotype.Repository;
-
+import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +12,7 @@ import java.util.Map;
 /**
  * 客户跟踪信息dao层
  */
-@Repository
+@Service
 public class CustTailDaoImpl implements CustTailDao {
 
     @Override

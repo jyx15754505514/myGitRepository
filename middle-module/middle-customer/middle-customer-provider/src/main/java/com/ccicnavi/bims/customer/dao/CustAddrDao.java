@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface CustAddrDao {
 
-    List<CustAddrDO> listCustAddr(CustAddrDO custAddr);
+    List<CustAddrDO> listCustAddr(CustAddrDO custAddr) throws Exception;
 
-    int saveCustAddr(CustAddrDO custAddr);
+    int saveCustAddr(CustAddrDO custAddr) throws Exception;
 
-    int removeCustAddr(String uuids);
+    int removeCustAddr(String uuids) throws Exception;
 
-    int updateCustAddr(CustAddrDO custAddr);
+    int updateCustAddr(CustAddrDO custAddr) throws Exception;
 
-    CustAddrDO getCustAddr(CustAddrDO customer);
+    CustAddrDO getCustAddr(CustAddrDO custAddr) throws Exception;
 }
