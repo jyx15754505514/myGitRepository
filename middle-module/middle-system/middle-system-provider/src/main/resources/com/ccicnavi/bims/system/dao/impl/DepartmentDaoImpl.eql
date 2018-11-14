@@ -236,7 +236,16 @@
                 is_deleted = 'Y'
         -- end
     where
-         is_deleted = '#isDeleted#'
+
+         -- if deptUuid != null and deptUuid != ''
+                 	dept_uuid = '#deptUuid#'
+         -- end
+          -- if deptUuids != null
+               and	dept_uuid in
+            -- for item=item index=index collection=deptUuids open=( separator=, close=)
+                 '#item#'
+            -- end
+          -- end
 
 --[根据主键查询部门信息]
 --[getDept]

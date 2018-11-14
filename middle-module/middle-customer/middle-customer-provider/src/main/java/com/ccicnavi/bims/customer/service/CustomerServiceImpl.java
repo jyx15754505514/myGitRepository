@@ -7,8 +7,7 @@ import com.ccicnavi.bims.customer.dao.CustomerDao;
 import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
@@ -18,32 +17,67 @@ import java.util.List;
 @Slf4j
 public class CustomerServiceImpl implements CustomerService {
 
-    @Resource
+    @Autowired
     CustomerDao customerDao;
 
     @Override
     public List<CustomerDO> listCustomer(CustomerDO customer) {
-        return customerDao.listCustomer(customer);
+        List<CustomerDO> custList=null;
+        try {
+            custList= customerDao.listCustomer(customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("查询客户信息失败~",e);
+        }
+        return custList;
     }
 
     @Override
     public int saveCustomer(CustomerDO customer) {
-        return customerDao.saveCustomer(customer);
+        Integer count=0;
+        try {
+            count= customerDao.saveCustomer(customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("保存客户信息失败~",e);
+        }
+        return count;
     }
 
     @Override
     public int removeCustomer(String uuids) {
-        return customerDao.removeCustomer(uuids);
+        Integer count=0;
+        try {
+            count= customerDao.removeCustomer(uuids);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("删除客户信息失败~",e);
+        }
+        return count;
     }
 
     @Override
     public int updateCustomer(CustomerDO customer) {
-        return customerDao.updateCustomer(customer);
+        Integer count=0;
+        try {
+            count= customerDao.updateCustomer(customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("修改客户信息失败~",e);
+        }
+        return count;
     }
 
     @Override
-    public CustomerDO getCustomer(CustomerDO customer) {
-        return customerDao.getCustomer(customer);
+    public CustomerDO getCustomer(CustomerDO customerDO) {
+        CustomerDO customer=null;
+        try {
+            customer=customerDao.getCustomer(customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("根据主键查询客户信息失败~",e);
+        }
+        return customer;
     }
 
 
@@ -56,6 +90,7 @@ public class CustomerServiceImpl implements CustomerService {
             custList = customerDao.listCustomer(cu);
         } catch (Exception e) {
             e.printStackTrace();
+            log.debug("查询客户信息失败~");
         }
         System.out.println(custList);
     }
