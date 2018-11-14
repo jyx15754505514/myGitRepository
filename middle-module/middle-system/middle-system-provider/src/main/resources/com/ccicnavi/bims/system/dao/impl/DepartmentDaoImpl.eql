@@ -29,13 +29,13 @@
     sys_department
     WHERE
         is_deleted = 'N'
-        --if deptCode !=null and deptCode != ''
-            and dept_code = '#deptCode:like#'
+        --iff deptCode != null and deptCode != ''
+            and dept_code like '#deptCode:like#'
         --end
-        --if deptName !=null and deptName != ''
-            and dept_name = '#deptCode:like#'
+        --iff deptName != null and deptName != ''
+            and dept_name like '#deptName:like#'
         --end
-        --if deptUuid !=null and deptUuid ! = ''
+        --iff deptUuid != null and deptUuid != ''
             and dept_uuid = '#deptUuid#'
         --end
 
@@ -183,7 +183,7 @@
 --[updateDept]
      UPDATE
         sys_department
-          -- trim prefix= set suffixOverrides=,
+          -- trim  prefix= set suffixOverrides=,
             --iff deptCode != null and deptCode != ''
               dept_code = '#deptCode#',
             --iff deptName != null and deptName != ''
@@ -278,6 +278,6 @@
         sys_department
     WHERE
         is_deleted = 'N'
-        --if deptUuid !=null and deptUuid !=''
+        --if deptUuid != null and deptUuid !=''
                and dept_uuid = '#deptUuid#'
         --end

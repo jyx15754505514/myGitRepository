@@ -3,7 +3,8 @@ package com.ccicnavi.bims.system.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.AreaDao;
 import com.ccicnavi.bims.system.pojo.AreaDO;
-import org.n3r.eql.Eql;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
 /* *
@@ -11,6 +12,8 @@ import java.util.List;
  * @Description 地区管理
  * @Date 16:48 2018/11/14
  */
+@Slf4j
+@Service
 public class AreaDaoImpl implements AreaDao {
 
 
@@ -29,6 +32,7 @@ public class AreaDaoImpl implements AreaDao {
         try {
             listArea = EqlUtils.getInstance("druid").select("listArea").params(areaDO).returnType(AreaDO.class).execute();
         } catch (Exception e) {
+            log.debug("",e);
             e.printStackTrace();
         }
         return listArea;
@@ -41,6 +45,7 @@ public class AreaDaoImpl implements AreaDao {
         try {
             area = EqlUtils.getInstance("druid").selectFirst("getArea").params(areaDO).returnType(AreaDO.class).execute();
         } catch (Exception e) {
+            log.debug("",e);
             e.printStackTrace();
         }
         return area;
@@ -53,6 +58,7 @@ public class AreaDaoImpl implements AreaDao {
         try {
             area = EqlUtils.getInstance("druid").insert("insertArea").params(areaDO).execute();
         } catch (Exception e) {
+            log.debug("",e);
             e.printStackTrace();
         }
         return area;
@@ -65,6 +71,7 @@ public class AreaDaoImpl implements AreaDao {
         try {
             area = EqlUtils.getInstance("druid").update("updateArea").params(areaDO).execute();
         } catch (Exception e) {
+            log.debug("",e);
             e.printStackTrace();
         }
         return area;
@@ -77,6 +84,7 @@ public class AreaDaoImpl implements AreaDao {
         try {
             area = EqlUtils.getInstance("druid").delete("deleteArea").params(areaDO).execute();
         } catch (Exception e) {
+            log.debug("",e);
             e.printStackTrace();
         }
         return area;

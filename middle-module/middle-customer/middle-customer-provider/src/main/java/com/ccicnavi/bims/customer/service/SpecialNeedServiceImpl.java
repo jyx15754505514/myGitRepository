@@ -1,37 +1,79 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.customer.api.SpecialNeedService;
+import com.ccicnavi.bims.customer.dao.SpecialNeedDao;
 import com.ccicnavi.bims.customer.pojo.SpecialNeedDO;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+
+@Service
+@Slf4j
 public class SpecialNeedServiceImpl implements SpecialNeedService {
 
-    @Resource
-    SpecialNeedService specialNeedService;
+    @Autowired
+    SpecialNeedDao specialNeedDao;
 
     @Override
     public List<SpecialNeedDO> listSpecialNeed(SpecialNeedDO specialNeed) {
-        return specialNeedService.listSpecialNeed(specialNeed);
+        List<SpecialNeedDO> specialNeedList=null;
+        try {
+            specialNeedList=specialNeedDao.listSpecialNeed(specialNeed);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("查询客户特殊需求信息失败",e);
+        }
+        return specialNeedList;
     }
 
     @Override
     public int saveSpecialNeed(SpecialNeedDO specialNeed) {
-        return specialNeedService.saveSpecialNeed(specialNeed);
+        Integer count=0;
+        try {
+            count=specialNeedDao.saveSpecialNeed(specialNeed);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("新增客户特殊需求信息失败",e);
+        }
+        return count;
     }
 
     @Override
     public int removeSpecialNeed(String needUuid) {
-        Map<String,Object> data=new HashMap<>();
-        data.put("ids",needUuid.split(","));
-        return specialNeedService.removeSpecialNeed(needUuid);
+        Integer count=0;
+        try {
+            count=specialNeedDao.removeSpecialNeed(needUuid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("删除客户特殊需求信息失败",e);
+        }
+        return count;
     }
 
     @Override
     public int updateSpecialNeed(SpecialNeedDO specialNeed) {
-        return specialNeedService.updateSpecialNeed(specialNeed);
+        Integer count=0;
+        try {
+            count=specialNeedDao.updateSpecialNeed(specialNeed);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("修改客户特殊需求信息失败",e);
+        }
+        return count;
+    }
+
+    @Override
+    public SpecialNeedDO getSpecialNeed(SpecialNeedDO specialNeed) {
+        SpecialNeedDO specialNeedBean=null;
+        try {
+            specialNeedBean=specialNeedDao.getSpecialNeed(specialNeed);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("查询客户特殊需求信息失败",e);
+        }
+        return specialNeedBean;
     }
 }

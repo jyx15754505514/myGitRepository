@@ -1,17 +1,13 @@
-package com.ccicnavi.bims.system.dao;
+package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.system.pojo.AreaDO;
-import com.ccicnavi.bims.system.pojo.LogDO;
-
 import java.util.List;
-
 /* *
  * @Author MengZiJie
  * @Description 地区管理
- * @Date 16:48 2018/11/14
+ * @Date 19:57 2018/11/14
  */
-public interface AreaDao {
-
+public interface AreaService {
     /**查询所有的地区*/
     List<AreaDO> listArea(AreaDO areaDO);
     /**获取指定的地区*/

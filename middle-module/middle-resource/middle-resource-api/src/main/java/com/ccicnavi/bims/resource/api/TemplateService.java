@@ -4,7 +4,12 @@ import java.util.List;
 
 import com.ccicnavi.bims.resource.pojo.TemplateDO;
 
-
+/**
+ * @program: bims-backend
+ * @description: 模板api接口
+ * @author: zhaotao
+ * @create: 2018-11-14 23:33
+ **/
 public interface TemplateService {
 	
     /**
