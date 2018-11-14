@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.product.service.api;
+package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
 
