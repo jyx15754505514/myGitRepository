@@ -4,7 +4,6 @@ import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.LogDao;
 import com.ccicnavi.bims.system.pojo.LogDO;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
 import java.util.List;
 /* *
@@ -16,7 +15,6 @@ import java.util.List;
 @Service
 public class LogDaoImpl implements LogDao {
 
-
     /* *
      * @Author MengZiJie
      * @Description 查询日志
@@ -26,15 +24,7 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public List<LogDO> listLog(LogDO logDO) {
-        List<LogDO> listLog = null;
-        try {
-            listLog = EqlUtils.getInstance("druid").select("listLog").params(logDO).returnType(LogDO.class).execute();
-        } catch (Exception e) {
-            log.debug("",e);
-            e.printStackTrace();
-
-        }
-        return listLog;
+        return EqlUtils.getInstance("druid").select("listLog").params(logDO).returnType(LogDO.class).execute();
     }
 
     /* *
@@ -46,14 +36,7 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public LogDO getLog(LogDO logDO) {
-        LogDO logdo = null;
-        try {
-            logdo = EqlUtils.getInstance("druid").selectFirst("getLog").params(logDO).returnType(LogDO.class).execute();
-        } catch (Exception e) {
-            log.debug("",e);
-            e.printStackTrace();
-        }
-        return logdo;
+        return EqlUtils.getInstance("druid").selectFirst("getLog").params(logDO).returnType(LogDO.class).execute();
     }
 
     /* *
@@ -65,14 +48,7 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public int insertLog(LogDO logDO) {
-        int countLog = 0;
-        try {
-            countLog = EqlUtils.getInstance("druid").insert("insertLog").params(logDO).execute();
-        } catch (Exception e) {
-            log.debug("",e);
-            e.printStackTrace();
-        }
-        return countLog;
+        return EqlUtils.getInstance("druid").insert("insertLog").params(logDO).execute();
     }
 
     /* *
@@ -84,14 +60,7 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public int updateLog(LogDO logDO) {
-        int countLog  = 0;
-        try {
-            countLog = EqlUtils.getInstance("druid").update("updateLog").params(logDO).execute();
-        } catch (Exception e) {
-            log.debug("",e);
-            e.printStackTrace();
-        }
-        return countLog;
+        return EqlUtils.getInstance("druid").update("updateLog").params(logDO).execute();
     }
 
     /* *
@@ -103,22 +72,6 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public int deleteLog(LogDO logDO) {
-        int countLog = 0;
-        try {
-            countLog = EqlUtils.getInstance("druid").delete("deleteLog").params(logDO).execute();
-        } catch (Exception e) {
-            log.debug("",e);
-            e.printStackTrace();
-        }
-        return countLog;
+        return EqlUtils.getInstance("druid").delete("deleteLog").params(logDO).execute();
     }
-
-
-
-    @Test
-    public void testFindAll(){
-
-    }
-
-
 }

@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.system.dao.LogDao;
 import com.ccicnavi.bims.system.pojo.LogDO;
 import com.ccicnavi.bims.system.service.api.LogService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 /* *
@@ -11,6 +12,7 @@ import java.util.List;
  * @Description 日志详情
  * @Date 17:54 2018/11/14
  */
+@Slf4j
 @Service
 public class LogServiceImpl implements LogService {
 
@@ -26,7 +28,14 @@ public class LogServiceImpl implements LogService {
      */
     @Override
     public List<LogDO> listLog(LogDO logDO) {
-        return logDao.listLog(logDO);
+        List<LogDO> listLog = null;
+        try {
+            listLog =logDao.listLog(logDO);
+        } catch (Exception e) {
+            log.debug("获取日志失败",e);
+            e.printStackTrace();
+        }
+        return listLog;
     }
 
     /* *
@@ -38,7 +47,14 @@ public class LogServiceImpl implements LogService {
      */
     @Override
     public LogDO getLog(LogDO logDO) {
-        return logDao.getLog(logDO);
+        LogDO logdo = null;
+        try {
+            logdo = logDao.getLog(logDO);
+        } catch (Exception e) {
+            log.debug("获取日志失败",e);
+            e.printStackTrace();
+        }
+        return logdo;
     }
 
     /** *
@@ -50,7 +66,14 @@ public class LogServiceImpl implements LogService {
      */
     @Override
     public int insertLog(LogDO logDO) {
-        return logDao.insertLog(logDO);
+        int countLog = 0;
+        try {
+            countLog = logDao.insertLog(logDO);
+        } catch (Exception e) {
+            log.debug("添加日志失败",e);
+            e.printStackTrace();
+        }
+        return countLog;
     }
 
     /* *
@@ -62,7 +85,14 @@ public class LogServiceImpl implements LogService {
      */
     @Override
     public int updateLog(LogDO logDO) {
-        return logDao.updateLog(logDO);
+        int countLog  = 0;
+        try {
+            countLog = logDao.updateLog(logDO);
+        } catch (Exception e) {
+            log.debug("更新日志失败",e);
+            e.printStackTrace();
+        }
+        return countLog;
     }
 
     /* *
@@ -74,6 +104,13 @@ public class LogServiceImpl implements LogService {
      */
     @Override
     public int deleteLog(LogDO logDO) {
-        return logDao.deleteLog(logDO);
+        int countLog  = 0;
+        try {
+            countLog = logDao.deleteLog(logDO);
+        } catch (Exception e) {
+            log.debug("删除日志失败",e);
+            e.printStackTrace();
+        }
+        return countLog;
     }
 }
