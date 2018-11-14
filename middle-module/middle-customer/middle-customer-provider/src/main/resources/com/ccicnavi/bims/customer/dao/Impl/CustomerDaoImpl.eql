@@ -1,0 +1,530 @@
+-- [listCustomer]
+SELECT
+	cust_uuid,
+	cust_parent_uuid,
+	cust_name,
+	cust_name_en,
+	cust_short_name,
+	cust_code,
+	cust_uscc,
+	cust_addr,
+	cust_region,
+	cust_scale,
+	cust_addr_en,
+	cust_post_code,
+	cust_fax,
+	cust_phone,
+	cust_url,
+	cust_trade,
+	cooperation_start_date,
+	is_sediment,
+	cust_source,
+	recommend_dept,
+	recommend_user,
+	recommend_comm,
+	follow_dept,
+	serve_type,
+	special_require,
+	market_mgr_name,
+	cust_industry_type,
+	cust_credit_rating,
+	main_linkman_uuid,
+	main_linkman_name,
+	cust_level,
+	fin_cycle,
+	status_uuid,
+	cust_unit_type,
+	cust_competitor,
+	main_product,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_name,
+	business_line,
+	org_uuid,
+	app_sys_uuid,
+	extend1,
+	extend2,
+	extend3
+FROM
+	crm_customer
+WHERE
+	is_deleted = 'N'
+        --if custName !=null and custName != ''
+            and cust_name = '#custName:like#'
+        --end
+        --if custUuid !=null and custUuid != ''
+            and cust_uuid = '#custUuid#'
+        --end
+
+
+
+ -- [insertCustomer]
+ insert into crm_customer
+   -- trim prefix=( suffix=) suffixOverrides=,
+		-- iff custUuid != null and custUuid !=''
+				cust_uuid,
+
+		-- iff custParentUuid != null and custParentUuid !=''
+				cust_parent_uuid,
+
+		-- iff custName != null and custName !=''
+				cust_name,
+
+		-- iff custNameEn != null and custNameEn !=''
+				cust_name_en,
+
+		-- iff custShortName != null and custShortName !=''
+				cust_short_name,
+
+		-- iff custCode != null and custCode !=''
+				cust_code,
+
+		-- iff custUscc != null and custUscc !=''
+				cust_uscc,
+
+		-- iff custAddr != null and custAddr !=''
+				cust_addr,
+
+		-- iff custRegion != null and custRegion !=''
+				cust_region,
+
+		-- iff custScale != null and custScale !=''
+				cust_scale,
+
+		-- iff custAddrEn != null and custAddrEn !=''
+				cust_addr_en,
+
+		-- iff custPostCode != null and custPostCode !=''
+				cust_post_code,
+
+		-- iff custFax != null and custFax !=''
+				cust_fax,
+
+		-- iff custPhone != null and custPhone !=''
+				cust_phone,
+
+		-- iff custUrl != null and custUrl !=''
+				cust_url,
+
+		-- iff custTrade != null and custTrade !=''
+				cust_trade,
+
+		-- iff cooperationStartDate != null and cooperationStartDate  !=''
+				cooperation_start_date,
+
+		-- iff isSediment != null and isSediment !=''
+				is_sediment,
+
+		-- iff custSource != null and custSource !=''
+				cust_source,
+
+		-- iff recommendDept != null and recommendDept !=''
+				recommend_dept,
+
+		-- iff recommendUser != null and recommendUser !=''
+				recommend_user,
+
+		-- iff recommendComm != null and recommendComm !=''
+				recommend_comm,
+
+		-- iff followDept != null and followDept !=''
+				follow_dept,
+
+		-- iff serveType != null and serveType !=''
+				serve_type,
+
+		-- iff specialRequire != null and specialRequire !=''
+				special_require,
+
+		-- iff marketMgrName != null and marketMgrName !=''
+				market_mgr_name,
+
+		-- iff custIndustryType != null and custIndustryType !=''
+				cust_industry_type,
+
+		-- iff custCreditRating != null and custCreditRating !=''
+				cust_credit_rating,
+
+		-- iff mainLinkmanUuid != null and mainLinkmanUuid !=''
+				main_linkman_uuid,
+
+		-- iff mainLinkmanName != null and mainLinkmanName !=''
+				main_linkman_name,
+
+		-- iff custLevel != null and custLevel !=''
+				cust_level,
+
+		-- iff finCycle != null and finCycle !=''
+				fin_cycle,
+
+		-- iff statusUuid != null and statusUuid !=''
+				status_uuid,
+
+		-- iff custUnitType != null and custUnitType !=''
+				cust_unit_type,
+
+		-- iff custCompetitor != null and custCompetitor !=''
+				cust_competitor,
+
+		-- iff mainProduct != null and mainProduct !=''
+				main_product,
+
+		-- iff comments != null and comments !=''
+				comments,
+
+		-- iff isDeleted != null and isDeleted !=''
+				is_deleted,
+
+		-- iff createdTime != null and createdTime !=''
+				created_time,
+
+		-- iff createdUuid != null and createdUuid !=''
+				created_uuid,
+
+		-- iff createdName != null and createdName !=''
+				created_name,
+
+		-- iff updatedTime != null and updatedTime !=''
+				updated_time,
+
+		-- iff updatedName != null and updatedName !=''
+				updated_name,
+
+		-- iff businessLine != null and businessLine !=''
+				business_line,
+
+		-- iff orgUuid != null and orgUuid !=''
+				org_uuid,
+
+		-- iff appSysUuid != null and appSysUuid !=''
+				app_sys_uuid,
+
+		-- iff extend1 != null and extend1 !=''
+				extend1,
+
+		-- iff extend2 != null and extend2 !=''
+				extend2,
+
+		-- iff extend3 != null and extend3 !=''
+				extend3,
+
+	-- end
+
+	-- trim prefix=values( suffix=) suffixOverrides=,
+		-- iff custUuid != null and custUuid != ''
+				'#custUuid#',
+
+		-- iff custParentUuid != null and custParentUuid !=''
+				'#custParentUuid#',
+
+		-- iff custName != null and  custName !=''
+				'#custName#',
+
+		-- iff custNameEn != null and custNameEn !=''
+				'#custNameEn#',
+
+		-- iff custShortName != null and custShortName !=''
+				'#custShortName#',
+
+		-- iff custCode != null and  custCode !=''
+				'#custCode#',
+
+		-- iff custUscc != null and custUscc !=''
+				'#custUscc#',
+
+		-- iff custAddr != null and custAddr !=''
+				'#custAddr#',
+
+		-- iff custRegion != null and  custRegion !=''
+				'#custRegion#',
+
+		-- iff custScale != null and custScale !=''
+				'#custScale#',
+
+		-- iff custAddrEn != null and  custAddrEn !=''
+				'#custAddrEn#',
+
+		-- iff custPostCode != null and custPostCode  !=''
+				'#custPostCode#',
+
+		-- iff custFax != null and custFax !=''
+				'#custFax#',
+
+		-- iff custPhone != null and custPhone !=''
+				'#custPhone#',
+
+		-- iff custUrl != null and custUrl !=''
+				'#custUrl#',
+
+		-- iff custTrade != null and custTrade !=''
+				'#custTrade#',
+
+		-- iff cooperationStartDate != null and cooperationStartDate !=''
+				'#cooperationStartDate#',
+
+		-- iff isSediment != null and isSediment !=''
+				'#isSediment#',
+
+		-- iff custSource != null and  custSource !=''
+				'#custSource#',
+
+		-- iff recommendDept != null and recommendDept !=''
+				'#recommendDept#',
+
+		-- iff recommendUser != null and  recommendUser !=''
+				'#recommendUser#',
+
+		-- iff recommendComm != null and recommendComm !=''
+				'#recommendComm#',
+
+		-- iff followDept != null and followDept !=''
+				'#followDept#',
+
+		-- iff serveType != null and serveType !=''
+				'#serveType#',
+
+		-- iff specialRequire != null  and specialRequire !=''
+				'#specialRequire#',
+
+		-- iff marketMgrName != null  and marketMgrName !=''
+				'#marketMgrName#',
+
+		-- iff custIndustryType != null and custIndustryType !=''
+				'#custIndustryType#',
+
+		-- iff custCreditRating != null and custCreditRating !=''
+				'#custCreditRating#',
+
+		-- iff mainLinkmanUuid != null and mainLinkmanUuid !=''
+				'#mainLinkmanUuid#',
+
+		-- iff mainLinkmanName != null and mainLinkmanName !=''
+				'#mainLinkmanName#',
+
+		-- iff custLevel != null and custLevel !=''
+				'#custLevel#',
+
+		-- iff finCycle != null and finCycle !=''
+				'#finCycle#',
+
+		-- iff statusUuid != null and statusUuid !=''
+				'#statusUuid#',
+
+		-- iff custUnitType != null and custUnitType !=''
+				'#custUnitType#',
+
+		-- iff custCompetitor != null and custCompetitor !=''
+				'#custCompetitor#',
+
+		-- iff mainProduct != null and mainProduct !=''
+				'#mainProduct#',
+
+		-- iff comments != null and comments !=''
+				'#comments#',
+
+		-- iff isDeleted != null and isDeleted !=''
+				'#isDeleted#',
+
+		-- iff createdTime != null and createdTime !=''
+				'#createdTime#',
+
+		-- iff createdUuid != null and createdUuid !=''
+				'#createdUuid#',
+
+		-- iff createdName != null and createdName !=''
+				'#createdName#',
+
+		-- iff updatedTime != null and updatedTime !=''
+				'#updatedTime#',
+
+		-- iff updatedName != null and updatedName !=''
+				'#updatedName#',
+
+		-- iff businessLine != null and businessLine !=''
+				'#businessLine#',
+
+		-- iff orgUuid != null and orgUuid !=''
+				'#orgUuid#',
+
+		-- iff appSysUuid != null and appSysUuid !=''
+				'#appSysUuid#',
+
+		-- iff extend1 != null and extend1 !=''
+				'#extend1#',
+
+		-- iff extend2 != null and extend2 !=''
+				'#extend2#',
+
+		-- iff extend3 != null and extend3 !=''
+				'#extend3#',
+     -- end
+
+
+-- [updateCustomer]
+  update crm_customer
+ 	-- trim prefix=SET suffixOverrides=,
+       -- iff custParentUuid != null
+         cust_parent_uuid ='#custParentUuid#',
+
+       -- iff custName != null
+         cust_name ='#custName#',
+
+       -- iff custNameEn != null
+         cust_name_en ='#custNameEn#',
+
+       -- iff custShortName != null
+         cust_short_name ='#custShortName#',
+
+       -- iff custCode != null
+         cust_code ='#custCode#',
+
+       -- iff custUscc != null
+         cust_uscc ='#custUscc#',
+
+       -- iff custAddr != null
+         cust_addr ='#custAddr#',
+
+       -- iff custRegion != null
+         cust_region ='#custRegion#',
+
+       -- iff custScale != null
+         cust_scale ='#custScale#',
+
+       -- iff custAddrEn != null
+         cust_addr_en ='#custAddrEn#',
+
+       -- iff custPostCode != null
+         cust_post_code ='#custPostCode#',
+
+       -- iff custFax != null
+         cust_fax ='#custFax#',
+
+       -- iff custPhone != null
+         cust_phone ='#custPhone#',
+
+       -- iff custUrl != null
+         cust_url ='#custUrl#',
+
+       -- iff custTrade != null
+         cust_trade ='#custTrade#',
+
+       -- iff cooperationStartDate != null
+         cooperation_start_date ='#cooperationStartDate#',
+
+       -- iff isSediment != null
+         is_sediment ='#isSediment#',
+
+       -- iff custSource != null
+         cust_source ='#custSource#',
+
+       -- iff recommendDept != null
+         recommend_dept ='#recommendDept#',
+
+       -- iff recommendUser != null
+         recommend_user ='#recommendUser#',
+
+       -- iff recommendComm != null
+         recommend_comm ='#recommendComm#',
+
+       -- iff followDept != null
+         follow_dept ='#followDept#',
+
+       -- iff serveType != null
+         serve_type ='#serveType#',
+
+       -- iff specialRequire != null
+         special_require ='#specialRequire#',
+
+       -- iff marketMgrName != null
+         market_mgr_name ='#marketMgrName#',
+
+       -- iff custIndustryType != null
+         cust_industry_type ='#custIndustryType#',
+
+       -- iff custCreditRating != null
+         cust_credit_rating ='#custCreditRating#',
+
+       -- iff mainLinkmanUuid != null
+         main_linkman_uuid ='#mainLinkmanUuid#',
+
+       -- iff mainLinkmanName != null
+         main_linkman_name ='#mainLinkmanName#',
+
+       -- iff custLevel != null
+         cust_level ='#custLevel#',
+
+       -- iff finCycle != null
+         fin_cycle ='#finCycle#',
+
+       -- iff statusUuid != null
+         status_uuid ='#statusUuid#',
+
+       -- iff custUnitType != null
+         cust_unit_type ='#custUnitType#',
+
+       -- iff custCompetitor != null
+         cust_competitor ='#custCompetitor#',
+
+       -- iff mainProduct != null
+         main_product ='#mainProduct#',
+
+       -- iff comments != null
+         comments ='#comments#',
+
+       -- iff isDeleted != null
+         is_deleted ='#isDeleted#',
+
+       -- iff createdTime != null
+         created_time ='#createdTime#',
+
+       -- iff createdUuid != null
+         created_uuid ='#createdUuid#',
+
+       -- iff createdName != null
+         created_name ='#createdName#',
+
+       -- iff updatedTime != null
+         updated_time ='#updatedTime#',
+
+       -- iff updatedName != null
+         updated_name ='#updatedName#',
+
+       -- iff businessLine != null
+         business_line ='#businessLine#',
+
+       -- iff orgUuid != null
+         org_uuid ='#orgUuid#',
+
+       -- iff appSysUuid != null
+         app_sys_uuid ='#appSysUuid#',
+
+       -- iff extend1 != null
+         extend1 ='#extend1#',
+
+       -- iff extend2 != null
+         extend2 ='#extend2#',
+
+       -- iff extend3 != null
+         extend3 ='#extend3#',
+     -- end
+  where cust_uuid ='#custUuid#'
+
+  -- [deleteCustomer]
+  UPDATE crm_customer
+  SET is_deleted = 'Y'
+  WHERE
+  	is_deleted = 'N'
+     -- if ids != null
+            AND cust_uuid IN
+            -- for item=item index=index collection=ids open=( separator=, close=)
+                #item#
+            -- end
+        -- end
+
+
+
+

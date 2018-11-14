@@ -1,7 +1,7 @@
 package com.ccicnavi.bims.resource.api;
 
 
-//import com.ccicnavi.bims.resource.service.pojo.LogDO;
+//import com.ccicnavi.bims.resource.pojo.pojo.LogDO;
 
 
 import java.util.List;
