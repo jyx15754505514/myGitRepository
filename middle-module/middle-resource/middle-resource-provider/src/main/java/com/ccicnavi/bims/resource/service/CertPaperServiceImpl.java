@@ -28,7 +28,13 @@ public class CertPaperServiceImpl implements CertPaperService {
      */
     @Override
     public List<CertPaperDO> listCertPaper(CertPaperDO certPaper) {
-        return certPaperDao.listCertPaper(certPaper);
+        try {
+            return certPaperDao.listCertPaper(certPaper);
+        } catch (Exception e) {
+            log.debug("查询证书纸失败",e);
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -38,7 +44,13 @@ public class CertPaperServiceImpl implements CertPaperService {
      */
     @Override
     public CertPaperDO getCertPaper(CertPaperDO certPaper) {
-        return certPaperDao.getCertPaper(certPaper);
+        try {
+            return certPaperDao.getCertPaper(certPaper);
+        } catch (Exception e) {
+            log.debug("查询单条证书纸失败",e);
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -48,7 +60,13 @@ public class CertPaperServiceImpl implements CertPaperService {
      */
     @Override
     public Integer insertCertPaper(CertPaperDO certPaper) {
-       return certPaperDao.insertCertPaper(certPaper);
+        try {
+            return certPaperDao.insertCertPaper(certPaper);
+        } catch (Exception e) {
+            log.debug("新增证书纸失败",e);
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     /**
@@ -58,7 +76,13 @@ public class CertPaperServiceImpl implements CertPaperService {
      */
     @Override
     public Integer updateCertPaper(CertPaperDO certPaper) {
-       return certPaperDao.updateCertPaper(certPaper);
+        try {
+            return certPaperDao.updateCertPaper(certPaper);
+        } catch (Exception e) {
+            log.debug("更新证书纸失败",e);
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     /**
@@ -68,6 +92,12 @@ public class CertPaperServiceImpl implements CertPaperService {
      */
     @Override
     public Integer deleteCertPaper(CertPaperDO certPaper) {
-        return certPaperDao.deleteCertPaper(certPaper);
+        try {
+            return certPaperDao.deleteCertPaper(certPaper);
+        } catch (Exception e) {
+            log.debug("删除证书纸失败",e);
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

@@ -12,39 +12,39 @@ public interface CertPaperDao {
      * 查询证书纸信息
      * @param certPaper
      * @return List<role>
-     * @throws
+     * @throws Exception
      */
-    public List<CertPaperDO> listCertPaper(CertPaperDO certPaper) ;
+    public List<CertPaperDO> listCertPaper(CertPaperDO certPaper) throws Exception;
 
     /**
      * 新增证书纸
      * @param certPaper
      * @return Integer
-     * @
+     * @throws Exception
      */
-    public Integer insertCertPaper(CertPaperDO certPaper);
+    public Integer insertCertPaper(CertPaperDO certPaper) throws Exception;
 
     /**
      * 更新证书纸信息
      * @param certPaper
      * @return Integer
-     * @throws
+     * @throws Exception
      */
-    public Integer updateCertPaper(CertPaperDO certPaper);
+    public Integer updateCertPaper(CertPaperDO certPaper) throws Exception;
 
     /**
      * 删除证书纸信息
      * @param certPaper
      * @return Integer
-     * @throws
+     * @throws Exception
      */
-    public Integer deleteCertPaper(CertPaperDO certPaper);
+    public Integer deleteCertPaper(CertPaperDO certPaper) throws Exception;
 
     /**
      * 根据主键查询证书纸信息
      * @param certPaper
      * @return role
-     * @throws
+     * @throws Exception
      */
-    public CertPaperDO getCertPaper(CertPaperDO certPaper);
+    public CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception;
 }

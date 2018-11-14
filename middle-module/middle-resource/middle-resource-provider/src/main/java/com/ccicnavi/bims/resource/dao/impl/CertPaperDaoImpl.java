@@ -13,10 +13,9 @@ import java.util.List;
 /**
  * @Auther: fandongsheng
  * @Date: 2018/11/14 17:02
- * @Description:
+ * @Description:证书纸
  */
 @Service
-@Slf4j
 public class CertPaperDaoImpl implements CertPaperDao {
     /**
      * 查询证书纸信息
@@ -24,14 +23,8 @@ public class CertPaperDaoImpl implements CertPaperDao {
      * @return
      */
     @Override
-    public List<CertPaperDO> listCertPaper(CertPaperDO certPaper){
-        try {
-            return EqlUtils.getInstance("druid").select("listCertPaper").params(certPaper).returnType(SealDO.class).execute();
-        } catch (Exception e) {
-            log.debug("查询证书纸错误",e);
-            e.printStackTrace();
-        }
-        return null;
+    public List<CertPaperDO> listCertPaper(CertPaperDO certPaper) throws Exception{
+        return EqlUtils.getInstance("druid").select("listCertPaper").params(certPaper).returnType(CertPaperDO.class).execute();
     }
 
     /**
@@ -41,14 +34,8 @@ public class CertPaperDaoImpl implements CertPaperDao {
      * @throws
      */
     @Override
-    public Integer insertCertPaper(CertPaperDO certPaper){
-        try {
-            return EqlUtils.getInstance("druid").insert("insertCertPaper").params(certPaper).returnType(SealDO.class).execute();
-        } catch (Exception e) {
-            log.debug("新增证书纸",e);
-            e.printStackTrace();
-        }
-        return 0;
+    public Integer insertCertPaper(CertPaperDO certPaper) throws Exception{
+        return EqlUtils.getInstance("druid").insert("insertCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
 
     /**
@@ -58,35 +45,18 @@ public class CertPaperDaoImpl implements CertPaperDao {
      * @throws
      */
     @Override
-    public Integer updateCertPaper(CertPaperDO certPaper) {
-        try {
-            return EqlUtils.getInstance("druid").update("updateCertPaper").params(certPaper).returnType(SealDO.class).execute();
-        } catch (Exception e) {
-            log.debug("更新证书纸",e);
-            e.printStackTrace();
-        }
-        return 0;
+    public Integer updateCertPaper(CertPaperDO certPaper) throws Exception{
+        return EqlUtils.getInstance("druid").update("updateCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
 
     @Override
-    public Integer deleteCertPaper(CertPaperDO certPaper) {
-        try {
-            return EqlUtils.getInstance("druid").delete("deleteCertPaper").params(certPaper).returnType(SealDO.class).execute();
-        } catch (Exception e) {
-            log.debug("删除证书纸",e);
-            e.printStackTrace();
-        }
-        return 0;
+    public Integer deleteCertPaper(CertPaperDO certPaper) throws Exception{
+        return EqlUtils.getInstance("druid").delete("deleteCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
 
     @Override
-    public CertPaperDO getCertPaper(CertPaperDO certPaper) {
-        try {
-            return EqlUtils.getInstance("druid").selectFirst("getCertPaper").params(certPaper).returnType(SealDO.class).execute();
-        } catch (Exception e) {
-            log.debug("单条证书纸信息",e);
-            e.printStackTrace();
-        }
-        return null;
+    public CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception{
+        return EqlUtils.getInstance("druid").selectFirst("getCertPaper").params(certPaper).returnType(CertPaperDO.class).execute();
     }
+
 }
