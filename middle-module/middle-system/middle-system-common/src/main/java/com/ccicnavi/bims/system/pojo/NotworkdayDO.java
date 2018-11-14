@@ -11,6 +11,12 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+/**
+ * @program: bims-backend
+ * @description: 非工作日DO实体类
+ * @author: zhaotao
+ * @create: 2018-11-14 23:33
+ **/
 public class NotworkdayDO implements Serializable{
 
     private List<String> uuids;
