@@ -1,0 +1,435 @@
+--[listResPersonWorkDO]
+select
+    work_uuid workUuid,
+    person_uuid personUuid,
+    person_type personType,
+    dept_uuid deptUuid,
+    position position,
+    join_job_time joinJobTime,
+    regular_time regularTime,
+    join_app_time joinAppTime,
+    join_org_time joinOrgTime,
+    post_time postTime,
+    post_name postName,
+    email email,
+    fax fax,
+    office_phone officePhone,
+    work_addr workAddr,
+    is_upload_file isUploadFile,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    org_name orgName,
+    app_sys_uuid appSysUuid,
+    business_line businessLine,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3,
+from
+    res_person_work
+where
+    is_deleted = 'N'
+    --iff selName != null
+          and sel_name = '#selName#',
+
+          --iff selEngName != null
+          and sel_eng_name = '#selEngName#',
+
+          --iff selCertName != null
+          and sel_cert_name = '#selCertName#',
+
+          --iff selEnmUuid != null
+          and sel_enm_uuid = '#selEnmUuid#',
+
+          --iff selCount != null
+          and sel_count = '#selCount#',
+
+          --iff selBatchNo != null
+          and sel_batch_no = '#selBatchNo#',
+
+          --iff selStartNumber != null
+          and sel_start_number = '#selStartNumber#',
+
+          --iff selEndNumber != null
+          and sel_end_number = '#selEndNumber#',
+
+          --iff selPerson != null
+          and sel_person = '#selPerson#',
+
+          --iff selKeeper != null
+          and sel_keeper = '#selKeeper#',
+
+          --iff isDeleted != null
+          and is_deleted = '#isDeleted#',
+
+          --iff createdTime != null
+          and created_time = '#createdTime#',
+
+          --iff createdUuid != null
+          and created_uuid = '#createdUuid#',
+
+          --iff updatedTime != null
+          and updated_time = '#updatedTime#',
+
+          --iff updatedName != null
+          and updated_name = '#updatedName#',
+
+          --iff businessLine != null
+          and business_line = '#businessLine#',
+
+          --iff orgUuid != null
+          and org_uuid = '#orgUuid#',
+
+          --iff appSysUuid != null
+          and app_sys_uuid = '#appSysUuid#',
+
+          --iff extend1 != null
+          and extend1 = '#extend1#',
+
+          --iff extend2 != null
+          and extend2 = '#extend2#',
+
+          --iff extend3 != null
+          and extend3 = '#extend3#'
+
+-- [insertResPersonWorkDO]
+    insert into res_person_work
+--trim prefix=( suffix=) suffixOverrides=,
+-- if  test=personUuid !=null and uuid !=''
+        person_uuid,
+-- end
+-- if  test=workUuid !=null and uuid !=''
+        work_uuid,
+-- end
+-- if  test=personType !=null and uuid !=''
+        person_type,
+-- end
+-- if  test=deptUuid !=null and uuid !=''
+        dept_uuid,
+-- end
+-- if  test=position !=null and uuid !=''
+        position,
+-- end
+-- if  test=joinJobTime !=null and uuid !=''
+        join_job_time,
+-- end
+-- if  test=regularTime !=null and uuid !=''
+        regular_time,
+-- end
+-- if  test=joinAppTime !=null and uuid !=''
+        join_app_time,
+-- end
+-- if  test=joinOrgTime !=null and uuid !=''
+        join_org_time,
+-- end
+-- if  test=postTime !=null and uuid !=''
+        post_time,
+-- end
+-- if  test=postName !=null and uuid !=''
+        post_name,
+-- end
+-- if  test=email !=null and uuid !=''
+        email,
+-- end
+-- if  test=fax !=null and uuid !=''
+        fax,
+-- end
+-- if  test=officePhone !=null and uuid !=''
+        office_phone,
+-- end
+-- if  test=workAddr !=null and uuid !=''
+        work_addr,
+-- end
+-- if  test=isUploadFile !=null and uuid !=''
+        is_upload_file,
+-- end
+-- if  test=comments !=null and uuid !=''
+        comments,
+-- end
+-- if  test=isDeleted !=null and uuid !=''
+        is_deleted,
+-- end
+-- if  test=createdTime !=null and uuid !=''
+        created_time,
+-- end
+-- if  test=createdUuid !=null and uuid !=''
+        created_uuid,
+-- end
+-- if  test=createdName !=null and uuid !=''
+        created_name,
+-- end
+-- if  test=updatedTime !=null and uuid !=''
+        updated_time,
+-- end
+-- if  test=updatedName !=null and uuid !=''
+        updated_name,
+-- end
+-- if  test=orgUuid !=null and uuid !=''
+        org_uuid,
+-- end
+-- if  test=orgName !=null and uuid !=''
+        org_name,
+-- end
+-- if  test=appSysUuid !=null and uuid !=''
+        app_sys_uuid,
+-- end
+-- if  test=businessLine !=null and uuid !=''
+        business_line,
+-- end
+-- if  test=extend1 !=null and uuid !=''
+        extend1,
+-- end
+-- if  test=extend2 !=null and uuid !=''
+        extend2,
+-- end
+-- if  test=extend3 !=null and uuid !=''
+        extend3,
+-- end
+ -- end
+-- trim prefix=values( suffix=) suffixOverrides=,
+-- if  test=personUuid !=null and uuid !=''
+       "#personUuid#"
+-- end
+-- if  test=workUuid !=null and uuid !=''
+       "#workUuid#"
+-- end
+-- if  test=personType !=null and uuid !=''
+       "#personType#"
+-- end
+-- if  test=deptUuid !=null and uuid !=''
+       "#deptUuid#"
+-- end
+-- if  test=position !=null and uuid !=''
+       "#position#"
+-- end
+-- if  test=joinJobTime !=null and uuid !=''
+       "#joinJobTime#"
+-- end
+-- if  test=regularTime !=null and uuid !=''
+       "#regularTime#"
+-- end
+-- if  test=joinAppTime !=null and uuid !=''
+       "#joinAppTime#"
+-- end
+-- if  test=joinOrgTime !=null and uuid !=''
+       "#joinOrgTime#"
+-- end
+-- if  test=postTime !=null and uuid !=''
+       "#postTime#"
+-- end
+-- if  test=postName !=null and uuid !=''
+       "#postName#"
+-- end
+-- if  test=email !=null and uuid !=''
+       "#email#"
+-- end
+-- if  test=fax !=null and uuid !=''
+       "#fax#"
+-- end
+-- if  test=officePhone !=null and uuid !=''
+       "#officePhone#"
+-- end
+-- if  test=workAddr !=null and uuid !=''
+       "#workAddr#"
+-- end
+-- if  test=isUploadFile !=null and uuid !=''
+       "#isUploadFile#"
+-- end
+-- if  test=comments !=null and uuid !=''
+       "#comments#"
+-- end
+-- if  test=isDeleted !=null and uuid !=''
+       "#isDeleted#"
+-- end
+-- if  test=createdTime !=null and uuid !=''
+       "#createdTime#"
+-- end
+-- if  test=createdUuid !=null and uuid !=''
+       "#createdUuid#"
+-- end
+-- if  test=createdName !=null and uuid !=''
+       "#createdName#"
+-- end
+-- if  test=updatedTime !=null and uuid !=''
+       "#updatedTime#"
+-- end
+-- if  test=updatedName !=null and uuid !=''
+       "#updatedName#"
+-- end
+-- if  test=orgUuid !=null and uuid !=''
+       "#orgUuid#"
+-- end
+-- if  test=orgName !=null and uuid !=''
+       "#orgName#"
+-- end
+-- if  test=appSysUuid !=null and uuid !=''
+       "#appSysUuid#"
+-- end
+-- if  test=businessLine !=null and uuid !=''
+       "#businessLine#"
+-- end
+-- if  test=extend1 !=null and extend1 !=''
+       "#extend1#"
+-- end
+-- if  test=extend2 !=null and extend2 !=''
+       "#extend2#"
+-- end
+-- if  test=extend3 !=null and extend3 !=''
+       "#extend3#"
+-- end
+ -- end
+
+-- [updateResPersonWorkDO]
+    update res_person_work
+-- trim prefix=set suffixOverrides=,
+ -- if test=workUuid != null and uuid != ''
+        work_uuid ="#workUuid#"
+-- end
+ -- if test=personType != null and uuid != ''
+        person_type ="#personType#"
+-- end
+ -- if test=deptUuid != null and uuid != ''
+        dept_uuid ="#deptUuid#"
+-- end
+ -- if test=position != null and uuid != ''
+        position ="#position#"
+-- end
+ -- if test=joinJobTime != null and uuid != ''
+        join_job_time ="#joinJobTime#"
+-- end
+ -- if test=regularTime != null and uuid != ''
+        regular_time ="#regularTime#"
+-- end
+ -- if test=joinAppTime != null and uuid != ''
+        join_app_time ="#joinAppTime#"
+-- end
+ -- if test=joinOrgTime != null and uuid != ''
+        join_org_time ="#joinOrgTime#"
+-- end
+ -- if test=postTime != null and uuid != ''
+        post_time ="#postTime#"
+-- end
+ -- if test=postName != null and uuid != ''
+        post_name ="#postName#"
+-- end
+ -- if test=email != null and uuid != ''
+        email ="#email#"
+-- end
+ -- if test=fax != null and uuid != ''
+        fax ="#fax#"
+-- end
+ -- if test=officePhone != null and uuid != ''
+        office_phone ="#officePhone#"
+-- end
+ -- if test=workAddr != null and uuid != ''
+        work_addr ="#workAddr#"
+-- end
+ -- if test=isUploadFile != null and uuid != ''
+        is_upload_file ="#isUploadFile#"
+-- end
+ -- if test=comments != null and uuid != ''
+        comments ="#comments#"
+-- end
+ -- if test=isDeleted != null and uuid != ''
+        is_deleted ="#isDeleted#"
+-- end
+ -- if test=createdTime != null and uuid != ''
+        created_time ="#createdTime#"
+-- end
+ -- if test=createdUuid != null and uuid != ''
+        created_uuid ="#createdUuid#"
+-- end
+ -- if test=createdName != null and uuid != ''
+        created_name ="#createdName#"
+-- end
+ -- if test=updatedTime != null and uuid != ''
+        updated_time ="#updatedTime#"
+-- end
+ -- if test=updatedName != null and uuid != ''
+        updated_name ="#updatedName#"
+-- end
+ -- if test=orgUuid != null and uuid != ''
+        org_uuid ="#orgUuid#"
+-- end
+ -- if test=orgName != null and uuid != ''
+        org_name ="#orgName#"
+-- end
+ -- if test=appSysUuid != null and uuid != ''
+        app_sys_uuid ="#appSysUuid#"
+-- end
+ -- if test=businessLine != null and uuid != ''
+        business_line ="#businessLine#"
+-- end
+ -- if test=extend1 != null and uuid != ''
+        extend1 ="#extend1#"
+-- end
+ -- if test=extend2 != null and uuid != ''
+        extend2 ="#extend2#"
+-- end
+ -- if test=extend3 != null and uuid != ''
+        extend3 ="#extend3#"
+-- end
+ -- end
+    where person_uuid = "#personUuid#"
+
+
+--[deleteResPersonWorkDO]
+ UPDATE
+     res_person_work
+ -- trim prefix= set suffixOverrides=,
+     is_deleted = 'Y'.
+ -- end
+ WHERE
+     is_deleted = 'N'
+     --if personUuid != null and personUuid != ''
+         and person_uuid = '#person_uuid#'
+     --if personUuid != null
+         and person_uuid in
+         -- for item=item index=index collection=personUuid open=( separator=, close=)
+             '#item#'
+ -- end
+
+ --[getResPersonWorkDO]
+ select
+     work_uuid workUuid,
+     person_uuid personUuid,
+     person_type personType,
+     dept_uuid deptUuid,
+     position position,
+     join_job_time joinJobTime,
+     regular_time regularTime,
+     join_app_time joinAppTime,
+     join_org_time joinOrgTime,
+     post_time postTime,
+     post_name postName,
+     email email,
+     fax fax,
+     office_phone officePhone,
+     work_addr workAddr,
+     is_upload_file isUploadFile,
+     comments comments,
+     is_deleted isDeleted,
+     created_time createdTime,
+     created_uuid createdUuid,
+     created_name createdName,
+     updated_time updatedTime,
+     updated_name updatedName,
+     org_uuid orgUuid,
+     org_name orgName,
+     app_sys_uuid appSysUuid,
+     business_line businessLine,
+     extend1 extend1,
+     extend2 extend2,
+     extend3 extend3,
+ from
+     res_person_work
+ where
+    is_deleted = 'N'
+    --if workUuid != null and  workUuid != ''
+        and  work_uuid = '#work_uuid#'
+    --end

@@ -2,7 +2,7 @@ package com.ccicnavi.bims.system.dao.impl;
 
 
 
-import com.ccicnavi.bims.common.ResultCode;
+
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.NotworkdayDao;
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
@@ -23,8 +23,7 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
         try{
             return EqlUtils.getInstance("druid").select("listNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
         }catch (Exception e) {
-            e.printStackTrace();
-            log.debug("{}",ResultCode.NOTWORKDAY_LIST_NOTWORKDAY);
+            log.error("",e);
             return null;
         }
     }
@@ -34,8 +33,7 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
         try{
             return EqlUtils.getInstance("druid").insert("insertNotworkday").params(notworkday).returnType(Integer.class).execute();
         }catch (Exception e) {
-            e.printStackTrace();
-            log.debug("{}",ResultCode.NOTWORKDAY_INSERT_NOTWORKDAY);
+            log.error("",e);
             return null;
         }
     }
@@ -45,8 +43,7 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
         try{
             return EqlUtils.getInstance("druid").insert("updateNotworkday").params(notworkday).returnType(Integer.class).execute();
         }catch (Exception e) {
-            e.printStackTrace();
-            log.debug("{}",ResultCode.NOTWORKDAY_UPDATE_NOTWORKDAY);
+            log.error("",e);
             return null;
         }
     }
@@ -56,8 +53,7 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
         try{
             return EqlUtils.getInstance("druid").insert("deleteNotworkday").params(notworkday).returnType(Integer.class).execute();
         }catch (Exception e) {
-            e.printStackTrace();
-            log.debug("{}",ResultCode.NOTWORKDAY_DELETE_NOTWORKDAY);
+            log.error("",e);
             return null;
         }
     }
@@ -65,11 +61,9 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
     @Override
     public NotworkdayDO getNotworkday(NotworkdayDO notworkday){
         try{
-            log.debug("{}",ResultCode.NOTWORKDAY_GET_NOTWORKDAY);
             return EqlUtils.getInstance("druid").selectFirst("getNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
         }catch (Exception e) {
-            e.printStackTrace();
-            log.debug("{}",ResultCode.NOTWORKDAY_GET_NOTWORKDAY);
+            log.error("",e);
             return null;
         }
     }
