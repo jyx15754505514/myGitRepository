@@ -5,10 +5,10 @@ import lombok.Setter;
 import lombok.ToString;
 import java.util.Date;
 
-/**
- * @Auther: mzj
- * @Date: 2018/11/14 09:30
- * @Description:日志详情
+/* *
+ * @Author MengZiJie
+ * @Description 日志详情
+ * @Date 15:29 2018/11/14
  */
 @Getter
 @Setter
