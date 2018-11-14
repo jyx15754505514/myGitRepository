@@ -3,11 +3,13 @@ package com.ccicnavi.bims.customer.dao.Impl;
 import com.ccicnavi.bims.customer.dao.SpecialNeedDao;
 import com.ccicnavi.bims.customer.pojo.SpecialNeedDO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class SpecialNeedDaoImpl implements SpecialNeedDao {
     @Override
     public List<SpecialNeedDO> listSpecialNeed(SpecialNeedDO specialNeed) {
@@ -29,5 +31,10 @@ public class SpecialNeedDaoImpl implements SpecialNeedDao {
     @Override
     public int updateSpecialNeed(SpecialNeedDO specialNeed) {
         return EqlUtils.getInstance("druid").update("updateSpecialNeed").params(specialNeed).execute();
+    }
+
+    @Override
+    public SpecialNeedDO getSpecialNeed(SpecialNeedDO specialNeed) {
+        return EqlUtils.getInstance("druid").select("getSpecialNeed").params(specialNeed).execute();
     }
 }
