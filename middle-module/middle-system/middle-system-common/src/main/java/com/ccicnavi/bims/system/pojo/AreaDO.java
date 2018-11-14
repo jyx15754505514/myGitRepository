@@ -3,10 +3,10 @@ package com.ccicnavi.bims.system.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-/**
- * @Auther: mzj
- * @Date: 2018/11/14 09:30
- * @Description:地区
+/* *
+ * @Author MengZiJie
+ * @Description 地区
+ * @Date 15:27 2018/11/14
  */
 @Getter
 @Setter
