@@ -65,7 +65,7 @@ public class LogServiceImpl implements LogService {
      * @Return int
      */
     @Override
-    public int insertLog(LogDO logDO) {
+    public Integer insertLog(LogDO logDO) {
         int countLog = 0;
         try {
             countLog = logDao.insertLog(logDO);
@@ -84,7 +84,7 @@ public class LogServiceImpl implements LogService {
      * @Return int
      */
     @Override
-    public int updateLog(LogDO logDO) {
+    public Integer updateLog(LogDO logDO) {
         int countLog  = 0;
         try {
             countLog = logDao.updateLog(logDO);
@@ -103,7 +103,7 @@ public class LogServiceImpl implements LogService {
      * @Return int
      */
     @Override
-    public int deleteLog(LogDO logDO) {
+    public Integer deleteLog(LogDO logDO) {
         int countLog  = 0;
         try {
             countLog = logDao.deleteLog(logDO);
