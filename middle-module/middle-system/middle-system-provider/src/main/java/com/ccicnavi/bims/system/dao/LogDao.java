@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.dao;
 
 import com.ccicnavi.bims.system.pojo.LogDO;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: mzj
