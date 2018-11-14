@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.resource.api.EquipTestService;
+import com.ccicnavi.bims.resource.dao.EquipTestDao;
 import com.ccicnavi.bims.resource.pojo.EquipTestDO;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,10 +14,11 @@ import java.util.List;
  * @author: panyida
  * @create: 2018-11-14 20:13
  **/
+@Service
 public class EquipTestServiceImpl implements EquipTestService {
 
     @Autowired
-    private EquipTestDao equipTestDao;
+    EquipTestDao equipTestDao;
 
     /**
      * @Author panyida
@@ -25,8 +28,8 @@ public class EquipTestServiceImpl implements EquipTestService {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDO>
      */
     @Override
-    public List<EquipTestDO> listEquipTest(EquipTestDO equipTestDao){
-        return equipTestDao.listEquipTest(equipTestDao);
+    public List<EquipTestDO> listEquipTest(EquipTestDO equipHoldDO){
+        return equipTestDao.listEquipTest(equipHoldDO);
     }
 
     /**

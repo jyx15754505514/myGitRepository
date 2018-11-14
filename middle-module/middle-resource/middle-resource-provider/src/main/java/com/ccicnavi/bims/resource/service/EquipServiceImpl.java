@@ -1,10 +1,10 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.resource.api.EquipService;
 import com.ccicnavi.bims.resource.dao.EquipDao;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

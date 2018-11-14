@@ -3,7 +3,6 @@ package com.ccicnavi.bims.resource.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.resource.dao.EquipHoldDao;
 import com.ccicnavi.bims.resource.pojo.EquipHoldDO;
-import com.ccicnavi.bims.resource.pojo.EquipHoldDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

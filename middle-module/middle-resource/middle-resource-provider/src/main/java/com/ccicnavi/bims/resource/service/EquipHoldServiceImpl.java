@@ -1,10 +1,10 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.resource.api.EquipHoldService;
 import com.ccicnavi.bims.resource.dao.EquipHoldDao;
 import com.ccicnavi.bims.resource.pojo.EquipHoldDO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
 public class EquipHoldServiceImpl implements EquipHoldService {
     
     @Autowired
-    private EquipHoldDao equipHoldDao;
+    EquipHoldDao equipHoldDao;
 
     /**
      * @Author panyida
@@ -28,8 +28,8 @@ public class EquipHoldServiceImpl implements EquipHoldService {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipHoldDO>
      */
     @Override
-    public List<EquipHoldDO> listEquipHold(EquipHoldDO equipHoldDao){
-        return equipHoldDao.listEquipHold(equipHoldDao);
+    public List<EquipHoldDO> listEquipHold(EquipHoldDO equipHoldDO){
+        return equipHoldDao.listEquipHold(equipHoldDO);
     }
 
     /**

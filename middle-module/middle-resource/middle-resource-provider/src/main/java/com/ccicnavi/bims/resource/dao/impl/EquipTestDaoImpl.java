@@ -3,6 +3,8 @@ package com.ccicnavi.bims.resource.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.resource.dao.EquipTestDao;
 import com.ccicnavi.bims.resource.pojo.EquipTestDO;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,6 +14,8 @@ import java.util.List;
  * @author: panyida
  * @create: 2018-11-14 20:21
  **/
+@Slf4j
+@Service
 public class EquipTestDaoImpl implements EquipTestDao {
     /**
      * @Author panyida
