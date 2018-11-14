@@ -26,6 +26,7 @@ from
     sys_log as log
 where
     log.is_deleted = 'N'
+    and log_uuid = '#logUuid#'
 
 -- [getLog]
 SELECT
