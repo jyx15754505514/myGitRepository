@@ -1,10 +1,10 @@
 package com.ccicnavi.bims.resource.service;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.resource.api.SealService;
 import com.ccicnavi.bims.resource.dao.SealDao;
 import com.ccicnavi.bims.resource.pojo.SealDO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class SealSeriveImpl implements SealService {
 
-    @Reference
+    @Autowired
     SealDao sealDao;
 
     @Override

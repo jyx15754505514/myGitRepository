@@ -1,17 +1,17 @@
 package com.ccicnavi.bims.resource.service;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.resource.api.StandardInfoService;
 import com.ccicnavi.bims.resource.dao.StandardInfoDao;
 import com.ccicnavi.bims.resource.pojo.StandardInfoDO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Service
 public class StandardInfoServiceImpl implements StandardInfoService{
 
-    @Reference
+    @Autowired
     StandardInfoDao standardInfoDao;
 
     @Override
