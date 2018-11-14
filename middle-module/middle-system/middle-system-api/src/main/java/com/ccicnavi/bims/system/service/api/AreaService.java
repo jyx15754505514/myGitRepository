@@ -8,7 +8,6 @@ import java.util.List;
  * @Date 19:57 2018/11/14
  */
 public interface AreaService {
-
     /**查询所有的地区*/
     List<AreaDO> listArea(AreaDO areaDO);
     /**获取指定的地区*/
