@@ -2,13 +2,14 @@
 -- [listTemplate]
 	SELECT
         template_uuid as templateUuid, dict_type_uuid as dictTypeUuid, template_name as templateName, template_file_uuid as templateFileUuid,
-		created_time as createdTime, created_uuid as createdUuid, created_name as createdName,
+		created_time as createdTime, created_uuid as createdUuid, created_name as createdName, business_type as businessType, is_enabled as isEnabled,
 		updated_time as updatedTime, updated_name as updatedName, comments, is_deleted as isDeleted, org_uuid as orgUuid,
 		app_sys_uuid as appSysUuid, business_line as businessLine, extend1, extend2, extend3
 	FROM
 		res_template
 	WHERE
 		is_deleted = 'N'
+		AND is_enabled = 'Y'
 		AND org_uuid = '#orgUuid#'
 		AND appSysUuid = '#appSysUuid#'
 		AND businessLine = '#businessLine#'
@@ -18,7 +19,7 @@
 -- [getTemplate]
 	SELECT
         template_uuid as templateUuid, dict_type_uuid as dictTypeUuid, template_name as templateName, template_file_uuid as templateFileUuid,
-		created_time as createdTime, created_uuid as createdUuid, created_name as createdName,
+		created_time as createdTime, created_uuid as createdUuid, created_name as createdName, business_type as businessType, is_enabled as isEnabled,
 		updated_time as updatedTime, updated_name as updatedName, comments, is_deleted as isDeleted, org_uuid as orgUuid,
 		app_sys_uuid as appSysUuid, business_line as businessLine, extend1, extend2, extend3
 	FROM
@@ -26,6 +27,7 @@
 	WHERE
 		notworkday_uuid = '#notworkdayUuid#'
 		AND is_deleted = 'N'
+		AND is_enabled = 'Y'
 		AND org_uuid = '#orgUuid#'
 		AND appSysUuid = '#appSysUuid#'
 		AND businessLine = '#businessLine#'
@@ -57,34 +59,39 @@
     -- trim prefix=( suffix=) suffixOverrides=,
       -- iff templateUuid != null and templateUuid != ''
         template_uuid,
-      -- iff dictTypeUuid != null and templateUuid != ''
+      -- iff dictTypeUuid != null and dictTypeUuid != ''
         dict_type_uuid,
-      -- iff templateName != null and templateUuid != ''
+      -- iff templateName != null and templateName != ''
         template_name,
-      -- iff templateFileUuid != null and templateUuid != ''
+      -- iff templateFileUuid != null and templateFileUuid != ''
         template_file_uuid,
-      -- iff comments != null and templateUuid != ''
+      -- iff comments != null and comments != ''
         comments,
-      -- iff isDeleted != null and templateUuid != ''
+      -- iff isDeleted != null and isDeleted != ''
         is_deleted,
       -- iff createdTime != null
         created_time,
-      -- iff createdUuid != null and templateUuid != ''
+      -- iff createdUuid != null and createdUuid != ''
         created_uuid,
-      -- iff createdName != null and templateUuid != ''
+      -- iff createdName != null and createdName != ''
         created_name,
-      -- iff businessLine != null and templateUuid != ''
+      -- iff businessLine != null and businessLine != ''
         business_line,
-      -- iff orgUuid != null and templateUuid != ''
+      -- iff orgUuid != null and orgUuid != ''
         org_uuid,
-      -- iff appSysUuid != null and templateUuid != ''
+      -- iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid,
-      -- iff extend1 != null and templateUuid != ''
+      -- iff extend1 != null and extend1 != ''
         extend1,
-      -- iff extend2 != null and templateUuid != ''
+      -- iff extend2 != null and extend2 != ''
         extend2,
-      -- iff extend3 != null and templateUuid != ''
+      -- iff extend3 != null and extend3 != ''
         extend3,
+      -- iff businessType != null and businessType != ''
+        business_type,
+      -- iff isEnabled != null and isEnabled != ''
+        is_enabled,
+
 	-- end
     -- trim prefix=values( suffix=) suffixOverrides=,
       -- iff templateUuid != null and templateUuid != ''
@@ -117,6 +124,10 @@
         '#extend2#',
       -- iff extend3 != null and extend3 != ''
         '#extend3#',
+      -- iff businessType != null and businessType != ''
+        '#businessType#',
+      -- iff isEnabled != null and isEnabled != ''
+        '#isEnabled#',
 	-- end
 
 
@@ -162,6 +173,12 @@ update res_template
 
       -- iff extend3 != null and extend3 != ''
         extend3 = '#extend3#',
+
+      -- iff businessType != null and businessType != ''
+        business_type = '#businessType#',
+
+      -- iff isEnabled != null and isEnabled != ''
+        is_enabled = '#isEnabled#',
 	-- end
     WHERE
 		-- if template_uuid != null
