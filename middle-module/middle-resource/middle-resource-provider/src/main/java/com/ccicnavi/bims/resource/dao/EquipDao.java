@@ -1,5 +1,4 @@
-package com.ccicnavi.bims.resource.api;
-
+package com.ccicnavi.bims.resource.dao;
 
 import com.ccicnavi.bims.resource.pojo.EquipDO;
 
@@ -7,12 +6,11 @@ import java.util.List;
 
 /**
  * @program: bims-backend
- * @description: 设备信息api接口
+ * @description: 设备信息持久层接口
  * @author: panyida
- * @create: 2018-11-14 11:30
+ * @create: 2018-11-14 15:49
  **/
-public interface EquipService {
-
+public interface EquipDao {
     /**
      * @Author panyida
      * @Description 设备信息查询

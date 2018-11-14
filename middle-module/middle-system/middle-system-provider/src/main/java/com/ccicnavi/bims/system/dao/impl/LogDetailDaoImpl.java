@@ -23,14 +23,7 @@ public class LogDetailDaoImpl implements LogDetailDao {
      */
     @Override
     public LogDetailDO getLogDetail(LogDetailDO logDetailDO) {
-        LogDetailDO logDetail = null;
-        try {
-            logDetail = EqlUtils.getInstance("druid").selectFirst("").params(logDetailDO).returnType(LogDetailDO.class).execute();
-        } catch (Exception e) {
-            log.debug("",e);
-            e.printStackTrace();
-        }
-        return logDetail;
+        return EqlUtils.getInstance("druid").selectFirst("").params(logDetailDO).returnType(LogDetailDO.class).execute();
     }
 
     /* *
@@ -41,15 +34,8 @@ public class LogDetailDaoImpl implements LogDetailDao {
      * @Return int
      */
     @Override
-    public int insertLogDetail(LogDetailDO logDetailDO) {
-        int logDetail = 0;
-        try {
-            logDetail = EqlUtils.getInstance("druid").insert("insertLogDetail").params(logDetailDO).execute();
-        } catch (Exception e) {
-            log.debug("",e);
-            e.printStackTrace();
-        }
-        return logDetail;
+    public Integer insertLogDetail(LogDetailDO logDetailDO) {
+        return EqlUtils.getInstance("druid").insert("insertLogDetail").params(logDetailDO).execute();
     }
 
     /* *
@@ -60,15 +46,8 @@ public class LogDetailDaoImpl implements LogDetailDao {
      * @Return int
      */
     @Override
-    public int updateLogDetail(LogDetailDO logDetailDO) {
-        int logDetail = 0;
-        try {
-            logDetail = EqlUtils.getInstance("druid").update("updateLogDetail").params(logDetailDO).execute();
-        } catch (Exception e) {
-            log.debug("",e);
-            e.printStackTrace();
-        }
-        return logDetail;
+    public Integer updateLogDetail(LogDetailDO logDetailDO) {
+        return EqlUtils.getInstance("druid").update("updateLogDetail").params(logDetailDO).execute();
     }
 
     /* *
@@ -79,15 +58,8 @@ public class LogDetailDaoImpl implements LogDetailDao {
      * @Return int
      */
     @Override
-    public int deleteLogDetail(LogDetailDO logDetailDO) {
-        int logDetail = 0;
-        try {
-            logDetail = EqlUtils.getInstance("druid").delete("deleteLogDetail").params(logDetailDO).execute();
-        } catch (Exception e) {
-            log.debug("",e);
-            e.printStackTrace();
-        }
-        return logDetail;
+    public Integer deleteLogDetail(LogDetailDO logDetailDO) {
+        return EqlUtils.getInstance("druid").delete("deleteLogDetail").params(logDetailDO).execute();
     }
 
 }

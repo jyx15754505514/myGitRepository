@@ -19,7 +19,7 @@ public interface EquipTestService {
      * @Param [EquipTestDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipTestDO>
      */
-    List<EquipTestDO> findEquipTestList(EquipTestDO EquipTestDO);
+    List<EquipTestDO> listEquipTest(EquipTestDO EquipTestDO);
 
     /**
      * @Author panyida
