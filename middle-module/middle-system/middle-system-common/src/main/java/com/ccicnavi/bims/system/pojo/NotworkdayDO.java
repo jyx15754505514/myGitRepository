@@ -5,12 +5,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @Getter
 @Setter
 @ToString
 public class NotworkdayDO implements Serializable{
+
+    private List<String> uuids;
+
     private String notworkdayUuid;
 
     private String year;
