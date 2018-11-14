@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.resource.pojo;
 
+
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,7 +9,12 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 
-
+/**
+ * @program: bims-backend
+ * @description: 设备信息DO
+ * @author: panyida
+ * @create: 2018-11-14 11:30
+ **/
 @Getter
 @Setter
 @ToString
