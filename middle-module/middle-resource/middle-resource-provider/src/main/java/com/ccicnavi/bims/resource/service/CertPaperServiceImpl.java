@@ -27,7 +27,7 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public List<CertPaperDO> listCertPaper(CertPaperDO certPaper) throws Exception{
+    public List<CertPaperDO> listCertPaper(CertPaperDO certPaper) {
         return certPaperDao.listCertPaper(certPaper);
     }
 
@@ -37,7 +37,7 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception{
+    public CertPaperDO getCertPaper(CertPaperDO certPaper) {
         return certPaperDao.getCertPaper(certPaper);
     }
 
@@ -47,7 +47,7 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public Integer insertCertPaper(CertPaperDO certPaper) throws Exception{
+    public Integer insertCertPaper(CertPaperDO certPaper) {
        return certPaperDao.insertCertPaper(certPaper);
     }
 
@@ -57,7 +57,7 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public Integer updateCertPaper(CertPaperDO certPaper) throws Exception{
+    public Integer updateCertPaper(CertPaperDO certPaper) {
        return certPaperDao.updateCertPaper(certPaper);
     }
 
@@ -67,7 +67,7 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public Integer deleteCertPaper(CertPaperDO certPaper) throws Exception{
+    public Integer deleteCertPaper(CertPaperDO certPaper) {
         return certPaperDao.deleteCertPaper(certPaper);
     }
 }

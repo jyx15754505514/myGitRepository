@@ -3,6 +3,7 @@ package com.ccicnavi.bims.resource.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.resource.dao.CertPaperDao;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
+import com.ccicnavi.bims.resource.pojo.SealDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -24,26 +25,25 @@ public class CertPaperDaoImpl implements CertPaperDao {
      */
     @Override
     public List<CertPaperDO> listCertPaper(CertPaperDO certPaper){
-        List<CertPaperDO> certPaperList = new ArrayList<>();
         try {
-            EqlUtils.getInstance("druid").select("listCertPaper");
+            return EqlUtils.getInstance("druid").select("listCertPaper").params(certPaper).returnType(SealDO.class).execute();
         } catch (Exception e) {
             log.debug("查询证书纸错误",e);
             e.printStackTrace();
         }
-        return certPaperList;
+        return null;
     }
 
     /**
      * 新增证书纸信息
      * @param certPaper
      * @return
-     * @throws Exception
+     * @throws
      */
     @Override
     public Integer insertCertPaper(CertPaperDO certPaper){
         try {
-            EqlUtils.getInstance("druid").insert("insertCertPaper");
+            return EqlUtils.getInstance("druid").insert("insertCertPaper").params(certPaper).returnType(SealDO.class).execute();
         } catch (Exception e) {
             log.debug("新增证书纸",e);
             e.printStackTrace();
@@ -52,23 +52,41 @@ public class CertPaperDaoImpl implements CertPaperDao {
     }
 
     /**
-     *
+     *更新证书纸信息
      * @param certPaper
      * @return
-     * @throws Exception
+     * @throws
      */
     @Override
-    public Integer updateCertPaper(CertPaperDO certPaper) throws Exception {
-        return null;
+    public Integer updateCertPaper(CertPaperDO certPaper) {
+        try {
+            return EqlUtils.getInstance("druid").update("updateCertPaper").params(certPaper).returnType(SealDO.class).execute();
+        } catch (Exception e) {
+            log.debug("更新证书纸",e);
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     @Override
-    public Integer deleteCertPaper(CertPaperDO certPaper) throws Exception {
-        return null;
+    public Integer deleteCertPaper(CertPaperDO certPaper) {
+        try {
+            return EqlUtils.getInstance("druid").delete("deleteCertPaper").params(certPaper).returnType(SealDO.class).execute();
+        } catch (Exception e) {
+            log.debug("删除证书纸",e);
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     @Override
-    public CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception {
+    public CertPaperDO getCertPaper(CertPaperDO certPaper) {
+        try {
+            return EqlUtils.getInstance("druid").selectFirst("getCertPaper").params(certPaper).returnType(SealDO.class).execute();
+        } catch (Exception e) {
+            log.debug("单条证书纸信息",e);
+            e.printStackTrace();
+        }
         return null;
     }
 }
