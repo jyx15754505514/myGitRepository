@@ -1,0 +1,208 @@
+-- [listCertPaper]
+SELECT
+    paper_uuid paperUuid,
+    paper_start_num paperStartNum,
+    paper_end_num paperEndNum,
+    strom_person stromPerson,
+    strom_time stromTime,
+    lead_unit leadUnit,
+    lead_dept leadDept,
+    paper_status paperStatus,
+    strom_num stromNum,
+    residual_num residualNum,
+    current_code currentCode,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    updated_time updatedTime,
+    updated_name updatedName,
+    business_line businessLine,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+from
+    res_cert_paper
+where
+    is_deleted = 'N'
+--iff stromPerson != null and stromPerson != ''
+    and strom_person like '#stromPerson:Like#'
+--end
+
+-- [getCertPaper]
+SELECT
+    paper_uuid paperUuid,
+    paper_start_num paperStartNum,
+    paper_end_num paperEndNum,
+    strom_person stromPerson,
+    strom_time stromTime,
+    lead_unit leadUnit,
+    lead_dept leadDept,
+    paper_status paperStatus,
+    strom_num stromNum,
+    residual_num residualNum,
+    current_code currentCode,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    updated_time updatedTime,
+    updated_name updatedName,
+    business_line businessLine,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUui
+from
+    res_cert_paper
+where
+    is_deleted = 'N'
+--if paperUuid != null and paperUuid != ''
+    and paper_uuid = '#paperUuid#'
+--end
+
+
+-- [insertCertPaper]
+INSERT INTO res_cert_paper
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff paperUuid != null and paperUuid !=''
+        	paper_uuid,
+        --iff paperStartNum != null and paperStartNum !=''
+        	paper_start_num,
+        --iff paperEndNum != null and paperEndNum !=''
+        	paper_end_num,
+        --iff stromPerson != null and stromPerson !=''
+        	strom_person,
+        --iff stromTime != null and stromTime !=''
+        	strom_time,
+        --iff leadUnit != null and leadUnit !=''
+        	lead_unit,
+        --iff leadDept != null and leadDept !=''
+        	lead_dept,
+        --iff paperStatus != null and paperStatus !=''
+        	paper_status,
+        --iff stromNum != null and stromNum !=''
+        	strom_num,
+        --iff residualNum != null and residualNum !=''
+        	residual_num,
+        --iff currentCode != null and currentCode !=''
+        	current_code,
+        --iff isDeleted != null and isDeleted !=''
+        	is_deleted,
+        --iff createdTime != null
+        	created_time,
+        --iff createdUuid != null and createdUuid !=''
+        	created_uuid,
+        --iff updatedTime != null
+        	updated_time,
+        --iff updatedName != null and updatedName !=''
+        	updated_name,
+        --iff businessLine != null and businessLine !=''
+        	business_line,
+        --iff orgUuid != null and orgUuid !=''
+        	org_uuid,
+        --iff appSysUuid != null and appSysUuid !=''
+        	app_sys_uuid,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff paperUuid != null and paperUuid !=''
+        	'#paperUuid#',
+        --iff paperStartNum != null and paperStartNum !=''
+        	'#paperStartNum#',
+        --iff paperEndNum != null and paperEndNum !=''
+        	'#paperEndNum#',
+        --iff stromPerson != null and stromPerson !=''
+        	'#stromPerson#',
+        --iff stromTime != null and stromTime !=''
+        	'#stromTime#',
+        --iff leadUnit != null and leadUnit !=''
+        	'#leadUnit#',
+        --iff leadDept != null and leadDept !=''
+        	'#leadDept#',
+        --iff paperStatus != null and paperStatus !=''
+        	'#paperStatus#',
+        --iff stromNum != null and stromNum !=''
+        	'#stromNum#',
+        --iff residualNum != null and residualNum !=''
+        	'#residualNum#',
+        --iff currentCode != null and currentCode !=''
+        	'#currentCode#',
+        --iff isDeleted != null and isDeleted !=''
+        	'#isDeleted#',
+        --iff createdTime != null
+        	'#createdTime#',
+        --iff createdUuid != null and createdUuid !=''
+        	'#createdUuid#',
+        --iff updatedTime != null
+        	'#updatedTime#',
+        --iff updatedName != null and updatedName !=''
+        	'#updatedName#',
+        --iff businessLine != null and businessLine !=''
+        	'#businessLine#',
+        --iff orgUuid != null and orgUuid !=''
+        	'#orgUuid#',
+        --iff appSysUuid != null and appSysUuid !=''
+        	'#appSysUuid#',
+    -- end
+
+-- [updateCertPaper]
+UPDATE
+    res_cert_paper
+-- trim prefix= set suffixOverrides=,
+    --iff paperStartNum != null and paperStartNum !=''
+    	paper_start_num = '#paperStartNum#',
+    --iff paperEndNum != null and paperEndNum !=''
+    	paper_end_num = '#paperEndNum#',
+    --iff stromPerson != null and stromPerson !=''
+    	strom_person = '#stromPerson#',
+    --iff stromTime != null and stromTime!=''
+    	strom_time = '#stromTime#',
+    --iff leadUnit != null and leadUnit !=''
+    	lead_unit = '#leadUnit#',
+    --iff leadDept != null and leadDept !=''
+    	lead_dept = '#leadDept#',
+    --iff paperStatus != null and paperStatus !=''
+    	paper_status = '#paperStatus#',
+    --iff stromNum != null and stromNum !=''
+    	strom_num = '#stromNum#',
+    --iff residualNum != null and residualNum !=''
+    	residual_num = '#residualNum#',
+    --iff currentCode != null and currentCode !=''
+    	current_code = '#currentCode#',
+    --iff isDeleted != null and isDeleted !=''
+    	is_deleted = '#isDeleted#',
+    --iff createdTime != null and createdTime !=''
+    	created_time = '#createdTime#',
+    --iff createdUuid != null and createdUuid !=''
+    	created_uuid = '#createdUuid#',
+    --iff updatedTime != null and updatedTime !=''
+    	updated_time = '#updatedTime#',
+    --iff updatedName != null and updatedName !=''
+    	updated_name = '#updatedName#',
+    --iff businessLine != null and businessLine !=''
+    	business_line = '#businessLine#',
+    --iff orgUuid != null and orgUuid !=''
+    	org_uuid = '#orgUuid#',
+    --iff appSysUuid != null and appSysUuid !=''
+    	app_sys_uuid = '#appSysUuid#',
+-- end
+where
+    is_deleted = 'N'
+    --iff paperUuid != null and paperUuid != ''
+        and paper_uuid = '#paperUuid#'
+    --iff paperUuids != null
+        and paper_uuid in
+        -- for item=item index=index collection=paperUuids open=( separator=, close=)
+            '#item#'
+        -- end
+
+-- [deleteCertPaper]
+UPDATE
+    res_cert_paper
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'.
+-- end
+WHERE
+    is_deleted = 'N'
+    --iff paperUuid != null and paperUuid != ''
+        and paper_uuid = '#paperUuid#'
+    --iff paperUuids != null
+        and paper_uuid in
+        -- for item=item index=index collection=paperUuids open=( separator=, close=)
+            '#item#'
+        -- end
