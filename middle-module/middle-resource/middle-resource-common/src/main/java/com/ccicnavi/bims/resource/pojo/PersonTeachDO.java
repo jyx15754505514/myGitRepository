@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.system.pojo;
+package com.ccicnavi.bims.resource.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,18 +9,32 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class RoleDo {
-    private String roleUuid;
+public class PersonTeachDO {
+    private String teachUuid;
 
-    private String parentRoleUuid;
+    private String personUuid;
 
-    private String roleName;
+    private Date startTime;
 
-    private String roleCode;
+    private Date endTime;
 
-    private String isSystem;
+    private String school;
 
-    private String isEnabled;
+    private String major;
+
+    private String studentType;
+
+    private String schoolSystem;
+
+    private String education;
+
+    private String degree;
+
+    private String hotDegree;
+
+    private String witness;
+
+    private String graduation;
 
     private String comments;
 
