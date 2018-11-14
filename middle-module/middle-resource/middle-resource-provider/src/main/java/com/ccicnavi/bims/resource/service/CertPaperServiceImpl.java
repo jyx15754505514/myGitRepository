@@ -6,6 +6,7 @@ import com.ccicnavi.bims.resource.api.CertPaperService;
 import com.ccicnavi.bims.resource.dao.CertPaperDao;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.List;
 @Service
 @Slf4j
 public class CertPaperServiceImpl implements CertPaperService {
-    @Reference
+    @Autowired
     CertPaperDao certPaperDao;
     /**
      * 查询证书纸
