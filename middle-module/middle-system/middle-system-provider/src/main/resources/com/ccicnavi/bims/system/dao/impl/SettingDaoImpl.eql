@@ -26,16 +26,17 @@
             extend2,
             extend3
     FROM
-    sys_setting
+        sys_setting
     WHERE
      is_deleted = 'N'
      --iff settingUuid != null and settingUuid != ''
-        and setting_uuid = '#settingUuid:like#'
+        and setting_uuid like '#settingUuid:like#'
+     --end
 
 --[新增系统设置信息]
 --[insertSet]
     INSERT INTO sys_setting
-    --trim prefix=（ suffix=） suffixOverrides=,
+    --trim prefix=( suffix=) suffixOverrides=,
           --iff settingUuid != null and settingUuid != ''
             setting_uuid,
           --iff loginTitle != null
@@ -72,7 +73,7 @@
             updated_time,
           --iff updatedName != null
             updated_name,
-          --iff orgUuid != null
+          --iff orgUuid != null and orgUuid != ''
             org_uuid,
           --iff appSysUuid != null and appSysUuid != ''
             app_sys_uuid,
@@ -85,7 +86,7 @@
           --iff extend3 != null
             extend3,
         --end
-        --trim prefix= values( suffix=） suffixOverrides=,
+        --trim prefix= values( suffix=) suffixOverrides=,
           --iff settingUuid != null and settingUuid !=''
             '#settingUuid#',
 
@@ -134,13 +135,13 @@
           --iff createdName != null
             '#createdName#',
 
-          --iff orgUuid != null
+          --iff orgUuid != null and orgUuid != ''
             '#orgUuid#',
 
           --iff appSysUuid != null and appSysUuid != ''
             '#appSysUuid#',
 
-          --iff businessLine != null and and businessLine != ''
+          --iff businessLine != null and businessLine != ''
             '#businessLine#',
 
           --iff extend1 != null
