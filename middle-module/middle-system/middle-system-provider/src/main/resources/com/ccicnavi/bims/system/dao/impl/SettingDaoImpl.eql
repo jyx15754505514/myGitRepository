@@ -225,10 +225,18 @@
    UPDATE
         sys_setting
    -- trim prefix= set suffixOverrides=,
-               is_deleted = 'Y'
+        is_deleted = 'Y'
    -- end
    where
-        setting_uuid =  '#settingUuid#'
+        -- if settingUuid != null and settingUuid != ''
+        	setting_uuid = '#settingUuid#'
+        -- end
+        -- if settingUuids != null
+        	and	 setting_uuid in
+        		-- for item=item index=index collection=settingUuids open=( separator=, close=)
+        				'#item#'
+        		-- end
+        -- end
 
 --[根据主键查询系统设置]
 --[getSet]
