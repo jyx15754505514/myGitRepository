@@ -1,14 +1,17 @@
 package com.ccicnavi.bims.customer.dao.Impl;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.customer.dao.CustAddrDao;
 import com.ccicnavi.bims.customer.pojo.CustAddrDO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-
+@Service
+@Slf4j
 public class CustAddrDaoImpl implements CustAddrDao {
 
     @Override
@@ -94,7 +97,7 @@ public class CustAddrDaoImpl implements CustAddrDao {
 
     @Test
     public void testUuid(){
-        UUID.randomUUID().toString();
+        System.out.println(UUID.randomUUID().toString());
     }
 
 

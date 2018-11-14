@@ -18,26 +18,61 @@ public class LinkmanServiceImpl implements LinkmanService {
 
     @Override
     public List<LinkmanDO> listLinkman(LinkmanDO linkmanDO) {
-        return linkmanDao.listLinkman(linkmanDO);
+        List<LinkmanDO> linkmanList=null;
+        try {
+            linkmanList=linkmanDao.listLinkman(linkmanDO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("查询客户联系人信息失败~",e);
+        }
+        return linkmanList;
     }
 
     @Override
     public int saveLinkman(LinkmanDO linkmanDO) {
-        return linkmanDao.saveLinkman(linkmanDO);
+        Integer count=0;
+        try {
+            count=linkmanDao.saveLinkman(linkmanDO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("保存客户联系人信息失败~",e);
+        }
+        return count;
     }
 
     @Override
     public int removeLinkman(String uuids) {
-        return linkmanDao.removeLinkman(uuids);
+        Integer count=0;
+        try {
+            count=linkmanDao.removeLinkman(uuids);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("删除客户联系人信息失败~",e);
+        }
+        return count;
     }
 
     @Override
     public int updateLinkman(LinkmanDO linkmanDO) {
-        return linkmanDao.updateLinkman(linkmanDO);
+        Integer count=0;
+        try {
+            count=linkmanDao.updateLinkman(linkmanDO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("修改客户联系人信息失败~",e);
+        }
+        return count;
     }
 
     @Override
     public LinkmanDO getLinkman(LinkmanDO linkmanDO) {
-        return linkmanDao.getLinkman(linkmanDO);
+        LinkmanDO linkman=null;
+        try {
+            linkman=linkmanDao.getLinkman(linkmanDO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.debug("根据主键查询客户联系人信息失败~",e);
+        }
+        return linkman;
     }
 }
