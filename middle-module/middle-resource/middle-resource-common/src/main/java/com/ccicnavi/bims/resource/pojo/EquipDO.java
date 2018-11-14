@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class ResEquipDO implements Serializable {
+public class EquipDO implements Serializable {
     private String equipUuid;
 
     private String equipName;

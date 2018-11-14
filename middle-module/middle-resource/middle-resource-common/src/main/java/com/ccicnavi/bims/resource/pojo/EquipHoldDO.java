@@ -8,12 +8,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 设备保管信息
- */
+ * @Author panyida 
+ * @Description //TODO 
+ * @Date 9:22 2018/11/14
+ * @Param 
+ * @return 
+ **/
 @Getter
 @Setter
 @ToString
-public class ResEquipHoldDO implements Serializable {
+public class EquipHoldDO implements Serializable {
     private String equipHoldUuid;
 
     private String equipUuid;

@@ -13,7 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class ResEquipTestDO implements Serializable {
+public class EquipTestDO implements Serializable {
     private String equipTestUuid;
 
     private String equipUuid;
