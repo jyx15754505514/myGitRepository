@@ -6,10 +6,12 @@ import org.n3r.eql.Eql;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PersonDaoImpl  implements PersonDao {
 
+    Eql eql = new Eql();
 
     /**
      * 查询人员信息
@@ -20,7 +22,7 @@ public class PersonDaoImpl  implements PersonDao {
     @Override
     public List<PersonDO> listPerson(PersonDO personDo) throws Exception {
 
-        return new Eql().select("listPerson").params(personDo).returnType(PersonDO.class).execute();
+        return eql.select("listPerson").params(personDo).returnType(PersonDO.class).execute();
     }
 
     /**
@@ -31,7 +33,7 @@ public class PersonDaoImpl  implements PersonDao {
      */
     @Override
     public Integer insertPerson(PersonDO personDo) throws Exception {
-        return new Eql().select("insertPerson").params(personDo).returnType(Integer.class).execute();
+        return eql.select("insertPerson").params(personDo).returnType(Integer.class).execute();
     }
 
     /**
@@ -42,7 +44,7 @@ public class PersonDaoImpl  implements PersonDao {
      */
     @Override
     public Integer updatePerson(PersonDO personDo) throws Exception {
-        return new Eql().select("updatePerson").params(personDo).returnType(Integer.class).execute();
+        return eql.select("updatePerson").params(personDo).returnType(Integer.class).execute();
     }
 
     /**
@@ -53,7 +55,7 @@ public class PersonDaoImpl  implements PersonDao {
      */
     @Override
     public Integer deletePerson(PersonDO personDo) throws Exception {
-        return new Eql().select("deletePerson").params(personDo).returnType(Integer.class).execute();
+        return eql.select("deletePerson").params(personDo).returnType(Integer.class).execute();
     }
 
     /**
@@ -65,5 +67,11 @@ public class PersonDaoImpl  implements PersonDao {
     @Override
     public PersonDO getPerson(PersonDO personDo) {
         return new Eql().select("getPerson").params(personDo).returnType(PersonDO.class).execute();
+    }
+
+
+    public static void main(String[] args) {
+        List<Map<String, Object>> map = new Eql().select("listPerson").execute();
+        System.out.print(map);
     }
 }
