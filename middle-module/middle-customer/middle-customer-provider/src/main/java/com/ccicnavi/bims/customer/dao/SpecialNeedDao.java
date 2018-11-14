@@ -14,5 +14,6 @@ public interface SpecialNeedDao {
 
     int updateSpecialNeed(SpecialNeedDO specialNeed);
 
+    SpecialNeedDO getSpecialNeed(SpecialNeedDO specialNeed);
 
 }

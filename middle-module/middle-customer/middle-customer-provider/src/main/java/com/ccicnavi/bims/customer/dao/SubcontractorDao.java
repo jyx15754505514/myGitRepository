@@ -14,4 +14,6 @@ public interface SubcontractorDao {
 
     int updateSubcontractor(SubcontractorDO subcontractor);
 
+    SubcontractorDO getSubcontractor(SubcontractorDO subcontractor);
+
 }
