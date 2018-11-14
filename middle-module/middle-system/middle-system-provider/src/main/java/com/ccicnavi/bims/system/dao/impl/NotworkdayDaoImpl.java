@@ -3,9 +3,9 @@ package com.ccicnavi.bims.system.dao.impl;
 
 
 import com.ccicnavi.bims.common.ResultCode;
+import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.NotworkdayDao;
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
-import com.ccicnavi.bims.system.util.EqlUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
