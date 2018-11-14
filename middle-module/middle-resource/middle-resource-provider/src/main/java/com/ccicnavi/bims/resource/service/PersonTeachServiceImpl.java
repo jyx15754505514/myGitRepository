@@ -1,8 +1,9 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.resource.api.PersonTeachService;
 import com.ccicnavi.bims.resource.pojo.PersonTeachDO;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
