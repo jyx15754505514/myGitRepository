@@ -5,10 +5,10 @@ import com.ccicnavi.bims.system.pojo.LogDO;
 
 import java.util.List;
 
-/**
- * @Auther: mzj
- * @Date: 2018/11/14 10:23
- * @Description:
+/* *
+ * @Author MengZiJie
+ * @Description 地区管理
+ * @Date 16:48 2018/11/14
  */
 public interface AreaDao {
 
