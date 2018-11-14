@@ -1,0 +1,223 @@
+-- [listCustInvoice]
+SELECT
+	invoice_uuid,
+	cust_uuid,
+	invoice_title,
+	invoice_type,
+	taxpayer_code,
+	bank_name,
+	bank_account,
+	money,
+	is_taxpayer,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_name,
+	extend1,
+	extend2,
+	extend3
+FROM
+	crm_customer_invoice
+WHERE
+	is_deleted = 'N'
+        --if invoiceTitle !=null and invoiceTitle != ''
+            and invoice_title = '#invoiceTitle:like#'
+        --end
+        --if invoiceUuid !=null and invoiceUuid != ''
+            and invoice_uuid = '#invoiceUuid#'
+        --end
+
+-- [insertCustInvoice]
+insert into crm_customer_invoice
+    --trim prefix=( suffix=) suffixOverrides=,
+     -- iff invoiceUuid != null and invoiceUuid  != ''
+        invoice_uuid,
+
+     -- iff custUuid != null and  custUuid != ''
+        cust_uuid,
+
+     -- iff invoiceTitle != null and invoiceTitle  != ''
+        invoice_title,
+
+     -- iff invoiceType != null and invoiceType  != ''
+        invoice_type,
+
+     -- iff taxpayerCode != null and  taxpayerCode != ''
+        taxpayer_code,
+
+     -- iff bankName != null and  bankName != ''
+        bank_name,
+
+     -- iff bankAccount != null and bankAccount  != ''
+        bank_account,
+
+     -- iff money != null and money  != ''
+        money,
+
+     -- iff isTaxpayer != null and isTaxpayer  != ''
+        is_taxpayer,
+
+     -- iff comments != null and  comments != ''
+        comments,
+
+     -- iff isDeleted != null and isDeleted  != ''
+        is_deleted,
+
+     -- iff createdTime != null and  createdTime != ''
+        created_time,
+
+     -- iff createdUuid != null and  createdUuid != ''
+        created_uuid,
+
+     -- iff createdName != null and  createdName != ''
+        created_name,
+
+     -- iff updatedTime != null and  updatedTime != ''
+        updated_time,
+
+     -- iff updatedName != null and  updatedName != ''
+        updated_name,
+
+     -- iff extend1 != null and  extend1 != ''
+        extend1,
+
+     -- iff extend2 != null and extend2  != ''
+        extend2,
+
+     -- iff extend3 != null and extend3  != ''
+        extend3,
+
+    -- end
+    -- trim prefix="values (" suffix=) suffixOverrides=,
+     -- iff invoiceUuid != null and  invoiceUuid != ''
+        '#invoiceUuid#',
+
+     -- iff custUuid != null and custUuid  != ''
+        '#custUuid#',
+
+     -- iff invoiceTitle != null and invoiceTitle  != ''
+        '#invoiceTitle#',
+
+     -- iff invoiceType != null and invoiceType  != ''
+        '#invoiceType#',
+
+     -- iff taxpayerCode != null and taxpayerCode  != ''
+        '#taxpayerCode#',
+
+     -- iff bankName != null and bankName  != ''
+        '#bankName#',
+
+     -- iff bankAccount != null and bankAccount  != ''
+        '#bankAccount#',
+
+     -- iff money != null and  money != ''
+        '#money#',
+
+     -- iff isTaxpayer != null and  isTaxpayer != ''
+        '#isTaxpayer#',
+
+     -- iff comments != null and  comments != ''
+        '#comments#',
+
+     -- iff isDeleted != null and  isDeleted != ''
+        '#isDeleted#',
+
+     -- iff createdTime != null and createdTime  != ''
+        '#createdTime#',
+
+     -- iff createdUuid != null and  createdUuid != ''
+        '#createdUuid#',
+
+     -- iff createdName != null and  createdName != ''
+        '#createdName#',
+
+     -- iff updatedTime != null and updatedTime  != ''
+        '#updatedTime#',
+
+     -- iff updatedName != null and  updatedName != ''
+        '#updatedName#',
+
+     -- iff extend1 != null and  extend1 != ''
+        '#extend1#',
+
+     -- iff extend2 != null and extend2  != ''
+        '#extend2#',
+
+     -- iff extend3 != null and extend3  != ''
+        '#extend3#',
+	-- end
+
+-- [deleteCustInvoice]
+UPDATE crm_customer_invoice
+SET is_deleted = 'Y'
+where  	is_deleted = 'N'
+     -- if ids != null
+            AND invoice_uuid IN
+            -- for item=item index=index collection=ids open=( separator=, close=)
+                #item#
+            -- end
+        -- end
+
+-- [updateCustInvoice]
+update crm_customer_invoice
+    -- trim prefix=SET suffixOverrides=,
+      -- iff custUuid != null
+        cust_uuid = '#custUuid#',
+
+      -- iff invoiceTitle != null
+        invoice_title = '#invoiceTitle#',
+
+      -- iff invoiceType != null
+        invoice_type = '#invoiceType#',
+
+      -- iff taxpayerCode != null
+        taxpayer_code = '#taxpayerCode#',
+
+      -- iff bankName != null
+        bank_name = '#bankName#',
+
+      -- iff bankAccount != null
+        bank_account = '#bankAccount#',
+
+      -- iff money != null
+        money = '#money#',
+
+      -- iff isTaxpayer != null
+        is_taxpayer = '#isTaxpayer#',
+
+      -- iff comments != null
+        comments = '#comments#',
+
+      -- iff isDeleted != null
+        is_deleted = '#isDeleted#',
+
+      -- iff createdTime != null and createdTime!= ''
+        created_time = '#createdTime#',
+
+      -- iff createdUuid != null
+        created_uuid = '#createdUuid#',
+
+      -- iff createdName != null
+        created_name = '#createdName#',
+
+      -- iff updatedTime != null and updatedTime!= ''
+        updated_time = '#updatedTime#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+
+      -- iff extend1 != null
+        extend1 = '#extend1#',
+
+      -- iff extend2 != null
+        extend2 = '#extend2#',
+
+      -- iff extend3 != null
+        extend3 = '#extend3#',
+    --end
+where invoice_uuid = '#invoiceUuid#'
+
+
