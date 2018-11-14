@@ -12,9 +12,9 @@ public interface LogDetailService {
     /**获取指定的日志详情*/
     LogDetailDO getLogDetail(LogDetailDO logDetailDO);
     /**新增日志详情信息*/
-    int insertLogDetail(LogDetailDO logDetailDO);
+    Integer insertLogDetail(LogDetailDO logDetailDO);
     /**更新日志详情信息*/
-    int updateLogDetail(LogDetailDO logDetailDO);
+    Integer updateLogDetail(LogDetailDO logDetailDO);
     /**删除日志详情*/
-    int deleteLogDetail(LogDetailDO logDetailDO);
+    Integer deleteLogDetail(LogDetailDO logDetailDO);
 }
