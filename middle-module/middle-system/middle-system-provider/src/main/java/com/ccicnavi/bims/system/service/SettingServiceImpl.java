@@ -2,7 +2,7 @@ package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.ccicnavi.bims.product.service.api.SettingService;
+import com.ccicnavi.bims.system.service.api.SettingService;
 import com.ccicnavi.bims.system.dao.SettingDao;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 

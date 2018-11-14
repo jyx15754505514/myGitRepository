@@ -1,0 +1,232 @@
+-- [listCustTail]
+SELECT
+	tail_uuid,
+	cust_uuid,
+	person_uuid,
+	person_name,
+	status_uuid,
+	performance,
+	visit_type,
+	linkman_purpose,
+	idea,
+	next_link_time,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_name,
+	extend1,
+	extend2,
+	extend3
+FROM
+	crm_customer_tail
+WHERE
+	is_deleted = 'N'
+        --if personName !=null and personName != ''
+            and person_name = '#personName:like#'
+        --end
+        --if tailUuid !=null and tailUuid != ''
+            and tail_uuid = '#tailUuid#'
+        --end
+
+-- [insertCustTail]
+insert into crm_customer_tail
+    -- trim prefix=( suffix=) suffixOverrides=, and   != ''
+     -- iff tailUuid != null and tailUuid  != ''
+        tail_uuid,
+
+     -- iff custUuid != null and custUuid  != ''
+        cust_uuid,
+
+     -- iff personUuid != null and personUuid  != ''
+        person_uuid,
+
+     -- iff personName != null and   personName!= ''
+        person_name,
+
+     -- iff statusUuid != null and statusUuid  != ''
+        status_uuid,
+
+     -- iff performance != null and performance  != ''
+        performance,
+
+     -- iff visitType != null and visitType  != ''
+        visit_type,
+
+     -- iff linkmanPurpose != null and  linkmanPurpose != ''
+        linkman_purpose,
+
+     -- iff idea != null and idea  != ''
+        idea,
+
+     -- iff nextLinkTime != null and nextLinkTime  != ''
+        next_link_time,
+
+     -- iff comments != null and  comments != ''
+        comments,
+
+     -- iff isDeleted != null and isDeleted  != ''
+        is_deleted,
+
+     -- iff createdTime != null and  createdTime != ''
+        created_time,
+
+     -- iff createdUuid != null and  createdUuid != ''
+        created_uuid,
+
+     -- iff createdName != null and  createdName != ''
+        created_name,
+
+     -- iff updatedTime != null and  updatedTime != ''
+        updated_time,
+
+     -- iff updatedName != null and  updatedName != ''
+        updated_name,
+
+     -- iff extend1 != null and  extend1 != ''
+        extend1,
+
+     -- iff extend2 != null and  extend2 != ''
+        extend2,
+
+     -- iff extend3 != null and extend3  != ''
+        extend3,
+
+    -- end
+    -- trim prefix="values (" suffix=) suffixOverrides=, and   != ''
+     -- iff tailUuid != null and tailUuid  != ''
+        '#tailUuid#',
+
+     -- iff custUuid != null and custUuid  != ''
+        '#custUuid#',
+
+     -- iff personUuid != null and  personUuid != ''
+        '#personUuid#',
+
+     -- iff personName != null and personName  != ''
+        '#personName#',
+
+     -- iff statusUuid != null and statusUuid  != ''
+        '#statusUuid#',
+
+     -- iff performance != null and  performance != ''
+        '#performance#',
+
+     -- iff visitType != null and   visitType != ''
+        '#visitType#',
+
+     -- iff linkmanPurpose != null and linkmanPurpose  != ''
+        '#linkmanPurpose#',
+
+     -- iff idea != null and   idea != ''
+        '#idea#',
+
+     -- iff nextLinkTime != null and  nextLinkTime != ''
+        '#nextLinkTime#',
+
+     -- iff comments != null and  comments != ''
+        '#comments#',
+
+     -- iff isDeleted != null and isDeleted  != ''
+        '#isDeleted#',
+
+     -- iff createdTime != null and createdTime  != ''
+        '#createdTime#',
+
+     -- iff createdUuid != null and createdUuid  != ''
+        '#createdUuid#',
+
+     -- iff createdName != null and createdName  != ''
+        '#createdName#',
+
+     -- iff updatedTime != null and  updatedTime != ''
+        '#updatedTime#',
+
+     -- iff updatedName != null and  updatedName != ''
+        '#updatedName#',
+
+     -- iff extend1 != null and  extend1 != ''
+        '#extend1#',
+
+     -- iff extend2 != null and extend2  != ''
+        '#extend2#',
+
+     -- iff extend3 != null and extend3  != ''
+        '#extend3#',
+	-- end
+
+-- [deleteCustTail]
+UPDATE crm_customer_tail
+SET is_deleted = 'Y'
+WHERE
+	is_deleted = 'N'
+     -- if ids != null
+            AND tail_uuid IN
+            -- for item=item index=index collection=ids open=( separator=, close=)
+                #item#
+            -- end
+        -- end
+
+-- [updateCustTail]
+ update crm_customer_tail
+    -- trim prefix=SET suffixOverrides=,
+      -- iff custUuid != null
+        cust_uuid = '#custUuid#',
+
+      -- iff personUuid != null
+        person_uuid = '#personUuid#',
+
+      -- iff personName != null
+        person_name = '#personName#',
+
+      -- iff statusUuid != null
+        status_uuid = '#statusUuid#',
+
+      -- iff performance != null
+        performance = '#performance#',
+
+      -- iff visitType != null
+        visit_type = '#visitType#',
+
+      -- iff linkmanPurpose != null
+        linkman_purpose = '#linkmanPurpose#',
+
+      -- iff idea != null
+        idea = '#idea#',
+
+      -- iff nextLinkTime != null and nextLinkTime!= ''
+        next_link_time = '#nextLinkTime#',
+
+      -- iff comments != null
+        comments = '#comments#',
+
+      -- iff isDeleted != null
+        is_deleted = '#isDeleted#',
+
+      -- iff createdTime != null
+        created_time = '#createdTime#',
+
+      -- iff createdUuid != null
+        created_uuid = '#createdUuid#',
+
+      -- iff createdName != null
+        created_name = '#createdName#',
+
+      -- iff updatedTime != null
+        updated_time = '#updatedTime#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+
+      -- iff extend1 != null
+        extend1 = '#extend1#',
+
+      -- iff extend2 != null
+        extend2 = '#extend2#',
+
+      -- iff extend3 != null
+        extend3 = '#extend3#',
+    -- end
+    where tail_uuid = '#tailUuid#'
