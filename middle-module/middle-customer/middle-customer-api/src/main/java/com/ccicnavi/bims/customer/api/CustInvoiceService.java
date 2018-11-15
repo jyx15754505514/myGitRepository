@@ -6,7 +6,10 @@ import com.ccicnavi.bims.customer.pojo.CustInvoiceDO;
 import java.util.List;
 
 /**
- * 客户发票接口层
+ * @program: bims-backend
+ * @description: 客户发票接口定义
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
  */
 public interface CustInvoiceService {
 

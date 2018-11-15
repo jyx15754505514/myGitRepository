@@ -7,7 +7,10 @@ import com.ccicnavi.bims.customer.pojo.LinkmanDO;
 import java.util.List;
 
 /**
- *客户跟踪信息
+ * @program: bims-backend
+ * @description: 客户跟踪信息接口定义
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
  */
 public interface CustTailService {
 

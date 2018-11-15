@@ -5,6 +5,12 @@ import com.ccicnavi.bims.customer.pojo.LinkmanDO;
 
 import java.util.List;
 
+/**
+ * @program: bims-backend
+ * @description: 客户联系人接口定义
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
+ */
 public interface LinkmanService {
 
     /**查询全部客户联系人信息*/

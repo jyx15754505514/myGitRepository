@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 客户dao层数据持久层
+ * @program: bims-backend
+ * @description: 客户数据库交互
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
  */
 @Service
 public class CustomerDaoImpl implements CustomerDao {
@@ -18,7 +21,6 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public List<CustomerDO> listCustomer(CustomerDO customer) {
-        System.out.println("deoceng");
         return EqlUtils.getInstance("druid").select("listCustomer").params(customer).execute();
     }
 
@@ -41,7 +43,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public CustomerDO getCustomer(CustomerDO customer) {
-        return EqlUtils.getInstance("druid").selectFirst("listCustomer").params(customer).execute();
+        return EqlUtils.getInstance("druid").selectFirst("listCustomer").params(customer).returnType(CustomerDO.class).execute();
     }
 
 
@@ -57,7 +59,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Test
     public void testSaveCustomer(){
-        for (int i = 11; i <=20; i++) {
+        for (int i = 1; i <=10; i++) {
             CustomerDO customer=new CustomerDO();
             customer.setCustUuid("asd"+i);
             customer.setCustName("客户"+i);
@@ -74,15 +76,15 @@ public class CustomerDaoImpl implements CustomerDao {
     @Test
     public void testUpdateCustomer(){
         CustomerDO customer=new CustomerDO();
-        customer.setCustUuid("qqqq");
-        customer.setCustName("qqqqqq被修改了~");
+        customer.setCustUuid("asd1");
+        customer.setCustName("asd1被修改了~");
         EqlUtils.getInstance("druid").update("updateCustomer").params(customer).execute();
     }
 
 
     @Test
     public void deleteCustomer(){
-        String uuids="qqqq,asd9,asd8";
+        String uuids="asd1,asd10,asd2";
         String [] ids=uuids.split(",");
         Map<String,Object> data=new HashMap<String,Object>();
         data.put("ids",ids);
