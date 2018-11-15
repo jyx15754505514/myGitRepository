@@ -3,37 +3,33 @@ package com.ccicnavi.bims.resource.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.io.Serializable;
 import java.util.Date;
-/**
- * 证书纸
- * @Date 2018/11/13 17 54
- * @Auther mzj
- */
+
 @Getter
 @Setter
 @ToString
-public class CertPaperDO {
-    private String paperUuid;
+public class PersonCultExpeDO implements Serializable {
+    private String cultExpeUuid;
 
-    private String paperStartNum;
+    private String personUuid;
 
-    private String paperEndNum;
+    private Date startTime;
 
-    private String stromPerson;
+    private Date endTime;
 
-    private Date stromDate;
+    private String cultName;
 
-    private String leadUnit;
+    private String cultOrg;
 
-    private String leadDept;
+    private String qualificationCert;
 
-    private String paperStatus;
+    private String cultType;
 
-    private String stromNum;
+    private String isSign;
 
-    private String residualNum;
-
-    private String currentCode;
+    private String comments;
 
     private String isDeleted;
 
@@ -41,15 +37,17 @@ public class CertPaperDO {
 
     private String createdUuid;
 
+    private String createdName;
+
     private Date updatedTime;
 
     private String updatedName;
 
-    private String businessLine;
-
     private String orgUuid;
 
     private String appSysUuid;
+
+    private String businessLine;
 
     private String extend1;
 

@@ -24,7 +24,7 @@ public class EquipTestDaoImpl implements EquipTestDao {
      */
     @Override
     public EquipTestDO getEquipTest(String equipTestUuid){
-        return EqlUtils.getInstance("druid").select("getEquip").params(equipTestUuid).returnType(EquipTestDO.class).execute();
+        return EqlUtils.getInstance("druid").selectFirst("getEquip").params(equipTestUuid).returnType(EquipTestDO.class).execute();
     }
 
     /**
@@ -48,7 +48,7 @@ public class EquipTestDaoImpl implements EquipTestDao {
      */
     @Override
     public Integer insertEquipTest(EquipTestDO equipTestDO){
-        return EqlUtils.getInstance("druid").select("insertEquip").params(equipTestDO).returnType(Integer.class).execute();
+        return EqlUtils.getInstance("druid").insert("insertEquip").params(equipTestDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -60,7 +60,7 @@ public class EquipTestDaoImpl implements EquipTestDao {
      */
     @Override
     public Integer updateEquipTest(EquipTestDO equipTestDO){
-        return EqlUtils.getInstance("druid").select("updateEquip").params(equipTestDO).returnType(EquipTestDO.class).execute();
+        return EqlUtils.getInstance("druid").update("updateEquip").params(equipTestDO).returnType(EquipTestDO.class).execute();
     }
 
     /**
@@ -72,6 +72,6 @@ public class EquipTestDaoImpl implements EquipTestDao {
      */
     @Override
     public Integer deleteEquipTest(EquipTestDO equipTestDO){
-        return EqlUtils.getInstance("druid").select("updateEquip").params(equipTestDO).returnType(EquipTestDO.class).execute();
+        return EqlUtils.getInstance("druid").delete("updateEquip").params(equipTestDO).returnType(EquipTestDO.class).execute();
     }
 }
