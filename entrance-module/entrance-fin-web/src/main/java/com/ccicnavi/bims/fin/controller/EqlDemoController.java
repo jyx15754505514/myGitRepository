@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/fin")
 public class EqlDemoController {
 
-    @Reference(version = "1.0.0", timeout = 10000,url = "dubbo://192.168.11.6:20880")
+    @Reference(version = "1.0.0", timeout = 10000,url = "dubbo://192.168.11.6:20887")
     EqlDemoService eqlDemoService;
 
     @GetMapping("/sayHello")

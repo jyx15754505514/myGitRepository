@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringBootTest(classes = ShibaApplication.class)
 public class ShibaListTest {
 
-    @Reference(timeout = 1000,url = "dubbo://127.0.0.1:20880")
+    @Reference(timeout = 1000,url = "dubbo://127.0.0.1:20888")
     ListTemplate listRedisTemplate;
 
     @Test
