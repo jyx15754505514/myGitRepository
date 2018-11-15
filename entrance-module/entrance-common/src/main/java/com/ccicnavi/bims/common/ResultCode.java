@@ -31,7 +31,11 @@ public enum ResultCode {
     FUND_CONTRAST_EXISTED(30007, "此对比基金已存在"),
     DELETE_FUND_CONTRAST_FAILURE(30008, "清除对比基金失败"),
     DELETE_PORTFOLIO_FUND_FAILURE(30009, "删除组合基金失败"),
-    NOTWORKDAY_LIST_NOTWORKDAY(30010, "根据条件查询非工作日失败"),
+    LIST_FAILURE(30010, "根据条件查询失败"),
+    ADD_FAILURE(30011, "添加失败"),
+    DELETE_FAILURE(30012, "删除失败"),
+    UPDATE_FAILURE(30013, "修改失败"),
+
 
 
     /* 系统错误：40001-49999 */
