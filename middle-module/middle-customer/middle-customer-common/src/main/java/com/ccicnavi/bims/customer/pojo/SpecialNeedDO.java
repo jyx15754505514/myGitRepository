@@ -7,8 +7,12 @@ import lombok.ToString;
 import java.util.Date;
 
 /**
- * 客户特殊需求信息
+ * @program: bims-backend
+ * @description: 客户特殊需求信息实体DO
+ * @author: WangYingLing
+ * @create: 2018-11-15 09:16
  */
+
 
 @Getter
 @Setter
