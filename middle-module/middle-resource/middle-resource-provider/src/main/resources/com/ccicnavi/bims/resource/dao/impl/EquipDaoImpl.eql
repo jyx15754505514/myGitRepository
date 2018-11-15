@@ -1,0 +1,250 @@
+-- [getEquip]
+SELECT
+     equip_uuid equipUuid ,
+     equip_name equipName ,
+     equip_name_en equipNameEn ,
+     control_code controlCode ,
+     equip_model equipModel ,
+     equip_spec equipSpec ,
+     factory_no factoryNo ,
+     manufacture manufacture ,
+     factory_level factoryLevel ,
+     measure_range measureRange ,
+     accuracy_level accuracyLevel ,
+     equip_abc equipAbc,
+     status_uuid statusUuid ,
+     parts_desc partsDesc ,
+     tester_name testerName ,
+     business_line businessLine ,
+     comments comments ,
+     is_deleted isDeleted ,
+     created_time createdTime ,
+     created_uuid createdUuid ,
+     created_name createdName ,
+     updated_time updatedTime ,
+     updated_name updatedName ,
+     org_uuid orgUuid ,
+     app_sys_uuid appSysUuid
+from
+    res_equip
+where
+    is_deleted = 'N'
+--iff equipUuid != null and equipUuid != ''
+    and equip_uuid = '#equipUuid#'
+
+-- [listEquip]
+SELECT
+     equip_uuid equipUuid ,
+     equip_name equipName ,
+     equip_name_en equipNameEn ,
+     control_code controlCode ,
+     equip_model equipModel ,
+     equip_spec equipSpec ,
+     factory_no factoryNo ,
+     manufacture manufacture ,
+     factory_level factoryLevel ,
+     measure_range measureRange ,
+     accuracy_level accuracyLevel ,
+     equip_abc equipAbc,
+     status_uuid statusUuid ,
+     parts_desc partsDesc ,
+     tester_name testerName ,
+     business_line businessLine ,
+     comments comments ,
+     is_deleted isDeleted ,
+     created_time createdTime ,
+     created_uuid createdUuid ,
+     created_name createdName ,
+     updated_time updatedTime ,
+     updated_name updatedName ,
+     org_uuid orgUuid ,
+     app_sys_uuid appSysUuid
+from
+    res_equip
+where
+    is_deleted = 'N'
+
+-- [insertEquip]
+    insert into res_equip
+     -- trim prefix=( suffix=) suffixOverrides=,
+      --iff equipUuid != null
+        equip_uuid,
+      --iff equipName != null
+        equip_name,
+      --iff equipNameEn != null
+        equip_name_en,
+      --iff controlCode != null
+        control_code,
+      --iff equipModel != null
+        equip_model,
+      --iff equipSpec != null
+        equip_spec,
+      --iff factoryNo != null
+        factory_no,
+      --iff manufacture != null
+        manufacture,
+      --iff factoryLevel != null
+        factory_level,
+      --iff measureRange != null
+        measure_range,
+      --iff accuracyLevel != null
+        accuracy_level,
+      --iff equipAbc != null
+        equip_abc,
+      --iff statusUuid != null
+        status_uuid,
+      --iff partsDesc != null
+        parts_desc,
+      --iff testerName != null
+        tester_name,
+      --iff businessLine != null
+        business_line,
+      --iff comments != null
+        comments,
+      --iff isDeleted != null
+        is_deleted,
+      --iff createdTime != null
+        created_time,
+      --iff createdUuid != null
+        created_uuid,
+      --iff createdName != null
+        created_name,
+      --iff updatedTime != null
+        updated_time,
+      --iff updatedName != null
+        updated_name,
+      --iff orgUuid != null
+        org_uuid,
+      --iff appSysUuid != null
+        app_sys_uuid
+    --end
+     -- trim prefix=values( suffix=) suffixOverrides=,
+      --iff equipUuid != null
+        '#equipUuid#',
+      --iff equipName != null
+        '#equipName#',
+      --iff equipNameEn != null
+        '#equipNameEn#',
+      --iff controlCode != null
+        '#controlCode#',
+      --iff equipModel != null
+        '#equipModel#',
+      --iff equipSpec != null
+        '#equipSpec#',
+      --iff factoryNo != null
+        '#factoryNo#',
+      --iff manufacture != null
+        '#manufacture#',
+      --iff factoryLevel != null
+        '#factoryLevel#',
+      --iff measureRange != null
+        '#measureRange#',
+      --iff accuracyLevel != null
+        '#accuracyLevel#',
+      --iff equipAbc != null
+        '#equipAbc#',
+      --iff statusUuid != null
+        '#statusUuid#',
+      --iff partsDesc != null
+        '#partsDesc#',
+      --iff testerName != null
+        '#testerName#',
+      --iff businessLine != null
+        '#businessLine#',
+      --iff comments != null
+        '#comments#',
+      --iff isDeleted != null
+        '#isDeleted#',
+      --iff createdTime != null
+        '#createdTime#',
+      --iff createdUuid != null
+        '#createdUuid#',
+      --iff createdName != null
+        '#createdName#',
+      --iff updatedTime != null
+        '#updatedTime#',
+      --iff updatedName != null
+        '#updatedName#',
+      --iff orgUuid != null
+        '#orgUuid#',
+      --iff appSysUuid != null
+        '#appSysUuid#'
+    --end
+
+-- [updateEquip]
+UPDATE res_equip
+-- trim prefix= set suffixOverrides=,
+      --iff equipName != null
+        equip_name = '#equipName#',
+      --iff equipNameEn != null
+        equip_name_en = '#equipNameEn#',
+      --iff controlCode != null
+        control_code = '#controlCode#',
+      --iff equipModel != null
+        equip_model = '#equipModel#',
+      --iff equipSpec != null
+        equip_spec = '#equipSpec#',
+      --iff factoryNo != null
+        factory_no = '#factoryNo#',
+      --iff manufacture != null
+        manufacture = '#manufacture#',
+      --iff factoryLevel != null
+        factory_level = '#factoryLevel#',
+      --iff measureRange != null
+        measure_range = '#measureRange#',
+      --iff accuracyLevel != null
+        accuracy_level = '#accuracyLevel#',
+      --iff equipAbc != null
+        equip_abc = '#equipAbc#',
+      --iff statusUuid != null
+        status_uuid = '#statusUuid#',
+      --iff partsDesc != null
+        parts_desc = '#partsDesc#',
+      --iff testerName != null
+        tester_name = '#testerName#',
+      --iff businessLine != null
+        business_line = '#businessLine#',
+      --iff comments != null
+        comments = '#comments#',
+      --iff isDeleted != null
+        is_deleted = '#isDeleted#',
+      --iff createdTime != null
+        created_time = '#createdTime#',
+      --iff createdUuid != null
+        created_uuid = '#createdUuid#',
+      --iff createdName != null
+        created_name = '#createdName#',
+      --iff updatedTime != null
+        updated_time = '#updatedTime#',
+      --iff updatedName != null
+        updated_name = '#updatedName#',
+      --iff orgUuid != null
+        org_uuid = '#orgUuid#',
+      --iff appSysUuid != null
+        app_sys_uuid = '#appSysUuid#'
+-- end
+where
+    is_deleted = 'N'
+    --iff equipUuid != null and equipUuid != ''
+        and equip_uuid = '#equipUuid#'
+    --iff equipUuids != null
+        and equip_uuid in
+        -- for item=item index=index collection=equipUuids open=( separator=, close=)
+            '#item#'
+-- end
+
+-- [deleteEquip]
+UPDATE
+    res_equip
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'
+-- end
+WHERE
+    is_deleted = 'N'
+    --iff equipUuid != null and equipUuid != ''
+        and equip_uuid = '#equipName#'
+    --iff equipUuids != null
+        and equip_uuid in
+        -- for item=item index=index collection=equipUuids open=( separator=, close=)
+            '#item#'
+-- end
