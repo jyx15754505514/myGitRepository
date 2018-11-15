@@ -1,7 +1,7 @@
 package com.ccicnavi.bims.system.dao;
 
+import com.ccicnavi.bims.system.pojo.RemindDO;
 import com.ccicnavi.bims.system.pojo.RemindDTO;
-import com.ccicnavi.bims.system.pojo.SysRemindDO;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public interface RemindDao {
    *@date: 2018/11/15
    */
 
-    public List<SysRemindDO> listSysremind(SysRemindDO sysremind)throws Exception;
+    public List<RemindDO> listRemind(RemindDO remind)throws Exception;
 
    /**
    *@Description: 新增提醒设置
@@ -31,7 +31,7 @@ public interface RemindDao {
    *@date: 2018/11/15
    */
 
-    public Integer insertSysremind(SysRemindDO sysremind)throws Exception;
+    public Integer insertRemind(RemindDO remind)throws Exception;
 
     /**
     *@Description: 修改提醒设置
@@ -41,7 +41,7 @@ public interface RemindDao {
     *@date: 2018/11/15
     */
 
-    public Integer updateSysremind(SysRemindDO sysremind)throws Exception;
+    public Integer updateRemind(RemindDO remind)throws Exception;
 
     /**
     *@Description: 删除提醒设置
@@ -51,7 +51,7 @@ public interface RemindDao {
     *@date: 2018/11/15
     */
 
-    public Integer deleteSysremind(SysRemindDO sysremind)throws Exception;
+    public Integer deleteRemind(RemindDO remind)throws Exception;
 
    /**
    *@Description: 根据主键查询描述设置
@@ -61,7 +61,7 @@ public interface RemindDao {
    *@date: 2018/11/15
    */
 
-    public SysRemindDO getSysremind(SysRemindDO sysremind)throws Exception;
+    public RemindDO getRemind(RemindDO remind)throws Exception;
 
     /**
     *@Description: 连表查询提醒设置
@@ -71,5 +71,7 @@ public interface RemindDao {
     *@date: 2018/11/15
     */
 
-   /* public List<RemindDTO> listremindorg(SysRemindDO sysremind)throws Exception;*/
+   public List<RemindDTO> listRemindOrg(RemindDO remind)throws Exception;
+
+
 }
