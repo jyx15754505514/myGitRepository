@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("area")
+@RequestMapping("/area")
 public class AreaController {
 
     private final static Logger log = LoggerFactory.getLogger(AreaController.class);
@@ -28,7 +28,7 @@ public class AreaController {
      * @Param [areaDO]
      * @Return com.ccicnavi.bims.common.ResultT
      */
-    @RequestMapping(value = "listArea",method = RequestMethod.POST)
+    @RequestMapping(value = "/listArea",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listArea(@RequestBody AreaDO areaDO){
         ResultT resultT = new ResultT();
         List<AreaDO> areaDOS = null;
