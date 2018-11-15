@@ -3,7 +3,7 @@ package com.ccicnavi.bims.system.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.system.dao.RemindDao;
 import com.ccicnavi.bims.system.dao.impl.RemindDaoImpl;
-import com.ccicnavi.bims.system.pojo.SysRemindDO;
+import com.ccicnavi.bims.system.pojo.RemindDO;
 import com.ccicnavi.bims.system.service.api.RemindService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +25,10 @@ public class RemindServiceImpl implements RemindService {
     @Autowired
     private RemindDao sysRemindDao;
     @Override
-    public List<SysRemindDO> listSysremind(SysRemindDO sysremind) throws Exception {
-        List<SysRemindDO> list = null;
+    public List<RemindDO> listRemind(RemindDO remind) throws Exception {
+        List<RemindDO> list = null;
         try {
-            list = sysRemindDao.listSysremind(sysremind);
+            list = sysRemindDao.listRemind(remind);
         }catch (Exception e) {
             log.error("", e);
         }
@@ -36,10 +36,10 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public Integer insertSysremind(SysRemindDO sysremind) throws Exception {
+    public Integer insertRemind(RemindDO remind) throws Exception {
         Integer num=null;
         try {
-            num =  sysRemindDao.insertSysremind(sysremind);
+            num =  sysRemindDao.insertRemind(remind);
         }catch (Exception e) {
             log.error("", e);
         }
@@ -47,10 +47,10 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public Integer updateSysremind(SysRemindDO sysremind) throws Exception {
+    public Integer updateRemind(RemindDO remind) throws Exception {
         Integer num =null;
         try {
-            num =  sysRemindDao.updateSysremind(sysremind);
+            num =  sysRemindDao.updateRemind(remind);
         }catch (Exception e) {
             log.error("", e);
         }
@@ -58,10 +58,10 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public Integer deleteSysremind(SysRemindDO sysremind) throws Exception {
+    public Integer deleteRemind(RemindDO remind) throws Exception {
         Integer num =null;
         try {
-             num = sysRemindDao.deleteSysremind(sysremind);
+             num = sysRemindDao.deleteRemind(remind);
         }catch (Exception e) {
             log.error("", e);
         }
@@ -69,13 +69,13 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public SysRemindDO getSysremind(SysRemindDO sysremind) throws Exception {
-        SysRemindDO sysRemindDO = null;
+    public RemindDO getRemind(RemindDO remind) throws Exception {
+        RemindDO remindDO = null;
         try {
-            sysRemindDO = sysRemindDao.getSysremind(sysremind);
+            remindDO = sysRemindDao.getRemind(remind);
         }catch (Exception e) {
             log.error("", e);
         }
-        return sysRemindDO;
+        return remindDO;
     }
 }
