@@ -1,4 +1,4 @@
--- [getResEquip]
+-- [listResEquip]
 SELECT
      equip_uuid equipUuid ,
      equip_name equipName ,

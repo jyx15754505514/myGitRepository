@@ -5,7 +5,12 @@ import com.ccicnavi.bims.resource.pojo.TemplateDO;
 
 import java.util.List;
 
-
+/**
+ * @program: bims-backend
+ * @description: 模板dao接口
+ * @author: zhaotao
+ * @create: 2018-11-14 23:33
+ **/
 public interface TemplateDao {
 	
 	/**

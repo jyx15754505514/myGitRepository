@@ -1,18 +1,16 @@
 package com.ccicnavi.bims.customer.dao.Impl;
 
 import com.ccicnavi.bims.customer.dao.LinkmanDao;
-import com.ccicnavi.bims.customer.pojo.CustTailDO;
 import com.ccicnavi.bims.customer.pojo.LinkmanDO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
 import org.junit.jupiter.api.Test;
-import org.n3r.eql.Eql;
-import org.springframework.stereotype.Repository;
-
+import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
+
+@Service
 public class LinkmanDaoImpl implements LinkmanDao {
 
     @Override

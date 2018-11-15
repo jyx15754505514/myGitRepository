@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.resource.api.ResQualificationCertService;
 import com.ccicnavi.bims.resource.dao.ResQualificationCertDao;
 import com.ccicnavi.bims.resource.pojo.ResQualificationCertDO;
@@ -7,12 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-/**
- * @Author:
- * @Description:
- * @Date: Created in ${Time} 2018/11/14
- * @Modified By:
- */
+@Service
 public class ResQualificationCertServiceImpl implements ResQualificationCertService {
     @Autowired
     ResQualificationCertDao resQualificationCertDao;

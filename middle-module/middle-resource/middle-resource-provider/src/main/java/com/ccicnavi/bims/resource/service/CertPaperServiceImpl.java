@@ -6,6 +6,7 @@ import com.ccicnavi.bims.resource.api.CertPaperService;
 import com.ccicnavi.bims.resource.dao.CertPaperDao;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.List;
 @Service
 @Slf4j
 public class CertPaperServiceImpl implements CertPaperService {
-    @Reference
+    @Autowired
     CertPaperDao certPaperDao;
     /**
      * 查询证书纸
@@ -27,8 +28,14 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public List<CertPaperDO> listCertPaper(CertPaperDO certPaper) throws Exception{
-        return certPaperDao.listCertPaper(certPaper);
+    public List<CertPaperDO> listCertPaper(CertPaperDO certPaper) {
+        try {
+            return certPaperDao.listCertPaper(certPaper);
+        } catch (Exception e) {
+            log.debug("查询证书纸失败",e);
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -37,8 +44,14 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception{
-        return certPaperDao.getCertPaper(certPaper);
+    public CertPaperDO getCertPaper(CertPaperDO certPaper) {
+        try {
+            return certPaperDao.getCertPaper(certPaper);
+        } catch (Exception e) {
+            log.debug("查询单条证书纸失败",e);
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -47,8 +60,14 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public Integer insertCertPaper(CertPaperDO certPaper) throws Exception{
-       return certPaperDao.insertCertPaper(certPaper);
+    public Integer insertCertPaper(CertPaperDO certPaper) {
+        try {
+            return certPaperDao.insertCertPaper(certPaper);
+        } catch (Exception e) {
+            log.debug("新增证书纸失败",e);
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     /**
@@ -57,8 +76,14 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public Integer updateCertPaper(CertPaperDO certPaper) throws Exception{
-       return certPaperDao.updateCertPaper(certPaper);
+    public Integer updateCertPaper(CertPaperDO certPaper) {
+        try {
+            return certPaperDao.updateCertPaper(certPaper);
+        } catch (Exception e) {
+            log.debug("更新证书纸失败",e);
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     /**
@@ -67,7 +92,13 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public Integer deleteCertPaper(CertPaperDO certPaper) throws Exception{
-        return certPaperDao.deleteCertPaper(certPaper);
+    public Integer deleteCertPaper(CertPaperDO certPaper) {
+        try {
+            return certPaperDao.deleteCertPaper(certPaper);
+        } catch (Exception e) {
+            log.debug("删除证书纸失败",e);
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

@@ -20,7 +20,7 @@ public interface EquipService {
      * @Param [equipDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipDO>
      */
-    List<EquipDO> findEquipList(EquipDO equipDO);
+    List<EquipDO> listEquip(EquipDO equipDO);
 
     /**
      * @Author panyida

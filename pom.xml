@@ -11,6 +11,7 @@
     <modules>
         <module>entrance-module</module>
         <module>middle-module</module>
+        <module>zoo-shiba</module>
     </modules>
     <dependencies>
         <dependency>

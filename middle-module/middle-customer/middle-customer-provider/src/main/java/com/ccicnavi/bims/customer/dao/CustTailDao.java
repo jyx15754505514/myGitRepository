@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface CustTailDao {
 
-    List<CustTailDO> listCustTail(CustTailDO custTail);
+    List<CustTailDO> listCustTail(CustTailDO custTail) throws Exception;
 
-    int saveCustTail(CustTailDO custTail);
+    int saveCustTail(CustTailDO custTail) throws Exception;
 
-    int removeCustTail(String uuids);
+    int removeCustTail(String uuids) throws Exception;
 
-    int updateCustTail(CustTailDO custTail);
+    int updateCustTail(CustTailDO custTail) throws Exception;
 
-    CustTailDO getCustTail(CustTailDO custTail);
+    CustTailDO getCustTail(CustTailDO custTail) throws Exception;
 }

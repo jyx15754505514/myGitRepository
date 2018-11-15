@@ -1,4 +1,4 @@
--- [getResEquipTest]
+-- [listResEquipTest]
   SELECT
     equip_test_uuid equipTestUuid,
     equip_uuid equipUuid,
