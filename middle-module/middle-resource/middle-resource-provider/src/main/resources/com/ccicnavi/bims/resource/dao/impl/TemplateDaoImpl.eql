@@ -25,7 +25,7 @@
 	FROM
 		res_template
 	WHERE
-		notworkday_uuid = '#notworkdayUuid#'
+		template_uuid = '#notworkdayUuid#'
 		AND is_deleted = 'N'
 		AND is_enabled = 'Y'
 		AND org_uuid = '#orgUuid#'
@@ -41,11 +41,11 @@
     SET
         is_deleted = 'Y'
     WHERE
-		-- if notworkday_uuid != null and notworkday_uuid != ''
-			notworkday_uuid = '#notworkdayUuid#'
+		-- if templateUuid != null and templateUuid != ''
+			template_uuid = '#notworkdayUuid#'
 		-- end
 		-- if uuids != null
-			notworkday_uuid in
+			template_uuid in
 			-- for item=item index=index collection=uuids open=( separator=, close=)
 				'#item#'
 			-- end
@@ -185,7 +185,7 @@ update res_template
 			template_uuid = '#templateUuid#'
 		-- end
 		-- if uuids != null
-			notworkday_uuid in
+			template_uuid in
 			-- for item=item index=index collection=uuids open=( separator=, close=)
 				'#item#'
 			-- end
