@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface AreaService {
     /**查询所有的地区*/
-    List<AreaDO> listArea(AreaDO areaDO) throws Exception;
+    List<AreaDO> listArea(AreaDO areaDO);
     /**获取指定的地区*/
-    AreaDO getArea(AreaDO areaDO) throws Exception;
+    AreaDO getArea(AreaDO areaDO);
     /**新增地区信息*/
-    Integer insertArea(AreaDO areaDO) throws Exception;
+    Integer insertArea(AreaDO areaDO);
     /**更新地区信息*/
-    Integer updateArea(AreaDO areaDO) throws Exception;
+    Integer updateArea(AreaDO areaDO);
     /**删除地区*/
-    Integer deleteArea(AreaDO areaDO) throws Exception;
+    Integer deleteArea(AreaDO areaDO);
 }
