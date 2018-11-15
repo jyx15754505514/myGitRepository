@@ -102,14 +102,14 @@ public class EquipTestServiceImpl implements EquipTestService {
      * @Author panyida
      * @Description 根据设备检定信息主键删除设备检定信息
      * @Date 16:30 2018/11/14
-     * @Param [equipTestDO]
+     * @Param [equipTestUuid]
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquipTest(EquipTestDO equipTestDO){
+    public Integer deleteEquipTest(String equipTestUuid){
         Integer count = null;
         try {
-            count = equipTestDao.deleteEquipTest(equipTestDO);
+            count = equipTestDao.deleteEquipTest(equipTestUuid);
         } catch (Exception e) {
             log.debug("根据设备检定信息主键删除设备检定信息错误",e);
             e.printStackTrace();
