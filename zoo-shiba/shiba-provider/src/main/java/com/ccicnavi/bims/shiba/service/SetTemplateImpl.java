@@ -1,29 +1,28 @@
 package com.ccicnavi.bims.shiba.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.ccicnavi.bims.shiba.api.ListTemplate;
+import com.ccicnavi.bims.shiba.api.SetTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 
-import java.util.List;
+import java.util.Set;
 
 @Service
-public class ListTemplateImpl implements ListTemplate {
+public class SetTemplateImpl implements SetTemplate {
 
     @Autowired
     RedisTemplate redisTemplate;
 
     /**
-     * 添加list类型的缓存
+     * 添加set类型的缓存
      *
      * @param key
-     * @param list
-     * @return
+     * @param value
      */
-    public Long rightPush(Object key, List<Object> list) {
-        ListOperations<Object, Object> listOperations = redisTemplate.opsForList();
-        return listOperations.rightPush(key, list);
+    public void add(Object key, Set<Object> value) {
+        SetOperations<Object, Object> set = redisTemplate.opsForSet();
+        set.add(key, value);
     }
 
     /**
@@ -32,9 +31,8 @@ public class ListTemplateImpl implements ListTemplate {
      * @param key
      * @return
      */
-    public List<Object> range(Object key) {
-        List range = redisTemplate.opsForList().range(key, 0, 99);
-        return range;
+    public Set members(Object key) {
+        return redisTemplate.opsForSet().members(key);
     }
 
     /**
@@ -48,7 +46,7 @@ public class ListTemplateImpl implements ListTemplate {
     }
 
     /**
-     * 查看缓存是否存在
+     * 查询缓存中value值是否存在
      *
      * @param key
      * @return

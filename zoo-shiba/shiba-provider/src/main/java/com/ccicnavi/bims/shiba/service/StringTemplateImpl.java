@@ -1,29 +1,24 @@
 package com.ccicnavi.bims.shiba.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.ccicnavi.bims.shiba.api.ListTemplate;
+import com.ccicnavi.bims.shiba.api.StringTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import java.util.List;
-
 @Service
-public class ListTemplateImpl implements ListTemplate {
+public class StringTemplateImpl implements StringTemplate {
 
     @Autowired
     RedisTemplate redisTemplate;
 
     /**
-     * 添加list类型的缓存
+     * 添加String类型的缓存
      *
      * @param key
-     * @param list
-     * @return
+     * @param value
      */
-    public Long rightPush(Object key, List<Object> list) {
-        ListOperations<Object, Object> listOperations = redisTemplate.opsForList();
-        return listOperations.rightPush(key, list);
+    public void add(Object key, String value) {
+        redisTemplate.opsForValue().set(key, value);
     }
 
     /**
@@ -32,9 +27,8 @@ public class ListTemplateImpl implements ListTemplate {
      * @param key
      * @return
      */
-    public List<Object> range(Object key) {
-        List range = redisTemplate.opsForList().range(key, 0, 99);
-        return range;
+    public Object get(Object key) {
+        return redisTemplate.opsForValue().get(key);
     }
 
     /**
@@ -48,7 +42,7 @@ public class ListTemplateImpl implements ListTemplate {
     }
 
     /**
-     * 查看缓存是否存在
+     * 查看缓存key是否存在
      *
      * @param key
      * @return
@@ -58,3 +52,4 @@ public class ListTemplateImpl implements ListTemplate {
     }
 
 }
+
