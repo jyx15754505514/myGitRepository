@@ -18,6 +18,7 @@
         <module>entrance-document-web</module>
         <module>entrance-customer-web</module>
         <module>entrance-system-web</module>
+        <module>entrance-resource-web</module>
     </modules>
 
 </project>
