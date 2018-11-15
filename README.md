@@ -30,6 +30,10 @@ bims-backend/  项目根
 │   │   ├── middle-resource-api      接口
 │   │   ├── middle-resource-common   公共类,可存放DO，DTO
 │   │   ├── middle-resource-provider 接口实现,提供者
+├── zoo--shiba  分布式缓存中心
+│   ├── shiba-api               接口
+│   ├── shiba-common            公共类,可存放DO，DTO
+│   ├── shiba-provider          接口实现,提供者
 ├── pom.xml
 └── README.md
 ```
