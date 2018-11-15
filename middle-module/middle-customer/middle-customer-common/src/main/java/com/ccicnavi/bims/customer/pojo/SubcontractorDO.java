@@ -41,7 +41,7 @@ public class SubcontractorDO {
 
     private String detectionField;
 
-    private Character isDeleted;
+    private String isDeleted;
 
     private Date createdTime;
 
