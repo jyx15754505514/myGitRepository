@@ -10,13 +10,13 @@ import java.util.List;
 public interface MenuService {
 
     /**查询所有菜单*/
-    List<MenuDO> listMenu(MenuDO menuDO);
+    List<MenuDO> listMenu(MenuDO menuDO) throws Exception;
     /**获取指定菜单*/
-    MenuDO getMenu(MenuDO menuDO);
+    MenuDO getMenu(MenuDO menuDO) throws Exception;
     /**新增菜单*/
-    Integer insertMenu(MenuDO menuDO);
+    Integer insertMenu(MenuDO menuDO) throws Exception;
     /**更新菜单*/
-    Integer updateMenu(MenuDO menuDO);
+    Integer updateMenu(MenuDO menuDO) throws Exception;
     /**删除菜单*/
-    Integer deleteMenu(MenuDO menuDO);
+    Integer deleteMenu(MenuDO menuDO) throws Exception;
 }

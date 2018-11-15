@@ -72,7 +72,7 @@ public class EquipHoldDaoImpl implements EquipHoldDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquipHold(EquipHoldDO equipHoldDO){
-        return EqlUtils.getInstance("druid").delete("deleteEquipHold").params(equipHoldDO).returnType(Integer.class).execute();
+    public Integer deleteEquipHold(String equipHoldUuid){
+        return EqlUtils.getInstance("druid").delete("deleteEquipHold").params(equipHoldUuid).returnType(Integer.class).execute();
     }
 }

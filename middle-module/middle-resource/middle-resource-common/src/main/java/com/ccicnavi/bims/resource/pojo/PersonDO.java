@@ -88,4 +88,5 @@ public class PersonDO {
     private String extend2;
 
     private String extend3;
+
 }
