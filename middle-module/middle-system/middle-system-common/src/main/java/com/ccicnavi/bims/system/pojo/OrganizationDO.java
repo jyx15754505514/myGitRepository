@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.resource.pojo;
+package com.ccicnavi.bims.system.pojo;
 
 
 import lombok.Getter;

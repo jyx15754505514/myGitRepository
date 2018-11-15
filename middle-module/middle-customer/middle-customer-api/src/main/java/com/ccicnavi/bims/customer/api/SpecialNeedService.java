@@ -5,7 +5,10 @@ import com.ccicnavi.bims.customer.pojo.SpecialNeedDO;
 import java.util.List;
 
 /**
- * 客户特殊需求信息接口
+ * @program: bims-backend
+ * @description: 客户特殊需求信息接口定义
+ * @author: WangYingLing
+ * @create: 2018-11-15 09:19
  */
 
 public interface SpecialNeedService {
