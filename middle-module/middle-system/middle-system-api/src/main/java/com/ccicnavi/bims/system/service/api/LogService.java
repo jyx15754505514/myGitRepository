@@ -11,13 +11,13 @@ import java.util.List;
 public interface LogService {
 
     /**查询所有的日志*/
-    List<LogDO> listLog(LogDO logDO);
+    List<LogDO> listLog(LogDO logDO) throws Exception;
     /**获取指定的日志*/
-    LogDO getLog(LogDO logDO);
+    LogDO getLog(LogDO logDO) throws Exception;
     /**新增日志信息*/
-    Integer insertLog(LogDO logDO);
+    Integer insertLog(LogDO logDO) throws Exception;
     /**更新日志信息*/
-    Integer updateLog(LogDO logDO);
+    Integer updateLog(LogDO logDO) throws Exception;
     /**删除日志*/
-    Integer deleteLog(LogDO logDO);
+    Integer deleteLog(LogDO logDO) throws Exception;
 }
