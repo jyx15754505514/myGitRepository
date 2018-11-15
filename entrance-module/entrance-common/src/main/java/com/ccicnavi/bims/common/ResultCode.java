@@ -31,6 +31,8 @@ public enum ResultCode {
     FUND_CONTRAST_EXISTED(30007, "此对比基金已存在"),
     DELETE_FUND_CONTRAST_FAILURE(30008, "清除对比基金失败"),
     DELETE_PORTFOLIO_FUND_FAILURE(30009, "删除组合基金失败"),
+    NOTWORKDAY_LIST_NOTWORKDAY(30010, "根据条件查询非工作日失败"),
+
 
     /* 系统错误：40001-49999 */
     SYSTEM_INNER_ERROR(40001, "系统繁忙，请稍后重试"),

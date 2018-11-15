@@ -21,7 +21,7 @@ public class CertPaperDO {
 
     private String stromPerson;
 
-    private String stromTime;
+    private Date stromDate;
 
     private String leadUnit;
 
