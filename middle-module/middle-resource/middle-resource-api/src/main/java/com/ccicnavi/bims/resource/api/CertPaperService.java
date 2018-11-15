@@ -12,33 +12,33 @@ public interface CertPaperService {
      * @param certPaper
      * @return
      */
-    List<CertPaperDO> listCertPaper(CertPaperDO certPaper) throws Exception;
+    List<CertPaperDO> listCertPaper(CertPaperDO certPaper) ;
 
     /**
      * 根据证书纸uuid查找单个证书纸信息
      * @param certPaper
      * @return
      */
-    CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception;
+    CertPaperDO getCertPaper(CertPaperDO certPaper) ;
 
     /**
      * 新增证书纸
      * @param certPaper
      * @return
      */
-    Integer insertCertPaper(CertPaperDO certPaper) throws Exception;
+    Integer insertCertPaper(CertPaperDO certPaper) ;
 
     /**
      * 更新证书纸
      * @param certPaper
      * @return
      */
-    Integer updateCertPaper(CertPaperDO certPaper) throws Exception;
+    Integer updateCertPaper(CertPaperDO certPaper) ;
 
     /**
      * 删除证书纸
      * @param certPaper
      * @return
      */
-    Integer deleteCertPaper(CertPaperDO certPaper) throws Exception;
+    Integer deleteCertPaper(CertPaperDO certPaper) ;
 }
