@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * @program: bims-backend
+ * @description: 客户地址数据库交互
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
+ */
 @Service
 public class CustAddrDaoImpl implements CustAddrDao {
 
@@ -36,7 +42,7 @@ public class CustAddrDaoImpl implements CustAddrDao {
 
     @Override
     public CustAddrDO getCustAddr(CustAddrDO customer) {
-        return EqlUtils.getInstance("druid").select("listCustAddr").params(customer).execute();
+        return EqlUtils.getInstance("druid").select("listCustAddr").params(customer).returnType(CustAddrDO.class).execute();
     }
 
 
@@ -64,6 +70,8 @@ public class CustAddrDaoImpl implements CustAddrDao {
             System.out.println("count"+i);
         }
     }
+
+
 
     @Test
     public void testUpdateCustAddr(){

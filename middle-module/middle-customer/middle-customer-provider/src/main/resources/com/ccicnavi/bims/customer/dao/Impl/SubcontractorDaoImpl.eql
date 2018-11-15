@@ -32,26 +32,26 @@ WHERE
 
 -- [saveSubcontractor]
 INSERT INTO crm_subcontractor
-    -- trim prefix=( suffix=) sufficOverrides=,
-     -- iff subcontractor_uuid != null and subcontractor_uuid != ''
+   -- trim prefix=( suffix=) suffixOverrides=,
+     -- iff subcontractorUuid != null and subcontractorUuid != ''
         subcontractor_uuid,
 
-     -- iff subc_code != null and subc_code != ''
+     -- iff subcCode != null and subcCode != ''
         subc_code,
 
      -- iff name != null and name != ''
         name,
 
-     -- iff en_name != null and en_name != ''
+     -- iff enName != null and enName != ''
         en_name,
 
-     -- iff subc_short_name != null and subc_short_name != ''
+     -- iff subcShortName != null and subcShortName != ''
         subc_short_name,
 
-     -- iff subc_post_code != null and subc_post_code != ''
+     -- iff subcPostCode != null and subcPostCode != ''
         subc_post_code,
 
-     -- iff subc_url != null and subc_url != ''
+     -- iff subcUrl != null and subcUrl != ''
         subc_url,
 
      -- iff fax != null and fax != ''
@@ -60,7 +60,7 @@ INSERT INTO crm_subcontractor
      -- iff tel != null and tel != ''
         tel,
 
-     -- iff subc_phone != null and subc_phone != ''
+     -- iff subcPhone != null and subcPhone != ''
         subc_phone,
 
      -- iff addr != null and addr != ''
@@ -69,34 +69,34 @@ INSERT INTO crm_subcontractor
      -- iff rank != null and rank != ''
         rank,
 
-     -- iff detection_field != null and detection_field != ''
+     -- iff detectionField != null and detectionField != ''
         detection_field,
 
-     -- iff is_deleted != null and is_deleted != ''
+     -- iff isDeleted != null and isDeleted != ''
         is_deleted,
 
-     -- iff created_time != null and created_time != ''
+     -- iff createdTime != null and createdTime != ''
         created_time,
 
-     -- iff created_uuid != null and created_uuid != ''
+     -- iff createdUuid != null and createdUuid != ''
         created_uuid,
 
-     -- iff created_name != null and created_name != ''
+     -- iff createdName != null and createdName != ''
         created_name,
 
-     -- iff updated_time != null and updated_time != ''
+     -- iff updatedTime != null and updatedTime != ''
         updated_time,
 
-     -- iff updated_name != null and updated_name != ''
+     -- iff updatedName != null and updatedName != ''
         updated_name,
 
-     -- iff business_line != null and business_line != ''
+     -- iff businessLine != null and businessLine != ''
         business_line,
 
-     -- iff org_uuid != null and org_uuid != ''
+     -- iff orgUuid != null and orgUuid != ''
         org_uuid,
 
-     -- iff app_sys_uuid != null and app_sys_uuid != ''
+     -- iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid,
 
      -- iff extend1 != null and extend1 != ''
@@ -108,27 +108,27 @@ INSERT INTO crm_subcontractor
      -- iff extend3 != null and extend3 != ''
         extend3,
 
-    --end
-    -- trim prefix="values"( suffix=) sufficOverrides=,
-     -- iff subcontractor_uuid != null and subcontractor_uuid != ''
+   --end
+   -- trim prefix=values( suffix=) suffixOverrides=,
+     -- iff subcontractorUuid != null and subcontractorUuid != ''
         '#subcontractorUuid#',
 
-     -- iff subc_code != null and subc_code != ''
+     -- iff subcCode != null and subcCode != ''
         '#subcCode#',
 
      -- iff name != null and name != ''
         '#name#',
 
-     -- iff en_name != null and en_name != ''
+     -- iff enName != null and enName != ''
         '#enName#',
 
-     -- iff subc_short_name != null and subc_short_name != ''
+     -- iff subcShortName != null and subcShortName != ''
         '#subcShortName#',
 
-     -- iff subc_post_code != null and subc_post_code != ''
+     -- iff subcPostCode != null and subcPostCode != ''
         '#subcPostCode#',
 
-     -- iff subc_url != null and subc_url != ''
+     -- iff subcUrl != null and subcUrl != ''
         '#subcUrl#',
 
      -- iff fax != null and fax != ''
@@ -137,7 +137,7 @@ INSERT INTO crm_subcontractor
      -- iff tel != null and tel != ''
         '#tel#',
 
-     -- iff subc_phone != null and subc_phone != ''
+     -- iff subcPhone != null and subcPhone != ''
         '#subcPhone#',
 
      -- iff addr != null and addr != ''
@@ -146,34 +146,34 @@ INSERT INTO crm_subcontractor
      -- iff rank != null and rank != ''
         '#rank#',
 
-     -- iff detection_field != null and detection_field != ''
+     -- iff detectionField != null and detectionField != ''
         '#detectionField#',
 
-     -- iff is_deleted != null and is_deleted != ''
+     -- iff isDeleted != null and isDeleted != ''
         '#isDeleted#',
 
-     -- iff created_time != null and created_time != ''
+     -- iff createdTime != null and createdTime != ''
         '#createdTime#',
 
-     -- iff created_uuid != null and created_uuid != ''
+     -- iff createdUuid != null and createdUuid != ''
         '#createdUuid#',
 
-     -- iff created_name != null and created_name != ''
+     -- iff createdName != null and createdName != ''
         '#createdName#',
 
-     -- iff updated_time != null and updated_time != ''
+     -- iff updatedTime != null and updatedTime != ''
         '#updatedTime#',
 
-     -- iff updated_name != null and updated_name != ''
+     -- iff updatedName != null and updatedName != ''
         '#updatedName#',
 
-     -- iff business_line != null and business_line != ''
+     -- iff businessLine != null and businessLine != ''
         '#businessLine#',
 
-     -- iff org_uuid != null and org_uuid != ''
+     -- iff orgUuid != null and orgUuid != ''
         '#orgUuid#',
 
-     -- iff app_sys_uuid != null and app_sys_uuid != ''
+     -- iff appSysUuid != null and appSysUuid != ''
         '#appSysUuid#',
 
      -- iff extend1 != null and extend1 != ''
@@ -193,7 +193,7 @@ UPDATE crm_subcontractor
 SET is_deleted='Y'
 WHERE is_deleted='N'
      -- if ids != null
-            AND addr_uuid IN
+            AND subcontractor_uuid IN
             -- for item=item index=index collection=ids open=( separator=, close=)
                 '#item#'
             -- end
@@ -203,25 +203,25 @@ WHERE is_deleted='N'
 -- [updateSubcontractor]
  update crm_subcontractor
 	-- trim prefix=SET suffixOverrides=,
-      -- iff subcontractor_uuid != null
+      -- iff subcontractorUuid != null
         subcontractor_uuid = '#subcontractorUuid#',
 
-      -- iff subc_code != null
+      -- iff subcCode != null
         subc_code = '#subcCode#',
 
       -- iff name != null
         name = '#name#',
 
-       -- iff en_name != null
+      -- iff enName != null
          en_name = '#enName#',
 
-      -- iff subc_short_name != null
+      -- iff subcShortName != null
         subc_short_name = '#subcShortName#',
 
-      -- iff subc_post_code != null
+      -- iff subcPostCode != null
         subc_post_code = '#subcPostCode#',
 
-      -- iff subc_url != null
+      -- iff subcUrl != null
         subc_url = '#subcUrl#',
 
       -- iff fax != null
@@ -230,7 +230,7 @@ WHERE is_deleted='N'
       -- iff tel != null  and createdTime!='',
         tel = '#tel#',
 
-      -- iff subc_phone != null
+      -- iff subcPhone != null
         subc_phone = '#subcPhone#',
 
       -- iff addr != null
@@ -239,34 +239,34 @@ WHERE is_deleted='N'
       -- iff rank != null and updatedTime!= '',
         rank = '#rank#',
 
-      -- iff detection_field != null
+      -- iff detectionField != null
         detection_field = '#detectionField#',
 
-      -- iff is_deleted != null
+      -- iff isDeleted != null
         is_deleted = '#isDeleted#',
 
-      -- iff created_time != null
+      -- iff createdTime != null
         created_time = '#createdTime#',
 
-      -- iff created_uuid != null
+      -- iff createdUuid != null
         created_uuid = '#createdUuid#',
 
-      -- iff created_name != null
+      -- iff createdName != null
         created_name = '#createdName#',
 
-      -- iff updated_time != null
+      -- iff updatedTime != null
         updated_time = '#updatedTime#',
 
-      -- iff updated_name != null
+      -- iff updatedName != null
         updated_name = '#updatedName#',
 
-      -- iff business_line != null
+      -- iff businessLine != null
         business_line = '#businessLine#',
 
-      -- iff org_uuid != null
+      -- iff orgUuid != null
         org_uuid = '#orgUuid#',
 
-      -- iff app_sys_uuid != null
+      -- iff appSysUuid != null
         app_sys_uuid = '#appSysUuid#',
 
       -- iff extend1 != null
@@ -309,5 +309,8 @@ WHERE is_deleted='N'
     extend2,
     extend3
 FROM crm_subcontractor
-WHERE is_deleted='N'
-    AND subcontractor_uuid='#subcontractorUuid#'
+WHERE
+    is_deleted='N'
+        --if subcontractorUuid !=null and subcontractorUuid != ''
+            and subcontractor_uuid = '#subcontractorUuid#'
+        --end

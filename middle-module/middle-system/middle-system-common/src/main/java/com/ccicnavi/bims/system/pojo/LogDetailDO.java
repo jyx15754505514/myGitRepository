@@ -26,6 +26,8 @@ public class LogDetailDO {
 
     private String comments;
 
+    private String isDeleted;
+
     private String orgUuid;
 
     private String appSysUuid;

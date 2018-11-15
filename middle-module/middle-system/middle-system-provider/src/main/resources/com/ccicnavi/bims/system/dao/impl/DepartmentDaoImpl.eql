@@ -240,9 +240,9 @@
          -- if deptUuid != null and deptUuid != ''
                  	dept_uuid = '#deptUuid#'
          -- end
-          -- if deptUuids != null
-               and	dept_uuid in
-            -- for item=item index=index collection=deptUuids open=( separator=, close=)
+          -- if uuids != null
+               	dept_uuid in
+            -- for item=item index=index collection=uuids open=( separator=, close=)
                  '#item#'
             -- end
           -- end

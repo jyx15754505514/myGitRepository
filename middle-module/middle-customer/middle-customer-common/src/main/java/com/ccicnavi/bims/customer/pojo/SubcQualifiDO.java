@@ -26,9 +26,9 @@ public class SubcQualifiDO {
 
     private String qualifiDescribe;
 
-    private Character isFile;
+    private String isFile;
 
-    private Character isDeleted;
+    private String isDeleted;
 
     private Date createdTime;
 

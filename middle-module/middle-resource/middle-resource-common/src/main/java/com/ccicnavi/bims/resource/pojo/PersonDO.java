@@ -45,15 +45,15 @@ public class PersonDO {
 
     private String politicsStatus;
 
-    private Date joinPartyTime;
+//    private Date joinPartyTime;
 
     private String maritalStatus;
 
     private String phone;
 
-    private String exigencyPerson;
+//    private String exigencyPerson;
 
-    private String exigencyPhone;
+//    private String exigencyPhone;
 
     private String studyExperience;
 

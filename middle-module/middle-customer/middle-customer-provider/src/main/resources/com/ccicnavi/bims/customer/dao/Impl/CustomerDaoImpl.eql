@@ -34,6 +34,7 @@ SELECT
 	fin_cycle,
 	status_uuid,
 	cust_unit_type,
+	corp_unit_type,
 	cust_competitor,
 	main_product,
 	comments,
@@ -166,6 +167,9 @@ WHERE
 
 		-- iff custUnitType != null and custUnitType !=''
 				cust_unit_type,
+
+	    -- iff corpUnitType != null and corpUnitType !=''
+        	    corp_unit_type,
 
 		-- iff custCompetitor != null and custCompetitor !=''
 				cust_competitor,
@@ -317,6 +321,9 @@ WHERE
 		-- iff custUnitType != null and custUnitType !=''
 				'#custUnitType#',
 
+		-- iff corpUnitType != null and corpUnitType !=''
+        		'#corpUnitType#',
+
 		-- iff custCompetitor != null and custCompetitor !=''
 				'#custCompetitor#',
 
@@ -465,6 +472,9 @@ WHERE
 
        -- iff custUnitType != null
          cust_unit_type ='#custUnitType#',
+
+       -- iff corpUnitType != null
+         corp_unit_type ='#corpUnitType#',
 
        -- iff custCompetitor != null
          cust_competitor ='#custCompetitor#',

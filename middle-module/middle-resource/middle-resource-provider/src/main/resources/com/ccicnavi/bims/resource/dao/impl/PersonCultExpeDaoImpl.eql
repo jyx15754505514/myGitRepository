@@ -1,0 +1,180 @@
+-- [listPersonCultExpe]
+SELECT
+    cult_expe_uuid cultExpeUuid,
+    person_uuid personUuid,
+    start_time startTime,
+    end_time endTime,
+    cult_name cultName,
+    cult_org cultOrg,
+    qualification_cert qualificationCert,
+    cult_type cultType,
+    is_sign isSign,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    business_line businessLine
+  from
+  	res_person_cult_expe
+  where
+  	is_deleted = 'N'
+    --iff personUuid != null and personUuid != ''
+        and person_uuid = '#personUuid#'
+
+-- [insertPersonCultExpe]
+  insert into res_person_cult_expe
+    -- trim prefix=( suffix=) suffixOverrides=,
+      --iff cultExpeUuid != null
+            cult_expe_uuid,
+      --iff personUuid != null
+            person_uuid,
+      --iff startTime != null
+            start_time,
+      --iff endTime != null
+            end_time,
+      --iff cultName != null
+            cult_name,
+      --iff cultOrg != null
+            cult_org,
+      --iff qualificationCert != null
+            qualification_cert,
+      --iff cultType != null
+            cult_type,
+      --iff isSign != null
+            is_sign,
+      --iff comments != null
+            comments,
+      --iff isDeleted != null
+            is_deleted,
+      --iff createdTime != null
+            created_time,
+      --iff createdUuid != null
+            created_uuid,
+      --iff createdName != null
+            created_name,
+      --iff updatedTime != null
+            updated_time,
+      --iff updatedName != null
+            updated_name,
+      --iff orgUuid != null
+            org_uuid,
+      --iff appSysUuid != null
+            app_sys_uuid,
+      --iff businessLine != null
+            business_line
+    --end
+    -- trim prefix=values ( suffix=) suffixOverrides=,
+      --iff cultExpeUuid != null
+		'#cultExpeUuid#',
+      --iff personUuid != null
+		'#personUuid#',
+      --iff startTime != null
+		'#startTime#',
+      --iff endTime != null
+		'#endTime#',
+      --iff cultName != null
+		'#cultName#',
+      --iff cultOrg != null
+		'#cultOrg#',
+      --iff qualificationCert != null
+		'#qualificationCert#',
+      --iff cultType != null
+		'#cultType#',
+      --iff isSign != null
+		'#isSign#',
+      --iff comments != null
+		'#comments#',
+      --iff isDeleted != null
+		'#isDeleted#',
+      --iff createdTime != null
+		'#createdTime#',
+      --iff createdUuid != null
+		'#createdUuid#',
+      --iff createdName != null
+		'#createdName#',
+      --iff updatedTime != null
+		'#updatedTime#',
+      --iff updatedName != null
+		'#updatedName#',
+      --iff orgUuid != null
+		'#orgUuid#',
+      --iff appSysUuid != null
+		'#appSysUuid#',
+      --iff businessLine != null
+		'#businessLine#'
+    --end
+
+  -- [updatePersonCultExpe]
+    update res_person_cult_expe
+    -- trim prefix= set suffixOverrides=,
+      --iff cultExpeUuid != null
+        cult_expe_uuid = '#cultExpeUuid#',
+      --iff personUuid != null
+        person_uuid = '#personUuid#',
+      --iff startTime != null
+        start_time = '#startTime#',
+      --iff endTime != null
+        end_time = '#endTime#',
+      --iff cultName != null
+        cult_name = '#cultName#',
+      --iff cultOrg != null
+        cult_org = '#cultOrg#',
+      --iff qualificationCert != null
+        qualification_cert = '#qualificationCert#',
+      --iff cultType != null
+        cult_type = '#cultType#',
+      --iff isSign != null
+        is_sign = '#isSign#',
+      --iff comments != null
+        comments = '#comments#',
+      --iff isDeleted != null
+        is_deleted = '#isDeleted#',
+      --iff createdTime != null
+        created_time = '#createdTime#',
+      --iff createdUuid != null
+        created_uuid = '#createdUuid#',
+      --iff createdName != null
+        created_name = '#createdName#',
+      --iff updatedTime != null
+        updated_time = '#updatedTime#',
+      --iff updatedName != null
+        updated_name = '#updatedName#',
+      --iff orgUuid != null
+        org_uuid = '#orgUuid#',
+      --iff appSysUuid != null
+        app_sys_uuid = '#appSysUuid#',
+      --iff businessLine != null
+        business_line = '#businessLine#'
+    -- end
+    where
+    is_deleted = 'N'
+    --iff cultExpeUuid != null and cultExpeUuid != ''
+        and cult_expe_uuid = '#cultExpeUuid#'
+    --iff cultExpeUuids != null
+        and cult_expe_uuid in
+        -- for item=item index=index collection=cultExpeUuids open=( separator=, close=)
+            '#item#'
+-- end
+
+-- [deletePersonCultExpe]
+UPDATE
+    res_person_cult_expe
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'.
+-- end
+WHERE
+    is_deleted = 'N'
+    --iff cultExpeUuid != null and cultExpeUuid != ''
+        and cult_expe_uuid = '#cultExpeUuid#'
+    --iff personUuid != null and personUuid != ''
+        and person_uuid = '#personUuid#'
+    --iff cultExpeUuids != null
+        and cult_expe_uuid in
+        -- for item=item index=index collection=cultExpeUuids open=( separator=, close=)
+            '#item#'
+-- end

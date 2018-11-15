@@ -32,8 +32,8 @@ public class PersonDaoImpl  implements PersonDao {
      * @throws Exception
      */
     @Override
-    public Integer insertPerson(PersonDO personDo) throws Exception {
-        return eql.select("insertPerson").params(personDo).returnType(Integer.class).execute();
+    public Integer insertPerson(PersonDO personDo){
+        return eql.insert("insertPerson").params(personDo).returnType(Integer.class).execute();
     }
 
     /**
@@ -44,7 +44,7 @@ public class PersonDaoImpl  implements PersonDao {
      */
     @Override
     public Integer updatePerson(PersonDO personDo) throws Exception {
-        return eql.select("updatePerson").params(personDo).returnType(Integer.class).execute();
+        return eql.update("updatePerson").params(personDo).returnType(Integer.class).execute();
     }
 
     /**
@@ -55,7 +55,7 @@ public class PersonDaoImpl  implements PersonDao {
      */
     @Override
     public Integer deletePerson(PersonDO personDo) throws Exception {
-        return eql.select("deletePerson").params(personDo).returnType(Integer.class).execute();
+        return eql.delete("deletePerson").params(personDo).returnType(Integer.class).execute();
     }
 
     /**
@@ -66,7 +66,7 @@ public class PersonDaoImpl  implements PersonDao {
      */
     @Override
     public PersonDO getPerson(PersonDO personDo) {
-        return new Eql().select("getPerson").params(personDo).returnType(PersonDO.class).execute();
+        return eql.selectFirst("getPerson").params(personDo).returnType(PersonDO.class).execute();
     }
 
 
