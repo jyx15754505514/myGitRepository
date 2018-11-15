@@ -47,7 +47,7 @@ public class NotworkdayController {
         }catch (Exception e) {
             log.debug("根据条件查询非工作日失败", e);
             //请求失败返回并设置错误信息
-            return ResultT.failure(ResultCode.NOTWORKDAY_LIST_NOTWORKDAY);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
 
