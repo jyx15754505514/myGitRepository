@@ -114,6 +114,7 @@ public class SpecialNeedDaoImpl implements SpecialNeedDao {
         specialNeedDO.setNeedUuid("asd4");
         specialNeedDO.setCreatedName("徐4被修改了~");
         int count = EqlUtils.getInstance("druid").update("updateSpecialNeed").params(specialNeedDO).execute();
+        System.out.println(count);
     }
 
 
