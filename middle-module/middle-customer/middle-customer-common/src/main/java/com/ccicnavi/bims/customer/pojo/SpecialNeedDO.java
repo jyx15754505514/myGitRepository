@@ -28,7 +28,7 @@ public class SpecialNeedDO {
 
     private String comments;
 
-    private Character isDeleted;
+    private String isDeleted;
 
     private Date createdTime;
 

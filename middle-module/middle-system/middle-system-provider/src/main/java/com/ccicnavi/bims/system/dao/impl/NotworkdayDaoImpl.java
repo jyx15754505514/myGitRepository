@@ -19,28 +19,62 @@ import java.util.List;
 @Service
 public class NotworkdayDaoImpl implements NotworkdayDao {
 
-    private final static Logger log = LoggerFactory.getLogger(NotworkdayDaoImpl.class);
 
+   /**
+   * 根据条件查询非工作日
+   * @Author zhaotao
+   * @Date  2018/11/15 15:54
+   * @Param [notworkday]
+   * @return java.util.List<com.ccicnavi.bims.system.pojo.NotworkdayDO>
+   **/
     @Override
     public List<NotworkdayDO> listNotworkday(NotworkdayDO notworkday) throws Exception{
         return EqlUtils.getInstance("DEFAULT").select("listNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
     }
 
+    /**
+    * 新增非工作日
+    * @Author zhaotao
+    * @Date  2018/11/15 15:58
+    * @Param [notworkday]
+    * @return java.lang.Integer
+    **/
     @Override
     public Integer insertNotworkday(NotworkdayDO notworkday) throws Exception{
         return EqlUtils.getInstance("DEFAULT").insert("insertNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
+    /**
+    * 更新制定或批量更新非工作日
+    * @Author zhaotao
+    * @Date  2018/11/15 15:59
+    * @Param [notworkday]
+    * @return java.lang.Integer
+    **/
     @Override
     public Integer updateNotworkday(NotworkdayDO notworkday) throws Exception{
         return EqlUtils.getInstance("DEFAULT").insert("updateNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
+    /**
+    * 逻辑删除制定或批量逻辑删除非工作日 
+    * @Author zhaotao
+    * @Date  2018/11/15 16:00
+    * @Param [notworkday]
+    * @return java.lang.Integer
+    **/
     @Override
     public Integer deleteNotworkday(NotworkdayDO notworkday) throws Exception{
         return EqlUtils.getInstance("DEFAULT").insert("deleteNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
+    /**
+    * 获取制定的非工作日
+    * @Author zhaotao
+    * @Date  2018/11/15 16:00
+    * @Param [notworkday]
+    * @return com.ccicnavi.bims.system.pojo.NotworkdayDO
+    **/
     @Override
     public NotworkdayDO getNotworkday(NotworkdayDO notworkday) throws Exception{
         return EqlUtils.getInstance("DEFAULT").selectFirst("getNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
