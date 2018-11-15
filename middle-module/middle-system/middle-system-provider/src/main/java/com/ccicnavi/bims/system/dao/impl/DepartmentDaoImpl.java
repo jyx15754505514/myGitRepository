@@ -77,7 +77,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     */
     @Override
     public DepartmentDO getDepartment(DepartmentDO departmentDO)throws Exception{
-        return EqlUtils.getInstance("DEFAULT").selectFirst("listDept").params(departmentDO).returnType(DepartmentDO.class).execute();
+        return EqlUtils.getInstance("DEFAULT").selectFirst("getDept").params(departmentDO).returnType(DepartmentDO.class).execute();
     }
 
 }
