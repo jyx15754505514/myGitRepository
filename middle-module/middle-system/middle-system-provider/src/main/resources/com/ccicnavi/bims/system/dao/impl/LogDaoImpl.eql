@@ -26,7 +26,8 @@ from
     sys_log as log
 where
     log.is_deleted = 'N'
-    and log_uuid = '#logUuid#'
+and log.org_uuid = '#orgUuid#'
+and log.app_sys_uuid = '#appSysUuid#'
 
 -- [getLog]
 SELECT
@@ -56,8 +57,11 @@ from
     sys_log as log
 where
     log.is_deleted = 'N'
+and log.org_uuid = '#orgUuid#'
+and log.app_sys_uuid = '#appSysUuid#'
 --if logUuid != null and logUuid != ''
-and log.log_uuid = '#logUuid#'
+    and log.log_uuid = '#logUuid#'
+--end
 
 -- [insertLog]
 INSERT INTO sys_log

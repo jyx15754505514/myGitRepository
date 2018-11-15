@@ -9,7 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * @program: bims-backend
+ * @description: 客户联系人数据库交互
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
+ */
 @Service
 public class LinkmanDaoImpl implements LinkmanDao {
 
@@ -82,7 +87,18 @@ public class LinkmanDaoImpl implements LinkmanDao {
         int count=EqlUtils.getInstance("druid").update("deleteLinkman").params(data).execute();
         System.out.println(count);
     }
-    
-    
-    
+
+    @Test
+    public void getLinkman(){
+        LinkmanDO linkmanDO=new LinkmanDO();
+        linkmanDO.setLinkmanUuid("客户联系人1");
+        LinkmanDO linkman= EqlUtils.getInstance("druid").selectFirst("listLinkman").params(linkmanDO).returnType(LinkmanDO.class).execute();
+        System.out.println(linkman);
+    }
+
+
+
+
+
+
 }

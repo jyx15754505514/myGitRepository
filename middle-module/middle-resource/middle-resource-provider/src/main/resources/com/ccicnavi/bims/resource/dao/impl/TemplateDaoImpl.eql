@@ -9,10 +9,10 @@
 		res_template
 	WHERE
 		is_deleted = 'N'
-		AND is_enabled = 'Y'
-		AND org_uuid = '#orgUuid#'
-		AND appSysUuid = '#appSysUuid#'
-		AND businessLine = '#businessLine#'
+		and is_enabled = 'Y'
+		and org_uuid = '#orgUuid#'
+		and app_sys_uuid = '#appSysUuid#'
+	    and business_line = '#businessLine#'
 
 
 -- 根据主键查询模板
@@ -25,12 +25,12 @@
 	FROM
 		res_template
 	WHERE
-		notworkday_uuid = '#notworkdayUuid#'
-		AND is_deleted = 'N'
-		AND is_enabled = 'Y'
-		AND org_uuid = '#orgUuid#'
-		AND appSysUuid = '#appSysUuid#'
-		AND businessLine = '#businessLine#'
+		template_uuid = '#templateUuid#'
+		and is_deleted = 'N'
+		and is_enabled = 'Y'
+	    and org_uuid = '#orgUuid#'
+    	and app_sys_uuid = '#appSysUuid#'
+    	and business_line = '#businessLine#'
 
 
 
@@ -41,11 +41,11 @@
     SET
         is_deleted = 'Y'
     WHERE
-		-- if notworkday_uuid != null and notworkday_uuid != ''
-			notworkday_uuid = '#notworkdayUuid#'
+		-- if templateUuid != null and templateUuid != ''
+			template_uuid = '#templateUuid#'
 		-- end
 		-- if uuids != null
-			notworkday_uuid in
+			 template_uuid in
 			-- for item=item index=index collection=uuids open=( separator=, close=)
 				'#item#'
 			-- end
@@ -133,8 +133,9 @@
 
 -- 模板更新
 -- [updateTemplate]
-update res_template
-    -- trim prefix=SET suffixOverrides=,
+    UPDATE
+    res_template
+    -- trim  prefix= set suffixOverrides=,
       -- iff dictTypeUuid != null and dictTypeUuid != ''
         dict_type_uuid = '#dictTypeUuid#',
 
@@ -181,11 +182,11 @@ update res_template
         is_enabled = '#isEnabled#',
 	-- end
     WHERE
-		-- if template_uuid != null
+		-- if templateUuid != null
 			template_uuid = '#templateUuid#'
 		-- end
 		-- if uuids != null
-			notworkday_uuid in
+			  template_uuid in
 			-- for item=item index=index collection=uuids open=( separator=, close=)
 				'#item#'
 			-- end

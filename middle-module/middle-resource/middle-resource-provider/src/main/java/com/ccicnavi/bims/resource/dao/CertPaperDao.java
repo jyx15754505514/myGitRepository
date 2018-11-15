@@ -22,7 +22,7 @@ public interface CertPaperDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer insertCertPaper(CertPaperDO certPaper)throws  Exception;
+    public Integer insertCertPaper(CertPaperDO certPaper) throws Exception;
 
     /**
      * 更新证书纸信息
@@ -30,7 +30,7 @@ public interface CertPaperDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer updateCertPaper(CertPaperDO certPaper)throws Exception;
+    public Integer updateCertPaper(CertPaperDO certPaper) throws Exception;
 
     /**
      * 删除证书纸信息
@@ -38,7 +38,7 @@ public interface CertPaperDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer deleteCertPaper(CertPaperDO certPaper)throws Exception;
+    public Integer deleteCertPaper(CertPaperDO certPaper) throws Exception;
 
     /**
      * 根据主键查询证书纸信息
@@ -46,5 +46,5 @@ public interface CertPaperDao {
      * @return role
      * @throws Exception
      */
-    public CertPaperDO getCertPaper(CertPaperDO certPaper)throws Exception;
+    public CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception;
 }
