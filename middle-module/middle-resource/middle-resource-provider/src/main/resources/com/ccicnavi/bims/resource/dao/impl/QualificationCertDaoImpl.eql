@@ -1,0 +1,323 @@
+--[listQualificationCertDO]
+select
+    cation_uuid  cationUuid,
+    person_uuid  personUuid,
+    cation_cert_uuid  cationCertUuid,
+    cation_cert_name  cationCertName,
+    cation_areas_uuid  cationAreasUuid,
+    cation_levl  cationLevl,
+    cation_cert_no  cationCertNo,
+    cation_company  cationCompany,
+    issue_date  issueDate,
+    update_date  updateDate,
+    register_number  registerNumber,
+    register_company  registerCompany,
+    register_date  registerDate,
+    is_file  isFile,
+    is_deleted  isDeleted,
+    created_time  createdTime,
+    created_uuid  createdUuid,
+    updated_time  updatedTime,
+    updated_name  updatedName,
+    org_uuid  orgUuid,
+    app_sys_uuid  appSysUuid,
+    business_line  businessLine,
+    extend1  extend1,
+    extend2  extend2,
+    extend3  extend3
+from
+    res_qualification_cert
+where
+    is_deleted = 'N'
+
+
+--[insertQualificationCertDO]
+    insert into res_qualification_cert
+--trim prefix=( suffix=) suffixOverrides=,
+     -- if cationUuid != null and cationUuid != ''
+            cation_uuid,
+     --end
+     -- if personUuid != null and personUuid != ''
+            person_uuid,
+     --end
+     -- if cationCertUuid != null and cationCertUuid != ''
+            cation_cert_uuid,
+     --end
+     -- if cationCertName != null and cationCertName != ''
+            cation_cert_name,
+     --end
+     -- if cationAreasUuid != null and cationAreasUuid != ''
+            cation_areas_uuid,
+     --end
+     -- if cationLevl != null and cationLevl != ''
+            cation_levl,
+     --end
+     -- if cationCertNo != null and cationCertNo != ''
+            cation_cert_no,
+     --end
+     -- if cationCompany != null and cationCompany != ''
+            cation_company,
+     --end
+     -- if issueDate != null and issueDate != ''
+            issue_date,
+     --end
+     -- if updateDate != null and updateDate != ''
+            update_date,
+     --end
+     -- if registerNumber != null and registerNumber != ''
+            register_number,
+     --end
+     -- if registerCompany != null and registerCompany != ''
+            register_company,
+     --end
+     -- if registerDate != null and registerDate != ''
+            register_date,
+     --end
+     -- if isFile != null and isFile != ''
+            is_file,
+     --end
+     -- if isDeleted != null and isDeleted != ''
+            is_deleted,
+     --end
+     -- if createdTime != null and createdTime != ''
+            created_time,
+     --end
+     -- if createdUuid != null and createdUuid != ''
+            created_uuid,
+     --end
+     -- if updatedTime != null and updatedTime != ''
+            updated_time,
+     --end
+     -- if updatedName != null and updatedName != ''
+            updated_name,
+     --end
+     -- if orgUuid != null and orgUuid != ''
+            org_uuid,
+     --end
+     -- if appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
+     --end
+     -- if businessLine != null and businessLine != ''
+            business_line,
+     --end
+     -- if extend1 != null and extend1 != ''
+            extend1,
+     --end
+     -- if extend2 != null and extend2 != ''
+            extend2,
+     --end
+     -- if extend3 != null and extend3 != ''
+        extend3,
+     --end
+--end
+--trim prefix=values( suffix=) suffixOverrides=,
+    -- if cationUuid != null and cationUuid != ''
+            '#cationUuid#',
+     --end
+     -- if personUuid != null and personUuid != ''
+            '#personUuid#',
+     --end
+     -- if cationCertUuid != null and cationCertUuid != ''
+            '#cationCertUuid#',
+     --end
+     -- if cationCertName != null and cationCertName != ''
+            '#cationCertName#',
+     --end
+     -- if cationAreasUuid != null and cationAreasUuid != ''
+            '#cationAreasUuid#',
+     --end
+     -- if cationLevl != null and cationLevl != ''
+            '#cationLevl#',
+     --end
+     -- if cationCertNo != null and cationCertNo != ''
+            '#cationCertNo#',
+     --end
+     -- if cationCompany != null and cationCompany != ''
+            '#cationCompany#',
+     --end
+     -- if issueDate != null and issueDate != ''
+            '#issueDate#',
+     --end
+     -- if updateDate != null and updateDate != ''
+            '#updateDate#',
+     --end
+     -- if registerNumber != null and registerNumber != ''
+            '#registerNumber#',
+     --end
+     -- if registerCompany != null and registerCompany != ''
+            '#registerCompany#',
+     --end
+     -- if registerDate != null and registerDate != ''
+            '#registerDate#',
+     --end
+     -- if isFile != null and isFile != ''
+            '#isFile#',
+     --end
+     -- if isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+     --end
+     -- if createdTime != null and createdTime != ''
+            '#createdTime#',
+     --end
+     -- if createdUuid != null and createdUuid != ''
+            '#createdUuid#',
+     --end
+     -- if updatedTime != null and updatedTime != ''
+            '#updatedTime#',
+     --end
+     -- if updatedName != null and updatedName != ''
+            '#updatedName#',
+     --end
+     -- if orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+     --end
+     -- if appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+     --end
+     -- if businessLine != null and businessLine != ''
+            '#businessLine#',
+     --end
+     -- if extend1 != null and extend1 != ''
+            '#extend1#',
+     --end
+     -- if extend2 != null and extend2 != ''
+            '#extend2#',
+     --end
+     -- if extend3 != null and extend3 != ''
+            '#extend3#',
+     --end
+ --end
+
+
+--[updateQualificationCertDO]
+    update res_qualification_cert
+-- trim  prefix= set suffixOverrides=,
+     -- if cationUuid != null and cationUuid != ''
+            cation_uuid = '#cationUuid#',
+     --end
+     -- if personUuid != null and personUuid != ''
+            person_uuid = '#personUuid#',
+     --end
+     -- if cationCertUuid != null and cationCertUuid != ''
+            cation_cert_uuid = '#cationCertUuid#',
+     --end
+     -- if cationCertName != null and cationCertName != ''
+            cation_cert_name = '#cationCertName#',
+     --end
+     -- if cationAreasUuid != null and cationAreasUuid != ''
+            cation_areas_uuid = '#cationAreasUuid#',
+     --end
+     -- if cationLevl != null and cationLevl != ''
+            cation_levl = '#cationLevl#',
+     --end
+     -- if cationCertNo != null and cationCertNo != ''
+            dept_name = '#cationCertNo#',
+     --end
+     -- if cationCompany != null and cationCompany != ''
+            cation_company = '#cationCompany#',
+     --end
+     -- if issueDate != null and issueDate != ''
+            issue_date = '#issueDate#',
+     --end
+     -- if updateDate != null and updateDate != ''
+            update_date = '#updateDate#',
+     --end
+     -- if registerNumber != null and registerNumber != ''
+            register_number = '#registerNumber#',
+     --end
+     -- if registerCompany != null and registerCompany != ''
+            register_company = '#registerCompany#',
+     --end
+     -- if registerDate != null and registerDate != ''
+            register_date = '#registerDate#',
+     --end
+     -- if isFile != null and isFile != ''
+            is_file = '#isFile#',
+     --end
+     -- if isDeleted != null and isDeleted != ''
+            is_deleted = '#isDeleted#',
+     --end
+     -- if createdTime != null and createdTime != ''
+            created_time = '#createdTime#',
+     --end
+     -- if createdUuid != null and createdUuid != ''
+            created_uuid = '#createdUuid#',
+     --end
+     -- if updatedTime != null and updatedTime != ''
+            updated_time = '#updatedTime#',
+     --end
+     -- if updatedName != null and updatedName != ''
+            updated_name = '#updatedName#',
+     --end
+     -- if orgUuid != null and orgUuid != ''
+            org_uuid = '#orgUuid#',
+     --end
+     -- if appSysUuid != null and appSysUuid != ''
+            app_sys_uuid = '#appSysUuid#',
+     --end
+     -- if businessLine != null and businessLine != ''
+            business_line = '#businessLine#',
+     --end
+      -- if extend1 != null and extend1 != ''
+                 extend1 = '#extend1#',
+          --end
+     -- if extend2 != null and extend2 != ''
+            extend2 = '#extend2#',
+     --end
+     -- if extend3 != null and extend3 != ''
+            extend3 = '#extend3#',
+     --end
+--end
+      where
+         cation_uuid = '#cationUuid#'
+
+--[deleteQualificationCertDO]
+    update res_qualification_cert
+    -- trim prefix= set suffixOverrides=,
+        is_deleted = 'Y'
+    -- end
+    where
+        -- if cationUuid != null and cationUuid != ''
+            cation_uuid = '#cationUuid#'
+        -- end
+        -- if cationUuids != null
+            and	cation_uuid in
+            -- for item=item index=index collection=cationUuids open=( separator=, close=)
+                '#item#'
+            -- end
+        -- end
+
+--[getQualificationCertDO]
+    select
+        cation_uuid  cationUuid,
+        person_uuid  personUuid,
+        cation_cert_uuid  cationCertUuid,
+        cation_cert_name  cationCertName,
+        cation_areas_uuid  cationAreasUuid,
+        cation_levl  cationLevl,
+        cation_cert_no  cationCertNo,
+        cation_company  cationCompany,
+        issue_date  issueDate,
+        update_date  updateDate,
+        register_number  registerNumber,
+        register_company  registerCompany,
+        register_date  registerDate,
+        is_file  isFile,
+        is_deleted  isDeleted,
+        created_time  createdTime,
+        created_uuid  createdUuid,
+        updated_time  updatedTime,
+        updated_name  updatedName,
+        org_uuid  orgUuid,
+        app_sys_uuid  appSysUuid,
+        business_line  businessLine,
+        extend1  extend1,
+        extend2  extend2,
+        extend3  extend3
+    from
+        res_qualification_cert
+    where
+        is_deleted = 'N'
+        -- if cationUuid != null and cationUuid != ''
+               and  cation_uuid = '#cationUuid#'
+        -- end
