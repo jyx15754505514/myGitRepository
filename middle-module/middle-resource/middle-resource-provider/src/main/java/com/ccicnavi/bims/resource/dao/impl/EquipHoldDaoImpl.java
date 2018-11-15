@@ -25,7 +25,7 @@ public class EquipHoldDaoImpl implements EquipHoldDao {
      */
     @Override
     public EquipHoldDO getEquipHold(String equipHoldUuid){
-        return EqlUtils.getInstance("druid").selectFirst("getEquip").params(equipHoldUuid).returnType(EquipHoldDO.class).execute();
+        return EqlUtils.getInstance("druid").selectFirst("getEquipHold").params(equipHoldUuid).returnType(EquipHoldDO.class).execute();
     }
 
     /**
@@ -37,7 +37,7 @@ public class EquipHoldDaoImpl implements EquipHoldDao {
      */
     @Override
     public List<EquipHoldDO> listEquipHold(EquipHoldDO equipHoldDO){
-        return EqlUtils.getInstance("druid").select("listEquip").params(equipHoldDO).returnType(EquipHoldDO.class).execute();
+        return EqlUtils.getInstance("druid").select("listEquipHold").params(equipHoldDO).returnType(EquipHoldDO.class).execute();
     }
 
     /**
@@ -49,7 +49,7 @@ public class EquipHoldDaoImpl implements EquipHoldDao {
      */
     @Override
     public Integer insertEquipHold(EquipHoldDO equipHoldDO){
-        return EqlUtils.getInstance("druid").insert("insertEquip").params(equipHoldDO).returnType(Integer.class).execute();
+        return EqlUtils.getInstance("druid").insert("insertEquipHold").params(equipHoldDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -61,7 +61,7 @@ public class EquipHoldDaoImpl implements EquipHoldDao {
      */
     @Override
     public Integer updateEquipHold(EquipHoldDO equipHoldDO){
-        return EqlUtils.getInstance("druid").update("updateEquip").params(equipHoldDO).returnType(EquipHoldDO.class).execute();
+        return EqlUtils.getInstance("druid").update("updateEquipHold").params(equipHoldDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -73,6 +73,6 @@ public class EquipHoldDaoImpl implements EquipHoldDao {
      */
     @Override
     public Integer deleteEquipHold(EquipHoldDO equipHoldDO){
-        return EqlUtils.getInstance("druid").delete("updateEquip").params(equipHoldDO).returnType(EquipHoldDO.class).execute();
+        return EqlUtils.getInstance("druid").delete("deleteEquipHold").params(equipHoldDO).returnType(Integer.class).execute();
     }
 }

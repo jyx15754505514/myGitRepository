@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.system.pojo;
+package com.ccicnavi.bims.resource.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,21 +7,29 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @program: bims-backend
+ * @description: 设备领用归还信息DO
+ * @author: panyida
+ * @create: 2018-11-15 19:32
+ **/
 @Getter
 @Setter
 @ToString
-public class RoleDO implements Serializable {
-    private String roleUuid;
+public class EquipUseDO implements Serializable {
+    private String equipUseUuid;
 
-    private String parentRoleUuid;
+    private String equipUuid;
 
-    private String roleName;
+    private Date useDate;
 
-    private String roleCode;
+    private String usePerson;
 
-    private String isSystem;
+    private String useDept;
 
-    private String isEnabled;
+    private Date backDate;
+
+    private String businessLine;
 
     private String comments;
 
@@ -40,12 +48,4 @@ public class RoleDO implements Serializable {
     private String orgUuid;
 
     private String appSysUuid;
-
-    private String businessLine;
-
-    private String extend1;
-
-    private String extend2;
-
-    private String extend3;
 }

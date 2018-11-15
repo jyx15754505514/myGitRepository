@@ -56,5 +56,5 @@ public interface EquipHoldService {
      * @Param [EquipHoldDO]
      * @Return java.lang.Integer
      */
-    Integer deleteEquipHold(EquipHoldDO EquipHoldDO);
+    Integer deleteEquipHold(String EquipHoldUuid);
 }
