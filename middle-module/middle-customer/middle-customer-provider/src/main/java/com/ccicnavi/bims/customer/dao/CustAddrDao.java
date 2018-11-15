@@ -4,6 +4,7 @@ import com.ccicnavi.bims.customer.pojo.CustAddrDO;
 
 import java.util.List;
 
+
 public interface CustAddrDao {
 
     List<CustAddrDO> listCustAddr(CustAddrDO custAddr) throws Exception;
