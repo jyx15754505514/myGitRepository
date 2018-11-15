@@ -1,12 +1,15 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
+import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.resource.dao.StandardInfoDao;
 import com.ccicnavi.bims.resource.pojo.StandardInfoDO;
-import com.google.common.annotations.VisibleForTesting;
-import org.n3r.eql.Eql;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@Slf4j
 public class StandardInfoDaoImpl implements StandardInfoDao{
 
     /**
@@ -16,10 +19,10 @@ public class StandardInfoDaoImpl implements StandardInfoDao{
     public List<StandardInfoDO> listStandardInfoDO(StandardInfoDO standardInfoDO)  {
         List<StandardInfoDO> standardInfoDOList = null;
         try{
-            standardInfoDOList =  new Eql().select("listStandardInfo").params(standardInfoDO).returnType(StandardInfoDO.class).execute();
+            standardInfoDOList =  EqlUtils.getInstance("DEFAULT").select("listStandardInfo").params(standardInfoDO).returnType(StandardInfoDO.class).execute();
         }catch (Exception e){
             //日志打印
-
+            log.error("",e);
             e.printStackTrace();
         }
         return standardInfoDOList;
@@ -35,10 +38,10 @@ public class StandardInfoDaoImpl implements StandardInfoDao{
     public Integer insertStandardInfoDO(StandardInfoDO standardInfoDO)  {
         int num = 0;
         try{
-            num =  new Eql().insert("insertStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
+            num =  EqlUtils.getInstance("DEFAULT").insert("insertStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
         }catch (Exception e){
             //日志打印
-
+            log.error("",e);
             e.printStackTrace();
         }
         return num;
@@ -54,10 +57,10 @@ public class StandardInfoDaoImpl implements StandardInfoDao{
     public Integer updateStandardInfoDO(StandardInfoDO standardInfoDO)  {
         int num = 0;
         try{
-            num =  new Eql().update("updateStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
+            num =  EqlUtils.getInstance("DEFAULT").update("updateStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
         }catch (Exception e){
             //日志打印
-
+            log.error("",e);
             e.printStackTrace();
         }
         return num;
@@ -73,10 +76,10 @@ public class StandardInfoDaoImpl implements StandardInfoDao{
     public Integer deleteStandardInfoDO(StandardInfoDO standardInfoDO)  {
         int num = 0;
         try{
-            num =  new Eql().delete("deleteStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
+            num =  EqlUtils.getInstance("DEFAULT").delete("deleteStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
         }catch (Exception e){
             //日志打印
-
+            log.error("",e);
             e.printStackTrace();
         }
         return num;
@@ -92,10 +95,10 @@ public class StandardInfoDaoImpl implements StandardInfoDao{
     public StandardInfoDO getStandardInfoDO(StandardInfoDO standardInfoDO)  {
         StandardInfoDO getStandardInfoDO = null;
         try{
-            getStandardInfoDO = new Eql().selectFirst("getStandardInfo").params(standardInfoDO).returnType(StandardInfoDO.class).execute();
+            getStandardInfoDO = EqlUtils.getInstance("DEFAULT").selectFirst("getStandardInfo").params(standardInfoDO).returnType(StandardInfoDO.class).execute();
         }catch (Exception e){
             //日志打印
-
+            log.error("",e);
             e.printStackTrace();
         }
         return getStandardInfoDO;

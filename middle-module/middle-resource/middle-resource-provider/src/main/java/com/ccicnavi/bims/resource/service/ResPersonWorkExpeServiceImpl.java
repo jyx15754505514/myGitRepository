@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.resource.api.ResPersonWorkExpeService;
 import com.ccicnavi.bims.resource.dao.ResPersonWorkExpeDao;
 import com.ccicnavi.bims.resource.pojo.ResPersonWorkExpeDO;
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-
+@Service
 public class ResPersonWorkExpeServiceImpl implements ResPersonWorkExpeService {
     @Autowired
     ResPersonWorkExpeDao resPersonWorkExpeDao;

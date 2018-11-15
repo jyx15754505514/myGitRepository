@@ -3,7 +3,8 @@ package com.ccicnavi.bims.system.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.AreaDao;
 import com.ccicnavi.bims.system.pojo.AreaDO;
-import org.n3r.eql.Eql;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
 /* *
@@ -11,6 +12,7 @@ import java.util.List;
  * @Description 地区管理
  * @Date 16:48 2018/11/14
  */
+@Service
 public class AreaDaoImpl implements AreaDao {
 
 
@@ -25,60 +27,30 @@ public class AreaDaoImpl implements AreaDao {
      */
     @Override
     public List<AreaDO> listArea(AreaDO areaDO) {
-        List<AreaDO> listArea = null;
-        try {
-            listArea = EqlUtils.getInstance("druid").select("listArea").params(areaDO).returnType(AreaDO.class).execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listArea;
+        return EqlUtils.getInstance("druid").select("listArea").params(areaDO).returnType(AreaDO.class).execute();
     }
 
     /**获取指定的地区*/
     @Override
     public AreaDO getArea(AreaDO areaDO) {
-        AreaDO area = null;
-        try {
-            area = EqlUtils.getInstance("druid").selectFirst("getArea").params(areaDO).returnType(AreaDO.class).execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return area;
+        return EqlUtils.getInstance("druid").selectFirst("getArea").params(areaDO).returnType(AreaDO.class).execute();
     }
 
     /**添加地区*/
     @Override
-    public int insertArea(AreaDO areaDO) {
-        int area = 0;
-        try {
-            area = EqlUtils.getInstance("druid").insert("insertArea").params(areaDO).execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return area;
+    public Integer insertArea(AreaDO areaDO) {
+        return EqlUtils.getInstance("druid").insert("insertArea").params(areaDO).execute();
     }
 
     /**更新地区信息*/
     @Override
-    public int updateArea(AreaDO areaDO) {
-        int area = 0;
-        try {
-            area = EqlUtils.getInstance("druid").update("updateArea").params(areaDO).execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return area;
+    public Integer updateArea(AreaDO areaDO) {
+        return EqlUtils.getInstance("druid").update("updateArea").params(areaDO).execute();
     }
 
     /**删除地区*/
     @Override
-    public int deleteArea(AreaDO areaDO) {
-        int area = 0;
-        try {
-            area = EqlUtils.getInstance("druid").delete("deleteArea").params(areaDO).execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return area;
+    public Integer deleteArea(AreaDO areaDO) {
+        return EqlUtils.getInstance("druid").delete("deleteArea").params(areaDO).execute();
     }
 }

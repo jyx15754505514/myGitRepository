@@ -9,16 +9,16 @@ import java.util.List;
 public interface CustomerDao {
 
     /**查询全部客户信息*/
-    List<CustomerDO> listCustomer(CustomerDO customer);
+    List<CustomerDO> listCustomer(CustomerDO customer) throws Exception;
 
     /**新增客户信息*/
-    int saveCustomer(CustomerDO customer);
+    int saveCustomer(CustomerDO customer) throws Exception;
 
     /**删除客户信息*/
-    int removeCustomer(String uuids);
+    int removeCustomer(String uuids) throws Exception;
 
     /**修改客户信息*/
-    int updateCustomer(CustomerDO customer);
+    int updateCustomer(CustomerDO customer) throws Exception;
 
-    CustomerDO getCustomer(CustomerDO customer);
+    CustomerDO getCustomer(CustomerDO customer) throws Exception;
 }

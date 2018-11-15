@@ -20,7 +20,7 @@ public interface EquipHoldService {
      * @Param [EquipHoldDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipHoldDO>
      */
-    List<EquipHoldDO> findEquipHoldList(EquipHoldDO EquipHoldDO);
+    List<EquipHoldDO> listEquipHold(EquipHoldDO EquipHoldDO);
 
     /**
      * @Author panyida

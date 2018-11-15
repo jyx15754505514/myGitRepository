@@ -5,6 +5,12 @@ import com.ccicnavi.bims.system.pojo.NotworkdayDO;
 import java.util.List;
 
 
+/**
+ * @program: bims-backend
+ * @description: 非工作日dao接口
+ * @author: zhaotao
+ * @create: 2018-11-14 23:33
+ **/
 public interface NotworkdayDao {
 	
 	/**

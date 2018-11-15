@@ -1,9 +1,5 @@
 package com.ccicnavi.bims.system.dao.impl;
 
-
-
-import com.ccicnavi.bims.common.ResultCode;
-import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.NotworkdayDao;
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
@@ -14,59 +10,39 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @program: bims-backend
+ * @description: 非工作日dao实现类
+ * @author: zhaotao
+ * @create: 2018-11-14 23:33
+ **/
 @Service
 public class NotworkdayDaoImpl implements NotworkdayDao {
 
     private final static Logger log = LoggerFactory.getLogger(NotworkdayDaoImpl.class);
 
     @Override
-    public List<NotworkdayDO> listNotworkday(NotworkdayDO notworkday){
-        try{
-            return EqlUtils.getInstance("druid").select("listNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
-        }catch (Exception e) {
-            log.error("",e);
-            return null;
-        }
+    public List<NotworkdayDO> listNotworkday(NotworkdayDO notworkday) throws Exception{
+        return EqlUtils.getInstance("DEFAULT").select("listNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
     }
 
     @Override
-    public Integer insertNotworkday(NotworkdayDO notworkday){
-        try{
-            return EqlUtils.getInstance("druid").insert("insertNotworkday").params(notworkday).returnType(Integer.class).execute();
-        }catch (Exception e) {
-            log.error("",e);
-            return null;
-        }
+    public Integer insertNotworkday(NotworkdayDO notworkday) throws Exception{
+        return EqlUtils.getInstance("DEFAULT").insert("insertNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
     @Override
-    public Integer updateNotworkday(NotworkdayDO notworkday){
-        try{
-            return EqlUtils.getInstance("druid").insert("updateNotworkday").params(notworkday).returnType(Integer.class).execute();
-        }catch (Exception e) {
-            log.error("",e);
-            return null;
-        }
+    public Integer updateNotworkday(NotworkdayDO notworkday) throws Exception{
+        return EqlUtils.getInstance("DEFAULT").insert("updateNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
     @Override
-    public Integer deleteNotworkday(NotworkdayDO notworkday){
-        try{
-            return EqlUtils.getInstance("druid").insert("deleteNotworkday").params(notworkday).returnType(Integer.class).execute();
-        }catch (Exception e) {
-            log.error("",e);
-            return null;
-        }
+    public Integer deleteNotworkday(NotworkdayDO notworkday) throws Exception{
+        return EqlUtils.getInstance("DEFAULT").insert("deleteNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
     @Override
-    public NotworkdayDO getNotworkday(NotworkdayDO notworkday){
-        try{
-            log.debug("{}",ResultCode.COLLECTION_OF_EXCEPTION);
-            return EqlUtils.getInstance("druid").selectFirst("getNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
-        }catch (Exception e) {
-            log.error("",e);
-            return null;
-        }
+    public NotworkdayDO getNotworkday(NotworkdayDO notworkday) throws Exception{
+        return EqlUtils.getInstance("DEFAULT").selectFirst("getNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
     }
 }

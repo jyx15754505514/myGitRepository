@@ -11,6 +11,12 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+/**
+ * @program: bims-backend
+ * @description: 模板实体类
+ * @author: zhaotao
+ * @create: 2018-11-14 23:33
+ **/
 public class TemplateDO implements Serializable {
     private String templateUuid;
 

@@ -1,10 +1,11 @@
 package com.ccicnavi.bims.system.dao.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
+
+import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.DepartmentDao;
 import com.ccicnavi.bims.system.pojo.DepartmentDO;
 import lombok.extern.slf4j.Slf4j;
-import org.n3r.eql.Eql;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
@@ -13,10 +14,10 @@ import java.util.List;
 @Slf4j
 public class DepartmentDaoImpl implements DepartmentDao {
     @Override
-    public List<DepartmentDO> listDepartment(DepartmentDO departmentDO) throws Exception {
+    public List<DepartmentDO> listDepartment(DepartmentDO departmentDO){
         List<DepartmentDO> row = null;
         try{
-            row = new Eql().select("listDept").params(departmentDO).returnType(DepartmentDO.class).execute();
+            row = EqlUtils.getInstance("DEFAULT").select("listDept").params(departmentDO).returnType(DepartmentDO.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -24,10 +25,10 @@ public class DepartmentDaoImpl implements DepartmentDao {
     }
 
     @Override
-    public Integer insertDepartment(DepartmentDO departmentDO) throws Exception {
+    public Integer insertDepartment(DepartmentDO departmentDO){
         Integer integer = null;
         try{
-            integer = new Eql().insert("insertDept").params(departmentDO).returnType(Integer.class).execute();
+            integer = EqlUtils.getInstance("DEFAULT").insert("insertDept").params(departmentDO).returnType(Integer.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -35,10 +36,10 @@ public class DepartmentDaoImpl implements DepartmentDao {
     }
 
     @Override
-    public Integer updateDepartment(DepartmentDO departmentDO) throws Exception {
+    public Integer updateDepartment(DepartmentDO departmentDO){
         Integer integer = null;
         try{
-            integer = new Eql().update("insertDept").params(departmentDO).returnType(Integer.class).execute();
+            integer = EqlUtils.getInstance("DEFAULT").update("updateDept").params(departmentDO).returnType(Integer.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -46,10 +47,10 @@ public class DepartmentDaoImpl implements DepartmentDao {
     }
 
     @Override
-    public Integer deleteDepartment(DepartmentDO departmentDO) throws Exception {
+    public Integer deleteDepartment(DepartmentDO departmentDO){
         Integer integer = null;
         try{
-            integer = new Eql().delete("deleteDept").params(departmentDO).returnType(Integer.class).execute();
+            integer = EqlUtils.getInstance("DEFAULT").delete("deleteDept").params(departmentDO).returnType(Integer.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -57,10 +58,10 @@ public class DepartmentDaoImpl implements DepartmentDao {
     }
 
     @Override
-    public DepartmentDO getDepartment(DepartmentDO departmentDO) throws Exception {
+    public DepartmentDO getDepartment(DepartmentDO departmentDO){
         DepartmentDO departmentDO1 = null;
         try{
-            departmentDO1 = new Eql().select("listDept").params(departmentDO).returnType(DepartmentDO.class).execute();
+            departmentDO1 = EqlUtils.getInstance("DEFAULT").selectFirst("listDept").params(departmentDO).returnType(DepartmentDO.class).execute();
         }catch (Exception e){
             e.printStackTrace();
         }

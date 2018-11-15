@@ -280,3 +280,34 @@ WHERE is_deleted='N'
 
     --end
   where subcontractor_uuid = '#subcontractorUuid#'
+
+-- [getSubcontractor]
+  SELECT
+    subcontractor_uuid,
+    subc_code,
+    name,
+    en_name,
+    subc_short_name,
+    subc_post_code,
+    subc_url,
+    fax,
+    tel,
+    subc_phone,
+    addr,
+    rank,
+    detection_field,
+    is_deleted,
+    created_time,
+    created_uuid,
+    created_name,
+    updated_time,
+    updated_name,
+    business_line,
+    org_uuid,
+    app_sys_uuid,
+    extend1,
+    extend2,
+    extend3
+FROM crm_subcontractor
+WHERE is_deleted='N'
+    AND subcontractor_uuid='#subcontractorUuid#'
