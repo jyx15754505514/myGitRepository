@@ -9,6 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @program: bims-backend
+ * @description: 客户发票数据库交互
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
+ */
 @Service
 public class CustInvoiceDaoImpl implements CustInvoiceDao {
 
@@ -38,7 +44,7 @@ public class CustInvoiceDaoImpl implements CustInvoiceDao {
 
     @Override
     public CustInvoiceDO getCustInvoice(CustInvoiceDO custInvoice) {
-        return EqlUtils.getInstance("druid").selectFirst("listCustInvoice").params(custInvoice).execute();
+        return EqlUtils.getInstance("druid").selectFirst("listCustInvoice").params(custInvoice).returnType(CustInvoiceDO.class).execute();
     }
 
 

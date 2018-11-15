@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 客户跟踪信息dao层
+ * @program: bims-backend
+ * @description: 客户跟踪信息数据库交互
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
  */
 @Service
 public class CustTailDaoImpl implements CustTailDao {
@@ -39,7 +42,7 @@ public class CustTailDaoImpl implements CustTailDao {
 
     @Override
     public CustTailDO getCustTail(CustTailDO custTail) {
-        return EqlUtils.getInstance("druid").selectFirst("listCustTail").params(custTail).execute();
+        return EqlUtils.getInstance("druid").selectFirst("getCustTail").params(custTail).returnType(CustTailDO.class).execute();
     }
 
 
@@ -84,5 +87,15 @@ public class CustTailDaoImpl implements CustTailDao {
         int count=EqlUtils.getInstance("druid").update("deleteCustTail").params(data).execute();
         System.out.println(count);
     }
+
+    @Test
+    public void getCustTail(){
+        CustTailDO custTailDO=new CustTailDO();
+        custTailDO.setTailUuid("客户跟踪1");
+        CustTailDO custTail= EqlUtils.getInstance("druid").selectFirst("listCustTail").params(custTailDO).returnType(CustTailDO.class).execute();
+        System.out.println(custTail);
+    }
+
+
 
 }

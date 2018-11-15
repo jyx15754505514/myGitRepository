@@ -6,7 +6,10 @@ import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import java.util.List;
 
 /**
- * 客户接口层
+ * @program: bims-backend
+ * @description: 客户接口定义
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
  */
 public interface CustomerService {
 
