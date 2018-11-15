@@ -1,0 +1,168 @@
+-- [listMenu]
+SELECT
+    menu_uuid menuUuid,
+    app_sys_uuid appSysUuid
+    parent_uuid parentUuid,
+    menu_name menuName,
+    menu_url menuUrl,
+    menu_icon menuIcon,
+    menu_fontcolor menuFontcolor,
+    menu_level menuLevel,
+    parent_all_uuid parentAllUuid,
+    is_enabled isEnabled,
+    sort_num sortNum,
+    is_deleted isDeleted,
+    business_line businessLine
+from
+    sys_menu
+where
+    is_deleted = 'N'
+--iff appSysUuid != null and appSysUuid != ''
+    and app_sys_uuid = '#appSysUuid#'
+--iff menuName != null and menuName != ''
+    and menu_name like '#menuName:Like#'
+
+
+-- [getMenu]
+SELECT
+    menu_uuid menuUuid,
+    app_sys_uuid appSysUuid
+    parent_uuid parentUuid,
+    menu_name menuName,
+    menu_url menuUrl,
+    menu_icon menuIcon,
+    menu_fontcolor menuFontcolor,
+    menu_level menuLevel,
+    parent_all_uuid parentAllUuid,
+    is_enabled isEnabled,
+    sort_num sortNum,
+    is_deleted isDeleted,
+    business_line businessLine
+from
+    sys_menu
+where
+    is_deleted = 'N'
+--iff appSysUuid != null and appSysUuid != ''
+    and app_sys_uuid = '#appSysUuid#'
+--iff menuUuid != null and menuUuid != ''
+    and menu_uuid = '#menuUuid#'
+
+
+-- [insertMenu]
+INSERT INTO sys_menu
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff menuUuid != null and menuUuid != ''
+        	menu_uuid,
+        --iff appSysUuid != null and appSysUuid != ''
+        	app_sys_uuid,
+        --iff parentUuid != null and parentUuid != ''
+        	parent_uuid,
+        --iff menuName != null and menuName != ''
+        	menu_name,
+        --iff menuUrl != null and menuUrl != ''
+        	menu_url,
+        --iff menuIcon != null and menuIcon != ''
+        	menu_icon,
+        --iff menuFontcolor != null and menuFontcolor != ''
+        	menu_fontcolor,
+        --iff menuLevel != null and menuLevel != ''
+        	menu_level,
+        --iff parentAllUuid != null and parentAllUuid != ''
+        	parent_all_uuid,
+        --iff isEnabled != null and isEnabled != ''
+        	is_enabled,
+        --iff sortNum != null and sortNum != ''
+        	sort_num,
+        --iff isDeleted != null and isDeleted != ''
+        	is_deleted,
+        --iff businessLine != null and businessLine != ''
+        	business_line,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff menuUuid != null and menuUuid != ''
+            '#menuUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+        --iff parentUuid != null and parentUuid != ''
+            '#parentUuid#',
+        --iff menuName != null and menuName != ''
+            '#menuName#',
+        --iff menuUrl != null and menuUrl != ''
+            '#menuUrl#',
+        --iff menuIcon != null and menuIcon != ''
+            '#menuIcon#',
+        --iff menuFontcolor != null and menuFontcolor != ''
+            '#menuFontcolor#',
+        --iff menuLevel != null and menuLevel != ''
+            '#menuLevel#',
+        --iff parentAllUuid != null and parentAllUuid != ''
+            '#parentAllUuid#',
+        --iff isEnabled != null and isEnabled != ''
+            '#isEnabled#',
+        --iff sortNum != null and sortNum != ''
+            '#sortNum#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+        --iff businessLine != null and businessLine != ''
+            '#businessLine#',
+    -- end
+
+
+-- [updateMenu]
+UPDATE
+    sys_menu
+-- trim prefix= set suffixOverrides=,
+     --iff menuUuid != null and menuUuid != ''
+        menu_uuid = '#menuUuid#',
+    --iff parentUuid != null and parentUuid != ''
+        parent_uuid = '#parentUuid#',
+    --iff menuName != null and menuName != ''
+        menu_name = '#menuName#',
+    --iff menuUrl != null and menuUrl != ''
+        menu_url = '#menuUrl#',
+    --iff menuIcon != null and menuIcon != ''
+        menu_icon = '#menuIcon#',
+    --iff menuFontcolor != null and menuFontcolor != ''
+        menu_fontcolor = '#menuFontcolor#',
+    --iff menuLevel != null and menuLevel != ''
+        menu_level = '#menuLevel#',
+    --iff parentAllUuid != null and parentAllUuid != ''
+        parent_all_uuid = '#parentAllUuid#',
+    --iff isEnabled != null and isEnabled != ''
+        is_enabled = '#isEnabled#',
+    --iff sortNum != null and sortNum != ''
+        sort_num = '#sortNum#',
+    --iff isDeleted != null and isDeleted != ''
+        is_deleted = '#isDeleted#',
+    --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
+    --iff businessLine != null and businessLine != ''
+        business_line = '#businessLine#',
+-- end
+where
+    is_deleted = 'N'
+    --iff appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid = '#appSysUuid#'
+    --iff menuUuid != null and menuUuid != ''
+        and menu_uuid = '#menuUuid#'
+    --iff menuUuids != null
+        and menu_uuid in
+        -- for item=item index=index collection=list open=( separator=, close=)
+            '#item#'
+        -- end
+
+-- [deleteMenu]
+UPDATE
+    sys_menu
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'
+-- end
+WHERE
+    is_deleted = 'N'
+    --iff menuUuid != null and menuUuid != ''
+        and menu_uuid = '#menuUuid#'
+    --iff menuUuids != null
+        and menu_uuid in
+        -- for item=item index=index collection=list open=( separator=, close=)
+            '#item#'
+        -- end
