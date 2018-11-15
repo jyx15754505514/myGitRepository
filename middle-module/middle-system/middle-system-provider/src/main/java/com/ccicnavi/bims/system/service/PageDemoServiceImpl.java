@@ -67,8 +67,7 @@ public class PageDemoServiceImpl implements PageDemoService {
      */
     public PageBean<RoleDO> testPage(PageParameter<RoleDO> pageParameter) {
         try {
-            PageBean<RoleDO> roleDOS = pageDemoDao.testPage(pageParameter);
-            return roleDOS;
+            return pageDemoDao.testPage(pageParameter);
         } catch (Exception e) {
             log.error("{}",e);
             return new PageBean<RoleDO>(0,0,0,0,0,new ArrayList<RoleDO>());
