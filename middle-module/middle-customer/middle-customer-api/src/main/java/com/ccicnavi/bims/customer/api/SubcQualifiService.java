@@ -6,7 +6,10 @@ import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
 import java.util.List;
 
 /**
- * 分包方资质信息接口层
+ * @program: bims-backend
+ * @description: 分包方资质接口定义
+ * @author: WangYingLing
+ * @create: 2018-11-15 09:19
  */
 
 public interface SubcQualifiService {

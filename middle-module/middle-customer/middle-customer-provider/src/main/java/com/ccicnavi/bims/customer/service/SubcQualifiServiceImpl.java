@@ -9,6 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+/**
+ * @Author WangYingling
+ * @Description 分包方资质信息ServiceImpl
+ * @Date 19:59 2018/11/14
+ */
+
 @Service
 @Slf4j
 public class SubcQualifiServiceImpl implements SubcQualifiService {
@@ -16,6 +22,13 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
     @Autowired
     SubcQualifiDao subcQualifiDao;
 
+    /**
+     * @Author WangYingling
+     * @Description 查询所有分包方资质信息
+     * @Date 20:00 2018/11/14
+     * @param subcQuali
+     * @return java.util.List<com.ccicnavi.bims.customer.pojo.SubcQualifiDO>
+     */
     @Override
     public List<SubcQualifiDO> listSubcQuali(SubcQualifiDO subcQuali) {
         List<SubcQualifiDO> subcQualifiList=null;
@@ -28,6 +41,13 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
         return subcQualifiList;
     }
 
+    /**
+     * @Author WangYingling
+     * @Description 新增分包方资质信息
+     * @Date 20:00 2018/11/14
+     * @param subcQuali
+     * @return java.lang.Integer
+     */
     @Override
     public int saveSubcQuali(SubcQualifiDO subcQuali) {
         Integer count=0;
@@ -40,6 +60,13 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
         return count;
     }
 
+    /**
+     * @Author WangYingling
+     * @Description 删除分包方资质信息
+     * @Date 20:00 2018/11/14
+     * @param subcQualifiUuid
+     * @return java.lang.Integer
+     */
     @Override
     public int removeSubcQuali(String subcQualifiUuid) {
         Integer count=0;
@@ -52,6 +79,13 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
         return count;
     }
 
+    /**
+     * @Author WangYingling
+     * @Description 修改分包方资质信息
+     * @Date 20:00 2018/11/14
+     * @param subcQuali
+     * @return java.lang.Integer
+     */
     @Override
     public int updateSubcQuali(SubcQualifiDO subcQuali) {
         Integer count=0;
@@ -64,6 +98,13 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
         return count;
     }
 
+    /**
+     * @Author WangYingling
+     * @Description 查询分包方资质信息（根据主键获取）
+     * @Date 20:00 2018/11/14
+     * @param subcQuali
+     * @return com.ccicnavi.bims.customer.pojo.SubcQualifiDO
+     */
     @Override
     public SubcQualifiDO getSubcQuali(SubcQualifiDO subcQuali) {
         SubcQualifiDO subcQualifiBean=null;
