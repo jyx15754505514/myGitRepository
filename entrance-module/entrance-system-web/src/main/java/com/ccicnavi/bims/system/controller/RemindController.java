@@ -36,15 +36,15 @@ public class RemindController {
     *@date: 2018/11/15
     */
 
-    @RequestMapping(value = "/ListRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT ListRemind(@RequestBody RemindDO Remind){
+    @RequestMapping(value = "/listRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT listRemind(@RequestBody RemindDO Remind){
 
         try {
             List<RemindDO> list = remindServic.listRemind(Remind);
             return ResultT.success(list);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(RENIND_LIST_RENINDLIST);
+            return ResultT.failure(ResultCode.RENIND_LIST_RENINDLIST);
         }
     }
     /**
@@ -55,15 +55,15 @@ public class RemindController {
     *@date: 2018/11/15
     */
 
-    @RequestMapping(value = "/InsertRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT InsertRemind(@RequestBody RemindDO Remind){
+    @RequestMapping(value = "/insertRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT insertRemind(@RequestBody RemindDO Remind){
 
         try {
             Integer num = remindServic.insertRemind(Remind);
             return ResultT.success();
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(RENIND_LIST_RENINDINSERT);
+            return ResultT.failure(ResultCode.RENIND_LIST_RENINDINSERT);
         }
     }
     /**
@@ -74,14 +74,14 @@ public class RemindController {
     *@date: 2018/11/15
     */
 
-    @RequestMapping(value = "/UpdateRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT UpdateRemind(@RequestBody RemindDO Remind){
+    @RequestMapping(value = "/updateRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT updateRemind(@RequestBody RemindDO Remind){
         try {
             Integer num = remindServic.updateRemind(Remind);
             return ResultT.success();
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(RENIND_LIST_RENINDUPDATE);
+            return ResultT.failure(ResultCode.RENIND_LIST_RENINDUPDATE);
         }
     }
     /**
@@ -92,14 +92,14 @@ public class RemindController {
     *@date: 2018/11/15
     */
 
-    @RequestMapping(value = "/DeleteRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT DeleteRemind(@RequestBody RemindDO Remind){
+    @RequestMapping(value = "/deleteRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT deleteRemind(@RequestBody RemindDO Remind){
         try {
             Integer num = remindServic.deleteRemind(Remind);
             return ResultT.success();
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(RENIND_LIST_RENINDDELETE);
+            return ResultT.failure(ResultCode.RENIND_LIST_RENINDDELETE);
         }
     }
     /**
@@ -110,14 +110,14 @@ public class RemindController {
     *@date: 2018/11/15
     */
 
-    @RequestMapping(value = "/GetRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT GetRemind(@RequestBody RemindDO remind){
+    @RequestMapping(value = "/getRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT getRemind(@RequestBody RemindDO remind){
         try {
             RemindDO remindDO= remindServic.getRemind(remind);
             return ResultT.success(remindDO);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(RENIND_LIST_RENINDGET);
+            return ResultT.failure(ResultCode.RENIND_LIST_RENINDGET);
         }
     }
 }
