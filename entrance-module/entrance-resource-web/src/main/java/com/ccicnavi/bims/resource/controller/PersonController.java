@@ -1,21 +1,25 @@
-package com.ccicnavi.bims.system.controller;
+package com.ccicnavi.bims.resource.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.resource.api.PersonService;
 import com.ccicnavi.bims.resource.pojo.PersonDO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ccicnavi.bims.system.controller.NotworkdayController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.Authenticator;
 import java.util.List;
 
 @Controller
 @RequestMapping("person")
 public class PersonController {
 
-    @Reference(version = "1.0.0", timeout = 10000,url = "dubbo://127.0.0.1:20881")
+    private final static Logger log = LoggerFactory.getLogger(NotworkdayController.class);
+
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     PersonService personService;
 
     ResultT resultT = new ResultT();
@@ -24,10 +28,11 @@ public class PersonController {
     public ResultT listPerson(@RequestBody PersonDO personDO) {
         try {
             List<PersonDO> personDOS = personService.listPerson(personDO);
-            resultT.setData(personDOS);
-            resultT.success();
+            resultT.success(personDOS);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.debug("根据条件查询人员失败", e);
+            //请求失败返回并设置错误信息
+            return ResultT.failure(ResultCode.NOTWORKDAY_LIST_NOTWORKDAY);
         }
         return resultT;
     }
