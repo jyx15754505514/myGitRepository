@@ -3,7 +3,6 @@ package com.ccicnavi.bims.system.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.AreaDao;
 import com.ccicnavi.bims.system.pojo.AreaDO;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class AreaDaoImpl implements AreaDao {
      */
     @Override
     public List<AreaDO> listArea(AreaDO areaDO) {
-        return EqlUtils.getInstance("druid").select("listArea").params(areaDO).returnType(AreaDO.class).execute();
+        return EqlUtils.getInstance("DEFAULT").select("listArea").params(areaDO).returnType(AreaDO.class).execute();
     }
 
     /* *
@@ -36,7 +35,7 @@ public class AreaDaoImpl implements AreaDao {
      */
     @Override
     public AreaDO getArea(AreaDO areaDO) {
-        return EqlUtils.getInstance("druid").selectFirst("getArea").params(areaDO).returnType(AreaDO.class).execute();
+        return EqlUtils.getInstance("DEFAULT").selectFirst("getArea").params(areaDO).returnType(AreaDO.class).execute();
     }
 
     /* *
@@ -48,7 +47,7 @@ public class AreaDaoImpl implements AreaDao {
      */
     @Override
     public Integer insertArea(AreaDO areaDO) {
-        return EqlUtils.getInstance("druid").insert("insertArea").params(areaDO).execute();
+        return EqlUtils.getInstance("DEFAULT").insert("insertArea").params(areaDO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -60,7 +59,7 @@ public class AreaDaoImpl implements AreaDao {
      */
     @Override
     public Integer updateArea(AreaDO areaDO) {
-        return EqlUtils.getInstance("druid").update("updateArea").params(areaDO).execute();
+        return EqlUtils.getInstance("DEFAULT").update("updateArea").params(areaDO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -72,6 +71,6 @@ public class AreaDaoImpl implements AreaDao {
      */
     @Override
     public Integer deleteArea(AreaDO areaDO) {
-        return EqlUtils.getInstance("druid").delete("deleteArea").params(areaDO).execute();
+        return EqlUtils.getInstance("DEFAULT").delete("deleteArea").params(areaDO).returnType(Integer.class).execute();
     }
 }

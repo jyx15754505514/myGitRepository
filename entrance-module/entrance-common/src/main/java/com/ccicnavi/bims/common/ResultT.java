@@ -1,11 +1,11 @@
 package com.ccicnavi.bims.common;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-@Getter
-@Setter
+@Data
 public class ResultT implements Serializable {
 
     private static final long serialVersionUID = -3948389268046368059L;
@@ -32,7 +32,7 @@ public class ResultT implements Serializable {
     public static ResultT success(Object data) {
         ResultT resultT = new ResultT();
         resultT.setResultCode(ResultCode.SUCCESS);
-        resultT.setData(data);
+//        resultT.setData(data);
         return resultT;
     }
 
@@ -45,7 +45,7 @@ public class ResultT implements Serializable {
     public static ResultT failure(ResultCode resultCode, Object data) {
         ResultT resultT = new ResultT();
         resultT.setResultCode(resultCode);
-        resultT.setData(data);
+//        resultT.setData(data);
         return resultT;
     }
 
