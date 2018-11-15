@@ -137,37 +137,37 @@ WHERE is_deleted='N'
       -- iff needUuid != null
         need_uuid = '#needUuid#',
 
-      -- iff cust_uuid != null
+      -- iff custUuid != null
         cust_uuid = '#custUuid#',
 
-      -- iff need_type != null
+      -- iff needType != null
         need_type = '#needType#',
 
-      -- iff need_content != null
+      -- iff needContent != null
         need_content = '#needContent#',
 
-      -- iff dept_uuid != null
+      -- iff deptUuid != null
         dept_uuid = '#deptUuid#',
 
       -- iff comments != null
         comments = '#comments#',
 
-      -- iff is_deleted != null
+      -- iff isDeleted != null
         is_deleted = '#isDeleted#',
 
-      -- iff created_time != null
+      -- iff createdTime != null
         created_time = '#createdTime#',
 
-      -- iff created_uuid != null
+      -- iff createdUuid != null
         created_uuid = '#createdUuid#',
 
-      -- iff created_name != null
+      -- iff createdName != null
         created_name = '#createdName#',
 
-      -- iff updated_time != null
+      -- iff updatedTime != null
         updated_time = '#updatedTime#',
 
-      -- iff updated_name != null
+      -- iff updatedName != null
         updated_name = '#updatedName#',
 
       -- iff extend1 != null
