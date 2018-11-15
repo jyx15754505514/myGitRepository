@@ -24,7 +24,7 @@ public class EquipTestDaoImpl implements EquipTestDao {
      */
     @Override
     public EquipTestDO getEquipTest(String equipTestUuid){
-        return EqlUtils.getInstance("druid").selectFirst("getEquip").params(equipTestUuid).returnType(EquipTestDO.class).execute();
+        return EqlUtils.getInstance("druid").selectFirst("getEquipTest").params(equipTestUuid).returnType(EquipTestDO.class).execute();
     }
 
     /**
@@ -36,7 +36,7 @@ public class EquipTestDaoImpl implements EquipTestDao {
      */
     @Override
     public List<EquipTestDO> listEquipTest(EquipTestDO equipTestDO){
-        return EqlUtils.getInstance("druid").select("listEquip").params(equipTestDO).returnType(EquipTestDO.class).execute();
+        return EqlUtils.getInstance("druid").select("listEquipTest").params(equipTestDO).returnType(EquipTestDO.class).execute();
     }
 
     /**
@@ -48,7 +48,7 @@ public class EquipTestDaoImpl implements EquipTestDao {
      */
     @Override
     public Integer insertEquipTest(EquipTestDO equipTestDO){
-        return EqlUtils.getInstance("druid").insert("insertEquip").params(equipTestDO).returnType(Integer.class).execute();
+        return EqlUtils.getInstance("druid").insert("insertEquipTest").params(equipTestDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -60,7 +60,7 @@ public class EquipTestDaoImpl implements EquipTestDao {
      */
     @Override
     public Integer updateEquipTest(EquipTestDO equipTestDO){
-        return EqlUtils.getInstance("druid").update("updateEquip").params(equipTestDO).returnType(EquipTestDO.class).execute();
+        return EqlUtils.getInstance("druid").update("updateEquipTest").params(equipTestDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -71,7 +71,7 @@ public class EquipTestDaoImpl implements EquipTestDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquipTest(EquipTestDO equipTestDO){
-        return EqlUtils.getInstance("druid").delete("updateEquip").params(equipTestDO).returnType(EquipTestDO.class).execute();
+    public Integer deleteEquipTest(String equipTestUuid){
+        return EqlUtils.getInstance("druid").delete("deleteEquipTest").params(equipTestUuid).returnType(Integer.class).execute();
     }
 }
