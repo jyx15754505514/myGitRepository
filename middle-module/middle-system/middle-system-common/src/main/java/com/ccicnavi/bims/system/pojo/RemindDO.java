@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
-public class SysRemindDO {
+public class RemindDO implements Serializable {
 
     private List<String> uuids;
 
