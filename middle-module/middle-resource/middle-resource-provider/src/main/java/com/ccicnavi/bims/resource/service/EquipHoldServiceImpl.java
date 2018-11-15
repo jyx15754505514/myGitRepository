@@ -106,10 +106,10 @@ public class EquipHoldServiceImpl implements EquipHoldService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquipHold(EquipHoldDO equipHoldDO){
+    public Integer deleteEquipHold(String equipHoldUuid){
         Integer count = null;
         try {
-            count = equipHoldDao.deleteEquipHold(equipHoldDO);
+            count = equipHoldDao.deleteEquipHold(equipHoldUuid);
         } catch (Exception e) {
             log.debug("根据设备保管信息主键删除设备保管信息错误",e);
             e.printStackTrace();

@@ -1,9 +1,9 @@
-package com.ccicnavi.bims.resource.service;
+package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.ccicnavi.bims.resource.api.OrganizationService;
-import com.ccicnavi.bims.resource.dao.OrganizationDao;
-import com.ccicnavi.bims.resource.pojo.OrganizationDO;
+import com.ccicnavi.bims.system.dao.OrganizationDao;
+import com.ccicnavi.bims.system.pojo.OrganizationDO;
+import com.ccicnavi.bims.system.service.api.OrganizationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 @Slf4j
 public class OrganizationServiceImpl implements OrganizationService {
-    
+
     @Autowired
     OrganizationDao organizationDao;
 

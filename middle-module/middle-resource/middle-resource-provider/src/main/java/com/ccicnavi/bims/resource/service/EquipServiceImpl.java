@@ -102,18 +102,20 @@ public class EquipServiceImpl implements EquipService {
      * @Author panyida
      * @Description 根据设备信息主键删除设备信息
      * @Date 16:30 2018/11/14
-     * @Param [equipDO]
+     * @Param [equipUuid]
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquip(EquipDO equipDO){
+    public Integer deleteEquip(String equipUuid){
         Integer count = null;
         try {
-            count = equipDao.deleteEquip(equipDO);
+            count = equipDao.deleteEquip(equipUuid);
         } catch (Exception e) {
             log.debug("根据设备信息主键删除设备信息错误",e);
             e.printStackTrace();
         }
         return count;
     }
+
+
 }

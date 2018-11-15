@@ -32,7 +32,7 @@ public class ResultT implements Serializable {
     public static ResultT success(Object data) {
         ResultT resultT = new ResultT();
         resultT.setResultCode(ResultCode.SUCCESS);
-//        resultT.setData(data);
+        resultT.setData(data);
         return resultT;
     }
 

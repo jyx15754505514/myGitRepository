@@ -7,7 +7,10 @@ import lombok.ToString;
 import java.util.Date;
 
 /**
- * 分包方信息
+ * @program: bims-backend
+ * @description: 分包方信息实体DO
+ * @author: WangYingLing
+ * @create: 2018-11-15 09:16
  */
 
 @Getter
