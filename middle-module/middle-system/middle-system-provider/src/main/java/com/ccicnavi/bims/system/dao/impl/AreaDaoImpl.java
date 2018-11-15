@@ -30,25 +30,49 @@ public class AreaDaoImpl implements AreaDao {
         return EqlUtils.getInstance("druid").select("listArea").params(areaDO).returnType(AreaDO.class).execute();
     }
 
-    /**获取指定的地区*/
+    /* *
+     * @Author MengZiJie
+     * @Description 获取指定的地区
+     * @Date 16:48 2018/11/14
+     * @Param [areaDO]
+     * @Return com.ccicnavi.bims.system.pojo.AreaDO
+     */
     @Override
     public AreaDO getArea(AreaDO areaDO) {
         return EqlUtils.getInstance("druid").selectFirst("getArea").params(areaDO).returnType(AreaDO.class).execute();
     }
 
-    /**添加地区*/
+    /* *
+     * @Author MengZiJie
+     * @Description 添加地区
+     * @Date 16:48 2018/11/14
+     * @Param [areaDO]
+     * @Return java.lang.Integer
+     */
     @Override
     public Integer insertArea(AreaDO areaDO) {
         return EqlUtils.getInstance("druid").insert("insertArea").params(areaDO).execute();
     }
 
-    /**更新地区信息*/
+    /* *
+     * @Author MengZiJie
+     * @Description 更新地区信息
+     * @Date 16:48 2018/11/14
+     * @Param [areaDO]
+     * @Return java.lang.Integer
+     */
     @Override
     public Integer updateArea(AreaDO areaDO) {
         return EqlUtils.getInstance("druid").update("updateArea").params(areaDO).execute();
     }
 
-    /**删除地区*/
+    /* *
+     * @Author MengZiJie
+     * @Description 删除地区
+     * @Date 16:48 2018/11/14
+     * @Param [areaDO]
+     * @Return java.lang.Integer
+     */
     @Override
     public Integer deleteArea(AreaDO areaDO) {
         return EqlUtils.getInstance("druid").delete("deleteArea").params(areaDO).execute();
