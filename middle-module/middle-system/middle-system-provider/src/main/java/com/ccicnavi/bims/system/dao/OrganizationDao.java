@@ -1,6 +1,6 @@
-package com.ccicnavi.bims.resource.dao;
+package com.ccicnavi.bims.system.dao;
 
-import com.ccicnavi.bims.resource.pojo.OrganizationDO;
+import com.ccicnavi.bims.system.pojo.OrganizationDO;
 
 import java.util.List;
 

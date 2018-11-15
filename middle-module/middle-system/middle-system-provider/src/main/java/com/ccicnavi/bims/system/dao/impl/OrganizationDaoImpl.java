@@ -1,9 +1,8 @@
-package com.ccicnavi.bims.resource.dao.impl;
+package com.ccicnavi.bims.system.dao.impl;
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
-import com.ccicnavi.bims.resource.dao.OrganizationDao;
-import com.ccicnavi.bims.resource.pojo.OrganizationDO;
-import org.n3r.eql.Eql;
+import com.ccicnavi.bims.system.dao.OrganizationDao;
+import com.ccicnavi.bims.system.pojo.OrganizationDO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
