@@ -13,6 +13,11 @@
     <packaging>pom</packaging>
     <modules>
         <module>entrance-fin-web</module>
+        <module>entrance-order-web</module>
+        <module>entrance-certmgr-web</module>
+        <module>entrance-document-web</module>
+        <module>entrance-customer-web</module>
+        <module>entrance-system-web</module>
     </modules>
 
 </project>

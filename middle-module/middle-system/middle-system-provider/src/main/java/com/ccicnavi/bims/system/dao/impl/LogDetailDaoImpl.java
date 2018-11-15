@@ -23,7 +23,7 @@ public class LogDetailDaoImpl implements LogDetailDao {
      */
     @Override
     public LogDetailDO getLogDetail(LogDetailDO logDetailDO) {
-        return EqlUtils.getInstance("druid").selectFirst("").params(logDetailDO).returnType(LogDetailDO.class).execute();
+        return EqlUtils.getInstance("druid").selectFirst("getLogDetail").params(logDetailDO).returnType(LogDetailDO.class).execute();
     }
 
     /* *
