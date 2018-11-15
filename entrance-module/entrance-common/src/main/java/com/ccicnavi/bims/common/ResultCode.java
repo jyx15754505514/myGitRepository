@@ -35,6 +35,7 @@ public enum ResultCode {
     ADD_FAILURE(30011, "添加失败"),
     DELETE_FAILURE(30012, "删除失败"),
     UPDATE_FAILURE(30013, "修改失败"),
+    GET_FAILURE(30014, "获取制定信息失败"),
 
 
     RENIND_LIST_RENINDGET(30101, "根据id查询提醒设置失败!"),
