@@ -4,16 +4,58 @@ import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
 
 import java.util.List;
 
+/**
+ *@program: bims-backend
+ *@description: 分包方资质信息dao接口
+ *@author: WangYingLing
+ *@create: 2018-11-14 23:33
+ */
+
 public interface SubcQualifiDao {
 
+    /**
+     *@Description: 查询全部分包方资质信息
+     *@Param: [subcuQuali]
+     *@return: List<SubcQualifiDO>
+     *@Author: WangYingLing
+     *@date: 2018/11/15
+     */
     List<SubcQualifiDO> listSubcuQuali(SubcQualifiDO subcuQuali);
 
+    /**
+     *@Description: 新增分包方资质信息
+     *@Param: [subcuQuali]
+     *@return: int
+     *@Author: WangYingLing
+     *@date: 2018/11/15
+     */
     int saveSubcuQuali(SubcQualifiDO subcuQuali);
 
+    /**
+     *@Description: 删除分包方资质信息
+     *@Param: [subcQualifiUuid]
+     *@return: int
+     *@Author: WangYingLing
+     *@date: 2018/11/15
+     */
     int removeSubcuQuali(String subcQualifiUuid);
 
+    /**
+     *@Description: 修改分包方资质信息
+     *@Param: [subcuQuali]
+     *@return: int
+     *@Author: WangYingLing
+     *@date: 2018/11/15
+     */
     int updateSubcuQuali(SubcQualifiDO subcuQuali);
 
+    /**
+     *@Description: 查询分包方资质信息（根据主键获取）
+     *@Param: [subcQuali]
+     *@return: SubcQualifiDO
+     *@Author: WangYingLing
+     *@date: 2018/11/15
+     */
     SubcQualifiDO getSubcQuali(SubcQualifiDO subcQuali);
 
 }
