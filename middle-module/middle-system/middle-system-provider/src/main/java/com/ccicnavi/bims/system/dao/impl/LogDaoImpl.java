@@ -24,7 +24,7 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public List<LogDO> listLog(LogDO logDO) {
-        return EqlUtils.getInstance("druid").select("listLog").params(logDO).returnType(LogDO.class).execute();
+        return EqlUtils.getInstance("DEFAULT").select("listLog").params(logDO).returnType(LogDO.class).execute();
     }
 
     /* *
@@ -36,7 +36,7 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public LogDO getLog(LogDO logDO) {
-        return EqlUtils.getInstance("druid").selectFirst("getLog").params(logDO).returnType(LogDO.class).execute();
+        return EqlUtils.getInstance("DEFAULT").selectFirst("getLog").params(logDO).returnType(LogDO.class).execute();
     }
 
     /* *
@@ -48,7 +48,7 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public Integer insertLog(LogDO logDO) {
-        return EqlUtils.getInstance("druid").insert("insertLog").params(logDO).execute();
+        return EqlUtils.getInstance("DEFAULT").insert("insertLog").params(logDO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -60,7 +60,7 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public Integer updateLog(LogDO logDO) {
-        return EqlUtils.getInstance("druid").update("updateLog").params(logDO).execute();
+        return EqlUtils.getInstance("DEFAULT").update("updateLog").params(logDO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -72,6 +72,6 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public Integer deleteLog(LogDO logDO) {
-        return EqlUtils.getInstance("druid").delete("deleteLog").params(logDO).execute();
+        return EqlUtils.getInstance("DEFAULT").delete("deleteLog").params(logDO).returnType(Integer.class).execute();
     }
 }
