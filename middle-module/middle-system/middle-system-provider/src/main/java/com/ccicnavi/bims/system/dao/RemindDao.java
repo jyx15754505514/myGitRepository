@@ -71,5 +71,5 @@ public interface RemindDao {
     *@date: 2018/11/15
     */
 
-    public List<RemindDTO> listremindorg(SysRemindDO sysremind)throws Exception;
+   /* public List<RemindDTO> listremindorg(SysRemindDO sysremind)throws Exception;*/
 }

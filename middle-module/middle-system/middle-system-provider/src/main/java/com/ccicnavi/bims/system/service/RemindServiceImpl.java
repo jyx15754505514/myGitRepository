@@ -26,51 +26,56 @@ public class RemindServiceImpl implements RemindService {
     private RemindDao sysRemindDao;
     @Override
     public List<SysRemindDO> listSysremind(SysRemindDO sysremind) throws Exception {
+        List<SysRemindDO> list = null;
         try {
-            return sysRemindDao.listSysremind(sysremind);
+            list = sysRemindDao.listSysremind(sysremind);
         }catch (Exception e) {
             log.error("", e);
-            return null;
         }
+        return list;
     }
 
     @Override
     public Integer insertSysremind(SysRemindDO sysremind) throws Exception {
+        Integer num=null;
         try {
-            return sysRemindDao.insertSysremind(sysremind);
+            num =  sysRemindDao.insertSysremind(sysremind);
         }catch (Exception e) {
             log.error("", e);
-            return null;
         }
+        return num;
     }
 
     @Override
     public Integer updateSysremind(SysRemindDO sysremind) throws Exception {
+        Integer num =null;
         try {
-            return sysRemindDao.updateSysremind(sysremind);
+            num =  sysRemindDao.updateSysremind(sysremind);
         }catch (Exception e) {
             log.error("", e);
-            return null;
         }
+        return null;
     }
 
     @Override
     public Integer deleteSysremind(SysRemindDO sysremind) throws Exception {
+        Integer num =null;
         try {
-            return sysRemindDao.deleteSysremind(sysremind);
+             num = sysRemindDao.deleteSysremind(sysremind);
         }catch (Exception e) {
             log.error("", e);
-            return null;
         }
+        return num;
     }
 
     @Override
     public SysRemindDO getSysremind(SysRemindDO sysremind) throws Exception {
+        SysRemindDO sysRemindDO = null;
         try {
-            return sysRemindDao.getSysremind(sysremind);
+            sysRemindDO = sysRemindDao.getSysremind(sysremind);
         }catch (Exception e) {
             log.error("", e);
-            return null;
         }
+        return sysRemindDO;
     }
 }

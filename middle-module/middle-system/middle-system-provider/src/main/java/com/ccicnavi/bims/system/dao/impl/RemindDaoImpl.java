@@ -42,9 +42,9 @@ public class RemindDaoImpl implements RemindDao {
         return EqlUtils.getInstance("DEFAULT").selectFirst("getsysremind").params(sysremind).returnType(SysRemindDO.class).execute();
     }
 
-    @Override
+    /*@Override
     public List<RemindDTO> listremindorg(SysRemindDO sysremind) throws Exception {
         return EqlUtils.getInstance("DEFAULT").select("listremindorg").params(sysremind).returnType(RemindDTO.class).execute();
 
-    }
+    }*/
 }
