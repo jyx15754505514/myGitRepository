@@ -227,7 +227,7 @@ WHERE is_deleted='N'
       -- iff fax != null
         fax = '#fax#',
 
-      -- iff tel != null  and createdTime!='',
+      -- iff tel != null
         tel = '#tel#',
 
       -- iff subcPhone != null
@@ -236,7 +236,7 @@ WHERE is_deleted='N'
       -- iff addr != null
         addr = '#addr#',
 
-      -- iff rank != null and updatedTime!= '',
+      -- iff rank != null
         rank = '#rank#',
 
       -- iff detectionField != null
