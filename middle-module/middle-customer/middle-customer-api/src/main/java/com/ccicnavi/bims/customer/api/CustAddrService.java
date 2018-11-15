@@ -6,7 +6,10 @@ import com.ccicnavi.bims.customer.pojo.CustAddrDO;
 import java.util.List;
 
 /**
- * 客户地址接口层
+ * @program: bims-backend
+ * @description: 客户地址接口定义
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
  */
 public interface CustAddrService {
 

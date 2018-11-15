@@ -62,7 +62,7 @@ public class TemplateDaoImpl implements TemplateDao {
     @Override
     public Integer updateTemplate(TemplateDO Template) throws Exception {
         try{
-            return new Eql().insert("updateTemplate").params(Template).returnType(Integer.class).execute();
+            return new Eql().update("updateTemplate").params(Template).returnType(Integer.class).execute();
         }catch (Exception e) {
             log.error("", e);
             return null;
@@ -78,7 +78,7 @@ public class TemplateDaoImpl implements TemplateDao {
     @Override
     public Integer deleteTemplate(TemplateDO Template) throws Exception {
         try{
-            return new Eql().insert("deleteTemplate").params(Template).returnType(Integer.class).execute();
+            return new Eql().delete("deleteTemplate").params(Template).returnType(Integer.class).execute();
         }catch (Exception e) {
             log.error("", e);
             return null;

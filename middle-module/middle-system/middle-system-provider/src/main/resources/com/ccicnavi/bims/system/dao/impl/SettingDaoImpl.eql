@@ -232,9 +232,9 @@
         -- if settingUuid != null and settingUuid != ''
         	setting_uuid = '#settingUuid#'
         -- end
-        -- if settingUuids != null
-        	and	 setting_uuid in
-        		-- for item=item index=index collection=settingUuids open=( separator=, close=)
+        -- if uuids != null
+        	setting_uuid in
+        		-- for item=item index=index collection=uuids open=( separator=, close=)
         				'#item#'
         		-- end
         -- end

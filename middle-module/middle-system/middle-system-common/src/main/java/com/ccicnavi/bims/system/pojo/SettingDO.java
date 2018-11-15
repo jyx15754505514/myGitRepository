@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 @Getter
@@ -59,6 +60,8 @@ public class SettingDO implements Serializable{
     private String extend2;
 
     private String extend3;
+
+    private List<String> uuids;
 
 
 }
