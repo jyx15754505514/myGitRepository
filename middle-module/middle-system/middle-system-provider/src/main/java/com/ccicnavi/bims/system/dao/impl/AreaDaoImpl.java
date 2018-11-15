@@ -15,9 +15,6 @@ import java.util.List;
 @Service
 public class AreaDaoImpl implements AreaDao {
 
-
-    private List<AreaDO> area;
-
     /** *
      * @Author MengZiJie
      * @Description 查询所有
