@@ -8,6 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
+/**
+ * @program: bims-backend
+ * @description: 客户发票基本操作
+ * @author: LiJie
+ * @create: 2018-11-15 09:19
+ */
 @Service
 @Slf4j
 public class CustInvoiceServiceImpl implements CustInvoiceService {

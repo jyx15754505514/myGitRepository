@@ -14,6 +14,8 @@ SELECT
     log.server_host_name serverHostName,
     log.server_ip_addr serverIpAddr,
     log.log_type logType,
+    log.comments comments,
+    log.is_deleted isDeleted,
     log.created_time createdTime,
     log.created_uuid createdUuid,
     log.created_name createdName,
@@ -26,7 +28,8 @@ from
     sys_log as log
 where
     log.is_deleted = 'N'
-    and log_uuid = '#logUuid#'
+and log.org_uuid = '#orgUuid#'
+and log.app_sys_uuid = '#appSysUuid#'
 
 -- [getLog]
 SELECT
@@ -44,6 +47,8 @@ SELECT
     log.server_host_name serverHostName,
     log.server_ip_addr serverIpAddr,
     log.log_type logType,
+    log.comments comments,
+    log.is_deleted isDeleted,
     log.created_time createdTime,
     log.created_uuid createdUuid,
     log.created_name createdName,
@@ -56,8 +61,11 @@ from
     sys_log as log
 where
     log.is_deleted = 'N'
+and log.org_uuid = '#orgUuid#'
+and log.app_sys_uuid = '#appSysUuid#'
 --if logUuid != null and logUuid != ''
-and log.log_uuid = '#logUuid#'
+    and log.log_uuid = '#logUuid#'
+--end
 
 -- [insertLog]
 INSERT INTO sys_log

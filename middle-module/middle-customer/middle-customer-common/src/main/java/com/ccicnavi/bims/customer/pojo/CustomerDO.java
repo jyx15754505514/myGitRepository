@@ -7,9 +7,7 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 客户DO实体
- */
+
 @Setter
 @Getter
 @ToString
@@ -83,6 +81,8 @@ public class CustomerDO implements Serializable {
 
     private String custUnitType;
 
+    private String corpUnitType;//集团客户类型
+
     private String custCompetitor;
 
     private String mainProduct;
@@ -112,6 +112,13 @@ public class CustomerDO implements Serializable {
     private String extend2;
 
     private String extend3;
+
+
+    /**
+     * 客户注册信息所需字段
+     */
+
+
 
 
 

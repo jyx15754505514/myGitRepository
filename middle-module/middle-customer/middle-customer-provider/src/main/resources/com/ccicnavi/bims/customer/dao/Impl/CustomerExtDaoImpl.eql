@@ -1,0 +1,253 @@
+-- [listCustomerExt]
+SELECT
+	cust_uuid,
+	legal_rep,
+	reg_capital,
+	reg_date,
+	reg_no,
+	business_scope,
+	bank_name,
+	bank_account,
+	pay_unit_name,
+	pay_unit_addr,
+	pay_unit_tel,
+	tax_no,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_name,
+	extend1,
+	extend2,
+	extend3
+FROM
+	crm_customer_ext
+WHERE is_deleted='N'
+        --if legalRep !=null and legalRep != ''
+                and legal_rep = '#legalRep:like#'
+            --end
+        --if custUuid !=null and custUuid != ''
+            and cust_uuid = '#custUuid#'
+        --end
+
+-- [insertCustomerExt]
+insert into crm_customer_ext
+    -- trim prefix=( suffix=) suffixOverrides=,
+      -- iff custUuid != null and custUuid != ''
+        cust_uuid,
+      
+      -- iff legalRep != null and  legalRep != ''
+        legal_rep,
+      
+      -- iff regCapital != null and regCapital != ''
+        reg_capital,
+      
+      -- iff regDate != null and regDate != ''
+        reg_date,
+      
+      -- iff regNo != null and regNo != ''
+        reg_no,
+      
+      -- iff businessScope != null and businessScope != ''
+        business_scope,
+      
+      -- iff bankName != null and bankName != ''
+        bank_name,
+      
+      -- iff bankAccount != null and bankAccount != ''
+        bank_account,
+      
+      -- iff payUnitName != null and payUnitName != ''
+        pay_unit_name,
+      
+      -- iff payUnitAddr != null and payUnitAddr != ''
+        pay_unit_addr,
+      
+      -- iff payUnitTel != null and payUnitTel != ''
+        pay_unit_tel,
+      
+      -- iff taxNo != null and taxNo != ''
+        tax_no,
+      
+      -- iff comments != null and comments != ''
+        comments,
+      
+      -- iff isDeleted != null and isDeleted != ''
+        is_deleted,
+      
+      -- iff createdTime != null and  createdTime != ''
+        created_time,
+      
+      -- iff createdUuid != null and createdUuid  != ''
+        created_uuid,
+      
+      -- iff createdName != null and createdName != ''
+        created_name,
+      
+      -- iff updatedTime != null and updatedTime != ''
+        updated_time,
+      
+      -- iff updatedName != null and updatedName != ''
+        updated_name,
+      
+      -- iff extend1 != null and extend1 != ''
+        extend1,
+      
+      -- iff extend2 != null and extend2 != ''
+        extend2,
+      
+      -- iff extend3 != null and extend3 != ''
+        extend3,
+      
+    -- end
+
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      -- iff custUuid != null and custUuid != ''
+        '#custUuid#',
+      
+      -- iff legalRep != null and legalRep != ''
+        '#legalRep#',
+      
+      -- iff regCapital != null and regCapital != ''
+        '#regCapital#',
+      
+      -- iff regDate != null and regDate != ''
+        '#regDate#',
+      
+      -- iff regNo != null and regNo != ''
+        '#regNo#',
+      
+      -- iff businessScope != null  and businessScope != ''
+        '#businessScope#',
+      
+      -- iff bankName != null and bankName != ''
+        '#bankName#',
+      
+      -- iff bankAccount != null and bankAccount != ''
+        '#bankAccount#',
+      
+      -- iff payUnitName != null and payUnitName != ''
+        '#payUnitName#',
+      
+      -- iff payUnitAddr != null and payUnitAddr != ''
+        '#payUnitAddr#',
+      
+      -- iff payUnitTel != null and payUnitTel != ''
+        '#payUnitTel#',
+      
+      -- iff taxNo != null and  taxNo != ''
+        '#taxNo#',
+      
+      -- iff comments != null and comments != ''
+        '#comments#',
+      
+      -- iff isDeleted != null and isDeleted != ''
+        '#isDeleted#',
+      
+      -- iff createdTime != null and  createdTime != ''
+        '#createdTime#',
+      
+      -- iff createdUuid != null and createdUuid != ''
+        '#createdUuid#',
+      
+      -- iff createdName != null and createdName != ''
+        '#createdName#',
+      
+      -- iff updatedTime != null and updatedTime != ''
+        '#updatedTime#',
+      
+      -- iff updatedName != null and updatedName != ''
+        '#updatedName#',
+      
+      -- iff extend1 != null and extend1 != ''
+        '#extend1#',
+      
+      -- iff extend2 != null and extend2 != ''
+        '#extend2#',
+      
+      -- iff extend3 != null and extend3 != ''
+        '#extend3#',
+      
+    -- end
+
+-- [updateCustomerExt]
+update crm_customer_ext
+    -- trim prefix=SET suffixOverrides=,
+      -- iff legalRep != null
+        legal_rep = '#legalRep#',
+
+      -- iff regCapital != null
+        reg_capital = '#regCapital#',
+
+      -- iff regDate != null and regDate!= ''
+        reg_date = '#regDate#',
+
+      -- iff regNo != null
+        reg_no = '#regNo#',
+
+      -- iff businessScope != null
+        business_scope = '#businessScope#',
+
+      -- iff bankName != null
+        bank_name = '#bankName#',
+
+      -- iff bankAccount != null
+        bank_account = '#bankAccount#',
+
+      -- iff payUnitName != null
+        pay_unit_name = '#payUnitName#',
+
+      -- iff payUnitAddr != null
+        pay_unit_addr = '#payUnitAddr#',
+
+      -- iff payUnitTel != null
+        pay_unit_tel = '#payUnitTel#',
+
+      -- iff taxNo != null
+        tax_no = '#taxNo#',
+
+      -- iff comments != null
+        comments = '#comments#',
+
+      -- iff isDeleted != null
+        is_deleted = '#isDeleted#',
+
+      -- iff createdTime != null
+        created_time = '#createdTime#',
+
+      -- iff createdUuid != null
+        created_uuid = '#createdUuid#',
+
+      -- iff createdName != null
+        created_name = '#createdName#',
+
+      -- iff updatedTime != null
+        updated_time = '#updatedTime#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+
+      -- iff extend1 != null
+        extend1 = '#extend1#',
+
+      -- iff extend2 != null
+        extend2 = '#extend2#',
+
+      -- iff extend3 != null
+        extend3 = '#extend3#',
+     -- end
+    where cust_uuid = '#custUuid#'
+
+-- [deleteCustomerExt]
+UPDATE crm_customer_ext
+SET is_deleted = 'Y'
+WHERE
+	is_deleted = 'N'
+	    -- if ids != null
+                AND cust_uuid IN
+                -- for item=item index=index collection=ids open=( separator=, close=)
+                    #item#
+                -- end
+        -- end
