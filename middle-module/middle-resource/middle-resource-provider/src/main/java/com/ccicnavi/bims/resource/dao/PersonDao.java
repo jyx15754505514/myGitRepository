@@ -21,7 +21,7 @@ public interface PersonDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer insertPerson(PersonDO personDo) throws Exception;
+    public Integer insertPerson(PersonDO personDo);
 
     /**
      * 更新人员
