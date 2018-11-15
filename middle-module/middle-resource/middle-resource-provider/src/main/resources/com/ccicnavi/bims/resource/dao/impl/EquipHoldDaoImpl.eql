@@ -231,12 +231,7 @@ where
     -- end
     where
     is_deleted = 'N'
-    --iff equipHoldUuid != null and equipHoldUuid != ''
-        and equip_hold_uuid = '#equipHoldUuid#'
-    --iff equipHoldUuids != null
-        and equip_hold_uuid in
-        -- for item=item index=index collection=equipHoldUuids open=( separator=, close=)
-            '#item#'
+    and equip_hold_uuid = '#equipHoldUuid#'
 -- end
 
 -- [deleteEquipHold]
@@ -247,10 +242,5 @@ UPDATE
 -- end
 WHERE
     is_deleted = 'N'
-    --iff equipHoldUuid != null and equipHoldUuid != ''
-        and equip_hold_uuid = '#equipHoldUuid#'
-    --iff equipHoldUuids != null
-        and equip_hold_uuid in
-        -- for item=item index=index collection=equipHoldUuids open=( separator=, close=)
-            '#item#'
+    and equip_hold_uuid = '#equipHoldUuid#'
 -- end

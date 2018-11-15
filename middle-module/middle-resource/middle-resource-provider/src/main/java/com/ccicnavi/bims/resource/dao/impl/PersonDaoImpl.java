@@ -69,7 +69,6 @@ public class PersonDaoImpl  implements PersonDao {
         return eql.selectFirst("getPerson").params(personDo).returnType(PersonDO.class).execute();
     }
 
-
     public static void main(String[] args) {
         List<Map<String, Object>> map = new Eql().select("listPerson").execute();
         System.out.print(map);

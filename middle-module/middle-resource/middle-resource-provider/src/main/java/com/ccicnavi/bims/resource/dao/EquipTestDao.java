@@ -51,8 +51,8 @@ public interface EquipTestDao {
      * @Author panyida
      * @Description 根据设备检定信息主键删除设备检定信息
      * @Date 11:46 2018/11/14
-     * @Param [equipTestDO]
+     * @Param [equipTestUuid]
      * @Return java.lang.Integer
      */
-    Integer deleteEquipTest(EquipTestDO equipTestDO);
+    Integer deleteEquipTest(String equipTestUuid);
 }

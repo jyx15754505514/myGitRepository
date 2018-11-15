@@ -51,8 +51,8 @@ public interface EquipDao {
      * @Author panyida
      * @Description 根据设备信息主键删除设备信息
      * @Date 11:46 2018/11/14
-     * @Param [equipDO]
+     * @Param [equipUuid]
      * @Return java.lang.Integer
      */
-    Integer deleteEquip(EquipDO equipDO);
+    Integer deleteEquip(String equipUuid);
 }

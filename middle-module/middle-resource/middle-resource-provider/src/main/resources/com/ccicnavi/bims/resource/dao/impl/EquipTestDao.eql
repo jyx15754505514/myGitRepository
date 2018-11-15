@@ -207,12 +207,7 @@ where
     -- end
     where
     is_deleted = 'N'
-    --iff equipTestUuid != null and equipTestUuid != ''
-        and equip_test_uuid = '#equipTestUuid#'
-    --iff equipTestUuids != null
-        and equip_test_uuid in
-        -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
-            '#item#'
+    and equip_test_uuid = '#equipTestUuid#'
 -- end
 
 -- [deleteEquipTest]
@@ -223,10 +218,5 @@ UPDATE
 -- end
 WHERE
     is_deleted = 'N'
-    --iff equipTestUuid != null and equipTestUuid != ''
-        and equip_test_uuid = '#equipTestUuid#'
-    --iff equipTestUuids != null
-        and equip_test_uuid in
-        -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
-            '#item#'
+    and equip_test_uuid = '#equipTestUuid#'
 -- end
