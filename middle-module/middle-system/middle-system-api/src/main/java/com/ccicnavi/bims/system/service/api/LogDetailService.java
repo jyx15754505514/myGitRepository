@@ -10,11 +10,11 @@ import com.ccicnavi.bims.system.pojo.LogDetailDO;
 public interface LogDetailService {
 
     /**获取指定的日志详情*/
-    LogDetailDO getLogDetail(LogDetailDO logDetailDO) throws Exception;
+    LogDetailDO getLogDetail(LogDetailDO logDetailDO);
     /**新增日志详情信息*/
-    Integer insertLogDetail(LogDetailDO logDetailDO) throws Exception;
+    Integer insertLogDetail(LogDetailDO logDetailDO);
     /**更新日志详情信息*/
-    Integer updateLogDetail(LogDetailDO logDetailDO) throws Exception;
+    Integer updateLogDetail(LogDetailDO logDetailDO);
     /**删除日志详情*/
-    Integer deleteLogDetail(LogDetailDO logDetailDO) throws Exception;
+    Integer deleteLogDetail(LogDetailDO logDetailDO);
 }

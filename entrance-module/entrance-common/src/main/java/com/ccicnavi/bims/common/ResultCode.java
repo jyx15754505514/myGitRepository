@@ -35,7 +35,14 @@ public enum ResultCode {
     ADD_FAILURE(30011, "添加失败"),
     DELETE_FAILURE(30012, "删除失败"),
     UPDATE_FAILURE(30013, "修改失败"),
+    GET_FAILURE(30014, "获取制定信息失败"),
 
+
+    RENIND_LIST_RENINDGET(30101, "根据id查询提醒设置失败!"),
+    RENIND_LIST_RENINDLIST(30102, "查询提醒设置失败!"),
+    RENIND_LIST_RENINDINSERT(30103, "新增提醒设置失败!"),
+    RENIND_LIST_RENINDUPDATE(30104, "修改提醒设置失败!"),
+    RENIND_LIST_RENINDDELETE(30105, "删除提醒设置失败!"),
 
 
     /* 系统错误：40001-49999 */
