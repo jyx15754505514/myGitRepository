@@ -12,13 +12,14 @@
         <module>entrance-module</module>
         <module>middle-module</module>
         <module>zoo-shiba</module>
+        <module>zoo-breeder</module>
     </modules>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.6</version>
-            <optional>true</optional>
+            <version>1.18.4</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
