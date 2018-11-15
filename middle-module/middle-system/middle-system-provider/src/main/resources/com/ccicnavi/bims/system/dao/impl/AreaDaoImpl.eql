@@ -81,7 +81,7 @@ INSERT INTO sys_area
             '#comments#',
         --iff isDeleted != null and isDeleted != ''
             '#isDeleted#',
-        --iff appSysUuid != null appSysUuid and != ''
+        --iff appSysUuid != null and appSysUuid  != ''
             '#appSysUuid#',
     -- end
 
@@ -122,7 +122,7 @@ where
 UPDATE
     sys_area
 -- trim prefix= set suffixOverrides=,
-    is_deleted = 'Y'.
+    is_deleted = 'Y'
 -- end
 WHERE
     is_deleted = 'N'
