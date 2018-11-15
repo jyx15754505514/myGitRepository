@@ -36,7 +36,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             subcontractorList=subcontractorDao.listSubcontractor(subcontractor);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("查询分包方信息失败",e);
+            log.error("查询分包方信息失败",e);
         }
         return subcontractorList;
     }
@@ -55,7 +55,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             count=subcontractorDao.saveSubcontractor(subcontractor);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("新增分包方信息失败",e);
+            log.error("新增分包方信息失败",e);
         }
         return count;
     }
@@ -74,7 +74,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             count=subcontractorDao.removeSubcontractor(subcontractorUuid);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("删除分包方信息失败",e);
+            log.error("删除分包方信息失败",e);
         }
         return count;
     }
@@ -93,7 +93,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             count=subcontractorDao.updateSubcontractor(subcontractor);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("修改分包方信息失败",e);
+            log.error("修改分包方信息失败",e);
         }
         return count;
     }
@@ -112,7 +112,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             subcontractorBean=subcontractorDao.getSubcontractor(subcontractor);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("查询分包方信息失败",e);
+            log.error("查询分包方信息失败",e);
         }
         return subcontractorBean;
     }
