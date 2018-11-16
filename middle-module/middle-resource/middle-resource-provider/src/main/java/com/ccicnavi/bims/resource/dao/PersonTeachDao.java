@@ -14,7 +14,7 @@ public interface PersonTeachDao {
      * @return List<PersonTeachDO>
      * @throws Exception
      */
-    public List<PersonTeachDO> listPersonTeach(PersonTeachDO PersonTeachDo) throws Exception;
+     List<PersonTeachDO> listPersonTeach(PersonTeachDO PersonTeachDo) throws Exception;
 
     /**
      * 添加人员
@@ -22,7 +22,7 @@ public interface PersonTeachDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer insertPersonTeach(PersonTeachDO PersonTeachDo) throws Exception;
+     Integer insertPersonTeach(PersonTeachDO PersonTeachDo) throws Exception;
 
     /**
      * 更新人员
@@ -30,7 +30,7 @@ public interface PersonTeachDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer updatePersonTeach(PersonTeachDO PersonTeachDo) throws Exception;
+     Integer updatePersonTeach(PersonTeachDO PersonTeachDo) throws Exception;
 
     /**
      * 删除人员
@@ -38,14 +38,14 @@ public interface PersonTeachDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer deletePersonTeach(PersonTeachDO PersonTeachDo) throws Exception;
+     Integer deletePersonTeach(PersonTeachDO PersonTeachDo) throws Exception;
 
     /**
      * 根据uuid  查询人员信息
      * @param PersonTeachDo
      * @return PersonTeachDO
      */
-    public PersonTeachDO getPersonTeach(PersonTeachDO PersonTeachDo);
+     PersonTeachDO getPersonTeach(PersonTeachDO PersonTeachDo);
 
     /*
     *@Param: [pageParameter]
@@ -54,5 +54,5 @@ public interface PersonTeachDao {
     *@author: WangGengXiang
     *@create: 2018/11/16 16:17
     */
-     public PageBean<PersonTeachDO> getPgaePersonTeach(PageParameter<PersonTeachDO> pageParameter);
+      PageBean<PersonTeachDO> getPgaePersonTeach(PageParameter<PersonTeachDO> pageParameter);
 }

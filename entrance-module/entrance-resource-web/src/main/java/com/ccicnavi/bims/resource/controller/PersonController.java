@@ -7,6 +7,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.PersonService;
 import com.ccicnavi.bims.resource.pojo.PersonDO;
+import com.ccicnavi.bims.resource.pojo.PersonDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -109,6 +110,11 @@ public class PersonController {
         } catch (Exception e) {
             return  ResultT.failure(ResultCode.LIST_FAILURE);
         }
+    }
+
+    public ResultT insertPersonAndPersonTeach(@RequestBody PersonDTO personDTO){
+
+        return ResultT.success();
 
     }
 
