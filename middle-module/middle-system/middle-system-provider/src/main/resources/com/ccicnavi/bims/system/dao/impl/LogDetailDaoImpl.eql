@@ -9,7 +9,7 @@ SELECT
     log.is_deleted isDeleted,
     log.org_uuid orgUuid,
     log.app_sys_uuid appSysUuid,
-    log.business_line businessLine
+    log.prod_catalog_uuid prodCatalogUuid
 from
     sys_log_detail as log
 where
@@ -42,8 +42,8 @@ INSERT INTO sys_log_detail
             org_uuid,
         --iff appSysUuid != null and iffappSysUuid != ''
             app_sys_uuid,
-        --iff businessLine != null and iffbusinessLine != ''
-            business_line,
+        --iff prodCatalogUuid != null and iffprodCatalogUuid != ''
+            prod_catalog_uuid,
     -- end
     -- trim prefix=values( suffix=) suffixOverrides=,
         --iff logUuid != null and ifflogUuid != ''
@@ -64,8 +64,8 @@ INSERT INTO sys_log_detail
             '#orgUuid#',
         --iff appSysUuid != null and iffappSysUuid != ''
             '#appSysUuid#',
-        --iff businessLine != null and iffbusinessLine != ''
-            '#businessLine#',
+        --iff prodCatalogUuid != null and iffprodCatalogUuid != ''
+            '#prodCatalogUuid#',
     -- end
 
 -- [updateLogDetail]
@@ -90,8 +90,8 @@ UPDATE
         org_uuid = '#orgUuid#',
     --iff appSysUuid != null and iffappSysUuid != ''
         app_sys_uuid = '#appSysUuid#',
-    --iff businessLine != null and iffbusinessLine != ''
-        business_line = '#businessLine#',
+    --iff prodCatalogUuid != null and iffprodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
 -- end
 where
     is_deleted = 'N'

@@ -34,5 +34,5 @@ public class LogDetailDO implements Serializable {
 
     private String appSysUuid;
 
-    private String businessLine;
+    private String prodCatalogUuid;
 }
