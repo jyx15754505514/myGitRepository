@@ -40,7 +40,7 @@
         --end
 
 -- 部门信息新增
--- [insertDept]
+-- [insertDepartment]
     INSERT INTO sys_department
     --trim prefix=( suffix=) suffixOverrides= ,
           --if deptUuid != null and deptUuid != ''
@@ -180,7 +180,7 @@
        --end
 
 -- 修改部门信息
--- [updateDept]
+-- [updateDepartment]
      UPDATE
         sys_department
           -- trim  prefix= set suffixOverrides=,
@@ -237,7 +237,7 @@
          -- end
 
 -- 删除部门信息
--- [deleteDept]
+-- [deleteDepartment]
     UPDATE
         sys_department
         -- trim prefix= set suffixOverrides=,
@@ -256,7 +256,7 @@
           -- end
 
 -- 根据主键查询部门信息
--- [getDept]
+-- [getDepartment]
     SELECT
              dept_uuid as deptUuid,
              dept_code as deptCode,

@@ -52,7 +52,7 @@ public class SettingDaoImpl implements SettingDao {
     */
     @Override
     public Integer insertSetting(SettingDO settingDO) {
-        return EqlUtils.getInstance("DEFAULT").insert("insertSet").params(settingDO).returnType(Integer.class).execute();
+        return new Eql().delete("insertSetting").params(settingDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -64,7 +64,7 @@ public class SettingDaoImpl implements SettingDao {
     */
     @Override
     public Integer updateSetting(SettingDO settingDO){
-        return  EqlUtils.getInstance("DEFAULT").update("updateSet").params(settingDO).returnType(Integer.class).execute();
+        return new Eql().update("updateSetting").params(settingDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -76,8 +76,7 @@ public class SettingDaoImpl implements SettingDao {
     */
     @Override
     public Integer deleteSetting(SettingDO settingDO){
-        return  EqlUtils.getInstance("DEFAULT").delete("deleteSet").params(settingDO).returnType(Integer.class).execute();
-
+        return new Eql().delete("deleteSetting").params(settingDO).returnType(Integer.class).execute();
     }
 
 
@@ -90,6 +89,6 @@ public class SettingDaoImpl implements SettingDao {
     */
     @Override
     public SettingDO getSetting(SettingDO settingDO){
-       return EqlUtils.getInstance("DEFAULT").selectFirst("getSet").params(settingDO).returnType(SettingDO.class).execute();
+        return new Eql().selectFirst("getSetting").params(settingDO).returnType(SettingDO.class).execute();
     }
 }
