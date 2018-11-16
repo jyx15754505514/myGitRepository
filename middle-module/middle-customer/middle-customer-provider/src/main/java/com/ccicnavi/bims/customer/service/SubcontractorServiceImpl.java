@@ -33,7 +33,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
     public List<SubcontractorDO> listSubcontractor(SubcontractorDO subcontractor) {
         List<SubcontractorDO> subcontractorList=null;
         try {
-            subcontractorList=subcontractorDao.listSubcontractor(subcontractor);
+            subcontractorList=subcontractorDao.listSubcontractor();
         } catch (Exception e) {
             e.printStackTrace();
             log.error("查询分包方信息失败",e);

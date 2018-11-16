@@ -33,7 +33,7 @@ public class SpecialNeedServiceImpl implements SpecialNeedService {
     public List<SpecialNeedDO> listSpecialNeed(SpecialNeedDO specialNeed) {
         List<SpecialNeedDO> specialNeedList=null;
         try {
-            specialNeedList=specialNeedDao.listSpecialNeed(specialNeed);
+            specialNeedList=specialNeedDao.listSpecialNeed();
         } catch (Exception e) {
             e.printStackTrace();
             log.error("查询客户特殊需求信息失败",e);
@@ -111,8 +111,8 @@ public class SpecialNeedServiceImpl implements SpecialNeedService {
         try {
             specialNeedBean=specialNeedDao.getSpecialNeed(specialNeed);
         } catch (Exception e) {
-            e.printStackTrace();
             log.error("查询客户特殊需求信息失败",e);
+            e.printStackTrace();
         }
         return specialNeedBean;
     }

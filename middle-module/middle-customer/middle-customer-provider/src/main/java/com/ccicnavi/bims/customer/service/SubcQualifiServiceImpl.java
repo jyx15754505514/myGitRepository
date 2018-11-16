@@ -33,7 +33,7 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
     public List<SubcQualifiDO> listSubcQuali(SubcQualifiDO subcQuali) {
         List<SubcQualifiDO> subcQualifiList=null;
         try {
-            subcQualifiList=subcQualifiDao.listSubcuQuali(subcQuali);
+            subcQualifiList=subcQualifiDao.listSubcuQuali();
         } catch (Exception e) {
             e.printStackTrace();
             log.error("查询分包方资质信息失败",e);
