@@ -43,163 +43,163 @@
 --[insertPerson]
     INSERT INTO res_person
     -- trim prefix=( suffix=) suffixOverrides=,
-        -- iff personUuid != null
+        -- iff personUuid != null and  personUuid != ''
                 person_uuid,
-              -- iff personCode != null
+              -- iff personCode != null and personCode != ''
                 person_code,
-              -- iff name != null
+              -- iff name != null and name != ''
                 name,
-              -- iff personType != null
+              -- iff personType != null and personType != ''
                 person_type,
-              -- iff formerName != null
+              -- iff formerName != null and formerName != ''
                 former_name,
-              -- iff gender != null
+              -- iff gender != null and gender != ''
                 gender,
-              -- iff birthday != null
+              -- iff birthday != null and birthday != ''
                 birthday,
-              -- iff certType != null
+              -- iff certType != null and certType != ''
                 cert_type,
-              -- iff certNo != null
+              -- iff certNo != null and certNo != ''
                 cert_no,
-              -- iff age != null
+              -- iff age != null and age != ''
                 age,
-              -- iff nationality != null
+              -- iff nationality != null and nationality != ''
                 nationality,
-              -- iff nation != null
+              -- iff nation != null and nation != ''
                 nation,
-              -- iff birthplace != null
+              -- iff birthplace != null and birthplace != ''
                 birthplace,
-              -- iff nativePlace != null
+              -- iff nativePlace != null and nativePlace != ''
                 native_place,
-              -- iff domicilePlace != null
+              -- iff domicilePlace != null and domicilePlace != ''
                 domicile_place,
-              -- iff homeAddress != null
+              -- iff homeAddress != null and homeAddress != ''
                 home_address,
-              -- iff politicsStatus != null
+              -- iff politicsStatus != null and politicsStatus != ''
                 politics_status,
-              -- iff joinPartyTime != null
+              -- iff joinPartyTime != null and joinPartyTime != ''
                 join_party_time,
-              -- iff maritalStatus != null
+              -- iff maritalStatus != null and maritalStatus != ''
                 marital_status,
-              -- iff phone != null
+              -- iff phone != null and phone != ''
                 phone,
-              -- iff exigencyPerson != null
+              -- iff exigencyPerson != null and exigencyPerson != ''
                 exigency_person,
-              -- iff exigencyPhone != null
+              -- iff exigencyPhone != null and exigencyPhone != ''
                 exigency_phone,
-              -- iff studyExperience != null
+              -- iff studyExperience != null and studyExperience != ''
                 study_experience,
-              -- iff degree != null
+              -- iff degree != null and degree != ''
                 degree,
-              -- iff skillName != null
+              -- iff skillName != null and skillName != ''
                 skill_name,
-              -- iff skillLevel != null
+              -- iff skillLevel != null and skillLevel != ''
                 skill_level,
-              -- iff comments != null
+              -- iff comments != null and comments != ''
                 comments,
-              -- iff isDeleted != null
+              -- iff isDeleted != null and isDeleted != ''
                 is_deleted,
-              -- iff createdTime != null
+              -- iff createdTime != null and createdTime != ''
                 created_time,
-              -- iff createdUuid != null
+              -- iff createdUuid != null and createdUuid != ''
                 created_uuid,
-              -- iff createdName != null
+              -- iff createdName != null and createdName != ''
                 created_name,
-              -- iff updatedTime != null
+              -- iff updatedTime != null and updatedTime != ''
                 updated_time,
-              -- iff updatedName != null
+              -- iff updatedName != null and updatedName != ''
                 updated_name,
-              -- iff orgUuid != null
+              -- iff orgUuid != null and orgUuid != ''
                 org_uuid,
-              -- iff appSysUuid != null
+              -- iff appSysUuid != null and appSysUuid != ''
                 app_sys_uuid,
-              -- iff businessLine != null
+              -- iff businessLine != null and businessLine != ''
                 business_line,
-              -- iff extend1 != null
+              -- iff extend1 != null and extend1 != ''
                 extend1,
-              -- iff extend2 != null
+              -- iff extend2 != null and extend2 != ''
                 extend2,
-              -- iff extend3 != null
+              -- iff extend3 != null and extend3 != ''
                 extend3,
     --end
     -- trim prefix=values( suffix=) suffixOverrides=,
-        -- iff personUuid != null
+        -- iff personUuid != null and name != ''
               '#personUuid#',
-             -- iff personCode != null
+             -- iff personCode != null and personCode != ''
               '#personCode#',
-             -- iff name != null
+             -- iff name != null and name != ''
               '#name#',
-             -- iff personType != null
+             -- iff personType != null and personType != ''
               '#personType#',
-             -- iff formerName != null
+             -- iff formerName != null and formerName != ''
               '#formerName#',
-             -- iff gender != null
+             -- iff gender != null and gender != ''
               '#gender#',
-             -- iff birthday != null
+             -- iff birthday != null and birthday != ''
               '#birthday#',
-             -- iff certType != null
+             -- iff certType != null and certType != ''
               '#certType#',
-             -- iff certNo != null
+             -- iff certNo != null and certNo != ''
               '#certNo#',
-             -- iff age != null
+             -- iff age != null and age != ''
               '#age#',
-             -- iff nationality != null
+             -- iff nationality != null and nationality != ''
               '#nationality#',
-             -- iff nation != null
+             -- iff nation != null and nation != ''
               '#nation#',
-             -- iff birthplace != null
+             -- iff birthplace != null and birthplace != ''
               '#birthplace#',
-             -- iff nativePlace != null
+             -- iff nativePlace != null and nativePlace != ''
               '#nativePlace#',
-             -- iff domicilePlace != null
+             -- iff domicilePlace != null and domicilePlace != ''
               '#domicilePlace#',
-             -- iff homeAddress != null
+             -- iff homeAddress != null and homeAddress != ''
               '#homeAddress#',
-             -- iff politicsStatus != null
+             -- iff politicsStatus != null and politicsStatus != ''
               '#politicsStatus#',
-             -- iff joinPartyTime != null
+             -- iff joinPartyTime != null and joinPartyTime != ''
               '#joinPartyTime#',
-             -- iff maritalStatus != null
+             -- iff maritalStatus != null and maritalStatus != ''
               '#maritalStatus#',
-             -- iff phone != null
+             -- iff phone != null  and phone != ''
               '#phone#',
-             -- iff exigencyPerson != null
+             -- iff exigencyPerson != null and exigencyPerson != ''
               '#exigencyPerson#',
-             -- iff exigencyPhone != null
+             -- iff exigencyPhone != null and exigencyPhone != ''
               '#exigencyPhone#',
-             -- iff studyExperience != null
+             -- iff studyExperience != null and studyExperience != ''
               '#studyExperience#',
-             -- iff degree != null
+             -- iff degree != null and degree != ''
               '#degree#',
-             -- iff skillName != null
+             -- iff skillName != null and skillName != ''
               '#skillName#',
-             -- iff skillLevel != null
+             -- iff skillLevel != null and skillLevel != ''
               '#skillLevel#',
-             -- iff comments != null
+             -- iff comments != null and comments != ''
               '#comments#',
-             -- iff isDeleted != null
+             -- iff isDeleted != null and isDeleted != ''
               '#isDeleted#',
-             -- iff createdTime != null
+             -- iff createdTime != null and createdTime != ''
               '#createdTime#',
-             -- iff createdUuid != null
+             -- iff createdUuid != null and createdUuid != ''
               '#createdUuid#',
-             -- iff createdName != null
+             -- iff createdName != null and createdName != ''
               '#createdName#',
-             -- iff updatedTime != null
+             -- iff updatedTime != null and updatedTime != ''
               '#updatedTime#',
-             -- iff updatedName != null
+             -- iff updatedName != null and updatedName != ''
               '#updatedName#',
-             -- iff orgUuid != null
+             -- iff orgUuid != null and orgUuid != ''
               '#orgUuid#',
-             -- iff appSysUuid != null
+             -- iff appSysUuid != null and appSysUuid != ''
               '#appSysUuid#',
-             -- iff businessLine != null
+             -- iff businessLine != null and businessLine != ''
               '#businessLine#',
-             -- iff extend1 != null
+             -- iff extend1 != null and extend1 != ''
               '#extend1#',
-             -- iff extend2 != null
+             -- iff extend2 != null and extend2 != ''
               '#extend2#',
-             -- iff extend3 != null
+             -- iff extend3 != null and extend3 != ''
               '#extend3#',
      --end
 

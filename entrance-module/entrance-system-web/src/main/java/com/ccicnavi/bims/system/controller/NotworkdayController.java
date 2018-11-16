@@ -30,7 +30,6 @@ public class NotworkdayController {
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private NotworkdayService notworkdayService;
 
-    
     /*
     * 根据条件查询非工作日
     * @Author zhaotao
@@ -38,7 +37,7 @@ public class NotworkdayController {
     * @Param [notworkday]   封装请求参数的实体对象
     * @return com.ccicnavi.bims.common.ResultT   返回的结果类
     **/
-    @RequestMapping(value = "/ListNotworkday", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/listNotworkday", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT ListNotworkday(@RequestBody NotworkdayDO notworkday) {
         try {
             List<NotworkdayDO> notworkdayList = notworkdayService.listNotworkday(notworkday);
@@ -51,6 +50,76 @@ public class NotworkdayController {
         }
     }
 
+    /*
+    * 新增非工作日
+    * @Author zhaotao
+    * @Date  2018/11/15 22:03
+    * @Param [notworkday]
+    * @return com.ccicnavi.bims.common.ResultT
+    **/
+    @RequestMapping(value = "/insertNotworkday", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT insertNotworkday(@RequestBody NotworkdayDO notworkday) {
+        try {
+            Integer insertResult = notworkdayService.insertNotworkday(notworkday);
+            return ResultT.success();
+        }catch (Exception e) {
+            log.debug("根据条件查询非工作日失败", e);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+    }
 
+    /*
+    * 单个或批量更新非工作日
+    * @Author zhaotao
+    * @Date  2018/11/15 22:03
+    * @Param [notworkday]
+    * @return com.ccicnavi.bims.common.ResultT
+    **/
+    @RequestMapping(value = "/updateNotworkday", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT updateNotworkday(@RequestBody NotworkdayDO notworkday) {
+        try {
+            Integer insertResult = notworkdayService.updateNotworkday(notworkday);
+            return ResultT.success();
+        }catch (Exception e) {
+            log.debug("更新非工作日失败", e);
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
+        }
+    }
+
+    /*
+     * 单个或批量删除非工作日
+     * @Author zhaotao
+     * @Date  2018/11/15 22:03
+     * @Param [notworkday]
+     * @return com.ccicnavi.bims.common.ResultT
+     **/
+    @RequestMapping(value = "/deleteNotworkday", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT deleteNotworkday(@RequestBody NotworkdayDO notworkday) {
+        try {
+            Integer insertResult = notworkdayService.deleteNotworkday(notworkday);
+            return ResultT.success();
+        }catch (Exception e) {
+            log.debug("删除非工作日失败", e);
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
+        }
+    }
+
+    /*
+     * 获取指定非工作日
+     * @Author zhaotao
+     * @Date  2018/11/15 22:03
+     * @Param [notworkday]
+     * @return com.ccicnavi.bims.common.ResultT
+     **/
+    @RequestMapping(value = "/getNotworkday", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT getNotworkday(@RequestBody NotworkdayDO notworkday) {
+        try {
+            NotworkdayDO resultBean = notworkdayService.getNotworkday(notworkday);
+            return ResultT.success(resultBean);
+        }catch (Exception e) {
+            log.debug("获取指定非工作日失败", e);
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
+        }
+    }
 
 }
