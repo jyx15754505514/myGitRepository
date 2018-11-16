@@ -19,12 +19,6 @@
             <version>0.1.7</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.bingoohuang</groupId>
-            <artifactId>eql</artifactId>
-            <version>0.1.7</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
     <packaging>jar</packaging>
 
