@@ -54,8 +54,8 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
         try {
             count=subcQualifiDao.saveSubcuQuali(subcQuali);
         } catch (Exception e) {
-            e.printStackTrace();
             log.error("新增分包方资质信息失败",e);
+            e.printStackTrace();
         }
         return count;
     }

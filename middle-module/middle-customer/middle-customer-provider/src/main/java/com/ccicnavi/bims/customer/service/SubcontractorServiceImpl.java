@@ -111,8 +111,8 @@ public class SubcontractorServiceImpl implements SubcontractorService{
         try {
             subcontractorBean=subcontractorDao.getSubcontractor(subcontractor);
         } catch (Exception e) {
-            e.printStackTrace();
             log.error("查询分包方信息失败",e);
+            e.printStackTrace();
         }
         return subcontractorBean;
     }
