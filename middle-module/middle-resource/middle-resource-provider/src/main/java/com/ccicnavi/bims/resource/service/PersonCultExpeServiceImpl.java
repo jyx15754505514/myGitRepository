@@ -1,11 +1,12 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.PersonCultExpeService;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.resource.dao.PersonCultExpeDao;
 import com.ccicnavi.bims.resource.pojo.PersonCultExpeDO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.n3r.eql.Eql;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class PersonCultExpeServiceImpl implements PersonCultExpeService {
 
     @Autowired
-    private PersonCultExpeDao PersonCultExpeDao;
+    private PersonCultExpeDao personCultExpeDao;
 
     /*
     *@program: [personCultExpe]
@@ -24,7 +25,7 @@ public class PersonCultExpeServiceImpl implements PersonCultExpeService {
     */
     @Override
     public List<PersonCultExpeDO> listPersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
-        return PersonCultExpeDao.listPersonCultExpe(personCultExpe);
+        return personCultExpeDao.listPersonCultExpe(personCultExpe);
     }
 
     /*
@@ -36,7 +37,7 @@ public class PersonCultExpeServiceImpl implements PersonCultExpeService {
     */
     @Override
     public Integer insertPersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
-        return PersonCultExpeDao.insertPersonCultExpe(personCultExpe);
+        return personCultExpeDao.insertPersonCultExpe(personCultExpe);
     }
 
     /*
@@ -48,7 +49,7 @@ public class PersonCultExpeServiceImpl implements PersonCultExpeService {
     */
     @Override
     public Integer updatePersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
-        return PersonCultExpeDao.updatePersonCultExpe(personCultExpe);
+        return personCultExpeDao.updatePersonCultExpe(personCultExpe);
     }
 
     /*
@@ -60,6 +61,18 @@ public class PersonCultExpeServiceImpl implements PersonCultExpeService {
     */
     @Override
     public Integer deletePersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
-        return PersonCultExpeDao.deletePersonCultExpe(personCultExpe);
+        return personCultExpeDao.deletePersonCultExpe(personCultExpe);
+    }
+
+    /*
+    *@program: [pageParameter]
+    *@description: 根据条件 查询人员培训经历分页数据
+    *@return: com.ccicnavi.bims.common.service.pojo.PageBean<PersonDO>
+    *@author: XiaWei
+    *@create: 2018/11/16 17:42
+    */
+    @Override
+    public PageBean<PersonCultExpeDO> getPagePersonCultExpe(PageParameter<PersonCultExpeDO> pageParameter) {
+        return personCultExpeDao.getPagePersonCultExpe(pageParameter);
     }
 }
