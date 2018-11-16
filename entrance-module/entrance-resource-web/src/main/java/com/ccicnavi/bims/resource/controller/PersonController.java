@@ -7,7 +7,6 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.PersonService;
 import com.ccicnavi.bims.resource.pojo.PersonDO;
-import com.ccicnavi.bims.resource.pojo.PersonDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
