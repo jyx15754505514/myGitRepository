@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.system.service.api;
 
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.LogDO;
@@ -21,7 +22,7 @@ public interface LogService {
      * @Param [logDO]
      * @Return java.util.List<com.ccicnavi.bims.system.pojo.LogDO>
      */
-    PageBean<LogDTO> listLog(PageParameter<LogDTO> pageParameter);
+    ResultT listLog(PageParameter<LogDTO> pageParameter);
     /* *
      * @Author MengZiJie
      * @Description 获取指定日志

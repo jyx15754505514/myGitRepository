@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.ResultCode;
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
@@ -32,7 +34,7 @@ public class LogServiceImpl implements LogService {
      * @Return java.util.List<com.ccicnavi.bims.system.pojo.LogDO>
      */
     @Override
-    public PageBean<LogDTO> listLog(PageParameter<LogDTO> pageParameter) {
+    public ResultT listLog(PageParameter<LogDTO> pageParameter) {
         EqlTran aDefault = EqlUtils.getInstance("DEFAULT").newTran();
         PageBean<LogDTO> listLog = null;
         try {
@@ -40,13 +42,13 @@ public class LogServiceImpl implements LogService {
             listLog =logDao.listLog(pageParameter);
             if(listLog != null){
                 aDefault.commit();
-                return listLog;
+                return ResultT.success(listLog);
             }
         } catch (Exception e) {
             log.error("获取日志失败",e);
             aDefault.rollback();
         }
-        return listLog;
+        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
     /* *
