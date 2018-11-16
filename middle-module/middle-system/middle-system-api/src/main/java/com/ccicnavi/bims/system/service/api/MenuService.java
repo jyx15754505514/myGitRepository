@@ -9,14 +9,44 @@ import java.util.List;
  */
 public interface MenuService {
 
-    /**查询所有菜单*/
+    /* *
+     * @Author MengZiJie
+     * @Description 查询菜单
+     * @Date 20:21 2018/11/15
+     * @Param [menuDO]
+     * @Return java.util.List<com.ccicnavi.bims.system.pojo.MenuDO>
+     */
     List<MenuDO> listMenu(MenuDO menuDO);
-    /**获取指定菜单*/
+    /* *
+     * @Author MengZiJie
+     * @Description 获取菜单
+     * @Date 20:21 2018/11/15
+     * @Param [menuDO]
+     * @Return com.ccicnavi.bims.system.pojo.MenuDO
+     */
     MenuDO getMenu(MenuDO menuDO);
-    /**新增菜单*/
+    /* *
+     * @Author MengZiJie
+     * @Description 新增菜单
+     * @Date 20:21 2018/11/15
+     * @Param [menuDO]
+     * @Return java.lang.Integer
+     */
     Integer insertMenu(MenuDO menuDO);
-    /**更新菜单*/
+    /* *
+     * @Author MengZiJie
+     * @Description 更新菜单
+     * @Date 20:21 2018/11/15
+     * @Param [menuDO]
+     * @Return java.lang.Integer
+     */
     Integer updateMenu(MenuDO menuDO);
-    /**删除菜单*/
+    /* *
+     * @Author MengZiJie
+     * @Description 删除菜单
+     * @Date 20:21 2018/11/15
+     * @Param [menuDO]
+     * @Return java.lang.Integer
+     */
     Integer deleteMenu(MenuDO menuDO);
 }
