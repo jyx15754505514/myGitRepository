@@ -38,6 +38,7 @@
       extend3 as extend3
     from
     res_person
+    WHERE is_del
 
 
 --[insertPerson]
@@ -323,6 +324,52 @@
                   and person_uuid in
               -- for item=item index = index collection=personUuids open=( separator=, close=)
                    '#item#'
+
+--[getPagePerson]
+select
+    person_uuid as personUuid,
+      person_code as personCode,
+      name as name,
+      person_type as personType,
+      former_name as formerName,
+      gender as gender,
+      birthday as birthday,
+      cert_type as certType,
+      cert_no as certNo,
+      age as age,
+      nationality as nationality,
+      nation as nation,
+      birthplace as birthplace,
+      native_place as nativePlace,
+      domicile_place as domicilePlace,
+      home_address as homeAddress,
+      politics_status as politicsStatus,
+      marital_status as maritalStatus,
+      phone as phone,
+      study_experience as studyExperience,
+      degree as degree,
+      skill_name as skillName,
+      skill_level as skillLevel,
+      comments as comments,
+      is_deleted as isDeleted,
+      created_time as createdTime,
+      created_uuid as createdUuid,
+      created_name as createdName,
+      updated_time as updatedTime,
+      updated_name as updatedName,
+      org_uuid as orgUuid,
+      app_sys_uuid as appSysUuid,
+      business_line as businessLine,
+      extend1 as extend1,
+      extend2 as extend2,
+      extend3 as extend3
+    from
+    res_person
+    WHERE
+       is_deleted = 'N'
+    -- iff personUuid != null and personUuid != ''
+    and person_uuid = '#personUuid#'
+
 
 
 

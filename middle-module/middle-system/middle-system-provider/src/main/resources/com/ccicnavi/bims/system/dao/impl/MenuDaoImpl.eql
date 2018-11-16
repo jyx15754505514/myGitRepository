@@ -12,7 +12,7 @@ SELECT
     is_enabled isEnabled,
     sort_num sortNum,
     is_deleted isDeleted,
-    business_line businessLine
+    prod_catalog_uuid prodCatalogUuid
 from
     sys_menu
 where
@@ -37,7 +37,7 @@ SELECT
     is_enabled isEnabled,
     sort_num sortNum,
     is_deleted isDeleted,
-    business_line businessLine
+    prod_catalog_uuid prodCatalogUuid
 from
     sys_menu
 where
@@ -75,8 +75,8 @@ INSERT INTO sys_menu
         	sort_num,
         --iff isDeleted != null and isDeleted != ''
         	is_deleted,
-        --iff businessLine != null and businessLine != ''
-        	business_line,
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        	prod_catalog_uuid,
     -- end
     -- trim prefix=values( suffix=) suffixOverrides=,
         --iff menuUuid != null and menuUuid != ''
@@ -103,8 +103,8 @@ INSERT INTO sys_menu
             '#sortNum#',
         --iff isDeleted != null and isDeleted != ''
             '#isDeleted#',
-        --iff businessLine != null and businessLine != ''
-            '#businessLine#',
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
     -- end
 
 
@@ -136,8 +136,8 @@ UPDATE
         is_deleted = '#isDeleted#',
     --iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid = '#appSysUuid#',
-    --iff businessLine != null and businessLine != ''
-        business_line = '#businessLine#',
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
 -- end
 where
     is_deleted = 'N'

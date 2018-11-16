@@ -258,3 +258,37 @@ SELECT
                 and teach_uuid in
             -- for item=item index = index collection=teachUuids open=( separator=, close=)
                  '#item#'
+
+--[getPage]
+SELECT
+   teach_uuid as teachUuid,
+   person_uuid as personUuid,
+   start_time as startTime,
+   end_time as endTime,
+   school as school,
+   major as major,
+   student_type as studentType,
+   school_system as schoolSystem,
+   education as education,
+   degree as degree,
+   hot_degree as hotDegree,
+   witness as witness,
+   graduation as graduation,
+   comments as comments,
+   is_deleted as isDeleted,
+   created_time as createdTime,
+   created_uuid as createdUuid,
+   created_name as createdName,
+   updated_time as updatedTime,
+   updated_name as updatedName,
+   org_uuid as orgUuid,
+   app_sys_uuid as appSysUuid,
+   business_line as businessLine,
+   extend1 as extend1,
+   extend2 as extend2,
+   extend3 as extend3
+   FROM
+   res_person_teach
+   WHERE is_deleted = 'N'
+     -- iff teachUuid != null and teachUuid != ''
+                   and teach_uuid = '#teachUuid#'
