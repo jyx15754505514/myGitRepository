@@ -1,10 +1,12 @@
 package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.LogDao;
 import com.ccicnavi.bims.system.pojo.LogDO;
 import com.ccicnavi.bims.system.service.api.LogService;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 /* *
@@ -28,12 +30,18 @@ public class LogServiceImpl implements LogService {
      */
     @Override
     public List<LogDO> listLog(LogDO logDO) {
+        EqlTran aDefault = EqlUtils.getInstance("DEFAULT").newTran();
         List<LogDO> listLog = null;
         try {
+            aDefault.start();
             listLog =logDao.listLog(logDO);
+            if(listLog != null){
+                aDefault.commit();
+                return listLog;
+            }
         } catch (Exception e) {
-            log.debug("获取日志失败",e);
-            e.printStackTrace();
+            log.error("获取日志失败",e);
+            aDefault.rollback();
         }
         return listLog;
     }

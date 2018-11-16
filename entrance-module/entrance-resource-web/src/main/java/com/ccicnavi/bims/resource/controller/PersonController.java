@@ -1,12 +1,10 @@
 package com.ccicnavi.bims.resource.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.resource.api.PersonService;
 import com.ccicnavi.bims.resource.pojo.PersonDO;
-import com.ccicnavi.bims.system.controller.NotworkdayController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +13,7 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
 
-    private final static Logger log = LoggerFactory.getLogger(NotworkdayController.class);
+//    private final static Logger log = LoggerFactory.getLogger(PersonDO.class);
 
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
     PersonService personService;
@@ -38,7 +36,7 @@ public class PersonController {
             return resultT;
         } catch (Exception e) {
             e.printStackTrace();
-            return resultT;
+            return  ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
 
@@ -59,7 +57,7 @@ public class PersonController {
             return resultT;
         } catch (Exception e) {
             e.printStackTrace();
-            return resultT;
+            return  ResultT.failure(ResultCode.ADD_FAILURE);
         }
 
     }
@@ -80,7 +78,7 @@ public class PersonController {
             return resultT;
         } catch (Exception e) {
             e.printStackTrace();
-            return resultT;
+            return  ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
     }
 
@@ -99,7 +97,7 @@ public class PersonController {
             return resultT;
         } catch (Exception e) {
             e.printStackTrace();
-            return resultT;
+            return  ResultT.failure(ResultCode.DELETE_FAILURE);
         }
     }
 

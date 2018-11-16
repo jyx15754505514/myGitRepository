@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.LogDao;
 import com.ccicnavi.bims.system.pojo.LogDO;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
 import org.springframework.stereotype.Service;
 import java.util.List;
 /* *
@@ -24,7 +25,15 @@ public class LogDaoImpl implements LogDao {
      */
     @Override
     public List<LogDO> listLog(LogDO logDO) {
-        return EqlUtils.getInstance("DEFAULT").select("listLog").params(logDO).returnType(LogDO.class).execute();
+        List<LogDO> log = new Eql().select("listLog").params(logDO).returnType(LogDO.class).execute();
+        System.out.println(log);
+        return log;
+    }
+
+    public static void main(String[] args) {
+        LogDO logDO = new LogDO();
+        List<LogDO> log = new Eql().select("listLog").params(logDO).returnType(LogDO.class).execute();
+        System.out.println(log);
     }
 
     /* *
