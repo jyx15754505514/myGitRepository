@@ -3,7 +3,7 @@ SELECT
     sel_uuid as selUuid, sel_name as selName, sel_eng_name as selEngName, sel_cert_name as selCertName, sel_enm_uuid as selEnmUuid,
     sel_count as selCount, sel_batch_no as selBatchNo, sel_start_number as selStartNumber, sel_end_number as selEndNumber,
     sel_person as selPerson, sel_keeper as selKeeper, is_deleted as isDeleted, created_time as createdTime,created_uuid as createdUuid,
-    updated_time as updatedTime, updated_name as updatedName, business_line as businessLine, org_uuid as orgUuid, app_sys_uuid as appSysUuid,
+    updated_time as updatedTime, updated_name as updatedName, prod_catalog_uuid as prodCatalogUuid, org_uuid as orgUuid, app_sys_uuid as appSysUuid,
     extend1 as extend1, extend2 as extend2, extend3 as extend3
 FROM
     res_seal
@@ -54,8 +54,8 @@ WHERE
       --iff updatedName != null
       and updated_name = '#updatedName#'
 
-      --iff businessLine != null
-      and business_line = '#businessLine#'
+      --iff prodCatalogUuid != null
+      and prod_catalog_uuid = '#prodCatalogUuid#'
 
       --iff orgUuid != null
       and org_uuid = '#orgUuid#'
@@ -124,8 +124,8 @@ insert into res_seal
       --iff createdUuid != null
         created_uuid,
 
-      --iff businessLine != null
-        business_line,
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid,
 
       --iff orgUuid != null
         org_uuid,
@@ -186,8 +186,8 @@ insert into res_seal
       --iff createdUuid != null
         '#createdUuid#',
 
-      --iff businessLine != null
-        '#businessLine#',
+      --iff prodCatalogUuid != null
+        '#prodCatalogUuid#',
 
       --iff orgUuid != null
         '#orgUuid#',
@@ -254,8 +254,8 @@ update res_seal
       --iff updatedName != null
         updated_name = '#updatedName#',
 
-      --iff businessLine != null
-        business_line = '#businessLine#',
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
 
       --iff orgUuid != null
         org_uuid = '#orgUuid#',
@@ -300,7 +300,7 @@ update res_seal
         sel_uuid as selUuid, sel_name as selName, sel_eng_name as selEngName, sel_cert_name as selCertName, sel_enm_uuid as selEnmUuid,
         sel_count as selCount, sel_batch_no as selBatchNo, sel_start_number as selStartNumber, sel_end_number as selEndNumber,
         sel_person as selPerson, sel_keeper as selKeeper, is_deleted as isDeleted, created_time as createdTime,created_uuid as createdUuid,
-        updated_time as updatedTime, updated_name as updatedName, business_line as businessLine, org_uuid as orgUuid, app_sys_uuid as appSysUuid,
+        updated_time as updatedTime, updated_name as updatedName, prod_catalog_uuid as prodCatalogUuid, org_uuid as orgUuid, app_sys_uuid as appSysUuid,
         extend1 as extend1, extend2 as extend2, extend3 as extend3
      FROM
         res_seal
@@ -317,13 +317,13 @@ update res_seal
 INSERT INTO res_seal
         (sel_uuid, sel_name, sel_eng_name, sel_cert_name, sel_enm_uuid, sel_count, sel_batch_no,
          sel_start_number, sel_end_number, sel_person, sel_keeper, is_deleted, created_time,
-         created_uuid, updated_time, updated_name, business_line, org_uuid, app_sys_uuid,
+         created_uuid, updated_time, updated_name, prod_catalog_uuid, org_uuid, app_sys_uuid,
          extend1, extend2, extend3)
 
 	   	(SELECT
 	   	    '123456788', sel_name, sel_eng_name, sel_cert_name, sel_enm_uuid, sel_count, sel_batch_no,
             sel_start_number, sel_end_number, sel_person, sel_keeper, is_deleted, created_time,
-            '#createdUuid#', updated_time, updated_name, business_line, org_uuid, app_sys_uuid,
+            '#createdUuid#', updated_time, updated_name, prod_catalog_uuid, org_uuid, app_sys_uuid,
             extend1, extend2, extend3
 	    FROM
 	     	res_seal

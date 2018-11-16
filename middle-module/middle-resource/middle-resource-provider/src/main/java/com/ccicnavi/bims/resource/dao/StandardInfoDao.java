@@ -1,34 +1,63 @@
 package com.ccicnavi.bims.resource.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.StandardInfoDO;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
 
 import java.util.List;
+
+/**
+ * @program: bims-backend
+ * @description: （标准）增删改查
+ * @author: zhangpengwei
+ * @create: 2018-11-15 14:49
+ */
 
 public interface StandardInfoDao {
 
     /**
-     * 列表查询（标准）
-     */
-    public List<StandardInfoDO> listStandardInfoDO(StandardInfoDO standardInfoDO) ;
+    *@Description: 列表查询（标准）
+    *@Param: [pageParameter]
+    *@return: com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.StandardInfoDO>
+    *@Author: zhangpengwei
+    *@date: 2018/11/16
+    */
+    public PageBean<StandardInfoDO> listStandardInfo(PageParameter pageParameter) throws Exception;
 
     /**
-     * 新增（标准）
+     *@Description: 新增（标准）
+     *@Param: [standardInfoDO]
+     *@return: java.lang.Integer
+     *@Author: zhangpengwei
+     *@date: 2018/11/15
      */
-    public Integer insertStandardInfoDO(StandardInfoDO standardInfoDO) ;
+    public Integer insertStandardInfo(StandardInfoDO standardInfoDO) throws Exception;
 
     /**
-     * 修改（标准）
+     *@Description: 更新（标准）
+     *@Param: [standardInfoDO]
+     *@return: java.lang.Integer
+     *@Author: zhangpengwei
+     *@date: 2018/11/15
      */
-    public Integer updateStandardInfoDO(StandardInfoDO standardInfoDO) ;
+    public Integer updateStandardInfo(StandardInfoDO standardInfoDO) throws Exception;
 
     /**
-     * 删除（标准）
+     *@Description: 删除（标准）
+     *@Param: [standardInfoDO]
+     *@return: java.lang.Integer
+     *@Author: zhangpengwei
+     *@date: 2018/11/15
      */
-    public Integer deleteStandardInfoDO(StandardInfoDO standardInfoDO) ;
+    public Integer deleteStandardInfo(StandardInfoDO standardInfoDO) throws Exception;
 
     /**
-     * 根据Id获取数据（标准）
+     *@Description: 根据主键或者名称获取（标准）
+     *@Param: [standardInfoDO]
+     *@return: com.ccicnavi.bims.resource.pojo.StandardInfoDO
+     *@Author: zhangpengwei
+     *@date: 2018/11/15
      */
-    public StandardInfoDO getStandardInfoDO(StandardInfoDO standardInfoDO) ;
+    public StandardInfoDO getStandardInfo(StandardInfoDO standardInfoDO) throws Exception;
 
 }

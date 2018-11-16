@@ -39,15 +39,7 @@ public class LogController {
      */
     @RequestMapping(value = "/listLog",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listLog(@RequestBody PageParameter<LogDTO> pageParameter){
-        ResultT resultT = new ResultT();
-        PageBean<LogDTO> logDOS = null;
-        try {
-            logDOS = logService.listLog(pageParameter);
-            return ResultT.success(logDOS);
-        } catch (Exception e) {
-            log.error("查询日志失败",e);
-            return ResultT.failure(ResultCode.LIST_FAILURE);
-        }
+        return logService.listLog(pageParameter);
     }
 
 

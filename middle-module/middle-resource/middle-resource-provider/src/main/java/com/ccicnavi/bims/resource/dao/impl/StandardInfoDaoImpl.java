@@ -1,106 +1,91 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.StandardInfoDao;
 import com.ccicnavi.bims.resource.pojo.StandardInfoDO;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+/**
+ * @program: bims-backend
+ * @description: （标准）增删改查
+ * @author: zhangpengwei
+ * @create: 2018-11-15 14:49
+ */
 
 @Service
 @Slf4j
 public class StandardInfoDaoImpl implements StandardInfoDao{
 
     /**
-     * 列表查询（标准）
-     */
+    *@Description: 列表查询（标准）
+    *@Param: [pageParameter]
+    *@return: com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.StandardInfoDO>
+    *@Author: zhangpengwei
+    *@date: 2018/11/16
+    */
     @Override
-    public List<StandardInfoDO> listStandardInfoDO(StandardInfoDO standardInfoDO)  {
-        List<StandardInfoDO> standardInfoDOList = null;
-        try{
-            standardInfoDOList =  EqlUtils.getInstance("DEFAULT").select("listStandardInfo").params(standardInfoDO).returnType(StandardInfoDO.class).execute();
-        }catch (Exception e){
-            //日志打印
-            log.error("",e);
-            e.printStackTrace();
+    public PageBean<StandardInfoDO> listStandardInfo(PageParameter pageParameter) throws Exception {
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<StandardInfoDO> standardInfoDOList = new Eql().select("listStandardInfo").params(pageParameter.getParameter()).returnType(StandardInfoDO.class).execute();
+        if(standardInfoDOList != null) {
+            return new PageBean<StandardInfoDO>(page.getTotalRows(), page.getTotalPages(), page.getCurrentPage(), page.getPageRows(), page.getStartIndex(), standardInfoDOList);
+        }else {
+            return null;
         }
-        return standardInfoDOList;
     }
 
     /**
-     * 新增（标准）
-     * @param standardInfoDO
-     * @return
-     * @
+     *@Description: 新增（标准）
+     *@Param: [standardInfoDO]
+     *@return: java.lang.Integer
+     *@Author: zhangpengwei
+     *@date: 2018/11/15
      */
     @Override
-    public Integer insertStandardInfoDO(StandardInfoDO standardInfoDO)  {
-        int num = 0;
-        try{
-            num =  EqlUtils.getInstance("DEFAULT").insert("insertStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
-        }catch (Exception e){
-            //日志打印
-            log.error("",e);
-            e.printStackTrace();
-        }
-        return num;
+    public Integer insertStandardInfo(StandardInfoDO standardInfoDO) throws Exception {
+        return new Eql().insert("insertStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
     }
 
     /**
-     * 更新（标准）
-     * @param standardInfoDO
-     * @return
-     * @
+     *@Description: 更新（标准）
+     *@Param: [standardInfoDO]
+     *@return: java.lang.Integer
+     *@Author: zhangpengwei
+     *@date: 2018/11/15
      */
     @Override
-    public Integer updateStandardInfoDO(StandardInfoDO standardInfoDO)  {
-        int num = 0;
-        try{
-            num =  EqlUtils.getInstance("DEFAULT").update("updateStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
-        }catch (Exception e){
-            //日志打印
-            log.error("",e);
-            e.printStackTrace();
-        }
-        return num;
+    public Integer updateStandardInfo(StandardInfoDO standardInfoDO) throws Exception {
+        return new Eql().update("updateStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
     }
 
     /**
-     * 删除（标准）
-     * @param standardInfoDO
-     * @return
-     * @
+     *@Description: 删除（标准）
+     *@Param: [standardInfoDO]
+     *@return: java.lang.Integer
+     *@Author: zhangpengwei
+     *@date: 2018/11/15
      */
     @Override
-    public Integer deleteStandardInfoDO(StandardInfoDO standardInfoDO)  {
-        int num = 0;
-        try{
-            num =  EqlUtils.getInstance("DEFAULT").delete("deleteStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
-        }catch (Exception e){
-            //日志打印
-            log.error("",e);
-            e.printStackTrace();
-        }
-        return num;
+    public Integer deleteStandardInfo(StandardInfoDO standardInfoDO) throws Exception {
+        return new Eql().delete("deleteStandardInfo").params(standardInfoDO).returnType(Integer.class).execute();
     }
 
     /**
-     * 根据主键或者名称获取（标准）
-     * @param standardInfoDO
-     * @return
-     * @
+     *@Description: 根据主键或者名称获取（标准）
+     *@Param: [standardInfoDO]
+     *@return: com.ccicnavi.bims.resource.pojo.StandardInfoDO
+     *@Author: zhangpengwei
+     *@date: 2018/11/15
      */
     @Override
-    public StandardInfoDO getStandardInfoDO(StandardInfoDO standardInfoDO)  {
-        StandardInfoDO getStandardInfoDO = null;
-        try{
-            getStandardInfoDO = EqlUtils.getInstance("DEFAULT").selectFirst("getStandardInfo").params(standardInfoDO).returnType(StandardInfoDO.class).execute();
-        }catch (Exception e){
-            //日志打印
-            log.error("",e);
-            e.printStackTrace();
-        }
+    public StandardInfoDO getStandardInfo(StandardInfoDO standardInfoDO) throws Exception {
+        StandardInfoDO getStandardInfoDO = new Eql().selectFirst("getStandardInfo").params(standardInfoDO).returnType(StandardInfoDO.class).execute();
         return getStandardInfoDO;
     }
 
