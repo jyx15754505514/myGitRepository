@@ -26,56 +26,51 @@ public class RemindServiceImpl implements RemindService {
     private RemindDao sysRemindDao;
     @Override
     public List<RemindDO> listRemind(RemindDO remind) throws Exception {
-        List<RemindDO> list = null;
         try {
-            list = sysRemindDao.listRemind(remind);
+            return sysRemindDao.listRemind(remind);
         }catch (Exception e) {
             log.error("", e);
+            return null;
         }
-        return list;
     }
 
     @Override
     public Integer insertRemind(RemindDO remind) throws Exception {
-        Integer num=null;
         try {
-            num =  sysRemindDao.insertRemind(remind);
+            return sysRemindDao.insertRemind(remind);
         }catch (Exception e) {
             log.error("", e);
+            return null;
         }
-        return num;
     }
 
     @Override
     public Integer updateRemind(RemindDO remind) throws Exception {
-        Integer num =null;
         try {
-            num =  sysRemindDao.updateRemind(remind);
+            return sysRemindDao.updateRemind(remind);
         }catch (Exception e) {
             log.error("", e);
+            return null;
         }
-        return null;
     }
 
     @Override
     public Integer deleteRemind(RemindDO remind) throws Exception {
-        Integer num =null;
         try {
-             num = sysRemindDao.deleteRemind(remind);
+             return sysRemindDao.deleteRemind(remind);
         }catch (Exception e) {
             log.error("", e);
+            return null;
         }
-        return num;
     }
 
     @Override
     public RemindDO getRemind(RemindDO remind) throws Exception {
-        RemindDO remindDO = null;
         try {
-            remindDO = sysRemindDao.getRemind(remind);
+            return sysRemindDao.getRemind(remind);
         }catch (Exception e) {
             log.error("", e);
+            return null;
         }
-        return remindDO;
     }
 }
