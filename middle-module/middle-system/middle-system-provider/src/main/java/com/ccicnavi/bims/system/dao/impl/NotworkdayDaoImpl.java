@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.NotworkdayDao;
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
+import org.n3r.eql.EqlTran;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,6 @@ import java.util.List;
  **/
 @Service
 public class NotworkdayDaoImpl implements NotworkdayDao {
-
 
    /**
    * 根据条件查询非工作日
@@ -53,7 +53,7 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
     **/
     @Override
     public Integer updateNotworkday(NotworkdayDO notworkday) throws Exception{
-        return EqlUtils.getInstance("DEFAULT").insert("updateNotworkday").params(notworkday).returnType(Integer.class).execute();
+        return EqlUtils.getInstance("DEFAULT").update("updateNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
     /**
@@ -65,7 +65,7 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
     **/
     @Override
     public Integer deleteNotworkday(NotworkdayDO notworkday) throws Exception{
-        return EqlUtils.getInstance("DEFAULT").insert("deleteNotworkday").params(notworkday).returnType(Integer.class).execute();
+        return EqlUtils.getInstance("DEFAULT").delete("deleteNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
     /**
@@ -79,4 +79,6 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
     public NotworkdayDO getNotworkday(NotworkdayDO notworkday) throws Exception{
         return EqlUtils.getInstance("DEFAULT").selectFirst("getNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
     }
+
+
 }
