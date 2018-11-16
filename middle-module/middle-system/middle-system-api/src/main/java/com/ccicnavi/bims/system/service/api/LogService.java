@@ -30,7 +30,7 @@ public interface LogService {
      * @Param [logDO]
      * @Return com.ccicnavi.bims.system.pojo.LogDO
      */
-    LogDO getLog(LogDO logDO);
+    ResultT getLog(LogDTO logDTO);
     /* *
      * @Author MengZiJie
      * @Description 新增日志
@@ -38,7 +38,7 @@ public interface LogService {
      * @Param [logDO]
      * @Return java.lang.Integer
      */
-    Integer insertLog(LogDO logDO);
+    ResultT insertLog(LogDTO logDTO);
     /* *
      * @Author MengZiJie
      * @Description 更新日志
@@ -46,7 +46,7 @@ public interface LogService {
      * @Param [logDO]
      * @Return java.lang.Integer
      */
-    Integer updateLog(LogDO logDO);
+    ResultT updateLog(LogDTO logDTO);
     /* *
      * @Author MengZiJie
      * @Description 删除日志
@@ -54,5 +54,5 @@ public interface LogService {
      * @Param [logDO]
      * @Return java.lang.Integer
      */
-    Integer deleteLog(LogDO logDO);
+    ResultT deleteLog(LogDTO logDTO);
 }
