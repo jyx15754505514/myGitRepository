@@ -18,7 +18,7 @@ import java.util.List;
 public class AreaServiceImpl implements AreaService {
 
     @Autowired
-    AreaDao areaDao;
+    private AreaDao areaDao;
 
     /* *
      * @Author MengZiJie

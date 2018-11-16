@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class LogDetailServiceImpl implements LogDetailService {
 
     @Autowired
-    LogDetailDao LogDetailDao;
+    private LogDetailDao LogDetailDao;
 
     /* *
      * @Author MengZiJie
