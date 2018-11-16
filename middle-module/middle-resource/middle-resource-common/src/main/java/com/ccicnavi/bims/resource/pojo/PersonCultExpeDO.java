@@ -4,13 +4,17 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
 @ToString
-public class PersonCultExpeDO {
+public class PersonCultExpeDO implements Serializable {
+
+    private List<String> cultExpeUuids;
+
     private String cultExpeUuid;
 
     private String personUuid;
@@ -55,5 +59,4 @@ public class PersonCultExpeDO {
 
     private String extend3;
 
-    private List<String> cultExpeUuids;
 }

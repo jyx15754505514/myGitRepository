@@ -3,6 +3,8 @@ package com.ccicnavi.bims.resource.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.PersonTeachService;
 import com.ccicnavi.bims.resource.pojo.PersonTeachDO;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +19,6 @@ public class PersonTeachController {
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
     PersonTeachService personTeachService;
 
-    ResultT resultT = new ResultT();
-
     /*
      *@Param: [personTeachDO]
      *@description: 查询人员教育经历
@@ -30,9 +30,7 @@ public class PersonTeachController {
     public ResultT listPersonTeach(@RequestBody PersonTeachDO personTeachDO) {
         try {
             List<PersonTeachDO> personTeachDOS = personTeachService.listPersonTeach(personTeachDO);
-            resultT.setData(personTeachDOS);
-            resultT.success();
-            return resultT;
+            return ResultT.success(personTeachDOS);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.LIST_FAILURE);
@@ -50,9 +48,7 @@ public class PersonTeachController {
     public ResultT insertPeronsTeach(@RequestBody PersonTeachDO personTeachDO) {
         try {
             Integer num = personTeachService.insertPersonTeach(personTeachDO);
-            resultT.setData(num);
-            resultT.success();
-            return resultT;
+            return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.ADD_FAILURE);
@@ -70,12 +66,10 @@ public class PersonTeachController {
     public ResultT updatePersonTeach(@RequestBody PersonTeachDO personTeachDO) {
         try {
             Integer num = personTeachService.updatePersonTeach(personTeachDO);
-            resultT.setData(num);
-            resultT.success();
-            return resultT;
+            return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
-            return resultT.failure(ResultCode.UPDATE_FAILURE);
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
     }
 
@@ -90,14 +84,31 @@ public class PersonTeachController {
     public ResultT deletePersonTeach(@RequestBody PersonTeachDO personTeachDO) {
         try {
             Integer num = personTeachService.deletePersonTeach(personTeachDO);
-            resultT.setData(num);
-            resultT.success();
-            return resultT;
+            return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
-            return resultT.failure(ResultCode.DELETE_FAILURE);
+            return ResultT.failure(ResultCode.DELETE_FAILURE);
         }
     }
+
+    /*
+     *@Param: [pageParameter]
+     *@description: 根据条件 查询人员教育经历分页数据
+     *@return: com.ccicnavi.bims.common.ResultT
+     *@author: WangGengXiang
+     *@create: 2018/11/16 15:46
+     */
+    @RequestMapping(value = "/listPage", method = RequestMethod.POST, produces = "application/json;charset:UTF-8")
+    public ResultT getPagePersonTeach(@RequestBody PageParameter<PersonTeachDO> pageParameter) {
+        try {
+            PageBean<PersonTeachDO> pagePerson = personTeachService.getPagePersonTeach(pageParameter);
+            return ResultT.success(pagePerson);
+        } catch (Exception e) {
+            return  ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+
+    }
+
 
 
 }

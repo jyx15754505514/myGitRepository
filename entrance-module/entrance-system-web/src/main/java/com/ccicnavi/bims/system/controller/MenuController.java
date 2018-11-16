@@ -35,9 +35,9 @@ public class MenuController {
     @RequestMapping(value = "/listMenu", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listMenu(@RequestBody MenuDO emnu) {
         try {
-            List<MenuDO> emnuList = menuService.listMenu(emnu);
+            ResultT listMenu =  menuService.listMenu(emnu);
             //请求成功返回并设置返回数据
-            return ResultT.success(emnuList);
+            return listMenu;
         }catch (Exception e) {
             log.error("根据条件查询菜单失败", e);
             //请求失败返回并设置错误信息

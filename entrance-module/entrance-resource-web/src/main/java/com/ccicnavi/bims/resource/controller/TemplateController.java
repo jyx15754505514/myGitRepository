@@ -59,11 +59,13 @@ public class TemplateController {
     public ResultT insertTemplate(@RequestBody TemplateDO template) {
         try {
             Integer insertResult = templateService.insertTemplate(template);
-            return ResultT.success();
+            if(insertResult != null && insertResult > 0) {
+                return ResultT.success();
+            }
         }catch (Exception e) {
-            log.debug("根据条件查询模板失败", e);
-            return ResultT.failure(ResultCode.LIST_FAILURE);
+            log.debug("新增模板失败", e);
         }
+        return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
     /*
@@ -76,12 +78,14 @@ public class TemplateController {
     @RequestMapping(value = "/updateTemplate", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT updateTemplate(@RequestBody TemplateDO template) {
         try {
-            Integer insertResult = templateService.updateTemplate(template);
-            return ResultT.success();
+            Integer updateResult = templateService.updateTemplate(template);
+            if(updateResult != null && updateResult > 0) {
+                return ResultT.success();
+            }
         }catch (Exception e) {
             log.debug("更新模板失败", e);
-            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     /*
@@ -94,12 +98,14 @@ public class TemplateController {
     @RequestMapping(value = "/deleteTemplate", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT deleteTemplate(@RequestBody TemplateDO template) {
         try {
-            Integer insertResult = templateService.deleteTemplate(template);
-            return ResultT.success();
+            Integer deleteResult = templateService.deleteTemplate(template);
+            if(deleteResult != null && deleteResult > 0) {
+                return ResultT.success();
+            }
         }catch (Exception e) {
             log.debug("删除模板失败", e);
-            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
+            return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 
     /*
@@ -113,11 +119,13 @@ public class TemplateController {
     public ResultT getTemplate(@RequestBody TemplateDO template) {
         try {
             TemplateDO resultBean = templateService.getTemplate(template);
-            return ResultT.success(resultBean);
+            if(resultBean != null) {
+                return ResultT.success(resultBean);
+            }
         }catch (Exception e) {
             log.debug("获取指定模板失败", e);
-            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
 }
