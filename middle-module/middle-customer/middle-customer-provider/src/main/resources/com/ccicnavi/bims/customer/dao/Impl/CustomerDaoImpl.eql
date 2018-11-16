@@ -535,6 +535,40 @@ WHERE
             -- end
         -- end
 
+-- [verifyCustInfoOnly]
+SELECT
+	count( 0 )
+FROM
+	crm_customer
+WHERE
+	is_deleted = 'N'
+	     --if custName !=null and custName != ''
+            AND cust_name = '#custName#'
+         --end
+         --if custCode !=null and custCode != ''
+            AND cust_code = '#custCode#'
+         --end
+         --if custUscc !=null and custUscc != ''
+            AND cust_uscc = '#custUscc#'
+         --end
+         --if custUuid !=null and custUuid != ''
+            AND cust_uuid NOT IN ('#custUuid#')
+         --end
+    AND org_uuid='#orgUuid#'
+    AND app_sys_uuid='#appSysUuid#'
+
+
+-- [listCustomerAndExt]
+SELECT
+    cc.cust_uuid,
+    cc.cust_name,
+    cce.bank_name
+FROM
+	crm_customer cc
+LEFT JOIN crm_customer_ext cce ON cc.cust_uuid = cce.cust_uuid
+AND cce.is_deleted = 'N'
+WHERE
+	cc.is_deleted = 'N'
 
 
 

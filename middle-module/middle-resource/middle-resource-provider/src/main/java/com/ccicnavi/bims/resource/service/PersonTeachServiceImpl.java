@@ -2,35 +2,41 @@ package com.ccicnavi.bims.resource.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.resource.api.PersonTeachService;
+import com.ccicnavi.bims.resource.dao.PersonTeachDao;
 import com.ccicnavi.bims.resource.pojo.PersonTeachDO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.util.List;
 
 @Service
 public class PersonTeachServiceImpl  implements PersonTeachService {
+
+    @Autowired
+    PersonTeachDao personTeachDao;
+
     @Override
-    public List<PersonTeachDO> listPersonTeach(PersonTeachDO PersonTeachDo) throws Exception {
-        return null;
+    public List<PersonTeachDO> listPersonTeach(PersonTeachDO personTeachDo) throws Exception {
+        return personTeachDao.listPersonTeach(personTeachDo);
     }
 
     @Override
-    public Integer insertPersonTeach(PersonTeachDO PersonTeachDo) throws Exception {
-        return null;
+    public Integer insertPersonTeach(PersonTeachDO personTeachDo) throws Exception {
+        return personTeachDao.insertPersonTeach(personTeachDo);
     }
 
     @Override
-    public Integer updatePersonTeach(PersonTeachDO PersonTeachDo) throws Exception {
-        return null;
+    public Integer updatePersonTeach(PersonTeachDO personTeachDo) throws Exception {
+        return personTeachDao.updatePersonTeach(personTeachDo);
     }
 
     @Override
-    public Integer deletePersonTeach(PersonTeachDO PersonTeachDo) throws Exception {
-        return null;
+    public Integer deletePersonTeach(PersonTeachDO personTeachDo) throws Exception {
+        return personTeachDao.deletePersonTeach(personTeachDo);
     }
 
     @Override
-    public PersonTeachDO getPersonTeach(PersonTeachDO PersonTeachDo) {
-        return null;
+    public PersonTeachDO getPersonTeach(PersonTeachDO personTeachDo) {
+        return personTeachDao.getPersonTeach(personTeachDo);
     }
 }
