@@ -39,6 +39,12 @@
 
         <dependency>
             <groupId>middle-customer</groupId>
+            <artifactId>middle-customer-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>middle-customer</groupId>
             <artifactId>middle-customer-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
