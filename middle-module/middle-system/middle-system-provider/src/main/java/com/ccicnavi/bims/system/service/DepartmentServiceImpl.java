@@ -38,7 +38,7 @@ import java.util.List;
          try {
              return departmentDao.listDepartment(departmentDO);
          } catch (Exception e) {
-             log.error("",e);
+             log.error("查询部门信息失败",e);
              return null;
          }
      }
@@ -55,7 +55,7 @@ import java.util.List;
          try {
              return departmentDao.insertDepartment(departmentDO);
          } catch (Exception e) {
-             log.error("",e);
+             log.error("新增部门信息失败",e);
              return null;
          }
      }
@@ -72,7 +72,7 @@ import java.util.List;
          try {
              return departmentDao.updateDepartment(departmentDO);
          } catch (Exception e) {
-             log.error("",e);
+             log.error("更新部门信息失败",e);
              return null;
          }
      }
@@ -89,7 +89,7 @@ import java.util.List;
          try {
              return departmentDao.deleteDepartment(departmentDO);
          } catch (Exception e) {
-             log.error("",e);
+             log.error("删除部门信息失败",e);
              return null;
          }
      }
@@ -106,7 +106,7 @@ import java.util.List;
          try {
              return departmentDao.getDepartment(departmentDO);
          } catch (Exception e) {
-             log.error("",e);
+             log.error("根据ID获取单个部门信息失败",e);
              return null;
          }
      }

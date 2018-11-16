@@ -68,7 +68,7 @@ SELECT
       --iff businessLine != null
             business_line
     --end
-    -- trim prefix=values ( suffix=) suffixOverrides=,
+    -- trim prefix=values( suffix=) suffixOverrides=,
       --iff cultExpeUuid != null
 		'#cultExpeUuid#',
       --iff personUuid != null
@@ -165,7 +165,7 @@ SELECT
 UPDATE
     res_person_cult_expe
 -- trim prefix= set suffixOverrides=,
-    is_deleted = 'Y'.
+    is_deleted = 'Y'
 -- end
 WHERE
     is_deleted = 'N'
