@@ -20,6 +20,8 @@ where
     and log.org_uuid = '#orgUuid#'
 --iff appSysUuid != null and appSysUuid != ''
     and log.app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and log.prod_catalog_uuid = '#prodCatalogUuid#'
 
 -- [insertLogDetail]
 INSERT INTO sys_log_detail
