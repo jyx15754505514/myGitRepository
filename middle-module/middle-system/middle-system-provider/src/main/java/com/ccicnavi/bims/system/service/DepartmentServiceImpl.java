@@ -34,11 +34,11 @@ import java.util.List;
      *@date: 2018/11/15
      */
      @Override
-     public List<DepartmentDO> listDepartment(DepartmentDO departmentDO)throws Exception{
+     public List<DepartmentDO> listDepartment(DepartmentDO departmentDO){
          try {
              return departmentDao.listDepartment(departmentDO);
          } catch (Exception e) {
-             log.error("",e);
+             log.error("查询部门信息失败",e);
              return null;
          }
      }
@@ -51,11 +51,11 @@ import java.util.List;
      *@date: 2018/11/15
      */
      @Override
-     public Integer insertDepartment(DepartmentDO departmentDO)throws Exception{
+     public Integer insertDepartment(DepartmentDO departmentDO){
          try {
              return departmentDao.insertDepartment(departmentDO);
          } catch (Exception e) {
-             log.error("",e);
+             log.error("新增部门信息失败",e);
              return null;
          }
      }
@@ -68,11 +68,11 @@ import java.util.List;
      *@date: 2018/11/15
      */
      @Override
-     public Integer updateDepartment(DepartmentDO departmentDO)throws Exception{
+     public Integer updateDepartment(DepartmentDO departmentDO){
          try {
              return departmentDao.updateDepartment(departmentDO);
          } catch (Exception e) {
-             log.error("",e);
+             log.error("更新部门信息失败",e);
              return null;
          }
      }
@@ -85,11 +85,11 @@ import java.util.List;
      *@date: 2018/11/15
      */
      @Override
-     public Integer deleteDepartment(DepartmentDO departmentDO)throws Exception{
+     public Integer deleteDepartment(DepartmentDO departmentDO){
          try {
              return departmentDao.deleteDepartment(departmentDO);
          } catch (Exception e) {
-             log.error("",e);
+             log.error("删除部门信息失败",e);
              return null;
          }
      }
@@ -102,11 +102,11 @@ import java.util.List;
      *@date: 2018/11/15
      */
      @Override
-     public DepartmentDO getDepartment(DepartmentDO departmentDO)throws Exception{
+     public DepartmentDO getDepartment(DepartmentDO departmentDO){
          try {
              return departmentDao.getDepartment(departmentDO);
          } catch (Exception e) {
-             log.error("",e);
+             log.error("根据ID获取单个部门信息失败",e);
              return null;
          }
      }

@@ -15,45 +15,49 @@ public class PersonCultExpeServiceImpl implements PersonCultExpeService {
     @Autowired
     private PersonCultExpeDao PersonCultExpeDao;
 
-    /**
-     * 查询人员培训经历
-     * @param personCultExpe
-     * @return List<Template>
-     * @throws Exception
-     */
+    /*
+    *@program: [personCultExpe]
+    *@description: 查询人员培训经历
+    *@return: java.util.List<com.ccicnavi.bims.resource.pojo.PersonCultExpeDO>
+    *@author: XiaWei
+    *@create: 2018/11/16 10:24
+    */
     @Override
     public List<PersonCultExpeDO> listPersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
         return PersonCultExpeDao.listPersonCultExpe(personCultExpe);
     }
 
-    /**
-     * 新增人员培训经历
-     * @param personCultExpe
-     * @return Integer
-     * @throws Exception
-     */
+    /*
+    *@program: [personCultExpe]
+    *@description: 新增人员培训经历
+    *@return: java.lang.Integer
+    *@author: XiaWei
+    *@create: 2018/11/16 10:27
+    */
     @Override
     public Integer insertPersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
         return PersonCultExpeDao.insertPersonCultExpe(personCultExpe);
     }
 
-    /**
-     * 更新人员培训经历
-     * @param personCultExpe
-     * @return Integer
-     * @throws Exception
-     */
+    /*
+    *@program: [personCultExpe]
+    *@description: 更新人员培训经历
+    *@return: java.lang.Integer
+    *@author: XiaWei
+    *@create: 2018/11/16 10:28
+    */
     @Override
     public Integer updatePersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
         return PersonCultExpeDao.updatePersonCultExpe(personCultExpe);
     }
 
-    /**
-     * 删除人员培训经历
-     * @param personCultExpe
-     * @return Integer
-     * @throws Exception
-     */
+    /*
+    *@program: [personCultExpe]
+    *@description: 删除人员培训经历
+    *@return: java.lang.Integer
+    *@author: XiaWei
+    *@create: 2018/11/16 10:28
+    */
     @Override
     public Integer deletePersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
         return PersonCultExpeDao.deletePersonCultExpe(personCultExpe);
