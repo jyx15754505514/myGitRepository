@@ -18,7 +18,7 @@ import java.util.List;
 public class AreaServiceImpl implements AreaService {
 
     @Autowired
-    AreaDao areaDao;
+    private AreaDao areaDao;
 
     /* *
      * @Author MengZiJie
@@ -65,7 +65,7 @@ public class AreaServiceImpl implements AreaService {
      */
     @Override
     public Integer insertArea(AreaDO areaDO) {
-        int area = 0;
+        Integer area = null;
         try {
             area = areaDao.insertArea(areaDO);
         } catch (Exception e) {
@@ -76,14 +76,14 @@ public class AreaServiceImpl implements AreaService {
 
     /* *
      * @Author MengZiJie
-     * @Description 更细地区
+     * @Description 更新地区
      * @Date 20:01 2018/11/14
      * @Param [areaDO]
      * @Return int
      */
     @Override
     public Integer updateArea(AreaDO areaDO) {
-        int area = 0;
+        Integer area = null;
         try {
             area = updateArea(areaDO);
         } catch (Exception e) {
@@ -101,7 +101,7 @@ public class AreaServiceImpl implements AreaService {
      */
     @Override
     public Integer deleteArea(AreaDO areaDO) {
-        int area = 0;
+        Integer area = null;
         try {
             area = areaDao.deleteArea(areaDO);
         } catch (Exception e) {
