@@ -4,6 +4,7 @@ package com.ccicnavi.bims.system.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 import com.ccicnavi.bims.system.service.api.SettingService;
 import org.slf4j.Logger;
@@ -30,17 +31,31 @@ public class SettingController {
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     SettingService settingService;
 
+    /**
+    *@Description: 查询系统设置信息(条件查询)
+    *@Param: [settingDO]
+    *@return: ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/16
+    */
+
     @RequestMapping(value = "/listSetting", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listSetting(@RequestBody SettingDO settingDO) {
-        List<SettingDO> set = null;
+    public ResultT listSetting(@RequestBody PageParameter<SettingDO> pageParameter) {
         try {
-            set = settingService.listSetting(settingDO);
-            return ResultT.success(set);
+            return settingService.listSetting(pageParameter);
         } catch (Exception e) {
             log.error("根据条件查询系统信息失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
+
+    /**
+    *@Description: 查询单个系统设置信息(主键查询)
+    *@Param: [settingDO]
+    *@return: ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/16
+    */
 
     @RequestMapping(value = "/getSetting", method = RequestMethod.POST)
     public ResultT getSetting(@RequestBody SettingDO settingDO) {
@@ -55,6 +70,14 @@ public class SettingController {
 
     }
 
+    /**
+    *@Description: 新增系统设置信息
+    *@Param: [settingDO]
+    *@return: ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/16
+    */
+
     @RequestMapping(value = "/insertSetting", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT insertSetting(@RequestBody SettingDO settingDO) {
         Integer integer = null;
@@ -68,6 +91,14 @@ public class SettingController {
 
     }
 
+    /**
+    *@Description: 更新系统设置信息
+    *@Param: [settingDO]
+    *@return: ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/16
+    */
+
     @RequestMapping(value = "/updateSetting", method = RequestMethod.POST)
     public ResultT updateSetting(@RequestBody SettingDO settingDO) {
         Integer integer = null;
@@ -80,6 +111,14 @@ public class SettingController {
         }
 
     }
+
+    /**
+    *@Description: 删除系统设置信息
+    *@Param: [settingDO]
+    *@return: ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/16
+    */
 
     @RequestMapping(value = "/deleteSetting", method = RequestMethod.POST)
     public ResultT deleteSetting(@RequestBody SettingDO settingDO) {
