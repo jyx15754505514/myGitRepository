@@ -2,9 +2,13 @@ package com.ccicnavi.bims.system.dao.impl;
 
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.DepartmentDao;
 import com.ccicnavi.bims.system.pojo.DepartmentDO;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
 
@@ -28,8 +32,14 @@ public class DepartmentDaoImpl implements DepartmentDao {
     *@date: 2018/11/15
     */
     @Override
-    public List<DepartmentDO> listDepartment(DepartmentDO departmentDO){
-        return EqlUtils.getInstance("DEFAULT").select("listDept").params(departmentDO).returnType(DepartmentDO.class).execute();
+    public PageBean<DepartmentDO> listDepartment(PageParameter<DepartmentDO> pageParameter){
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<DepartmentDO> departmentDOList = new Eql("DEFAULT").select("listDepartment").params(pageParameter.getParameter()).limit(eqlPage).returnType(DepartmentDO.class).execute();
+        if(departmentDOList != null) {
+            return  new PageBean<DepartmentDO>(eqlPage.getTotalRows(),eqlPage.getTotalPages(), eqlPage.getCurrentPage(), eqlPage.getPageRows(), eqlPage.getStartIndex(), departmentDOList);
+        }else {
+            return null;
+        }
     }
 
     /**
@@ -41,7 +51,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     */
     @Override
     public Integer insertDepartment(DepartmentDO departmentDO){
-        return EqlUtils.getInstance("DEFAULT").insert("insertDept").params(departmentDO).returnType(Integer.class).execute();
+        return new Eql().insert("insertDepartment").params(departmentDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -53,7 +63,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     */
     @Override
     public Integer updateDepartment(DepartmentDO departmentDO){
-        return EqlUtils.getInstance("DEFAULT").update("updateDept").params(departmentDO).returnType(Integer.class).execute();
+        return new Eql().update("updateDepartment").params(departmentDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -65,7 +75,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
     */
     @Override
     public Integer deleteDepartment(DepartmentDO departmentDO){
-        return EqlUtils.getInstance("DEFAULT").delete("deleteDept").params(departmentDO).returnType(Integer.class).execute();
+        return new Eql().delete("deleteDepartment").params(departmentDO).returnType(Integer.class).execute();
+
     }
 
     /**
@@ -77,7 +88,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     */
     @Override
     public DepartmentDO getDepartment(DepartmentDO departmentDO){
-        return EqlUtils.getInstance("DEFAULT").selectFirst("getDept").params(departmentDO).returnType(DepartmentDO.class).execute();
+        return new Eql().selectFirst("getDepartment").params(departmentDO).returnType(DepartmentDO.class).execute();
     }
 
 }

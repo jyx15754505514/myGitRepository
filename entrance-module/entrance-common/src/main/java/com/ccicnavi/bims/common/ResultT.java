@@ -45,7 +45,7 @@ public class ResultT implements Serializable {
     public static ResultT failure(ResultCode resultCode, Object data) {
         ResultT resultT = new ResultT();
         resultT.setResultCode(resultCode);
-//        resultT.setData(data);
+        //resultT.setData(data);
         return resultT;
     }
 

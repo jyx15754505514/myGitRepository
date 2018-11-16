@@ -8,7 +8,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ *@program: bims-backend
+ *@description: 系统设置的DO实体
+ *@author: zhangxingbiao
+ *@create: 2018-11-15 14:45
+ */
 @Getter
 @Setter
 @ToString
@@ -53,7 +58,7 @@ public class SettingDO implements Serializable{
 
     private String appSysUuid;
 
-    private String businessLine;
+    private String prodCatalogUuid;
 
     private String extend1;
 

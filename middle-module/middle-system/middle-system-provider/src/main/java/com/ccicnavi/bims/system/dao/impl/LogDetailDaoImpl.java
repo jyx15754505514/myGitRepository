@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.LogDetailDao;
 import com.ccicnavi.bims.system.pojo.LogDO;
+import com.ccicnavi.bims.system.pojo.LogDTO;
 import com.ccicnavi.bims.system.pojo.LogDetailDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,8 +36,8 @@ public class LogDetailDaoImpl implements LogDetailDao {
      * @Return int
      */
     @Override
-    public Integer insertLogDetail(LogDetailDO logDetailDO) {
-        return EqlUtils.getInstance("DEFAULT").insert("insertLogDetail").params(logDetailDO).returnType(Integer.class).execute();
+    public Integer insertLogDetail(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").insert("insertLogDetail").params(logDTO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -47,8 +48,8 @@ public class LogDetailDaoImpl implements LogDetailDao {
      * @Return int
      */
     @Override
-    public Integer updateLogDetail(LogDetailDO logDetailDO) {
-        return EqlUtils.getInstance("DEFAULT").update("updateLogDetail").params(logDetailDO).returnType(Integer.class).execute();
+    public Integer updateLogDetail(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").update("updateLogDetail").params(logDTO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -59,8 +60,8 @@ public class LogDetailDaoImpl implements LogDetailDao {
      * @Return int
      */
     @Override
-    public Integer deleteLogDetail(LogDetailDO logDetailDO) {
-        return EqlUtils.getInstance("DEFAULT").delete("deleteLogDetail").params(logDetailDO).returnType(Integer.class).execute();
+    public Integer deleteLogDetail(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").delete("deleteLogDetail").params(logDTO).returnType(Integer.class).execute();
     }
 
 }

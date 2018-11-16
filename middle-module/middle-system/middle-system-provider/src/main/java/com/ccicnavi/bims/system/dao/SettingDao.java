@@ -1,5 +1,8 @@
 package com.ccicnavi.bims.system.dao;
 
+import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 
 import java.util.List;
@@ -19,7 +22,8 @@ public interface SettingDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public List<SettingDO> listSetting(SettingDO settingDO);
+
+    public PageBean<SettingDO> listSetting(PageParameter<SettingDO> pageParameter);
 
     /**
     *@Description: 新增系统设置

@@ -34,12 +34,6 @@ public class LogDaoImpl implements LogDao {
         return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),log);
     }
 
-    public static void main(String[] args) {
-        LogDO logDO = new LogDO();
-        List<LogDO> log = new Eql().select("listLog").params(logDO).returnType(LogDO.class).execute();
-        System.out.println(log);
-    }
-
     /* *
      * @Author MengZiJie
      * @Description 获取指定日志
@@ -48,8 +42,8 @@ public class LogDaoImpl implements LogDao {
      * @Return com.ccicnavi.bims.system.pojo.LogDO
      */
     @Override
-    public LogDO getLog(LogDO logDO) {
-        return EqlUtils.getInstance("DEFAULT").selectFirst("getLog").params(logDO).returnType(LogDO.class).execute();
+    public LogDTO getLog(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").selectFirst("getLog").params(logDTO).returnType(LogDO.class).execute();
     }
 
     /* *
@@ -60,8 +54,8 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public Integer insertLog(LogDO logDO) {
-        return EqlUtils.getInstance("DEFAULT").insert("insertLog").params(logDO).returnType(Integer.class).execute();
+    public Integer insertLog(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").insert("insertLog").params(logDTO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -72,8 +66,8 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public Integer updateLog(LogDO logDO) {
-        return EqlUtils.getInstance("DEFAULT").update("updateLog").params(logDO).returnType(Integer.class).execute();
+    public Integer updateLog(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").update("updateLog").params(logDTO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -84,7 +78,7 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public Integer deleteLog(LogDO logDO) {
-        return EqlUtils.getInstance("DEFAULT").delete("deleteLog").params(logDO).returnType(Integer.class).execute();
+    public Integer deleteLog(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").delete("deleteLog").params(logDTO).returnType(Integer.class).execute();
     }
 }

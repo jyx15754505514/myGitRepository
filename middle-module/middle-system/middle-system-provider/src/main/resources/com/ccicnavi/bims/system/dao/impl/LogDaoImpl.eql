@@ -23,7 +23,7 @@ SELECT
     log.updated_name updatedName,
     log.org_uuid orgUuid,
     log.app_sys_uuid appSysUuid,
-    log.business_line businessLine,
+    log.prod_catalog_uuid prodCatalogUuid,
     detail.oper_name operName,
     detail.oper_time operTime,
     detail.oper_content operContent,
@@ -37,6 +37,7 @@ where
     log.is_deleted = 'N'
 and log.org_uuid = '#orgUuid#'
 and log.app_sys_uuid = '#appSysUuid#'
+and log.prod_catalog_uuid = '#prodCatalogUuid#'
 
 -- [getLog]
 SELECT
@@ -63,13 +64,21 @@ SELECT
     log.updated_name updatedName,
     log.org_uuid orgUuid,
     log.app_sys_uuid appSysUuid,
-    log.business_line businessLine
+    log.prod_catalog_uuid prodCatalogUuid,
+    detail.oper_name operName,
+    detail.oper_time operTime,
+    detail.oper_content operContent,
+    detail.oper_module operModule,
+    detail.comments detailComments
 from
     sys_log as log
 where
     log.is_deleted = 'N'
+left join sys_log_detail as detail on log.log_uuid = detail.log_uuid
+      and detail.is_deleted = 'N'
 and log.org_uuid = '#orgUuid#'
 and log.app_sys_uuid = '#appSysUuid#'
+and log.prod_catalog_uuid = '#prodCatalogUuid#'
 --if logUuid != null and logUuid != ''
     and log.log_uuid = '#logUuid#'
 --end
@@ -123,8 +132,8 @@ INSERT INTO sys_log
             org_uuid,
         --iff appSysUuid != null and appSysUuid != ''
             app_sys_uuid,
-        --iff businessLine != null and businessLine != ''
-            business_line,
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            prod_catalog_uuid,
     -- end
     -- trim prefix=values( suffix=) suffixOverrides=,
         --iff logUuid != null and logUuid != ''
@@ -173,8 +182,8 @@ INSERT INTO sys_log
             '#orgUuid#',
         --iff appSysUuid != null and appSysUuid != ''
             '#appSysUuid#',
-        --iff businessLine != null and businessLine != ''
-            '#businessLine#',
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
     -- end
 
 -- [updateLog]
@@ -227,8 +236,8 @@ UPDATE
         org_uuid = '#orgUuid#',
      --iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid = '#appSysUuid#',
-     --iff businessLine != null and businessLine != ''
-        business_line = '#businessLine#',
+     --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
 -- end
 where
     is_deleted = 'N'

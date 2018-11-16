@@ -46,5 +46,6 @@ public class PageBean<T> implements Serializable {
         this.pageSize = pageRows;
         this.startIndex = startIndex;
         this.products = products;
+
     }
 }
