@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +17,8 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-public class RemindDTO {
+public class RemindDTO implements Serializable {
+    
     private String remindUuid;//主键
 
     private String remindContent;//提醒内容
