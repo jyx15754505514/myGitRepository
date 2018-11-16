@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.system.dao;
 
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
@@ -52,4 +53,5 @@ public interface NotworkdayDao {
      * @throws Exception
      */
     public NotworkdayDO getNotworkday(NotworkdayDO notworkday)throws Exception;
+
 }
