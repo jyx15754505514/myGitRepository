@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.shiba.api;
 
+import java.awt.*;
 import java.util.Set;
 
 public interface SetTemplate {
@@ -10,7 +11,7 @@ public interface SetTemplate {
      * @param key
      * @param value
      */
-    void add(Object key, Set<Object> value);
+    void add(Object key, Object... value);
 
     /**
      * 根据key查询缓存
@@ -35,4 +36,29 @@ public interface SetTemplate {
      * @return
      */
     Boolean hasKey(Object key);
+
+    /**
+     * 查看缓存key的大小
+     *
+     * @param key
+     * @return
+     */
+    Long size(Object key);
+
+    /**
+     * 删除key缓存的values元素
+     *
+     * @param key
+     * @param values
+     * @return
+     */
+    Long remove(Object key, Object... values);
+
+    /**
+     * 得到key缓存下的set集合
+     *
+     * @param key
+     * @return
+     */
+    Cursor scan(Object key);
 }

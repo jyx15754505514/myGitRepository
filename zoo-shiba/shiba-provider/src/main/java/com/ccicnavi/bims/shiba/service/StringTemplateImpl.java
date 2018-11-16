@@ -32,6 +32,17 @@ public class StringTemplateImpl implements StringTemplate {
     }
 
     /**
+     * 截取key所对应的value字符串
+     * @param key
+     * @param start
+     * @param end
+     * @return
+     */
+    public Object getSn(Object key, long start, long end) {
+        return redisTemplate.opsForValue().get(key, start, end);
+    }
+
+    /**
      * 根据key删除缓存
      *
      * @param key
