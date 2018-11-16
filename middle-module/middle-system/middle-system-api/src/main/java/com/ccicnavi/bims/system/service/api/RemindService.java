@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.system.service.api;
 
-import com.ccicnavi.bims.system.pojo.SysRemindDO;
+import com.ccicnavi.bims.system.pojo.RemindDO;
+
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface RemindService {
     *@date: 2018/11/15
     */
 
-    public List<SysRemindDO> listSysremind(SysRemindDO sysremind)throws Exception;
+    public List<RemindDO> listRemind(RemindDO remind)throws Exception;
 
    /**
    *@Description: 新增提醒设置
@@ -30,7 +31,7 @@ public interface RemindService {
    *@date: 2018/11/15
    */
 
-    public Integer insertSysremind(SysRemindDO sysremind)throws Exception;
+    public Integer insertRemind(RemindDO remind)throws Exception;
 
     /**
     *@Description: 修改提醒设置
@@ -40,7 +41,7 @@ public interface RemindService {
     *@date: 2018/11/15
     */
 
-    public Integer updateSysremind(SysRemindDO sysremind)throws Exception;
+    public Integer updateRemind(RemindDO remind)throws Exception;
 
    /**
    *@Description: 删除提醒设置
@@ -50,7 +51,7 @@ public interface RemindService {
    *@date: 2018/11/15
    */
 
-    public Integer deleteSysremind(SysRemindDO sysremind)throws Exception;
+    public Integer deleteRemind(RemindDO remind)throws Exception;
 
    /**
    *@Description: 根据主键查询提醒设置
@@ -60,5 +61,5 @@ public interface RemindService {
    *@date: 2018/11/15
    */
 
-    public SysRemindDO getSysremind(SysRemindDO sysremind)throws Exception;
+    public RemindDO getRemind(RemindDO remind)throws Exception;
 }
