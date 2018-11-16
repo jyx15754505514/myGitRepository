@@ -16,33 +16,33 @@ public interface DepartmentService {
      * @param departmentDO
      * @return
      */
-    public List<DepartmentDO>listDepartment(DepartmentDO departmentDO)throws Exception;
+    public List<DepartmentDO>listDepartment(DepartmentDO departmentDO);
 
     /**
      * 新增部门信息
      * @param departmentDO
      * @return
      */
-    public Integer insertDepartment(DepartmentDO departmentDO)throws Exception;
+    public Integer insertDepartment(DepartmentDO departmentDO);
 
     /**
      * 更改部门信息
      * @param departmentDO
      * @return
      */
-    public Integer updateDepartment(DepartmentDO departmentDO)throws Exception;
+    public Integer updateDepartment(DepartmentDO departmentDO);
 
     /**
      * 删除部门信息
      * @param departmentDO
      * @return
      */
-    public Integer deleteDepartment(DepartmentDO departmentDO)throws Exception;
+    public Integer deleteDepartment(DepartmentDO departmentDO);
 
     /**
      * 根据主键获取单个部门信息
      * @param departmentDO
      * @return
      */
-    public DepartmentDO getDepartment(DepartmentDO departmentDO)throws Exception;
+    public DepartmentDO getDepartment(DepartmentDO departmentDO);
 }

@@ -34,7 +34,7 @@ public class SettingServiceImpl implements SettingService{
     */
 
     @Override
-    public List<SettingDO> listSetting(SettingDO settingDO)throws Exception{
+    public List<SettingDO> listSetting(SettingDO settingDO){
         try{
             return settingDao.listSetting(settingDO);
         }catch (Exception e){
@@ -52,7 +52,7 @@ public class SettingServiceImpl implements SettingService{
     *@date: 2018/11/15
     */
     @Override
-    public Integer insertSetting(SettingDO settingDO)throws Exception{
+    public Integer insertSetting(SettingDO settingDO){
         try {
             return settingDao.insertSetting(settingDO);
         }catch (Exception e){

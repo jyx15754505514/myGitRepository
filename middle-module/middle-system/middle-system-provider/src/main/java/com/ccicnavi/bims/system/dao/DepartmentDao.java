@@ -19,7 +19,7 @@ public interface DepartmentDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public List<DepartmentDO> listDepartment(DepartmentDO departmentDO)throws Exception;
+    public List<DepartmentDO> listDepartment(DepartmentDO departmentDO);
 
     /**
     *@Description: 新增部门信息
@@ -28,7 +28,7 @@ public interface DepartmentDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public Integer insertDepartment(DepartmentDO departmentDO)throws Exception;
+    public Integer insertDepartment(DepartmentDO departmentDO);
 
     /**
     *@Description: 更新部门信息
@@ -37,7 +37,7 @@ public interface DepartmentDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public Integer updateDepartment(DepartmentDO departmentDO)throws Exception;
+    public Integer updateDepartment(DepartmentDO departmentDO);
 
     /**
     *@Description: 删除部门信息
@@ -46,7 +46,7 @@ public interface DepartmentDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public Integer deleteDepartment(DepartmentDO departmentDO)throws Exception;
+    public Integer deleteDepartment(DepartmentDO departmentDO);
 
     /**
     *@Description: 根据主键获取单个部门信息
@@ -55,5 +55,5 @@ public interface DepartmentDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public DepartmentDO getDepartment(DepartmentDO departmentDO)throws Exception;
+    public DepartmentDO getDepartment(DepartmentDO departmentDO);
 }
