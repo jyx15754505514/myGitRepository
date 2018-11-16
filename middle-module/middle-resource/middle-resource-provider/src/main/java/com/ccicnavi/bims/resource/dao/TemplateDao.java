@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.resource.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.TemplateDO;
 
 
@@ -15,11 +17,11 @@ public interface TemplateDao {
 	
 	/**
      * 查询模板信息
-     * @param Template
+     * @param parameter
      * @return List<Template>
      * @throws Exception
      */
-    public List<TemplateDO> listTemplate(TemplateDO Template) throws Exception;
+    public PageBean<TemplateDO> listTemplate(PageParameter parameter) throws Exception;
 
     /**
      * 新增模板

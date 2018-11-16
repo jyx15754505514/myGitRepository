@@ -1,17 +1,16 @@
 package com.ccicnavi.bims.system.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
+
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.PageDemoDao;
 import com.ccicnavi.bims.system.pojo.RoleDO;
 import com.ccicnavi.bims.system.service.api.PageDemoService;
 import lombok.extern.slf4j.Slf4j;
-import org.n3r.eql.EqlPage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Slf4j

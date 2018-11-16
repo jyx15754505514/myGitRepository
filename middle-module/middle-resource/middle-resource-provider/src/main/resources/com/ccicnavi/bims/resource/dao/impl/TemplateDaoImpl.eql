@@ -4,7 +4,7 @@
         template_uuid as templateUuid, dict_type_uuid as dictTypeUuid, template_name as templateName, template_file_uuid as templateFileUuid,
 		created_time as createdTime, created_uuid as createdUuid, created_name as createdName, business_type as businessType, is_enabled as isEnabled,
 		updated_time as updatedTime, updated_name as updatedName, comments, is_deleted as isDeleted, org_uuid as orgUuid,
-		app_sys_uuid as appSysUuid, business_line as businessLine, extend1, extend2, extend3
+		app_sys_uuid as appSysUuid, prod_catalog_uuid as prodCatalogUuid, extend1, extend2, extend3
 	FROM
 		res_template
 	WHERE
@@ -12,7 +12,7 @@
 		and is_enabled = 'Y'
 		and org_uuid = '#orgUuid#'
 		and app_sys_uuid = '#appSysUuid#'
-	    and business_line = '#businessLine#'
+	    and prod_catalog_uuid = '#prodCatalogUuid#'
 
 
 -- 根据主键查询模板
@@ -21,7 +21,7 @@
         template_uuid as templateUuid, dict_type_uuid as dictTypeUuid, template_name as templateName, template_file_uuid as templateFileUuid,
 		created_time as createdTime, created_uuid as createdUuid, created_name as createdName, business_type as businessType, is_enabled as isEnabled,
 		updated_time as updatedTime, updated_name as updatedName, comments, is_deleted as isDeleted, org_uuid as orgUuid,
-		app_sys_uuid as appSysUuid, business_line as businessLine, extend1, extend2, extend3
+		app_sys_uuid as appSysUuid, prod_catalog_uuid as prodCatalogUuid, extend1, extend2, extend3
 	FROM
 		res_template
 	WHERE
@@ -30,7 +30,7 @@
 		and is_enabled = 'Y'
 	    and org_uuid = '#orgUuid#'
     	and app_sys_uuid = '#appSysUuid#'
-    	and business_line = '#businessLine#'
+    	and prod_catalog_uuid = '#prodCatalogUuid#'
 
 
 
@@ -75,8 +75,8 @@
         created_uuid,
       -- iff createdName != null and createdName != ''
         created_name,
-      -- iff businessLine != null and businessLine != ''
-        business_line,
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
       -- iff orgUuid != null and orgUuid != ''
         org_uuid,
       -- iff appSysUuid != null and appSysUuid != ''
@@ -112,8 +112,8 @@
         '#createdUuid#',
       -- iff createdName != null and createdName != ''
         '#createdName#',
-      -- iff businessLine != null and businessLine != ''
-        '#businessLine#',
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
       -- iff orgUuid != null and orgUuid != ''
         '#orgUuid#',
       -- iff appSysUuid != null and appSysUuid != ''
@@ -157,8 +157,8 @@
       -- iff updatedName != null
         updated_name = '#updatedName#',
 
-      -- iff businessLine != null and businessLine != ''
-        business_line = '#businessLine#',
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
 
       -- iff orgUuid != null and orgUuid != ''
         org_uuid = '#orgUuid#',

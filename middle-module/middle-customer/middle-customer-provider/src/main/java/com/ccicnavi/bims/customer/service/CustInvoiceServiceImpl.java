@@ -6,6 +6,7 @@ import com.ccicnavi.bims.customer.dao.CustInvoiceDao;
 import com.ccicnavi.bims.customer.pojo.CustInvoiceDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 
 /**
@@ -23,62 +24,52 @@ public class CustInvoiceServiceImpl implements CustInvoiceService {
 
     @Override
     public List<CustInvoiceDO> listCustInvoice(CustInvoiceDO custInvoice) {
-        List<CustInvoiceDO> custInvoceList=null;
         try {
-            custInvoceList=custInvoiceDao.listCustInvoice(custInvoice);
+            return custInvoiceDao.listCustInvoice(custInvoice);
         } catch (Exception e) {
-            e.printStackTrace();
             log.debug("查询客户发票失败",e);
+            return null;
         }
-        return custInvoceList;
     }
 
     @Override
     public int saveCustInvoice(CustInvoiceDO custInvoice) {
-        Integer count=0;
         try {
-            count= custInvoiceDao.saveCustInvoice(custInvoice);
+            return custInvoiceDao.saveCustInvoice(custInvoice);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("保存客户发票失败",e);
+            log.error("保存客户发票失败",e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public int removeCustInvoice(String uuids) {
-        Integer count=0;
         try {
-            count=custInvoiceDao.removeCustInvoice(uuids);
+            return custInvoiceDao.removeCustInvoice(uuids);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("删除客户发票失败",e);
+            log.error("删除客户发票失败",e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public int updateCustInvoice(CustInvoiceDO custInvoice) {
-        Integer count=0;
         try {
-            count=custInvoiceDao.updateCustInvoice(custInvoice);
+            return custInvoiceDao.updateCustInvoice(custInvoice);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("修改客户发票失败",e);
+            log.error("修改客户发票失败",e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public CustInvoiceDO getCustInvoice(CustInvoiceDO custInvoiceDO) {
-        CustInvoiceDO custInvoice=null;
         try {
-            custInvoice=custInvoiceDao.getCustInvoice(custInvoiceDO);
+            return custInvoiceDao.getCustInvoice(custInvoiceDO);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("根据主键查询客户发票信息失败~",e);
+            log.error("根据主键查询客户发票信息失败~",e);
+            return null;
         }
-        return custInvoice;
     }
 
 
