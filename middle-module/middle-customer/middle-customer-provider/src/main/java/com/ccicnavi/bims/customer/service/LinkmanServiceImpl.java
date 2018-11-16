@@ -23,61 +23,51 @@ public class LinkmanServiceImpl implements LinkmanService {
 
     @Override
     public List<LinkmanDO> listLinkman(LinkmanDO linkmanDO) {
-        List<LinkmanDO> linkmanList=null;
         try {
-            linkmanList=linkmanDao.listLinkman(linkmanDO);
+            return linkmanDao.listLinkman(linkmanDO);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("查询客户联系人信息失败~",e);
+            log.error("查询客户联系人信息失败~",e);
+            return null;
         }
-        return linkmanList;
     }
 
     @Override
     public int saveLinkman(LinkmanDO linkmanDO) {
-        Integer count=0;
         try {
-            count=linkmanDao.saveLinkman(linkmanDO);
+            return linkmanDao.saveLinkman(linkmanDO);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("保存客户联系人信息失败~",e);
+            log.error("保存客户联系人信息失败~",e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public int removeLinkman(String uuids) {
-        Integer count=0;
         try {
-            count=linkmanDao.removeLinkman(uuids);
+            return linkmanDao.removeLinkman(uuids);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("删除客户联系人信息失败~",e);
+            log.error("删除客户联系人信息失败~",e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public int updateLinkman(LinkmanDO linkmanDO) {
-        Integer count=0;
         try {
-            count=linkmanDao.updateLinkman(linkmanDO);
+            return linkmanDao.updateLinkman(linkmanDO);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("修改客户联系人信息失败~",e);
+            log.error("修改客户联系人信息失败~",e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public LinkmanDO getLinkman(LinkmanDO linkmanDO) {
-        LinkmanDO linkman=null;
         try {
-            linkman=linkmanDao.getLinkman(linkmanDO);
+            return linkmanDao.getLinkman(linkmanDO);
         } catch (Exception e) {
-            e.printStackTrace();
             log.debug("根据主键查询客户联系人信息失败~",e);
+            return null;
         }
-        return linkman;
     }
 }
