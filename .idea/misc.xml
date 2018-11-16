@@ -5,7 +5,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/middle-module/middle-common/pom.xml" />
         <option value="$PROJECT_DIR$/entrance-module/entrance-common/pom.xml" />
       </list>
     </option>
