@@ -38,6 +38,7 @@
       extend3 as extend3
     from
     res_person
+    WHERE is_del
 
 
 --[insertPerson]
