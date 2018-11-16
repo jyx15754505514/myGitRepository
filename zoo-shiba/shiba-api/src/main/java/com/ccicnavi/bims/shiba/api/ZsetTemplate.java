@@ -20,7 +20,7 @@ public interface ZsetTemplate {
      * @param key
      * @return
      */
-    Set members(Object key);
+    Set range(Object key, long start, long end);
 
     /**
      * 根据key删除缓存
@@ -37,5 +37,14 @@ public interface ZsetTemplate {
      * @return
      */
     boolean hasKey(Object key);
+
+    /**
+     * 移除key缓存中的value元素
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    Long remove(Object key, Object... value);
 
 }

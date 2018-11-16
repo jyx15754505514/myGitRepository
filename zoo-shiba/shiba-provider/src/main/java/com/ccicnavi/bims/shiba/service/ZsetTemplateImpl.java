@@ -33,8 +33,8 @@ public class ZsetTemplateImpl implements ZsetTemplate {
      * @param key
      * @return
      */
-    public Set members(Object key) {
-        return redisTemplate.opsForZSet().range(key, 0, 99);
+    public Set range(Object key, long start, long end) {
+        return redisTemplate.opsForZSet().range(key, start, end);
     }
 
     /**
@@ -55,6 +55,17 @@ public class ZsetTemplateImpl implements ZsetTemplate {
      */
     public boolean hasKey(Object key) {
         return redisTemplate.hasKey(key);
+    }
+
+    /**
+     * 移除key缓存中的value元素
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public Long remove(Object key, Object... value) {
+        return redisTemplate.opsForZSet().remove(key, value);
     }
 
 }

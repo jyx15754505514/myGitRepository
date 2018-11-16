@@ -4,8 +4,10 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.shiba.api.SetTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.SetOperations;
 
+import java.awt.*;
 import java.util.Set;
 
 @Service
@@ -20,7 +22,7 @@ public class SetTemplateImpl implements SetTemplate {
      * @param key
      * @param value
      */
-    public void add(Object key, Set<Object> value) {
+    public void add(Object key, Object... value) {
         SetOperations<Object, Object> set = redisTemplate.opsForSet();
         set.add(key, value);
     }
@@ -55,4 +57,34 @@ public class SetTemplateImpl implements SetTemplate {
         return redisTemplate.hasKey(key);
     }
 
+    /**
+     * 查看缓存key的大小
+     *
+     * @param key
+     * @return
+     */
+    public Long size(Object key) {
+        return redisTemplate.opsForSet().size(key);
+    }
+
+    /**
+     * 删除key缓存的values元素
+     *
+     * @param key
+     * @param values
+     * @return
+     */
+    public Long remove(Object key, Object... values) {
+        return redisTemplate.opsForSet().remove(key, values);
+    }
+
+    /**
+     * 得到key缓存下的set集合
+     *
+     * @param key
+     * @return
+     */
+    public Cursor scan(Object key) {
+       return (Cursor) redisTemplate.opsForSet().scan("zhou23",ScanOptions.NONE);
+    }
 }
