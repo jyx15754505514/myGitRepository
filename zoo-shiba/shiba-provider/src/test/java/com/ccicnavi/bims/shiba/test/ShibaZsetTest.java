@@ -22,16 +22,16 @@ public class ShibaZsetTest {
     public void add() {
         String key = "key555";
         Set<Object> set = new HashSet<>();
-        set.add("key1");
-        set.add("key2");
+        set.add("key5");
+        set.add("key6");
         zsetTemplate.add(key, set, 1);
         System.out.println("添加缓存成功");
     }
 
     @Test
-    public void members() {
+    public void range() {
         String key = "key555";
-        Set members = zsetTemplate.members(key);
+        Set members = zsetTemplate.range(key, 0, 3);
         System.out.println(key + "的缓存=" + members);
     }
 
@@ -49,4 +49,8 @@ public class ShibaZsetTest {
         System.out.println("缓存存在吗？" + persist);
     }
 
+    @Test
+    public void remove(Object key, Object... value) {
+        zsetTemplate.remove("key555", "key1,key2");
+    }
 }

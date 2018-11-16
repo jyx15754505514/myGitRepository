@@ -39,12 +39,6 @@
 
         <dependency>
             <groupId>middle-customer</groupId>
-            <artifactId>middle-customer-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>middle-customer</groupId>
             <artifactId>middle-customer-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -79,11 +73,18 @@
             <version>1.0.0</version>
         </dependency>
         <dependency>
+            <groupId>middle-customer</groupId>
+            <artifactId>middle-customer-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.ccicnavi.bims</groupId>
             <artifactId>entrance-common</artifactId>
             <version>1.0</version>
             <scope>compile</scope>
         </dependency>
+
 
     </dependencies>
     <dependencyManagement>

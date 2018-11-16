@@ -1,5 +1,8 @@
 package com.ccicnavi.bims.resource.api;
 
+
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.PersonDO;
 
 
@@ -52,6 +55,15 @@ public interface PersonService {
      *@create: 2018/11/16 9:31
      */
     public PersonDO getPerson(PersonDO personDo);
+
+    /*
+    *@Param: [pageParameter]
+    *@description: 根据条件 查询人员分页数据
+    *@return: com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.PersonDO>
+    *@author: WangGengXiang
+    *@create: 2018/11/16 15:38
+    */
+    public PageBean<PersonDO> getPagePerson (PageParameter<PersonDO> pageParameter);
 
 
 }
