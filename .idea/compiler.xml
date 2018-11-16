@@ -13,7 +13,6 @@
         <module name="entrance-common" />
         <module name="entrance-customer-web" />
         <module name="entrance-document-web" />
-        <module name="entrance-fin" />
         <module name="entrance-fin-web" />
         <module name="entrance-order-web" />
         <module name="entrance-resource-web" />
@@ -42,9 +41,5 @@
         <module name="shiba-provider" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8">
-      <module name="entrance-fin" target="8" />
-      <module name="entrance-product-module" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

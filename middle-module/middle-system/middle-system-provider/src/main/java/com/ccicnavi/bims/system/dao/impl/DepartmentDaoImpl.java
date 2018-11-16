@@ -51,7 +51,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     */
     @Override
     public Integer insertDepartment(DepartmentDO departmentDO){
-        return EqlUtils.getInstance("DEFAULT").insert("insertDept").params(departmentDO).returnType(Integer.class).execute();
+        return new Eql().insert("insertDepartment").params(departmentDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -63,7 +63,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     */
     @Override
     public Integer updateDepartment(DepartmentDO departmentDO){
-        return EqlUtils.getInstance("DEFAULT").update("updateDept").params(departmentDO).returnType(Integer.class).execute();
+        return new Eql().update("updateDepartment").params(departmentDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -75,7 +75,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
     */
     @Override
     public Integer deleteDepartment(DepartmentDO departmentDO){
-        return EqlUtils.getInstance("DEFAULT").delete("deleteDept").params(departmentDO).returnType(Integer.class).execute();
+        return new Eql().delete("deleteDepartment").params(departmentDO).returnType(Integer.class).execute();
+
     }
 
     /**
@@ -87,7 +88,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     */
     @Override
     public DepartmentDO getDepartment(DepartmentDO departmentDO){
-        return EqlUtils.getInstance("DEFAULT").selectFirst("getDept").params(departmentDO).returnType(DepartmentDO.class).execute();
+        return new Eql().selectFirst("getDepartment").params(departmentDO).returnType(DepartmentDO.class).execute();
     }
 
 }

@@ -34,7 +34,7 @@
      --end
 
 -- 新增系统设置信息
--- [insertSet]
+-- [insertSetting]
     INSERT INTO sys_setting
     --trim prefix=( suffix=) suffixOverrides=,
           --iff settingUuid != null and settingUuid != ''
@@ -155,7 +155,7 @@
         --end
 
 -- 更新系统设置信息
--- [updateSet]
+-- [updateSetting]
     UPDATE
         sys_setting
     -- trim prefix= set suffixOverrides=,
@@ -219,10 +219,19 @@
           --iff  extend3 != null
             extend3 =  '#extend3#',
         --end
-        where setting_uuid =  '#settingUuid#'
+        where
+         -- if settingUuid != null
+                  setting_uuid = '#settingUuid#'
+         -- end
+         -- if uuids != null
+                  		setting_uuid in
+             -- for item=item index=index collection=uuids open=( separator=, close=)
+                  		'#item#'
+             -- end
+          -- end
 
 -- 删除系统设置信息
--- [deleteSet]
+-- [deleteSetting]
    UPDATE
         sys_setting
    -- trim prefix= set suffixOverrides=,
@@ -240,7 +249,7 @@
         -- end
 
 -- 根据主键查询系统设置
--- getSet
+-- [getSetting]
     SELECT
                setting_uuid as  settingUuid,
                login_title as loginTitle,
