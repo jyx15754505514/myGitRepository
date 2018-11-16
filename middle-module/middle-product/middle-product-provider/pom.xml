@@ -91,6 +91,12 @@
             <artifactId>apollo-core</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>middle-system</groupId>
+            <artifactId>middle-system-api</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

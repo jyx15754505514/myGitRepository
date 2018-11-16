@@ -3,6 +3,8 @@ package com.ccicnavi.bims.resource.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.TemplateService;
 import com.ccicnavi.bims.resource.pojo.TemplateDO;
 import org.slf4j.Logger;
@@ -11,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @ClassName: TemplateController
@@ -38,10 +38,10 @@ public class TemplateController {
     * @return com.ccicnavi.bims.common.ResultT   返回的结果类
     **/
     @RequestMapping(value = "/listTemplate", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT ListTemplate(@RequestBody TemplateDO template) {
+    public ResultT ListTemplate(@RequestBody PageParameter parameter) {
         try {
-            List<TemplateDO> TemplateList = templateService.listTemplate(template);
-            return ResultT.success(TemplateList);
+            PageBean<TemplateDO> pageBean = templateService.listTemplate(parameter);
+            return ResultT.success(pageBean);
         }catch (Exception e) {
             log.debug("根据条件查询模板失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);

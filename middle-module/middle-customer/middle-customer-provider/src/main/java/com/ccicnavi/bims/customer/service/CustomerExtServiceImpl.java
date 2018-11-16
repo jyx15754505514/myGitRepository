@@ -22,62 +22,52 @@ public class CustomerExtServiceImpl implements CustomerExtService {
 
     @Override
     public List<CustomerExtDO> listCustomerExt(CustomerExtDO CustomerExt) {
-        List<CustomerExtDO> custInvoceList=null;
         try {
-            custInvoceList=customerExtDao.listCustomerExt(CustomerExt);
+            return customerExtDao.listCustomerExt(CustomerExt);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("查询客户注册信息失败",e);
+            log.error("查询客户注册信息失败",e);
+            return null;
         }
-        return custInvoceList;
     }
 
     @Override
     public int saveCustomerExt(CustomerExtDO CustomerExt) {
-        Integer count=0;
         try {
-            count= customerExtDao.saveCustomerExt(CustomerExt);
+            return customerExtDao.saveCustomerExt(CustomerExt);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("保存客户注册信息失败",e);
+            log.error("保存客户注册信息失败",e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public int removeCustomerExt(String uuids) {
-        Integer count=0;
         try {
-            count=customerExtDao.removeCustomerExt(uuids);
+            return customerExtDao.removeCustomerExt(uuids);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("删除客户注册信息失败",e);
+            log.error("删除客户注册信息失败",e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public int updateCustomerExt(CustomerExtDO CustomerExt) {
-        Integer count=0;
         try {
-            count=customerExtDao.updateCustomerExt(CustomerExt);
+            return customerExtDao.updateCustomerExt(CustomerExt);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("修改客户注册信息失败",e);
+            log.error("修改客户注册信息失败",e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public CustomerExtDO getCustomerExt(CustomerExtDO CustomerExtDO) {
-        CustomerExtDO CustomerExt=null;
         try {
-            CustomerExt=customerExtDao.getCustomerExt(CustomerExtDO);
+            return customerExtDao.getCustomerExt(CustomerExtDO);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("根据主键查询客户注册信息信息失败~",e);
+            log.error("根据主键查询客户注册信息信息失败~",e);
+            return null;
         }
-        return CustomerExt;
     }
 
 

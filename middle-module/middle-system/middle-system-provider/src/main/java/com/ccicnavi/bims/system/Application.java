@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableApolloConfig
-@ComponentScan(basePackages = { "com.ccicnavi.bims.system.*" }) // 将该包下的文件纳入容器中
+@ComponentScan(basePackages = {"com.ccicnavi.bims.system.*"}) // 将该包下的文件纳入容器中
 @SpringBootApplication(scanBasePackages = {
-		"com.ccicnavi.bims.system.configuration"
+        "com.ccicnavi.bims.system.configuration"
 })
 public class Application {
-	public static void main(String[] args){
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 }

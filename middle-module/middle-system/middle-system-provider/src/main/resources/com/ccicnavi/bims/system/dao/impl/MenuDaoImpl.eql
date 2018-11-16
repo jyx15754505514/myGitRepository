@@ -1,7 +1,7 @@
 -- [listMenu]
 SELECT
     menu_uuid menuUuid,
-    app_sys_uuid appSysUuid
+    app_sys_uuid appSysUuid,
     parent_uuid parentUuid,
     menu_name menuName,
     menu_url menuUrl,

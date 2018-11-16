@@ -114,12 +114,6 @@ public class CustomerDO implements Serializable {
     private String extend3;
 
 
-    /**
-     * 客户注册信息所需字段
-     */
-
-
-
 
 
 

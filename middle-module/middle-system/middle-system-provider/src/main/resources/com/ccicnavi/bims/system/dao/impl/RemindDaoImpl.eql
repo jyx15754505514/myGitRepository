@@ -238,5 +238,5 @@
                        and  sr.app_sys_uuid = '#appSysUuid#'
                  --end
                  --if remindContent != null and  remindContent != ''
-                       sr.and  remind_content like '#remindContent:like#'
+                       and sr.remind_content like '#remindContent:like#'
                   --end
