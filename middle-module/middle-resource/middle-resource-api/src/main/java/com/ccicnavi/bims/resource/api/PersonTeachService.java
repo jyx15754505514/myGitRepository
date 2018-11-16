@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.resource.api;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.PersonTeachDO;
 
 import java.util.List;
@@ -44,4 +46,13 @@ public interface PersonTeachService {
      * @return PersonTeachDO
      */
     public PersonTeachDO getPersonTeach(PersonTeachDO PersonTeachDo);
+
+    /*
+    *@Param: [pageParameter]
+    *@description: 根据条件 获取人员教育经历 分页列表
+    *@return: com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.PersonTeachDO>
+    *@author: WangGengXiang
+    *@create: 2018/11/16 16:28
+    */
+    public PageBean<PersonTeachDO> getPagePersonTeach(PageParameter<PersonTeachDO> pageParameter);
 }

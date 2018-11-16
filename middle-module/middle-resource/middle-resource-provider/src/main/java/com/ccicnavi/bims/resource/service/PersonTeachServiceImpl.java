@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.resource.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.PersonTeachService;
 import com.ccicnavi.bims.resource.dao.PersonTeachDao;
 import com.ccicnavi.bims.resource.pojo.PersonTeachDO;
@@ -38,5 +40,10 @@ public class PersonTeachServiceImpl  implements PersonTeachService {
     @Override
     public PersonTeachDO getPersonTeach(PersonTeachDO personTeachDo) {
         return personTeachDao.getPersonTeach(personTeachDo);
+    }
+
+    @Override
+    public PageBean<PersonTeachDO> getPagePersonTeach(PageParameter<PersonTeachDO> pageParameter) {
+        return personTeachDao.getPgaePersonTeach(pageParameter);
     }
 }

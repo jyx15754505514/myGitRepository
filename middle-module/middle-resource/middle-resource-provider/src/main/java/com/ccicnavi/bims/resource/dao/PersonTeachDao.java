@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.resource.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.PersonTeachDO;
 
 import java.util.List;
@@ -44,4 +46,13 @@ public interface PersonTeachDao {
      * @return PersonTeachDO
      */
     public PersonTeachDO getPersonTeach(PersonTeachDO PersonTeachDo);
+
+    /*
+    *@Param: [pageParameter]
+    *@description: 根据条件 查询人员教育分页信息
+    *@return: com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.PersonTeachDO>
+    *@author: WangGengXiang
+    *@create: 2018/11/16 16:17
+    */
+     public PageBean<PersonTeachDO> getPgaePersonTeach(PageParameter<PersonTeachDO> pageParameter);
 }

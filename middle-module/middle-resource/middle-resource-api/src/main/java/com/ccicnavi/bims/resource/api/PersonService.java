@@ -19,7 +19,6 @@ public interface PersonService {
      */
     public List<PersonDO> listPerson(PersonDO personDo) throws Exception;
 
-
     /*
      *@Param: [personDo]
      *@description: 添加人员
@@ -64,6 +63,5 @@ public interface PersonService {
     *@create: 2018/11/16 15:38
     */
     public PageBean<PersonDO> getPagePerson (PageParameter<PersonDO> pageParameter);
-
 
 }
