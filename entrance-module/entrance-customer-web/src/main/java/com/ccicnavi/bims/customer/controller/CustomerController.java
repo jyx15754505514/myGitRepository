@@ -16,12 +16,12 @@ import java.util.List;
 
 /**
  * @program: bims-backend
- * @description: 该类的作用描述
+ * @description: 客户端客户服务请求
  * @author: LiJie
  * @create: 2018-11-15 23:22
  */
 @RestController
-@RequestMapping("/seal")
+@RequestMapping("/customer")
 public class CustomerController {
 
     private final static Logger log = LoggerFactory.getLogger(CustomerController.class);
@@ -29,14 +29,19 @@ public class CustomerController {
     @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20883")
     CustomerService customerService;
 
-    @RequestMapping(value = "/ListSeal", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT sayHello(@RequestBody CustomerDO customerDO){
+    /**
+     * 查询全部客户信息
+     * @param customerDO
+     * @return
+     */
+    @RequestMapping(value = "/listAllCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT listAllCustomer(@RequestBody CustomerDO customerDO){
         List<CustomerDO> customerList = null;
         try {
             customerList = customerService.listCustomer(customerDO);
             return ResultT.success(customerList);
         } catch (Exception e) {
-            log.debug("根据条件查询封识失败", e);
+            log.error("根据条件查询客户失败", e);
             return ResultT.failure(ResultCode.DATA_IS_WRONG);
         }
     }

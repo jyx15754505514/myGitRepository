@@ -1,6 +1,10 @@
 package com.ccicnavi.bims.system.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.LogDO;
+import com.ccicnavi.bims.system.pojo.LogDTO;
+
 import java.util.List;
 
 /**
@@ -11,7 +15,7 @@ import java.util.List;
 public interface LogDao {
 
     /**查询所有的日志*/
-    List<LogDO> listLog(LogDO logDO) throws Exception;
+    PageBean<LogDTO> listLog(PageParameter<LogDTO> pageParameter) throws Exception;
     /**获取指定的日志*/
     LogDO getLog(LogDO logDO) throws Exception;
     /**新增日志信息*/

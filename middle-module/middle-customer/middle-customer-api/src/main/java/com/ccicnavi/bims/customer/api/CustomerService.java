@@ -1,9 +1,6 @@
 package com.ccicnavi.bims.customer.api;
-
-
 import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import com.ccicnavi.bims.customer.pojo.CustomerDTO;
-
 import java.util.List;
 
 /**

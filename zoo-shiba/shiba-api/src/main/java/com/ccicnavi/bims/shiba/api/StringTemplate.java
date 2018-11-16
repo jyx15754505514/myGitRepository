@@ -19,6 +19,15 @@ public interface  StringTemplate {
     Object get(Object key);
 
     /**
+     * 根据key查询缓存
+     *
+     * @param key
+     * @return
+     */
+    Object getSn(Object key,long start,long end);
+
+
+    /**
      * 根据key删除缓存
      *
      * @param key
