@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.system.service.api;
 
+import com.ccicnavi.bims.system.pojo.LogDTO;
 import com.ccicnavi.bims.system.pojo.LogDetailDO;
 
 /* *
@@ -24,7 +25,7 @@ public interface LogDetailService {
      * @Param [logDetailDO]
      * @Return java.lang.Integer
      */
-    Integer insertLogDetail(LogDetailDO logDetailDO);
+    Integer insertLogDetail(LogDTO logDTO);
     /* *
      * @Author MengZiJie
      * @Description 更新日志详情
@@ -32,7 +33,7 @@ public interface LogDetailService {
      * @Param [logDetailDO]
      * @Return java.lang.Integer
      */
-    Integer updateLogDetail(LogDetailDO logDetailDO);
+    Integer updateLogDetail(LogDTO logDTO);
     /* *
      * @Author MengZiJie
      * @Description 删除日志
@@ -40,5 +41,5 @@ public interface LogDetailService {
      * @Param [logDetailDO]
      * @Return java.lang.Integer
      */
-    Integer deleteLogDetail(LogDetailDO logDetailDO);
+    Integer deleteLogDetail(LogDTO logDTO);
 }
