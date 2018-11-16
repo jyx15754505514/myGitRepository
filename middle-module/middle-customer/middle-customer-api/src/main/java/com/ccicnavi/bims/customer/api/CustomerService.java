@@ -2,6 +2,7 @@ package com.ccicnavi.bims.customer.api;
 
 
 import com.ccicnavi.bims.customer.pojo.CustomerDO;
+import com.ccicnavi.bims.customer.pojo.CustomerDTO;
 
 import java.util.List;
 
@@ -26,5 +27,11 @@ public interface CustomerService {
     int updateCustomer(CustomerDO customer);
 
     CustomerDO getCustomer(CustomerDO customer);
+
+    /**新增客户与客户注册信息*/
+    int saveCustomerAndExt(CustomerDTO customerDTO);
+
+    /**客户信息唯一性验证*/
+    boolean verifyCustInfoOnly(CustomerDO customer);
 
 }
