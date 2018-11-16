@@ -93,6 +93,24 @@ public class PersonCultExpeController {
     }
 
     /*
+    *@program: [personCultExpe]
+    *@description: 根据主键获取人员培训经历
+    *@return: com.ccicnavi.bims.common.ResultT
+    *@author: XiaWei
+    *@create: 2018/11/16 18:11
+    */
+    @RequestMapping(value = "/getPersonCultExpe", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT getPersonCultExpeDO(@RequestBody PersonCultExpeDO personCultExpe) {
+        try {
+            PersonCultExpeDO personCultExpeDO = personCultExpeService.getPersonCultExpe(personCultExpe);
+            return ResultT.success(personCultExpeDO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return  ResultT.failure(ResultCode.GET_FAILURE);
+        }
+    }
+
+    /*
     *@program: [pageParameter]
     *@description: 根据条件 查询人员培训经历分页数据
     *@return: com.ccicnavi.bims.common.ResultT

@@ -2,6 +2,10 @@ package com.ccicnavi.bims.system.service;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.ResultCode;
+import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.impl.SettingDaoImpl;
 import com.ccicnavi.bims.system.service.api.SettingService;
 import com.ccicnavi.bims.system.dao.SettingDao;
@@ -34,15 +38,19 @@ public class SettingServiceImpl implements SettingService{
     */
 
     @Override
-    public List<SettingDO> listSetting(SettingDO settingDO){
+    public ResultT listSetting(PageParameter<SettingDO> pageParameter){
         try{
-            return settingDao.listSetting(settingDO);
+            PageBean<SettingDO> pageBean = settingDao.listSetting(pageParameter);
+            if (pageBean != null){
+                return ResultT.success(pageBean);
+            }
         }catch (Exception e){
             log.error("查询系统设置信息失败", e);
-            return null;
         }
-
+        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
+
+
 
     /**
     *@Description: 新增系统设置信息

@@ -13,6 +13,8 @@ import java.util.List;
 
 @Service
 public class PersonCultExpeDaoImpl implements PersonCultExpeDao {
+
+    Eql eql  =  new Eql();
     /*
     *@program: [personCultExpe]
     *@description: 查询人员培训经历
@@ -22,7 +24,7 @@ public class PersonCultExpeDaoImpl implements PersonCultExpeDao {
     */
     @Override
     public List<PersonCultExpeDO> listPersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
-        return new Eql().select("listPersonCultExpe").params(personCultExpe).returnType(PersonCultExpeDO.class).execute();
+        return eql.select("listPersonCultExpe").params(personCultExpe).returnType(PersonCultExpeDO.class).execute();
     }
 
     /*
@@ -34,7 +36,7 @@ public class PersonCultExpeDaoImpl implements PersonCultExpeDao {
     */
     @Override
     public Integer insertPersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
-        return new Eql().insert("insertPersonCultExpe").params(personCultExpe).returnType(PersonCultExpeDO.class).execute();
+        return eql.insert("insertPersonCultExpe").params(personCultExpe).returnType(PersonCultExpeDO.class).execute();
     }
 
     /*
@@ -46,7 +48,7 @@ public class PersonCultExpeDaoImpl implements PersonCultExpeDao {
     */
     @Override
     public Integer updatePersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
-        return new Eql().insert("updatePersonCultExpe").params(personCultExpe).returnType(PersonCultExpeDO.class).execute();
+        return eql.insert("updatePersonCultExpe").params(personCultExpe).returnType(PersonCultExpeDO.class).execute();
     }
 
     /*
@@ -58,7 +60,19 @@ public class PersonCultExpeDaoImpl implements PersonCultExpeDao {
     */
     @Override
     public Integer deletePersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
-        return new Eql().insert("deletePersonCultExpe").params(personCultExpe).returnType(PersonCultExpeDO.class).execute();
+        return eql.insert("deletePersonCultExpe").params(personCultExpe).returnType(PersonCultExpeDO.class).execute();
+    }
+
+    /*
+    *@program: [personCultExpe]
+    *@description: 根据主键获取人员培训经历
+    *@return: com.ccicnavi.bims.resource.pojo.PersonCultExpeDO
+    *@author: XiaWei
+    *@create: 2018/11/16 18:08
+    */
+    @Override
+    public PersonCultExpeDO getPersonCultExpe(PersonCultExpeDO personCultExpe) {
+        return eql.selectFirst("getPersonCultExpe").params(personCultExpe).returnType(PersonCultExpeDO.class).execute();
     }
 
     /*

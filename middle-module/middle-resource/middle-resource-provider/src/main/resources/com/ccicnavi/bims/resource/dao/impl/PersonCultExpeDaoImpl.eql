@@ -179,6 +179,34 @@ WHERE
             '#item#'
 -- end
 
+--[getPersonCultExpe]
+    select
+        cult_expe_uuid cultExpeUuid,
+        person_uuid personUuid,
+        start_time startTime,
+        end_time endTime,
+        cult_name cultName,
+        cult_org cultOrg,
+        qualification_cert qualificationCert,
+        cult_type cultType,
+        is_sign isSign,
+        comments comments,
+        is_deleted isDeleted,
+        created_time createdTime,
+        created_uuid createdUuid,
+        created_name createdName,
+        updated_time updatedTime,
+        updated_name updatedName,
+        org_uuid orgUuid,
+        app_sys_uuid appSysUuid,
+        business_line businessLine
+      from
+        res_person_cult_expe
+    WHERE
+       is_deleted = 'N'
+    -- iff cultExpeUuid != null and cultExpeUuid != ''
+    and cult_expe_uuid = '#cultExpeUuid#'
+
 --[getPagePersonCultExpe]
     select
         cult_expe_uuid cultExpeUuid,

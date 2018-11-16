@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.system.pojo.MenuDO;
+import com.ccicnavi.bims.common.ResultT;
 import java.util.List;
 /* *
  * @Author MengZiJie
@@ -16,7 +17,7 @@ public interface MenuService {
      * @Param [menuDO]
      * @Return java.util.List<com.ccicnavi.bims.system.pojo.MenuDO>
      */
-    List<MenuDO> listMenu(MenuDO menuDO);
+    ResultT listMenu(MenuDO menuDO);
     /* *
      * @Author MengZiJie
      * @Description 获取菜单
