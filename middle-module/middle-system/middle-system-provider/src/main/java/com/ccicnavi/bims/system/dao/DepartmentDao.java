@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.system.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.DepartmentDO;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public interface DepartmentDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public List<DepartmentDO> listDepartment(DepartmentDO departmentDO);
+   public PageBean<DepartmentDO> listDepartment(PageParameter<DepartmentDO> pageParameter);
 
     /**
     *@Description: 新增部门信息

@@ -20,7 +20,7 @@ public interface SpecialNeedDao {
     *@Author: WangYingLing
     *@date: 2018/11/15
     */
-    List<SpecialNeedDO> listSpecialNeed(SpecialNeedDO specialNeed);
+    List<SpecialNeedDO> listSpecialNeed();
 
     /**
      *@Description: 新增客户特殊需求信息

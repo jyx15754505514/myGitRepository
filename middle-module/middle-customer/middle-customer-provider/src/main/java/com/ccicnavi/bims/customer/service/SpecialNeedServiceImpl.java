@@ -33,10 +33,10 @@ public class SpecialNeedServiceImpl implements SpecialNeedService {
     public List<SpecialNeedDO> listSpecialNeed(SpecialNeedDO specialNeed) {
         List<SpecialNeedDO> specialNeedList=null;
         try {
-            specialNeedList=specialNeedDao.listSpecialNeed(specialNeed);
+            specialNeedList=specialNeedDao.listSpecialNeed();
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("查询客户特殊需求信息失败",e);
+            log.error("查询客户特殊需求信息失败",e);
         }
         return specialNeedList;
     }
@@ -55,7 +55,7 @@ public class SpecialNeedServiceImpl implements SpecialNeedService {
             count=specialNeedDao.saveSpecialNeed(specialNeed);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("新增客户特殊需求信息失败",e);
+            log.error("新增客户特殊需求信息失败",e);
         }
         return count;
     }
@@ -74,7 +74,7 @@ public class SpecialNeedServiceImpl implements SpecialNeedService {
             count=specialNeedDao.removeSpecialNeed(needUuid);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("删除客户特殊需求信息失败",e);
+            log.error("删除客户特殊需求信息失败",e);
         }
         return count;
     }
@@ -93,7 +93,7 @@ public class SpecialNeedServiceImpl implements SpecialNeedService {
             count=specialNeedDao.updateSpecialNeed(specialNeed);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("修改客户特殊需求信息失败",e);
+            log.error("修改客户特殊需求信息失败",e);
         }
         return count;
     }
@@ -111,8 +111,8 @@ public class SpecialNeedServiceImpl implements SpecialNeedService {
         try {
             specialNeedBean=specialNeedDao.getSpecialNeed(specialNeed);
         } catch (Exception e) {
+            log.error("查询客户特殊需求信息失败",e);
             e.printStackTrace();
-            log.debug("查询客户特殊需求信息失败",e);
         }
         return specialNeedBean;
     }
