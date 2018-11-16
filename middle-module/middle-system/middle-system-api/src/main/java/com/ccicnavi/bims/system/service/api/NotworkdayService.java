@@ -1,7 +1,6 @@
 package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
-
 import java.util.List;
 
 /**
@@ -51,4 +50,5 @@ public interface NotworkdayService {
      * @throws Exception
      */
     public NotworkdayDO getNotworkday(NotworkdayDO notworkday)throws Exception;
+
 }
