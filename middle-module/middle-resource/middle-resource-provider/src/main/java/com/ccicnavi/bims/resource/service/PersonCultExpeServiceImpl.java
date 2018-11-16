@@ -64,7 +64,7 @@ public class PersonCultExpeServiceImpl implements PersonCultExpeService {
     *@create: 2018/11/16 10:28
     */
     @Override
-    public Integer updatePersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
+    public Integer updatePersonCultExpe(PersonCultExpeDO personCultExpe) {
         Integer num = 0;
         try {
             num = personCultExpeDao.updatePersonCultExpe(personCultExpe);
