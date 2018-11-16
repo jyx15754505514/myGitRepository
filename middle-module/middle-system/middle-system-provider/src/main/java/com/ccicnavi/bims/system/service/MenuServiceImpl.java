@@ -33,8 +33,8 @@ public class MenuServiceImpl implements MenuService {
         try {
             menu = menuDao.listMenu(menuDO);
         } catch (Exception e) {
-            log.debug("查询菜单失败",e);
-            e.printStackTrace();
+            log.error("查询菜单失败",e);
+            return null;
         }
         return menu;
     }
@@ -52,8 +52,8 @@ public class MenuServiceImpl implements MenuService {
         try {
             menu = menuDao.getMenu(menuDO);
         } catch (Exception e) {
-            log.debug("获取菜单失败",e);
-            e.printStackTrace();
+            log.error("获取菜单失败",e);
+           return null;
         }
         return menu;
     }
@@ -71,8 +71,8 @@ public class MenuServiceImpl implements MenuService {
         try {
             menu = menuDao.insertMenu(menuDO);
         } catch (Exception e) {
-            log.debug("新增菜单失败",e);
-            e.printStackTrace();
+            log.error("新增菜单失败",e);
+           return null;
         }
         return menu;
     }
@@ -90,8 +90,8 @@ public class MenuServiceImpl implements MenuService {
         try {
             menu = menuDao.updateMenu(menuDO);
         } catch (Exception e) {
-            log.debug("更细菜单失败",e);
-            e.printStackTrace();
+            log.error("更细菜单失败",e);
+            return null;
         }
         return menu;
     }
@@ -109,8 +109,8 @@ public class MenuServiceImpl implements MenuService {
         try {
             menu = menuDao.deleteMenu(menuDO);
         } catch (Exception e) {
-            log.debug("删除菜单失败",e);
-            e.printStackTrace();
+            log.error("删除菜单失败",e);
+           return null;
         }
         return menu;
     }
