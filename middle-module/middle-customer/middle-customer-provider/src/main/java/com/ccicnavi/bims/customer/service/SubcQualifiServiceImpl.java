@@ -33,10 +33,10 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
     public List<SubcQualifiDO> listSubcQuali(SubcQualifiDO subcQuali) {
         List<SubcQualifiDO> subcQualifiList=null;
         try {
-            subcQualifiList=subcQualifiDao.listSubcuQuali(subcQuali);
+            subcQualifiList=subcQualifiDao.listSubcuQuali();
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("查询分包方资质信息失败",e);
+            log.error("查询分包方资质信息失败",e);
         }
         return subcQualifiList;
     }
@@ -54,8 +54,8 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
         try {
             count=subcQualifiDao.saveSubcuQuali(subcQuali);
         } catch (Exception e) {
+            log.error("新增分包方资质信息失败",e);
             e.printStackTrace();
-            log.debug("新增分包方资质信息失败",e);
         }
         return count;
     }
@@ -74,7 +74,7 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
             count=subcQualifiDao.removeSubcuQuali(subcQualifiUuid);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("删除分包方资质信息失败",e);
+            log.error("删除分包方资质信息失败",e);
         }
         return count;
     }
@@ -93,7 +93,7 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
             count=subcQualifiDao.updateSubcuQuali(subcQuali);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("修改分包方资质信息失败",e);
+            log.error("修改分包方资质信息失败",e);
         }
         return count;
     }
@@ -112,7 +112,7 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
             subcQualifiBean=subcQualifiDao.getSubcQuali(subcQuali);
         } catch (Exception e) {
             e.printStackTrace();
-            log.debug("查询分包方资质信息失败",e);
+            log.error("查询分包方资质信息失败",e);
         }
         return subcQualifiBean;
     }

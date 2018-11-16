@@ -20,7 +20,7 @@ public interface SubcontractorDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    List<SubcontractorDO> listSubcontractor(SubcontractorDO subcontractor);
+    List<SubcontractorDO> listSubcontractor();
 
     /**
      *@Description: 新增分包方信息
