@@ -23,9 +23,16 @@ SELECT
     log.updated_name updatedName,
     log.org_uuid orgUuid,
     log.app_sys_uuid appSysUuid,
-    log.business_line businessLine
+    log.business_line businessLine,
+    detail.oper_name operName,
+    detail.oper_time operTime,
+    detail.oper_content operContent,
+    detail.oper_module operModule,
+    detail.comments detailComments
 from
     sys_log as log
+left join sys_log_detail as detail on log.log_uuid = detail.log_uuid
+      and detail.is_deleted = 'N'
 where
     log.is_deleted = 'N'
 and log.org_uuid = '#orgUuid#'

@@ -1,10 +1,14 @@
 package com.ccicnavi.bims.system.dao.impl;
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.LogDao;
 import com.ccicnavi.bims.system.pojo.LogDO;
+import com.ccicnavi.bims.system.pojo.LogDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 import java.util.List;
 /* *
@@ -24,10 +28,10 @@ public class LogDaoImpl implements LogDao {
      * @Return java.util.List<com.ccicnavi.bims.system.pojo.LogDO>
      */
     @Override
-    public List<LogDO> listLog(LogDO logDO) {
-        List<LogDO> log = new Eql().select("listLog").params(logDO).returnType(LogDO.class).execute();
-        System.out.println(log);
-        return log;
+    public PageBean<LogDTO> listLog(PageParameter<LogDTO> pageParameter) {
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<LogDTO> log = new Eql("DEFAULT").select("listLog").params(pageParameter.getParameter()).returnType(LogDTO.class).limit(eqlPage).execute();
+        return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),log);
     }
 
     public static void main(String[] args) {
