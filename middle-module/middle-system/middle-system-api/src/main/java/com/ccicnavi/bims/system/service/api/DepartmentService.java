@@ -1,8 +1,8 @@
 package com.ccicnavi.bims.system.service.api;
 
+import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.DepartmentDO;
-
-import java.util.List;
 
 /**
  *@program: bims-backend
@@ -13,10 +13,10 @@ import java.util.List;
 public interface DepartmentService {
     /**
      * 查询部门信息
-     * @param departmentDO
+     * @param pageParameter
      * @return
      */
-    public List<DepartmentDO>listDepartment(DepartmentDO departmentDO);
+    public ResultT listDepartment(PageParameter<DepartmentDO> pageParameter);
 
     /**
      * 新增部门信息

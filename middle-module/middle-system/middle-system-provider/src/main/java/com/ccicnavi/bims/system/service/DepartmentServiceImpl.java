@@ -2,6 +2,10 @@ package com.ccicnavi.bims.system.service;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.ResultCode;
+import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.impl.DepartmentDaoImpl;
 import com.ccicnavi.bims.system.dao.impl.SettingDaoImpl;
 import com.ccicnavi.bims.system.service.api.DepartmentService;
@@ -34,13 +38,16 @@ import java.util.List;
      *@date: 2018/11/15
      */
      @Override
-     public List<DepartmentDO> listDepartment(DepartmentDO departmentDO){
+     public ResultT listDepartment(PageParameter<DepartmentDO> pageParameter){
          try {
-             return departmentDao.listDepartment(departmentDO);
+             PageBean<DepartmentDO> pageBean = departmentDao.listDepartment(pageParameter);
+             if(pageBean != null) {
+                 return  ResultT.success(pageBean);
+             }
          } catch (Exception e) {
              log.error("查询部门信息失败",e);
-             return null;
          }
+         return  ResultT.failure(ResultCode.LIST_FAILURE);
      }
 
      /*/**
