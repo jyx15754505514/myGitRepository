@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.dao.impl;
 import com.ccicnavi.bims.system.dao.RoleDao;
 import com.ccicnavi.bims.system.pojo.RoleDO;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,4 +36,6 @@ public class RoleDaoImpl implements RoleDao {
     public RoleDO getRole(RoleDO role) throws Exception {
         return new Eql().selectFirst("getRole").params(role).returnType(RoleDO.class).execute();
     }
+
+
 }
