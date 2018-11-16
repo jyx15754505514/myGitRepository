@@ -20,17 +20,4 @@ public class EntranceCustomerApplicaiton {
         SpringApplication.run(EntranceCustomerApplicaiton.class,args);
     }
 
-    @RestController
-    @RequestMapping("/customer")
-    public static class CustomerDemoController {
-
-
-        @Reference(version = "1.0.0",timeout = 1000,url = "dubbo://127.0.0.1:20883")
-        DemoService demoService;
-
-        @RequestMapping("/sayHello")
-        public String sayHello(String name){
-            return demoService.sayHello(name);
-        }
-    }
 }
