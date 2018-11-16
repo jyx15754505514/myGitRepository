@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.product.service;
+package com.ccicnavi.bims.system.service;
 import java.util.Date;
 
 
