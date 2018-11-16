@@ -220,3 +220,39 @@ WHERE
     is_deleted = 'N'
     and equip_test_uuid = '#equipTestUuid#'
 -- end
+
+-- [listEquipTestDTO]
+  SELECT
+    et.equip_test_uuid equipTestUuid,
+    et.equip_uuid equipUuid,
+    et.cert_no certNo,
+    et.test_date testDate,
+    et.test_cycle testCycle,
+    et.is_long_term isLongTerm,
+    et.test_valid_date testValidDate,
+    et.test_result testResult,
+    et.test_type testType,
+    et.test_fee testFee,
+    et.fee_desc feeDesc,
+    et.standard_desc standardDesc,
+    et.online_cert_url onlineCertUrl,
+    et.business_line businessLine,
+    et.comments comments,
+    et.is_deleted isDeleted,
+    et.created_time createdTime,
+    et.created_uuid createdUuid,
+    et.created_name createdName,
+    et.updated_time updatedTime,
+    et.updated_name updatedName,
+    et.org_uuid orgUuid,
+    e.equip_name equipName,
+    e.equip_name_en equipNameEn,
+    e.equip_spec equipSpec,
+    e.factory_no factoryNo,
+    e.manufacture manufacture,
+    e.dept_uuid deptUuid
+    from
+    res_equip_test et
+    LEFT JOIN res_equip e ON e.equip_uuid = et.equip_uuid
+where
+    et.is_deleted = 'N'

@@ -1,9 +1,13 @@
 package com.ccicnavi.bims.resource.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.EquipUseService;
 import com.ccicnavi.bims.resource.dao.EquipUseDao;
+import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 import com.ccicnavi.bims.resource.pojo.EquipUseDO;
+import com.ccicnavi.bims.resource.pojo.EquipUseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,8 +39,7 @@ public class EquipUseServiceImpl implements EquipUseService {
         try {
             equipUseDO = equipUseDao.getEquipUse(equipUseUuid);
         } catch (Exception e) {
-            log.debug("根据设备领用归还信息主键获取设备领用归还信息错误",e);
-            e.printStackTrace();
+            log.error("根据设备领用归还信息主键获取设备领用归还信息错误",e);
         }
         return equipUseDO;
     }
@@ -49,13 +52,12 @@ public class EquipUseServiceImpl implements EquipUseService {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipUseDO>
      */
     @Override
-    public List<EquipUseDO> listEquipUse(EquipUseDO equipUseDO){
-        List<EquipUseDO> listEquipUseDO = null;
+    public PageBean<EquipUseDO> listEquipUse(PageParameter<EquipUseDO> pageParameter){
+        PageBean<EquipUseDO> listEquipUseDO = null;
         try {
-            listEquipUseDO = equipUseDao.listEquipUse(equipUseDO);
+            listEquipUseDO = equipUseDao.listEquipUse(pageParameter);
         } catch (Exception e) {
-            log.debug("设备领用归还信息查询错误",e);
-            e.printStackTrace();
+            log.error("设备领用归还信息查询错误",e);
         }
         return listEquipUseDO;
     }
@@ -73,8 +75,7 @@ public class EquipUseServiceImpl implements EquipUseService {
         try {
             count = equipUseDao.insertEquipUse(equipUseDO);
         } catch (Exception e) {
-            log.debug("新增设备领用归还信息错误",e);
-            e.printStackTrace();
+            log.error("新增设备领用归还信息错误",e);
         }
         return count;
     }
@@ -92,8 +93,7 @@ public class EquipUseServiceImpl implements EquipUseService {
         try {
             count = equipUseDao.updateEquipUse(equipUseDO);
         } catch (Exception e) {
-            log.debug("更新设备领用归还信息错误",e);
-            e.printStackTrace();
+            log.error("更新设备领用归还信息错误",e);
         }
         return count;
     }
@@ -111,9 +111,26 @@ public class EquipUseServiceImpl implements EquipUseService {
         try {
             count = equipUseDao.deleteEquipUse(equipUseUuid);
         } catch (Exception e) {
-            log.debug("根据设备领用归还信息主键删除设备领用归还信息错误",e);
-            e.printStackTrace();
+            log.error("根据设备领用归还信息主键删除设备领用归还信息错误",e);
         }
         return count;
+    }
+
+    /**
+     * @Author panyida
+     * @Description 设备领用归还信息查询（包含器具五要素字段）
+     * @Date 16:28 2018/11/14
+     * @Param [EquipTestDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDTO>
+     */
+    @Override
+    public PageBean<EquipUseDTO> listEquipUseDTO(PageParameter<EquipUseDTO> pageParameter){
+        PageBean<EquipUseDTO> listEquipUseDTO = null;
+        try {
+            listEquipUseDTO = equipUseDao.listEquipUseDTO(pageParameter);
+        } catch (Exception e) {
+            log.error("设备领用归还信息查询（包含器具五要素字段）错误",e);
+        }
+        return listEquipUseDTO;
     }
 }

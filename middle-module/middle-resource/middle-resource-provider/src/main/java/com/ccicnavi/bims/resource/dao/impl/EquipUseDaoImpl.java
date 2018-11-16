@@ -1,8 +1,15 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.EquipUseDao;
+import com.ccicnavi.bims.resource.pojo.EquipTestDO;
+import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 import com.ccicnavi.bims.resource.pojo.EquipUseDO;
+import com.ccicnavi.bims.resource.pojo.EquipUseDTO;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,8 +42,10 @@ public class EquipUseDaoImpl implements EquipUseDao {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipUseDO>
      */
     @Override
-    public List<EquipUseDO> listEquipUse(EquipUseDO equipUseDO){
-        return EqlUtils.getInstance("druid").select("listEquipUse").params(equipUseDO).returnType(EquipUseDO.class).execute();
+    public PageBean<EquipUseDO> listEquipUse(PageParameter<EquipUseDO> pageParameter){
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<EquipUseDO> listEquipUse = new Eql("druid").select("listEquipUse").params(pageParameter.getParameter()).returnType(EquipUseDO.class).limit(eqlPage).execute();
+        return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquipUse);
     }
 
     /**
@@ -73,5 +82,19 @@ public class EquipUseDaoImpl implements EquipUseDao {
     @Override
     public Integer deleteEquipUse(String equipUseUuid){
         return EqlUtils.getInstance("druid").delete("deleteEquipUse").params(equipUseUuid).returnType(Integer.class).execute();
+    }
+
+    /**
+     * @Author panyida
+     * @Description 设备领用归还信息查询（包含器具五要素字段）
+     * @Date 16:28 2018/11/14
+     * @Param [EquipTestDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDTO>
+     */
+    @Override
+    public PageBean<EquipUseDTO> listEquipUseDTO(PageParameter<EquipUseDTO> pageParameter){
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<EquipUseDTO> listEquipUseDTO = new Eql("druid").select("listEquipUseDTO").params(pageParameter.getParameter()).returnType(EquipUseDTO.class).limit(eqlPage).execute();
+        return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquipUseDTO);
     }
 }
