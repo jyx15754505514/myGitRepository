@@ -2,6 +2,8 @@ package com.ccicnavi.bims.resource.api;
 
 import java.util.List;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.TemplateDO;
 
 /**
@@ -14,11 +16,11 @@ public interface TemplateService {
 	
     /**
      * 查询模板信息
-     * @param tepmlate
+     * @param parameter
      * @return List<TemplateDO>
      * @throws Exception
      */
-    public List<TemplateDO> listTemplate(TemplateDO tepmlate) throws Exception;
+    public PageBean<TemplateDO> listTemplate(PageParameter parameter) throws Exception;
 
     /**
      * 新增模板

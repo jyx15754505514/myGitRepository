@@ -4,14 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
 import java.util.Date;
 
-
+/**
+ * @program: bims-backend
+ * @description: 客户基本信息与客户注册信息的DTO实体
+ * @author: LiJie
+ * @create: 2018-11-15 11:28
+ */
 @Setter
 @Getter
 @ToString
-public class CustomerDO implements Serializable {
+public class CustomerDTO {
 
     private String custUuid;
 
@@ -113,6 +117,32 @@ public class CustomerDO implements Serializable {
 
     private String extend3;
 
+
+    /**
+     * 客户注册信息需要的字段
+     */
+
+    private String legalRep;
+
+    private String regCapital;
+
+    private Date regDate;
+
+    private String regNo;
+
+    private String businessScope;
+
+    private String bankName;
+
+    private String bankAccount;
+
+    private String payUnitName;
+
+    private String payUnitAddr;
+
+    private String payUnitTel;
+
+    private String taxNo;
 
 
 

@@ -3,7 +3,10 @@ package com.ccicnavi.bims.system.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.LogDO;
+import com.ccicnavi.bims.system.pojo.LogDTO;
 import com.ccicnavi.bims.system.service.api.LogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,11 +38,11 @@ public class LogController {
      * @Return com.ccicnavi.bims.common.ResultT
      */
     @RequestMapping(value = "/listLog",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listLog(@RequestBody LogDO logDO){
+    public ResultT listLog(@RequestBody PageParameter<LogDTO> pageParameter){
         ResultT resultT = new ResultT();
-        List<LogDO> logDOS = null;
+        PageBean<LogDTO> logDOS = null;
         try {
-            logDOS = logService.listLog(logDO);
+            logDOS = logService.listLog(pageParameter);
             return ResultT.success(logDOS);
         } catch (Exception e) {
             log.error("查询日志失败",e);
