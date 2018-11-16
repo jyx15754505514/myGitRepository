@@ -1,9 +1,8 @@
 package com.ccicnavi.bims.system.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
-import org.n3r.eql.EqlTran;
-
-import java.util.List;
 
 
 /**
@@ -16,11 +15,11 @@ public interface NotworkdayDao {
 	
 	/**
      * 查询非工作日信息
-     * @param notworkday
-     * @return List<Notworkday>
+     * @param parameter
+     * @return PageBean<Notworkday>
      * @throws Exception
      */
-    public List<NotworkdayDO> listNotworkday(NotworkdayDO notworkday) throws Exception;
+    public PageBean<NotworkdayDO> listNotworkday(PageParameter parameter) throws Exception;
 
     /**
      * 新增非工作日

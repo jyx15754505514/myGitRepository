@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
 import com.ccicnavi.bims.system.service.api.NotworkdayService;
 import org.slf4j.Logger;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @ClassName: NotworkdayController
@@ -38,14 +37,11 @@ public class NotworkdayController {
     * @return com.ccicnavi.bims.common.ResultT   返回的结果类
     **/
     @RequestMapping(value = "/listNotworkday", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT ListNotworkday(@RequestBody NotworkdayDO notworkday) {
+    public ResultT ListTemplate(@RequestBody PageParameter parameter) {
         try {
-            List<NotworkdayDO> notworkdayList = notworkdayService.listNotworkday(notworkday);
-            //请求成功返回并设置返回数据
-            return ResultT.success(notworkdayList);
+            return notworkdayService.listNotworkday(parameter);
         }catch (Exception e) {
-            log.debug("根据条件查询非工作日失败", e);
-            //请求失败返回并设置错误信息
+            log.debug("根据条件查询模板失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
@@ -61,11 +57,13 @@ public class NotworkdayController {
     public ResultT insertNotworkday(@RequestBody NotworkdayDO notworkday) {
         try {
             Integer insertResult = notworkdayService.insertNotworkday(notworkday);
-            return ResultT.success();
+            if(insertResult != null && insertResult != 0) {
+                return ResultT.success();
+            }
         }catch (Exception e) {
-            log.debug("根据条件查询非工作日失败", e);
-            return ResultT.failure(ResultCode.LIST_FAILURE);
+            log.debug("新增非工作日失败", e);
         }
+        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
     /*
@@ -78,12 +76,14 @@ public class NotworkdayController {
     @RequestMapping(value = "/updateNotworkday", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT updateNotworkday(@RequestBody NotworkdayDO notworkday) {
         try {
-            Integer insertResult = notworkdayService.updateNotworkday(notworkday);
-            return ResultT.success();
+            Integer updateResult = notworkdayService.updateNotworkday(notworkday);
+            if(updateResult != null && updateResult != 0) {
+                return ResultT.success();
+            }
         }catch (Exception e) {
             log.debug("更新非工作日失败", e);
-            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     /*
@@ -96,12 +96,14 @@ public class NotworkdayController {
     @RequestMapping(value = "/deleteNotworkday", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT deleteNotworkday(@RequestBody NotworkdayDO notworkday) {
         try {
-            Integer insertResult = notworkdayService.deleteNotworkday(notworkday);
-            return ResultT.success();
+            Integer deleteResult = notworkdayService.deleteNotworkday(notworkday);
+            if(deleteResult != null && deleteResult != 0) {
+                return ResultT.success();
+            }
         }catch (Exception e) {
             log.debug("删除非工作日失败", e);
-            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     /*
@@ -115,11 +117,13 @@ public class NotworkdayController {
     public ResultT getNotworkday(@RequestBody NotworkdayDO notworkday) {
         try {
             NotworkdayDO resultBean = notworkdayService.getNotworkday(notworkday);
-            return ResultT.success(resultBean);
+            if(resultBean != null) {
+                return ResultT.success();
+            }
         }catch (Exception e) {
             log.debug("获取指定非工作日失败", e);
-            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
 }
