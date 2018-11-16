@@ -32,6 +32,13 @@ public class ShibaStringTest {
     }
 
     @Test
+    public void getSn() {
+        String key = "key4";
+        Object value = stringTemplate.getSn(key, 0, 1);
+        System.out.println("缓存key=" + value);
+    }
+
+    @Test
     public void delete() {
         String key = "key4";
         Boolean delete = stringTemplate.delete(key);

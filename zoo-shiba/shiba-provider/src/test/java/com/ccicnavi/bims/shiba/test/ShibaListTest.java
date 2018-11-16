@@ -24,15 +24,17 @@ public class ShibaListTest {
         List<Object> list = new ArrayList();
         list.add("list111333");
         list.add("list222555");
-        listRedisTemplate.rightPush(key, list);
+        list.add("list333333");
+        list.add("list444444");
+//        listRedisTemplate.delete(key);
+        listRedisTemplate.rightPush(key, "66666");
         System.out.println("添加缓存成功");
     }
 
     @Test
-    public void range() {
-        String key = "key11";
-        List<Object> range = listRedisTemplate.range(key);
-        System.out.println("缓存key=" + range);
+    public void rightPushAll() {
+        listRedisTemplate.rightPushAll("key22", "66666", "3333", "444444");
+        System.out.println("添加缓存成功");
     }
 
     @Test
@@ -49,4 +51,21 @@ public class ShibaListTest {
         System.out.println("缓存是否存在 ？" + persist);
     }
 
+    @Test
+    public void range() {
+        List range = listRedisTemplate.range("key11", 0, 6);
+        System.out.println(range);
+    }
+
+    @Test
+    public void size() {
+        Long size = listRedisTemplate.size("key11");
+        System.out.println(size);
+    }
+
+    @Test
+    public void index(){
+        Object value = listRedisTemplate.index("key11", 1);
+        System.out.println(value);
+    }
 }
