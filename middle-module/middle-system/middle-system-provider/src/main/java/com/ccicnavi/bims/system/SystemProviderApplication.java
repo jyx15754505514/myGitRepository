@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication(scanBasePackages = {
         "com.ccicnavi.bims.system.configuration"
 })
-public class Application {
+public class SystemProviderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(SystemProviderApplication.class, args);
     }
 }
