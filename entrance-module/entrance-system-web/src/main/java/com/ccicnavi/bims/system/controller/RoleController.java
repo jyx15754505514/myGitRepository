@@ -38,7 +38,7 @@ public class RoleController {
     public ResultT listRole(@RequestBody PageParameter<RoleDO> pageParameter) {
         try {
             PageBean<RoleDO> roleDOList = roleService.listRole(pageParameter);
-            log.info(JSONObject.toJSONString(roleDOList));
+            log.info("查询成功",JSONObject.toJSONString(roleDOList));
             return ResultT.success(roleDOList);
         } catch (Exception e) {
             log.error("查询角色列表失败", e);
