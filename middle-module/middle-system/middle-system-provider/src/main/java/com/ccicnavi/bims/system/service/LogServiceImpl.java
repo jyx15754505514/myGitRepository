@@ -67,7 +67,7 @@ public class LogServiceImpl implements LogService {
                 return ResultT.success(logdo);
             }
         } catch (Exception e) {
-            log.debug("获取日志失败",e);
+            log.error("获取日志失败",e);
             e.printStackTrace();
         }
         return ResultT.failure(ResultCode.GET_FAILURE);
@@ -148,7 +148,7 @@ public class LogServiceImpl implements LogService {
                 return ResultT.success();
             }
         } catch (Exception e) {
-            log.debug("删除日志失败",e);
+            log.error("删除日志失败",e);
             e.printStackTrace();
         }
         return ResultT.failure(ResultCode.DELETE_FAILURE);

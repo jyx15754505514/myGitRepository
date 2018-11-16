@@ -19,6 +19,9 @@ import java.util.List;
  * @create: 2018-11-14 23:33
  **/
 public class TemplateDO implements Serializable {
+
+    private List<String> uuids;
+
     private String templateUuid;
 
     private String dictTypeUuid;
@@ -53,7 +56,6 @@ public class TemplateDO implements Serializable {
 
     private String extend3;
 
-    private List<String> uuids;
 
 
 }

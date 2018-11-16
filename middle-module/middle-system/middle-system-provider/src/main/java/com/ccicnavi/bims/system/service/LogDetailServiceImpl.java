@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class LogDetailServiceImpl implements LogDetailService {
 
     @Autowired
-    LogDetailDao LogDetailDao;
+    private LogDetailDao LogDetailDao;
 
     /* *
      * @Author MengZiJie
@@ -34,8 +34,7 @@ public class LogDetailServiceImpl implements LogDetailService {
         try {
             logDetail = LogDetailDao.getLogDetail(logDetailDO);
         } catch (Exception e) {
-            log.debug("获取日志详情失败",e);
-            e.printStackTrace();
+            log.error("获取日志详情失败",e);
         }
         return logDetail;
     }
@@ -49,12 +48,11 @@ public class LogDetailServiceImpl implements LogDetailService {
      */
     @Override
     public Integer insertLogDetail(LogDTO logDTO) {
-        int logDetail = 0;
+        Integer logDetail = null;
         try {
             logDetail = LogDetailDao.insertLogDetail(logDTO);
         } catch (Exception e) {
-            log.debug("添加日志详情失败",e);
-            e.printStackTrace();
+            log.error("添加日志详情失败",e);
         }
         return logDetail;
     }
@@ -68,12 +66,11 @@ public class LogDetailServiceImpl implements LogDetailService {
      */
     @Override
     public Integer updateLogDetail(LogDTO logDTO) {
-        int logDetail = 0;
+        Integer logDetail = null;
         try {
             logDetail = LogDetailDao.updateLogDetail(logDTO);
         } catch (Exception e) {
-            log.debug("更新日志详情失败",e);
-            e.printStackTrace();
+            log.error("更新日志详情失败",e);
         }
         return logDetail;
     }
@@ -87,12 +84,11 @@ public class LogDetailServiceImpl implements LogDetailService {
      */
     @Override
     public Integer deleteLogDetail(LogDTO logDTO) {
-        int logDetail = 0;
+        Integer logDetail = null;
         try {
             logDetail = LogDetailDao.deleteLogDetail(logDTO);
         } catch (Exception e) {
-            log.debug("删除日志详情失败",e);
-            e.printStackTrace();
+            log.error("删除日志详情失败",e);
         }
         return logDetail;
     }
