@@ -23,7 +23,7 @@ import java.util.List;
  * @create: 2018-11-15 19:38
  */
 @RestController
-@RequestMapping(value = "/Set")
+@RequestMapping(value = "/set")
 public class SettingController {
 
     private final static Logger log = LoggerFactory.getLogger(SettingController.class);
