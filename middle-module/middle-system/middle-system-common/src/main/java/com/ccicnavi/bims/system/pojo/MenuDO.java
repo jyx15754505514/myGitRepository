@@ -3,6 +3,9 @@ package com.ccicnavi.bims.system.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.io.Serializable;
+
 /* *
  * @Author MengZiJie
  * @Description 菜单管理
@@ -11,7 +14,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MenuDO {
+public class MenuDO implements Serializable {
 
     private String menuUuid;
 
