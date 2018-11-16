@@ -112,11 +112,4 @@ public class PersonController {
         }
     }
 
-    public ResultT insertPersonAndPersonTeach(@RequestBody PersonDTO personDTO){
-
-        return ResultT.success();
-
-    }
-
-
 }
