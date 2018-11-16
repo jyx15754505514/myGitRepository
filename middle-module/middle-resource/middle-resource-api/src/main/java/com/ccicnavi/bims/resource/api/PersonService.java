@@ -8,7 +8,7 @@ import java.util.List;
 public interface PersonService {
 
     /*
-     *@program: [personDo]
+     *@Param: [personDo]
      *@description: 查询人员
      *@return: java.util.List<com.ccicnavi.bims.resource.pojo.PersonDO>
      *@author: WangGengXiang
@@ -18,7 +18,7 @@ public interface PersonService {
 
 
     /*
-     *@program: [personDo]
+     *@Param: [personDo]
      *@description: 添加人员
      *@return: java.lang.Integer
      *@author: WangGengXiang
@@ -27,7 +27,7 @@ public interface PersonService {
     public Integer insertPerson(PersonDO personDo) throws Exception;
 
     /*
-     *@program: [personDo]
+     *@Param: [personDo]
      *@description: 更新人员
      *@return: java.lang.Integer
      *@author: WangGengXiang
@@ -36,7 +36,7 @@ public interface PersonService {
     public Integer updatePerson(PersonDO personDo) throws Exception;
 
     /*
-     *@program: [personDo]
+     *@Param: [personDo]
      *@description: 删除人员
      *@return: java.lang.Integer
      *@author: WangGengXiang
@@ -45,7 +45,7 @@ public interface PersonService {
     public Integer deletePerson(PersonDO personDo) throws Exception;
 
     /*
-     *@program: [personDo]
+     *@Param: [personDo]
      *@description: 获取人员信息
      *@return: com.ccicnavi.bims.resource.pojo.PersonDO
      *@author: WangGengXiang
