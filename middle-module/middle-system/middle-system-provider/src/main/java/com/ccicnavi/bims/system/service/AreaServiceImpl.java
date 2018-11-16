@@ -33,8 +33,7 @@ public class AreaServiceImpl implements AreaService {
         try {
             listArea = areaDao.listArea(areaDO);
         } catch (Exception e) {
-            log.debug("查询地区失败",e);
-            e.printStackTrace();
+            log.error("查询地区失败",e);
         }
         return listArea;
     }
@@ -52,8 +51,7 @@ public class AreaServiceImpl implements AreaService {
         try {
             area = areaDao.getArea(areaDO);
         } catch (Exception e) {
-            log.debug("获取地区失败",e);
-            e.printStackTrace();
+            log.error("获取地区失败",e);
         }
         return area;
     }
@@ -71,8 +69,7 @@ public class AreaServiceImpl implements AreaService {
         try {
             area = areaDao.insertArea(areaDO);
         } catch (Exception e) {
-            log.debug("添加地区失败",e);
-            e.printStackTrace();
+            log.error("添加地区失败",e);
         }
         return area;
     }
@@ -90,8 +87,7 @@ public class AreaServiceImpl implements AreaService {
         try {
             area = updateArea(areaDO);
         } catch (Exception e) {
-            log.debug("更新地区失败",e);
-            e.printStackTrace();
+            log.error("更新地区失败",e);
         }
         return area;
     }
@@ -109,8 +105,7 @@ public class AreaServiceImpl implements AreaService {
         try {
             area = areaDao.deleteArea(areaDO);
         } catch (Exception e) {
-            log.debug("删除地区失败",e);
-            e.printStackTrace();
+            log.error("删除地区失败",e);
         }
         return area;
     }
