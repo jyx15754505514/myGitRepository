@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.dao;
 
 
 import com.ccicnavi.bims.system.pojo.RoleDO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
@@ -46,4 +47,5 @@ public interface RoleDao {
      * @throws Exception
      */
     public RoleDO getRole(RoleDO role)throws Exception;
+
 }

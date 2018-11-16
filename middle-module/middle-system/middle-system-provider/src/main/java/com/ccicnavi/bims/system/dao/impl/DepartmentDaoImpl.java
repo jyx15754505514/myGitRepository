@@ -28,7 +28,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     *@date: 2018/11/15
     */
     @Override
-    public List<DepartmentDO> listDepartment(DepartmentDO departmentDO)throws Exception{
+    public List<DepartmentDO> listDepartment(DepartmentDO departmentDO){
         return EqlUtils.getInstance("DEFAULT").select("listDept").params(departmentDO).returnType(DepartmentDO.class).execute();
     }
 
@@ -40,7 +40,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer insertDepartment(DepartmentDO departmentDO)throws Exception{
+    public Integer insertDepartment(DepartmentDO departmentDO){
         return EqlUtils.getInstance("DEFAULT").insert("insertDept").params(departmentDO).returnType(Integer.class).execute();
     }
 
@@ -52,7 +52,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer updateDepartment(DepartmentDO departmentDO)throws Exception{
+    public Integer updateDepartment(DepartmentDO departmentDO){
         return EqlUtils.getInstance("DEFAULT").update("updateDept").params(departmentDO).returnType(Integer.class).execute();
     }
 
@@ -64,7 +64,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer deleteDepartment(DepartmentDO departmentDO)throws Exception{
+    public Integer deleteDepartment(DepartmentDO departmentDO){
         return EqlUtils.getInstance("DEFAULT").delete("deleteDept").params(departmentDO).returnType(Integer.class).execute();
     }
 
@@ -76,7 +76,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     *@date: 2018/11/15
     */
     @Override
-    public DepartmentDO getDepartment(DepartmentDO departmentDO)throws Exception{
+    public DepartmentDO getDepartment(DepartmentDO departmentDO){
         return EqlUtils.getInstance("DEFAULT").selectFirst("getDept").params(departmentDO).returnType(DepartmentDO.class).execute();
     }
 

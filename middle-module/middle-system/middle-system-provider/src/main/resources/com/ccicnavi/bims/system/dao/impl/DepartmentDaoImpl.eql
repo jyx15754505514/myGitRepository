@@ -226,7 +226,15 @@
               extend3 = '#extend3#',
         --end
         where
-          dept_uuid = '#deptUuid#'
+          -- if deptUuid != null
+          		dept_uuid = '#deptUuid#'
+          -- end
+          -- if uuids != null
+          		dept_uuid in
+          -- for item=item index=index collection=uuids open=( separator=, close=)
+          		'#item#'
+          	-- end
+         -- end
 
 --[删除部门信息]
 --[deleteDept]
