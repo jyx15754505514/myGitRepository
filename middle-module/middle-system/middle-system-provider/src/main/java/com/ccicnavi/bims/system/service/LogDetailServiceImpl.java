@@ -48,7 +48,7 @@ public class LogDetailServiceImpl implements LogDetailService {
      */
     @Override
     public Integer insertLogDetail(LogDTO logDTO) {
-        int logDetail = 0;
+        Integer logDetail = null;
         try {
             logDetail = LogDetailDao.insertLogDetail(logDTO);
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class LogDetailServiceImpl implements LogDetailService {
      */
     @Override
     public Integer updateLogDetail(LogDTO logDTO) {
-        int logDetail = 0;
+        Integer logDetail = null;
         try {
             logDetail = LogDetailDao.updateLogDetail(logDTO);
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class LogDetailServiceImpl implements LogDetailService {
      */
     @Override
     public Integer deleteLogDetail(LogDTO logDTO) {
-        int logDetail = 0;
+        Integer logDetail = null;
         try {
             logDetail = LogDetailDao.deleteLogDetail(logDTO);
         } catch (Exception e) {
