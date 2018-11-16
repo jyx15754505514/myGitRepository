@@ -5,6 +5,7 @@ import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.SettingDao;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,8 +29,10 @@ public class SettingDaoImpl implements SettingDao {
     *@date: 2018/11/15
     */
     @Override
-    public List<SettingDO> listSetting(SettingDO settingDO)throws Exception{
-        return EqlUtils.getInstance("DEFAULT").select("listSet").params(settingDO).returnType(SettingDO.class).execute();
+    public List<SettingDO> listSetting(SettingDO settingDO){
+        return new Eql().insert("insertRole").params(settingDO).returnType(Integer.class).execute();
+      //  return EqlUtils.getInstance("DEFAULT").select("listSet").params(settingDO).returnType(SettingDO.class).execute();
+
     }
 
     /**
@@ -40,7 +43,7 @@ public class SettingDaoImpl implements SettingDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer insertSetting(SettingDO settingDO) throws Exception{
+    public Integer insertSetting(SettingDO settingDO) {
         return EqlUtils.getInstance("DEFAULT").insert("insertSet").params(settingDO).returnType(Integer.class).execute();
     }
 
@@ -52,7 +55,7 @@ public class SettingDaoImpl implements SettingDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer updateSetting(SettingDO settingDO)throws Exception{
+    public Integer updateSetting(SettingDO settingDO){
         return  EqlUtils.getInstance("DEFAULT").update("updateSet").params(settingDO).returnType(Integer.class).execute();
     }
 
@@ -64,7 +67,7 @@ public class SettingDaoImpl implements SettingDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer deleteSetting(SettingDO settingDO)throws Exception{
+    public Integer deleteSetting(SettingDO settingDO){
         return  EqlUtils.getInstance("DEFAULT").delete("deleteSet").params(settingDO).returnType(Integer.class).execute();
 
     }
@@ -78,7 +81,7 @@ public class SettingDaoImpl implements SettingDao {
     *@date: 2018/11/15
     */
     @Override
-    public SettingDO getSetting(SettingDO settingDO)throws Exception{
+    public SettingDO getSetting(SettingDO settingDO){
        return EqlUtils.getInstance("DEFAULT").selectFirst("getSet").params(settingDO).returnType(SettingDO.class).execute();
     }
 }

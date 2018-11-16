@@ -34,11 +34,11 @@ public class SettingServiceImpl implements SettingService{
     */
 
     @Override
-    public List<SettingDO> listSetting(SettingDO settingDO)throws Exception{
+    public List<SettingDO> listSetting(SettingDO settingDO){
         try{
             return settingDao.listSetting(settingDO);
         }catch (Exception e){
-            log.error("", e);
+            log.error("查询系统设置信息失败", e);
             return null;
         }
 
@@ -52,11 +52,11 @@ public class SettingServiceImpl implements SettingService{
     *@date: 2018/11/15
     */
     @Override
-    public Integer insertSetting(SettingDO settingDO)throws Exception{
+    public Integer insertSetting(SettingDO settingDO){
         try {
             return settingDao.insertSetting(settingDO);
         }catch (Exception e){
-            log.error("",e);
+            log.error("新增系统设置信息失败",e);
             return null;
         }
     }
@@ -73,7 +73,7 @@ public class SettingServiceImpl implements SettingService{
         try {
             return settingDao.updateSetting(settingDO);
         } catch (Exception e) {
-            log.error("",e);
+            log.error("更新系统设置信息失败",e);
             return null;
 
         }
@@ -91,7 +91,7 @@ public class SettingServiceImpl implements SettingService{
         try {
             return settingDao.deleteSetting(settingDO);
         } catch (Exception e) {
-            log.error("",e);
+            log.error("删除系统设置信息失败",e);
             return null;
         }
     }
@@ -109,7 +109,7 @@ public class SettingServiceImpl implements SettingService{
         try {
             return settingDao.getSetting(settingDO);
         } catch (Exception e) {
-            log.error("",e);
+            log.error("根据主键获取系统设置信息失败",e);
             return null;
         }
     }

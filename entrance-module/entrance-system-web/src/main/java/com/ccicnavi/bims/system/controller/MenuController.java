@@ -33,7 +33,7 @@ public class MenuController {
      * @date: 2018/11/15 23:14
      */
     @RequestMapping(value = "/listMenu", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT ListMenu(@RequestBody MenuDO emnu) {
+    public ResultT listMenu(@RequestBody MenuDO emnu) {
         try {
             List<MenuDO> emnuList = menuService.listMenu(emnu);
             //请求成功返回并设置返回数据
