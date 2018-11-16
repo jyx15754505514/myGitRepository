@@ -39,7 +39,7 @@ public class MenuController {
             //请求成功返回并设置返回数据
             return ResultT.success(emnuList);
         }catch (Exception e) {
-            log.debug("根据条件查询菜单失败", e);
+            log.error("根据条件查询菜单失败", e);
             //请求失败返回并设置错误信息
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
