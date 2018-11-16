@@ -12,6 +12,9 @@ import java.util.List;
 @Setter
 @ToString
 public class PersonCultExpeDO implements Serializable {
+
+    private List<String> cultExpeUuids;
+
     private String cultExpeUuid;
 
     private String personUuid;
@@ -56,5 +59,4 @@ public class PersonCultExpeDO implements Serializable {
 
     private String extend3;
 
-    private List<String> cultExpeUuids;
 }

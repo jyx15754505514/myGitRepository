@@ -43,6 +43,15 @@ public interface PersonCultExpeDao {
     public Integer deletePersonCultExpe(PersonCultExpeDO personCultExpe)throws Exception;
 
     /*
+    *@program: [personCultExpe]
+    *@description: 根据主键获取人员培训经历
+    *@return: com.ccicnavi.bims.resource.pojo.PersonCultExpeDO
+    *@author: XiaWei
+    *@create: 2018/11/16 18:07
+    */
+    public PersonCultExpeDO getPersonCultExpe(PersonCultExpeDO personCultExpe)throws Exception;
+
+    /*
     *@program: [pageParameter]
     *@description: 根据条件 查询人员培训经历分页数据
     *@return: com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.PersonCultExpeDO>

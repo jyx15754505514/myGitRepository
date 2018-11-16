@@ -62,6 +62,18 @@ public class PersonCultExpeDaoImpl implements PersonCultExpeDao {
     }
 
     /*
+    *@program: [personCultExpe]
+    *@description: 根据主键获取人员培训经历
+    *@return: com.ccicnavi.bims.resource.pojo.PersonCultExpeDO
+    *@author: XiaWei
+    *@create: 2018/11/16 18:08
+    */
+    @Override
+    public PersonCultExpeDO getPersonCultExpe(PersonCultExpeDO personCultExpe) throws Exception {
+        return new Eql().selectFirst("getPersonCultExpe").params(personCultExpe).returnType(PersonCultExpeDO.class).execute();
+    }
+
+    /*
     *@program: [pageParameter]
     *@description: 根据条件 查询人员培训经历分页数据
     *@return: com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.PersonCultExpeDO>
