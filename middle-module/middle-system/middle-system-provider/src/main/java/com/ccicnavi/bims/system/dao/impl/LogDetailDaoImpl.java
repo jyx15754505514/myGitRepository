@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.dao.impl;
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.LogDetailDao;
+import com.ccicnavi.bims.system.pojo.LogDO;
 import com.ccicnavi.bims.system.pojo.LogDetailDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class LogDetailDaoImpl implements LogDetailDao {
      */
     @Override
     public LogDetailDO getLogDetail(LogDetailDO logDetailDO) {
-        return EqlUtils.getInstance("druid").selectFirst("getLogDetail").params(logDetailDO).returnType(LogDetailDO.class).execute();
+        return EqlUtils.getInstance("DEFAULT").selectFirst("getLogDetail").params(logDetailDO).returnType(LogDetailDO.class).execute();
     }
 
     /* *
@@ -35,7 +36,7 @@ public class LogDetailDaoImpl implements LogDetailDao {
      */
     @Override
     public Integer insertLogDetail(LogDetailDO logDetailDO) {
-        return EqlUtils.getInstance("druid").insert("insertLogDetail").params(logDetailDO).execute();
+        return EqlUtils.getInstance("DEFAULT").insert("insertLogDetail").params(logDetailDO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -47,7 +48,7 @@ public class LogDetailDaoImpl implements LogDetailDao {
      */
     @Override
     public Integer updateLogDetail(LogDetailDO logDetailDO) {
-        return EqlUtils.getInstance("druid").update("updateLogDetail").params(logDetailDO).execute();
+        return EqlUtils.getInstance("DEFAULT").update("updateLogDetail").params(logDetailDO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -59,7 +60,7 @@ public class LogDetailDaoImpl implements LogDetailDao {
      */
     @Override
     public Integer deleteLogDetail(LogDetailDO logDetailDO) {
-        return EqlUtils.getInstance("druid").delete("deleteLogDetail").params(logDetailDO).execute();
+        return EqlUtils.getInstance("DEFAULT").delete("deleteLogDetail").params(logDetailDO).returnType(Integer.class).execute();
     }
 
 }

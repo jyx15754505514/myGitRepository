@@ -1,0 +1,310 @@
+--[listPersonWorkExpeDO]
+select
+    work_expe_uuid workExpeUuid,
+    person_uuid personUuid,
+    start_work_time startWorkTime,
+    end_work_time endWorkTime,
+    witness witness,
+    org_name orgName,
+    dept_name deptName,
+    job job,
+    job_content jobContent,
+    is_grass_work isGrassWork,
+    is_expatriate_work isExpatriateWork,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    business_line businessLine,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
+from
+    res_person_work_expe
+where
+    is_deleted = 'N'
+
+
+--[insertPersonWorkExpeDO]
+    insert into res_person_work_expe
+--trim prefix=( suffix=) suffixOverrides=,
+     -- if workExpeUuid != null and workExpeUuid != ''
+            work_expe_uuid,
+     --end
+     -- if personUuid != null and personUuid != ''
+            person_uuid,
+     --end
+     -- if startWorkTime != null and startWorkTime != ''
+            start_work_time,
+     --end
+     -- if endWorkTime != null and endWorkTime != ''
+            end_work_time,
+     --end
+     -- if witness != null and witness != ''
+            witness,
+     --end
+     -- if orgName != null and orgName != ''
+            org_name,
+     --end
+     -- if deptName != null and deptName != ''
+            dept_name,
+     --end
+     -- if job != null and job != ''
+            job,
+     --end
+     -- if jobContent != null and jobContent != ''
+            job_content,
+     --end
+     -- if isGrassWork != null and isGrassWork != ''
+            is_grass_work,
+     --end
+     -- if isExpatriateWork != null and isExpatriateWork != ''
+            is_expatriate_work,
+     --end
+     -- if comments != null and comments != ''
+            comments,
+     --end
+     -- if isDeleted != null and isDeleted != ''
+            is_deleted,
+     --end
+     -- if createdTime != null and createdTime != ''
+            created_time,
+     --end
+     -- if createdUuid != null and createdUuid != ''
+            created_uuid,
+     --end
+     -- if createdName != null and createdName != ''
+            created_name,
+     --end
+     -- if updatedTime != null and updatedTime != ''
+            updated_time,
+     --end
+     -- if updatedName != null and updatedName != ''
+            updated_name,
+     --end
+     -- if orgUuid != null and orgUuid != ''
+            org_uuid,
+     --end
+     -- if appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
+     --end
+     -- if businessLine != null and businessLine != ''
+            business_line,
+     --end
+     -- if extend1 != null and extend1 != ''
+            extend1,
+     --end
+     -- if extend2 != null and extend2 != ''
+            extend2,
+     --end
+     -- if extend3 != null and extend3 != ''
+            extend3,
+     --end
+--end
+--trim prefix=values( suffix=) suffixOverrides=,
+    -- if workExpeUuid != null and workExpeUuid != ''
+            '#workExpeUuid#',
+     --end
+     -- if personUuid != null and personUuid != ''
+            '#personUuid#',
+     --end
+     -- if startWorkTime != null and startWorkTime != ''
+            '#startWorkTime#',
+     --end
+     -- if endWorkTime != null and endWorkTime != ''
+            '#endWorkTime#',
+     --end
+     -- if witness != null and witness != ''
+            '#witness#',
+     --end
+     -- if orgName != null and orgName != ''
+            '#orgName#',
+     --end
+     -- if deptName != null and deptName != ''
+            '#deptName#',
+     --end
+     -- if job != null and job != ''
+            '#job#',
+     --end
+     -- if jobContent != null and jobContent != ''
+            '#jobContent#',
+     --end
+     -- if isGrassWork != null and isGrassWork != ''
+            '#isGrassWork#',
+     --end
+     -- if isExpatriateWork != null and isExpatriateWork != ''
+            '#isExpatriateWork#',
+     --end
+     -- if comments != null and comments != ''
+            '#comments#',
+     --end
+     -- if isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+     --end
+     -- if createdTime != null and createdTime != ''
+            '#createdTime#',
+     --end
+     -- if createdUuid != null and createdUuid != ''
+            '#createdUuid#',
+     --end
+     -- if createdName != null and createdName != ''
+            '#createdName#',
+     --end
+     -- if updatedTime != null and updatedTime != ''
+            '#updatedTime#',
+     --end
+     -- if updatedName != null and updatedName != ''
+            '#updatedName#',
+     --end
+     -- if orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+     --end
+     -- if appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+     --end
+     -- if businessLine != null and businessLine != ''
+            '#businessLine#',
+     --end
+     -- if extend1 != null and extend1 != ''
+            '#extend1#',
+     --end
+     -- if extend2 != null and extend2 != ''
+            '#extend2#',
+     --end
+     -- if extend3 != null and extend3 != ''
+            '#extend3#',
+     --end
+ --end
+
+--[updatePersonWorkExpeDO]
+    update res_person_work_expe
+-- trim  prefix= set suffixOverrides=,
+     -- if workExpeUuid != null and workExpeUuid != ''
+            work_expe_uuid = '#workExpeUuid#',
+     --end
+     -- if personUuid != null and personUuid != ''
+            person_uuid = '#personUuid#',
+     --end
+     -- if startWorkTime != null and startWorkTime != ''
+            start_work_time = '#startWorkTime#',
+     --end
+     -- if endWorkTime != null and endWorkTime != ''
+            end_work_time = '#endWorkTime#',
+     --end
+     -- if witness != null and witness != ''
+            witness = '#witness#',
+     --end
+     -- if orgName != null and orgName != ''
+            org_name = '#orgName#',
+     --end
+     -- if deptName != null and deptName != ''
+            dept_name = '#deptName#',
+     --end
+     -- if job != null and job != ''
+            job = '#job#',
+     --end
+     -- if jobContent != null and jobContent != ''
+            job_content = '#jobContent#',
+     --end
+     -- if isGrassWork != null and isGrassWork != ''
+            is_grass_work = '#isGrassWork#',
+     --end
+     -- if isExpatriateWork != null and isExpatriateWork != ''
+            is_expatriate_work = '#isExpatriateWork#',
+     --end
+     -- if comments != null and comments != ''
+            comments = '#comments#',
+     --end
+     -- if isDeleted != null and isDeleted != ''
+            is_deleted = '#isDeleted#',
+     --end
+     -- if createdTime != null and createdTime != ''
+            created_time = '#createdTime#',
+     --end
+     -- if createdUuid != null and createdUuid != ''
+            created_uuid = '#createdUuid#',
+     --end
+     -- if createdName != null and createdName != ''
+            created_name = '#createdName#',
+     --end
+     -- if updatedTime != null and updatedTime != ''
+            updated_time = '#updatedTime#',
+     --end
+     -- if updatedName != null and updatedName != ''
+            updated_name = '#updatedName#',
+     --end
+     -- if orgUuid != null and orgUuid != ''
+            org_uuid = '#orgUuid#',
+     --end
+     -- if appSysUuid != null and appSysUuid != ''
+            app_sys_uuid = '#appSysUuid#',
+     --end
+     -- if businessLine != null and businessLine != ''
+            business_line = '#businessLine#',
+     --end
+     -- if extend1 != null and extend1 != ''
+            extend1 = '#extend1#',
+     --end
+     -- if extend2 != null and extend2 != ''
+            extend2 = '#extend2#',
+     --end
+     -- if extend3 != null and extend3 != ''
+            extend3 = '#extend3#',
+     --end
+--end
+      where
+         work_expe_uuid = '#workExpeUuid#'
+
+--[deletePersonWorkExpeDO]
+UPDATE
+    res_person_work_expe
+-- trim prefix= set suffixOverrides=,
+     is_deleted = 'Y'
+ -- end
+ WHERE
+    --iff workExpeUuid != null and workExpeUuid != ''
+        work_expe_uuid = '#workExpeUuid#'
+    --iff workExpeUuids != null
+        and work_expe_uuid in
+    -- for item=item index=index collection=workExpeUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
+--[getPersonWorkExpeDO]
+select
+    work_expe_uuid workExpeUuid,
+    person_uuid personUuid,
+    start_work_time startWorkTime,
+    end_work_time endWorkTime,
+    witness witness,
+    org_name orgName,
+    dept_name deptName,
+    job job,
+    job_content jobContent,
+    is_grass_work isGrassWork,
+    is_expatriate_work isExpatriateWork,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    business_line businessLine,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
+from
+    res_person_work_expe
+where
+    is_deleted = 'N'
+    --if workExpeUuid != null and  workExpeUuid != ''
+        and  work_expe_uuid = '#workExpeUuid#'
+    --end

@@ -45,11 +45,75 @@ public class EquipDO implements Serializable {
 
     private String statusUuid;
 
+    private String equipPlanUuid;
+
+    private String equipOrderUuid;
+
+    private String appointUuid;
+
+    private String certNo;
+
+    private Date testDate;
+
+    private Date useDate;
+
+    private String useDeptUuid;
+
+    private String isVerify;
+
+    private String testCycle;
+
+    private String isLongTerm;
+
+    private Date testValidDate;
+
+    private String testResult;
+
+    private Date purchaseDate;
+
+    private Integer purchasePrice;
+
+    private Integer purchaseCount;
+
+    private String isRent;
+
+    private String isLocalTest;
+
+    private String isSelfTest;
+
+    private String agencyUuid;
+
+    private String agencyName;
+
+    private String testType;
+
+    private Integer testFee;
+
+    private Integer repairFee;
+
+    private String feeDesc;
+
+    private String locationAddr;
+
+    private String deptUuid;
+
+    private String mgrUuid;
+
     private String partsDesc;
 
-    private String testerName;
+    private String standardDesc;
 
-    private String businessLine;
+    private String rowType;
+
+    private String isFile;
+
+    private String isCertFile;
+
+    private String onlineCertUrl;
+
+    private String sourceCfmName;
+
+    private Date sourceCfmDate;
 
     private String comments;
 
@@ -59,8 +123,6 @@ public class EquipDO implements Serializable {
 
     private String createdUuid;
 
-    private String createdName;
-
     private Date updatedTime;
 
     private String updatedName;
@@ -68,4 +130,6 @@ public class EquipDO implements Serializable {
     private String orgUuid;
 
     private String appSysUuid;
+
+    private String businessLine;
 }

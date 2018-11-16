@@ -1,0 +1,5 @@
+-- [testPage]
+SELECT *
+FROM sys_role
+-- iff roleCode != null and roleCode != ""
+    WHERE role_code = '#roleCode#'

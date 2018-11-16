@@ -61,7 +61,7 @@ public class EquipDaoImpl implements EquipDao {
      */
     @Override
     public Integer updateEquip(EquipDO equipDO){
-        return EqlUtils.getInstance("druid").update("updateEquip").params(equipDO).returnType(EquipDO.class).execute();
+        return EqlUtils.getInstance("druid").update("updateEquip").params(equipDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -72,8 +72,8 @@ public class EquipDaoImpl implements EquipDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquip(EquipDO equipDO){
-        return EqlUtils.getInstance("druid").delete("updateEquip").params(equipDO).returnType(EquipDO.class).execute();
+    public Integer deleteEquip(String equipUuid){
+        return EqlUtils.getInstance("druid").delete("deleteEquip").params(equipUuid).returnType(Integer.class).execute();
     }
 
     public static void main(String[]args){

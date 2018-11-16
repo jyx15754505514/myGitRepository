@@ -4,12 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
 @Setter
 @ToString
-public class PersonDO {
+public class PersonDO implements Serializable {
 
     private String personUuid;
 
@@ -88,4 +89,5 @@ public class PersonDO {
     private String extend2;
 
     private String extend3;
+
 }

@@ -31,6 +31,19 @@ public enum ResultCode {
     FUND_CONTRAST_EXISTED(30007, "此对比基金已存在"),
     DELETE_FUND_CONTRAST_FAILURE(30008, "清除对比基金失败"),
     DELETE_PORTFOLIO_FUND_FAILURE(30009, "删除组合基金失败"),
+    LIST_FAILURE(30010, "根据条件查询失败"),
+    ADD_FAILURE(30011, "添加失败"),
+    DELETE_FAILURE(30012, "删除失败"),
+    UPDATE_FAILURE(30013, "修改失败"),
+    GET_FAILURE(30014, "获取制定信息失败"),
+
+
+    RENIND_LIST_RENINDGET(30101, "根据id查询提醒设置失败!"),
+    RENIND_LIST_RENINDLIST(30102, "查询提醒设置失败!"),
+    RENIND_LIST_RENINDINSERT(30103, "新增提醒设置失败!"),
+    RENIND_LIST_RENINDUPDATE(30104, "修改提醒设置失败!"),
+    RENIND_LIST_RENINDDELETE(30105, "删除提醒设置失败!"),
+
 
     /* 系统错误：40001-49999 */
     SYSTEM_INNER_ERROR(40001, "系统繁忙，请稍后重试"),
