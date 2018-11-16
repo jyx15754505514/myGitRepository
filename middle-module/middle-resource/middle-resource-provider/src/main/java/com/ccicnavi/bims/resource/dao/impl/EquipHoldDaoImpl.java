@@ -1,8 +1,13 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.EquipHoldDao;
+import com.ccicnavi.bims.resource.pojo.EquipDO;
 import com.ccicnavi.bims.resource.pojo.EquipHoldDO;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,8 +41,10 @@ public class EquipHoldDaoImpl implements EquipHoldDao {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipHoldDO>
      */
     @Override
-    public List<EquipHoldDO> listEquipHold(EquipHoldDO equipHoldDO){
-        return EqlUtils.getInstance("druid").select("listEquipHold").params(equipHoldDO).returnType(EquipHoldDO.class).execute();
+    public PageBean<EquipHoldDO> listEquipHold(PageParameter<EquipHoldDO> pageParameter){
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<EquipHoldDO> listEquipHoldList = new Eql("druid").select("listEquipHold").params(pageParameter.getParameter()).returnType(EquipHoldDO.class).limit(eqlPage).execute();
+        return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquipHoldList);
     }
 
     /**

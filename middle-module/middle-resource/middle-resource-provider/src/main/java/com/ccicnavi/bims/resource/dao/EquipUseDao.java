@@ -1,8 +1,11 @@
 package com.ccicnavi.bims.resource.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 import com.ccicnavi.bims.resource.pojo.EquipUseDO;
+import com.ccicnavi.bims.resource.pojo.EquipUseDTO;
 
-import java.util.List;
 
 /**
  * @program: bims-backend
@@ -18,7 +21,7 @@ public interface EquipUseDao {
      * @Param [equipUseDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipUseDO>
      */
-    List<EquipUseDO> listEquipUse(EquipUseDO equipUseDO);
+    PageBean<EquipUseDO> listEquipUse(PageParameter<EquipUseDO> pageParameter);
 
     /**
      * @Author panyida
@@ -55,4 +58,13 @@ public interface EquipUseDao {
      * @Return java.lang.Integer
      */
     Integer deleteEquipUse(String equipUseUuid);
+
+    /**
+     * @Author panyida
+     * @Description 设备领用归还信息查询（包含器具五要素字段）
+     * @Date 11:44 2018/11/14
+     * @Param [EquipUseDTO]
+     * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipUseDTO>
+     */
+    PageBean<EquipUseDTO> listEquipUseDTO(PageParameter<EquipUseDTO> pageParameter);
 }

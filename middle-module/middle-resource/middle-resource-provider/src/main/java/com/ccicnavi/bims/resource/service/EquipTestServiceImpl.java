@@ -1,13 +1,15 @@
 package com.ccicnavi.bims.resource.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.EquipTestService;
 import com.ccicnavi.bims.resource.dao.EquipTestDao;
 import com.ccicnavi.bims.resource.pojo.EquipTestDO;
+import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 
 /**
  * @program: bims-backend
@@ -35,8 +37,7 @@ public class EquipTestServiceImpl implements EquipTestService {
         try {
             equipTestDO = equipTestDao.getEquipTest(equipTestUuid);
         } catch (Exception e) {
-            log.debug("根据设备检定信息主键获取设备检定信息错误",e);
-            e.printStackTrace();
+            log.error("根据设备检定信息主键获取设备检定信息错误",e);
         }
         return equipTestDO;
     }
@@ -49,13 +50,12 @@ public class EquipTestServiceImpl implements EquipTestService {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDO>
      */
     @Override
-    public List<EquipTestDO> listEquipTest(EquipTestDO equipTestDO){
-        List<EquipTestDO> listEquipTestDO = null;
+    public PageBean<EquipTestDO> listEquipTest(PageParameter<EquipTestDO> pageParameter){
+        PageBean<EquipTestDO> listEquipTestDO = null;
         try {
-            listEquipTestDO = equipTestDao.listEquipTest(equipTestDO);
+            listEquipTestDO = equipTestDao.listEquipTest(pageParameter);
         } catch (Exception e) {
-            log.debug("设备检定信息查询错误",e);
-            e.printStackTrace();
+            log.error("设备检定信息查询错误",e);
         }
         return listEquipTestDO;
     }
@@ -73,8 +73,7 @@ public class EquipTestServiceImpl implements EquipTestService {
         try {
             count = equipTestDao.insertEquipTest(equipTestDO);
         } catch (Exception e) {
-            log.debug("新增设备检定信息错误",e);
-            e.printStackTrace();
+            log.error("新增设备检定信息错误",e);
         }
         return count;
     }
@@ -92,8 +91,7 @@ public class EquipTestServiceImpl implements EquipTestService {
         try {
             count = equipTestDao.updateEquipTest(equipTestDO);
         } catch (Exception e) {
-            log.debug("更新设备检定信息错误",e);
-            e.printStackTrace();
+            log.error("更新设备检定信息错误",e);
         }
         return count;
     }
@@ -111,9 +109,26 @@ public class EquipTestServiceImpl implements EquipTestService {
         try {
             count = equipTestDao.deleteEquipTest(equipTestUuid);
         } catch (Exception e) {
-            log.debug("根据设备检定信息主键删除设备检定信息错误",e);
-            e.printStackTrace();
+            log.error("根据设备检定信息主键删除设备检定信息错误",e);
         }
         return count;
+    }
+
+    /**
+     * @Author panyida
+     * @Description 设备检定查询（包含器具五要素字段）
+     * @Date 16:28 2018/11/14
+     * @Param [EquipTestDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDTO>
+     */
+    @Override
+    public PageBean<EquipTestDTO> listEquipTestDTO(PageParameter<EquipTestDTO> pageParameter){
+        PageBean<EquipTestDTO> listEquipTestDTO = null;
+        try {
+            listEquipTestDTO = equipTestDao.listEquipTestDTO(pageParameter);
+        } catch (Exception e) {
+            log.error("设备检定查询（包含器具五要素字段）错误",e);
+        }
+        return listEquipTestDTO;
     }
 }
