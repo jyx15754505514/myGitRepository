@@ -10,14 +10,44 @@ import java.util.List;
  */
 public interface LogService {
 
-    /**查询所有的日志*/
+    /* *
+     * @Author MengZiJie
+     * @Description 查询所有日志
+     * @Date 17:51 2018/11/14
+     * @Param [logDO]
+     * @Return java.util.List<com.ccicnavi.bims.system.pojo.LogDO>
+     */
     List<LogDO> listLog(LogDO logDO);
-    /**获取指定的日志*/
+    /* *
+     * @Author MengZiJie
+     * @Description 获取指定日志
+     * @Date 17:51 2018/11/14
+     * @Param [logDO]
+     * @Return com.ccicnavi.bims.system.pojo.LogDO
+     */
     LogDO getLog(LogDO logDO);
-    /**新增日志信息*/
+    /* *
+     * @Author MengZiJie
+     * @Description 新增日志
+     * @Date 17:51 2018/11/14
+     * @Param [logDO]
+     * @Return java.lang.Integer
+     */
     Integer insertLog(LogDO logDO);
-    /**更新日志信息*/
+    /* *
+     * @Author MengZiJie
+     * @Description 更新日志
+     * @Date 17:51 2018/11/14
+     * @Param [logDO]
+     * @Return java.lang.Integer
+     */
     Integer updateLog(LogDO logDO);
-    /**删除日志*/
+    /* *
+     * @Author MengZiJie
+     * @Description 删除日志
+     * @Date 17:51 2018/11/14
+     * @Param [logDO]
+     * @Return java.lang.Integer
+     */
     Integer deleteLog(LogDO logDO);
 }
