@@ -9,12 +9,36 @@ import com.ccicnavi.bims.system.pojo.LogDetailDO;
  */
 public interface LogDetailService {
 
-    /**获取指定的日志详情*/
+    /* *
+     * @Author MengZiJie
+     * @Description 获取日志详情
+     * @Date 17:53 2018/11/14
+     * @Param [logDetailDO]
+     * @Return com.ccicnavi.bims.system.pojo.LogDetailDO
+     */
     LogDetailDO getLogDetail(LogDetailDO logDetailDO);
-    /**新增日志详情信息*/
+    /* *
+     * @Author MengZiJie
+     * @Description 新增日志详情
+     * @Date 17:53 2018/11/14
+     * @Param [logDetailDO]
+     * @Return java.lang.Integer
+     */
     Integer insertLogDetail(LogDetailDO logDetailDO);
-    /**更新日志详情信息*/
+    /* *
+     * @Author MengZiJie
+     * @Description 更新日志详情
+     * @Date 17:53 2018/11/14
+     * @Param [logDetailDO]
+     * @Return java.lang.Integer
+     */
     Integer updateLogDetail(LogDetailDO logDetailDO);
-    /**删除日志详情*/
+    /* *
+     * @Author MengZiJie
+     * @Description 删除日志
+     * @Date 17:53 2018/11/14
+     * @Param [logDetailDO]
+     * @Return java.lang.Integer
+     */
     Integer deleteLogDetail(LogDetailDO logDetailDO);
 }

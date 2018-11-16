@@ -1,8 +1,8 @@
 package com.ccicnavi.bims.system.dao.impl;
 
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.MenuDao;
 import com.ccicnavi.bims.system.pojo.MenuDO;
+import org.n3r.eql.Eql;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class MenuDaoImpl implements MenuDao {
      */
     @Override
     public List<MenuDO> listMenu(MenuDO menuDO) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").select("listMenu").params(menuDO).returnType(MenuDO.class).execute();
+        return new Eql().select("listMenu").params(menuDO).returnType(MenuDO.class).execute();
     }
 
     /* *
@@ -30,7 +30,7 @@ public class MenuDaoImpl implements MenuDao {
      */
     @Override
     public MenuDO getMenu(MenuDO menuDO) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").selectFirst("getMenu").params(menuDO).returnType(MenuDO.class).execute();
+       return new Eql().selectFirst("getMenu").params(menuDO).returnType(MenuDO.class).execute();
     }
 
     /* *
@@ -42,7 +42,7 @@ public class MenuDaoImpl implements MenuDao {
      */
     @Override
     public Integer insertMenu(MenuDO menuDO) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").insert("insertMenu").params(menuDO).returnType(Integer.class).execute();
+        return new Eql().insert("insertMenu").params(menuDO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -54,7 +54,7 @@ public class MenuDaoImpl implements MenuDao {
      */
     @Override
     public Integer updateMenu(MenuDO menuDO) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").update("updateMenu").params(menuDO).returnType(Integer.class).execute();
+        return new Eql().update("updateMenu").params(menuDO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -66,6 +66,6 @@ public class MenuDaoImpl implements MenuDao {
      */
     @Override
     public Integer deleteMenu(MenuDO menuDO) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").delete("deleteMenu").params(menuDO).returnType(Integer.class).execute();
+        return new Eql().delete("deleteMenu").params(menuDO).returnType(Integer.class).execute();
     }
 }
