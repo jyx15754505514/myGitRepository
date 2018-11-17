@@ -65,7 +65,7 @@ public class SettingController {
             return ResultT.success(setting);
         } catch (Exception e) {
             log.error("根据主键查询系统设置信息失败", e);
-            return ResultT.failure(ResultCode.LIST_FAILURE);
+            return ResultT.failure(ResultCode.GET_FAILURE);
         }
 
     }

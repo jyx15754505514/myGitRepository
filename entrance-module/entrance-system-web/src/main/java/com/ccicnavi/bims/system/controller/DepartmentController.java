@@ -69,7 +69,7 @@ public class DepartmentController {
             return ResultT.success(department);
         }catch (Exception e){
             log.error("根据主键查询部门信息失败",e);
-            return ResultT.failure(ResultCode.LIST_FAILURE);
+            return ResultT.failure(ResultCode.GET_FAILURE);
         }
 
     }
