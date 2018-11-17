@@ -109,8 +109,6 @@ public class PersonController {
         } catch (Exception e) {
             return  ResultT.failure(ResultCode.LIST_FAILURE);
         }
-
     }
-
 
 }

@@ -26,8 +26,8 @@
         org_uuid,
       -- iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid,
-      -- iff businessLine != null and businessLine != ''
-        business_line,
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
       -- iff extend1 != null and extend1 != ''
         extend1,
       -- iff extend2 != null and extend2 != ''
@@ -35,7 +35,6 @@
       -- iff extend3 != null and extend3 != ''
         extend3,
    -- end
-
     -- trim prefix=values( suffix=) suffixOverrides=,
       -- iff notworkdayUuid != null and notworkdayUuid != ''
         '#notworkdayUuid#',
@@ -61,8 +60,8 @@
         '#orgUuid#',
       -- iff appSysUuid != null and appSysUuid != ''
         '#appSysUuid#',
-      -- iff businessLine != null and businessLine != ''
-        '#businessLine#',
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
       -- iff extend1 != null and extend1 != ''
         '#extend1#',
       -- iff extend2 != null and extend2 != ''
@@ -99,8 +98,8 @@
 			org_uuid = '#orgUuid#',
 		  -- iff appSysUuid != null and appSysUuid != ''
 			app_sys_uuid = '#appSysUuid#',
-		  -- iff businessLine != null
-			business_line = '#businessLine#',
+		  -- iff prodCatalogUuid != null
+			prod_catalog_uuid = '#prodCatalogUuid#',
 		  -- iff extend1 != null
 			extend1 = '#extend1#',
 		  -- iff extend2 != null
@@ -117,16 +116,16 @@
 	SELECT
         notworkday_uuid as notworkdayUuid, year, month, day, start_am as startAm, end_am as endAm,
 		start_pm as startPm, end_pm as endPm, comments, is_deleted as isDeleted, org_uuid as orgUuid,
-		app_sys_uuid as appSysUuid, business_line as businessLine, extend1, extend2, extend3
+		app_sys_uuid as appSysUuid, prod_catalog_uuid as prodCatalogUuid, extend1, extend2, extend3
 	FROM
 		sys_notworkday
 	WHERE
 		is_deleted = 'N'
         AND org_uuid = '#orgUuid#'
         AND app_sys_uuid = '#appSysUuid#'
-        AND business_line = '#businessLine#'
+        AND prod_catalog_uuid = '#prodCatalogUuid#'
 		-- if endPm != null and endPm != ''
-		AND end_pm = '#endPm#'
+		    AND end_pm = '#endPm#'
         -- end
 
 -- 根据主键查询非工作日
@@ -134,7 +133,7 @@
 	SELECT
         notworkday_uuid as notworkdayUuid, year, month, day, start_am as startAm, end_am as endAm,
 		start_pm as startPm, end_pm as endPm, comments, is_deleted as isDeleted, org_uuid as orgUuid,
-		app_sys_uuid as appSysUuid, business_line as businessLine, extend1, extend2, extend3
+		app_sys_uuid as appSysUuid, prod_catalog_uuid as prodCatalogUuid, extend1, extend2, extend3
 	FROM
 		sys_notworkday
 	WHERE
@@ -142,7 +141,7 @@
 		AND is_deleted = 'N'
 		AND org_uuid = '#orgUuid#'
 		AND app_sys_uuid = '#appSysUuid#'
-		AND business_line = '#businessLine#'
+		AND prod_catalog_uuid = '#prodCatalogUuid#'
 
 
 

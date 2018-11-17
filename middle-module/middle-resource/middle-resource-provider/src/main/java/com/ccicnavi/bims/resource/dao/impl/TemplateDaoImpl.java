@@ -35,7 +35,11 @@ public class TemplateDaoImpl implements TemplateDao {
     public PageBean<TemplateDO> listTemplate(PageParameter parameter) throws Exception {
         EqlPage eqlPage = new EqlPage(parameter.getStartIndex(), parameter.getPageRows());
         List<TemplateDO> templateDOList = new Eql().select("listTemplate").params(parameter.getParameter()).limit(eqlPage).returnType(TemplateDO.class).execute();
-        return new PageBean<TemplateDO>(eqlPage.getTotalRows(),eqlPage.getTotalPages(), eqlPage.getCurrentPage(), eqlPage.getPageRows(), eqlPage.getStartIndex(), templateDOList);
+        if(templateDOList != null && templateDOList.size() > 0) {
+            return new PageBean<TemplateDO>(eqlPage.getTotalRows(),eqlPage.getTotalPages(), eqlPage.getCurrentPage(), eqlPage.getPageRows(), eqlPage.getStartIndex(), templateDOList);
+        }else {
+            return null;
+        }
     }
 
     /**

@@ -1,8 +1,12 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.EquipDao;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,8 +40,10 @@ public class EquipDaoImpl implements EquipDao {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDO>
      */
     @Override
-    public List<EquipDO> listEquip(EquipDO equipDO){
-        return EqlUtils.getInstance("druid").select("listEquip").params(equipDO).returnType(EquipDO.class).execute();
+    public PageBean<EquipDO> listEquip(PageParameter<EquipDO> pageParameter){
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<EquipDO> listEquip = new Eql("druid").select("listEquip").params(pageParameter.getParameter()).returnType(EquipDO.class).limit(eqlPage).execute();
+        return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquip);
     }
 
     /**
@@ -76,32 +82,4 @@ public class EquipDaoImpl implements EquipDao {
         return EqlUtils.getInstance("druid").delete("deleteEquip").params(equipUuid).returnType(Integer.class).execute();
     }
 
-    public static void main(String[]args){
-        System.out.println("开始");
-/*
-        Integer count = EqlUtils.getInstance("druid").insert("insertEquip").params(equipDO).returnType(Integer.class).execute();
-*/
-/*
-        EquipDO equipDO = new EquipDO();
-        equipDO.setEquipUuid("EquipUuid");
-        equipDO.setEquipName("123EquipName");
-        equipDO.setEquipNameEn("123EquipNameEn");
-        equipDO.setControlCode("123ControlCode");
-        equipDO.setEquipSpec("123EquipSpec");
-        equipDO.setEquipModel("123EquipModel");
-        equipDO.setFactoryNo("123FactoryNo");
-        equipDO.setManufacture("123Manufacture");
-        equipDO.setFactoryLevel("123FactoryLevel");
-        equipDO.setMeasureRange("123MeasureRange");
-        equipDO.setAccuracyLevel("123AccuracyLevel");
-        equipDO.setEquipAbc("A");
-        equipDO.setStatusUuid("123StatusUuid");
-        equipDO.setOrgUuid("123OrgUuid");
-        equipDO.setAppSysUuid("123AppSysUuid");*/        //Integer count = EqlUtils.getInstance("druid").update("updateEquip").params(equipDO).returnType(Integer.class).execute();
-        //List<EquipDO> listEquipDO = EqlUtils.getInstance("druid").select("getEquip").params("EquipUuid").returnType(EquipDO.class).execute();
-        EquipDO equipDO = new EquipDO();
-        equipDO.setEquipUuid("EquipUuid");
-        Integer count = EqlUtils.getInstance("druid").delete("deleteEquip").params(equipDO).returnType(Integer.class).execute();
-        System.out.println("结果"+count);
-    }
 }

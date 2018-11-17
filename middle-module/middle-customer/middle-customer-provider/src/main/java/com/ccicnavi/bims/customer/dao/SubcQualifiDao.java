@@ -20,7 +20,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    List<SubcQualifiDO> listSubcuQuali(SubcQualifiDO subcuQuali);
+    List<SubcQualifiDO> listSubcuQuali();
 
     /**
      *@Description: 新增分包方资质信息

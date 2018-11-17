@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/entrance-module/entrance-certmgr-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/entrance-module/entrance-customer-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/entrance-module/entrance-document-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/entrance-module/entrance-fin-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/entrance-module/entrance-order-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/entrance-module/entrance-resource-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/entrance-module/entrance-system-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/middle-module/middle-customer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/middle-module/middle-customer/middle-customer-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/middle-module/middle-customer/middle-customer-common" charset="UTF-8" />
@@ -23,5 +29,13 @@
     <file url="file://$PROJECT_DIR$/middle-module/middle-resource/middle-resource-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/middle-module/middle-resource/middle-resource-provider" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/middle-module/middle-system/middle-system-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zoo-breeder" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zoo-breeder/breeder-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zoo-breeder/breeder-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zoo-breeder/breeder-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zoo-shiba" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zoo-shiba/shiba-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zoo-shiba/shiba-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zoo-shiba/shiba-provider" charset="UTF-8" />
   </component>
 </project>

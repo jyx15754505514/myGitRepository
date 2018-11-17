@@ -15,7 +15,7 @@ public interface PersonDao {
      *@author: WangGengXiang
      *@create: 2018/11/16 15:18
      */
-    public List<PersonDO> listPerson(PersonDO personDo) throws Exception;
+     List<PersonDO> listPerson(PersonDO personDo) throws Exception;
 
     /*
      *@Param: [personDo]
@@ -24,7 +24,7 @@ public interface PersonDao {
      *@author: WangGengXiang
      *@create: 2018/11/16 15:18
      */
-    public Integer insertPerson(PersonDO personDo);
+     Integer insertPerson(PersonDO personDo);
 
     /*
      *@Param: [personDo]
@@ -33,7 +33,7 @@ public interface PersonDao {
      *@author: WangGengXiang
      *@create: 2018/11/16 15:18
      */
-    public Integer updatePerson(PersonDO personDo) throws Exception;
+     Integer updatePerson(PersonDO personDo) throws Exception;
 
     /*
      *@Param: [personDo]
@@ -42,7 +42,7 @@ public interface PersonDao {
      *@author: WangGengXiang
      *@create: 2018/11/16 15:18
      */
-    public Integer deletePerson(PersonDO personDo) throws Exception;
+     Integer deletePerson(PersonDO personDo) throws Exception;
 
     /*
      *@Param: [personDo]
@@ -51,7 +51,7 @@ public interface PersonDao {
      *@author: WangGengXiang
      *@create: 2018/11/16 15:18
      */
-    public PersonDO getPerson(PersonDO personDo);
+     PersonDO getPerson(PersonDO personDo);
 
 
     /*
@@ -61,7 +61,7 @@ public interface PersonDao {
      *@author: WangGengXiang
      *@create: 2018/11/16 15:09
      */
-    public PageBean<PersonDO> getPagePerson(PageParameter<PersonDO> pageParameter);
+     PageBean<PersonDO> getPagePerson(PageParameter<PersonDO> pageParameter);
 
 
 }

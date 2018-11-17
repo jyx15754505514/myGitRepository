@@ -4,6 +4,8 @@ package com.ccicnavi.bims.system.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.DepartmentDO;
 import com.ccicnavi.bims.system.service.api.DepartmentService;
 import org.slf4j.Logger;
@@ -32,22 +34,32 @@ public class DepartmentController {
     DepartmentService departmentService;
 
 
+
     /**
-     * 查询列表
-     * @param departmentDO
-     * @return
-     */
+    *@Description: 查询部门信息(条件查询)
+    *@Param: [departmentDO]
+    *@return: ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/16
+    */
+
     @RequestMapping(value = "/listDepartment", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listDepartment(@RequestBody DepartmentDO departmentDO){
-        List<DepartmentDO> dept = null;
-        try {
-            dept = departmentService.listDepartment(departmentDO);
-            return ResultT.success(dept);
-        }catch (Exception e){
-            log.error("根据条件查询部门信息失败",e);
-            return ResultT.failure(ResultCode.LIST_FAILURE);
-        }
+    public ResultT listDepartment(@RequestBody PageParameter<DepartmentDO> pageParameter){
+            try{
+                return  departmentService.listDepartment(pageParameter);
+            }catch (Exception e){
+                log.error("根据条件查询部门信息失败",e);
+                return ResultT.failure(ResultCode.LIST_FAILURE);
+            }
     }
+
+    /**
+    *@Description: 查询单个部门信息
+    *@Param: [departmentDO]
+    *@return: ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/16
+    */
 
     @RequestMapping(value = "/getDepartment", method = RequestMethod.POST)
     public ResultT getDepartment(@RequestBody DepartmentDO departmentDO){
@@ -62,6 +74,14 @@ public class DepartmentController {
 
     }
 
+    /**
+    *@Description: 新增部门信息
+    *@Param: [departmentDO]
+    *@return: ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/16
+    */
+
     @RequestMapping(value = "/insertDepartment", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT insertDepartment(@RequestBody DepartmentDO departmentDO){
         Integer integer = null;
@@ -75,6 +95,14 @@ public class DepartmentController {
 
     }
 
+    /**
+    *@Description: 更新部门信息
+    *@Param: [departmentDO]
+    *@return: ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/16
+    */
+
     @RequestMapping(value = "/updateDepartment", method = RequestMethod.POST)
     public ResultT updateDepartment(@RequestBody DepartmentDO departmentDO){
         Integer integer = null;
@@ -87,6 +115,14 @@ public class DepartmentController {
         }
 
     }
+
+    /**
+    *@Description: 删除部门信息
+    *@Param: [departmentDO]
+    *@return: ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/16
+    */
 
     @RequestMapping(value = "/deleteDepartment", method = RequestMethod.POST)
     public ResultT deleteDepartment(@RequestBody DepartmentDO departmentDO){

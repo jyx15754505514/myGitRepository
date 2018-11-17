@@ -1,5 +1,5 @@
---部门信息表查询
---[listDept]
+-- 部门信息表查询
+-- [listDepartment]
     SELECT
           dept_uuid as deptUuid,
           dept_code as deptCode,
@@ -21,12 +21,12 @@
           updated_name as updatedName,
           org_uuid as orgUuid,
           app_sys_uuid as appSysUuid,
-          business_line as businessLine,
+          prod_catalog_uuid as prodCatalogUuid,
           extend1,
           extend2,
           extend3
     FROM
-    sys_department
+        sys_department
     WHERE
         is_deleted = 'N'
         --iff deptCode != null and deptCode != ''
@@ -39,8 +39,8 @@
             and dept_uuid = '#deptUuid#'
         --end
 
---部门信息新增
---[insertDept]
+-- 部门信息新增
+-- [insertDepartment]
     INSERT INTO sys_department
     --trim prefix=( suffix=) suffixOverrides= ,
           --if deptUuid != null and deptUuid != ''
@@ -97,8 +97,8 @@
           --if appSysUuid != null and appSysUuid != ''
             app_sys_uuid,
           --end
-          --if businessLine != null  and businessLine != ''
-            business_line,
+          --if prodCatalogUuid != null  and prodCatalogUuid != ''
+            prod_catalog_uuid,
           --end
           --if extend1 != null and  extend1 != ''
             extend1,
@@ -165,8 +165,8 @@
           --if appSysUuid != null  and appSysUuid != ''
             '#appSysUuid#',
           --end
-          --if businessLine != null and businessLine != ''
-            '#businessLine#',
+          --if prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
           --end
           --if extend1 != null and extend1 != ''
             '#extend1#',
@@ -179,8 +179,8 @@
           --end
        --end
 
---[修改部门信息]
---[updateDept]
+-- 修改部门信息
+-- [updateDepartment]
      UPDATE
         sys_department
           -- trim  prefix= set suffixOverrides=,
@@ -216,8 +216,8 @@
               org_uuid = '#orgUuid#',
             --iff appSysUuid != null and appSysUuid != ''
               app_sys_uuid = '#appSysUuid#',
-            --iff businessLine != null and businessLine != ''
-              business_line = '#businessLine#',
+            --iff prodCatalogUuid != null and prodCatalogUuid != ''
+              prod_catalog_uuid = '#prodCatalogUuid#',
             --iff extend1 != null and extend1 != ''
               extend1 = '#extend1#',
             --iff extend2 != null and extend2 != ''
@@ -236,8 +236,8 @@
           	-- end
          -- end
 
---[删除部门信息]
---[deleteDept]
+-- 删除部门信息
+-- [deleteDepartment]
     UPDATE
         sys_department
         -- trim prefix= set suffixOverrides=,
@@ -255,8 +255,8 @@
             -- end
           -- end
 
---[根据主键查询部门信息]
---[getDept]
+-- 根据主键查询部门信息
+-- [getDepartment]
     SELECT
              dept_uuid as deptUuid,
              dept_code as deptCode,
@@ -278,7 +278,7 @@
              updated_name as updatedName,
              org_uuid as orgUuid,
              app_sys_uuid as appSysUuid,
-             business_line as businessLine,
+             prod_catalog_uuid as prodCatalogUuid,
              extend1,
              extend2,
              extend3

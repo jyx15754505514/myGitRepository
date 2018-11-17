@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ import java.util.Date;
 @Setter
 @ToString
 
-public class SpecialNeedDO {
+public class SpecialNeedDO implements Serializable {
 
     private String needUuid;
 

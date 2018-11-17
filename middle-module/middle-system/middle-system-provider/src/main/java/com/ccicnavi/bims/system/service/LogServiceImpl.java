@@ -1,10 +1,13 @@
 package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.ResultCode;
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.LogDao;
+import com.ccicnavi.bims.system.dao.LogDetailDao;
 import com.ccicnavi.bims.system.pojo.LogDO;
 import com.ccicnavi.bims.system.pojo.LogDTO;
 import com.ccicnavi.bims.system.service.api.LogService;
@@ -22,7 +25,10 @@ import java.util.List;
 public class LogServiceImpl implements LogService {
 
     @Autowired
-    LogDao logDao;
+    private LogDao logDao;
+
+    @Autowired
+    private LogDetailDao logDetailDao;
 
     /* *
      * @Author MengZiJie
@@ -32,21 +38,17 @@ public class LogServiceImpl implements LogService {
      * @Return java.util.List<com.ccicnavi.bims.system.pojo.LogDO>
      */
     @Override
-    public PageBean<LogDTO> listLog(PageParameter<LogDTO> pageParameter) {
-        EqlTran aDefault = EqlUtils.getInstance("DEFAULT").newTran();
+    public ResultT listLog(PageParameter<LogDTO> pageParameter) {
         PageBean<LogDTO> listLog = null;
         try {
-            aDefault.start();
             listLog =logDao.listLog(pageParameter);
             if(listLog != null){
-                aDefault.commit();
-                return listLog;
+                return ResultT.success(listLog);
             }
         } catch (Exception e) {
             log.error("获取日志失败",e);
-            aDefault.rollback();
         }
-        return listLog;
+        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
     /* *
@@ -57,15 +59,18 @@ public class LogServiceImpl implements LogService {
      * @Return com.ccicnavi.bims.system.pojo.LogDO
      */
     @Override
-    public LogDO getLog(LogDO logDO) {
-        LogDO logdo = null;
+    public ResultT getLog(LogDTO logDTO) {
+        LogDTO logdo = null;
         try {
-            logdo = logDao.getLog(logDO);
+            logdo = logDao.getLog(logDTO);
+            if(logdo != null){
+                return ResultT.success(logdo);
+            }
         } catch (Exception e) {
-            log.debug("获取日志失败",e);
+            log.error("获取日志失败",e);
             e.printStackTrace();
         }
-        return logdo;
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
     /** *
@@ -76,15 +81,23 @@ public class LogServiceImpl implements LogService {
      * @Return int
      */
     @Override
-    public Integer insertLog(LogDO logDO) {
-        int countLog = 0;
+    public ResultT insertLog(LogDTO logDTO) {
+        EqlTran aDefault = EqlUtils.getInstance("DEFAULT").newTran();
+        Integer countLog = null;
+        Integer countLogDetail = null;
         try {
-            countLog = logDao.insertLog(logDO);
+            aDefault.start();
+            countLog = logDao.insertLog(logDTO);
+            countLogDetail = logDetailDao.insertLogDetail(logDTO);
+            if(countLog > 0 && countLogDetail >0){
+                aDefault.commit();
+                return ResultT.success();
+            }
         } catch (Exception e) {
-            log.debug("添加日志失败",e);
-            e.printStackTrace();
+            log.error("添加日志失败",e);
+            aDefault.rollback();
         }
-        return countLog;
+        return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
     /* *
@@ -95,15 +108,23 @@ public class LogServiceImpl implements LogService {
      * @Return int
      */
     @Override
-    public Integer updateLog(LogDO logDO) {
-        int countLog  = 0;
+    public ResultT updateLog(LogDTO logDTO) {
+        EqlTran aDefault = EqlUtils.getInstance("DEFAULT").newTran();
+        Integer countLog = null;
+        Integer countLogDetail = null;
         try {
-            countLog = logDao.updateLog(logDO);
+            aDefault.start();
+            countLog = logDao.updateLog(logDTO);
+            countLogDetail = logDetailDao.updateLogDetail(logDTO);
+            if(countLog > 0 && countLogDetail >0){
+                aDefault.commit();
+                return ResultT.success();
+            }
         } catch (Exception e) {
-            log.debug("更新日志失败",e);
+            log.error("更新日志失败",e);
             e.printStackTrace();
         }
-        return countLog;
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     /* *
@@ -114,14 +135,22 @@ public class LogServiceImpl implements LogService {
      * @Return int
      */
     @Override
-    public Integer deleteLog(LogDO logDO) {
-        int countLog  = 0;
+    public ResultT deleteLog(LogDTO logDTO) {
+        EqlTran aDefault = EqlUtils.getInstance("DEFAULT").newTran();
+        Integer countLog = null;
+        Integer countLogDetail = null;
         try {
-            countLog = logDao.deleteLog(logDO);
+            aDefault.start();
+            countLog = logDao.deleteLog(logDTO);
+            countLogDetail = logDetailDao.deleteLogDetail(logDTO);
+            if(countLog > 0 && countLogDetail > 0){
+                aDefault.commit();
+                return ResultT.success();
+            }
         } catch (Exception e) {
-            log.debug("删除日志失败",e);
+            log.error("删除日志失败",e);
             e.printStackTrace();
         }
-        return countLog;
+        return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 }
