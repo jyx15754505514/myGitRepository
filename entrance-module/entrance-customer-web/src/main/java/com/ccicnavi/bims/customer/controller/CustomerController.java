@@ -10,6 +10,7 @@ import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import com.ccicnavi.bims.customer.pojo.CustomerDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,13 +41,12 @@ public class CustomerController {
      */
     @RequestMapping(value = "/listAllCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listAllCustomer(@RequestBody CustomerDO customerDO) {
-        List<CustomerDO> customerList = null;
         try {
-            customerList = customerService.listCustomer(customerDO);
+            List<CustomerDO> customerList = customerService.listCustomer(customerDO);
             return ResultT.success(customerList);
         } catch (Exception e) {
-            log.error("根据条件查询客户失败", e);
-            return ResultT.failure(ResultCode.DATA_IS_WRONG);
+            log.error("查询客户信息失败", e);
+            return ResultT.failure(ResultCode.RESULE_DATA_NONE);
         }
     }
 
@@ -64,6 +64,29 @@ public class CustomerController {
             }
         } catch (Exception e) {
             log.error("根据条件查询客户失败", e);
+        }
+        return ResultT.failure(ResultCode.LIST_FAILURE);
+    }
+
+
+    /**
+     * 根据主键查询客户信息
+     *
+     * @return
+     */
+        @RequestMapping(value = "/getCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT getCustomer(@RequestBody CustomerDO customerDO) {
+        try {
+            if (!StringUtils.isEmpty(customerDO.getCustUuid())) {
+                CustomerDO customer = customerService.getCustomer(customerDO);
+                if (customer != null) {
+                    return ResultT.success(customer);
+                }
+            } else {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
+        } catch (Exception e) {
+            log.error("根据主键查询客户失败", e);
         }
         return ResultT.failure(ResultCode.LIST_FAILURE);
     }

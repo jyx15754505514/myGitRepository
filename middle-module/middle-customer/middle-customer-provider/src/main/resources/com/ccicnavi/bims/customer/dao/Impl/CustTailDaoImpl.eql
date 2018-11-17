@@ -27,9 +27,34 @@ WHERE
         --if personName !=null and personName != ''
             and person_name = '#personName:like#'
         --end
-        --if tailUuid !=null and tailUuid != ''
-            and tail_uuid = '#tailUuid#'
-        --end
+
+-- [getCustTail]
+SELECT
+	tail_uuid,
+	cust_uuid,
+	person_uuid,
+	person_name,
+	status_uuid,
+	performance,
+	visit_type,
+	linkman_purpose,
+	idea,
+	next_link_time,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_name,
+	extend1,
+	extend2,
+	extend3
+FROM
+	crm_customer_tail
+WHERE
+	is_deleted = 'N'
+and tail_uuid = '#tailUuid#'
 
 -- [insertCustTail]
 insert into crm_customer_tail
@@ -162,9 +187,9 @@ UPDATE crm_customer_tail
 SET is_deleted = 'Y'
 WHERE
 	is_deleted = 'N'
-     -- if ids != null
+     -- if uuids != null
             AND tail_uuid IN
-            -- for item=item index=index collection=ids open=( separator=, close=)
+            -- for item=item index=index collection=uuids open=( separator=, close=)
                 #item#
             -- end
         -- end

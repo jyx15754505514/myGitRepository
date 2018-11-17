@@ -1,13 +1,14 @@
 package com.ccicnavi.bims.customer.dao.Impl;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.CustInvoiceDao;
 import com.ccicnavi.bims.customer.pojo.CustInvoiceDO;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @program: bims-backend
@@ -31,10 +32,8 @@ public class CustInvoiceDaoImpl implements CustInvoiceDao {
     }
 
     @Override
-    public int removeCustInvoice(String uuids) {
-        Map<String,Object> data=new HashMap<String,Object>();
-        data.put("ids",uuids.split(","));
-        return new Eql().update("deleteCustInvoice").params(data).execute();
+    public int removeCustInvoice(CustInvoiceDO custInvoice) {
+        return new Eql().update("deleteCustInvoice").params(custInvoice).execute();
     }
 
     @Override
@@ -45,6 +44,19 @@ public class CustInvoiceDaoImpl implements CustInvoiceDao {
     @Override
     public CustInvoiceDO getCustInvoice(CustInvoiceDO custInvoice) {
         return new Eql().selectFirst("listCustInvoice").params(custInvoice).returnType(CustInvoiceDO.class).execute();
+    }
+
+    @Override
+    public PageBean<CustInvoiceDO> listCustInvoicePage(PageParameter<CustInvoiceDO> pageParameter) throws Exception {
+        //封装分页参数
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        //执行查询
+        List<CustInvoiceDO> custInvoiceList = new Eql().select("listCustInvoice").params(pageParameter.getParameter()).returnType(CustInvoiceDO.class).limit(page).execute();
+        if(custInvoiceList != null) {
+            return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),custInvoiceList);//分装分页
+        }else {
+            return null;
+        }
     }
 
 
