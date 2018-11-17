@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.customer.dao;
 
+import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import com.ccicnavi.bims.customer.pojo.CustomerDTO;
 import com.ccicnavi.bims.customer.pojo.CustomerExtDO;
 import org.n3r.eql.EqlTran;
@@ -21,7 +22,7 @@ public interface CustomerExtDao {
     int saveCustomerExt(CustomerExtDO CustomerExt) ;
 
     /**删除客户注册信息信息*/
-    int removeCustomerExt(String uuids);
+    int removeCustomerExt(CustomerDO customerDO);
 
     /**修改客户注册信息信息*/
     int updateCustomerExt(CustomerExtDO CustomerExt);

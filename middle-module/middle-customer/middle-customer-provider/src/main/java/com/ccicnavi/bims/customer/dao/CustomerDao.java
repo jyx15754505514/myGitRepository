@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.customer.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import com.ccicnavi.bims.customer.pojo.CustomerDTO;
 import org.n3r.eql.EqlTran;
@@ -17,7 +19,7 @@ public interface CustomerDao {
     int saveCustomer(CustomerDO customer) throws Exception;
 
     /**删除客户信息*/
-    int removeCustomer(String uuids) throws Exception;
+    int removeCustomer(CustomerDO customer) throws Exception;
 
     /**修改客户信息*/
     int updateCustomer(CustomerDO customer) throws Exception;
@@ -30,4 +32,7 @@ public interface CustomerDao {
 
     /**客户信息唯一性验证*/
     int verifyCustInfoOnly(CustomerDO customer) throws Exception;
+
+    /**客户分页信息展示*/
+    PageBean<CustomerDO> listCustomerPage(PageParameter<CustomerDO> pageParameter);
 }

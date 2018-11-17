@@ -16,6 +16,6 @@ public class CustomerDemoController {
 
     @GetMapping("/sayHello")
     public String sayHello(String name){
-        return demoService.sayHello(name);
+        return demoService.sayHello();
     }
 }

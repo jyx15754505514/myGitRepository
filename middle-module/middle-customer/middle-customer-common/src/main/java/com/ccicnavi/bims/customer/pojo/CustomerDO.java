@@ -114,6 +114,9 @@ public class CustomerDO implements Serializable {
     private String extend3;
 
 
+    private String [] uuids;//要删除的客户主键
+
+
 
 
 
