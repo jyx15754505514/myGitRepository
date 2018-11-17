@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-public class CustTailDO {
+public class CustTailDO implements Serializable {
 
     private String tailUuid;
 
@@ -53,5 +54,7 @@ public class CustTailDO {
     private String extend2;
 
     private String extend3;
+
+    private String [] uuids;//要删除的客户跟踪主键
 
 }

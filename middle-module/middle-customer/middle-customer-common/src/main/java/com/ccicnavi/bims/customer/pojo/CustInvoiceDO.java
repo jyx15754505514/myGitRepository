@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-public class CustInvoiceDO {
+public class CustInvoiceDO implements Serializable {
     private String invoiceUuid;
 
     private String custUuid;
@@ -50,4 +51,6 @@ public class CustInvoiceDO {
     private String extend2;
 
     private String extend3;
+
+    private String [] uuids;//要删除的客户发票主键
 }

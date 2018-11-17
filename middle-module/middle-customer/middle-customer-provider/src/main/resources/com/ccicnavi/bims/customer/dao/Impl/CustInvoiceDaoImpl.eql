@@ -154,9 +154,9 @@ insert into crm_customer_invoice
 UPDATE crm_customer_invoice
 SET is_deleted = 'Y'
 where  	is_deleted = 'N'
-     -- if ids != null
+     -- if uuids != null
             AND invoice_uuid IN
-            -- for item=item index=index collection=ids open=( separator=, close=)
+            -- for item=item index=index collection=uuids open=( separator=, close=)
                 #item#
             -- end
         -- end

@@ -44,7 +44,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public CustomerDO getCustomer(CustomerDO customer) throws Exception{
-        return new Eql().selectFirst("listCustomer").params(customer).returnType(CustomerDO.class).execute();
+        return new Eql().selectFirst("getCustomer").params(customer).returnType(CustomerDO.class).execute();
     }
 
     @Override
