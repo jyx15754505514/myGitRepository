@@ -22,7 +22,8 @@
     is_deleted = 'N'
   --iff equipUseUuid != null and equipUseUuid != ''
     and equip_use_uuid = '#equipUseUuid#'
-    -- [listEquipUse]
+
+-- [listEquipUse]
   SELECT
     equip_use_uuid equipUseUuid,
     equip_uuid equipUuid,
@@ -165,3 +166,33 @@ WHERE
     is_deleted = 'N'
     and equip_use_uuid = '#equipUseUuid#'
 -- end
+
+-- [listEquipUseDTO]
+  SELECT
+    equip_use_uuid equipUseUuid,
+    equip_uuid equipUuid,
+    use_date useDate,
+    use_person usePerson,
+    use_dept useDept,
+    back_date backDate,
+    business_line businessLine,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    e.equip_name equipName,
+    e.equip_name_en equipNameEn,
+    e.equip_spec equipSpec,
+    e.factory_no factoryNo,
+    e.manufacture manufacture,
+    e.dept_uuid deptUuid
+  from
+        res_equip_use eu
+  LEFT JOIN res_equip e ON e.equip_uuid = eu.equip_uuid
+  where
+    eu.is_deleted = 'N'

@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.resource.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.EquipHoldDO;
 
 import java.util.List;
@@ -18,7 +20,7 @@ public interface EquipHoldDao {
      * @Param [equipHoldDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipHoldDO>
      */
-    List<EquipHoldDO> listEquipHold(EquipHoldDO equipHoldDO);
+    PageBean<EquipHoldDO> listEquipHold(PageParameter<EquipHoldDO> pageParameter);
 
     /**
      * @Author panyida

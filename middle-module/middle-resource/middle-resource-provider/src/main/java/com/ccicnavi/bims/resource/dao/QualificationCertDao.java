@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.resource.dao;
 
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.QualificationCertDO;
 
 import java.util.List;
@@ -30,4 +32,9 @@ public interface QualificationCertDao {
      *根据主键查询人员资格证书
      */
     public QualificationCertDO getQualificationCertDO(QualificationCertDO qualificationCertDO) ;
+
+    /**
+     *分页查询人员资格证书
+     */
+    public PageBean<QualificationCertDO> getQualificationCertPage(PageParameter<QualificationCertDO> pageParameter);
 }

@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.resource.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.EquipService;
 import com.ccicnavi.bims.resource.dao.EquipDao;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
@@ -35,8 +37,7 @@ public class EquipServiceImpl implements EquipService {
         try {
             equipDO = equipDao.getEquip(equipUuid);
         } catch (Exception e) {
-            log.debug("根据设备信息主键获取设备信息错误",e);
-            e.printStackTrace();
+            log.error("根据设备信息主键获取设备信息错误",e);
         }
         return equipDO;
     }
@@ -49,34 +50,14 @@ public class EquipServiceImpl implements EquipService {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDO>
      */
     @Override
-    public List<EquipDO> listEquip(EquipDO equipDO){
-        List<EquipDO> listEquipDO = null;
+    public PageBean<EquipDO> listEquip(PageParameter<EquipDO> pageParameter) {
+        PageBean<EquipDO> listEquipDO = null;
         try {
-            listEquipDO = equipDao.listEquip(equipDO);
+            listEquipDO = equipDao.listEquip(pageParameter);
         } catch (Exception e) {
-            log.debug("设备信息查询错误",e);
-            e.printStackTrace();
+            log.error("设备信息查询错误", e);
         }
-        return listEquipDO;
-    }
-
-    /**
-     * @Author panyida
-     * @Description 新增设备信息
-     * @Date 16:29 2018/11/14
-     * @Param [equipDO]
-     * @Return java.lang.Integer
-     */
-    @Override
-    public Integer insertEquip(EquipDO equipDO){
-        Integer count = null;
-        try {
-            count = equipDao.insertEquip(equipDO);
-        } catch (Exception e) {
-            log.debug("新增设备信息错误",e);
-            e.printStackTrace();
-        }
-        return count;
+            return listEquipDO;
     }
 
     /**
@@ -92,8 +73,25 @@ public class EquipServiceImpl implements EquipService {
         try {
             count = equipDao.updateEquip(equipDO);
         } catch (Exception e) {
-            log.debug("更新设备信息错误",e);
-            e.printStackTrace();
+            log.error("更新设备信息错误",e);
+        }
+        return count;
+    }
+
+    /**
+     * @Author panyida
+     * @Description 新增设备信息
+     * @Date 16:29 2018/11/14
+     * @Param [equipDO]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer insertEquip(EquipDO equipDO){
+        Integer count = null;
+        try {
+            count = equipDao.insertEquip(equipDO);
+        } catch (Exception e) {
+            log.error("新增设备信息错误",e);
         }
         return count;
     }
@@ -111,11 +109,11 @@ public class EquipServiceImpl implements EquipService {
         try {
             count = equipDao.deleteEquip(equipUuid);
         } catch (Exception e) {
-            log.debug("根据设备信息主键删除设备信息错误",e);
-            e.printStackTrace();
+            log.error("根据设备信息主键删除设备信息错误",e);
         }
         return count;
     }
+
 
 
 }

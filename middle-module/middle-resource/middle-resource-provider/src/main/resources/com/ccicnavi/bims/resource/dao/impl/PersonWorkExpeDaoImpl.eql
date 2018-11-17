@@ -308,3 +308,34 @@ where
     --if workExpeUuid != null and  workExpeUuid != ''
         and  work_expe_uuid = '#workExpeUuid#'
     --end
+
+--[getPersonWorkExpePage]
+select
+    work_expe_uuid workExpeUuid,
+    person_uuid personUuid,
+    start_work_time startWorkTime,
+    end_work_time endWorkTime,
+    witness witness,
+    org_name orgName,
+    dept_name deptName,
+    job job,
+    job_content jobContent,
+    is_grass_work isGrassWork,
+    is_expatriate_work isExpatriateWork,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    business_line businessLine,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
+from
+    res_person_work_expe
+    -- iff workExpeUuid != null and workExpeUuid != ""
+            WHERE work_expe_uuid = '#workExpeUuid#'

@@ -38,7 +38,11 @@
       extend3 as extend3
     from
     res_person
-    WHERE is_del
+    WHERE
+        is_deleted = 'N'
+    --iff name != null and name != ''
+        and name like '#name:Like#'
+    --end
 
 
 --[insertPerson]

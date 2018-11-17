@@ -198,14 +198,14 @@ update res_person_teach
       --iff  extend3 != null
         extend3 = '#extend3#',
        -- end
-             WHERE
-                is_deleted = 'N'
-            -- iff teachUuid != null and teachUuid != ''
-                and teach_uuid = '#teachUuid#'
-            -- iff teachUuids != null
-                and teach_uuid in
-            -- for item=item index = index collection=teachUuids open=( separator=, close=)
-                 '#item#'
+         WHERE
+            is_deleted = 'N'
+        -- iff teachUuid != null and teachUuid != ''
+            and teach_uuid = '#teachUuid#'
+        -- iff teachUuids != null
+            and teach_uuid in
+        -- for item=item index = index collection=teachUuids open=( separator=, close=)
+             '#item#'
 
 --[deletePersonTeach]
 update res_person_teach

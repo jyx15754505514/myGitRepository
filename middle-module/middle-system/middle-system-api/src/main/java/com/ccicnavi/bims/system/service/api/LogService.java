@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.system.service.api;
 
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.LogDO;
@@ -21,7 +22,7 @@ public interface LogService {
      * @Param [logDO]
      * @Return java.util.List<com.ccicnavi.bims.system.pojo.LogDO>
      */
-    PageBean<LogDTO> listLog(PageParameter<LogDTO> pageParameter);
+    ResultT listLog(PageParameter<LogDTO> pageParameter);
     /* *
      * @Author MengZiJie
      * @Description 获取指定日志
@@ -29,7 +30,7 @@ public interface LogService {
      * @Param [logDO]
      * @Return com.ccicnavi.bims.system.pojo.LogDO
      */
-    LogDO getLog(LogDO logDO);
+    ResultT getLog(LogDTO logDTO);
     /* *
      * @Author MengZiJie
      * @Description 新增日志
@@ -37,7 +38,7 @@ public interface LogService {
      * @Param [logDO]
      * @Return java.lang.Integer
      */
-    Integer insertLog(LogDO logDO);
+    ResultT insertLog(LogDTO logDTO);
     /* *
      * @Author MengZiJie
      * @Description 更新日志
@@ -45,7 +46,7 @@ public interface LogService {
      * @Param [logDO]
      * @Return java.lang.Integer
      */
-    Integer updateLog(LogDO logDO);
+    ResultT updateLog(LogDTO logDTO);
     /* *
      * @Author MengZiJie
      * @Description 删除日志
@@ -53,5 +54,5 @@ public interface LogService {
      * @Param [logDO]
      * @Return java.lang.Integer
      */
-    Integer deleteLog(LogDO logDO);
+    ResultT deleteLog(LogDTO logDTO);
 }

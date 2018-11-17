@@ -41,6 +41,8 @@
         <module name="shiba-provider" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel>
+      <module name="breeder-common" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

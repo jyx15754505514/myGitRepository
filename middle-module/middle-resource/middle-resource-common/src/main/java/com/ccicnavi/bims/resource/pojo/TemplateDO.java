@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 @Getter
@@ -18,6 +19,9 @@ import java.util.Date;
  * @create: 2018-11-14 23:33
  **/
 public class TemplateDO implements Serializable {
+
+    private List<String> uuids;
+
     private String templateUuid;
 
     private String dictTypeUuid;
@@ -51,6 +55,7 @@ public class TemplateDO implements Serializable {
     private String extend2;
 
     private String extend3;
+
 
 
 }

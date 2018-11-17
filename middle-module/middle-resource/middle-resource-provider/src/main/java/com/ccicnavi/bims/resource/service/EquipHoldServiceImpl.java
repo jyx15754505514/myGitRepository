@@ -1,13 +1,14 @@
 package com.ccicnavi.bims.resource.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.EquipHoldService;
 import com.ccicnavi.bims.resource.dao.EquipHoldDao;
 import com.ccicnavi.bims.resource.pojo.EquipHoldDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 
 /**
  * @program: bims-backend
@@ -35,8 +36,7 @@ public class EquipHoldServiceImpl implements EquipHoldService {
         try {
             equipHoldDO = equipHoldDao.getEquipHold(equipHoldUuid);
         } catch (Exception e) {
-            log.debug("根据设备保管信息主键获取设备保管信息错误",e);
-            e.printStackTrace();
+            log.error("根据设备保管信息主键获取设备保管信息错误",e);
         }
         return equipHoldDO;
     }
@@ -49,13 +49,12 @@ public class EquipHoldServiceImpl implements EquipHoldService {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipHoldDO>
      */
     @Override
-    public List<EquipHoldDO> listEquipHold(EquipHoldDO equipHoldDO){
-        List<EquipHoldDO> listEquipHoldDO = null;
+    public PageBean<EquipHoldDO> listEquipHold(PageParameter<EquipHoldDO> pageParameter){
+        PageBean<EquipHoldDO> listEquipHoldDO = null;
         try {
-            listEquipHoldDO = equipHoldDao.listEquipHold(equipHoldDO);
+            listEquipHoldDO = equipHoldDao.listEquipHold(pageParameter);
         } catch (Exception e) {
-            log.debug("设备保管信息查询错误",e);
-            e.printStackTrace();
+            log.error("设备保管信息查询错误",e);
         }
         return listEquipHoldDO;
     }
@@ -73,8 +72,7 @@ public class EquipHoldServiceImpl implements EquipHoldService {
         try {
             count = equipHoldDao.insertEquipHold(equipHoldDO);
         } catch (Exception e) {
-            log.debug("新增设备保管信息错误",e);
-            e.printStackTrace();
+            log.error("新增设备保管信息错误",e);
         }
         return count;
     }
@@ -92,8 +90,7 @@ public class EquipHoldServiceImpl implements EquipHoldService {
         try {
             count = equipHoldDao.updateEquipHold(equipHoldDO);
         } catch (Exception e) {
-            log.debug("更新设备保管信息错误",e);
-            e.printStackTrace();
+            log.error("更新设备保管信息错误",e);
         }
         return count;
     }
@@ -111,8 +108,7 @@ public class EquipHoldServiceImpl implements EquipHoldService {
         try {
             count = equipHoldDao.deleteEquipHold(equipHoldUuid);
         } catch (Exception e) {
-            log.debug("根据设备保管信息主键删除设备保管信息错误",e);
-            e.printStackTrace();
+            log.error("根据设备保管信息主键删除设备保管信息错误",e);
         }
         return count;
     }
