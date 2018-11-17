@@ -63,7 +63,7 @@ public class NotworkdayController {
         }catch (Exception e) {
             log.debug("新增非工作日失败", e);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
+        return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
     /*
@@ -103,7 +103,7 @@ public class NotworkdayController {
         }catch (Exception e) {
             log.debug("删除非工作日失败", e);
         }
-        return ResultT.failure(ResultCode.UPDATE_FAILURE);
+        return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 
     /*
@@ -118,12 +118,12 @@ public class NotworkdayController {
         try {
             NotworkdayDO resultBean = notworkdayService.getNotworkday(notworkday);
             if(resultBean != null) {
-                return ResultT.success();
+                return ResultT.success(resultBean);
             }
         }catch (Exception e) {
             log.debug("获取指定非工作日失败", e);
         }
-        return ResultT.failure(ResultCode.UPDATE_FAILURE);
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
 }
