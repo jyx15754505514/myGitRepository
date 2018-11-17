@@ -42,11 +42,13 @@ public class SubcQualifiTest {
 
     @Test
     public void testRemoveSubcuQuali(){
-        String uuid="wzy1,wzy2,wzy10";
+//        String uuid="wzy1,wzy2,wzy10";
 //        String[] ids=uuid.split(",");
 //        Map<String,Object> data=new HashMap<>();
 //        data.put("ids",ids);
-        int count=subcQualifiDaoTest.removeSubcuQuali(uuid);
+        SubcQualifiDO subcQualifiDO=new SubcQualifiDO();
+        subcQualifiDO.setSubcQualifiUuid("wzy10");
+        int count=subcQualifiDaoTest.removeSubcuQuali(subcQualifiDO);
         System.out.println(count);
     }
 

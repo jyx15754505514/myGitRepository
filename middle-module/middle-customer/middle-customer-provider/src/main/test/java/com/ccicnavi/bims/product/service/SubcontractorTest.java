@@ -52,11 +52,13 @@ public class SubcontractorTest {
 
     @Test
     public void testRemoveSubcontractor() {
-        String uuids = "asd1,asd10,asd2";
+//        String uuids = "asd1,asd10,asd2";
 //        String[] ids = uuids.split(",");
 //        Map<String, Object> data = new HashMap<String, Object>();
 //        data.put("ids", ids);
-        int count = subcontractorDaoTest.removeSubcontractor(uuids);
+        SubcontractorDO subcontractorDO=new SubcontractorDO();
+        subcontractorDO.setSubcontractorUuid("asd4");
+        int count = subcontractorDaoTest.removeSubcontractor(subcontractorDO);
         System.out.println(count);
     }
 

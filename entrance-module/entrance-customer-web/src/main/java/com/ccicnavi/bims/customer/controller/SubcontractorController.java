@@ -59,11 +59,13 @@ public class SubcontractorController {
         int count=0;
         try {
             count=subcontractorService.saveSubcontractor(subcontractorDO);
-            return ResultT.success(count);
+            if(count>0){
+                return ResultT.success(count);
+            }
         } catch (Exception e) {
             log.error("新增分包方信息失败",e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
         }
+        return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
     /**
@@ -91,10 +93,10 @@ public class SubcontractorController {
      * @return: com.ccicnavi.bims.common.ResultT
      */
     @RequestMapping(value = "/removeSubcontractor",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeSubcontractor(@RequestBody String subcontractorUuid){
+    public ResultT removeSubcontractor(@RequestBody SubcontractorDO subcontractorDO){
         int count=0;
         try {
-            count=subcontractorService.removeSubcontractor(subcontractorUuid);
+            count=subcontractorService.removeSubcontractor(subcontractorDO);
             return ResultT.success(count);
         } catch (Exception e) {
             log.error("删除分包方信息失败",e);
@@ -105,7 +107,7 @@ public class SubcontractorController {
     /**
      * @author: WangYingLing
      * @description: 查询分包方信息（根据主键获取）
-     * @param: subcontractorDO
+     * @param: subcontractorDORequstBody
      * @return: com.ccicnavi.bims.common.ResultT
      */
     @RequestMapping(value = "/getSubcontractor",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")

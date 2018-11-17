@@ -39,7 +39,7 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
      */
     @Override
     public int saveSubcuQuali(SubcQualifiDO subcuQuali) {
-        return new Eql().insert("saveSubcuQuali").params(subcuQuali).execute();
+        return new Eql().insert("saveSubcuQuali").params(subcuQuali).returnType(int.class).execute();
     }
 
     /** *
@@ -50,10 +50,10 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
      * @Return java.lang.Integer
      */
     @Override
-    public int removeSubcuQuali(String subcQualifiUuid) {
-        Map<String,Object> data=new HashMap<>();
-        data.put("ids",subcQualifiUuid.split(","));
-        return new Eql().update("removeSubcuQuali").params(data).execute();
+    public int removeSubcuQuali(SubcQualifiDO subcuQuali) {
+//        Map<String,Object> data=new HashMap<>();
+//        data.put("ids",subcQualifiUuid.split(","));
+        return new Eql().update("removeSubcuQuali").params(subcuQuali).execute();
     }
 
     /** *

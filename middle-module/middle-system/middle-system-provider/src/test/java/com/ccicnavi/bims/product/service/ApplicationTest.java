@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSONObject;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.system.Application;
+//import com.ccicnavi.bims.system.Application;
 import com.ccicnavi.bims.system.pojo.RoleDO;
 import com.ccicnavi.bims.system.service.api.PageDemoService;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Application.class)
+//@SpringBootTest(classes = Application.class)
 public class ApplicationTest {
 
     @Reference(timeout = 1000000,url = "dubbo://127.0.0.1:20881")

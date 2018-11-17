@@ -20,7 +20,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    List<SubcQualifiDO> listSubcuQuali();
+    List<SubcQualifiDO> listSubcuQuali() throws Exception;
 
     /**
      *@Description: 新增分包方资质信息
@@ -29,7 +29,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    int saveSubcuQuali(SubcQualifiDO subcuQuali);
+    int saveSubcuQuali(SubcQualifiDO subcuQuali) throws Exception;
 
     /**
      *@Description: 删除分包方资质信息
@@ -38,7 +38,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    int removeSubcuQuali(String subcQualifiUuid);
+    int removeSubcuQuali(SubcQualifiDO subcuQuali) throws Exception;
 
     /**
      *@Description: 修改分包方资质信息
@@ -47,7 +47,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    int updateSubcuQuali(SubcQualifiDO subcuQuali);
+    int updateSubcuQuali(SubcQualifiDO subcuQuali) throws Exception;
 
     /**
      *@Description: 查询分包方资质信息（根据主键获取）
@@ -56,6 +56,6 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    SubcQualifiDO getSubcQuali(SubcQualifiDO subcQuali);
+    SubcQualifiDO getSubcQuali(SubcQualifiDO subcQuali) throws Exception;
 
 }
