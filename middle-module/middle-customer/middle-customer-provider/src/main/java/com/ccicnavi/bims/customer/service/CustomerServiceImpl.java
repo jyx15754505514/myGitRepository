@@ -2,6 +2,8 @@ package com.ccicnavi.bims.customer.service;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.ResultCode;
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.CustomerService;
@@ -126,17 +128,39 @@ public class CustomerServiceImpl implements CustomerService {
      * @return
      */
     @Override
-    public boolean verifyCustInfoOnly(CustomerDO customer) {
+    public ResultT verifyCustInfoOnly(CustomerDO customer) {
         boolean flag = true;
+        Integer count =0;
         try {
-            Integer count = customerDao.verifyCustInfoOnly(customer);
-            if (count > 0) {
-                flag = false;
+            //验证客户名称
+            if(!StringUtils.isEmpty(customer.getCustName())){
+                count = customerDao.verifyCustInfoOnly(customer);
+                if (count > 0) {
+                    return ResultT.failure(ResultCode.CUST_NAME_REPEAT);
+                }
+            }
+            customer.setCustName(null);//清空客户名称，避免以下验证受影响
+            //验证客户代码
+            if (!StringUtils.isEmpty(customer.getCustCode())) {
+                count = customerDao.verifyCustInfoOnly(customer);
+                if (count > 0) {
+                    return ResultT.failure(ResultCode.CUST_CODE_REPEAT);
+                }
+            }
+            customer.setCustCode(null);
+            //验证客户统一社会信用代码
+            if (!StringUtils.isEmpty(customer.getCustUscc())) {
+                count = customerDao.verifyCustInfoOnly(customer);
+                if (count > 0) {
+                    return ResultT.failure(ResultCode.CUST_USCC_REPEAT);
+                }
             }
         } catch (Exception e) {
             log.error("客户信息唯一性验证失败~");
+            e.printStackTrace();
+            return ResultT.failure(ResultCode.VERIFY_CUSTINFO_ONLY_FAILURE);
         }
-        return flag;
+        return ResultT.success("可用");
     }
 
     /**

@@ -74,7 +74,7 @@ public class CustomerController {
      *
      * @return
      */
-        @RequestMapping(value = "/getCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/getCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT getCustomer(@RequestBody CustomerDO customerDO) {
         try {
             if (!StringUtils.isEmpty(customerDO.getCustUuid())) {
@@ -143,6 +143,25 @@ public class CustomerController {
         } catch (Exception e) {
             log.error("删除客户失败", e);
             return ResultT.failure(ResultCode.DELETE_FAILURE);
+        }
+    }
+
+
+    /**
+     * 客户信息唯一性验证
+     */
+    @RequestMapping(value = "/verifyCustInfoOnly", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT verifyCustInfoOnly(@RequestBody CustomerDO customerDO) {
+        try {
+            if(!StringUtils.isEmpty(customerDO.getCustName()) || !StringUtils.isEmpty(customerDO.getCustCode()) || !StringUtils.isEmpty(customerDO.getCustUscc())){
+                return customerService.verifyCustInfoOnly(customerDO);
+            }else {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
+        } catch (Exception e) {
+            log.error("客户信息唯一性验证失败~", e);
+            e.printStackTrace();
+            return ResultT.failure(ResultCode.VERIFY_CUSTINFO_ONLY_FAILURE);
         }
     }
 

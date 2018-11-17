@@ -1,4 +1,5 @@
 package com.ccicnavi.bims.customer.api;
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.CustomerDO;
@@ -31,7 +32,7 @@ public interface CustomerService {
     int saveCustomerAndExt(CustomerDTO customerDTO);
 
     /**客户信息唯一性验证*/
-    boolean verifyCustInfoOnly(CustomerDO customer);
+    ResultT verifyCustInfoOnly(CustomerDO customer);
 
     /**客户分页信息展示*/
     PageBean<CustomerDO> listCustomerPage(PageParameter<CustomerDO> pageParameter);

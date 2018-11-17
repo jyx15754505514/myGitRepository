@@ -55,7 +55,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public int verifyCustInfoOnly(CustomerDO customer) throws Exception {
-        return new Eql().select("verifyCustInfoOnly").params(customer).returnType(int.class).execute();
+        return new Eql().selectFirst("verifyCustInfoOnly").params(customer).returnType(int.class).execute();
     }
 
 
