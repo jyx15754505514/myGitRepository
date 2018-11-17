@@ -59,10 +59,10 @@ public class SettingController {
 
     @RequestMapping(value = "/getSetting", method = RequestMethod.POST)
     public ResultT getSetting(@RequestBody SettingDO settingDO) {
-        SettingDO settingDO1 = null;
+        SettingDO setting = null;
         try {
-            settingDO1 = settingService.getSetting(settingDO);
-            return ResultT.success(settingDO1);
+            setting = settingService.getSetting(settingDO);
+            return ResultT.success(setting);
         } catch (Exception e) {
             log.error("根据主键查询系统设置信息失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
@@ -83,7 +83,7 @@ public class SettingController {
         Integer integer = null;
         try {
             integer = settingService.insertSetting(settingDO);
-            return ResultT.success(settingDO);
+            return ResultT.success();
         } catch (Exception e) {
             log.error("新增系统设置信息失败",e);
             return ResultT.failure(ResultCode.ADD_FAILURE);
@@ -104,7 +104,7 @@ public class SettingController {
         Integer integer = null;
         try {
             integer = settingService.updateSetting(settingDO);
-            return ResultT.success(settingDO);
+            return ResultT.success();
         } catch (Exception e) {
             log.error("更新系统设置信息失败", e);
             return ResultT.failure(ResultCode.UPDATE_FAILURE);
@@ -125,7 +125,7 @@ public class SettingController {
         Integer integer = null;
         try {
             integer = settingService.deleteSetting(settingDO);
-            return ResultT.success(settingDO);
+            return ResultT.success();
         } catch (Exception e) {
             log.error("删除系统设置信息失败", e);
             return ResultT.failure(ResultCode.DELETE_FAILURE);

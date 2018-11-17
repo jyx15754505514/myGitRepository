@@ -63,10 +63,10 @@ public class DepartmentController {
 
     @RequestMapping(value = "/getDepartment", method = RequestMethod.POST)
     public ResultT getDepartment(@RequestBody DepartmentDO departmentDO){
-        DepartmentDO departmentDO1 = null;
+        DepartmentDO department = null;
         try {
-            departmentDO1 = departmentService.getDepartment(departmentDO);
-            return ResultT.success(departmentDO1);
+            department = departmentService.getDepartment(departmentDO);
+            return ResultT.success(department);
         }catch (Exception e){
             log.error("根据主键查询部门信息失败",e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
@@ -87,7 +87,7 @@ public class DepartmentController {
         Integer integer = null;
         try {
             integer = departmentService.insertDepartment(departmentDO);
-            return ResultT.success(departmentDO);
+            return ResultT.success();
         }catch (Exception e){
             log.error("添加部门信息失败",e);
             return ResultT.failure(ResultCode.ADD_FAILURE);
@@ -108,7 +108,7 @@ public class DepartmentController {
         Integer integer = null;
         try {
             integer = departmentService.updateDepartment(departmentDO);
-            return  ResultT.success(departmentDO);
+            return  ResultT.success();
         }catch (Exception e){
            log.error("更新部门信息失败",e);
             return ResultT.failure(ResultCode.UPDATE_FAILURE);
@@ -129,7 +129,7 @@ public class DepartmentController {
         Integer integer = null;
         try {
             integer = departmentService.deleteDepartment(departmentDO);
-            return  ResultT.success(departmentDO);
+            return  ResultT.success();
         }catch (Exception e){
            log.error("删除部门信息失败",e);
             return ResultT.failure(ResultCode.DELETE_FAILURE);
