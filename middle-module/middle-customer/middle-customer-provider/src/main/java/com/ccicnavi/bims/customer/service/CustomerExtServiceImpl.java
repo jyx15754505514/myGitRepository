@@ -2,6 +2,7 @@ package com.ccicnavi.bims.customer.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.customer.api.CustomerExtService;
 import com.ccicnavi.bims.customer.dao.CustomerExtDao;
+import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import com.ccicnavi.bims.customer.pojo.CustomerExtDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,9 @@ public class CustomerExtServiceImpl implements CustomerExtService {
     }
 
     @Override
-    public int removeCustomerExt(String uuids) {
+    public int removeCustomerExt(CustomerDO customerDO) {
         try {
-            return customerExtDao.removeCustomerExt(uuids);
+            return customerExtDao.removeCustomerExt(customerDO);
         } catch (Exception e) {
             log.error("删除客户注册信息失败",e);
             return 0;

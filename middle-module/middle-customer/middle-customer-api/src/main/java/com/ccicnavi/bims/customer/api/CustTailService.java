@@ -1,8 +1,8 @@
 package com.ccicnavi.bims.customer.api;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.CustTailDO;
-import com.ccicnavi.bims.customer.pojo.CustomerDO;
-import com.ccicnavi.bims.customer.pojo.LinkmanDO;
 
 import java.util.List;
 
@@ -14,18 +14,21 @@ import java.util.List;
  */
 public interface CustTailService {
 
-    /**查询全部客户联系人信息*/
+    /**查询全部客户跟踪信息*/
     List<CustTailDO> listCustTail(CustTailDO custTail);
 
-    /**新增客户信息*/
+    /**新增客户跟踪信息*/
     int saveCustTail(CustTailDO custTail);
 
-    /**删除客户联系人信息*/
-    int removeCustTail(String uuids);
+    /**删除客户跟踪信息*/
+    int removeCustTail(CustTailDO custTail);
 
-    /**修改客户联系人信息*/
+    /**修改客户跟踪信息*/
     int updateCustTail(CustTailDO custTail);
 
+    /**根据主键查询客户跟踪信息*/
     CustTailDO getCustTail(CustTailDO custTail);
 
+    /**分页查询客户跟踪信息*/
+    PageBean<CustTailDO> listCustTailPage(PageParameter<CustTailDO> pageParameter);
 }

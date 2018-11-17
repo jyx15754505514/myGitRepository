@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.customer.api;
 
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.CustAddrDO;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public interface CustAddrService {
     int saveCustAddr(CustAddrDO CustAddr);
 
     /**删除客户地址信息*/
-    int removeCustAddr(String uuids);
+    int removeCustAddr(CustAddrDO CustAddr);
 
     /**修改客户地址信息*/
     int updateCustAddr(CustAddrDO CustAddr) ;
@@ -28,4 +30,6 @@ public interface CustAddrService {
     /**根据主键返回对应信息*/
     CustAddrDO getCustAddr(CustAddrDO CustAddr);
 
+    /**分页查询客户地址*/
+    PageBean<CustAddrDO> listCustAddrPage(PageParameter<CustAddrDO> pageParameter);
 }

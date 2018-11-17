@@ -152,11 +152,11 @@
     SET
         is_deleted = 'Y'
     WHERE
-		-- if notworkday_uuid != null and notworkday_uuid != ''
+		-- if notworkdayUuid != null and notworkdayUuid != ''
 			notworkday_uuid = '#notworkdayUuid#'
 		-- end
 		-- if uuids != null
-			notworkday_uuid in
+			    notworkday_uuid in
 			-- for item=item index=index collection=uuids open=( separator=, close=)
 				'#item#'
 			-- end

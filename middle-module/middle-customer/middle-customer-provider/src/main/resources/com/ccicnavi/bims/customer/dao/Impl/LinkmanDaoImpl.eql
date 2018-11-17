@@ -38,6 +38,43 @@ WHERE
             and linkman_uuid = '#linkmanUuid#'
         --end
 
+
+-- [getLinkman]
+SELECT
+	linkman_uuid,
+	cust_uuid,
+	linkman_name,
+	gender,
+	phone,
+	email,
+	fax,
+	office_phone,
+	addr,
+	is_default,
+	status_uuid,
+	dept,
+	position,
+	role,
+	qq,
+	we_chat,
+	type_of_service,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_name,
+	extend1,
+	extend2,
+	extend3
+FROM
+	crm_customer_linkman
+WHERE
+	is_deleted = 'N'
+and linkman_uuid = '#linkmanUuid#'
+
+
 -- [insertLinkman]
 insert into crm_customer_linkman
     -- trim prefix=( suffix=) suffixOverrides=,
@@ -211,9 +248,9 @@ UPDATE crm_customer_linkman
 SET is_deleted = 'Y'
 WHERE
 	is_deleted = 'N'
-     -- if ids != null
+     -- if uuids != null
            AND linkman_uuid IN
-            -- for item=item index=index collection=ids open=( separator=, close=)
+            -- for item=item index=index collection=uuids open=( separator=, close=)
                 #item#
             -- end
         -- end

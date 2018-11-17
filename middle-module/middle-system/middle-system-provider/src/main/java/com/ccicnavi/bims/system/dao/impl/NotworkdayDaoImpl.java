@@ -82,7 +82,7 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
     **/
     @Override
     public NotworkdayDO getNotworkday(NotworkdayDO notworkday) throws Exception{
-        return new Eql().selectFirst("getNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
+        return new Eql("DEFAULT").selectFirst("getNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
     }
 
 

@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.customer.test;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.Impl.CustomerDaoImpl;
 import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import com.ccicnavi.bims.customer.pojo.CustomerDTO;
@@ -15,9 +17,10 @@ public class TestCustomer {
 
 
 
+    CustomerDaoImpl custAddrDao=new CustomerDaoImpl();
+
     @org.junit.Test
     public void listCustAddr() {
-        CustomerDaoImpl custAddrDao=new CustomerDaoImpl();
         List<CustomerDO> custAddrDOS = null;
         try {
             custAddrDOS = custAddrDao.listCustomer(new CustomerDO());
@@ -27,8 +30,18 @@ public class TestCustomer {
         System.out.println(custAddrDOS);
     }
 
+
+    /**
+     * 测试分页查询客户信息
+     */
     @org.junit.Test
-    public void saveCustAddr() {
+    public void findCustomerPage() {
+        PageParameter<CustomerDO> pageParameter=new PageParameter<CustomerDO>();
+        pageParameter.setStartIndex(0);//起始位置
+        pageParameter.setPageRows(2);//每页显示条数
+        pageParameter.setStartPage(2);//起始页码
+        PageBean<CustomerDO> customerDOPageBean = custAddrDao.listCustomerPage(pageParameter);
+        System.out.println(customerDOPageBean);
     }
 
     @org.junit.Test
@@ -139,8 +152,9 @@ public class TestCustomer {
     @Test
     public void testPage(){
         EqlPage page=new EqlPage(3,2);
-        List<CustomerDO> custList= EqlUtils.getInstance("druid").select("listCustomer").returnType(CustomerDO.class).params(page).execute();
         System.out.println(page);
-        System.out.println(custList);
     }
+
+
+
 }
