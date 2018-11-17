@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.customer.api;
 
 
+import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import com.ccicnavi.bims.customer.pojo.CustomerExtDO;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public interface CustomerExtService {
     int saveCustomerExt(CustomerExtDO CustomerExt) ;
 
     /**删除客户发票信息*/
-    int removeCustomerExt(String uuids);
+    int removeCustomerExt(CustomerDO customerDO);
 
     /**修改客户发票信息*/
     int updateCustomerExt(CustomerExtDO CustomerExt);

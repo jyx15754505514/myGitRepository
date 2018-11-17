@@ -2,6 +2,8 @@ package com.ccicnavi.bims.customer.service;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.CustomerService;
 import com.ccicnavi.bims.customer.dao.CustomerDao;
 import com.ccicnavi.bims.customer.dao.CustomerExtDao;
@@ -12,7 +14,9 @@ import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.n3r.eql.util.Closes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,10 +37,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerDO> listCustomer(CustomerDO customer) {
         try {
-           return customerDao.listCustomer(customer);
+            return customerDao.listCustomer(customer);
         } catch (Exception e) {
-            log.error("查询客户信息失败~",e);
-            return null;
+            log.error("查询客户信息失败~", e);
+            return Collections.emptyList();
         }
     }
 
@@ -45,19 +49,26 @@ public class CustomerServiceImpl implements CustomerService {
         try {
             return customerDao.saveCustomer(customer);
         } catch (Exception e) {
-            log.error("保存客户信息失败~",e);
+            log.error("保存客户信息失败~", e);
             return 0;
         }
     }
 
     @Override
-    public int removeCustomer(String uuids) {
+    public int removeCustomer(CustomerDO customer) {
         try {
-            return customerDao.removeCustomer(uuids);
+            if (!StringUtils.isEmpty(customer.getCustUuid()) && customer.getCustUuid() != "") {
+                customer.setUuids(customer.getCustUuid().split(","));
+                Integer insertCustomer = customerDao.removeCustomer(customer);//删除客户基本信息
+                customerExtDao.removeCustomerExt(customer);//删除客户注册信息
+                if (insertCustomer > 0) {
+                    return insertCustomer;
+                }
+            }
         } catch (Exception e) {
-            log.error("删除客户信息失败~",e);
-            return 0;
+            log.error("删除客户信息失败~", e);
         }
+        return 0;
     }
 
     @Override
@@ -65,7 +76,7 @@ public class CustomerServiceImpl implements CustomerService {
         try {
             return customerDao.updateCustomer(customer);
         } catch (Exception e) {
-            log.error("修改客户信息失败~",e);
+            log.error("修改客户信息失败~", e);
             return 0;
         }
     }
@@ -75,13 +86,14 @@ public class CustomerServiceImpl implements CustomerService {
         try {
             return customerDao.getCustomer(customerDO);
         } catch (Exception e) {
-            log.error("根据主键查询客户信息失败~",e);
-            return null;
+            log.error("根据主键查询客户信息失败~", e);
+            return new CustomerDO();
         }
     }
 
     /**
      * 保存客户信息与客户注册信息
+     *
      * @param customerDTO
      * @return
      */
@@ -89,42 +101,58 @@ public class CustomerServiceImpl implements CustomerService {
     public int saveCustomerAndExt(CustomerDTO customerDTO) {
         EqlTran tran = new Eql().newTran();
         Integer saveCust = 0;
-        Integer saveCustExt =0;
+        Integer saveCustExt = 0;
         try {
             tran.start();
             saveCust = customerDao.saveCustomerAndExt(customerDTO, tran);//新增客户基本信息
             saveCustExt = customerExtDao.saveCustomerAndExt(customerDTO, tran);//新增客户注册信息
-            if(saveCust > 0 && saveCustExt > 0){
+            if (saveCust > 0 && saveCustExt > 0) {
                 tran.commit();
                 return saveCust;
             }
-        }catch (Exception e){
-            e.printStackTrace();
-            log.debug("新增客户与客户注册信息失败~");
+        } catch (Exception e) {
+            log.error("新增客户与客户注册信息失败~");
             tran.rollback();
-        }finally {
-            Closes.closeQuietly(tran);
+        } finally {
+            Closes.closeQuietly(tran);//关闭事物
         }
         return saveCust;
     }
 
     /**
      * 客户信息唯一性验证
+     *
      * @param customer
      * @return
      */
     @Override
     public boolean verifyCustInfoOnly(CustomerDO customer) {
-        boolean flag=true;
+        boolean flag = true;
         try {
-            Integer count=customerDao.verifyCustInfoOnly(customer);
-            if(count>0){
-                flag=false;
+            Integer count = customerDao.verifyCustInfoOnly(customer);
+            if (count > 0) {
+                flag = false;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("客户信息唯一性验证失败~");
         }
         return flag;
+    }
+
+    /**
+     * 客户分页信息展示
+     *
+     * @param pageParameter
+     * @return
+     */
+    @Override
+    public PageBean<CustomerDO> listCustomerPage(PageParameter<CustomerDO> pageParameter) {
+        try {
+            return customerDao.listCustomerPage(pageParameter);
+        } catch (Exception e) {
+            log.error("服务端客户分页查询失败");
+            return null;
+        }
     }
 
 
