@@ -383,3 +383,40 @@ select
     --if workUuid !=  null and  workUuid !=  ''
         and  work_uuid = '#workUuid#'
     --end
+
+--[getPersonWorkPage]
+SELECT
+     work_uuid workUuid,
+     person_uuid personUuid,
+     person_type personType,
+     dept_uuid deptUuid,
+     position position,
+     join_job_time joinJobTime,
+     regular_time regularTime,
+     join_app_time joinAppTime,
+     join_org_time joinOrgTime,
+     post_time postTime,
+     post_name postName,
+     email email,
+     fax fax,
+     office_phone officePhone,
+     work_addr workAddr,
+     is_upload_file isUploadFile,
+     comments comments,
+     is_deleted isDeleted,
+     created_time createdTime,
+     created_uuid createdUuid,
+     created_name createdName,
+     updated_time updatedTime,
+     updated_name updatedName,
+     org_uuid orgUuid,
+     org_name orgName,
+     app_sys_uuid appSysUuid,
+     business_line businessLine,
+     extend1 extend1,
+     extend2 extend2,
+     extend3 extend3
+from
+     res_person_work
+    -- iff workUuid != null and workUuid != ""
+        WHERE work_uuid = '#workUuid#'
