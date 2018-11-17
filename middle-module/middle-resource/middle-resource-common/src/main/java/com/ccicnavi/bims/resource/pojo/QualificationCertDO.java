@@ -50,7 +50,7 @@ public class QualificationCertDO implements Serializable {
 
     private String appSysUuid;
 
-    private String businessLine;
+    private String prodCatalogUuid;
 
     private String extend1;
 

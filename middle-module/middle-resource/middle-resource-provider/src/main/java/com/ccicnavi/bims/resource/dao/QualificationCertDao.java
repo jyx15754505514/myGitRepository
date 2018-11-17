@@ -11,30 +11,30 @@ public interface QualificationCertDao {
     /**
      *查询人员资格证书
      */
-    public List<QualificationCertDO> listQualificationCertDO(QualificationCertDO qualificationCertDO) ;
+    public List<QualificationCertDO> listQualificationCertDO(QualificationCertDO qualificationCertDO) throws Exception;
 
     /**
      *新增人员资格证书
      */
-    public Integer insertQualificationCertDO(QualificationCertDO qualificationCertDO) ;
+    public Integer insertQualificationCertDO(QualificationCertDO qualificationCertDO)throws Exception;
 
     /**
      *更改人员资格证书
      */
-    public Integer updateQualificationCertDO(QualificationCertDO qualificationCertDO) ;
+    public Integer updateQualificationCertDO(QualificationCertDO qualificationCertDO)throws Exception;
 
     /**
      *删除人员资格证书
      */
-    public Integer deleteQualificationCertDO(QualificationCertDO qualificationCertDO) ;
+    public Integer deleteQualificationCertDO(QualificationCertDO qualificationCertDO)throws Exception;
 
     /**
      *根据主键查询人员资格证书
      */
-    public QualificationCertDO getQualificationCertDO(QualificationCertDO qualificationCertDO) ;
+    public QualificationCertDO getQualificationCertDO(QualificationCertDO qualificationCertDO)throws Exception;
 
     /**
      *分页查询人员资格证书
      */
-    public PageBean<QualificationCertDO> getQualificationCertPage(PageParameter<QualificationCertDO> pageParameter);
+    public PageBean<QualificationCertDO> getQualificationCertPage(PageParameter<QualificationCertDO> pageParameter)throws Exception;
 }

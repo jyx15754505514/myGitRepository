@@ -16,7 +16,7 @@ public class QualificationCertDaoImpl implements QualificationCertDao {
      *查询人员资格证书
      */
     @Override
-    public List<QualificationCertDO> listQualificationCertDO(QualificationCertDO qualificationCertDO) {
+    public List<QualificationCertDO> listQualificationCertDO(QualificationCertDO qualificationCertDO)throws Exception{
         return new Eql().select("listQualificationCertDO").params(qualificationCertDO).returnType(QualificationCertDO.class).execute();
     }
 
@@ -24,7 +24,7 @@ public class QualificationCertDaoImpl implements QualificationCertDao {
      *新增人员资格证书
      */
     @Override
-    public Integer insertQualificationCertDO(QualificationCertDO qualificationCertDO) {
+    public Integer insertQualificationCertDO(QualificationCertDO qualificationCertDO)throws Exception{
         return new Eql().insert("insertQualificationCertDO").params(qualificationCertDO).returnType(Integer.class).execute();
     }
 
@@ -32,7 +32,7 @@ public class QualificationCertDaoImpl implements QualificationCertDao {
      *更改人员资格证书
      */
     @Override
-    public Integer updateQualificationCertDO(QualificationCertDO qualificationCertDO) {
+    public Integer updateQualificationCertDO(QualificationCertDO qualificationCertDO)throws Exception{
         return new Eql().insert("updateQualificationCertDO").params(qualificationCertDO).returnType(Integer.class).execute();
     }
 
@@ -40,7 +40,7 @@ public class QualificationCertDaoImpl implements QualificationCertDao {
      *删除人员资格证书
      */
     @Override
-    public Integer deleteQualificationCertDO(QualificationCertDO qualificationCertDO) {
+    public Integer deleteQualificationCertDO(QualificationCertDO qualificationCertDO)throws Exception{
         return new Eql().insert("deleteQualificationCertDO").params(qualificationCertDO).returnType(Integer.class).execute();
     }
 
@@ -48,7 +48,7 @@ public class QualificationCertDaoImpl implements QualificationCertDao {
      *根据主键查询人员资格证书
      */
     @Override
-    public QualificationCertDO getQualificationCertDO(QualificationCertDO qualificationCertDO){
+    public QualificationCertDO getQualificationCertDO(QualificationCertDO qualificationCertDO)throws Exception{
         return new Eql().selectFirst("getQualificationCertDO").params(qualificationCertDO).returnType(QualificationCertDO.class).execute();
     }
 
@@ -56,7 +56,7 @@ public class QualificationCertDaoImpl implements QualificationCertDao {
      *分页查询人员工作经历
      */
     @Override
-    public PageBean<QualificationCertDO> getQualificationCertPage(PageParameter<QualificationCertDO> pageParameter) {
+    public PageBean<QualificationCertDO> getQualificationCertPage(PageParameter<QualificationCertDO> pageParameter)throws Exception{
         EqlPage page = new EqlPage(pageParameter.getStartIndex(),pageParameter.pageRows);
         List<QualificationCertDO> qualificationCertDOS = new Eql().select("getQualificationCertPage").params(pageParameter.getParameter()).returnType(QualificationCertDO.class).limit(page).execute();
         return  new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),qualificationCertDOS);

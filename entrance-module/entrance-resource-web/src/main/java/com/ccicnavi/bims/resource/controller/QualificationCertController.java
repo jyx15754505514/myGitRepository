@@ -7,7 +7,6 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.QualificationCertService;
 import com.ccicnavi.bims.resource.pojo.QualificationCertDO;
-import com.ccicnavi.bims.system.controller.NotworkdayController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/entrance-module/entrance-common/pom.xml" />
+        <option value="$PROJECT_DIR$/entrance-module/entrance-customer-web/pom.xml" />
       </list>
     </option>
   </component>

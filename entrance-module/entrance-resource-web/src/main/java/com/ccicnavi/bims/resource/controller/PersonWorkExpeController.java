@@ -7,6 +7,8 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.PersonWorkExpeService;
 import com.ccicnavi.bims.resource.pojo.PersonWorkExpeDO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/personworkexpe")
 public class PersonWorkExpeController {
+
+    private final static Logger log = LoggerFactory.getLogger(PersonWorkExpeController.class);
 
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
     PersonWorkExpeService personWorkExpeService;
@@ -35,7 +39,7 @@ public class PersonWorkExpeController {
             List<PersonWorkExpeDO> personWorkExpeList = personWorkExpeService.listPersonWorkExpeDO(personWorkExpeDO);
             return ResultT.success(personWorkExpeList);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.debug("查询人员工作经历失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
@@ -51,11 +55,13 @@ public class PersonWorkExpeController {
     public ResultT insertPersonWorkExpe(@RequestBody PersonWorkExpeDO personWorkExpeDO){
         try {
             Integer num = personWorkExpeService.insertPersonWorkExpeDO(personWorkExpeDO);
-            return ResultT.success();
+            if(num != null && num != 0) {
+                return ResultT.success();
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            log.debug("新增人员工作经历失败", e);
         }
+        return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
     /**
@@ -69,11 +75,13 @@ public class PersonWorkExpeController {
     public ResultT updatePersonWorkExpe(@RequestBody PersonWorkExpeDO personWorkExpeDO){
         try {
             Integer num = personWorkExpeService.updatePersonWorkExpeDO(personWorkExpeDO);
-            return ResultT.success();
+            if(num != null && num != 0) {
+                return ResultT.success();
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            return ResultT.failure(ResultCode.UPDATE_FAILURE);
+            log.debug("修改人员工作经历失败", e);
         }
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     /**
@@ -87,11 +95,13 @@ public class PersonWorkExpeController {
     public ResultT deletePersonWorkExpe(@RequestBody PersonWorkExpeDO personWorkExpeDO){
         try {
             Integer num = personWorkExpeService.deletePersonWorkExpeDO(personWorkExpeDO);
-            return ResultT.success();
+            if(num != null && num != 0) {
+                return ResultT.success();
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            return ResultT.failure(ResultCode.DELETE_FAILURE);
+            log.debug("删除人员工作经历失败", e);
         }
+        return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 
     /**
@@ -105,11 +115,13 @@ public class PersonWorkExpeController {
     public ResultT getPersonWorkExpe(@RequestBody PersonWorkExpeDO personWorkExpeDO){
         try {
             PersonWorkExpeDO resultBean = personWorkExpeService.getPersonWorkExpeDO(personWorkExpeDO);
-            return ResultT.success(resultBean);
+            if(resultBean != null) {
+                return ResultT.success(resultBean);
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            return ResultT.failure(ResultCode.GET_FAILURE);
+            log.debug("根据主键查询人员工作经历失败", e);
         }
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
     /**@description: 分页查询人员工作经历

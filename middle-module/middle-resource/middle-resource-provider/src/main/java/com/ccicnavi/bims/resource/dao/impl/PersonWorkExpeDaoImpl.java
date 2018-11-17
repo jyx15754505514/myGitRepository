@@ -18,7 +18,7 @@ public class PersonWorkExpeDaoImpl implements PersonWorkExpeDao {
      *查询人员工作经历
      */
     @Override
-    public List<PersonWorkExpeDO> listPersonWorkExpeDO(PersonWorkExpeDO personWorkExpeDO){
+    public List<PersonWorkExpeDO> listPersonWorkExpeDO(PersonWorkExpeDO personWorkExpeDO)throws Exception{
         return new Eql().select("listPersonWorkExpeDO").params(personWorkExpeDO).returnType(PersonWorkExpeDO.class).execute();
     }
 
@@ -26,7 +26,7 @@ public class PersonWorkExpeDaoImpl implements PersonWorkExpeDao {
      *新增人员工作经历
      */
     @Override
-    public Integer insertPersonWorkExpeDO(PersonWorkExpeDO personWorkExpeDO) {
+    public Integer insertPersonWorkExpeDO(PersonWorkExpeDO personWorkExpeDO)throws Exception{
         return new Eql().insert("insertPersonWorkExpeDO").params(personWorkExpeDO).returnType(Integer.class).execute();
     }
 
@@ -34,7 +34,7 @@ public class PersonWorkExpeDaoImpl implements PersonWorkExpeDao {
      *更改人员工作经历
      */
     @Override
-    public Integer updatePersonWorkExpeDO(PersonWorkExpeDO personWorkExpeDO) {
+    public Integer updatePersonWorkExpeDO(PersonWorkExpeDO personWorkExpeDO)throws Exception{
         return new Eql().insert("updatePersonWorkExpeDO").params(personWorkExpeDO).returnType(Integer.class).execute();
     }
 
@@ -42,7 +42,7 @@ public class PersonWorkExpeDaoImpl implements PersonWorkExpeDao {
      *删除人员工作经历
      */
     @Override
-    public Integer deletePersonWorkExpeDO(PersonWorkExpeDO personWorkExpeDO) {
+    public Integer deletePersonWorkExpeDO(PersonWorkExpeDO personWorkExpeDO)throws Exception{
         return new Eql().insert("deletePersonWorkExpeDO").params(personWorkExpeDO).returnType(Integer.class).execute();
     }
 
@@ -50,7 +50,7 @@ public class PersonWorkExpeDaoImpl implements PersonWorkExpeDao {
      *根据主键查询人员工作经历
      */
     @Override
-    public PersonWorkExpeDO getPersonWorkExpeDO(PersonWorkExpeDO personWorkExpeDO) {
+    public PersonWorkExpeDO getPersonWorkExpeDO(PersonWorkExpeDO personWorkExpeDO)throws Exception{
         return new Eql().selectFirst("getPersonWorkExpeDO").params(personWorkExpeDO).returnType(PersonWorkExpeDO.class).execute();
     }
 
@@ -58,7 +58,7 @@ public class PersonWorkExpeDaoImpl implements PersonWorkExpeDao {
      *分页查询人员工作经历
      */
     @Override
-    public PageBean<PersonWorkExpeDO> getPersonWorkExpePage(PageParameter<PersonWorkExpeDO> pageParameter) {
+    public PageBean<PersonWorkExpeDO> getPersonWorkExpePage(PageParameter<PersonWorkExpeDO> pageParameter)throws Exception{
         EqlPage page = new EqlPage(pageParameter.getStartIndex(),pageParameter.pageRows);
         List<PersonWorkExpeDO> personWorkExpeDOS = new Eql().select("getPersonWorkExpePage").params(pageParameter.getParameter()).returnType(PersonWorkExpeDO.class).limit(page).execute();
         return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),personWorkExpeDOS);

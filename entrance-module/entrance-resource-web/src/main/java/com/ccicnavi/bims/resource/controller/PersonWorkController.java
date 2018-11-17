@@ -7,6 +7,8 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.PersonWorkService;
 import com.ccicnavi.bims.resource.pojo.PersonWorkDO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/personwork")
 public class PersonWorkController {
+
+    private final static Logger log = LoggerFactory.getLogger(PersonWorkController.class);
 
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
     PersonWorkService personWorkService;
@@ -50,11 +54,13 @@ public class PersonWorkController {
       public ResultT insertPersonWork(@RequestBody PersonWorkDO personWorkDO){
           try {
              Integer num = personWorkService.insertPersonWorkDO(personWorkDO);
-             return ResultT.success();
+              if(num != null && num != 0) {
+                  return ResultT.success();
+              }
           } catch (Exception e) {
-              e.printStackTrace();
-              return ResultT.failure(ResultCode.ADD_FAILURE);
+              log.debug("新增人员工作信息失败", e);
           }
+          return ResultT.failure(ResultCode.ADD_FAILURE);
       }
 
     /**@description: 修改人员工作信息
@@ -67,11 +73,13 @@ public class PersonWorkController {
     public ResultT updatePersonWork(@RequestBody PersonWorkDO personWorkDO){
         try {
             Integer num = personWorkService.updatePersonWorkDO(personWorkDO);
-            return ResultT.success();
+            if(num != null && num != 0) {
+                return ResultT.success();
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            return  ResultT.failure(ResultCode.UPDATE_FAILURE);
+            log.debug("修改人员工作信息失败", e);
         }
+        return  ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     /**@description: 删除人员工作信息
@@ -84,11 +92,13 @@ public class PersonWorkController {
     public ResultT deletePersonWork(@RequestBody PersonWorkDO personWorkDO){
         try {
             Integer num = personWorkService.deletePersonWorkDO(personWorkDO);
-            return ResultT.success();
+            if(num != null && num != 0) {
+                return ResultT.success();
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            return ResultT.failure(ResultCode.DELETE_FAILURE);
+            log.debug("删除人员工作信息失败", e);
         }
+        return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 
     /**@description: 根据主键查询人员工作信息
@@ -101,11 +111,13 @@ public class PersonWorkController {
     public ResultT getPersonWork(@RequestBody PersonWorkDO personWorkDO){
         try {
             PersonWorkDO resultBean = personWorkService.getPersonWorkDO(personWorkDO);
-            return ResultT.success(resultBean);
+            if(resultBean != null) {
+                return ResultT.success(resultBean);
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            return ResultT.failure(ResultCode.GET_FAILURE);
+            log.debug("根据主键查询人员工作信息失败", e);
         }
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
     /**@description: 分页查询人员工作信息
