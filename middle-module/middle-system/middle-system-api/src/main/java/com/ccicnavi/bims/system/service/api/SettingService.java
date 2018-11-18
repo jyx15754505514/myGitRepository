@@ -1,6 +1,9 @@
 package com.ccicnavi.bims.system.service.api;
 
 import java.util.List;
+
+import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 
 /**
@@ -12,41 +15,36 @@ import com.ccicnavi.bims.system.pojo.SettingDO;
 public interface SettingService {
     /**
      * 查询系统设置
-     * @param settingDO
+     * @param pageParameter
      * @return List<SettingDO>
-     * @throws Exception
      */
-    public List<SettingDO> listSetting(SettingDO settingDO)throws Exception;
+    public ResultT listSetting(PageParameter<SettingDO> pageParameter);
 
     /**
      * 新增系统设置
      * @param settingDO
      * @return Integer
-     * @throws Exception
      */
-    public Integer insertSetting(SettingDO settingDO)throws Exception;
+    public Integer insertSetting(SettingDO settingDO);
 
     /**
      * 更改系统设置
      * @param settingDO
      * @return Integer
-     * @throws Exception
      */
-    public Integer updateSetting(SettingDO settingDO)throws Exception;
+    public Integer updateSetting(SettingDO settingDO);
 
     /**
      * 删除系统设置
      * @param settingDO
      * @return Integer
-     * @throws Exception
      */
-    public Integer deleteSetting(SettingDO settingDO)throws Exception;
+    public Integer deleteSetting(SettingDO settingDO);
 
     /**
      * 根据主键获取单个系统设置信息
      * @param settingDO
      * @return SettingDO
-     * @throws Exception
      */
-    public  SettingDO getSetting(SettingDO settingDO)throws Exception;
+    public  SettingDO getSetting(SettingDO settingDO);
 }

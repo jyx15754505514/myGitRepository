@@ -2,9 +2,13 @@ package com.ccicnavi.bims.system.dao.impl;
 
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.SettingDao;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,9 +31,16 @@ public class SettingDaoImpl implements SettingDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
+
     @Override
-    public List<SettingDO> listSetting(SettingDO settingDO)throws Exception{
-        return EqlUtils.getInstance("DEFAULT").select("listSet").params(settingDO).returnType(SettingDO.class).execute();
+    public PageBean<SettingDO> listSetting(PageParameter<SettingDO> pageParameter){
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<SettingDO> settingDOListList = new Eql("DEFAULT").select("listSetting").params(pageParameter.getParameter()).limit(eqlPage).returnType(SettingDO.class).execute();
+        if(settingDOListList != null) {
+            return  new PageBean<SettingDO>(eqlPage.getTotalRows(),eqlPage.getTotalPages(), eqlPage.getCurrentPage(), eqlPage.getPageRows(), eqlPage.getStartIndex(), settingDOListList);
+        }else {
+            return null;
+        }
     }
 
     /**
@@ -40,8 +51,8 @@ public class SettingDaoImpl implements SettingDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer insertSetting(SettingDO settingDO) throws Exception{
-        return EqlUtils.getInstance("DEFAULT").insert("insertSet").params(settingDO).returnType(Integer.class).execute();
+    public Integer insertSetting(SettingDO settingDO) {
+        return new Eql().delete("insertSetting").params(settingDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -52,8 +63,8 @@ public class SettingDaoImpl implements SettingDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer updateSetting(SettingDO settingDO)throws Exception{
-        return  EqlUtils.getInstance("DEFAULT").update("updateSet").params(settingDO).returnType(Integer.class).execute();
+    public Integer updateSetting(SettingDO settingDO){
+        return new Eql().update("updateSetting").params(settingDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -64,9 +75,8 @@ public class SettingDaoImpl implements SettingDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer deleteSetting(SettingDO settingDO)throws Exception{
-        return  EqlUtils.getInstance("DEFAULT").delete("deleteSet").params(settingDO).returnType(Integer.class).execute();
-
+    public Integer deleteSetting(SettingDO settingDO){
+        return new Eql().delete("deleteSetting").params(settingDO).returnType(Integer.class).execute();
     }
 
 
@@ -78,7 +88,7 @@ public class SettingDaoImpl implements SettingDao {
     *@date: 2018/11/15
     */
     @Override
-    public SettingDO getSetting(SettingDO settingDO)throws Exception{
-       return EqlUtils.getInstance("DEFAULT").selectFirst("getSet").params(settingDO).returnType(SettingDO.class).execute();
+    public SettingDO getSetting(SettingDO settingDO){
+        return new Eql().selectFirst("getSetting").params(settingDO).returnType(SettingDO.class).execute();
     }
 }

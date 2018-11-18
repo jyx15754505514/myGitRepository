@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public class ShibaSetTest {
         set.add("key1");
         set.add("key2");
         String key = "value";
-        setTemplate.add(key, set);
+        setTemplate.add(key, set, "key3", "key4");
         System.out.println("添加缓存成功");
     }
 
@@ -47,6 +48,23 @@ public class ShibaSetTest {
         String key = "value";
         Boolean persist = setTemplate.hasKey(key);
         System.out.println("缓存存在吗？" + persist);
+    }
+
+    @Test
+    public void size() {
+        Long size = setTemplate.size("value");
+        System.out.println(size);
+    }
+
+    @Test
+    public void remove() {
+        setTemplate.remove("value", "key3");
+    }
+
+    @Test
+    public void curosr() {
+        Cursor value = setTemplate.scan("value");
+        System.out.println(value);
     }
 
 }

@@ -1,11 +1,15 @@
 package com.ccicnavi.bims.customer.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.CustAddrService;
 import com.ccicnavi.bims.customer.dao.CustAddrDao;
 import com.ccicnavi.bims.customer.pojo.CustAddrDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+
 import java.util.List;
 
 /**
@@ -24,62 +28,71 @@ public class CustAddrServiceImpl implements CustAddrService {
 
     @Override
     public List<CustAddrDO> listCustAddr(CustAddrDO custAddr) {
-        List<CustAddrDO> custAddrList=null;
         try {
-              custAddrList=custAddrDao.listCustAddr(custAddr);
+              return custAddrDao.listCustAddr(custAddr);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("查询客户地址失败",e);
+              log.error("查询客户地址失败",e);
+              return null;
         }
-        return custAddrList;
     }
 
     @Override
     public int saveCustAddr(CustAddrDO custAddr) {
-        Integer count=0;
         try {
-            count=custAddrDao.saveCustAddr(custAddr);
+            return custAddrDao.saveCustAddr(custAddr);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("保存客户地址失败",e);
+            log.error("保存客户地址失败",e);
+            return 0;
         }
-        return count;
+
     }
 
     @Override
-    public int removeCustAddr(String uuids) {
-        Integer count=0;
+    public int removeCustAddr(CustAddrDO custAddr) {
         try {
-            count=custAddrDao.removeCustAddr(uuids);
+            if(!StringUtils.isEmpty(custAddr.getAddrUuid())){
+                custAddr.setUuids(custAddr.getAddrUuid().split(","));
+                return custAddrDao.removeCustAddr(custAddr);
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("删除客户地址失败",e);
+            log.error("删除客户地址失败",e);
         }
-        return count;
+            return 0;
     }
 
     @Override
     public int updateCustAddr(CustAddrDO custAddr) {
-        Integer count=0;
         try {
-            count=custAddrDao.updateCustAddr(custAddr);
+            return custAddrDao.updateCustAddr(custAddr);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("修改客户地址失败",e);
+            log.error("修改客户地址失败",e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public CustAddrDO getCustAddr(CustAddrDO custAddrDO) {
-        CustAddrDO custAddr=null;
         try {
-            custAddr=custAddrDao.getCustAddr(custAddrDO);
+            return custAddrDao.getCustAddr(custAddrDO);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("根据主键查询客户地址失败",e);
+            log.error("根据主键查询客户地址失败",e);
+            return null;
         }
-        return custAddr;
+    }
+
+    /**
+     * 分页查询客户地址
+     * @param pageParameter
+     * @return
+     */
+    @Override
+    public PageBean<CustAddrDO> listCustAddrPage(PageParameter<CustAddrDO> pageParameter) {
+        try {
+            return custAddrDao.listCustAddrPage(pageParameter);
+        } catch (Exception e) {
+            log.error("服务端客户地址分页查询失败");
+            return null;
+        }
     }
 
 

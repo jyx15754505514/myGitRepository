@@ -1,13 +1,14 @@
 package com.ccicnavi.bims.customer.dao.Impl;
+
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.CustAddrDao;
 import com.ccicnavi.bims.customer.pojo.CustAddrDO;
-import com.ccicnavi.bims.customer.util.EqlUtils;
-import org.junit.jupiter.api.Test;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * @program: bims-backend
@@ -20,94 +21,41 @@ public class CustAddrDaoImpl implements CustAddrDao {
 
     @Override
     public List<CustAddrDO> listCustAddr(CustAddrDO custAddr) {
-        return EqlUtils.getInstance("druid").select("listCustAddr").params(custAddr).execute();
+        return new Eql().select("listCustAddr").params(custAddr).returnType(CustAddrDO.class).execute();
     }
 
     @Override
     public int saveCustAddr(CustAddrDO custAddr) {
-        return EqlUtils.getInstance("druid").insert("insertCustAddr").params(custAddr).execute();
+        return new Eql().insert("insertCustAddr").params(custAddr).returnType(int.class).execute();
     }
 
     @Override
-    public int removeCustAddr(String uuids) {
-        Map<String,Object> data=new HashMap<String,Object>();
-        data.put("ids",uuids.split(","));
-        return EqlUtils.getInstance("druid").update("deleteCustAddr").params(data).execute();
+    public int removeCustAddr(CustAddrDO custAddr) {
+        return new Eql().update("deleteCustAddr").params(custAddr).returnType(int.class).execute();
     }
 
     @Override
     public int updateCustAddr(CustAddrDO custAddr) {
-        return EqlUtils.getInstance("druid").update("updateCustAddr").params(custAddr).execute();
+        return new Eql().update("updateCustAddr").params(custAddr).returnType(int.class).execute();
     }
 
     @Override
     public CustAddrDO getCustAddr(CustAddrDO customer) {
-        return EqlUtils.getInstance("druid").select("listCustAddr").params(customer).returnType(CustAddrDO.class).execute();
+        return new Eql().selectFirst("getCustAddr").params(customer).returnType(CustAddrDO.class).execute();
     }
 
-
-    /**
-     * ————————————Junit测试————————————————————————
-     */
-
-    @Test
-    public void testListCustAddr(){
-        List<CustAddrDO> custList= EqlUtils.getInstance("druid").select("listCustAddr").returnType(CustAddrDO.class).execute();
-        System.out.println(custList);
-    }
-
-    @Test
-    public void testSaveCustAddr(){
-        for (int i = 1; i <=10; i++) {
-            CustAddrDO custAddr=new CustAddrDO();
-            custAddr.setAddrUuid("asd"+i);
-            custAddr.setCustUuid("asd"+i);
-            custAddr.setCustAddr("客户地址"+i);
-            custAddr.setBusinessLine("CustAddr");
-            custAddr.setOrgUuid("XN102");
-            custAddr.setAppSysUuid("KKLIMS102");
-            int count= EqlUtils.getInstance("druid").select("insertCustAddr").params(custAddr).execute();
-            System.out.println("count"+i);
+    @Override
+    public PageBean<CustAddrDO> listCustAddrPage(PageParameter<CustAddrDO> pageParameter) throws Exception {
+        //封装分页参数
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        //执行查询
+        List<CustAddrDO> custAddrList = new Eql().select("listCustAddr").params(pageParameter.getParameter()).returnType(CustAddrDO.class).limit(page).execute();
+        if(custAddrList != null) {
+            return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),custAddrList);//分装分页
+        }else {
+            return null;
         }
     }
-
-
-
-    @Test
-    public void testUpdateCustAddr(){
-        CustAddrDO custAddrDO=new CustAddrDO();
-        custAddrDO.setAddrUuid("asd10");
-        custAddrDO.setCustAddr("客户地址10被修改了~");
-        int count=EqlUtils.getInstance("druid").update("updateCustAddr").params(custAddrDO).execute();
-    }
-
-
-    @Test
-    public void deleteCustAddr(){
-        String uuids="asd1,asd10,asd2";
-        String [] ids=uuids.split(",");
-        Map<String,Object> data=new HashMap<String,Object>();
-        data.put("ids",ids);
-        int count=EqlUtils.getInstance("druid").update("deleteCustAddr").params(data).execute();
-        System.out.println(count);
-    }
-
-    @Test
-    public void testGetCustAddr(){
-        CustAddrDO custAddr=new CustAddrDO();
-        custAddr.setAddrUuid("asd1");
-        CustAddrDO getCustAddr= EqlUtils.getInstance("druid").selectFirst("getCustAddr").params(custAddr).returnType(CustAddrDO.class).execute();
-        System.out.println(getCustAddr);
-    }
-
-
-    @Test
-    public void testUuid(){
-        System.out.println(UUID.randomUUID().toString());
-    }
-
-
-
 
 
 }

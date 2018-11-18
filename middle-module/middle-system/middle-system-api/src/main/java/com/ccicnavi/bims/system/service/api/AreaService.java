@@ -8,14 +8,45 @@ import java.util.List;
  * @Date 19:57 2018/11/14
  */
 public interface AreaService {
-    /**查询所有的地区*/
-    List<AreaDO> listArea(AreaDO areaDO) throws Exception;
-    /**获取指定的地区*/
-    AreaDO getArea(AreaDO areaDO) throws Exception;
-    /**新增地区信息*/
-    Integer insertArea(AreaDO areaDO) throws Exception;
-    /**更新地区信息*/
-    Integer updateArea(AreaDO areaDO) throws Exception;
-    /**删除地区*/
-    Integer deleteArea(AreaDO areaDO) throws Exception;
+
+    /* *
+     * @Author MengZiJie
+     * @Description 查询所有地区
+     * @Date 19:57 2018/11/14
+     * @Param [areaDO]
+     * @Return java.util.List<com.ccicnavi.bims.system.pojo.AreaDO>
+     */
+    List<AreaDO> listArea(AreaDO areaDO);
+    /* *
+     * @Author MengZiJie
+     * @Description 获取指定地区
+     * @Date 19:57 2018/11/14
+     * @Param [areaDO]
+     * @Return com.ccicnavi.bims.system.pojo.AreaDO
+     */
+    AreaDO getArea(AreaDO areaDO);
+    /* *
+     * @Author MengZiJie
+     * @Description 新增地区
+     * @Date 19:57 2018/11/14
+     * @Param [areaDO]
+     * @Return java.lang.Integer
+     */
+    Integer insertArea(AreaDO areaDO);
+    /* *
+     * @Author MengZiJie
+     * @Description 更新地区
+     * @Date 19:57 2018/11/14
+     * @Param [areaDO]
+     * @Return java.lang.Integer
+     */
+    Integer updateArea(AreaDO areaDO);
+    /* *
+     * @Author MengZiJie
+     * @Description 删除地区
+     * @Date 19:57 2018/11/14
+     * @Param [areaDO]
+     * @Return java.lang.Integer
+     */
+    Integer deleteArea(AreaDO areaDO);
 }

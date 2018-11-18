@@ -1,5 +1,8 @@
 package com.ccicnavi.bims.system.dao;
 
+import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 
 import java.util.List;
@@ -19,7 +22,8 @@ public interface SettingDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public List<SettingDO> listSetting(SettingDO settingDO)throws Exception;
+
+    public PageBean<SettingDO> listSetting(PageParameter<SettingDO> pageParameter);
 
     /**
     *@Description: 新增系统设置
@@ -28,7 +32,7 @@ public interface SettingDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public Integer insertSetting(SettingDO settingDO)throws Exception;
+    public Integer insertSetting(SettingDO settingDO);
 
     /**
     *@Description: 更新系统设置信息
@@ -37,7 +41,7 @@ public interface SettingDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public Integer updateSetting(SettingDO settingDO)throws Exception;
+    public Integer updateSetting(SettingDO settingDO);
 
     /**
     *@Description: 删除系统设置信息
@@ -46,7 +50,7 @@ public interface SettingDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public Integer deleteSetting(SettingDO settingDO)throws Exception;
+    public Integer deleteSetting(SettingDO settingDO);
 
     /**
     *@Description: 根据主键获取单个系统设置信息
@@ -55,5 +59,5 @@ public interface SettingDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public  SettingDO getSetting(SettingDO settingDO)throws Exception;
+    public  SettingDO getSetting(SettingDO settingDO);
 }

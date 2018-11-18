@@ -1,11 +1,15 @@
 package com.ccicnavi.bims.customer.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.CustTailService;
 import com.ccicnavi.bims.customer.dao.CustTailDao;
 import com.ccicnavi.bims.customer.pojo.CustTailDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+
 import java.util.List;
 
 /**
@@ -24,61 +28,64 @@ public class CustTailServiceImpl implements CustTailService {
 
     @Override
     public List<CustTailDO> listCustTail(CustTailDO custTail) {
-        List<CustTailDO> custTailList=null;
         try {
-            custTailList=custTailDao.listCustTail(custTail);
+            return custTailDao.listCustTail(custTail);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("查询客户跟踪信息失败~",e);
+            log.error("查询客户跟踪信息失败~", e);
+            return null;
         }
-        return custTailList;
     }
 
     @Override
     public int saveCustTail(CustTailDO custTail) {
-        Integer count=0;
         try {
-            count= custTailDao.saveCustTail(custTail);
+            return custTailDao.saveCustTail(custTail);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("保存客户跟踪信息失败~",e);
+            log.error("保存客户跟踪信息失败~", e);
+            return 0;
         }
-        return count;
     }
 
     @Override
-    public int removeCustTail(String uuids) {
-        Integer count=0;
+    public int removeCustTail(CustTailDO custTail) {
         try {
-            count=custTailDao.removeCustTail(uuids);
+            if (!StringUtils.isEmpty(custTail.getTailUuid())) {
+                custTail.setUuids(custTail.getTailUuid().split(","));
+                return custTailDao.removeCustTail(custTail);
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("删除客户跟踪信息失败~",e);
+            log.error("删除客户跟踪信息失败~", e);
         }
-        return count;
+            return 0;
     }
 
     @Override
     public int updateCustTail(CustTailDO custTail) {
-        Integer count=0;
         try {
-            count=custTailDao.updateCustTail(custTail);
+            return custTailDao.updateCustTail(custTail);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("修改客户跟踪信息失败~",e);
+            log.error("修改客户跟踪信息失败~", e);
+            return 0;
         }
-        return count;
     }
 
     @Override
     public CustTailDO getCustTail(CustTailDO custTailDO) {
-        CustTailDO custTail=null;
         try {
-            custTail=custTailDao.getCustTail(custTailDO);
+            return custTailDao.getCustTail(custTailDO);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.debug("根据主键查询客户跟踪信息失败~",e);
+            log.error("根据主键查询客户跟踪信息失败~", e);
+            return null;
         }
-        return custTail;
+    }
+
+    @Override
+    public PageBean<CustTailDO> listCustTailPage(PageParameter<CustTailDO> pageParameter) {
+        try {
+            return custTailDao.listCustTailPage(pageParameter);
+        } catch (Exception e) {
+            log.error("服务端客户跟踪分页查询失败");
+            return null;
+        }
     }
 }

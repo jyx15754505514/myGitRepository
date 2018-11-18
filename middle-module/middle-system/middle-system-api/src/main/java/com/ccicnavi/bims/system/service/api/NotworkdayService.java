@@ -1,8 +1,8 @@
 package com.ccicnavi.bims.system.service.api;
 
+import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
-
-import java.util.List;
 
 /**
  * @program: bims-backend
@@ -14,11 +14,11 @@ public interface NotworkdayService {
 	
 	/**
      * 查询非工作日信息
-     * @param notworkday
-     * @return List<Notworkday>
+     * @param parameter
+     * @return ResultT
      * @throws Exception
      */
-    public List<NotworkdayDO> listNotworkday(NotworkdayDO notworkday) throws Exception;
+    public ResultT listNotworkday(PageParameter parameter);
 
     /**
      * 新增非工作日
@@ -26,7 +26,7 @@ public interface NotworkdayService {
      * @return Integer
      * @throws Exception
      */
-    public Integer insertNotworkday(NotworkdayDO notworkday)throws  Exception;
+    public Integer insertNotworkday(NotworkdayDO notworkday);
 
     /**
      * 更新非工作日信息
@@ -34,7 +34,7 @@ public interface NotworkdayService {
      * @return Integer
      * @throws Exception
      */
-    public Integer updateNotworkday(NotworkdayDO notworkday)throws Exception;
+    public Integer updateNotworkday(NotworkdayDO notworkday);
 
     /**
      * 删除非工作日信息
@@ -42,7 +42,7 @@ public interface NotworkdayService {
      * @return Integer
      * @throws Exception
      */
-    public Integer deleteNotworkday(NotworkdayDO notworkday)throws Exception;
+    public Integer deleteNotworkday(NotworkdayDO notworkday);
 
     /**
      * 根据主键查询非工作日信息
@@ -50,5 +50,6 @@ public interface NotworkdayService {
      * @return Notworkday
      * @throws Exception
      */
-    public NotworkdayDO getNotworkday(NotworkdayDO notworkday)throws Exception;
+    public NotworkdayDO getNotworkday(NotworkdayDO notworkday);
+
 }

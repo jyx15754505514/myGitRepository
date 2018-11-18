@@ -1,8 +1,14 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.EquipTestDao;
+import com.ccicnavi.bims.resource.pojo.EquipHoldDO;
 import com.ccicnavi.bims.resource.pojo.EquipTestDO;
+import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,8 +41,10 @@ public class EquipTestDaoImpl implements EquipTestDao {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDO>
      */
     @Override
-    public List<EquipTestDO> listEquipTest(EquipTestDO equipTestDO){
-        return EqlUtils.getInstance("druid").select("listEquipTest").params(equipTestDO).returnType(EquipTestDO.class).execute();
+    public PageBean<EquipTestDO> listEquipTest(PageParameter<EquipTestDO> pageParameter){
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<EquipTestDO> listEquipTest = new Eql("druid").select("listEquipTest").params(pageParameter.getParameter()).returnType(EquipTestDO.class).limit(eqlPage).execute();
+        return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquipTest);
     }
 
     /**
@@ -73,5 +81,19 @@ public class EquipTestDaoImpl implements EquipTestDao {
     @Override
     public Integer deleteEquipTest(String equipTestUuid){
         return EqlUtils.getInstance("druid").delete("deleteEquipTest").params(equipTestUuid).returnType(Integer.class).execute();
+    }
+
+    /**
+     * @Author panyida
+     * @Description 设备检定查询（包含器具五要素字段）
+     * @Date 16:28 2018/11/14
+     * @Param [EquipTestDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDTO>
+     */
+    @Override
+    public PageBean<EquipTestDTO> listEquipTestDTO(PageParameter<EquipTestDTO> pageParameter){
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<EquipTestDTO> listEquipTestDTO = new Eql("druid").select("listEquipTestDTO").params(pageParameter.getParameter()).returnType(EquipTestDTO.class).limit(eqlPage).execute();
+        return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquipTestDTO);
     }
 }

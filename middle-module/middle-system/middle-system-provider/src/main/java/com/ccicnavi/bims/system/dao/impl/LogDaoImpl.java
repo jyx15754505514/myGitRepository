@@ -1,9 +1,14 @@
 package com.ccicnavi.bims.system.dao.impl;
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.LogDao;
 import com.ccicnavi.bims.system.pojo.LogDO;
+import com.ccicnavi.bims.system.pojo.LogDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 import java.util.List;
 /* *
@@ -23,8 +28,10 @@ public class LogDaoImpl implements LogDao {
      * @Return java.util.List<com.ccicnavi.bims.system.pojo.LogDO>
      */
     @Override
-    public List<LogDO> listLog(LogDO logDO) {
-        return EqlUtils.getInstance("DEFAULT").select("listLog").params(logDO).returnType(LogDO.class).execute();
+    public PageBean<LogDTO> listLog(PageParameter<LogDTO> pageParameter) {
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<LogDTO> log = new Eql("DEFAULT").select("listLog").params(pageParameter.getParameter()).returnType(LogDTO.class).limit(eqlPage).execute();
+        return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),log);
     }
 
     /* *
@@ -35,8 +42,8 @@ public class LogDaoImpl implements LogDao {
      * @Return com.ccicnavi.bims.system.pojo.LogDO
      */
     @Override
-    public LogDO getLog(LogDO logDO) {
-        return EqlUtils.getInstance("DEFAULT").selectFirst("getLog").params(logDO).returnType(LogDO.class).execute();
+    public LogDTO getLog(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").selectFirst("getLog").params(logDTO).returnType(LogDO.class).execute();
     }
 
     /* *
@@ -47,8 +54,8 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public Integer insertLog(LogDO logDO) {
-        return EqlUtils.getInstance("DEFAULT").insert("insertLog").params(logDO).returnType(Integer.class).execute();
+    public Integer insertLog(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").insert("insertLog").params(logDTO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -59,8 +66,8 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public Integer updateLog(LogDO logDO) {
-        return EqlUtils.getInstance("DEFAULT").update("updateLog").params(logDO).returnType(Integer.class).execute();
+    public Integer updateLog(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").update("updateLog").params(logDTO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -71,7 +78,7 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public Integer deleteLog(LogDO logDO) {
-        return EqlUtils.getInstance("DEFAULT").delete("deleteLog").params(logDO).returnType(Integer.class).execute();
+    public Integer deleteLog(LogDTO logDTO) {
+        return EqlUtils.getInstance("DEFAULT").delete("deleteLog").params(logDTO).returnType(Integer.class).execute();
     }
 }

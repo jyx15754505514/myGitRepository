@@ -1,4 +1,4 @@
--- [insertSelective]
+-- [insertRole]
     insert into sys_role
 -- trim prefix=( suffix=) suffixOverrides=,
   -- if test=roleUuid != null and roleUuid != ''
@@ -22,7 +22,7 @@
   -- if test=comments != null and comments != ''
         comments,
   -- end
-  -- if test=createdTime != null and uuid != ''
+  -- if test=createdTime != null
         created_time,
   -- end
   -- if test=createdUuid != null and createdUuid != ''
@@ -50,101 +50,101 @@
         extend3,
   -- end
 -- end
--- trim prefix=values ( suffix=) suffixOverrides=, 
+-- trim prefix=values( suffix=) suffixOverrides=,
   -- if test=roleUuid != null and roleUuid != ''
-        "#roleUuid#",
+        '#roleUuid#',
   -- end
   -- if test=parentRoleUuid != null and parentRoleUuid != ''
-        "#parentRoleUuid#",
+        '#parentRoleUuid#',
   -- end
   -- if test=roleName != null and roleName != ''
-        "#roleName#",
+        '#roleName#',
   -- end
   -- if test=roleCode != null and roleCode != ''
-        "#roleCode#",
+        '#roleCode#',
   -- end
   -- if test=isSystem != null and isSystem != ''
-        "#isSystem#",
+        '#isSystem#',
   -- end
   -- if test=isEnabled != null and isEnabled != ''
-        "#isEnabled#",
+        '#isEnabled#',
   -- end
   -- if test=comments != null and comments != ''
-        "#comments#",
+        '#comments#',
   -- end
   -- if test=isDeleted != null and isDeleted != ''
-        "#isDeleted#",
+        '#isDeleted#',
   -- end
-  -- if test=createdTime != null and uuid != ''
+  -- if test=createdTime != null
         NOW(),
   -- end
   -- if test=createdUuid != null and createdUuid != ''
-        "#createdUuid#",
+        '#createdUuid#',
   -- end
   -- if test=createdName != null and createdName != ''
-        "#createdName#",
+        '#createdName#',
   -- end
   -- if test=orgUuid != null and orgUuid != ''
-        "#orgUuid#",
+        '#orgUuid#',
   -- end
   -- if test=appSysUuid != null and appSysUuid != ''
-        "#appSysUuid#",
+        '#appSysUuid#',
   -- end
   -- if test=businessLine != null and businessLine != ''
-        "#businessLine#",
+        '#businessLine#',
   -- end
   -- if test=extend1 != null and extend1 != ''
-        "#extend1#",
+        '#extend1#',
   -- end
   -- if test=extend2 != null and extend2 != ''
-        "#extend2#",
+        '#extend2#',
   -- end
   -- if test=extend3 != null and extend3 != ''
-        "#extend3#",
+        '#extend3#',
   -- end
 -- end
 
 -- [updateRole]
     update sys_role
 -- trim prefix=SET suffixOverrides=,
-  -- if test=parentRoleUuid != null and parentRoleUuid != ''
-        parent_role_uuid = "#parentRoleUuid#",
+  -- if test=parentRoleUuid != null
+        parent_role_uuid = '#parentRoleUuid#',
   -- end
-  -- if test=roleName != null and roleName != ''
-        role_name = "#roleName#",
+  -- if test=roleName != null
+        role_name = '#roleName#',
   -- end
-  -- if test=roleCode != null and roleCode != ''
-        role_code = "#roleCode#",
+  -- if test=roleCode != null
+        role_code = '#roleCode#',
   -- end
-  -- if test=isSystem != null and isSystem != ''
-        is_system = "#isSystem#",
+  -- if test=isSystem != null
+        is_system = '#isSystem#',
   -- end
-  -- if test=isEnabled != null and isEnabled != ''
-        is_enabled = "#isEnabled#",
+  -- if test=isEnabled != null
+        is_enabled = '#isEnabled#',
   -- end
-  -- if test=comments != null and comments != ''
-        comments = "#comments#",
+  -- if test=comments != null
+        comments = '#comments#',
   -- end
-  -- if test=isDeleted != null and isDeleted != ''
-        is_deleted = "#isDeleted#",
+  -- if test=isDeleted != null
+        is_deleted = '#isDeleted#',
   -- end
-  -- if test=updatedTime != null and updatedTime != ''
-        updated_time = "#updatedTime#",
+  -- if test=updatedTime != null
+        updated_time = '#updatedTime#',
   -- end
-  -- if test=updatedName != null and updatedName != ''
-        updated_name = "#updatedName#",
+  -- if test=updatedName != null
+        updated_name = '#updatedName#',
   -- end
-  -- if test=extend1 != null and extend1 != ''
-        extend1 = "#extend1#",
+  -- if test=extend1 != null
+        extend1 = '#extend1#',
   -- end
-  -- if test=extend2 != null and extend2 != ''
-        extend2 = "#extend2#",
+  -- if test=extend2 != null
+        extend2 = '#extend2#',
   -- end
-  -- if test=extend3 != null and extend3 != ''
-        extend3 = "#extend3#",
+  -- if test=extend3 != null
+        extend3 = '#extend3#',
   -- end
 -- end
-    where role_uuid = "#roleUuid#"
+    where role_uuid = '#roleUuid#'
 
 -- [listRole]
 	SELECT
@@ -155,11 +155,11 @@
 		sys_role
 	WHERE
 		is_deleted = 'N'
-		AND org_uuid = '#orgUuid#'
-		AND appSysUuid = '#appSysUuid#'
-		AND businessLine = '#businessLine#'
+		and org_uuid = '#orgUuid#'
+		and app_sys_uuid = '#appSysUuid#'
+		and business_line = '#businessLine#'
 
- [getRole]
+-- [getRole]
 	SELECT
         role_uuid, parent_role_uuid, role_name, role_code, is_system, is_enabled, comments,
         is_deleted, created_time, created_uuid, created_name, updated_time, updated_name,
@@ -168,10 +168,10 @@
 		sys_role
 	WHERE
 		role_uuid = '#roleUuid#'
-		is_deleted = 'N'
-		AND org_uuid = '#orgUuid#'
-		AND appSysUuid = '#appSysUuid#'
-		AND businessLine = '#businessLine#'
+		and is_deleted = 'N'
+		and org_uuid = '#orgUuid#'
+		and app_sys_uuid = '#appSysUuid#'
+		and business_line = '#businessLine#'
 
 -- [deleteRole]
     UPDATE
@@ -182,9 +182,9 @@
 		-- if role_uuid != null and role_uuid != ''
 			role_uuid = '#roleUuid#'
 		-- end
-		-- if uuids != null
+		-- if roleUuids != null
 			role_uuid in
-			-- for item=item index=index collection=uuids open=( separator=, close=)
+			-- for item=item index=index collection=roleUuids open=( separator=, close=)
 				'#item#'
 			-- end
 		-- end

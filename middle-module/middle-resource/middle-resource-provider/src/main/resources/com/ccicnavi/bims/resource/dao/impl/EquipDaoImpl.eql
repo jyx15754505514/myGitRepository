@@ -282,9 +282,9 @@ where
       --iff certNo != null
         '#certNo#',
       --iff testDate != null
-        '#testDate,
+        '#testDate#',
       --iff useDate != null
-        '#useDate,
+        '#useDate#',
       --iff useDeptUuid != null
         '#useDeptUuid#',
       --iff isVerify != null
@@ -294,15 +294,15 @@ where
       --iff isLongTerm != null
         '#isLongTerm#',
       --iff testValidDate != null
-        '#testValidDate,
+        '#testValidDate#',
       --iff testResult != null
         '#testResult#',
       --iff purchaseDate != null
-        '#purchaseDate,
+        '#purchaseDate#',
       --iff purchasePrice != null
-        '#purchasePrice,
+        '#purchasePrice#',
       --iff purchaseCount != null
-        '#purchaseCount,
+        '#purchaseCount#',
       --iff isRent != null
         '#isRent#',
       --iff isLocalTest != null
@@ -316,9 +316,9 @@ where
       --iff testType != null
         '#testType#',
       --iff testFee != null
-        '#testFee,
+        '#testFee#',
       --iff repairFee != null
-        '#repairFee,
+        '#repairFee#',
       --iff feeDesc != null
         '#feeDesc#',
       --iff locationAddr != null
@@ -342,17 +342,17 @@ where
       --iff sourceCfmName != null
         '#sourceCfmName#',
       --iff sourceCfmDate != null
-        '#sourceCfmDate,
+        '#sourceCfmDate#',
       --iff comments != null
         '#comments#',
       --iff isDeleted != null
         '#isDeleted#',
       --iff createdTime != null
-        '#createdTime,
+        '#createdTime#',
       --iff createdUuid != null
         '#createdUuid#',
       --iff updatedTime != null
-        '#updatedTime,
+        '#updatedTime#,
       --iff updatedName != null
         '#updatedName#',
       --iff orgUuid != null
@@ -411,15 +411,15 @@ where
       --iff isLongTerm != null
         is_long_term = '#isLongTerm#',
       --iff testValidDate != null
-        test_valid_date = '#testValidDate,
+        test_valid_date = '#testValidDate#',
       --iff testResult != null
         test_result = '#testResult#',
       --iff purchaseDate != null
-        purchase_date = '#purchaseDate,
+        purchase_date = '#purchaseDate#',
       --iff purchasePrice != null
-        purchase_price = '#purchasePrice,
+        purchase_price = '#purchasePrice#',
       --iff purchaseCount != null
-        purchase_count = '#purchaseCount,
+        purchase_count = '#purchaseCount#',
       --iff isRent != null
         is_rent = '#isRent#',
       --iff isLocalTest != null
@@ -433,9 +433,9 @@ where
       --iff testType != null
         test_type = '#testType#',
       --iff testFee != null
-        test_fee = '#testFee,
+        test_fee = '#testFee#',
       --iff repairFee != null
-        repair_fee = '#repairFee,
+        repair_fee = '#repairFee#',
       --iff feeDesc != null
         fee_desc = '#feeDesc#',
       --iff locationAddr != null
@@ -459,17 +459,17 @@ where
       --iff sourceCfmName != null
         source_cfm_name = '#sourceCfmName#',
       --iff sourceCfmDate != null
-        source_cfm_date = '#sourceCfmDate,
+        source_cfm_date = '#sourceCfmDate#',
       --iff comments != null
         comments = '#comments#',
       --iff isDeleted != null
         is_deleted = '#isDeleted#',
       --iff createdTime != null
-        created_time = '#createdTime,
+        created_time = '#createdTime#',
       --iff createdUuid != null
         created_uuid = '#createdUuid#',
       --iff updatedTime != null
-        updated_time = '#updatedTime,
+        updated_time = '#updatedTime#',
       --iff updatedName != null
         updated_name = '#updatedName#',
       --iff orgUuid != null
@@ -488,9 +488,9 @@ where
 UPDATE
     res_equip_use
 -- trim prefix= set suffixOverrides=,
-    is_deleted = 'Y'
+    is_deleted = 'Y',
 -- end
 WHERE
     is_deleted = 'N'
-    and equip_use_uuid = '#equipUseUuid#'
+    and equip_uuid = '#equipUuid#'
 -- end

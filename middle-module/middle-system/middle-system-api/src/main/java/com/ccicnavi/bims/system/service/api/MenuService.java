@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.system.pojo.MenuDO;
+import com.ccicnavi.bims.common.ResultT;
 import java.util.List;
 /* *
  * @Author MengZiJie
@@ -9,14 +10,44 @@ import java.util.List;
  */
 public interface MenuService {
 
-    /**查询所有菜单*/
-    List<MenuDO> listMenu(MenuDO menuDO) throws Exception;
-    /**获取指定菜单*/
-    MenuDO getMenu(MenuDO menuDO) throws Exception;
-    /**新增菜单*/
-    Integer insertMenu(MenuDO menuDO) throws Exception;
-    /**更新菜单*/
-    Integer updateMenu(MenuDO menuDO) throws Exception;
-    /**删除菜单*/
-    Integer deleteMenu(MenuDO menuDO) throws Exception;
+    /* *
+     * @Author MengZiJie
+     * @Description 查询菜单
+     * @Date 20:21 2018/11/15
+     * @Param [menuDO]
+     * @Return java.util.List<com.ccicnavi.bims.system.pojo.MenuDO>
+     */
+    ResultT listMenu(MenuDO menuDO);
+    /* *
+     * @Author MengZiJie
+     * @Description 获取菜单
+     * @Date 20:21 2018/11/15
+     * @Param [menuDO]
+     * @Return com.ccicnavi.bims.system.pojo.MenuDO
+     */
+    MenuDO getMenu(MenuDO menuDO);
+    /* *
+     * @Author MengZiJie
+     * @Description 新增菜单
+     * @Date 20:21 2018/11/15
+     * @Param [menuDO]
+     * @Return java.lang.Integer
+     */
+    Integer insertMenu(MenuDO menuDO);
+    /* *
+     * @Author MengZiJie
+     * @Description 更新菜单
+     * @Date 20:21 2018/11/15
+     * @Param [menuDO]
+     * @Return java.lang.Integer
+     */
+    Integer updateMenu(MenuDO menuDO);
+    /* *
+     * @Author MengZiJie
+     * @Description 删除菜单
+     * @Date 20:21 2018/11/15
+     * @Param [menuDO]
+     * @Return java.lang.Integer
+     */
+    Integer deleteMenu(MenuDO menuDO);
 }

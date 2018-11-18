@@ -1,7 +1,6 @@
 package com.ccicnavi.bims.common.service.pojo;
 
 import lombok.Data;
-import org.n3r.eql.EqlPage;
 
 import java.io.Serializable;
 import java.util.List;
@@ -47,5 +46,6 @@ public class PageBean<T> implements Serializable {
         this.pageSize = pageRows;
         this.startIndex = startIndex;
         this.products = products;
+
     }
 }

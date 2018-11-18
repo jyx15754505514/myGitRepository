@@ -1,13 +1,14 @@
 package com.ccicnavi.bims.customer.dao.Impl;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.CustTailDao;
 import com.ccicnavi.bims.customer.pojo.CustTailDO;
-import com.ccicnavi.bims.customer.util.EqlUtils;
-import org.junit.jupiter.api.Test;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 
 /**
  * @program: bims-backend
@@ -20,82 +21,41 @@ public class CustTailDaoImpl implements CustTailDao {
 
     @Override
     public List<CustTailDO> listCustTail(CustTailDO custTail) {
-        return EqlUtils.getInstance("druid").select("listCustTail").params(custTail).execute();
+        return new Eql().select("listCustTail").params(custTail).execute();
     }
 
     @Override
     public int saveCustTail(CustTailDO custTail) {
-        return EqlUtils.getInstance("druid").insert("insertCustTail").params(custTail).execute();
+        return new Eql().insert("insertCustTail").params(custTail).returnType(int.class).execute();
     }
 
     @Override
-    public int removeCustTail(String uuids) {
-        Map<String,Object> data=new HashMap<String,Object>();
-        data.put("ids",uuids.split(","));
-        return EqlUtils.getInstance("druid").update("deleteCustTail").params(data).execute();
+    public int removeCustTail(CustTailDO custTail) {
+        return new Eql().update("deleteCustTail").params(custTail).returnType(int.class).execute();
     }
 
     @Override
     public int updateCustTail(CustTailDO custTail) {
-        return EqlUtils.getInstance("druid").update("updateCustTail").params(custTail).execute();
+        return new Eql().update("updateCustTail").params(custTail).returnType(int.class).execute();
     }
 
     @Override
     public CustTailDO getCustTail(CustTailDO custTail) {
-        return EqlUtils.getInstance("druid").selectFirst("getCustTail").params(custTail).returnType(CustTailDO.class).execute();
+        return new Eql().selectFirst("getCustTail").params(custTail).returnType(CustTailDO.class).execute();
     }
 
-
-    /**
-     * ————————————Junit测试————————————————————————
-     */
-
-    @Test
-    public void testListCustTail(){
-        List<CustTailDO> custList= EqlUtils.getInstance("druid").select("listCustTail").returnType(CustTailDO.class).execute();
-        System.out.println(custList);
-    }
-
-    @Test
-    public void testSaveCustTail(){
-        for (int i = 1; i <=10; i++) {
-            CustTailDO custTail=new CustTailDO();
-            custTail.setTailUuid("客户跟踪"+i);
-            custTail.setCustUuid("客户跟踪"+i);
-            custTail.setIdea("客户跟踪");
-            int count= EqlUtils.getInstance("druid").select("insertCustTail").params(custTail).execute();
-            System.out.println("count"+i);
+    @Override
+    public PageBean<CustTailDO> listCustTailPage(PageParameter<CustTailDO> pageParameter) throws Exception {
+        //封装分页参数
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        //执行查询
+        List<CustTailDO> custTailList = new Eql().select("listCustTail").params(pageParameter.getParameter()).returnType(CustTailDO.class).limit(page).execute();
+        if(custTailList != null) {
+            return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),custTailList);
+        }else {
+            return null;
         }
     }
-
-    @Test
-    public void testUpdateCustTail(){
-        CustTailDO custTailDO=new CustTailDO();
-        custTailDO.setTailUuid("客户跟踪1");
-        custTailDO.setPerformance("客户跟踪1被修改了~");
-        int count=EqlUtils.getInstance("druid").update("updateCustTail").params(custTailDO).execute();
-        System.out.println(count);
-    }
-
-
-    @Test
-    public void deleteCustTail(){
-        String uuids="客户跟踪1,客户跟踪10,客户跟踪2";
-        String [] ids=uuids.split(",");
-        Map<String,Object> data=new HashMap<String,Object>();
-        data.put("ids",ids);
-        int count=EqlUtils.getInstance("druid").update("deleteCustTail").params(data).execute();
-        System.out.println(count);
-    }
-
-    @Test
-    public void getCustTail(){
-        CustTailDO custTailDO=new CustTailDO();
-        custTailDO.setTailUuid("客户跟踪1");
-        CustTailDO custTail= EqlUtils.getInstance("druid").selectFirst("listCustTail").params(custTailDO).returnType(CustTailDO.class).execute();
-        System.out.println(custTail);
-    }
-
 
 
 }

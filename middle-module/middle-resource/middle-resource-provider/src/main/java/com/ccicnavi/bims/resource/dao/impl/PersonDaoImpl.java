@@ -1,8 +1,12 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
+import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.PersonDO;
 import com.ccicnavi.bims.resource.dao.PersonDao;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -69,8 +73,18 @@ public class PersonDaoImpl  implements PersonDao {
         return eql.selectFirst("getPerson").params(personDo).returnType(PersonDO.class).execute();
     }
 
-    public static void main(String[] args) {
-        List<Map<String, Object>> map = new Eql().select("listPerson").execute();
-        System.out.print(map);
+    /*
+    *@Param: [pageParameter]
+    *@description: 根据条件 查询人员分页数据
+    *@return: com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.PersonDO>
+    *@author: WangGengXiang
+    *@create: 2018/11/16 15:19
+    */
+    @Override
+    public PageBean<PersonDO> getPagePerson(PageParameter<PersonDO> pageParameter) {
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(),pageParameter.getPageRows());
+        List<PersonDO> personDOS = EqlUtils.getInstance("DEFAULT").id("getPagePerson").params(pageParameter.getParameter()).limit(page).execute();
+        return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),personDOS);
     }
+
 }

@@ -1,6 +1,9 @@
 package com.ccicnavi.bims.resource.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.EquipTestDO;
+import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 
 import java.util.List;
 
@@ -18,7 +21,7 @@ public interface EquipTestDao {
      * @Param [equipTestDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipTestDO>
      */
-    List<EquipTestDO> listEquipTest(EquipTestDO equipTestDO);
+    PageBean<EquipTestDO> listEquipTest(PageParameter<EquipTestDO> pageParameter);
 
     /**
      * @Author panyida
@@ -55,4 +58,14 @@ public interface EquipTestDao {
      * @Return java.lang.Integer
      */
     Integer deleteEquipTest(String equipTestUuid);
+
+    /**
+     * @Author panyida
+     * @Description 设备检定查询（包含器具五要素字段）
+     * @Date 11:44 2018/11/14
+     * @Param [EquipTestDTO]
+     * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipTestDTO>
+     */
+    PageBean<EquipTestDTO> listEquipTestDTO(PageParameter<EquipTestDTO> pageParameter);
+
 }

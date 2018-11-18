@@ -35,7 +35,11 @@ public enum ResultCode {
     ADD_FAILURE(30011, "添加失败"),
     DELETE_FAILURE(30012, "删除失败"),
     UPDATE_FAILURE(30013, "修改失败"),
-
+    GET_FAILURE(30014, "获取指定信息失败"),
+    VERIFY_CUSTINFO_ONLY_FAILURE(30015,"客户相关信息唯一性验证失败"),
+    CUST_NAME_REPEAT(30016,"客户名称重复"),
+    CUST_CODE_REPEAT(30016,"客户代码重复"),
+    CUST_USCC_REPEAT(30016,"客户统一社会信用代码重复"),
 
 
     /* 系统错误：40001-49999 */

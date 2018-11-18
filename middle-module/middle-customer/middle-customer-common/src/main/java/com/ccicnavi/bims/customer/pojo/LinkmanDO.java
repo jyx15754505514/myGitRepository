@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-public class LinkmanDO {
+public class LinkmanDO implements Serializable {
     private String linkmanUuid;
 
     private String custUuid;
@@ -66,4 +67,6 @@ public class LinkmanDO {
     private String extend2;
 
     private String extend3;
+
+    private String [] uuids;//要删除的客户联系人主键
 }

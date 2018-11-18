@@ -1,22 +1,26 @@
 package com.ccicnavi.bims.system.dao;
 
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.RoleDO;
+import com.ccicnavi.bims.system.pojo.RoleDTO;
 
-import java.util.List;
 
 public interface RoleDao {
 
     /**
      * 查询角色信息
-     * @param role
+     *
+     * @param pageParameter
      * @return List<role>
      * @throws Exception
      */
-    public List<RoleDO> listRole(RoleDO role) throws Exception;
+    public PageBean<RoleDO> listRole(PageParameter<RoleDO> pageParameter)throws  Exception;
 
     /**
      * 新增角色
+     *
      * @param role
      * @return Integer
      * @throws Exception
@@ -25,25 +29,28 @@ public interface RoleDao {
 
     /**
      * 更新角色信息
+     *
      * @param role
      * @return Integer
      * @throws Exception
      */
-    public Integer updateRole(RoleDO role)throws Exception;
+    public Integer updateRole(RoleDO role)throws  Exception;
 
     /**
      * 删除角色信息
+     *
      * @param role
      * @return Integer
      * @throws Exception
      */
-    public Integer deleteRole(RoleDO role)throws Exception;
+    public Integer deleteRole(RoleDTO role)throws  Exception;
 
     /**
-     * 根据主键查询非工作日信息
+     * 根据主键查询角色信息
+     *
      * @param role
      * @return role
      * @throws Exception
      */
-    public RoleDO getRole(RoleDO role)throws Exception;
+    public RoleDO getRole(RoleDO role)throws  Exception;
 }

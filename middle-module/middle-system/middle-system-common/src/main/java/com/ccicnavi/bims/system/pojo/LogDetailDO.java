@@ -3,6 +3,8 @@ package com.ccicnavi.bims.system.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /* *
@@ -13,7 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class LogDetailDO {
+public class LogDetailDO implements Serializable {
     private String logUuid;
 
     private String operName;
@@ -32,5 +34,5 @@ public class LogDetailDO {
 
     private String appSysUuid;
 
-    private String businessLine;
+    private String prodCatalogUuid;
 }

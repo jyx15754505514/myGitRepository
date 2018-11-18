@@ -1,12 +1,12 @@
 package com.ccicnavi.bims.system.dao.impl;
 
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.NotworkdayDao;
 import com.ccicnavi.bims.system.pojo.NotworkdayDO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 
@@ -19,17 +19,22 @@ import java.util.List;
 @Service
 public class NotworkdayDaoImpl implements NotworkdayDao {
 
-
-   /**
+   /*
    * 根据条件查询非工作日
    * @Author zhaotao
-   * @Date  2018/11/15 15:54
-   * @Param [notworkday]
-   * @return java.util.List<com.ccicnavi.bims.system.pojo.NotworkdayDO>
+   * @Date  2018/11/16 15:13
+   * @Param [parameter]
+   * @return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.system.pojo.NotworkdayDO>
    **/
     @Override
-    public List<NotworkdayDO> listNotworkday(NotworkdayDO notworkday) throws Exception{
-        return EqlUtils.getInstance("DEFAULT").select("listNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
+    public PageBean<NotworkdayDO> listNotworkday(PageParameter parameter) throws Exception{
+        EqlPage eqlPage = new EqlPage(parameter.getStartIndex(), parameter.getPageRows());
+        List<NotworkdayDO> notworkdayList = new Eql().select("listNotworkday").params(parameter.getParameter()).returnType(NotworkdayDO.class).execute();
+        if(notworkdayList != null) {
+            return new PageBean<NotworkdayDO>(eqlPage.getTotalRows(),eqlPage.getTotalPages(), eqlPage.getCurrentPage(), eqlPage.getPageRows(), eqlPage.getStartIndex(), notworkdayList);
+        }else {
+            return null;
+        }
     }
 
     /**
@@ -41,7 +46,7 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
     **/
     @Override
     public Integer insertNotworkday(NotworkdayDO notworkday) throws Exception{
-        return EqlUtils.getInstance("DEFAULT").insert("insertNotworkday").params(notworkday).returnType(Integer.class).execute();
+        return new Eql().insert("insertNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
     /**
@@ -53,7 +58,7 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
     **/
     @Override
     public Integer updateNotworkday(NotworkdayDO notworkday) throws Exception{
-        return EqlUtils.getInstance("DEFAULT").insert("updateNotworkday").params(notworkday).returnType(Integer.class).execute();
+        return new Eql().update("updateNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
     /**
@@ -65,7 +70,7 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
     **/
     @Override
     public Integer deleteNotworkday(NotworkdayDO notworkday) throws Exception{
-        return EqlUtils.getInstance("DEFAULT").insert("deleteNotworkday").params(notworkday).returnType(Integer.class).execute();
+        return new Eql().delete("deleteNotworkday").params(notworkday).returnType(Integer.class).execute();
     }
 
     /**
@@ -77,6 +82,8 @@ public class NotworkdayDaoImpl implements NotworkdayDao {
     **/
     @Override
     public NotworkdayDO getNotworkday(NotworkdayDO notworkday) throws Exception{
-        return EqlUtils.getInstance("DEFAULT").selectFirst("getNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
+        return new Eql("DEFAULT").selectFirst("getNotworkday").params(notworkday).returnType(NotworkdayDO.class).execute();
     }
+
+
 }

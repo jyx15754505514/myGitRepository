@@ -192,12 +192,9 @@ INSERT INTO crm_subcontractor
 UPDATE crm_subcontractor
 SET is_deleted='Y'
 WHERE is_deleted='N'
-     -- if ids != null
-            AND subcontractor_uuid IN
-            -- for item=item index=index collection=ids open=( separator=, close=)
-                '#item#'
-            -- end
-        -- end
+AND subcontractor_uuid='#subcontractorUuid#'
+
+
 
 
 -- [updateSubcontractor]

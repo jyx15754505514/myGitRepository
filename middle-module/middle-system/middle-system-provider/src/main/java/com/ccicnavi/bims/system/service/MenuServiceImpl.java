@@ -1,11 +1,15 @@
 package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.ResultCode;
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.system.dao.MenuDao;
 import com.ccicnavi.bims.system.pojo.MenuDO;
 import com.ccicnavi.bims.system.service.api.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.xml.transform.Result;
 import java.util.List;
 
 /* *
@@ -28,15 +32,18 @@ public class MenuServiceImpl implements MenuService {
      * @Return java.util.List<com.ccicnavi.bims.system.pojo.MenuDO>
      */
     @Override
-    public List<MenuDO> listMenu(MenuDO menuDO) {
-        List<MenuDO> menu = null;
+    public ResultT listMenu(MenuDO menuDO) {
         try {
-            menu = menuDao.listMenu(menuDO);
+            List<MenuDO> listMenu = menuDao.listMenu(menuDO);
+            if(listMenu!=null){
+                return ResultT.success(listMenu);
+            }else{
+                return ResultT.failure(ResultCode.LIST_FAILURE);
+            }
         } catch (Exception e) {
-            log.debug("查询菜单失败",e);
-            e.printStackTrace();
+            log.error("查询菜单失败",e);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
-        return menu;
     }
 
     /* *
@@ -52,8 +59,8 @@ public class MenuServiceImpl implements MenuService {
         try {
             menu = menuDao.getMenu(menuDO);
         } catch (Exception e) {
-            log.debug("获取菜单失败",e);
-            e.printStackTrace();
+            log.error("获取菜单失败",e);
+           return null;
         }
         return menu;
     }
@@ -71,8 +78,8 @@ public class MenuServiceImpl implements MenuService {
         try {
             menu = menuDao.insertMenu(menuDO);
         } catch (Exception e) {
-            log.debug("新增菜单失败",e);
-            e.printStackTrace();
+            log.error("新增菜单失败",e);
+           return null;
         }
         return menu;
     }
@@ -90,8 +97,8 @@ public class MenuServiceImpl implements MenuService {
         try {
             menu = menuDao.updateMenu(menuDO);
         } catch (Exception e) {
-            log.debug("更细菜单失败",e);
-            e.printStackTrace();
+            log.error("更细菜单失败",e);
+            return null;
         }
         return menu;
     }
@@ -109,8 +116,8 @@ public class MenuServiceImpl implements MenuService {
         try {
             menu = menuDao.deleteMenu(menuDO);
         } catch (Exception e) {
-            log.debug("删除菜单失败",e);
-            e.printStackTrace();
+            log.error("删除菜单失败",e);
+           return null;
         }
         return menu;
     }

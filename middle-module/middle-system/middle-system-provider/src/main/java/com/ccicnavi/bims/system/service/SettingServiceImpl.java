@@ -2,6 +2,10 @@ package com.ccicnavi.bims.system.service;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.ResultCode;
+import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.impl.SettingDaoImpl;
 import com.ccicnavi.bims.system.service.api.SettingService;
 import com.ccicnavi.bims.system.dao.SettingDao;
@@ -34,15 +38,19 @@ public class SettingServiceImpl implements SettingService{
     */
 
     @Override
-    public List<SettingDO> listSetting(SettingDO settingDO)throws Exception{
+    public ResultT listSetting(PageParameter<SettingDO> pageParameter){
         try{
-            return settingDao.listSetting(settingDO);
+            PageBean<SettingDO> pageBean = settingDao.listSetting(pageParameter);
+            if (pageBean != null){
+                return ResultT.success(pageBean);
+            }
         }catch (Exception e){
-            log.error("", e);
-            return null;
+            log.error("查询系统设置信息失败", e);
         }
-
+        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
+
+
 
     /**
     *@Description: 新增系统设置信息
@@ -52,11 +60,11 @@ public class SettingServiceImpl implements SettingService{
     *@date: 2018/11/15
     */
     @Override
-    public Integer insertSetting(SettingDO settingDO)throws Exception{
+    public Integer insertSetting(SettingDO settingDO){
         try {
             return settingDao.insertSetting(settingDO);
         }catch (Exception e){
-            log.error("",e);
+            log.error("新增系统设置信息失败",e);
             return null;
         }
     }
@@ -73,7 +81,7 @@ public class SettingServiceImpl implements SettingService{
         try {
             return settingDao.updateSetting(settingDO);
         } catch (Exception e) {
-            log.error("",e);
+            log.error("更新系统设置信息失败",e);
             return null;
 
         }
@@ -91,7 +99,7 @@ public class SettingServiceImpl implements SettingService{
         try {
             return settingDao.deleteSetting(settingDO);
         } catch (Exception e) {
-            log.error("",e);
+            log.error("删除系统设置信息失败",e);
             return null;
         }
     }
@@ -109,7 +117,7 @@ public class SettingServiceImpl implements SettingService{
         try {
             return settingDao.getSetting(settingDO);
         } catch (Exception e) {
-            log.error("",e);
+            log.error("根据主键获取系统设置信息失败",e);
             return null;
         }
     }

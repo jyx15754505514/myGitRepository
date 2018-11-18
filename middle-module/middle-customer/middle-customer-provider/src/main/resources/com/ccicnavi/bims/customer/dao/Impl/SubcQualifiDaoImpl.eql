@@ -136,12 +136,8 @@ INSERT INTO crm_subc_qualification
 UPDATE crm_subc_qualification
 SET is_deleted='Y'
 WHERE is_deleted='N'
-     -- if ids != null
-            AND subc_qualifi_uuid IN
-            -- for item=item index=index collection=ids open=( separator=, close=)
-                '#item#'
-            -- end
-        -- end
+AND subc_qualifi_uuid='#subcQualifiUuid#'
+
 
 
 -- [updateSubcuQuali]

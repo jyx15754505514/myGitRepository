@@ -1,103 +1,89 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.TemplateDao;
 import com.ccicnavi.bims.resource.pojo.TemplateDO;
+import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 /**
  * @program: bims-backend
  * @description: 模板dao实现类
  * @author: zhaotao
  * @create: 2018-11-14 23:33
  **/
+@Service
+@Slf4j
 public class TemplateDaoImpl implements TemplateDao {
 
-    private final static Logger log = LoggerFactory.getLogger(TemplateDaoImpl.class);
-
     /**
-     * 查询模板信息
-     * @param Template
-     * @return List<Template>
+     * 根据条件查询模板信息
+     * @param parameter
+     * @return PageBean<TemplateDO>
      * @throws Exception
      */
     @Override
-    public List<TemplateDO> listTemplate(TemplateDO Template) throws Exception {
-        try{
-            return new Eql().select("listTemplate").params(Template).returnType(TemplateDO.class).execute();
-        }catch (Exception e) {
-            log.error("", e);
+    public PageBean<TemplateDO> listTemplate(PageParameter parameter) throws Exception {
+        EqlPage eqlPage = new EqlPage(parameter.getStartIndex(), parameter.getPageRows());
+        List<TemplateDO> templateDOList = new Eql().select("listTemplate").params(parameter.getParameter()).limit(eqlPage).returnType(TemplateDO.class).execute();
+        if(templateDOList != null && templateDOList.size() > 0) {
+            return new PageBean<TemplateDO>(eqlPage.getTotalRows(),eqlPage.getTotalPages(), eqlPage.getCurrentPage(), eqlPage.getPageRows(), eqlPage.getStartIndex(), templateDOList);
+        }else {
             return null;
         }
     }
 
     /**
      * 新增模板
-     * @param Template
+     * @param template
      * @return Integer
      * @throws Exception
      */
     @Override
-    public Integer insertTemplate(TemplateDO Template) throws Exception {
-        try{
-            return new Eql().insert("insertTemplate").params(Template).returnType(Integer.class).execute();
-        }catch (Exception e) {
-            log.error("", e);
-            return null;
-        }
+    public Integer insertTemplate(TemplateDO template) throws Exception {
+        return new Eql().insert("insertTemplate").params(template).returnType(Integer.class).execute();
     }
 
     /**
-     * 更新模板信息
-     * @param Template
+     * 单个或批量更新模板信息
+     * @param template
      * @return Integer
      * @throws Exception
      */
     @Override
-    public Integer updateTemplate(TemplateDO Template) throws Exception {
-        try{
-            return new Eql().update("updateTemplate").params(Template).returnType(Integer.class).execute();
-        }catch (Exception e) {
-            log.error("", e);
-            return null;
-        }
+    public Integer updateTemplate(TemplateDO template) throws Exception {
+        return new Eql().update("updateTemplate").params(template).returnType(Integer.class).execute();
     }
 
     /**
-     * 删除模板信息
-     * @param Template
+     * 单个或批量删除模板信息
+     * @param template
      * @return Integer
      * @throws Exception
      */
     @Override
-    public Integer deleteTemplate(TemplateDO Template) throws Exception {
-        try{
-            return new Eql().delete("deleteTemplate").params(Template).returnType(Integer.class).execute();
-        }catch (Exception e) {
-            log.error("", e);
-            return null;
-        }
+    public Integer deleteTemplate(TemplateDO template) throws Exception {
+        return new Eql().delete("deleteTemplate").params(template).returnType(Integer.class).execute();
     }
 
     /**
      * 根据主键查询模板信息
-     * @param Template
-     * @return Template
+     * @param template
+     * @return TemplateDO
      * @throws Exception
      */
     @Override
-    public TemplateDO getTemplate(TemplateDO Template) throws Exception {
-        try{
-            return new Eql().selectFirst("getTemplate").params(Template).returnType(TemplateDO.class).execute();
-        }catch (Exception e) {
-            log.error("", e);
-            return null;
-        }
+    public TemplateDO getTemplate(TemplateDO template) throws Exception {
+        return new Eql().selectFirst("getTemplate").params(template).returnType(TemplateDO.class).execute();
     }
+
 }
