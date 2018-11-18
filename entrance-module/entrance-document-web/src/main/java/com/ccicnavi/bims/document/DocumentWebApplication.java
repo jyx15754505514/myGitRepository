@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.order;
+package com.ccicnavi.bims.document;
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableApolloConfig
-@ComponentScan(basePackages = { "com.ccicnavi.bims.order.*" }) // 将该包下的文件纳入容器中
+@ComponentScan(basePackages = {"com.ccicnavi.bims.document.*"})
 @SpringBootApplication
-public class EntranceOrderWebApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(EntranceOrderWebApplication.class, args);
-    }
+public class DocumentWebApplication {
 
+    public static void main(String[] args) {
+        SpringApplication.run(DocumentWebApplication.class,args);
+    }
 }

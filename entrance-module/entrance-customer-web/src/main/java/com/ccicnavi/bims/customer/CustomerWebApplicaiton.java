@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.fin;
+package com.ccicnavi.bims.customer;
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableApolloConfig
-@ComponentScan(basePackages = { "com.ccicnavi.bims.fin.*" }) // 将该包下的文件纳入容器中
+@ComponentScan(basePackages = "com.ccicnavi.bims.customer.*")
 @SpringBootApplication
-public class EntranceFinWebApplication {
+public class CustomerWebApplicaiton {
 
     public static void main(String[] args) {
-        SpringApplication.run(EntranceFinWebApplication.class, args);
+        SpringApplication.run(CustomerWebApplicaiton.class,args);
     }
 }

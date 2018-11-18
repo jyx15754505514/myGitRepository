@@ -1,4 +1,5 @@
-package com.ccicnavi.bims.system;
+package com.ccicnavi.bims.resource;
+
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
@@ -8,12 +9,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableApolloConfig
-@ComponentScan(basePackages = "com.ccicnavi.bims.system.*")
+@ComponentScan(basePackages = "com.ccicnavi.bims.resource.*")
 @SpringBootApplication
-public class EntranceSystemApplication {
+public class ResourceWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EntranceSystemApplication.class,args);
+        SpringApplication.run(ResourceWebApplication.class,args);
     }
-
 }
