@@ -26,7 +26,6 @@ public class PersonWorkController {
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
     PersonWorkService personWorkService;
 
-
     /**@description: 查询人员工作信息
     *@author: ChaiYanShun
     *@create: 2018/11/16 16:09

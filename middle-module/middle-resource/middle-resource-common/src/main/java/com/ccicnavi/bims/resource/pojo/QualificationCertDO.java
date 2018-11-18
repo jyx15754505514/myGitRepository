@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Data
 public class QualificationCertDO implements Serializable {
+
     private String cationUuid;
 
     private String personUuid;

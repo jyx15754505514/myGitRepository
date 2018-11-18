@@ -139,4 +139,5 @@ public class QualificationCertController {
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
+
 }

@@ -24,8 +24,8 @@ public class PersonWorkServiceImplTest {
         personWorkDO.setOrgName("33");
         personWorkDO.setOrgUuid("33");
         personWorkDO.setAppSysUuid("33");
-        Integer integer = personWorkDao.insertPersonWorkDO(personWorkDO);
-        System.out.println(integer);
+       // Integer integer = personWorkDao.insertPersonWorkDO(personWorkDO);
+       // System.out.println(integer);
     }
 
 

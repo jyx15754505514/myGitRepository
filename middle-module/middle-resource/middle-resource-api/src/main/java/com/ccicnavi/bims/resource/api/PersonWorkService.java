@@ -8,6 +8,7 @@ import com.ccicnavi.bims.resource.pojo.PersonWorkDO;
 import java.util.List;
 
 public interface PersonWorkService {
+
     /**
      *查询人员工作信息
     */

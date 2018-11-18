@@ -140,5 +140,4 @@ public class PersonWorkExpeController {
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
-
 }

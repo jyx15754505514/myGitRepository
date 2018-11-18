@@ -30,6 +30,7 @@ where
     is_deleted = 'N'
 
 
+
 --[insertPersonWorkExpeDO]
     insert into res_person_work_expe
 --trim prefix=( suffix=) suffixOverrides=,

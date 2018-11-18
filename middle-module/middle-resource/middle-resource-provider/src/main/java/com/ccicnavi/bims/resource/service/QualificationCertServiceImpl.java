@@ -15,7 +15,6 @@ import java.util.List;
 
 @Service
 public class QualificationCertServiceImpl implements QualificationCertService {
-
     private final static Logger log = LoggerFactory.getLogger(QualificationCertDaoImpl.class);
 
     @Autowired

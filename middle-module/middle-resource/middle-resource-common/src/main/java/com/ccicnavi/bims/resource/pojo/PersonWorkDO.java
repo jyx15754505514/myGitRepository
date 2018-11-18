@@ -7,6 +7,7 @@ import  java.io.Serializable;
 
 @Data
 public class PersonWorkDO  implements  Serializable {
+
     private String personUuid;
 
     private String workUuid;

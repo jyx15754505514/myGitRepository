@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 @Service
 public class PersonWorkExpeServiceImpl implements PersonWorkExpeService {
-
     private final static Logger log = LoggerFactory.getLogger(PersonWorkExpeDaoImpl.class);
 
     @Autowired

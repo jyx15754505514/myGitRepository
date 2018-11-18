@@ -12,6 +12,7 @@ import java.util.List;
 
 @Service
 public class QualificationCertDaoImpl implements QualificationCertDao {
+
     /**
      *查询人员资格证书
      */

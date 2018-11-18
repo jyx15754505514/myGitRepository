@@ -41,7 +41,6 @@ where
         and work_uuid like '#workUuid:like#'
     --end
 
-
 -- [insertPersonWorkDO]
     insert into res_person_work
     --trim prefix=( suffix=) suffixOverrides=,
