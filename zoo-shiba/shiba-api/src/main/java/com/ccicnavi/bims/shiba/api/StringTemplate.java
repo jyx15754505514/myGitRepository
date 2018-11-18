@@ -8,7 +8,7 @@ public interface  StringTemplate {
      * @param key
      * @param value
      */
-    void add(Object key,String value);
+    void add(Object key,Object value);
 
     /**
      * 根据key查询缓存

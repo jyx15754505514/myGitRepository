@@ -1,6 +1,6 @@
 package com.ccicnavi.bims.shiba.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
+import org.springframework.stereotype.Service;
 import com.ccicnavi.bims.shiba.api.StringTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -17,7 +17,7 @@ public class StringTemplateImpl implements StringTemplate {
      * @param key
      * @param value
      */
-    public void add(Object key, String value) {
+    public void add(Object key, Object value) {
         redisTemplate.opsForValue().set(key, value);
     }
 

@@ -1,6 +1,6 @@
 package com.ccicnavi.bims.shiba.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
+import org.springframework.stereotype.Service;
 import com.ccicnavi.bims.shiba.api.ZsetTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -15,7 +15,7 @@ public class ZsetTemplateImpl implements ZsetTemplate {
     RedisTemplate redisTemplate;
 
     /**
-     * 添加任意类型的缓存
+     * 添加value到排序集key，或者score如果已存在则更新它。
      *
      * @param key
      * @param value
