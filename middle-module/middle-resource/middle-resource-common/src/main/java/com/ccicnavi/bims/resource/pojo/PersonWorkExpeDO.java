@@ -11,6 +11,7 @@ import java.util.Date;
 
 @Data
 public class PersonWorkExpeDO implements Serializable {
+
     private String workExpeUuid;
 
     private String personUuid;
@@ -51,7 +52,7 @@ public class PersonWorkExpeDO implements Serializable {
 
     private String appSysUuid;
 
-    private String businessLine;
+    private String prodCatalogUuid;
 
     private String extend1;
 

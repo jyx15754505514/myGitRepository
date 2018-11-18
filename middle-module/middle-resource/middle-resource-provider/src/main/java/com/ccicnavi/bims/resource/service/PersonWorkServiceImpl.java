@@ -16,7 +16,6 @@ import java.util.List;
 
 @Service
 public class PersonWorkServiceImpl implements PersonWorkService {
-
     private final static Logger log = LoggerFactory.getLogger(PersonWorkDaoImpl.class);
 
     @Autowired

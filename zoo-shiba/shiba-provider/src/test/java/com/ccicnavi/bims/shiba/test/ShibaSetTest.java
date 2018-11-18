@@ -60,11 +60,5 @@ public class ShibaSetTest {
     public void remove() {
         setTemplate.remove("value", "key3");
     }
-
-    @Test
-    public void curosr() {
-        Cursor value = setTemplate.scan("value");
-        System.out.println(value);
-    }
-
+    
 }

@@ -78,13 +78,4 @@ public class SetTemplateImpl implements SetTemplate {
         return redisTemplate.opsForSet().remove(key, values);
     }
 
-    /**
-     * 得到key缓存下的set集合
-     *
-     * @param key
-     * @return
-     */
-    public Cursor scan(Object key) {
-       return (Cursor) redisTemplate.opsForSet().scan("zhou23",ScanOptions.NONE);
-    }
 }

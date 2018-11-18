@@ -14,11 +14,11 @@ import org.springframework.context.annotation.Configuration;
 @EnableApolloConfig
 @ComponentScan(basePackages = { "com.ccicnavi.bims.resource.*" }) // 将该包下的文件纳入容器中
 @SpringBootApplication()
-public class Application {
+public class ResourceProviderApplication {
 
 	public static void main(String[] args) throws InterruptedException{
 
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(ResourceProviderApplication.class, args);
 
 		new CountDownLatch(1).await(); //hold住应用，防止provider退出
 	}

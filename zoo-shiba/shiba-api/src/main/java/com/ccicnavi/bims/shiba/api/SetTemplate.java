@@ -54,11 +54,4 @@ public interface SetTemplate {
      */
     Long remove(Object key, Object... values);
 
-    /**
-     * 得到key缓存下的set集合
-     *
-     * @param key
-     * @return
-     */
-    Cursor scan(Object key);
 }

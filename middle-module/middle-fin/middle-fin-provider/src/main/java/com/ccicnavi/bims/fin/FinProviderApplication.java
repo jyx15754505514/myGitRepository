@@ -12,11 +12,11 @@ import java.util.concurrent.CountDownLatch;
 @EnableApolloConfig
 @ComponentScan(basePackages = { "com.ccicnavi.bims.fin.*" }) // 将该包下的文件纳入容器中
 @SpringBootApplication
-public class FinApplication {
+public class FinProviderApplication {
 
     public static void main(String[] args) throws InterruptedException{
 
-        SpringApplication.run(FinApplication.class, args);
+        SpringApplication.run(FinProviderApplication.class, args);
 
         new CountDownLatch(1).await(); //hold住应用，防止provider退出
     }
