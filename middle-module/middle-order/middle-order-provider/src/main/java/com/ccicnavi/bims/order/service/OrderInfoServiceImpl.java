@@ -29,10 +29,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
      */
     @Override
     public Integer insertOrderInfo(OrderInfoDO orderInfoDO) {
-        EqlTran aDefault = null;
+        EqlTran eqlTran = null;
         Integer integer = null;
         try {
-            integer = orderInfoDao.insertOrderInfo(orderInfoDO,aDefault);
+            integer = orderInfoDao.insertOrderInfo(orderInfoDO,eqlTran);
         } catch (Exception e) {
             log.error("新增委托单失败",e);
         }
@@ -48,10 +48,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
      */
     @Override
     public Integer updateOrderInfo(OrderInfoDO orderInfoDO) {
-        EqlTran aDefault = null;
+        EqlTran eqlTran = null;
         Integer integer = null;
         try {
-            integer = orderInfoDao.updateOrderInfo(orderInfoDO,aDefault);
+            integer = orderInfoDao.updateOrderInfo(orderInfoDO,eqlTran);
         } catch (Exception e) {
             log.error("更新委托单信息",e);
         }
