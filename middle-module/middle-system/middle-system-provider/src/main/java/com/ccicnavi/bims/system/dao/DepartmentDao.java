@@ -68,6 +68,6 @@ public interface DepartmentDao {
     *@Author: zhangpengwei
     *@date: 2018/11/19
     */
-    public List<UserDeptDO> listDeptByUser(UserDO userDO);
+    public List<DepartmentDO> listDeptByUser(UserDO userDO);
 
 }

@@ -19,7 +19,7 @@ import java.util.List;
 @ToString
 public class UserDO {
 
-    private List<RoleDO> roleList;
+    private List<RoleUserDO> roleList;
 
     private List<MenuDO> menuList;
 

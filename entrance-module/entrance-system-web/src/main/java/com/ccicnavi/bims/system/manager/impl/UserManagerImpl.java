@@ -6,10 +6,7 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.shiba.api.HashTemplate;
 import com.ccicnavi.bims.system.manager.UserManager;
-import com.ccicnavi.bims.system.pojo.DepartmentDO;
-import com.ccicnavi.bims.system.pojo.MenuDO;
-import com.ccicnavi.bims.system.pojo.RoleDO;
-import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.*;
 import com.ccicnavi.bims.system.service.api.DepartmentService;
 import com.ccicnavi.bims.system.service.api.MenuService;
 import com.ccicnavi.bims.system.service.api.RoleService;
@@ -98,7 +95,7 @@ public class UserManagerImpl implements UserManager {
         //创建jsessionID
         String jsessionID = "";
         //查角色
-        List<RoleDO> roleList = roleService.listRoleByUser(userDO);
+        List<RoleUserDO> roleList = roleService.listRoleByUser(userDO);
         //查部门
         List<DepartmentDO> deptList = deptService.listDeptByUser(userDO);
         //查权限
