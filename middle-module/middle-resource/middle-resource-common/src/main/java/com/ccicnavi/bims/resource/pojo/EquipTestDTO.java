@@ -43,7 +43,7 @@ public class EquipTestDTO implements Serializable {
 
     private String onlineCertUrl;
 
-    private String businessLine;
+    private String prodCatalogPuid;
 
     private String comments;
 

@@ -16,7 +16,7 @@
     mgr_uuid mgrUuid,
     mgr_name mgrName,
     location_addr locationAddr,
-    business_line businessLine,
+    prod_catalog_uuid prodCatalogUuid,
     comments comments,
     is_deleted isDeleted,
     created_time createdTime,
@@ -48,7 +48,7 @@ where
     mgr_uuid mgrUuid,
     mgr_name mgrName,
     location_addr locationAddr,
-    business_line businessLine,
+    prod_catalog_uuid prodCatalogUuid,
     comments comments,
     is_deleted isDeleted,
     created_time createdTime,
@@ -99,8 +99,8 @@ where
         mgr_name,
       --iff locationAddr != null
         location_addr,
-      --iff businessLine != null
-        business_line,
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid,
       --iff comments != null
         comments,
       --iff isDeleted != null
@@ -153,8 +153,8 @@ where
         '#mgrName#',
       --iff locationAddr != null
         '#locationAddr#',
-      --iff businessLine != null
-        '#businessLine#',
+      --iff prodCatalogUuid != null
+        '#prodCatalogUuid#',
       --iff comments != null
         '#comments#',
       --iff isDeleted != null
@@ -208,8 +208,8 @@ where
         mgr_name = '#mgrName#',
       --iff locationAddr != null
         location_addr = '#locationAddr#',
-      --iff businessLine != null
-        business_line = '#businessLine#',
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
       --iff comments != null
         comments = '#comments#',
       --iff isDeleted != null
