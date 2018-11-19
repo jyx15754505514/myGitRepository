@@ -9,7 +9,7 @@ import com.ccicnavi.bims.order.pojo.OrderShipmentDO;
  * @Param
  * @Return
  */
-public interface OrderShipmentDao {
+public interface OrderShipmentService {
 
     /**新增运输方式*/
     Integer insertOrderShipment(OrderShipmentDO orderShipmentDO);

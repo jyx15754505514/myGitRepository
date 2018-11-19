@@ -6,7 +6,7 @@ import com.ccicnavi.bims.order.pojo.OrderItemDO;
  * @Description 委托单服务项
  * @Date 15:30 2018/11/19
  */
-public interface OrderItemDao {
+public interface OrderItemService {
 
     /**新增服务项信息*/
     Integer insertOrderItem(OrderItemDO orderItemDO);
