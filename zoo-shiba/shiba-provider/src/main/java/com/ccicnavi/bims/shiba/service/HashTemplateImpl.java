@@ -1,11 +1,10 @@
 package com.ccicnavi.bims.shiba.service;
 
+
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.shiba.api.HashTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ScanOptions;
 
 import java.util.List;
 import java.util.Map;
@@ -91,7 +90,7 @@ public class HashTemplateImpl implements HashTemplate {
     }
 
     /**
-     * 查询key缓存中map的多个key
+     * 查询key缓存中指定map的key的value集合
      *
      * @param key
      * @param keys
