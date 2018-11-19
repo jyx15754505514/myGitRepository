@@ -175,7 +175,7 @@ WHERE
     use_person usePerson,
     use_dept useDept,
     back_date backDate,
-    prodCatalogPuid prod_catalog_uuid,
+    prod_catalog_uuid prodCatalogPuid,
     comments comments,
     is_deleted isDeleted,
     created_time createdTime,

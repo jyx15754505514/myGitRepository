@@ -56,7 +56,7 @@
      updated_name updatedName,
      org_uuid orgUuid,
      app_sys_uuid appSysUuid,
-     business_line prodCatalogUuid
+     prod_catalog_uuid prodCatalogUuid
 from
     res_equip
 where
