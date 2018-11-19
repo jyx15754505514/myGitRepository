@@ -27,10 +27,10 @@ public class OrderShipmentServiceImpl implements OrderShipmentService {
      */
     @Override
     public Integer insertOrderShipment(OrderShipmentDO orderShipmentDO) {
-        EqlTran aDefault = null;
+        EqlTran eqlTran = null;
         Integer integer = null;
         try {
-            integer = orderShipmentDao.insertOrderShipment(orderShipmentDO, aDefault);
+            integer = orderShipmentDao.insertOrderShipment(orderShipmentDO, eqlTran);
         } catch (Exception e) {
             log.error("添加委托单运输方式失败",e);
         }
@@ -46,10 +46,10 @@ public class OrderShipmentServiceImpl implements OrderShipmentService {
      */
     @Override
     public Integer updateOrderShipment(OrderShipmentDO orderShipmentDO) {
-        EqlTran aDefault = null;
+        EqlTran eqlTran = null;
         Integer integer = null;
         try {
-            integer = orderShipmentDao.updateOrderShipment(orderShipmentDO, aDefault);
+            integer = orderShipmentDao.updateOrderShipment(orderShipmentDO, eqlTran);
         } catch (Exception e) {
             log.error("更新委托单运输方式失败",e);
         }
