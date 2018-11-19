@@ -15,7 +15,7 @@ SELECT
      status_uuid statusUuid ,
      parts_desc partsDesc ,
      tester_name testerName ,
-     business_line businessLine ,
+     prod_catalog_uuid prodCatalogUuid ,
      comments comments ,
      is_deleted isDeleted ,
      created_time createdTime ,
@@ -49,7 +49,7 @@ SELECT
      status_uuid statusUuid ,
      parts_desc partsDesc ,
      tester_name testerName ,
-     business_line businessLine ,
+     prod_catalog_uuid prodCatalogUuid ,
      comments comments ,
      is_deleted isDeleted ,
      created_time createdTime ,
@@ -97,8 +97,8 @@ where
         parts_desc,
       --iff testerName != null
         tester_name,
-      --iff businessLine != null
-        business_line,
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid,
       --iff comments != null
         comments,
       --iff isDeleted != null
@@ -149,8 +149,8 @@ where
         '#partsDesc#',
       --iff testerName != null
         '#testerName#',
-      --iff businessLine != null
-        '#businessLine#',
+      --iff prodCatalogUuid != null
+        '#prodCatalogUuid#',
       --iff comments != null
         '#comments#',
       --iff isDeleted != null
@@ -202,8 +202,8 @@ UPDATE res_equip
         parts_desc = '#partsDesc#',
       --iff testerName != null
         tester_name = '#testerName#',
-      --iff businessLine != null
-        business_line = '#businessLine#',
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
       --iff comments != null
         comments = '#comments#',
       --iff isDeleted != null
