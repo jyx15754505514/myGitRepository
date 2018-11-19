@@ -2,6 +2,8 @@ package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.system.pojo.MenuDO;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.system.pojo.UserDO;
+
 import java.util.List;
 /* *
  * @Author MengZiJie
@@ -50,4 +52,14 @@ public interface MenuService {
      * @Return java.lang.Integer
      */
     Integer deleteMenu(MenuDO menuDO);
+
+    /*
+    * 根据用户的UUID查询所有的菜单UUID
+    * @Author zhaotao
+    * @Date  2018/11/19 11:21
+    * @Param [userDO]
+    * @return java.util.List<java.lang.String>
+    **/
+    List<String> listMenuByUser(UserDO userDO);
+    
 }
