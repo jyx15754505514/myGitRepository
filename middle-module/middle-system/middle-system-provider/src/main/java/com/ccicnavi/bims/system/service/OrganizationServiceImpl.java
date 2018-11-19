@@ -1,13 +1,15 @@
 package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.OrganizationDao;
 import com.ccicnavi.bims.system.pojo.OrganizationDO;
 import com.ccicnavi.bims.system.service.api.OrganizationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import java.util.ArrayList;
 
 
 @Service
@@ -19,63 +21,55 @@ public class OrganizationServiceImpl implements OrganizationService {
 
 
     @Override
-    public List<OrganizationDO> listOrganizationDO(OrganizationDO organizationDO) {
-        List<OrganizationDO> organizationDOList = null;
+    public PageBean<OrganizationDO> listOrganization(PageParameter<OrganizationDO> pageParameter) {
         try {
-            organizationDOList = organizationDao.listOrganizationDO(organizationDO);
+            return organizationDao.listOrganization(pageParameter);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.info("组织机构列表获取失败" + e);
+            log.error("组织机构列表获取失败" + e);
+            return new PageBean<OrganizationDO>(0,0,0,0,0,new ArrayList<OrganizationDO>());
         }
-        return organizationDOList;
+
+    }
+
+
+    @Override
+    public Integer insertOrganization(OrganizationDO organizationDO) {
+        try {
+            return organizationDao.insertOrganization(organizationDO);
+        } catch (Exception e) {
+            log.error("组织机构对象新增失败" + e);
+            return null;
+        }
     }
 
     @Override
-    public Integer insertOrganizationDO(OrganizationDO organizationDO) {
-        Integer num = 0;
+    public Integer updateOrganization(OrganizationDO organizationDO) {
         try {
-            num = organizationDao.insertOrganizationDO(organizationDO);
+            return organizationDao.updateOrganization(organizationDO);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.info("组织机构对象新增失败" + e);
+            log.error("组织机构对象修改失败" + e);
+            return null;
         }
-        return num;
     }
 
     @Override
-    public Integer updateOrganizationDO(OrganizationDO organizationDO) {
-        Integer num = null;
+    public Integer deleteOrganization(OrganizationDO organizationDO) {
         try {
-            num = organizationDao.updateOrganizationDO(organizationDO);
+            return organizationDao.deleteOrganization(organizationDO);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.info("组织机构对象修改失败" + e);
+            log.error("组织机构对象删除失败" + e);
+            return null;
         }
-        return num;
     }
 
     @Override
-    public Integer deleteOrganizationDO(OrganizationDO organizationDO) {
-        Integer num = null;
+    public OrganizationDO getOrganization(OrganizationDO organizationDO) {
         try {
-            num = organizationDao.deleteOrganizationDO(organizationDO);
+            return organizationDao.getOrganization(organizationDO);
         } catch (Exception e) {
-            e.printStackTrace();
-            log.info("组织机构对象删除失败" + e);
+            log.error("组织机构对象获取失败" + e);
+            return null;
         }
-        return num;
-    }
-
-    @Override
-    public OrganizationDO getOrganizationDO(OrganizationDO organizationDO) {
-        OrganizationDO organization = new OrganizationDO();
-        try {
-            return organizationDao.getOrganizationDO(organizationDO);
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.info("组织机构对象获取失败" + e);
-        }
-        return organization;
     }
 
 
