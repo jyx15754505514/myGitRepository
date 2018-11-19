@@ -37,8 +37,8 @@
   -- if test=appSysUuid != null and appSysUuid != ''
         app_sys_uuid,
   -- end
-  -- if test=businessLine != null and businessLine != ''
-        business_line,
+  -- if test=prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
   -- end
   -- if test=extend1 != null and extend1 != ''
         extend1,
@@ -90,8 +90,8 @@
   -- if test=appSysUuid != null and appSysUuid != ''
         '#appSysUuid#',
   -- end
-  -- if test=businessLine != null and businessLine != ''
-        '#businessLine#',
+  -- if test=prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
   -- end
   -- if test=extend1 != null and extend1 != ''
         '#extend1#',
@@ -157,13 +157,13 @@
 		is_deleted = 'N'
 		and org_uuid = '#orgUuid#'
 		and app_sys_uuid = '#appSysUuid#'
-		and business_line = '#businessLine#'
+		and prod_catalog_uuid = '#prodCatalogUuid#'
 
 -- [getRole]
 	SELECT
         role_uuid, parent_role_uuid, role_name, role_code, is_system, is_enabled, comments,
         is_deleted, created_time, created_uuid, created_name, updated_time, updated_name,
-        org_uuid, app_sys_uuid, business_line, extend1, extend2, extend3
+        org_uuid, app_sys_uuid, prod_catalog_uuid, extend1, extend2, extend3
 	FROM
 		sys_role
 	WHERE
@@ -171,7 +171,7 @@
 		and is_deleted = 'N'
 		and org_uuid = '#orgUuid#'
 		and app_sys_uuid = '#appSysUuid#'
-		and business_line = '#businessLine#'
+		and prod_catalog_uuid = '#prodCatalogUuid#'
 
 -- [deleteRole]
     UPDATE
@@ -188,4 +188,16 @@
 				'#item#'
 			-- end
 		-- end
+
+-- 根据用户UUID获取所有角色UUID
+-- [listRoleByUser]
+   SELECT
+        role_uuid as roleUuid
+   FROM
+        sys_role_user
+   WHERE
+        user_uuid = '#userUuid#'
+        and org_uuid = '#orgUuid#'
+
+
 
