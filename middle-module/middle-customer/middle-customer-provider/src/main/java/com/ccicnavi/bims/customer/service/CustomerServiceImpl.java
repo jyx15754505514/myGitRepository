@@ -58,19 +58,23 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public int removeCustomer(CustomerDO customer) {
+        EqlTran tran = new Eql().newTran();
+        int num =0;
         try {
-            if (!StringUtils.isEmpty(customer.getCustUuid()) && customer.getCustUuid() != "") {
-                customer.setUuids(customer.getCustUuid().split(","));
-                Integer insertCustomer = customerDao.removeCustomer(customer,null);//删除客户基本信息
-                customerExtDao.removeCustomerExt(customer);//删除客户注册信息
-                if (insertCustomer > 0) {
-                    return insertCustomer;
-                }
+            tran.start();
+            num=customerDao.removeCustomer(customer,null);//删除客户基本信息
+            int numExt =customerExtDao.removeCustomerExt(customer,null);//删除客户公司注册信息
+            if (num >0 && numExt >0) {
+                tran.commit();
+                return num;
             }
         } catch (Exception e) {
             log.error("删除客户信息失败~", e);
+            tran.rollback();
+        }finally {
+            Closes.closeQuietly(tran);//关闭事物
         }
-        return 0;
+        return num;
     }
 
     @Override
@@ -94,7 +98,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     /**
-     * 保存客户信息与客户注册信息
+     * 保存客户信息与客户公司注册信息
      *
      * @param customerDTO
      * @return
@@ -113,7 +117,7 @@ public class CustomerServiceImpl implements CustomerService {
                 return saveCust;
             }
         } catch (Exception e) {
-            log.error("新增客户与客户注册信息失败~");
+            log.error("新增客户信息与客户公司注册信息失败~");
             tran.rollback();
         } finally {
             Closes.closeQuietly(tran);//关闭事物

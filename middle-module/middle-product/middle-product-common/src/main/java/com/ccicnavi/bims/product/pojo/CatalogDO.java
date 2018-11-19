@@ -1,34 +1,28 @@
-package com.ccicnavi.bims.customer.pojo;
-
+package com.ccicnavi.bims.product.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
-import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
- * 客户地址
+ * @program: bims-backend
+ * @description: 该类的作用描述
+ * @author: 本人姓名
+ * @create: 2018-11-19 22:46
  */
-@Setter
+
 @Getter
+@Setter
 @ToString
-public class CustAddrDO implements Serializable {
+public class CatalogDO {
 
-    private String addrUuid;
+    private String prodCatalogUuid;
 
-    private String custUuid;
+    private String catalogName;
 
-    private String custAddr;
-
-    private String custRegion;
-
-    private String custAddrEn;
-
-    private String addrType;
+    private String catalogCode;
 
     private String comments;
 
@@ -44,8 +38,6 @@ public class CustAddrDO implements Serializable {
 
     private String updatedName;
 
-    private String prodCatalogUuid;
-
     private String orgUuid;
 
     private String appSysUuid;
@@ -56,5 +48,4 @@ public class CustAddrDO implements Serializable {
 
     private String extend3;
 
-    private List<String> uuids;//要删除的客户地址主键
 }

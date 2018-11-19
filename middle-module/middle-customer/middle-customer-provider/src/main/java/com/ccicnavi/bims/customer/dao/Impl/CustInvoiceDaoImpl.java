@@ -6,6 +6,7 @@ import com.ccicnavi.bims.customer.dao.CustInvoiceDao;
 import com.ccicnavi.bims.customer.pojo.CustInvoiceDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,18 +28,30 @@ public class CustInvoiceDaoImpl implements CustInvoiceDao {
     }
 
     @Override
-    public int saveCustInvoice(CustInvoiceDO custInvoice) {
-        return new Eql().insert("insertCustInvoice").params(custInvoice).execute();
+    public int saveCustInvoice(CustInvoiceDO custInvoice, EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertCustInvoice").params(custInvoice).execute();
     }
 
     @Override
-    public int removeCustInvoice(CustInvoiceDO custInvoice) {
-        return new Eql().update("deleteCustInvoice").params(custInvoice).execute();
+    public int removeCustInvoice(CustInvoiceDO custInvoice,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("deleteCustInvoice").params(custInvoice).execute();
     }
 
     @Override
-    public int updateCustInvoice(CustInvoiceDO custInvoice) {
-        return new Eql().update("updateCustInvoice").params(custInvoice).execute();
+    public int updateCustInvoice(CustInvoiceDO custInvoice,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("updateCustInvoice").params(custInvoice).execute();
     }
 
     @Override

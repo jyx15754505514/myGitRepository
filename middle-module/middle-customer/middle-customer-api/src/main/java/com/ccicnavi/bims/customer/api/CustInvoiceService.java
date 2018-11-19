@@ -14,21 +14,63 @@ import java.util.List;
  */
 public interface CustInvoiceService {
 
-    /**查询全部客户发票信息*/
+    /**
+    *@Description: 查询客户发票信息(不分页)
+    *@Param: custInvoice
+    *@return: List<CustInvoiceDO>
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     List<CustInvoiceDO> listCustInvoice(CustInvoiceDO custInvoice) ;
 
-    /**新增客户发票信息*/
+   /**
+   *@Description: 新增客户发票信息
+   *@Param: custInvoice
+   *@return: int
+   *@Author: zqq
+   *@date: 2018/11/19
+   */
+
     int saveCustInvoice(CustInvoiceDO custInvoice) ;
 
-    /**删除客户发票信息*/
+    /**
+    *@Description: 删除客户发票信息
+    *@Param: custInvoice
+    *@return: int
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     int removeCustInvoice(CustInvoiceDO custInvoice);
 
-    /**修改客户发票信息*/
+    /**
+    *@Description: 修改客户发票信息
+    *@Param: custInvoice
+    *@return: int
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     int updateCustInvoice(CustInvoiceDO custInvoice);
 
-    /**根据主键查询客户发票信息*/
+    /**
+    *@Description: 根据主键查询客户发票信息
+    *@Param: custInvoice
+    *@return: CustInvoiceDO
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     CustInvoiceDO getCustInvoice(CustInvoiceDO custInvoice) ;
 
-    /**分页查询客户发票信息*/
+    /**
+    *@Description: 查询客户发票信息(分页)
+    *@Param: pageParameter
+    *@return: PageBean<CustInvoiceDO>
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     PageBean<CustInvoiceDO> listCustInvoicePage(PageParameter<CustInvoiceDO> pageParameter);
 }

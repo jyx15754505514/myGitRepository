@@ -6,6 +6,7 @@ import com.ccicnavi.bims.customer.dao.CustTailDao;
 import com.ccicnavi.bims.customer.pojo.CustTailDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,18 +26,30 @@ public class CustTailDaoImpl implements CustTailDao {
     }
 
     @Override
-    public int saveCustTail(CustTailDO custTail) {
-        return new Eql().insert("insertCustTail").params(custTail).returnType(int.class).execute();
+    public int saveCustTail(CustTailDO custTail, EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertCustTail").params(custTail).returnType(int.class).execute();
     }
 
     @Override
-    public int removeCustTail(CustTailDO custTail) {
-        return new Eql().update("deleteCustTail").params(custTail).returnType(int.class).execute();
+    public int removeCustTail(CustTailDO custTail,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("deleteCustTail").params(custTail).returnType(int.class).execute();
     }
 
     @Override
-    public int updateCustTail(CustTailDO custTail) {
-        return new Eql().update("updateCustTail").params(custTail).returnType(int.class).execute();
+    public int updateCustTail(CustTailDO custTail,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("updateCustTail").params(custTail).returnType(int.class).execute();
     }
 
     @Override

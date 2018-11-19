@@ -32,10 +32,14 @@ public class LinkmanController {
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20883")
     LinkmanService linkmanService;
 
-    /**
-     * 查询全部客户联系人信息
-     * @return
-     */
+   /**
+   *@Description: 查询客户联系人信息(不分页)
+   *@Param: linkmanDO
+   *@return: List<LinkmanDO>
+   *@Author: zqq
+   *@date: 2018/11/19
+   */
+
     @RequestMapping(value = "/listAllLinkman", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listAllLinkman(@RequestBody LinkmanDO linkmanDO) {
         try {
@@ -48,9 +52,13 @@ public class LinkmanController {
     }
 
     /**
-     * 分页查询全部客户联系人信息
-     * @return
-     */
+    *@Description: 查询客户联系人信息(分页)
+    *@Param: pageParameter
+    *@return: PageBean<LinkmanDO>
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/listLinkman", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listLinkman(@RequestBody PageParameter<LinkmanDO> pageParameter) {
         try {
@@ -65,20 +73,22 @@ public class LinkmanController {
     }
 
     /**
-     * 根据主键查询客户地址信息
-     *
-     * @return
-     */
+    *@Description: 根据主键查询客户联系人信息
+    *@Param: linkmanDO
+    *@return: LinkmanDO
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/getLinkman", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT getLinkman(@RequestBody LinkmanDO linkmanDO) {
+        if(StringUtils.isEmpty(linkmanDO.getLinkmanUuid())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
-            if (!StringUtils.isEmpty(linkmanDO.getLinkmanUuid())) {
-                LinkmanDO linkman = linkmanService.getLinkman(linkmanDO);
-                if (linkman != null) {
-                    return ResultT.success(linkman);
-                }
-            } else {
-                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            LinkmanDO linkman = linkmanService.getLinkman(linkmanDO);
+            if (linkman != null) {
+                return ResultT.success(linkman);
             }
         } catch (Exception e) {
             log.error("根据主键查询客户失败", e);
@@ -88,8 +98,13 @@ public class LinkmanController {
 
 
     /**
-     * 新增客户联系人信息
-     */
+    *@Description: 新增客户联系人信息
+    *@Param: linkmanDO
+    *@return: Integer
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+    
     @RequestMapping(value = "/saveLinkman", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT saveLinkman(@RequestBody LinkmanDO linkmanDO) {
         try {
@@ -106,8 +121,13 @@ public class LinkmanController {
     }
 
     /**
-     * 修改客户联系人信息
-     */
+    *@Description: 修改客户联系人信息
+    *@Param: linkmanDO
+    *@return: Integer
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/updateLinkman", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT updateLinkman(@RequestBody LinkmanDO linkmanDO) {
         try {
@@ -128,10 +148,18 @@ public class LinkmanController {
     }
 
     /**
-     * 删除客户联系人信息
-     */
+    *@Description: 删除客户联系人信息
+    *@Param: linkmanDO
+    *@return: Integer
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/removeLinkman", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT removeLinkman(@RequestBody LinkmanDO linkmanDO) {
+        if(StringUtils.isEmpty(linkmanDO.getUuids())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
             Integer count = linkmanService.removeLinkman(linkmanDO);
             if (count > 0) {
