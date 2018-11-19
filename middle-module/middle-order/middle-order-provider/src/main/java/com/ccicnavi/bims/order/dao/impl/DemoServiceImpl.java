@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.order.impl;
+package com.ccicnavi.bims.order.dao.impl;
 
 import java.util.Date;
 
