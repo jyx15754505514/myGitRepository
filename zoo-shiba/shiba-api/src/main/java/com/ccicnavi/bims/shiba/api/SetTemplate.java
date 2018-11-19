@@ -1,6 +1,5 @@
 package com.ccicnavi.bims.shiba.api;
 
-import java.awt.*;
 import java.util.Set;
 
 public interface SetTemplate {

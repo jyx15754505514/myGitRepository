@@ -43,7 +43,7 @@ public class CustAddrDO implements Serializable {
 
     private String updatedName;
 
-    private String businessLine;
+    private String prodCatalogUuid;
 
     private String orgUuid;
 

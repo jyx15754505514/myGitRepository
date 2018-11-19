@@ -17,7 +17,7 @@ public class StringTemplateImpl implements StringTemplate {
      * @param key
      * @param value
      */
-    public void add(Object key, String value) {
+    public void set(Object key, Object value) {
         redisTemplate.opsForValue().set(key, value);
     }
 
@@ -33,6 +33,7 @@ public class StringTemplateImpl implements StringTemplate {
 
     /**
      * 截取key所对应的value字符串
+     *
      * @param key
      * @param start
      * @param end
@@ -60,6 +61,38 @@ public class StringTemplateImpl implements StringTemplate {
      */
     public Boolean hasKey(Object key) {
         return redisTemplate.hasKey(key);
+    }
+
+    /**
+     * 查看缓存大小
+     *
+     * @param key
+     * @return
+     */
+    public Long size(Object key) {
+        return redisTemplate.opsForValue().size(key);
+    }
+
+    /**
+     * 在原有的值基础上新增字符串到末尾。
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public Integer append(Object key, String value) {
+        return redisTemplate.opsForValue().append(key, value);
+    }
+
+    /**
+     * 获取原来key键对应的值并重新赋新值
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public Object getAndSet(Object key, Object value) {
+        return redisTemplate.opsForValue().getAndSet(key, value);
     }
 
 }

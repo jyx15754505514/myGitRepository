@@ -8,9 +8,6 @@ import com.ccicnavi.bims.system.dao.impl.RemindDaoImpl;
 import com.ccicnavi.bims.system.pojo.RemindDO;
 import com.ccicnavi.bims.system.pojo.RemindDTO;
 import com.ccicnavi.bims.system.service.api.RemindService;
-import org.n3r.eql.Eql;
-import org.n3r.eql.EqlTran;
-import org.n3r.eql.util.Closes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +33,10 @@ public class RemindServiceImpl implements RemindService {
         try {
             return sysRemindDao.listRemind(PageParameter);
         }catch (Exception e) {
-            log.error("根据条件查询提醒设置失败", e);
+            log.info("根据条件查询提醒设置失败" + e);
             return null;
         }
-      // return new PageBean<RemindDO>(totalRows:0,totalpages:0;currentpage:0,pageRows:0,startIndex:0,new ArrayList<RemindDO>());
+     //   return new PageBean<RoleDO>(0,0,0,0,0,new ArrayList<RemindDO>());
     }
 
     @Override

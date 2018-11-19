@@ -5,7 +5,7 @@ import java.util.List;
 public interface ListTemplate {
 
     /**
-     * 添加list类型的缓存
+     * 单个添加list类型的缓存
      *
      * @param key
      * @param list
@@ -14,7 +14,7 @@ public interface ListTemplate {
     Long rightPush(Object key, Object list);
 
     /**
-     * 添加list类型的缓存
+     * 多个添加list类型的缓存
      *
      * @param key
      * @param object
