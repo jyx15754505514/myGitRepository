@@ -1,0 +1,301 @@
+-- 查询登录用户信息
+-- [listUser]
+    SELECT
+        user_uuid as  userUuid,
+        nick_name as nickName,
+        login_name as loginName,
+        login_email as loginEmail,
+        login_phone as loginPhone,
+        current_password as currentPassword,
+        password_hints as passwordHints,
+        is_change_password as isChangePassword,
+        login_usertype as loginUsertype,
+        disabled_time as disabledTime,
+        disabled_reason as disabledReason,
+        failed_logins as failedLogins,
+        login_method as loginMethod,
+        last_time_zone as lastTimeZone,
+        last_local as lastLocal,
+        last_login_ip as lastLoginIp,
+        last_login_time as lastLoginTime,
+        bind_login_ip as bindLoginIp,
+        is_enabled as isEnabled,
+        comments,
+        is_deleted as isDeleted,
+        created_time as createdTime,
+        created_uuid as createdUuid,
+        created_name as createdName,
+        updated_time as updatedTime,
+        updated_name as updatedName,
+        org_uuid as orgUuid,
+        app_sys_uuid as appSysUuid,
+        prod_catalog_uuid as prodCatalogUuid,
+        extend1,
+        extend2,
+        extend3
+    FROM
+        sys_user
+    WHERE
+     is_deleted = 'N'
+     --iff userUuid != null and userUuid != ''
+        and user_uuid = '#userUuid#'
+     --end
+     --iff userName != null and userName != ''
+         and user_name like '#userName:like#'
+      --end
+
+-- 新增登录用户信息
+-- [insertUser]
+    INSERT INTO sys_User
+    --trim prefix=( suffix=) suffixOverrides=,
+         --iff userUuid != null 
+          user_uuid,
+        --iff nickName != null
+          nick_name,
+        --iff loginName != null
+          login_name,
+        --iff loginEmail != null
+          login_email,
+        --iff loginPhone != null
+          login_phone,
+        --iff currentPassword != null
+          current_password,
+        --iff passwordHints != null
+          password_hints,
+        --iff isChangePassword != null
+          is_change_password,
+        --iff loginUsertype != null
+          login_usertype,
+        --iff disabledTime != null
+          disabled_time,
+        --iff disabledReason != null
+          disabled_reason,
+        --iff failedLogins != null
+          failed_logins,
+        --iff loginMethod != null
+          login_method,
+        --iff lastTimeZone != null
+          last_time_zone,
+        --iff lastLocal != null
+          last_local,
+        --iff lastLoginIp != null
+          last_login_ip,
+        --iff lastLoginTime != null
+          last_login_time,
+        --iff bindLoginIp != null
+          bind_login_ip,
+        --iff isEnabled != null
+          is_enabled,
+        --iff comments != null
+          comments,
+        --iff isDeleted != null
+          is_deleted,
+        --iff createdTime != null
+          created_time,
+        --iff createdUuid != null
+          created_uuid,
+        --iff createdName != null
+          created_name,
+        --iff orgUuid != null
+          org_uuid,
+        --iff appSysUuid != null
+          app_sys_uuid,
+        --iff prodCatalogUuid != null
+          prod_catalog_uuid,
+        --iff extend1 != null
+          extend1,
+        --iff extend2 != null
+          extend2,
+        --iff extend3 != null
+          extend3,
+        --end
+        --trim prefix= values( suffix=) suffixOverrides=,
+          --iff UserUuid != null and UserUuid !=''
+            '#UserUuid#',
+          --iff loginTitle != null
+            '#loginTitle#',
+          --iff loginFileUuid != null
+            '#loginFileUuid#',
+          --iff mainTitle != null
+            '#mainTitle#',
+          --iff mainFileUuid != null
+            '#mainFileUuid#',
+          --iff mainWindowStyle != null
+            '#mainWindowStyle#',
+          --iff initialPassword != null
+            '#initialPassword#',
+          --iff isForce != null
+            '#isForce#',
+          --iff startPasswordLength != null
+            '#startPasswordLength#',
+          --iff endPasswordLength != null
+            '#endPasswordLength#',
+          --iff passwordStrength != null
+            '#passwordStrength#',
+          --iff comments != null
+            '#comments#',
+          --iff isDeleted != null
+            '#isDeleted#',
+          --iff createdTime != null
+            '#createdTime#',
+          --iff createdUuid != null
+            '#createdUuid#',
+          --iff createdName != null
+            '#createdName#',
+          --iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+          --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+          --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
+          --iff extend1 != null
+            '#extend1#',
+          --iff extend2 != null
+            '#extend2#',
+          --iff extend3 != null
+            '#extend3#',
+        --end
+
+
+
+-- 更新登录用户信息
+-- [updateUser]
+    UPDATE
+        sys_user
+    -- trim prefix= set suffixOverrides=,
+         --iff userUuid != null 
+          user_uuid = '#userUuid#',
+        --iff nickName != null
+          nick_name = '#nickName#',
+        --iff loginName != null
+          login_name = '#loginName#',
+        --iff loginEmail != null
+          login_email = '#loginEmail#',
+        --iff loginPhone != null
+          login_phone = '#loginPhone#',
+        --iff currentPassword != null
+          current_password = '#currentPassword#',
+        --iff passwordHints != null
+          password_hints = '#passwordHints#',
+        --iff isChangePassword != null
+          is_change_password = '#isChangePassword#',
+        --iff loginUsertype != null
+          login_usertype = '#loginUsertype#',
+        --iff disabledTime != null
+          disabled_time = '#disabledTime#',
+        --iff disabledReason != null
+          disabled_reason = '#disabledReason#',
+        --iff failedLogins != null
+          failed_logins = '#failedLogins#',
+        --iff loginMethod != null
+          login_method = '#loginMethod#',
+        --iff lastTimeZone != null
+          last_time_zone = '#lastTimeZone#',
+        --iff lastLocal != null
+          last_local = '#lastLocal#',
+        --iff lastLoginIp != null
+          last_login_ip = '#lastLoginIp#',
+        --iff lastLoginTime != null
+          last_login_time = '#lastLoginTime#',
+        --iff bindLoginIp != null
+          bind_login_ip = '#bindLoginIp#',
+        --iff isEnabled != null 
+          is_enabled = '#isEnabled#',
+        --iff comments != null 
+          comments = '#comments#',
+        --iff isDeleted != null
+          is_deleted = '#isDeleted#',
+        --iff updatedTime != null
+          updated_time = '#updatedTime#',
+        --iff updatedName != null
+          updated_name = '#updatedName#',
+        --iff orgUuid != null
+          org_uuid = '#orgUuid#',
+        --iff appSysUuid != null
+          app_sys_uuid = '#appSysUuid#',
+        --iff prodCatalogUuid != null
+          prod_catalog_uuid = '#prodCatalogUuid#',
+        --iff extend1 != null
+          extend1 = '#extend1#',
+        --iff extend2 != null
+          extend2 = '#extend2#',
+        --iff extend3 != null
+          extend3 = '#extend3#',
+        --end
+        where
+         -- if userUuid != null
+                user_uuid = '#userUuid#'
+         -- end
+         -- if uuids != null
+                user_uuid in
+             -- for item=item index=index collection=uuids open=( separator=, close=)
+                 '#item#'
+             -- end
+          -- end
+
+-- 删除登录用户信息
+-- [deleteUser]
+   UPDATE
+        sys_user
+   SET
+        is_deleted = 'Y'
+   where
+        -- if userUuid != null and userUuid != ''
+        	user_uuid = '#userUuid#'
+        -- end
+        -- if uuids != null
+        	user_uuid in
+            -- for item=item index=index collection=uuids open=( separator=, close=)
+                    '#item#'
+            -- end
+        -- end
+
+-- 根据主键查询登录用户
+-- [getUser]
+    SELECT
+           user_uuid as  userUuid,
+           nick_name as nickName,
+           login_name as loginName,
+           login_email as loginEmail,
+           login_phone as loginPhone,
+           current_password as currentPassword,
+           password_hints as passwordHints,
+           is_change_password as isChangePassword,
+           login_usertype as loginUsertype,
+           disabled_time as disabledTime,
+           disabled_reason as disabledReason,
+           failed_logins as failedLogins,
+           login_method as loginMethod,
+           last_time_zone as lastTimeZone,
+           last_local as lastLocal,
+           last_login_ip as lastLoginIp,
+           last_login_time as lastLoginTime,
+           bind_login_ip as bindLoginIp,
+           is_enabled as isEnabled,
+           comments,
+           is_deleted as isDeleted,
+           created_time as createdTime,
+           created_uuid as createdUuid,
+           created_name as createdName,
+           updated_time as updatedTime,
+           updated_name as updatedName,
+           org_uuid as orgUuid,
+           app_sys_uuid as appSysUuid,
+           prod_catalog_uuid as prodCatalogUuid,
+           extend1,
+           extend2,
+           extend3
+     FROM
+        sys_user
+     WHERE
+        is_deleted = 'N'
+        AND is_enabled = 'Y'
+        --if userUuid != null and  userUuid != ''
+             and  User_uuid = '#UserUuid#'
+        --end
+        --if userName != null and  userName != ''
+             and  user_name = '#userName#'
+        --end
+        --if currentPassword != null and  currentPassword != ''
+             and  current_password = '#currentPassword#'
+        --end
