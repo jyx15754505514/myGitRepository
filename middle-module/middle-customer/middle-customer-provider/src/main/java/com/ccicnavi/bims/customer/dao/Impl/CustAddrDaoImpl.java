@@ -6,6 +6,7 @@ import com.ccicnavi.bims.customer.dao.CustAddrDao;
 import com.ccicnavi.bims.customer.pojo.CustAddrDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,18 +26,30 @@ public class CustAddrDaoImpl implements CustAddrDao {
     }
 
     @Override
-    public int saveCustAddr(CustAddrDO custAddr) {
-        return new Eql().insert("insertCustAddr").params(custAddr).returnType(int.class).execute();
+    public int saveCustAddr(CustAddrDO custAddr, EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null ){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertCustAddr").params(custAddr).returnType(int.class).execute();
     }
 
     @Override
-    public int removeCustAddr(CustAddrDO custAddr) {
-        return new Eql().update("deleteCustAddr").params(custAddr).returnType(int.class).execute();
+    public int removeCustAddr(CustAddrDO custAddr,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null ){
+            eql.useTran(tran);
+        }
+        return eql.update("deleteCustAddr").params(custAddr).returnType(int.class).execute();
     }
 
     @Override
-    public int updateCustAddr(CustAddrDO custAddr) {
-        return new Eql().update("updateCustAddr").params(custAddr).returnType(int.class).execute();
+    public int updateCustAddr(CustAddrDO custAddr,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null ){
+            eql.useTran(tran);
+        }
+        return eql.update("updateCustAddr").params(custAddr).returnType(int.class).execute();
     }
 
     @Override

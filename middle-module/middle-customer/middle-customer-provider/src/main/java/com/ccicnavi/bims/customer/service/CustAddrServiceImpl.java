@@ -39,7 +39,7 @@ public class CustAddrServiceImpl implements CustAddrService {
     @Override
     public int saveCustAddr(CustAddrDO custAddr) {
         try {
-            return custAddrDao.saveCustAddr(custAddr);
+            return custAddrDao.saveCustAddr(custAddr,null);
         } catch (Exception e) {
             log.error("保存客户地址失败",e);
             return 0;
@@ -52,7 +52,7 @@ public class CustAddrServiceImpl implements CustAddrService {
         try {
             if(!StringUtils.isEmpty(custAddr.getAddrUuid())){
                 custAddr.setUuids(custAddr.getAddrUuid().split(","));
-                return custAddrDao.removeCustAddr(custAddr);
+                return custAddrDao.removeCustAddr(custAddr,null);
             }
         } catch (Exception e) {
             log.error("删除客户地址失败",e);
@@ -63,7 +63,7 @@ public class CustAddrServiceImpl implements CustAddrService {
     @Override
     public int updateCustAddr(CustAddrDO custAddr) {
         try {
-            return custAddrDao.updateCustAddr(custAddr);
+            return custAddrDao.updateCustAddr(custAddr,null);
         } catch (Exception e) {
             log.error("修改客户地址失败",e);
             return 0;
