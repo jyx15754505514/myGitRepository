@@ -5,6 +5,7 @@
 
     <groupId>middle-customer</groupId>
     <artifactId>middle-customer-api</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>middle-customer-api</name>
@@ -27,12 +28,12 @@
             <groupId>middle-customer</groupId>
             <artifactId>middle-customer-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>middle-module</groupId>
             <artifactId>middle-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
 
 

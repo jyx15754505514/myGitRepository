@@ -35,6 +35,6 @@ public class OrderItemDaoImpl implements OrderItemDao {
      */
     @Override
     public Integer updateOrderItem(OrderItemDO orderItemDO, EqlTran tran) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").insert("insertOrderItem").params(orderItemDO).returnType(OrderItemDO.class).execute();
+        return EqlUtils.getInstance("DEFAULT").insert("updateOrderItem").params(orderItemDO).returnType(OrderItemDO.class).execute();
     }
 }
