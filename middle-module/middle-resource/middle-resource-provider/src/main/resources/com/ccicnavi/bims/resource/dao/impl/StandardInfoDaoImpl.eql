@@ -1,9 +1,9 @@
 -- [listStandardInfo]
 SELECT
     std_uuid as stdUuid, std_name as stdName, std_code as stdCode, std_repl_code as stdReplCode, impl_date as implDate,
-    is_cnas as isCnas, is_file as isFile, is_deleted as isDeleted, created_time as createdTime, created_uuid as createdUuid, prod_catalog_uuid as prodCatalogUuid
+    is_cnas as isCnas, is_file as isFile, is_deleted as isDeleted, created_time as createdTime, created_uuid as createdUuid,
     updated_time as updatedTime, updated_name as updatedName, org_uuid as orgUuid, app_sys_uuid as appSysUuid, extend1 as extend1,
-    extend2 as extend2, extend3 as as extend3
+    extend2 as extend2, extend3 as extend3
 FROM
     res_standard_info
 WHERE
@@ -40,9 +40,6 @@ WHERE
 
       --iff updatedName != null
       and updated_name = '#updatedName#',
-
-      --iff prodCatalogUuid != null
-      and prod_catalog_uuid = '#prodCatalogUuid#',
 
       --iff orgUuid != null
       and org_uuid = '#orgUuid#',
@@ -93,9 +90,6 @@ insert into res_standard_info
       --iff createdUuid != null
         created_uuid,
 
-      --iff prodCatalogUuid != null
-        prod_catalog_uuid,
-
       --iff orgUuid != null
         org_uuid,
 
@@ -143,9 +137,6 @@ insert into res_standard_info
       --iff createdUuid != null
         '#createdUuid#',
 
-      --iff prodCatalogUuid != null
-        '#prodCatalogUuid#',
-
       --iff orgUuid != null
         '#orgUuid#',
 
@@ -190,9 +181,6 @@ update res_standard_info
       --iff updatedName != null
         updated_name = '#updatedName#',
 
-      --iff prodCatalogUuid != null
-        prod_catalog_uuid = '#prodCatalogUuid#',
-
       --iff orgUuid != null
         org_uuid = '#orgUuid#',
 
@@ -234,9 +222,9 @@ update res_standard_info
 --[getStandardInfo]
     SELECT
         std_uuid as stdUuid, std_name as stdName, std_code as stdCode, std_repl_code as stdReplCode, impl_date as implDate,
-        is_cnas as isCnas, is_file as isFile, is_deleted as isDeleted, created_time as createdTime, created_uuid as createdUuid,prod_catalog_uuid as prodCatalogUuid
+        is_cnas as isCnas, is_file as isFile, is_deleted as isDeleted, created_time as createdTime, created_uuid as createdUuid,
         updated_time as updatedTime, updated_name as updatedName, org_uuid as orgUuid, app_sys_uuid as appSysUuid, extend1 as extend1,
-        extend2 as extend2, extend3 as as extend3
+        extend2 as extend2, extend3 as extend3
      FROM
         res_standard_info
      WHERE

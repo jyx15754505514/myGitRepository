@@ -8,6 +8,7 @@ import com.ccicnavi.bims.resource.pojo.QualificationCertDO;
 import java.util.List;
 
 public interface QualificationCertService {
+
     /**
      *查询人员资格证书
      */

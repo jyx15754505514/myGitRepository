@@ -155,9 +155,9 @@ insert into crm_customer_addr
 UPDATE crm_customer_addr
 SET is_deleted = 'Y'
 WHERE  	is_deleted = 'N'
-     -- if ids != null
+     -- if uuids != null
             AND addr_uuid IN
-            -- for item=item index=index collection=ids open=( separator=, close=)
+            -- for item=item index=index collection=uuids open=( separator=, close=)
                 #item#
             -- end
         -- end

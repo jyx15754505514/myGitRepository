@@ -8,9 +8,6 @@ import com.ccicnavi.bims.system.dao.impl.RemindDaoImpl;
 import com.ccicnavi.bims.system.pojo.RemindDO;
 import com.ccicnavi.bims.system.pojo.RemindDTO;
 import com.ccicnavi.bims.system.service.api.RemindService;
-import org.n3r.eql.Eql;
-import org.n3r.eql.EqlTran;
-import org.n3r.eql.util.Closes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +33,16 @@ public class RemindServiceImpl implements RemindService {
         try {
             return sysRemindDao.listRemind(PageParameter);
         }catch (Exception e) {
-            log.error("根据条件查询提醒设置失败", e);
+            log.info("根据条件查询提醒设置失败" + e);
             return null;
         }
-      // return new PageBean<RemindDO>(totalRows:0,totalpages:0;currentpage:0,pageRows:0,startIndex:0,new ArrayList<RemindDO>());
+     //   return new PageBean<RoleDO>(0,0,0,0,0,new ArrayList<RemindDO>());
     }
 
     @Override
     public Integer insertRemind(RemindDO remind){
         try {
-           Integer num =  sysRemindDao.insertRemind(remind);
+           Integer num =  sysRemindDao.insertRemind(remind,null);
             return num;
         }catch (Exception e) {
             log.error("新增提醒设置失败", e);
@@ -56,7 +53,7 @@ public class RemindServiceImpl implements RemindService {
     @Override
     public Integer updateRemind(RemindDO remind){
         try {
-            Integer num = sysRemindDao.updateRemind(remind);
+            Integer num = sysRemindDao.updateRemind(remind,null);
             return num;
         }catch (Exception e) {
             log.error("修改提醒设置失败", e);
@@ -67,7 +64,7 @@ public class RemindServiceImpl implements RemindService {
     @Override
     public Integer deleteRemind(RemindDO remind){
         try {
-            Integer num = sysRemindDao.deleteRemind(remind);
+            Integer num = sysRemindDao.deleteRemind(remind,null);
              return num;
         }catch (Exception e) {
             log.error("删除提醒设置失败", e);
@@ -93,6 +90,17 @@ public class RemindServiceImpl implements RemindService {
         } catch (Exception e) {
             log.error("根据条件查询设置提醒失败", e);
             return null;
+        }
+    }
+
+    @Override
+    public List<RemindDO> listRemindList(RemindDO remind) {
+
+        try {
+            return sysRemindDao.listRemindList(remind);
+        } catch (Exception e) {
+            log.error("根据条件查询设置提醒失败", e);
+           return null;
         }
     }
 }

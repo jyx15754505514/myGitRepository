@@ -15,17 +15,18 @@ public class ZsetTemplateImpl implements ZsetTemplate {
     RedisTemplate redisTemplate;
 
     /**
-     * 添加set类型的缓存
+     * 添加value到排序集key，或者score如果已存在则更新它。
      *
      * @param key
-     * @param set
+     * @param value
      * @param score
      * @return
      */
-    public Boolean add(Object key, Set<Object> set, double score) {
+    public Boolean add(Object key, Object value, double score) {
         ZSetOperations zSetOperations = redisTemplate.opsForZSet();
-        return zSetOperations.add(key, set, score);
+        return zSetOperations.add(key, value, score);
     }
+
 
     /**
      * 根据key查询start-end的缓存
@@ -58,7 +59,7 @@ public class ZsetTemplateImpl implements ZsetTemplate {
     }
 
     /**
-     * 移除key缓存中的value元素
+     * values从排序集中删除。
      *
      * @param key
      * @param value
@@ -68,4 +69,25 @@ public class ZsetTemplateImpl implements ZsetTemplate {
         return redisTemplate.opsForZSet().remove(key, value);
     }
 
+    /**
+     * 删除有序集之间start和end之间的元素
+     *
+     * @param key
+     * @param start
+     * @param end
+     * @return
+     */
+    public Long removeRange(Object key, long start, long end) {
+        return redisTemplate.opsForZSet().removeRange(key, start, end);
+    }
+
+    /**
+     * 查看key缓存map的大小
+     *
+     * @param key
+     * @return
+     */
+    public Long size(Object key) {
+        return redisTemplate.opsForZSet().size(key);
+    }
 }

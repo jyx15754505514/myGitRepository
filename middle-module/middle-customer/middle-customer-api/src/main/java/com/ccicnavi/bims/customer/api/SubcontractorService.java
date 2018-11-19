@@ -15,18 +15,18 @@ import java.util.List;
 public interface SubcontractorService {
 
     /**查询全部分包方信息*/
-    List<SubcontractorDO> listSubcontractor(SubcontractorDO subcontractor);
+    List<SubcontractorDO> listSubcontractor(SubcontractorDO subcontractor) throws Exception;
 
     /**新增分包方信息*/
-    int saveSubcontractor(SubcontractorDO subcontractor);
+    int saveSubcontractor(SubcontractorDO subcontractor) throws Exception;
 
     /**删除分包方信息*/
-    int removeSubcontractor(String subcontractorUuid);
+    int removeSubcontractor(SubcontractorDO subcontractor) throws Exception;
 
     /**修改分包方信息*/
-    int updateSubcontractor(SubcontractorDO subcontractor);
+    int updateSubcontractor(SubcontractorDO subcontractor) throws Exception;
 
     /**根据主键返回对应的分包方信息*/
-    SubcontractorDO getSubcontractor(SubcontractorDO subcontractor);
+    SubcontractorDO getSubcontractor(SubcontractorDO subcontractor) throws Exception;
 
 }

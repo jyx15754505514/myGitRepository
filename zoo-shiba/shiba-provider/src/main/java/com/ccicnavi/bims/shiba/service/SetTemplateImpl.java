@@ -4,10 +4,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.shiba.api.SetTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.SetOperations;
 
-import java.awt.*;
 import java.util.Set;
 
 @Service
@@ -78,13 +76,4 @@ public class SetTemplateImpl implements SetTemplate {
         return redisTemplate.opsForSet().remove(key, values);
     }
 
-    /**
-     * 得到key缓存下的set集合
-     *
-     * @param key
-     * @return
-     */
-    public Cursor scan(Object key) {
-       return (Cursor) redisTemplate.opsForSet().scan("zhou23",ScanOptions.NONE);
-    }
 }

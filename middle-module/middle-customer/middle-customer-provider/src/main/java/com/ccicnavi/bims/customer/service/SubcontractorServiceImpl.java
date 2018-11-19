@@ -35,8 +35,8 @@ public class SubcontractorServiceImpl implements SubcontractorService{
         try {
             subcontractorList=subcontractorDao.listSubcontractor();
         } catch (Exception e) {
+            log.error("Service层查询分包方信息失败",e);
             e.printStackTrace();
-            log.error("查询分包方信息失败",e);
         }
         return subcontractorList;
     }
@@ -54,8 +54,8 @@ public class SubcontractorServiceImpl implements SubcontractorService{
         try {
             count=subcontractorDao.saveSubcontractor(subcontractor);
         } catch (Exception e) {
+            log.error("Service层新增分包方信息失败",e);
             e.printStackTrace();
-            log.error("新增分包方信息失败",e);
         }
         return count;
     }
@@ -64,17 +64,17 @@ public class SubcontractorServiceImpl implements SubcontractorService{
      * @Author WangYingling
      * @Description 删除分包方信息
      * @Date 20:00 2018/11/14
-     * @param subcontractorUuid
+     * @param subcontractor
      * @return java.lang.Integer
      */
     @Override
-    public int removeSubcontractor(String subcontractorUuid) {
+    public int removeSubcontractor(SubcontractorDO subcontractor) {
         Integer count=0;
         try {
-            count=subcontractorDao.removeSubcontractor(subcontractorUuid);
+            count=subcontractorDao.removeSubcontractor(subcontractor);
         } catch (Exception e) {
+            log.error("Service层删除分包方信息失败",e);
             e.printStackTrace();
-            log.error("删除分包方信息失败",e);
         }
         return count;
     }
@@ -92,8 +92,8 @@ public class SubcontractorServiceImpl implements SubcontractorService{
         try {
             count=subcontractorDao.updateSubcontractor(subcontractor);
         } catch (Exception e) {
+            log.error("Service层修改分包方信息失败",e);
             e.printStackTrace();
-            log.error("修改分包方信息失败",e);
         }
         return count;
     }
@@ -111,7 +111,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
         try {
             subcontractorBean=subcontractorDao.getSubcontractor(subcontractor);
         } catch (Exception e) {
-            log.error("查询分包方信息失败",e);
+            log.error("Service层查询分包方信息失败",e);
             e.printStackTrace();
         }
         return subcontractorBean;

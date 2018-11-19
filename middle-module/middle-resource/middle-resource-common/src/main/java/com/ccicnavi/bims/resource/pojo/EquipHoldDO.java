@@ -49,7 +49,7 @@ public class EquipHoldDO implements Serializable {
 
     private String locationAddr;
 
-    private String businessLine;
+    private String prodCatalogPuid;
 
     private String comments;
 

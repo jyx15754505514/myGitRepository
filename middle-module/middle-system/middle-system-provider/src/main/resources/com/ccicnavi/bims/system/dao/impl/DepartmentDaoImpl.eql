@@ -289,3 +289,13 @@
         --if deptUuid != null and deptUuid !=''
                and dept_uuid = '#deptUuid#'
         --end
+
+-- 根据用户的UUID查询所有的部门信息
+-- [listDeptByUser]
+    SELECT
+        dept_uuid as deptUuid
+    FROM
+        sys_user_dept
+    WHERE
+        user_uuid = '#userUuid#'
+        and org_uuid = '#orgUuid#'

@@ -5,14 +5,14 @@ import java.util.Set;
 public interface ZsetTemplate {
 
     /**
-     * 添加set类型的缓存
+     * 添加value到排序集key，或者score如果已存在则更新它。
      *
      * @param key
-     * @param set
+     * @param value
      * @param score
      * @return
      */
-    Boolean add(Object key, Set<Object> set, double score);
+    Boolean add(Object key, Object value, double score);
 
     /**
      * 根据key查询start-end的缓存
@@ -39,7 +39,7 @@ public interface ZsetTemplate {
     boolean hasKey(Object key);
 
     /**
-     * 移除key缓存中的value元素
+     * values从排序集中删除。
      *
      * @param key
      * @param value
@@ -47,4 +47,21 @@ public interface ZsetTemplate {
      */
     Long remove(Object key, Object... value);
 
+    /**
+     * 删除有序集之间start和end之间的元素
+     *
+     * @param key
+     * @param start
+     * @param end
+     * @return
+     */
+    Long removeRange(Object key, long start, long end);
+
+    /**
+     * 查看key缓存map的大小
+     *
+     * @param key
+     * @return
+     */
+    Long size(Object key);
 }

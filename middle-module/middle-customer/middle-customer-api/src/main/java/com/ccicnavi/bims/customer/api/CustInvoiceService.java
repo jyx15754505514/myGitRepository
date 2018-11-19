@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.customer.api;
 
-import com.ccicnavi.bims.customer.pojo.CustAddrDO;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.CustInvoiceDO;
 
 import java.util.List;
@@ -20,10 +21,14 @@ public interface CustInvoiceService {
     int saveCustInvoice(CustInvoiceDO custInvoice) ;
 
     /**删除客户发票信息*/
-    int removeCustInvoice(String uuids);
+    int removeCustInvoice(CustInvoiceDO custInvoice);
 
     /**修改客户发票信息*/
     int updateCustInvoice(CustInvoiceDO custInvoice);
 
+    /**根据主键查询客户发票信息*/
     CustInvoiceDO getCustInvoice(CustInvoiceDO custInvoice) ;
+
+    /**分页查询客户发票信息*/
+    PageBean<CustInvoiceDO> listCustInvoicePage(PageParameter<CustInvoiceDO> pageParameter);
 }

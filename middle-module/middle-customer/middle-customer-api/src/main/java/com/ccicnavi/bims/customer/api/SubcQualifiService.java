@@ -15,18 +15,18 @@ import java.util.List;
 public interface SubcQualifiService {
 
     /**查询所有的分包方资质信息*/
-    List<SubcQualifiDO> listSubcQuali(SubcQualifiDO subcQuali);
+    List<SubcQualifiDO> listSubcQuali(SubcQualifiDO subcQuali) throws Exception;
 
     /**新增分包方资质信息*/
-    int saveSubcQuali(SubcQualifiDO subcQuali);
+    int saveSubcQuali(SubcQualifiDO subcQuali) throws Exception;
 
     /**删除分包方资质信息*/
-    int removeSubcQuali(String subcQualifiUuid);
+    int removeSubcQuali(SubcQualifiDO subcQuali) throws Exception;
 
     /**修改分包方资质信息*/
-    int updateSubcQuali(SubcQualifiDO subcQuali);
+    int updateSubcQuali(SubcQualifiDO subcQuali) throws Exception;
 
     /**根据主键返回对应的分包方资质信息*/
-    SubcQualifiDO getSubcQuali(SubcQualifiDO subcQuali);
+    SubcQualifiDO getSubcQuali(SubcQualifiDO subcQuali) throws Exception;
 
 }

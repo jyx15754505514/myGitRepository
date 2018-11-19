@@ -1,13 +1,15 @@
 package com.ccicnavi.bims.customer.dao.Impl;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.CustAddrDao;
 import com.ccicnavi.bims.customer.pojo.CustAddrDO;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @program: bims-backend
@@ -24,29 +26,49 @@ public class CustAddrDaoImpl implements CustAddrDao {
     }
 
     @Override
-    public int saveCustAddr(CustAddrDO custAddr) {
-        return new Eql().insert("insertCustAddr").params(custAddr).execute();
+    public int saveCustAddr(CustAddrDO custAddr, EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null ){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertCustAddr").params(custAddr).returnType(int.class).execute();
     }
 
     @Override
-    public int removeCustAddr(String uuids) {
-        Map<String, Object> data = new HashMap<String, Object>();
-        data.put("ids", uuids.split(","));
-        return new Eql().update("deleteCustAddr").params(data).execute();
+    public int removeCustAddr(CustAddrDO custAddr,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null ){
+            eql.useTran(tran);
+        }
+        return eql.update("deleteCustAddr").params(custAddr).returnType(int.class).execute();
     }
 
     @Override
-    public int updateCustAddr(CustAddrDO custAddr) {
-        return new Eql().update("updateCustAddr").params(custAddr).execute();
+    public int updateCustAddr(CustAddrDO custAddr,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null ){
+            eql.useTran(tran);
+        }
+        return eql.update("updateCustAddr").params(custAddr).returnType(int.class).execute();
     }
 
     @Override
     public CustAddrDO getCustAddr(CustAddrDO customer) {
-        return new Eql().select("listCustAddr").params(customer).returnType(CustAddrDO.class).execute();
+        return new Eql().selectFirst("getCustAddr").params(customer).returnType(CustAddrDO.class).execute();
     }
 
-
-
+    @Override
+    public PageBean<CustAddrDO> listCustAddrPage(PageParameter<CustAddrDO> pageParameter) throws Exception {
+        //封装分页参数
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        //执行查询
+        List<CustAddrDO> custAddrList = new Eql().select("listCustAddr").params(pageParameter.getParameter()).returnType(CustAddrDO.class).limit(page).execute();
+        if(custAddrList != null) {
+            return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),custAddrList);//分装分页
+        }else {
+            return null;
+        }
+    }
 
 
 }

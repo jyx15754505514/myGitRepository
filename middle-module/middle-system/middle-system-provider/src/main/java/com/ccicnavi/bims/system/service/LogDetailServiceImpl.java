@@ -7,6 +7,7 @@ import com.ccicnavi.bims.system.pojo.LogDTO;
 import com.ccicnavi.bims.system.pojo.LogDetailDO;
 import com.ccicnavi.bims.system.service.api.LogDetailService;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /* *
@@ -49,8 +50,9 @@ public class LogDetailServiceImpl implements LogDetailService {
     @Override
     public Integer insertLogDetail(LogDTO logDTO) {
         Integer logDetail = null;
+        EqlTran aDefault = null;
         try {
-            logDetail = LogDetailDao.insertLogDetail(logDTO);
+            logDetail = LogDetailDao.insertLogDetail(logDTO,aDefault);
         } catch (Exception e) {
             log.error("添加日志详情失败",e);
         }
@@ -67,8 +69,9 @@ public class LogDetailServiceImpl implements LogDetailService {
     @Override
     public Integer updateLogDetail(LogDTO logDTO) {
         Integer logDetail = null;
+        EqlTran aDefault = null;
         try {
-            logDetail = LogDetailDao.updateLogDetail(logDTO);
+            logDetail = LogDetailDao.updateLogDetail(logDTO,aDefault);
         } catch (Exception e) {
             log.error("更新日志详情失败",e);
         }
@@ -85,8 +88,9 @@ public class LogDetailServiceImpl implements LogDetailService {
     @Override
     public Integer deleteLogDetail(LogDTO logDTO) {
         Integer logDetail = null;
+        EqlTran aDefault = null;
         try {
-            logDetail = LogDetailDao.deleteLogDetail(logDTO);
+            logDetail = LogDetailDao.deleteLogDetail(logDTO,aDefault);
         } catch (Exception e) {
             log.error("删除日志详情失败",e);
         }

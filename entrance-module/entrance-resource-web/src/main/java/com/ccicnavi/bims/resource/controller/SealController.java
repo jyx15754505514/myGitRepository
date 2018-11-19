@@ -121,11 +121,11 @@ public class SealController {
     */
     @RequestMapping(value = "/getSeal", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT getSeal(@RequestBody SealDO sealDO ){
-        SealDO sealDO1 = null;
+        SealDO seal = null;
         try {
-            sealDO1 = sealService.getSeal(sealDO);
-            if(sealDO1 != null){
-                return ResultT.success(ResultCode.SUCCESS);
+            seal = sealService.getSeal(sealDO);
+            if(seal != null){
+                return ResultT.success(seal);
             }
         } catch (Exception e) {
             log.error("获取封识失败", e);

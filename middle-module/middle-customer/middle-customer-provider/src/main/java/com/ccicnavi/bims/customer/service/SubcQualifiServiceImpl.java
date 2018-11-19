@@ -64,14 +64,14 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
      * @Author WangYingling
      * @Description 删除分包方资质信息
      * @Date 20:00 2018/11/14
-     * @param subcQualifiUuid
+     * @param subcQuali
      * @return java.lang.Integer
      */
     @Override
-    public int removeSubcQuali(String subcQualifiUuid) {
+    public int removeSubcQuali(SubcQualifiDO subcQuali) {
         Integer count=0;
         try {
-            count=subcQualifiDao.removeSubcuQuali(subcQualifiUuid);
+            count=subcQualifiDao.removeSubcuQuali(subcQuali);
         } catch (Exception e) {
             e.printStackTrace();
             log.error("删除分包方资质信息失败",e);

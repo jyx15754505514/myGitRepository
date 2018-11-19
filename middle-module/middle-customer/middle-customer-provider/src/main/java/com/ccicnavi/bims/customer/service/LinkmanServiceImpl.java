@@ -1,11 +1,15 @@
 package com.ccicnavi.bims.customer.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.LinkmanService;
 import com.ccicnavi.bims.customer.dao.LinkmanDao;
 import com.ccicnavi.bims.customer.pojo.LinkmanDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+
 import java.util.List;
 
 /**
@@ -26,7 +30,7 @@ public class LinkmanServiceImpl implements LinkmanService {
         try {
             return linkmanDao.listLinkman(linkmanDO);
         } catch (Exception e) {
-            log.error("查询客户联系人信息失败~",e);
+            log.error("查询客户联系人信息失败~", e);
             return null;
         }
     }
@@ -36,19 +40,22 @@ public class LinkmanServiceImpl implements LinkmanService {
         try {
             return linkmanDao.saveLinkman(linkmanDO);
         } catch (Exception e) {
-            log.error("保存客户联系人信息失败~",e);
+            log.error("保存客户联系人信息失败~", e);
             return 0;
         }
     }
 
     @Override
-    public int removeLinkman(String uuids) {
+    public int removeLinkman(LinkmanDO linkmanDO) {
         try {
-            return linkmanDao.removeLinkman(uuids);
+            if (!StringUtils.isEmpty(linkmanDO.getLinkmanUuid())) {
+                linkmanDO.setUuids(linkmanDO.getLinkmanUuid().split(","));
+                return linkmanDao.removeLinkman(linkmanDO);
+            }
         } catch (Exception e) {
-            log.error("删除客户联系人信息失败~",e);
-            return 0;
+            log.error("删除客户联系人信息失败~", e);
         }
+        return 0;
     }
 
     @Override
@@ -56,7 +63,7 @@ public class LinkmanServiceImpl implements LinkmanService {
         try {
             return linkmanDao.updateLinkman(linkmanDO);
         } catch (Exception e) {
-            log.error("修改客户联系人信息失败~",e);
+            log.error("修改客户联系人信息失败~", e);
             return 0;
         }
     }
@@ -66,7 +73,17 @@ public class LinkmanServiceImpl implements LinkmanService {
         try {
             return linkmanDao.getLinkman(linkmanDO);
         } catch (Exception e) {
-            log.debug("根据主键查询客户联系人信息失败~",e);
+            log.debug("根据主键查询客户联系人信息失败~", e);
+            return null;
+        }
+    }
+
+    @Override
+    public PageBean<LinkmanDO> listLinkmanPage(PageParameter<LinkmanDO> pageParameter) {
+        try {
+            return linkmanDao.listCustomerPage(pageParameter);
+        } catch (Exception e) {
+            log.error("服务端客户联系人分页查询失败");
             return null;
         }
     }

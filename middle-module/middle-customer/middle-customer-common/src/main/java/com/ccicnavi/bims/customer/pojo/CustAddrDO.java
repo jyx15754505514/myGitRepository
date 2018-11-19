@@ -43,7 +43,7 @@ public class CustAddrDO implements Serializable {
 
     private String updatedName;
 
-    private String businessLine;
+    private String prodCatalogUuid;
 
     private String orgUuid;
 
@@ -54,4 +54,6 @@ public class CustAddrDO implements Serializable {
     private String extend2;
 
     private String extend3;
+
+    private String [] uuids;//要删除的客户地址主键
 }

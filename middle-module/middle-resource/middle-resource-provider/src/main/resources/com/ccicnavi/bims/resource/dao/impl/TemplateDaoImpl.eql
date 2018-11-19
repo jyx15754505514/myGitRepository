@@ -2,14 +2,14 @@
 -- [listTemplate]
 	SELECT
         template_uuid as templateUuid, dict_type_uuid as dictTypeUuid, template_name as templateName, template_file_uuid as templateFileUuid,
-		created_time as createdTime, created_uuid as createdUuid, created_name as createdName, business_type as businessType, is_enabled as isEnabled,
+		created_time as createdTime, created_uuid as createdUuid, created_name as createdName,
 		updated_time as updatedTime, updated_name as updatedName, comments, is_deleted as isDeleted, org_uuid as orgUuid,
 		app_sys_uuid as appSysUuid, prod_catalog_uuid as prodCatalogUuid, extend1, extend2, extend3
 	FROM
 		res_template
 	WHERE
 		is_deleted = 'N'
-		and is_enabled = 'Y'
+
 		and org_uuid = '#orgUuid#'
 		and app_sys_uuid = '#appSysUuid#'
 	    and prod_catalog_uuid = '#prodCatalogUuid#'
@@ -19,7 +19,7 @@
 -- [getTemplate]
 	SELECT
         template_uuid as templateUuid, dict_type_uuid as dictTypeUuid, template_name as templateName, template_file_uuid as templateFileUuid,
-		created_time as createdTime, created_uuid as createdUuid, created_name as createdName, business_type as businessType, is_enabled as isEnabled,
+		created_time as createdTime, created_uuid as createdUuid, created_name as createdName,
 		updated_time as updatedTime, updated_name as updatedName, comments, is_deleted as isDeleted, org_uuid as orgUuid,
 		app_sys_uuid as appSysUuid, prod_catalog_uuid as prodCatalogUuid, extend1, extend2, extend3
 	FROM
@@ -27,7 +27,6 @@
 	WHERE
 		template_uuid = '#templateUuid#'
 		and is_deleted = 'N'
-		and is_enabled = 'Y'
 	    and org_uuid = '#orgUuid#'
     	and app_sys_uuid = '#appSysUuid#'
     	and prod_catalog_uuid = '#prodCatalogUuid#'

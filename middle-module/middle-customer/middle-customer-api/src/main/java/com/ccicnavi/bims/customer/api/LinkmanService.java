@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.customer.api;
 
-import com.ccicnavi.bims.customer.pojo.CustomerDO;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.LinkmanDO;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public interface LinkmanService {
     int saveLinkman(LinkmanDO linkmanDO);
 
     /**删除客户联系人信息*/
-    int removeLinkman(String uuids);
+    int removeLinkman(LinkmanDO linkmanDO);
 
     /**修改客户联系人信息*/
     int updateLinkman(LinkmanDO linkmanDO);
@@ -28,4 +29,6 @@ public interface LinkmanService {
     /**根据主键获取对应信息*/
     LinkmanDO getLinkman(LinkmanDO linkmanDO);
 
+    /**分页查询客户联系人信息*/
+    PageBean<LinkmanDO> listLinkmanPage(PageParameter<LinkmanDO> pageParameter);
 }

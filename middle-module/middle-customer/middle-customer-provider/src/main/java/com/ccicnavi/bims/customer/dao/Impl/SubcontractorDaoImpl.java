@@ -52,10 +52,8 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
      * @Return java.lang.Integer
      */
     @Override
-    public int removeSubcontractor(String subcontractorUuid) {
-        Map<String,Object> data=new HashMap<>();
-        data.put("ids",subcontractorUuid.split(","));
-        return new Eql().update("removeSubcontractor").params(data).execute();
+    public int removeSubcontractor(SubcontractorDO subcontractor) {
+        return new Eql().update("removeSubcontractor").params(subcontractor).execute();
     }
 
     /** *
