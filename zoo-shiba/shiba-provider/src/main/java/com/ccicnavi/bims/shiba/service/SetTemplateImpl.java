@@ -1,6 +1,6 @@
 package com.ccicnavi.bims.shiba.service;
 
-import org.springframework.stereotype.Service;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.shiba.api.SetTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

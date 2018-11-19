@@ -39,7 +39,7 @@ public class ListController {
         }
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ResultT delete(@RequestParam(value = "key") Object key) {
         try {
             listTemplate.delete(key);

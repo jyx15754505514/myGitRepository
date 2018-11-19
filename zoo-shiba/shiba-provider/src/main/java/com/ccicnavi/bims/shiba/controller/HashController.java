@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -118,7 +119,7 @@ public class HashController {
         }
     }
 
-    @RequestMapping(value = "/keys", method = RequestMethod.GET)
+    @RequestMapping(value = "/values", method = RequestMethod.GET)
     public ResultT values(@RequestParam(value = "key") Object key) {
         try {
             List values = hashTemplate.values(key);

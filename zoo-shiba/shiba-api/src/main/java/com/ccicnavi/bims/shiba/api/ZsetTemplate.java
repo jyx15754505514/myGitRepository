@@ -56,4 +56,12 @@ public interface ZsetTemplate {
      * @return
      */
     Long removeRange(Object key, long start, long end);
+
+    /**
+     * 查看key缓存map的大小
+     *
+     * @param key
+     * @return
+     */
+    Long size(Object key);
 }

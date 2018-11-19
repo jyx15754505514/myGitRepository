@@ -56,4 +56,12 @@ public class ShibaZsetTest {
     public void removeRange() {
         zsetTemplate.removeRange("key555", 1, 2);
     }
+
+    @Test
+    public void size() {
+        String key = "key555";
+        Long size = zsetTemplate.size(key);
+        System.out.println("缓存大小：" + size);
+
+    }
 }

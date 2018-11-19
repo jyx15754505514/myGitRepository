@@ -1,6 +1,6 @@
 package com.ccicnavi.bims.shiba.service;
 
-import org.springframework.stereotype.Service;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.shiba.api.ZsetTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -71,6 +71,7 @@ public class ZsetTemplateImpl implements ZsetTemplate {
 
     /**
      * 删除有序集之间start和end之间的元素
+     *
      * @param key
      * @param start
      * @param end
@@ -80,4 +81,13 @@ public class ZsetTemplateImpl implements ZsetTemplate {
         return redisTemplate.opsForZSet().removeRange(key, start, end);
     }
 
+    /**
+     * 查看key缓存map的大小
+     *
+     * @param key
+     * @return
+     */
+    public Long size(Object key) {
+        return redisTemplate.opsForZSet().size(key);
+    }
 }
