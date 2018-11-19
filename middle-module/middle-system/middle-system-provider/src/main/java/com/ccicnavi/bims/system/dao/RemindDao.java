@@ -17,7 +17,7 @@ import java.util.List;
 public interface RemindDao {
 
    /**
-   *@Description: 查询提醒设置
+   *@Description: 查询提醒设置(分页)
    *@Param: PageParameter
    *@return: PageBean<RemindDO>
    *@Author: zqq
@@ -34,7 +34,7 @@ public interface RemindDao {
    *@date: 2018/11/15
    */
 
-    public Integer insertRemind(RemindDO remind);
+    public Integer insertRemind(RemindDO remind,EqlTran tran);
 
     /**
     *@Description: 修改提醒设置
@@ -44,7 +44,7 @@ public interface RemindDao {
     *@date: 2018/11/15
     */
 
-    public Integer updateRemind(RemindDO remind);
+    public Integer updateRemind(RemindDO remind,EqlTran tran);
 
     /**
     *@Description: 删除提醒设置
@@ -54,7 +54,7 @@ public interface RemindDao {
     *@date: 2018/11/15
     */
 
-    public Integer deleteRemind(RemindDO remind);
+    public Integer deleteRemind(RemindDO remind,EqlTran tran);
 
    /**
    *@Description: 根据主键查询描述设置
@@ -75,6 +75,14 @@ public interface RemindDao {
     */
 
    public PageBean<RemindDTO> listRemindOrg(PageParameter<RemindDO> pageParameter);
+    /**
+    *@Description: 查询提醒设置(不分页)
+    *@Param: remind
+    *@return: List<RemindDTO>
+    *@Author: 本人姓名
+    *@date: 2018/11/19
+    */
 
+   public List<RemindDO>  listRemindList(RemindDO remind);
 
 }

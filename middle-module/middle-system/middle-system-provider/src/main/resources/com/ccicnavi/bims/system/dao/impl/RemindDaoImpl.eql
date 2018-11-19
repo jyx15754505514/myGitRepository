@@ -28,8 +28,8 @@
         org_uuid,
      -- iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid,
-     -- iff businessLine != null and businessLine != ''
-        business_line,
+     -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
      -- iff extend1 != null and extend1 != ''
         extend1,
      -- iff extend2 != null and extend2 != ''
@@ -65,8 +65,8 @@
             '#orgUuid#',
          -- iff appSysUuid != null and appSysUuid != ''
             '#appSysUuid#',
-         -- iff businessLine != null and businessLine != ''
-            '#businessLine#',
+         -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
          -- iff extend1 != null and extend1 != ''
             '#extend1#',
          -- iff extend2 != null and extend2 != ''
@@ -101,8 +101,8 @@
              org_uuid = '#orgUuid#',
           -- iff appSysUuid != null and appSysUuid != ''
              app_sys_uuid = '#appSysUuid#',
-          -- iff businessLine != null and businessLine != ''
-             business_line = '#businessLine#',
+          -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+             prod_catalog_uuid = '#prodCatalogUuid#',
           -- iff extend1 != null and extend1 != ''
              extend1 = '#extend1#',
           -- iff extend2 != null and extend2 != ''
@@ -149,7 +149,7 @@
                 updated_name as updatedName,
                 org_uuid as orgUuid,
                 app_sys_uuid as appSysUuid,
-                business_line as businessLine,
+                prod_catalog_uuid as prodCatalogUuid,
                 extend1,
                 extend2,
                 extend3
@@ -185,7 +185,7 @@
                   updated_name as updatedName,
                   org_uuid as orgUuid,
                   app_sys_uuid as appSysUuid,
-                  business_line as businessLine,
+                  prod_catalog_uuid as prodCatalogUuid,
                   extend1,
                   extend2,
                   extend3
@@ -221,7 +221,7 @@
                   sr.updated_name as updatedName,
                   sr.org_uuid as orgUuid,
                   sr.app_sys_uuid as appSysUuid,
-                  sr.business_line as businessLine,
+                  sr.prod_catalog_uuid as prodCatalogUuid,
                   sr.extend1,
                   sr.extend2,
                   sr.extend3,

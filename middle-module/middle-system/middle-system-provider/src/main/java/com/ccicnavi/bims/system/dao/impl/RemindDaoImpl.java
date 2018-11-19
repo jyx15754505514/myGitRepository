@@ -31,18 +31,30 @@ public class RemindDaoImpl implements RemindDao {
     }
 
     @Override
-    public Integer insertRemind(RemindDO sysremind){
-        return new Eql().insert("insertsysremind").params(sysremind).returnType(Integer.class).execute();
+    public Integer insertRemind(RemindDO sysremind,EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertsysremind").params(sysremind).returnType(Integer.class).execute();
     }
 
     @Override
-    public Integer updateRemind(RemindDO sysremind){
-        return new Eql().insert("updatesysremind").params(sysremind).returnType(Integer.class).execute();
+    public Integer updateRemind(RemindDO sysremind,EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("updatesysremind").params(sysremind).returnType(Integer.class).execute();
     }
 
     @Override
-    public Integer deleteRemind(RemindDO sysremind){
-        return new Eql().insert("deletesysremind").params(sysremind).returnType(Integer.class).execute();
+    public Integer deleteRemind(RemindDO sysremind,EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("deletesysremind").params(sysremind).returnType(Integer.class).execute();
     }
 
     @Override
@@ -55,5 +67,11 @@ public class RemindDaoImpl implements RemindDao {
         EqlPage page = new EqlPage(PageParameter.getStartIndex(),PageParameter.getPageRows());
         List<RemindDTO> list = new Eql().select("listremindorg").params(PageParameter.getParameter()).returnType(RemindDTO.class).limit(page).execute();
         return new PageBean<RemindDTO>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),list);
+    }
+
+    @Override
+    public List<RemindDO> listRemindList(RemindDO remind) {
+        List<RemindDO> list = new Eql().select("listsysremind").params(remind).returnType(RemindDO.class).execute();
+        return list;
     }
 }
