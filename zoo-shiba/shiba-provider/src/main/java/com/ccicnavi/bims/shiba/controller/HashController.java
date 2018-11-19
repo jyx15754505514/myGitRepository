@@ -20,8 +20,19 @@ public class HashController {
     @Autowired
     HashTemplateImpl hashTemplate;
 
+    @RequestMapping(value = "/put", method = RequestMethod.POST)
+    public ResultT put(@RequestParam(value = "key") Object key, @RequestParam(value = "mapKey") Object mapKey, @RequestParam(value = "mapValue", required = false) Object mapValue) {
+        try {
+            hashTemplate.put(key, mapKey, mapValue);
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("单个添加缓存失败", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
+        }
+    }
+
     @RequestMapping(value = "/putAll", method = RequestMethod.POST)
-    public ResultT putAll(@RequestParam(value = "key") Object key, @RequestParam(value = "map") Map<Object, Object> map) {
+    public ResultT putAll(@RequestParam(value = "key") Object key, @RequestBody Map<Object, Object> map) {
         try {
             hashTemplate.putAll(key, map);
             return ResultT.success();
@@ -64,17 +75,6 @@ public class HashController {
         }
     }
 
-    @RequestMapping(value = "/put", method = RequestMethod.POST)
-    public ResultT put(@RequestParam(value = "key") Object key, @RequestParam(value = "mapKey") Object mapKey, @RequestParam(value = "mapValue", required = false) Object mapValue) {
-        try {
-            hashTemplate.put(key, mapKey, mapValue);
-            return ResultT.success();
-        } catch (Exception e) {
-            log.error("单个添加缓存失败", e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
-        }
-    }
-
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public ResultT get(@RequestParam(value = "key") Object key, @RequestParam(value = "mapKey") Object mapKey) {
         try {
@@ -97,8 +97,8 @@ public class HashController {
         }
     }
 
-    @RequestMapping(value = "/multiGet", method = RequestMethod.GET)
-    public ResultT multiGet(@RequestParam(value = "key") Object key, @RequestParam(value = "keys") List<Object> keys) {
+    @RequestMapping(value = "/multiGet", method = RequestMethod.POST)
+    public ResultT multiGet(@RequestParam(value = "key") Object key, @RequestBody List<Object> keys) {
         try {
             List list = hashTemplate.multiGet(key, keys);
             return ResultT.success(list);
