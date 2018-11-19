@@ -101,13 +101,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
     *@date: 2018/11/19
     */
     @Override
-    public List<UserDeptDO> listDeptByUser(UserDO userDO){
-        List<UserDeptDO> userDeptDOList = null;
-        if(userDeptDOList != null) {
-            return  new Eql().select("listDeptByUser").params(userDO).returnType(UserDeptDO.class).execute();
-        }else {
-            return null;
-        }
+    public List<DepartmentDO> listDeptByUser(UserDO userDO){
+        return new Eql().select("listDeptByUser").params(userDO).returnType(UserDeptDO.class).execute();
     }
 
 }
