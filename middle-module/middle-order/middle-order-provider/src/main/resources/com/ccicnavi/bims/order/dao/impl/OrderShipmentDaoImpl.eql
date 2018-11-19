@@ -1,0 +1,162 @@
+-- [listShipment]
+    order_uuid orderUuid,
+    shipping_type_id shippingTypeId,
+    ship_name shipName,
+    voyage_name voyageName,
+    dispath_port_id dispathPortId,
+    dest_port_id destPortId,
+    loading_port_id loadingPortId,
+    discharge_port_id dischargePortId,
+    trade_nature_id tradeNatureId,
+    customs_cert_no customsCertNo,
+    customs_decl_no customsDeclNo,
+    inspection_person inspectionPerson,
+    weight weight,
+    weight_unit weightUnit
+from
+    order_shipment
+where
+    is_deleted = 'N'
+
+-- [getShipment]
+    order_uuid orderUuid,
+    shipping_type_id shippingTypeId,
+    ship_name shipName,
+    voyage_name voyageName,
+    dispath_port_id dispathPortId,
+    dest_port_id destPortId,
+    loading_port_id loadingPortId,
+    discharge_port_id dischargePortId,
+    trade_nature_id tradeNatureId,
+    customs_cert_no customsCertNo,
+    customs_decl_no customsDeclNo,
+    inspection_person inspectionPerson,
+    weight weight,
+    weight_unit weightUnit
+from
+    order_shipment
+where
+    is_deleted = 'N'
+--iff orderUuid != null and orderUuid != ''
+    and order_uuid = '#orderUuid#'
+--iff orderUuidList != null
+and order_uuid in
+-- for item=item index=index collection=orderUuidList open=( separator=, close=)
+    '#item#'
+-- end
+
+-- [insertOrderShipment]
+    insert into order_shipment
+    --trim prefix=( suffix=) suffixOverrides=,
+      --iff orderUuid != null
+        order_uuid,
+      --iff shippingTypeId != null
+        shipping_type_id,
+      --iff shipName != null
+        ship_name,
+      --iff voyageName != null
+        voyage_name,
+      --iff dispathPortId != null
+        dispath_port_id,
+      --iff destPortId != null
+        dest_port_id,
+      --iff loadingPortId != null
+        loading_port_id,
+      --iff dischargePortId != null
+        discharge_port_id,
+      --iff tradeNatureId != null
+        trade_nature_id,
+      --iff customsCertNo != null
+        customs_cert_no,
+      --iff customsDeclNo != null
+        customs_decl_no,
+      --iff inspectionPerson != null
+        inspection_person,
+      --iff weight != null
+        weight,
+      --iff weightUnit != null
+        weight_unit
+    --end
+    --trim prefix=values ( suffix=) suffixOverrides=,
+      --iff orderUuid != null
+        '#orderUuid#',
+      --iff shippingTypeId != null
+        '#shippingTypeId#',
+      --iff shipName != null
+        '#shipName#',
+      --iff voyageName != null
+        '#voyageName#',
+      --iff dispathPortId != null
+        '#dispathPortId#',
+      --iff destPortId != null
+        '#destPortId#',
+      --iff loadingPortId != null
+        '#loadingPortId#',
+      --iff dischargePortId != null
+        '#dischargePortId#',
+      --iff tradeNatureId != null
+        '#tradeNatureId#',
+      --iff customsCertNo != null
+        '#customsCertNo#',
+      --iff customsDeclNo != null
+        '#customsDeclNo#',
+      --iff inspectionPerson != null
+        '#inspectionPerson#',
+      --iff weight != null
+        '#weight#',
+      --iff weightUnit != null
+        '#weightUnit#'
+    --end
+
+-- [updateOrderShipment]
+    update order_shipment
+    -- trim prefix= set suffixOverrides=,
+      --iff orderUuid != null
+        order_uuid = '#orderUuid#',
+      --iff shippingTypeId != null
+        shipping_type_id = '#shippingTypeId#',
+      --iff shipName != null
+        ship_name = '#shipName#',
+      --iff voyageName != null
+        voyage_name = '#voyageName#',
+      --iff dispathPortId != null
+        dispath_port_id = '#dispathPortId#',
+      --iff destPortId != null
+        dest_port_id = '#destPortId#',,
+      --iff loadingPortId != null
+        loading_port_id = '#loadingPortId#',
+      --iff dischargePortId != null
+        discharge_port_id = '#dischargePortId#',
+      --iff tradeNatureId != null
+        trade_nature_id = '#tradeNatureId#',
+      --iff customsCertNo != null
+        customs_cert_no = '#customsCertNo#',
+      --iff customsDeclNo != null
+        customs_decl_no = '#customsDeclNo#',
+      --iff inspectionPerson != null
+        inspection_person = '#inspectionPerson#',
+      --iff weight != null
+        weight = '#weight#',
+      --iff weightUnit != null
+        weight_unit = '#weightUnit#'
+    -- end
+where
+    is_deleted = 'N'
+    and order_uuid = '#orderUuid#'
+-- end
+
+-- [deleteOrderShipment]
+UPDATE
+    order_shipment
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'.
+-- end
+WHERE
+  is_deleted = 'N'
+--iff orderUuid != null and orderUuid != ''
+and order_uuid = '#orderUuid#'
+--iff orderUuidList != null
+and order_uuid in
+-- for item=item index=index collection=orderUuidList open=( separator=, close=)
+    '#item#'
+-- end
