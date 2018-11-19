@@ -8,6 +8,8 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.impl.DepartmentDaoImpl;
 import com.ccicnavi.bims.system.dao.impl.SettingDaoImpl;
+import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDeptDO;
 import com.ccicnavi.bims.system.service.api.DepartmentService;
 import com.ccicnavi.bims.system.dao.DepartmentDao;
 import com.ccicnavi.bims.system.pojo.DepartmentDO;
@@ -116,5 +118,25 @@ import java.util.List;
              log.error("根据ID获取单个部门信息失败",e);
              return null;
          }
+     }
+
+     /**
+     *@Description: 根据用户的UUID查询所有的部门信息
+     *@Param: [userDO]
+     *@return: java.util.List<com.ccicnavi.bims.system.pojo.UserDeptDO>
+     *@Author: zhangpengwei
+     *@date: 2018/11/19
+     */
+     @Override
+     public List<UserDeptDO> listDeptByUser(UserDO userDO){
+         List<UserDeptDO> userDeptDOList = null;
+         try {
+             userDeptDOList = departmentDao.listDeptByUser(userDO);
+             return userDeptDOList;
+         } catch (Exception e) {
+             log.error("查询用户部门UUID失败",e);
+             return userDeptDOList;
+         }
+
      }
  }

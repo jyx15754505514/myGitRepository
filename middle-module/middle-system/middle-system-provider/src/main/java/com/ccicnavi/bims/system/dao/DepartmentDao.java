@@ -3,6 +3,8 @@ package com.ccicnavi.bims.system.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.DepartmentDO;
+import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDeptDO;
 
 import java.util.List;
 
@@ -58,4 +60,14 @@ public interface DepartmentDao {
     *@date: 2018/11/15
     */
     public DepartmentDO getDepartment(DepartmentDO departmentDO);
+
+    /**
+    *@Description: 根据用户的UUID查询所有的部门信息
+    *@Param: [userDO]
+    *@return: java.util.List<com.ccicnavi.bims.system.pojo.UserDeptDO>
+    *@Author: zhangpengwei
+    *@date: 2018/11/19
+    */
+    public List<UserDeptDO> listDeptByUser(UserDO userDO);
+
 }

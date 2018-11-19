@@ -93,7 +93,7 @@ public class RoleServiceImpl implements RoleService {
             roleDOList = roleDao.listRoleByUser(userDO);
             return roleDOList;
         } catch (Exception e) {
-            log.error("删除失败",e);
+            log.error("查询用户角色UUID失败",e);
             return roleDOList;
         }
     }
