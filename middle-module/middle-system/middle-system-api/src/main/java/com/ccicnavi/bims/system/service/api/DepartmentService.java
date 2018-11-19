@@ -57,5 +57,5 @@ public interface DepartmentService {
     * @Param [userDO]
     * @return java.util.List<com.ccicnavi.bims.system.pojo.DepartmentDO>
     **/
-    List<UserDeptDO> listDeptByUser(UserDO userDO);
+    List<DepartmentDO> listDeptByUser(UserDO userDO);
 }
