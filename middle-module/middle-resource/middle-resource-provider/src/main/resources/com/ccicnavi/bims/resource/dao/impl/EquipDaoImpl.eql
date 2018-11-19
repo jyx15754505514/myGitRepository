@@ -56,7 +56,7 @@
      updated_name updatedName,
      org_uuid orgUuid,
      app_sys_uuid appSysUuid,
-     business_line businessLine
+     prod_catalog_uuid prodCatalogUuid
 from
     res_equip
 where
@@ -122,7 +122,7 @@ where
      updated_name updatedName,
      org_uuid orgUuid,
      app_sys_uuid appSysUuid,
-     business_line businessLine
+     prod_catalog_uuid prodCatalogUuid
 from
     res_equip
 where
@@ -243,8 +243,8 @@ where
         org_uuid,
       --iff appSysUuid != null
         app_sys_uuid,
-      --iff businessLine != null
-        business_line,
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid,
     --end
     -- trim prefix=values( suffix=) suffixOverrides=,
       --iff equipUuid != null
@@ -359,8 +359,8 @@ where
         '#orgUuid#',
       --iff appSysUuid != null
         '#appSysUuid#',
-      --iff businessLine != null
-        '#businessLine#'
+      --iff prodCatalogUuid != null
+        '#prodCatalogUuid#'
     --end
 
 -- [updateEquip]
@@ -476,8 +476,8 @@ where
         org_uuid = '#orgUuid#',
       --iff appSysUuid != null
         app_sys_uuid = '#appSysUuid#',
-      --iff businessLine != null
-        business_line = '#businessLine#',
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
     -- end
     where
     is_deleted = 'N'
