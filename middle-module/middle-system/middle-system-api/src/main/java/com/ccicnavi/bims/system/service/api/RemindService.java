@@ -74,4 +74,13 @@ public interface RemindService {
     */
 
     public PageBean<RemindDTO> listRemindOrg(PageParameter<RemindDO> pageParameter);
+    /**
+    *@Description: 查询提醒设置(不分页)
+    *@Param: remind
+    *@return: List<RemindDO>
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
+    public List<RemindDO>  listRemindList(RemindDO remind);
 }
