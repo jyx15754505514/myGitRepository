@@ -5,6 +5,7 @@
 
     <groupId>middle-customer</groupId>
     <artifactId>middle-customer-api</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>middle-customer-api</name>
