@@ -69,7 +69,6 @@ public class LogServiceImpl implements LogService {
             }
         } catch (Exception e) {
             log.error("获取日志失败",e);
-            e.printStackTrace();
         }
         return ResultT.failure(ResultCode.GET_FAILURE);
     }
