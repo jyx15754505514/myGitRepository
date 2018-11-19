@@ -23,7 +23,7 @@ public class OrderShipmentDaoImpl implements OrderShipmentDao {
      */
     @Override
     public Integer insertOrderShipment(OrderShipmentDO orderShipmentDO, EqlTran tran) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").insert("updateOrderShipment").params(orderShipmentDO).returnType(OrderShipmentDO.class).execute();
+        return EqlUtils.getInstance("DEFAULT").insert("insertOrderShipment").params(orderShipmentDO).returnType(OrderShipmentDO.class).execute();
     }
 
     /* *
