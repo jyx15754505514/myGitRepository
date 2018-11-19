@@ -60,6 +60,6 @@ public interface MenuService {
     * @Param [userDO]
     * @return java.util.List<java.lang.String>
     **/
-    List<String> listMenuByUser(UserDO userDO);
+    List<MenuDO> listMenuByUser(UserDO userDO);
     
 }
