@@ -9,6 +9,7 @@ import com.ccicnavi.bims.system.pojo.LogDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 import java.util.List;
 /* *
@@ -54,8 +55,8 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public Integer insertLog(LogDTO logDTO) {
-        return EqlUtils.getInstance("DEFAULT").insert("insertLog").params(logDTO).returnType(Integer.class).execute();
+    public Integer insertLog(LogDTO logDTO, EqlTran tran) {
+        return EqlUtils.getInstance("DEFAULT").useTran(tran).insert("insertLog").params(logDTO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -66,8 +67,8 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public Integer updateLog(LogDTO logDTO) {
-        return EqlUtils.getInstance("DEFAULT").update("updateLog").params(logDTO).returnType(Integer.class).execute();
+    public Integer updateLog(LogDTO logDTO,EqlTran tran) {
+        return EqlUtils.getInstance("DEFAULT").useTran(tran).update("updateLog").params(logDTO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -78,7 +79,7 @@ public class LogDaoImpl implements LogDao {
      * @Return int
      */
     @Override
-    public Integer deleteLog(LogDTO logDTO) {
-        return EqlUtils.getInstance("DEFAULT").delete("deleteLog").params(logDTO).returnType(Integer.class).execute();
+    public Integer deleteLog(LogDTO logDTO,EqlTran tran) {
+        return EqlUtils.getInstance("DEFAULT").useTran(tran).delete("deleteLog").params(logDTO).returnType(Integer.class).execute();
     }
 }

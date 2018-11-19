@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class PageParameter<T> implements Serializable {
+public class    PageParameter<T> implements Serializable {
     /**
      * 起始页码
      */

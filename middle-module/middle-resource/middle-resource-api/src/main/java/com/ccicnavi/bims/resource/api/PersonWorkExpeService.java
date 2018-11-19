@@ -8,6 +8,7 @@ import com.ccicnavi.bims.resource.pojo.PersonWorkExpeDO;
 import java.util.List;
 
 public interface PersonWorkExpeService {
+
     /**
      *查询人员工作经历
      */

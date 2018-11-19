@@ -13,7 +13,7 @@
     fee_desc feeDesc,
     standard_desc standardDesc,
     online_cert_url onlineCertUrl,
-    business_line businessLine,
+    prod_catalog_uuid prodCatalogPuid,
     comments comments,
     is_deleted isDeleted,
     created_time createdTime,
@@ -42,7 +42,7 @@ where
     fee_desc feeDesc,
     standard_desc standardDesc,
     online_cert_url onlineCertUrl,
-    business_line businessLine,
+    prod_catalog_uuid prodCatalogPuid,
     comments comments,
     is_deleted isDeleted,
     created_time createdTime,
@@ -87,8 +87,8 @@ where
         standard_desc,
       --iff onlineCertUrl != null
         online_cert_url,
-      --iff businessLine != null
-        business_line,
+      --iff prodCatalogPuid != null
+        prod_catalog_uuid,
       --iff comments != null
         comments,
       --iff isDeleted != null
@@ -135,8 +135,8 @@ where
         '#standardDesc#',
       --iff onlineCertUrl != null
         '#onlineCertUrl#',
-      --iff businessLine != null
-        '#businessLine#',
+      --iff prodCatalogPuid != null
+        '#prodCatalogPuid#',
       --iff comments != null
         '#comments#',
       --iff isDeleted != null
@@ -184,8 +184,8 @@ where
         standard_desc = '#standardDesc#',
       --iff onlineCertUrl != null
         online_cert_url = '#onlineCertUrl#',
-      --iff businessLine != null
-        business_line = '#businessLine#',
+      --iff prodCatalogPuid != null
+        prod_catalog_uuid = '#prodCatalogPuid#',
       --iff comments != null
         comments = '#comments#',
       --iff isDeleted != null

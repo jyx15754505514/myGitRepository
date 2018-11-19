@@ -26,7 +26,7 @@ select
     org_uuid orgUuid,
     org_name orgName,
     app_sys_uuid appSysUuid,
-    business_line businessLine,
+    prod_catalog_uuid prodCatalogUuid,
     extend1 extend1,
     extend2 extend2,
     extend3 extend3
@@ -34,6 +34,12 @@ from
     res_person_work
 where
     is_deleted = 'N'
+    --iff personUuid != null and personUuid != ''
+        and person_uuid like '#personUuid:like#'
+    --end
+    --iff workUuid != null and workUuid != ''
+        and work_uuid like '#workUuid:like#'
+    --end
 
 -- [insertPersonWorkDO]
     insert into res_person_work
@@ -117,8 +123,8 @@ where
         -- if  appSysUuid !=  null and appSysUuid != ''
             app_sys_uuid,
         -- end
-        -- if  businessLine !=  null and businessLine != ''
-            business_line,
+        -- if  prodCatalogUuid !=  null and prodCatalogUuid != ''
+            prod_catalog_uuid,
         -- end
         -- if  extend1 !=  null and extend1 != ''
             extend1,
@@ -210,8 +216,8 @@ where
         -- if  appSysUuid != null and appSysUuid != ''
            '#appSysUuid#',
         -- end
-        -- if  businessLine !=  null and businessLine != ''
-           '#businessLine#',
+        -- if  prodCatalogUuid !=  null and prodCatalogUuid != ''
+           '#prodCatalogUuid#',
         -- end
         -- if  extend1 != null and extend1 != ''
            '#extend1#',
@@ -227,91 +233,91 @@ where
 -- [updatePersonWorkDO]
     update res_person_work
    -- trim prefix=set suffixOverrides=,
-     -- if test=workUuid != null and workUuid !=  ''
+     -- if workUuid != null and workUuid !=  ''
             work_uuid ='#workUuid#',
     -- end
-     -- if test=personType != null and personType !=  ''
+     -- if personType != null and personType !=  ''
             person_type ='#personType#',
     -- end
-     -- if test=deptUuid != null and deptUuid !=  ''
+     -- if deptUuid != null and deptUuid !=  ''
             dept_uuid ='#deptUuid#',
     -- end
-     -- if test=position != null and position !=  ''
+     -- if position != null and position !=  ''
             position ='#position#',
     -- end
-     -- if test=joinJobTime != null and joinJobTime !=  ''
+     -- if joinJobTime != null and joinJobTime !=  ''
             join_job_time ='#joinJobTime#',
     -- end
-     -- if test=regularTime != null and regularTime !=  ''
+     -- if regularTime != null and regularTime !=  ''
             regular_time ='#regularTime#',
     -- end
-     -- if test=joinAppTime != null and joinAppTime !=  ''
+     -- if joinAppTime != null and joinAppTime !=  ''
             join_app_time ='#joinAppTime#',
     -- end
-     -- if test=joinOrgTime != null and joinOrgTime !=  ''
+     -- if joinOrgTime != null and joinOrgTime !=  ''
             join_org_time ='#joinOrgTime#',
     -- end
-     -- if test=postTime != null and postTime !=  ''
+     -- if postTime != null and postTime !=  ''
             post_time ='#postTime#',
     -- end
-     -- if test=postName != null and postName !=  ''
+     -- if postName != null and postName !=  ''
             post_name ='#postName#',
     -- end
-     -- if test=email != null and email !=  ''
+     -- if email != null and email !=  ''
             email ='#email#',
     -- end
-     -- if test=fax != null and fax !=  ''
+     -- if fax != null and fax !=  ''
             fax ='#fax#',
     -- end
-     -- if test=officePhone != null and officePhone !=  ''
+     -- if officePhone != null and officePhone !=  ''
             office_phone ='#officePhone#',
     -- end
-     -- if test=workAddr != null and workAddr !=  ''
+     -- if workAddr != null and workAddr !=  ''
             work_addr ='#workAddr#',
     -- end
-     -- if test=isUploadFile != null and isUploadFile !=  ''
+     -- if isUploadFile != null and isUploadFile !=  ''
             is_upload_file ='#isUploadFile#',
     -- end
-     -- if test=comments != null and comments !=  ''
+     -- if comments != null and comments !=  ''
             comments ='#comments#',
     -- end
-     -- if test=isDeleted != null and isDeleted !=  ''
+     -- if isDeleted != null and isDeleted !=  ''
             is_deleted ='#isDeleted#',
     -- end
-     -- if test=createdTime != null and createdTime !=  ''
+     -- if createdTime != null and createdTime !=  ''
             created_time ='#createdTime#',
     -- end
-     -- if test=createdUuid != null and createdUuid !=  ''
+     -- if createdUuid != null and createdUuid !=  ''
             created_uuid ='#createdUuid#',
     -- end
-     -- if test=createdName != null and createdName !=  ''
+     -- if createdName != null and createdName !=  ''
             created_name ='#createdName#',
     -- end
-     -- if test=updatedTime != null and updatedTime !=  ''
+     -- if updatedTime != null and updatedTime !=  ''
             updated_time ='#updatedTime#',
     -- end
-     -- if test=updatedName != null and updatedName !=  ''
+     -- if updatedName != null and updatedName !=  ''
             updated_name ='#updatedName#',
     -- end
-     -- if test=orgUuid != null and orgUuid !=  ''
+     -- if orgUuid != null and orgUuid !=  ''
             org_uuid ='#orgUuid#',
     -- end
-     -- if test=orgName != null and orgName !=  ''
+     -- if orgName != null and orgName !=  ''
             org_name ='#orgName#',
     -- end
-     -- if test=appSysUuid != null and appSysUuid !=  ''
+     -- if appSysUuid != null and appSysUuid !=  ''
             app_sys_uuid ='#appSysUuid#',
     -- end
-     -- if test=businessLine != null and businessLine !=  ''
-            business_line ='#businessLine#',
+     -- if prodCatalogUuid != null and prodCatalogUuid !=  ''
+            prod_catalog_uuid ='#prodCatalogUuid#',
     -- end
-     -- if test=extend1 != null and extend1 !=  ''
+     -- if extend1 != null and extend1 !=  ''
             extend1 ='#extend1#',
     -- end
-     -- if test=extend2 != null and extend2 !=  ''
+     -- if extend2 != null and extend2 !=  ''
             extend2 ='#extend2#',
     -- end
-     -- if test=extend3 != null and extend3 !=  ''
+     -- if extend3 != null and extend3 !=  ''
             extend3 ='#extend3#',
     -- end
   -- end
@@ -372,7 +378,7 @@ select
      org_uuid orgUuid,
      org_name orgName,
      app_sys_uuid appSysUuid,
-     business_line businessLine,
+     prod_catalog_uuid prodCatalogUuid,
      extend1 extend1,
      extend2 extend2,
      extend3 extend3
@@ -412,7 +418,7 @@ SELECT
      org_uuid orgUuid,
      org_name orgName,
      app_sys_uuid appSysUuid,
-     business_line businessLine,
+     prod_catalog_uuid prodCatalogUuid,
      extend1 extend1,
      extend2 extend2,
      extend3 extend3

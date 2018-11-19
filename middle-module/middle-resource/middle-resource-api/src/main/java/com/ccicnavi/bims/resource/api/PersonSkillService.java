@@ -10,35 +10,35 @@ public interface PersonSkillService {
      * @param personSkillDO
      * @return
      */
-    public List<PersonSkillDO> listPersonSkillDO(PersonSkillDO personSkillDO);
+    public List<PersonSkillDO> listPersonSkill(PersonSkillDO personSkillDO);
 
     /**
      * 根据主键查询职称信息
      * @param personSkillDO
      * @return
      */
-    public PersonSkillDO getPersonSkillDO(PersonSkillDO personSkillDO);
+    public PersonSkillDO getPersonSkill(PersonSkillDO personSkillDO);
 
     /**
      * 新增职称信息
      * @param personSkillDO
      * @return
      */
-    public Integer insertPersonSkillDO(PersonSkillDO personSkillDO);
+    public Integer insertPersonSkill(PersonSkillDO personSkillDO);
 
     /**
      * 修改职称信息
      * @param personSkillDO
      * @return
      */
-    public Integer updatePersonSkillDO(PersonSkillDO personSkillDO);
+    public Integer updatePersonSkill(PersonSkillDO personSkillDO);
 
     /**
      * 删除职称信息
      * @param personSkillDO
      * @return
      */
-    public Integer deletePersonSkillDO(PersonSkillDO personSkillDO);
+    public Integer deletePersonSkill(PersonSkillDO personSkillDO);
 
 
 }
