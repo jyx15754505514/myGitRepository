@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.order.service;
+package com.ccicnavi.bims.order.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
