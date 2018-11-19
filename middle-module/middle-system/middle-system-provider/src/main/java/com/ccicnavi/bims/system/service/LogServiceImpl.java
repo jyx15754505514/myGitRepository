@@ -13,6 +13,7 @@ import com.ccicnavi.bims.system.pojo.LogDTO;
 import com.ccicnavi.bims.system.service.api.LogService;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
+import org.n3r.eql.util.Closes;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 /* *
@@ -68,7 +69,6 @@ public class LogServiceImpl implements LogService {
             }
         } catch (Exception e) {
             log.error("获取日志失败",e);
-            e.printStackTrace();
         }
         return ResultT.failure(ResultCode.GET_FAILURE);
     }
@@ -87,8 +87,8 @@ public class LogServiceImpl implements LogService {
         Integer countLogDetail = null;
         try {
             aDefault.start();
-            countLog = logDao.insertLog(logDTO);
-            countLogDetail = logDetailDao.insertLogDetail(logDTO);
+            countLog = logDao.insertLog(logDTO,aDefault);
+            countLogDetail = logDetailDao.insertLogDetail(logDTO,aDefault);
             if(countLog > 0 && countLogDetail >0){
                 aDefault.commit();
                 return ResultT.success();
@@ -96,6 +96,8 @@ public class LogServiceImpl implements LogService {
         } catch (Exception e) {
             log.error("添加日志失败",e);
             aDefault.rollback();
+        } finally {
+            Closes.closeQuietly(aDefault);
         }
         return ResultT.failure(ResultCode.ADD_FAILURE);
     }
@@ -114,15 +116,17 @@ public class LogServiceImpl implements LogService {
         Integer countLogDetail = null;
         try {
             aDefault.start();
-            countLog = logDao.updateLog(logDTO);
-            countLogDetail = logDetailDao.updateLogDetail(logDTO);
+            countLog = logDao.updateLog(logDTO,aDefault);
+            countLogDetail = logDetailDao.updateLogDetail(logDTO,aDefault);
             if(countLog > 0 && countLogDetail >0){
                 aDefault.commit();
                 return ResultT.success();
             }
         } catch (Exception e) {
             log.error("更新日志失败",e);
-            e.printStackTrace();
+            aDefault.rollback();
+        } finally {
+            Closes.closeQuietly(aDefault);
         }
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
@@ -141,15 +145,17 @@ public class LogServiceImpl implements LogService {
         Integer countLogDetail = null;
         try {
             aDefault.start();
-            countLog = logDao.deleteLog(logDTO);
-            countLogDetail = logDetailDao.deleteLogDetail(logDTO);
+            countLog = logDao.deleteLog(logDTO,aDefault);
+            countLogDetail = logDetailDao.deleteLogDetail(logDTO,aDefault);
             if(countLog > 0 && countLogDetail > 0){
                 aDefault.commit();
                 return ResultT.success();
             }
         } catch (Exception e) {
             log.error("删除日志失败",e);
-            e.printStackTrace();
+            aDefault.rollback();
+        } finally {
+            Closes.closeQuietly(aDefault);
         }
         return ResultT.failure(ResultCode.DELETE_FAILURE);
     }

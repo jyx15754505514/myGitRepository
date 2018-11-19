@@ -15,7 +15,7 @@ public class ListTemplateImpl implements ListTemplate {
     RedisTemplate redisTemplate;
 
     /**
-     * 添加list类型的缓存
+     * 单个添加list类型的缓存
      *
      * @param key
      * @param list
@@ -27,7 +27,7 @@ public class ListTemplateImpl implements ListTemplate {
     }
 
     /**
-     * 添加list类型的缓存
+     * 多个添加list类型的缓存
      *
      * @param key
      * @param object

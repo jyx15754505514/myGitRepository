@@ -5,7 +5,7 @@ import java.util.Set;
 public interface ZsetTemplate {
 
     /**
-     * 添加set类型的缓存
+     * 添加value到排序集key，或者score如果已存在则更新它。
      *
      * @param key
      * @param value
@@ -56,4 +56,12 @@ public interface ZsetTemplate {
      * @return
      */
     Long removeRange(Object key, long start, long end);
+
+    /**
+     * 查看key缓存map的大小
+     *
+     * @param key
+     * @return
+     */
+    Long size(Object key);
 }

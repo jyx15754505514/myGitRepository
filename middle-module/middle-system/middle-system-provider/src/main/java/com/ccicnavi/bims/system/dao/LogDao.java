@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.LogDO;
 import com.ccicnavi.bims.system.pojo.LogDTO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ public interface LogDao {
     /**获取指定的日志*/
     LogDTO getLog(LogDTO logDTO) throws Exception;
     /**新增日志信息*/
-    Integer insertLog(LogDTO logDTO) throws Exception;
+    Integer insertLog(LogDTO logDTO, EqlTran tran) throws Exception;
     /**更新日志信息*/
-    Integer updateLog(LogDTO logDTO) throws Exception;
+    Integer updateLog(LogDTO logDTO,EqlTran tran) throws Exception;
     /**删除日志*/
-    Integer deleteLog(LogDTO logDTO) throws Exception;
+    Integer deleteLog(LogDTO logDTO,EqlTran tran) throws Exception;
 }

@@ -131,5 +131,5 @@ public class EquipDO implements Serializable {
 
     private String appSysUuid;
 
-    private String businessLine;
+    private String prodCatalogPuid;
 }
