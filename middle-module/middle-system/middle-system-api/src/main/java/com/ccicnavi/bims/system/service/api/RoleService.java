@@ -4,6 +4,8 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.RoleDO;
 import com.ccicnavi.bims.system.pojo.RoleDTO;
+import com.ccicnavi.bims.system.pojo.RoleUserDO;
+import com.ccicnavi.bims.system.pojo.UserDO;
 
 import java.util.List;
 
@@ -48,4 +50,13 @@ public interface RoleService {
      * @throws Exception
      */
     public RoleDO getRole(RoleDO role);
+
+    /*
+    * 根据用户UUID查询所有角色UUID
+    * @Author zhaotao
+    * @Date  2018/11/19 11:20
+    * @Param [userDO]
+    * @return java.util.List<java.lang.String>
+    **/
+    public List<RoleUserDO> listRoleByUser(UserDO userDO);
 }

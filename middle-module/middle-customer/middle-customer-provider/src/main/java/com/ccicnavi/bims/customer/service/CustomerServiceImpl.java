@@ -49,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public int saveCustomer(CustomerDO customer) {
         try {
-            return customerDao.saveCustomer(customer);
+            return customerDao.saveCustomer(customer,null);
         } catch (Exception e) {
             log.error("保存客户信息失败~", e);
             return 0;
@@ -61,7 +61,7 @@ public class CustomerServiceImpl implements CustomerService {
         try {
             if (!StringUtils.isEmpty(customer.getCustUuid()) && customer.getCustUuid() != "") {
                 customer.setUuids(customer.getCustUuid().split(","));
-                Integer insertCustomer = customerDao.removeCustomer(customer);//删除客户基本信息
+                Integer insertCustomer = customerDao.removeCustomer(customer,null);//删除客户基本信息
                 customerExtDao.removeCustomerExt(customer);//删除客户注册信息
                 if (insertCustomer > 0) {
                     return insertCustomer;
@@ -76,7 +76,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public int updateCustomer(CustomerDO customer) {
         try {
-            return customerDao.updateCustomer(customer);
+            return customerDao.updateCustomer(customer,null);
         } catch (Exception e) {
             log.error("修改客户信息失败~", e);
             return 0;

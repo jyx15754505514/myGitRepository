@@ -1,6 +1,6 @@
 package com.ccicnavi.bims.shiba.api;
 
-public interface  StringTemplate {
+public interface StringTemplate {
 
     /**
      * 添加String类型的缓存
@@ -8,7 +8,7 @@ public interface  StringTemplate {
      * @param key
      * @param value
      */
-    void add(Object key,String value);
+    void set(Object key, Object value);
 
     /**
      * 根据key查询缓存
@@ -24,7 +24,7 @@ public interface  StringTemplate {
      * @param key
      * @return
      */
-    Object getSn(Object key,long start,long end);
+    Object getSn(Object key, long start, long end);
 
 
     /**
@@ -42,5 +42,31 @@ public interface  StringTemplate {
      * @return
      */
     Boolean hasKey(Object key);
+
+    /**
+     * 查看缓存大小
+     *
+     * @param key
+     * @return
+     */
+    Long size(Object key);
+
+    /**
+     * 在原有的值基础上新增字符串到末尾
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    Integer append(Object key, String value);
+
+    /**
+     * 获取原来key键对应的值并重新赋新值
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    Object getAndSet(Object key, Object value);
 
 }

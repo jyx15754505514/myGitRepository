@@ -1,0 +1,312 @@
+-- [listOrderInfo]
+    order_uuid orderUuid,
+    prod_catalog_uuid prodCatalogUuid,
+    product_category_id productCategoryId,
+    order_no orderNo,
+    order_name orderName,
+    order_date orderDate,
+    order_crm_no orderCrmNo,
+    order_area_id orderAreaId,
+    crm_uuid crmUuid,
+    crm_name crmName,
+    crm_linkman crmLinkman,
+    crm_contract_no crmContractNo,
+    order_item_name orderItemName,
+    order_item_type orderItemType,
+    order_item_spec orderItemSpec,
+    order_item_qty orderItemQty,
+    order_item_qty_unit orderItemQtyUnit,
+    use_std_name useStdName,
+    use_std_uuid useStdUuid,
+    total_fee totalFee,
+    status_uuid statusUuid,
+    is_internal isInternal,
+    source_org_uuid sourceOrgUuid,
+    source_org_name sourceOrgName,
+    plan_inspect_date planInspectDate,
+    plan_inspect_addr planInspectAddr,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName
+from
+    order_info
+where
+    is_deleted = 'N'
+
+-- [getOrderInfo]
+    order_uuid orderUuid,
+    prod_catalog_uuid prodCatalogUuid,
+    product_category_id productCategoryId,
+    order_no orderNo,
+    order_name orderName,
+    order_date orderDate,
+    order_crm_no orderCrmNo,
+    order_area_id orderAreaId,
+    crm_uuid crmUuid,
+    crm_name crmName,
+    crm_linkman crmLinkman,
+    crm_contract_no crmContractNo,
+    order_item_name orderItemName,
+    order_item_type orderItemType,
+    order_item_spec orderItemSpec,
+    order_item_qty orderItemQty,
+    order_item_qty_unit orderItemQtyUnit,
+    use_std_name useStdName,
+    use_std_uuid useStdUuid,
+    total_fee totalFee,
+    status_uuid statusUuid,
+    is_internal isInternal,
+    source_org_uuid sourceOrgUuid,
+    source_org_name sourceOrgName,
+    plan_inspect_date planInspectDate,
+    plan_inspect_addr planInspectAddr,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName
+from
+    order_info
+where
+    is_deleted = 'N'
+--iff orderUuid != null and orderUuid != ''
+and order_uuid = '#orderUuid#'
+--iff orderUuidList != null
+and order_uuid in
+-- for item=item index=index collection=orderUuidList open=( separator=, close=)
+    '#item#'
+-- end
+
+-- [insertOrderInfo]
+    insert into order_info
+    --trim prefix=( suffix=) suffixOverrides=,
+      --iff orderUuid != null
+        order_uuid,
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid,
+      --iff productCategoryId != null
+        product_category_id,
+      --iff orderNo != null
+        order_no,
+      --iff orderName != null
+        order_name,
+      --iff orderDate != null
+        order_date,
+      --iff orderCrmNo != null
+        order_crm_no,
+      --iff orderAreaId != null
+        order_area_id,
+      --iff crmUuid != null
+        crm_uuid,
+      --iff crmName != null
+        crm_name,
+      --iff crmLinkman != null
+        crm_linkman,
+      --iff crmContractNo != null
+        crm_contract_no,
+      --iff orderItemName != null
+        order_item_name,
+      --iff orderItemType != null
+        order_item_type,
+      --iff orderItemSpec != null
+        order_item_spec,
+      --iff orderItemQty != null
+        order_item_qty,
+      --iff orderItemQtyUnit != null
+        order_item_qty_unit,
+      --iff useStdName != null
+        use_std_name,
+      --iff useStdUuid != null
+        use_std_uuid,
+      --iff totalFee != null
+        total_fee,
+      --iff statusUuid != null
+        status_uuid,
+      --iff isInternal != null
+        is_internal,
+      --iff sourceOrgUuid != null
+        source_org_uuid,
+      --iff sourceOrgName != null
+        source_org_name,
+      --iff planInspectDate != null
+        plan_inspect_date,
+      --iff planInspectAddr != null
+        plan_inspect_addr,
+      --iff comments != null
+        comments,
+      --iff isDeleted != null
+        is_deleted,
+      --iff createdTime != null
+        created_time,
+      --iff createdUuid != null
+        created_uuid,
+      --iff createdName != null
+        created_name,
+      --iff updatedTime != null
+        updated_time,
+      --iff updatedName != null
+        updated_name
+    --end
+    --trim prefix=values ( suffix=) suffixOverrides=,
+      --iff orderUuid != null
+        '#orderUuid#',
+      --iff prodCatalogUuid != null
+        '#prodCatalogUuid#',
+      --iff productCategoryId != null
+        '#productCategoryId#',
+      --iff orderNo != null
+        '#orderNo#',
+      --iff orderName != null
+        '#orderName#',
+      --iff orderDate != null
+        '#orderDate#',
+      --iff orderCrmNo != null
+        '#orderCrmNo#',
+      --iff orderAreaId != null
+        '#orderAreaId#',
+      --iff crmUuid != null
+        '#crmUuid#',
+      --iff crmName != null
+        '#crmName#',
+      --iff crmLinkman != null
+        '#crmLinkman#',
+      --iff crmContractNo != null
+        '#crmContractNo#',
+      --iff orderItemName != null
+        '#orderItemName#',
+      --iff orderItemType != null
+        '#orderItemType#',
+      --iff orderItemSpec != null
+        '#orderItemSpec#',
+      --iff orderItemQty != null
+        '#orderItemQty#',
+      --iff orderItemQtyUnit != null
+        '#orderItemQtyUnit#',
+      --iff useStdName != null
+        '#useStdName#',
+      --iff useStdUuid != null
+        '#useStdUuid#',
+      --iff totalFee != null
+        '#totalFee#',
+      --iff statusUuid != null
+        '#statusUuid#',
+      --iff isInternal != null
+        '#isInternal#',
+      --iff sourceOrgUuid != null
+        '#sourceOrgUuid#',
+      --iff sourceOrgName != null
+        '#sourceOrgName#',
+      --iff planInspectDate != null
+        '#planInspectDate#',
+      --iff planInspectAddr != null
+        '#planInspectAddr#',
+      --iff comments != null
+        '#comments#',
+      --iff isDeleted != null
+        '#isDeleted#',
+      --iff createdTime != null
+        '#createdTime#',
+      --iff createdUuid != null
+        '#createdUuid#',
+      --iff createdName != null
+        '#createdName#',
+      --iff updatedTime != null
+        '#updatedTime#',
+      --iff updatedName != null
+        '#updatedName#'
+    --end
+
+-- [updateOrderInfo]
+    update order_info
+    -- trim prefix= set suffixOverrides=,
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
+      --iff productCategoryId != null
+        product_category_id = '#productCategoryId#',
+      --iff orderNo != null
+        order_no = '#orderNo#',
+      --iff orderName != null
+        order_name = '#orderName#',
+      --iff orderDate != null
+        order_date = '#orderDate#',
+      --iff orderCrmNo != null
+        order_crm_no = '#orderCrmNo#',
+      --iff orderAreaId != null
+        order_area_id = '#orderAreaId#',
+      --iff crmUuid != null
+        crm_uuid = '#crmUuid#',
+      --iff crmName != null
+        crm_name = '#crmName#',
+      --iff crmLinkman != null
+        crm_linkman = '#crmLinkman#',
+      --iff crmContractNo != null
+        crm_contract_no = '#crmContractNo#',
+      --iff orderItemName != null
+        order_item_name = '#orderItemName#',
+      --iff orderItemType != null
+        order_item_type = '#orderItemType#',
+      --iff orderItemSpec != null
+        order_item_spec = '#orderItemSpec#',
+      --iff orderItemQty != null
+        order_item_qty = '#orderItemQty#',
+      --iff orderItemQtyUnit != null
+        order_item_qty_unit = '#orderItemQtyUnit#',
+      --iff useStdName != null
+        use_std_name = '#useStdName#',
+      --iff useStdUuid != null
+        use_std_uuid = '#useStdUuid#',
+      --iff totalFee != null
+        total_fee = '#totalFee#',
+      --iff statusUuid != null
+        status_uuid = '#statusUuid#',
+      --iff isInternal != null
+        is_internal = '#isInternal#',
+      --iff sourceOrgUuid != null
+        source_org_uuid = '#sourceOrgUuid#',
+      --iff sourceOrgName != null
+        source_org_name = '#sourceOrgName#',
+      --iff planInspectDate != null
+        plan_inspect_date = '#planInspectDate#',
+      --iff planInspectAddr != null
+        plan_inspect_addr = '#planInspectAddr#',
+      --iff comments != null
+        comments = '#comments#',
+      --iff isDeleted != null
+        is_deleted = '#isDeleted#',
+      --iff createdTime != null
+        created_time = '#createdTime#',
+      --iff createdUuid != null
+        created_uuid = '#createdUuid#',
+      --iff createdName != null
+        created_name = '#createdName#',
+      --iff updatedTime != null
+        updated_time = '#updatedTime#',
+      --iff updatedName != null
+        updated_name = '#updatedName#'
+    -- end
+where
+    is_deleted = 'N'
+    and order_uuid = '#orderUuid#'
+-- end
+
+-- [deleteOrderInfo]
+UPDATE
+    order_info
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'.
+-- end
+WHERE
+	is_deleted = 'N'
+--iff orderUuid != null and orderUuid != ''
+and order_uuid = '#orderUuid#'
+--iff orderUuidList != null
+and order_uuid in
+-- for item=item index=index collection=orderUuidList open=( separator=, close=)
+    '#item#'
+-- end

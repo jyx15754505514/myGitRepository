@@ -28,18 +28,30 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public int saveCustomer(CustomerDO customer) throws Exception{
-        return new Eql().insert("insertCustomer").params(customer).returnType(int.class).execute();
+    public int saveCustomer(CustomerDO customer,EqlTran tran) throws Exception{
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertCustomer").params(customer).returnType(int.class).execute();
     }
 
     @Override
-    public int removeCustomer(CustomerDO customer) throws Exception{
-        return new Eql().update("deleteCustomer").params(customer).returnType(int.class).execute();
+    public int removeCustomer(CustomerDO customer,EqlTran tran) throws Exception{
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("deleteCustomer").params(customer).returnType(int.class).execute();
     }
 
     @Override
-    public int updateCustomer(CustomerDO customer) throws Exception{
-        return new Eql().update("updateCustomer").params(customer).returnType(int.class).execute();
+    public int updateCustomer(CustomerDO customer,EqlTran tran) throws Exception{
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("updateCustomer").params(customer).returnType(int.class).execute();
     }
 
     @Override
@@ -49,7 +61,11 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public int saveCustomerAndExt(CustomerDTO customerDTO, EqlTran tran) throws Exception {
-        return new Eql().useTran(tran).insert("insertCustomer").params(customerDTO).returnType(int.class).execute();
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertCustomer").params(customerDTO).returnType(int.class).execute();
     }
 
 

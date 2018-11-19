@@ -16,13 +16,13 @@ public interface CustomerDao {
     List<CustomerDO> listCustomer(CustomerDO customer) throws Exception;
 
     /**新增客户信息*/
-    int saveCustomer(CustomerDO customer) throws Exception;
+    int saveCustomer(CustomerDO customer,EqlTran tran) throws Exception;
 
     /**删除客户信息*/
-    int removeCustomer(CustomerDO customer) throws Exception;
+    int removeCustomer(CustomerDO customer,EqlTran tran) throws Exception;
 
     /**修改客户信息*/
-    int updateCustomer(CustomerDO customer) throws Exception;
+    int updateCustomer(CustomerDO customer,EqlTran tran) throws Exception;
 
     /**根据主键查询对应信息*/
     CustomerDO getCustomer(CustomerDO customer) throws Exception;

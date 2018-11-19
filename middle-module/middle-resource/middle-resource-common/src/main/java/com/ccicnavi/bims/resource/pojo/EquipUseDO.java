@@ -29,7 +29,7 @@ public class EquipUseDO implements Serializable {
 
     private Date backDate;
 
-    private String businessLine;
+    private String prodCatalogPuid;
 
     private String comments;
 

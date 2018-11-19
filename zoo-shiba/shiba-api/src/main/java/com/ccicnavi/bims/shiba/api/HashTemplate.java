@@ -65,7 +65,7 @@ public interface HashTemplate {
     Long size(Object key);
 
     /**
-     * 查询key缓存中map的多个key
+     * 查询key缓存中指定map的key的value集合
      *
      * @param key
      * @param keys

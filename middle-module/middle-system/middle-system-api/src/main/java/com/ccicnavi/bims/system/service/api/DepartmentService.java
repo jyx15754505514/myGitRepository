@@ -3,6 +3,10 @@ package com.ccicnavi.bims.system.service.api;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.DepartmentDO;
+import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDeptDO;
+
+import java.util.List;
 
 /**
  *@program: bims-backend
@@ -45,4 +49,13 @@ public interface DepartmentService {
      * @return
      */
     public DepartmentDO getDepartment(DepartmentDO departmentDO);
+
+    /*
+    * 根据用户的UUID查询所有的部门信息
+    * @Author zhaotao
+    * @Date  2018/11/19 11:20
+    * @Param [userDO]
+    * @return java.util.List<com.ccicnavi.bims.system.pojo.DepartmentDO>
+    **/
+    List<UserDeptDO> listDeptByUser(UserDO userDO);
 }
