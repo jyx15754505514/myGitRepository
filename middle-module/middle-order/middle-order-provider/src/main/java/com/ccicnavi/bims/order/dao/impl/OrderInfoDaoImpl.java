@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /* *
  * @Author MengZiJie
- * @Description 日志管理
+ * @Description 委托单
  * @Date 16:28 2018/11/14
  */
 @Service
