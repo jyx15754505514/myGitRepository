@@ -26,18 +26,30 @@ public class CustomerExtDaoImpl implements CustomerExtDao {
     }
 
     @Override
-    public int saveCustomerExt(CustomerExtDO customerExt) {
-        return new Eql().insert("insertCustomerExt").params(customerExt).returnType(int.class).execute();
+    public int saveCustomerExt(CustomerExtDO customerExt,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertCustomerExt").params(customerExt).returnType(int.class).execute();
     }
 
     @Override
-    public int removeCustomerExt(CustomerDO customerDO) {
-        return new Eql().update("deleteCustomerExt").params(customerDO).returnType(int.class).execute();
+    public int removeCustomerExt(CustomerDO customerDO,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("deleteCustomerExt").params(customerDO).returnType(int.class).execute();
     }
 
     @Override
-    public int updateCustomerExt(CustomerExtDO customerExt) {
-        return new Eql().update("updateCustomerExt").params(customerExt).returnType(int.class).execute();
+    public int updateCustomerExt(CustomerExtDO customerExt,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("updateCustomerExt").params(customerExt).returnType(int.class).execute();
     }
 
     @Override
@@ -47,7 +59,11 @@ public class CustomerExtDaoImpl implements CustomerExtDao {
 
     @Override
     public int saveCustomerAndExt(CustomerDTO customerDTO, EqlTran tran) {
-        return new Eql().insert("insertCustomerExt").useTran(tran).params(customerDTO).returnType(int.class).execute();
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertCustomerExt").params(customerDTO).returnType(int.class).execute();
     }
 
 

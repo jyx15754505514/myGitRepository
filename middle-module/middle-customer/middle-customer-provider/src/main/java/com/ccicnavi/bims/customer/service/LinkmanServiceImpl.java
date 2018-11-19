@@ -38,7 +38,7 @@ public class LinkmanServiceImpl implements LinkmanService {
     @Override
     public int saveLinkman(LinkmanDO linkmanDO) {
         try {
-            return linkmanDao.saveLinkman(linkmanDO);
+            return linkmanDao.saveLinkman(linkmanDO,null);
         } catch (Exception e) {
             log.error("保存客户联系人信息失败~", e);
             return 0;
@@ -48,10 +48,7 @@ public class LinkmanServiceImpl implements LinkmanService {
     @Override
     public int removeLinkman(LinkmanDO linkmanDO) {
         try {
-            if (!StringUtils.isEmpty(linkmanDO.getLinkmanUuid())) {
-                linkmanDO.setUuids(linkmanDO.getLinkmanUuid().split(","));
-                return linkmanDao.removeLinkman(linkmanDO);
-            }
+            return linkmanDao.removeLinkman(linkmanDO,null);
         } catch (Exception e) {
             log.error("删除客户联系人信息失败~", e);
         }
@@ -61,7 +58,7 @@ public class LinkmanServiceImpl implements LinkmanService {
     @Override
     public int updateLinkman(LinkmanDO linkmanDO) {
         try {
-            return linkmanDao.updateLinkman(linkmanDO);
+            return linkmanDao.updateLinkman(linkmanDO,null);
         } catch (Exception e) {
             log.error("修改客户联系人信息失败~", e);
             return 0;
@@ -73,7 +70,7 @@ public class LinkmanServiceImpl implements LinkmanService {
         try {
             return linkmanDao.getLinkman(linkmanDO);
         } catch (Exception e) {
-            log.debug("根据主键查询客户联系人信息失败~", e);
+            log.error("根据主键查询客户联系人信息失败~", e);
             return null;
         }
     }

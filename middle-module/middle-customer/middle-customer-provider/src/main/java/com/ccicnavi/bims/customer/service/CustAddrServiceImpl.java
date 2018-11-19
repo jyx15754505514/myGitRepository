@@ -31,7 +31,7 @@ public class CustAddrServiceImpl implements CustAddrService {
         try {
               return custAddrDao.listCustAddr(custAddr);
         } catch (Exception e) {
-              log.error("查询客户地址失败",e);
+              log.error("查询客户地址信息失败",e);
               return null;
         }
     }
@@ -41,7 +41,7 @@ public class CustAddrServiceImpl implements CustAddrService {
         try {
             return custAddrDao.saveCustAddr(custAddr,null);
         } catch (Exception e) {
-            log.error("保存客户地址失败",e);
+            log.error("保存客户地址信息失败",e);
             return 0;
         }
 
@@ -50,14 +50,11 @@ public class CustAddrServiceImpl implements CustAddrService {
     @Override
     public int removeCustAddr(CustAddrDO custAddr) {
         try {
-            if(!StringUtils.isEmpty(custAddr.getAddrUuid())){
-                custAddr.setUuids(custAddr.getAddrUuid().split(","));
-                return custAddrDao.removeCustAddr(custAddr,null);
-            }
+            return custAddrDao.removeCustAddr(custAddr,null);
         } catch (Exception e) {
-            log.error("删除客户地址失败",e);
-        }
+            log.error("删除客户地址信息失败",e);
             return 0;
+        }
     }
 
     @Override
@@ -65,7 +62,7 @@ public class CustAddrServiceImpl implements CustAddrService {
         try {
             return custAddrDao.updateCustAddr(custAddr,null);
         } catch (Exception e) {
-            log.error("修改客户地址失败",e);
+            log.error("修改客户地址信息失败",e);
             return 0;
         }
     }
@@ -75,7 +72,7 @@ public class CustAddrServiceImpl implements CustAddrService {
         try {
             return custAddrDao.getCustAddr(custAddrDO);
         } catch (Exception e) {
-            log.error("根据主键查询客户地址失败",e);
+            log.error("根据主键查询客户地址信息失败",e);
             return null;
         }
     }
@@ -90,7 +87,7 @@ public class CustAddrServiceImpl implements CustAddrService {
         try {
             return custAddrDao.listCustAddrPage(pageParameter);
         } catch (Exception e) {
-            log.error("服务端客户地址分页查询失败");
+            log.error("客户地址信息查询失败");
             return null;
         }
     }

@@ -19,13 +19,13 @@ public interface CustomerExtDao {
     List<CustomerExtDO> listCustomerExt(CustomerExtDO CustomerExt) ;
 
     /**新增客户注册信息信息*/
-    int saveCustomerExt(CustomerExtDO CustomerExt) ;
+    int saveCustomerExt(CustomerExtDO CustomerExt,EqlTran tran) ;
 
     /**删除客户注册信息信息*/
-    int removeCustomerExt(CustomerDO customerDO);
+    int removeCustomerExt(CustomerDO customerDO,EqlTran tran);
 
     /**修改客户注册信息信息*/
-    int updateCustomerExt(CustomerExtDO CustomerExt);
+    int updateCustomerExt(CustomerExtDO CustomerExt,EqlTran tran);
 
     /**根据主键查询对应客户注册信息*/
     CustomerExtDO getCustomerExt(CustomerExtDO CustomerExt) ;
