@@ -58,5 +58,5 @@ public interface RoleService {
     * @Param [userDO]
     * @return java.util.List<java.lang.String>
     **/
-    public List<RoleDO> listRoleByUser(UserDO userDO);
+    public List<RoleUserDO> listRoleByUser(UserDO userDO);
 }
