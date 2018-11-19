@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.system.service;
+package com.ccicnavi.bims.order.pojo;
 import java.util.Date;
 
 

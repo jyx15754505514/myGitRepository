@@ -5,6 +5,8 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.RoleDO;
 import com.ccicnavi.bims.system.pojo.RoleDTO;
+import com.ccicnavi.bims.system.pojo.RoleUserDO;
+import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.service.api.RoleService;
 import com.ccicnavi.bims.system.dao.RoleDao;
 import lombok.extern.slf4j.Slf4j;
@@ -77,9 +79,23 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
-
-
-
-
+    /**
+    *@Description: 根据用户UUID获取所有角色UUID
+    *@Param: [userDO]
+    *@return: com.ccicnavi.bims.system.pojo.RoleUserDO
+    *@Author: zhangpengwei
+    *@date: 2018/11/19
+    */
+    @Override
+    public List<RoleUserDO> listRoleByUser(UserDO userDO){
+        List<RoleUserDO> roleDOList = null;
+        try {
+            roleDOList = roleDao.listRoleByUser(userDO);
+            return roleDOList;
+        } catch (Exception e) {
+            log.error("查询用户角色UUID失败",e);
+            return roleDOList;
+        }
+    }
 
 }

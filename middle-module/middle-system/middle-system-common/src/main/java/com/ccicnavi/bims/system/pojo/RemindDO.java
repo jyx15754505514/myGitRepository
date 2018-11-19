@@ -51,7 +51,7 @@ public class RemindDO implements Serializable {
 
     private String appSysUuid;//应用系统id
 
-    private String businessLine;//产品线类型
+    private String prodCatalogUuid;//产品线类型
 
     private String extend1;//预留字段1
 

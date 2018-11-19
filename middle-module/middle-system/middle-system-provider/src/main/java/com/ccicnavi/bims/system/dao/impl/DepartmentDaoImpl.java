@@ -6,6 +6,8 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.DepartmentDao;
 import com.ccicnavi.bims.system.pojo.DepartmentDO;
+import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDeptDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
@@ -89,6 +91,23 @@ public class DepartmentDaoImpl implements DepartmentDao {
     @Override
     public DepartmentDO getDepartment(DepartmentDO departmentDO){
         return new Eql().selectFirst("getDepartment").params(departmentDO).returnType(DepartmentDO.class).execute();
+    }
+
+    /**
+    *@Description: 根据用户的UUID查询所有的部门信息
+    *@Param: [userDO]
+    *@return: java.util.List<com.ccicnavi.bims.system.pojo.UserDeptDO>
+    *@Author: zhangpengwei
+    *@date: 2018/11/19
+    */
+    @Override
+    public List<UserDeptDO> listDeptByUser(UserDO userDO){
+        List<UserDeptDO> userDeptDOList = null;
+        if(userDeptDOList != null) {
+            return  new Eql().select("listDeptByUser").params(userDO).returnType(UserDeptDO.class).execute();
+        }else {
+            return null;
+        }
     }
 
 }

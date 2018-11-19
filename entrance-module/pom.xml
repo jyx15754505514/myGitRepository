@@ -19,6 +19,7 @@
         <module>entrance-customer-web</module>
         <module>entrance-system-web</module>
         <module>entrance-resource-web</module>
+        <module>entrance-common</module>
     </modules>
 
 </project>

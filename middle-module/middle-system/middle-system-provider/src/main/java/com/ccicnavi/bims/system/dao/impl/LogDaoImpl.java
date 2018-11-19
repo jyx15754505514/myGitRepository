@@ -25,8 +25,8 @@ public class LogDaoImpl implements LogDao {
      * @Author MengZiJie
      * @Description 查询日志
      * @Date 16:28 2018/11/14
-     * @Param [logDO]
-     * @Return java.util.List<com.ccicnavi.bims.system.pojo.LogDO>
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.system.pojo.LogDTO>
      */
     @Override
     public PageBean<LogDTO> listLog(PageParameter<LogDTO> pageParameter) {
@@ -39,8 +39,8 @@ public class LogDaoImpl implements LogDao {
      * @Author MengZiJie
      * @Description 获取指定日志
      * @Date 16:31 2018/11/14
-     * @Param [logDO]
-     * @Return com.ccicnavi.bims.system.pojo.LogDO
+     * @Param [logDTO]
+     * @Return com.ccicnavi.bims.system.pojo.LogDTO
      */
     @Override
     public LogDTO getLog(LogDTO logDTO) {
@@ -51,7 +51,7 @@ public class LogDaoImpl implements LogDao {
      * @Author MengZiJie
      * @Description 添加日志
      * @Date 16:34 2018/11/14
-     * @Param [logDO]
+     * @Param [logDTO]
      * @Return int
      */
     @Override
@@ -63,7 +63,7 @@ public class LogDaoImpl implements LogDao {
      * @Author MengZiJie
      * @Description 更新日志
      * @Date 16:35 2018/11/14
-     * @Param [logDO]
+     * @Param [logDTO]
      * @Return int
      */
     @Override
@@ -75,7 +75,7 @@ public class LogDaoImpl implements LogDao {
      * @Author MengZiJie
      * @Description 删除日志
      * @Date 16:37 2018/11/14
-     * @Param [logDO]
+     * @Param [logDTO]
      * @Return int
      */
     @Override

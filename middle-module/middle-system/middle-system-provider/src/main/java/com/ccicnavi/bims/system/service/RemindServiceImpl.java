@@ -42,7 +42,7 @@ public class RemindServiceImpl implements RemindService {
     @Override
     public Integer insertRemind(RemindDO remind){
         try {
-           Integer num =  sysRemindDao.insertRemind(remind);
+           Integer num =  sysRemindDao.insertRemind(remind,null);
             return num;
         }catch (Exception e) {
             log.error("新增提醒设置失败", e);
@@ -53,7 +53,7 @@ public class RemindServiceImpl implements RemindService {
     @Override
     public Integer updateRemind(RemindDO remind){
         try {
-            Integer num = sysRemindDao.updateRemind(remind);
+            Integer num = sysRemindDao.updateRemind(remind,null);
             return num;
         }catch (Exception e) {
             log.error("修改提醒设置失败", e);
@@ -64,7 +64,7 @@ public class RemindServiceImpl implements RemindService {
     @Override
     public Integer deleteRemind(RemindDO remind){
         try {
-            Integer num = sysRemindDao.deleteRemind(remind);
+            Integer num = sysRemindDao.deleteRemind(remind,null);
              return num;
         }catch (Exception e) {
             log.error("删除提醒设置失败", e);
@@ -90,6 +90,17 @@ public class RemindServiceImpl implements RemindService {
         } catch (Exception e) {
             log.error("根据条件查询设置提醒失败", e);
             return null;
+        }
+    }
+
+    @Override
+    public List<RemindDO> listRemindList(RemindDO remind) {
+
+        try {
+            return sysRemindDao.listRemindList(remind);
+        } catch (Exception e) {
+            log.error("根据条件查询设置提醒失败", e);
+           return null;
         }
     }
 }
