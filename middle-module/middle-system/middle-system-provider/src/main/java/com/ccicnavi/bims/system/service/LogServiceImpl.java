@@ -13,6 +13,7 @@ import com.ccicnavi.bims.system.pojo.LogDTO;
 import com.ccicnavi.bims.system.service.api.LogService;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
+import org.n3r.eql.util.Closes;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 /* *
@@ -68,7 +69,6 @@ public class LogServiceImpl implements LogService {
             }
         } catch (Exception e) {
             log.error("获取日志失败",e);
-            e.printStackTrace();
         }
         return ResultT.failure(ResultCode.GET_FAILURE);
     }
@@ -96,6 +96,8 @@ public class LogServiceImpl implements LogService {
         } catch (Exception e) {
             log.error("添加日志失败",e);
             aDefault.rollback();
+        } finally {
+            Closes.closeQuietly(aDefault);
         }
         return ResultT.failure(ResultCode.ADD_FAILURE);
     }
@@ -122,7 +124,9 @@ public class LogServiceImpl implements LogService {
             }
         } catch (Exception e) {
             log.error("更新日志失败",e);
-            e.printStackTrace();
+            aDefault.rollback();
+        } finally {
+            Closes.closeQuietly(aDefault);
         }
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
@@ -149,7 +153,9 @@ public class LogServiceImpl implements LogService {
             }
         } catch (Exception e) {
             log.error("删除日志失败",e);
-            e.printStackTrace();
+            aDefault.rollback();
+        } finally {
+            Closes.closeQuietly(aDefault);
         }
         return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
