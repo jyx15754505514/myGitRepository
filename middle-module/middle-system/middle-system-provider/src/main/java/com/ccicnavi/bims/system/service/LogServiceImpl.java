@@ -87,8 +87,8 @@ public class LogServiceImpl implements LogService {
         Integer countLogDetail = null;
         try {
             aDefault.start();
-            countLog = logDao.insertLog(logDTO);
-            countLogDetail = logDetailDao.insertLogDetail(logDTO);
+            countLog = logDao.insertLog(logDTO,aDefault);
+            countLogDetail = logDetailDao.insertLogDetail(logDTO,aDefault);
             if(countLog > 0 && countLogDetail >0){
                 aDefault.commit();
                 return ResultT.success();
@@ -116,8 +116,8 @@ public class LogServiceImpl implements LogService {
         Integer countLogDetail = null;
         try {
             aDefault.start();
-            countLog = logDao.updateLog(logDTO);
-            countLogDetail = logDetailDao.updateLogDetail(logDTO);
+            countLog = logDao.updateLog(logDTO,aDefault);
+            countLogDetail = logDetailDao.updateLogDetail(logDTO,aDefault);
             if(countLog > 0 && countLogDetail >0){
                 aDefault.commit();
                 return ResultT.success();
@@ -145,8 +145,8 @@ public class LogServiceImpl implements LogService {
         Integer countLogDetail = null;
         try {
             aDefault.start();
-            countLog = logDao.deleteLog(logDTO);
-            countLogDetail = logDetailDao.deleteLogDetail(logDTO);
+            countLog = logDao.deleteLog(logDTO,aDefault);
+            countLogDetail = logDetailDao.deleteLogDetail(logDTO,aDefault);
             if(countLog > 0 && countLogDetail > 0){
                 aDefault.commit();
                 return ResultT.success();
