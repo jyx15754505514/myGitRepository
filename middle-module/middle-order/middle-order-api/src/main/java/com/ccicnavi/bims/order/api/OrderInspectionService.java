@@ -9,8 +9,8 @@ import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 public interface OrderInspectionService {
 
     /**新增运输方式*/
-    Integer insertOrderShipment(OrderInfoDTO orderInfoDTO);
+    Integer insertOrderInspection(OrderInfoDTO orderInfoDTO);
     /**更新运输方式*/
-    Integer updateOrderShipment(OrderInfoDTO orderInfoDTO);
+    Integer updateOrderInspection(OrderInfoDTO orderInfoDTO);
 
 }

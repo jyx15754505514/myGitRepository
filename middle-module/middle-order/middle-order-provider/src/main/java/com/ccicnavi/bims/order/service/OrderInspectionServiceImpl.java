@@ -1,8 +1,8 @@
 package com.ccicnavi.bims.order.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.ccicnavi.bims.order.api.OrderShipmentService;
-import com.ccicnavi.bims.order.dao.OrderShipmentDao;
+import com.ccicnavi.bims.order.api.OrderInspectionService;
+import com.ccicnavi.bims.order.dao.OrderInspectionDao;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Slf4j
 @Service
-public class OrderShipmentServiceImpl implements OrderShipmentService {
+public class OrderInspectionServiceImpl implements OrderInspectionService {
     @Autowired
-    private OrderShipmentDao orderShipmentDao;
+    private OrderInspectionDao orderInspectionDao;
     /* *
      * @Author heibin
      * @Description 委托单运输方式添加
@@ -26,11 +26,11 @@ public class OrderShipmentServiceImpl implements OrderShipmentService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertOrderShipment(OrderInfoDTO orderInfoDTO) {
+    public Integer insertOrderInspection(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
         Integer integer = null;
         try {
-            integer = orderShipmentDao.insertOrderShipment(orderInfoDTO, eqlTran);
+            integer = orderInspectionDao.insertOrderInspection(orderInfoDTO, eqlTran);
         } catch (Exception e) {
             log.error("添加委托单运输方式失败",e);
         }
@@ -45,11 +45,11 @@ public class OrderShipmentServiceImpl implements OrderShipmentService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer updateOrderShipment(OrderInfoDTO orderInfoDTO) {
+    public Integer updateOrderInspection(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
         Integer integer = null;
         try {
-            integer = orderShipmentDao.updateOrderShipment(orderInfoDTO, eqlTran);
+            integer = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
         } catch (Exception e) {
             log.error("更新委托单运输方式失败",e);
         }

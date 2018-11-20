@@ -10,7 +10,7 @@ import com.ccicnavi.bims.order.api.OrderInfoService;
 import com.ccicnavi.bims.order.dao.OrderInfoDao;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
 import com.ccicnavi.bims.order.dao.OrderItemSubDao;
-import com.ccicnavi.bims.order.dao.OrderShipmentDao;
+import com.ccicnavi.bims.order.dao.OrderInspectionDao;
 import com.ccicnavi.bims.order.pojo.OrderInfoDO;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
@@ -35,7 +35,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     private OrderInfoDao orderInfoDao;
 
     @Autowired
-    private OrderShipmentDao orderShipmentDao;
+    private OrderInspectionDao orderInspectionDao;
 
     @Autowired
     private OrderItemDao orderItemDao;
@@ -112,7 +112,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             eqlTran.start();
             if(orderInfoDTO.getOrderUuid() != null && !orderInfoDTO.getOrderUuid().equals("")){
                 //更新委托单运输信息
-                shipment = orderShipmentDao.updateOrderShipment(orderInfoDTO, eqlTran);
+                shipment = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
                 List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
                 if(orderItemDTO.size() > 0){
                     for (int i = 0; i < orderItemDTO.size(); i++) {
@@ -140,7 +140,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             String shippingTypeId = idWorkerService.getId(new Date());//运输表主键
             orderInfoDTO.setShippingTypeId(shippingTypeId);
             //添加委托单运输信息
-            shipment = orderShipmentDao.insertOrderShipment(orderInfoDTO,eqlTran);
+            shipment = orderInspectionDao.insertOrderInspection(orderInfoDTO,eqlTran);
             List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
             if(orderItemDTO.size() > 0){
                 for (int i = 0; i < orderItemDTO.size(); i++) {

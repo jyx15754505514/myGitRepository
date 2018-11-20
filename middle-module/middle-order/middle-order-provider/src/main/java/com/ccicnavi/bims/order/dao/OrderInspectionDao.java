@@ -9,11 +9,11 @@ import org.n3r.eql.EqlTran;
  * @Param
  * @Return
  */
-public interface OrderShipmentDao {
+public interface OrderInspectionDao {
 
     /**新增运输方式*/
-    Integer insertOrderShipment(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
+    Integer insertOrderInspection(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
     /**更新运输方式*/
-    Integer updateOrderShipment(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
+    Integer updateOrderInspection(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
 
 }
