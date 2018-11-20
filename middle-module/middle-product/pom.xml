@@ -5,11 +5,17 @@
 
     <groupId>com.ccicnavi.bims</groupId>
     <artifactId>middle-product</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <name>middle-product</name>
     <description>产品中心</description>
+
+    <parent>
+        <artifactId>middle-module</artifactId>
+        <groupId>com.ccicnavi.bims</groupId>
+        <version>1.0</version>
+    </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
