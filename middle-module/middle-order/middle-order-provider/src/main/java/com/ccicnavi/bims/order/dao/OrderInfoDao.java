@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.order.dao;
 
 import com.ccicnavi.bims.order.pojo.OrderInfoDO;
+import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import org.n3r.eql.EqlTran;
 
 /* *
@@ -11,8 +12,8 @@ import org.n3r.eql.EqlTran;
 public interface OrderInfoDao {
 
     /**新增委托单信息*/
-    Integer insertOrderInfo(OrderInfoDO orderInfoDO, EqlTran tran) throws Exception;
+    Integer insertOrderInfo(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
     /**更新委托单信息*/
-    Integer updateOrderInfo(OrderInfoDO orderInfoDO, EqlTran tran) throws Exception;
+    Integer updateOrderInfo(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
 
 }

@@ -1,6 +1,6 @@
 package com.ccicnavi.bims.order.api;
 
-import com.ccicnavi.bims.order.pojo.OrderItemDO;
+import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 /* *
  * @Author MengZiJie
  * @Description 委托单服务项
@@ -9,8 +9,8 @@ import com.ccicnavi.bims.order.pojo.OrderItemDO;
 public interface OrderItemService {
 
     /**新增服务项信息*/
-    Integer insertOrderItem(OrderItemDO orderItemDO);
+    Integer insertOrderItem(OrderInfoDTO orderInfoDTO);
     /**更新服务项信息*/
-    Integer updateOrderItem(OrderItemDO orderItemDO);
+    Integer updateOrderItem(OrderInfoDTO orderInfoDTO);
 
 }

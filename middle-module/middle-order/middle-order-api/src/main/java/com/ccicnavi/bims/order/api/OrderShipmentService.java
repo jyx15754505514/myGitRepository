@@ -1,7 +1,6 @@
 package com.ccicnavi.bims.order.api;
 
-import com.ccicnavi.bims.order.pojo.OrderShipmentDO;
-
+import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 /* *
  * @Author MengZiJie
  * @Description 委托单运输方式
@@ -12,8 +11,8 @@ import com.ccicnavi.bims.order.pojo.OrderShipmentDO;
 public interface OrderShipmentService {
 
     /**新增运输方式*/
-    Integer insertOrderShipment(OrderShipmentDO orderShipmentDO);
+    Integer insertOrderShipment(OrderInfoDTO orderInfoDTO);
     /**更新运输方式*/
-    Integer updateOrderShipment(OrderShipmentDO orderShipmentDO);
+    Integer updateOrderShipment(OrderInfoDTO orderInfoDTO);
 
 }

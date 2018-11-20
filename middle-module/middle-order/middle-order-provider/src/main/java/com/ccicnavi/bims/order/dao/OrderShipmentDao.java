@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.order.dao;
 
+import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderShipmentDO;
 import org.n3r.eql.EqlTran;
 /* *
@@ -12,8 +13,8 @@ import org.n3r.eql.EqlTran;
 public interface OrderShipmentDao {
 
     /**新增运输方式*/
-    Integer insertOrderShipment(OrderShipmentDO orderShipmentDO, EqlTran tran) throws Exception;
+    Integer insertOrderShipment(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
     /**更新运输方式*/
-    Integer updateOrderShipment(OrderShipmentDO orderShipmentDO, EqlTran tran) throws Exception;
+    Integer updateOrderShipment(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
 
 }
