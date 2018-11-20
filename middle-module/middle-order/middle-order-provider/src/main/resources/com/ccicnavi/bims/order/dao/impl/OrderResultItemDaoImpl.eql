@@ -1,0 +1,85 @@
+-- [listOrderResultItem]
+SELECT
+    result_item_uuid resultItemUuid,
+        result_uuid resultUuid,
+        order_uuid orderUuid,
+        order_item_uuid orderItemUuid
+from
+    order_result_item
+where
+   1=1
+--iff resultItemUuid != null and resultItemUuid != ''
+    and result_item_uuid = '#resultItemUuid#'
+    --iff resultUuid != null and resultUuid != ''
+        and result_uuid = '#resultUuid#'
+--end
+
+-- [getOrderResultItem]
+SELECT
+    result_item_uuid resultItemUuid,
+    result_uuid resultUuid,
+    order_uuid orderUuid,
+    order_item_uuid orderItemUuid
+from
+    order_result_item
+where
+--if resultItemUuid != null and resultItemUuid !=''
+    and result_item_uuid = '#resultItemUuid#'
+--end
+
+-- [insertOrderResultItem]
+INSERT INTO order_result_item
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff resultItemUuid != null and resultItemUuid != ''
+            result_item_uuid,
+        --iff resultUuid != null and resultUuid != ''
+            result_uuid,
+        --iff orderUuid != null and orderUuid != ''
+            order_uuid,
+        --iff orderItemUuid != null and orderItemUuid != ''
+            order_item_uuid,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff resultItemUuid != null and resultItemUuid != ''
+        	'#resultItemUuid#',
+        --iff resultUuid != null and resultUuid != ''
+            '#resultUuid#',
+        --iff orderUuid != null and orderUuid != ''
+            '#orderUuid#',
+        --iff orderItemUuid != null and orderItemUuid != ''
+            '#orderItemUuid#',
+    -- end
+
+-- [updateOrderResultItem]
+UPDATE
+    order_result_item
+    -- trim prefix= set suffixOverrides=,
+        --iff resultItemUuid != null and resultItemUuid != ''
+            result_item_uuid = '#resultItemUuid#',
+        --iff resultUuid != null and resultUuid != ''
+            result_uuid = '#resultUuid#',
+        --iff orderUuid != null and orderUuid != ''
+            order_uuid = '#orderUuid#',
+        --iff orderItemUuid != null and orderItemUuid != ''
+            order_item_uuid = '#orderItemUuid#',
+    -- end
+where
+    --iff resultItemUuid != null and resultItemUuid != ''
+        and result_item_uuid = '#resultItemUuid#'
+    --iff resultItemUuids != null
+        and result_item_uuid in
+        -- for item=item index=index collection=resultItemUuids open=( separator=, close=)
+            '#item#'
+        -- end
+
+-- [deleteOrderResultItem]
+delete from
+    order_result_item
+WHERE
+    --iff resultItemUuid != null and resultItemUuid != ''
+        and result_item_uuid = '#resultItemUuid#'
+    --iff resultItemUuids != null
+        and result_item_uuid in
+        -- for item=item index=index collection=resultItemUuids open=( separator=, close=)
+            '#item#'
+        -- end

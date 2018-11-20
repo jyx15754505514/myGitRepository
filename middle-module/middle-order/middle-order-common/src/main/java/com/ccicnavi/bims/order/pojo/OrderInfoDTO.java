@@ -17,11 +17,9 @@ import java.util.List;
 @ToString
 public class OrderInfoDTO implements Serializable {
 
-    private String orderUuid;//委托单基本信息
+    private String orderUuid; //委托单基本信息
 
-    private String prodCatalogUuid;
-
-    private String productCategoryId;
+    private String productCategoryUuid;
 
     private String orderNo;
 
@@ -39,7 +37,13 @@ public class OrderInfoDTO implements Serializable {
 
     private String crmLinkman;
 
+    private String crmTelphone;
+
+    private String crmEmail;
+
     private String crmContractNo;
+
+    private String crmEmerName;
 
     private String orderItemName;
 
@@ -51,13 +55,15 @@ public class OrderInfoDTO implements Serializable {
 
     private String orderItemQtyUnit;
 
+    private String useStdUuid;
+
     private String useStdName;
 
-    private String useStdUuid;
+    private String useStdComment;
 
     private Integer totalFee;
 
-    private String statusUuid;
+    private Date firstFeeDate;
 
     private String isInternal;
 
@@ -71,6 +77,18 @@ public class OrderInfoDTO implements Serializable {
 
     private String comments;
 
+    private String currencyType;
+
+    private String conclusionType;
+
+    private String certLangUuid;
+
+    private Date acceptDate;
+
+    private String statusUuid;
+
+    private String statusName;
+
     private String isDeleted;
 
     private Date createdTime;
@@ -81,7 +99,15 @@ public class OrderInfoDTO implements Serializable {
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
+
+    private String prodCatalogUuid;
+
+    private String orgUuid;
+
+    private String appSysUuid;
 
     private String shippingTypeId;//运输方式
 

@@ -142,6 +142,8 @@ and order_uuid in
         plan_inspect_addr,
       --iff comments != null
         comments,
+      --iff currencyType != null
+        currency_type,
       --iff isDeleted != null
         is_deleted,
       --iff createdTime != null
@@ -210,6 +212,8 @@ and order_uuid in
         '#planInspectAddr#',
       --iff comments != null
         '#comments#',
+      --iff currencyType != null
+         '#currencyType#',
       --iff isDeleted != null
         '#isDeleted#',
       --iff createdTime != null
@@ -279,6 +283,8 @@ and order_uuid in
         plan_inspect_addr = '#planInspectAddr#',
       --iff comments != null
         comments = '#comments#',
+       --iff currencyType != null
+        currency_type= = '#currencyType#',
       --iff isDeleted != null
         is_deleted = '#isDeleted#',
       --iff createdTime != null
