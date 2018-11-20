@@ -1,0 +1,336 @@
+-- [listCategory]
+SELECT
+	product_category_uuid,
+	product_category_type_uuid,
+	parent_category_uuid,
+	parent_all_category_uuid,
+	category_name,
+	category_code,
+	seq_num,
+	long_description,
+	is_enabled,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_uuid,
+	updated_name,
+	prod_catalog_uuid,
+	org_uuid,
+	app_sys_uuid,
+	extend1,
+	extend2,
+	extend3
+FROM
+	product_category
+WHERE
+	is_deleted = 'N'
+
+-- [listCategoryFirstByOrgAndProd]
+SELECT
+    pc.product_category_uuid,
+    pc.product_category_type_uuid,
+    pc.parent_category_uuid,
+    pc.parent_all_category_uuid,
+    pc.category_name,
+    pc.category_code,
+    pc.seq_num,
+    pc.long_description,
+    pc.is_enabled,
+    pc.comments,
+    pc.is_deleted,
+    pc.created_time,
+    pc.created_uuid,
+    pc.created_name,
+    pc.updated_time,
+    pc.updated_uuid,
+    pc.updated_name,
+    pc.prod_catalog_uuid,
+    pc.org_uuid,
+    pc.app_sys_uuid,
+    pc.extend1,
+    pc.extend2,
+    pc.extend3
+FROM
+	product_category_org pco
+LEFT JOIN product_category pc ON pc.product_category_uuid = pco.product_category_uuid
+AND pc.is_deleted = 'N'
+WHERE
+        pco.organization_uuid = '#orgUuid#'
+        AND pco.prod_catalog_uuid = '#prodCatalogUuid#'
+
+        --if productCategoryTypeUuid !=null and productCategoryTypeUuid != ''
+            AND pc.product_category_type_uuid = '#productCategoryTypeUuid#'
+        --end
+
+        AND pc.prod_catalog_uuid = '#prodCatalogUuid#'
+        --if parentCategoryUuid !=null and parentCategoryUuid != ''
+            AND pc.parent_category_uuid='#parentCategoryUuid#'
+        --else
+            AND pc.parent_category_uuid='#prodCatalogUuid#'
+        --end
+        AND pc.app_sys_uuid='#appSysUuid#'
+
+
+
+
+-- [insertCategory]
+ insert into product_category
+    -- trim prefix=( suffix=) suffixOverrides=,
+      -- iff productCategoryUuid != null and productCategoryUuid  !=''
+        product_category_uuid,
+
+      -- iff productCategoryTypeUuid != null and  productCategoryTypeUuid !=''
+        product_category_type_uuid,
+
+      -- iff parentCategoryUuid != null and  parentCategoryUuid !=''
+        parent_category_uuid,
+
+      -- iff parentAllCategoryUuid != null and parentAllCategoryUuid  !=''
+        parent_all_category_uuid,
+
+      -- iff categoryName != null and  categoryName !=''
+        category_name,
+
+      -- iff categoryCode != null and  categoryCode !=''
+        category_code,
+
+      -- iff seqNum != null and  seqNum !=''
+        seq_num,
+
+	  -- iff longDescription != null and  longDescription !=''
+        long_description,
+
+      -- iff isEnabled != null and isEnabled  !=''
+        is_enabled,
+
+      -- iff comments != null and  comments !=''
+        comments,
+
+      -- iff isDeleted != null and isDeleted  !=''
+        is_deleted,
+
+      -- iff createdTime != null and createdTime  !=''
+        created_time,
+
+      -- iff createdUuid != null and  createdUuid !=''
+        created_uuid,
+
+      -- iff createdName != null and  createdName !=''
+        created_name,
+
+      -- iff updatedTime != null and updatedTime  !=''
+        updated_time,
+
+      -- iff updatedUuid != null and  updatedUuid !=''
+        updated_uuid,
+
+      -- iff updatedName != null and updatedName  !=''
+        updated_name,
+
+      -- iff prodCatalogUuid != null and prodCatalogUuid  !=''
+        prod_catalog_uuid,
+
+      -- iff orgUuid != null and orgUuid  !=''
+        org_uuid,
+
+      -- iff appSysUuid != null and  appSysUuid !=''
+        app_sys_uuid,
+
+      -- iff extend1 != null and extend1  !=''
+        extend1,
+
+      -- iff extend2 != null and  extend2 !=''
+        extend2,
+
+      -- iff extend3 != null and  extend3 !=''
+        extend3,
+
+	-- end
+    -- trim prefix=values( suffix=)  suffixOverrides=,
+      -- iff productCategoryUuid != null and  productCategoryUuid !=''
+        '#productCategoryUuid#',
+
+      -- iff productCategoryTypeUuid != null and productCategoryTypeUuid  !=''
+        '#productCategoryTypeUuid#',
+
+      -- iff parentCategoryUuid != null and  parentCategoryUuid !=''
+        '#parentCategoryUuid#',
+
+      -- iff parentAllCategoryUuid != null and parentAllCategoryUuid  !=''
+        '#parentAllCategoryUuid#',
+
+      -- iff categoryName != null and categoryName  !=''
+        '#categoryName#',
+
+      -- iff categoryCode != null and  categoryCode !=''
+        '#categoryCode#',
+
+      -- iff seqNum != null and  seqNum !=''
+        '#seqNum#',
+
+	  -- iff longDescription != null and  longDescription !=''
+	    '#longDescription#',
+
+      -- iff isEnabled != null and  isEnabled !=''
+        '#isEnabled#',
+
+      -- iff comments != null and comments  !=''
+        '#comments#',
+
+      -- iff isDeleted != null and   isDeleted !=''
+        '#isDeleted#',
+
+      -- iff createdTime != null and createdTime  !=''
+        '#createdTime#',
+
+      -- iff createdUuid != null and createdUuid  !=''
+        '#createdUuid#',
+
+      -- iff createdName != null and createdName  !=''
+        '#createdName#',
+
+      -- iff updatedTime != null and updatedTime  !=''
+        '#updatedTime#',
+
+      -- iff updatedUuid != null and updatedUuid  !=''
+        '#updatedUuid#',
+
+      -- iff updatedName != null and updatedName  !=''
+        '#updatedName#',
+
+      -- iff prodCatalogUuid != null and  prodCatalogUuid !=''
+        '#prodCatalogUuid#',
+
+      -- iff orgUuid != null and  orgUuid !=''
+        '#orgUuid#',
+
+      -- iff appSysUuid != null and  appSysUuid !=''
+        '#appSysUuid#',
+
+      -- iff extend1 != null and extend1  !=''
+        '#extend1#',
+
+      -- iff extend2 != null and  extend2 !=''
+        '#extend2#',
+
+      -- iff extend3 != null and  extend3 !=''
+        '#extend3#',
+	--end
+
+-- [deleteCategory]
+UPDATE product_category
+SET is_deleted = 'Y'
+WHERE
+	is_deleted = 'N'
+ -- if uuids != null
+            AND product_category_uuid IN
+            -- for item=item index=index collection=uuids open=( separator=, close=)
+                #item#
+            -- end
+        -- end
+
+-- [updateCategory]
+  update product_category
+	-- trim prefix=SET suffixOverrides=,
+      -- iff productCategoryTypeUuid != null
+        product_category_type_uuid = '#productCategoryTypeUuid#',
+      
+      -- iff parentCategoryUuid != null
+        parent_category_uuid = '#parentCategoryUuid#',
+      
+      -- iff parentAllCategoryUuid != null
+        parent_all_category_uuid = '#parentAllCategoryUuid#',
+      
+      -- iff categoryName != null
+        category_name = '#categoryName#',
+      
+      -- iff categoryCode != null
+        category_code = '#categoryCode#',
+      
+      -- iff seqNum != null
+        seq_num = '#seqNum#',
+      
+      -- iff isEnabled != null
+        is_enabled = '#isEnabled#',
+      
+      -- iff comments != null
+        comments = '#comments#',
+      
+      -- iff isDeleted != null
+        is_deleted = '#isDeleted#',
+      
+      -- iff createdTime != null
+        created_time = '#createdTime#',
+      
+      -- iff createdUuid != null
+        created_uuid = '#createdUuid#',
+      
+      -- iff createdName != null
+        created_name = '#createdName#',
+      
+      -- iff updatedTime != null
+        updated_time = '#updatedTime#',
+      
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
+      
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+      
+      -- iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
+      
+      -- iff orgUuid != null
+        org_uuid = '#orgUuid#',
+      
+      -- iff appSysUuid != null
+        app_sys_uuid = '#appSysUuid#',
+      
+      -- iff extend1 != null
+        extend1 = '#extend1#',
+      
+      -- iff extend2 != null
+        extend2 = '#extend2#',
+      
+      -- iff extend3 != null
+        extend3 = '#extend3#',
+      
+      -- iff longDescription != null
+        long_description = '#longDescription#',
+    --end
+  where product_category_uuid = '#productCategoryUuid#'
+  AND org_uuid='#orgUuid#'
+
+ -- [getCategory]
+SELECT
+	product_category_uuid,
+	product_category_type_uuid,
+	parent_category_uuid,
+	parent_all_category_uuid,
+	category_name,
+	category_code,
+	seq_num,
+	long_description,
+	is_enabled,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_uuid,
+	updated_name,
+	prod_catalog_uuid,
+	org_uuid,
+	app_sys_uuid,
+	extend1,
+	extend2,
+	extend3
+FROM
+	product_category
+WHERE
+	is_deleted = 'N'
+ AND product_category_uuid = '#productCategoryUuid#'

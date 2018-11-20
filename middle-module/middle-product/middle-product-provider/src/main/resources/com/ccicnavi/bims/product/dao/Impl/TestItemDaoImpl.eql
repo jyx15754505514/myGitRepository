@@ -17,6 +17,7 @@ SELECT
     created_uuid,
     created_name,
     updated_time,
+    updated_uuid,
     updated_name,
     org_uuid,
     app_sys_uuid,
@@ -81,6 +82,9 @@ INSERT INTO product_test_item
 
      -- iff updatedTime != null and updatedTime != ''
         updated_time,
+
+     -- iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
 
      -- iff updatedName != null and updatedName != ''
         updated_name,
@@ -153,6 +157,9 @@ INSERT INTO product_test_item
      -- iff updatedTime != null and updatedTime != ''
         '#updatedTime#',
 
+     -- iff updatedUuid != null and updatedUuid != ''
+        '#updatedUuid#',
+
      -- iff updatedName != null and updatedName != ''
         '#updatedName#',
 
@@ -196,7 +203,7 @@ AND item_uuid='#itemUuid#'
         item_name_en = '#itemNameEn#',
 
       -- iff itemUomUuid != null
-         item_uom_uuid = '#itemUomUuid#',
+        item_uom_uuid = '#itemUomUuid#',
 
       -- iff itemCode != null
         item_code = '#itemCode#',
@@ -236,6 +243,9 @@ AND item_uuid='#itemUuid#'
 
       -- iff updatedTime != null
         updated_time = '#updatedTime#',
+
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
 
       -- iff updatedName != null
         updated_name = '#updatedName#',
@@ -277,6 +287,7 @@ AND item_uuid='#itemUuid#'
     created_uuid,
     created_name,
     updated_time,
+    updated_uuid,
     updated_name,
     org_uuid,
     app_sys_uuid,

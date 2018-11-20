@@ -7,13 +7,20 @@ import com.ccicnavi.bims.system.pojo.DictValueDO;
 import java.util.List;
 
 /**
- * @Auther: CongZhiYuan
- * @Date: 2018/11/20 09:19
- * @Description:
+ * @program: bims-backend
+ * @description: 数据字典的Dao层接口
+ * @author: zhangxingbiao
+ * @create: 2018-11-20 10:41
  */
+
 public interface DictDao {
-    /**查询字典类型列表*/
-    List<DictTypeDO> listDictType(List<String> types) throws Exception;
-    /**查询字典值列表*/
-    List<DictValueDO> listDictValue(List<String> types) throws Exception;
+
+    /**
+    *@Description: 查询字典值列表
+    *@Param: [dictParentUuid]
+    *@return: java.util.List<com.ccicnavi.bims.system.pojo.DictValueDO>
+    *@Author: zhangxingbiao
+    *@date: 2018/11/20
+    */
+    List<DictValueDO> listDictValue(String dictParentUuid) throws Exception;
 }

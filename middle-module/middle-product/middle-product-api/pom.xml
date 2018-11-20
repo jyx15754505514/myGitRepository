@@ -17,6 +17,21 @@
         <version>1.0</version>
     </parent>
 
+    <dependencies>
+        <!--实体POJO-->
+        <dependency>
+            <groupId>middle-product</groupId>
+            <artifactId>middle-product-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--公共组件-->
+        <dependency>
+            <groupId>middle-module</groupId>
+            <artifactId>middle-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -24,13 +39,5 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>middle-product</groupId>
-            <artifactId>middle-product-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
 </project>

@@ -1,47 +1,16 @@
--- [listDictType]
-SELECT
-    dict_type_uuid dictTypeUuid, 
-dict_type_name dictTypeName, 
-dict_type_code dictTypeCode, 
-sort_num sortNum, 
-comments comments, 
-is_deleted isDeleted, 
-org_uuid orgUuid, 
-app_sys_uuid appSysUuid, 
-prod_catalog_uuid prodCatalogUuid, 
-extend1 extend1, 
-extend2 extend2, 
-extend3 extend3
-from sys_dict_type
-WHERE dict_type_code in
--- for item=item index=index collection=types open=( separator=, close=)
-#item#
--- end
-order by sortNum
-
+-- 根据父级类型uuid查询字典数据
 -- [listDictValue]
 SELECT
-dict_value_uuid dictValueUuid, 
-dict_value_name dictValueName, 
-dict_value_code dictValueCode, 
-dict_parent_uuid dictParentUuid, 
-sort_num sortNum, 
-comments comments, 
-is_deleted isDeleted, 
-created_time createdTime, 
-created_uuid createdUuid, 
-created_name createdName, 
-updated_time updatedTime, 
-updated_name updatedName, 
-org_uuid orgUuid, 
-app_sys_uuid appSysUuid, 
-prod_catalog_uuid prodCatalogUuid, 
-extend1 extend1, 
-extend2 extend2, 
-extend3 extend3
-from sys_dict_value
-WHERE dict_parent_uuid in
--- for item=item index=index collection=types open=( separator=, close=)
-#item#
--- end
-order by dict_parent_uuid,sortNum
+    dict_value_uuid dictValueUuid,
+    dict_value_name dictValueName,
+    dict_value_code dictValueCode,
+    dict_parent_uuid dictParentUuid
+from
+    sys_dict_value
+WHERE
+    is_deleted = 'N'
+    and dict_parent_uuid = '##'
+    order by dict_parent_uuid
+
+
+
