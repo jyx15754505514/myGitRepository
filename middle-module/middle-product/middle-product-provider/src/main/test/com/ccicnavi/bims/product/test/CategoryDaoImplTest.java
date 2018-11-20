@@ -16,7 +16,7 @@ public class CategoryDaoImplTest {
 
     @Test
     public void listCategory() {
-        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategory();
+        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategory(new CategoryDO());
         System.out.println(categoryDOS);
     }
 
@@ -72,4 +72,24 @@ public class CategoryDaoImplTest {
         PageBean<CategoryDO> categoryDOPageBean = categoryDaoImpl.listCategoryPage(pageParameter);
         System.out.println(categoryDOPageBean);
     }
+
+
+    /**
+     * 根据所属公司机构和业务线查询出一级分类(筛选不同产品服务种类)
+     */
+    @Test
+    public void listCategoryFirstByOrgAndProd() {
+        CategoryDO categoryDO=new CategoryDO();
+        categoryDO.setProdCatalogUuid("CATALOG_MINERAL");//设置产品线——矿产
+        categoryDO.setOrgUuid("CCIC");//设置公司机构
+        categoryDO.setProductCategoryTypeUuid("PCT_GOODS");//设置产品分类
+        categoryDO.setParentCategoryUuid("KC_MT");//设置上级产品分类UUID
+        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategoryFirstByOrgAndProd(categoryDO);
+        System.out.println(categoryDOS);
+    }
+
+
+
+
+
 }
