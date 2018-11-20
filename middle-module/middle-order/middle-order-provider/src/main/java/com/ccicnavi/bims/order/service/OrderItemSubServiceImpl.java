@@ -54,4 +54,22 @@ public class OrderItemSubServiceImpl implements OrderItemSubService {
         }
         return integer;
     }
+    /* *
+     * @Author heibin
+     * @Description 委托单最小服务项子项（最小颗粒度）物理删除
+     * @Date 11:19 2018/11/20
+     * @Param [orderItemSubDO]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer deleteOrderItemSub(OrderItemSubDO orderItemSubDO) {
+        EqlTran eqlTran = null;
+        Integer integer = null;
+        try {
+            integer = orderItemSubDao.deleteOrderItemSub(orderItemSubDO, eqlTran);
+        } catch (Exception e) {
+            log.error("删除委托单最小服务项子项失败",e);
+        }
+        return integer;
+    }
 }

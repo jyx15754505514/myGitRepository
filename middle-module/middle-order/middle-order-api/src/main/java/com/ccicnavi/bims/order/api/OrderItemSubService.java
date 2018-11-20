@@ -12,4 +12,6 @@ public interface OrderItemSubService {
     Integer insertOrderItemSub(OrderItemSubDO orderItemSubDO);
     /**更新最小颗粒度*/
     Integer updateOrderItemSub(OrderItemSubDO orderItemSubDO);
+    /**物理删除最小颗粒度*/
+    Integer deleteOrderItemSub(OrderItemSubDO orderItemSubDO);
 }
