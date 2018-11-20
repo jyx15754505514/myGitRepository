@@ -10,10 +10,6 @@ import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
  */
 public interface OrderInfoService {
 
-    /**新增委托单信息*/
-    Integer insertOrderInfo(OrderInfoDTO orderInfoDTO);
-    /**更新委托单信息*/
-    Integer updateOrderInfo(OrderInfoDTO orderInfoDTO);
     /**保存委托单*/
     ResultT saveOrderInfo(OrderInfoDTO orderInfoDTO);
 

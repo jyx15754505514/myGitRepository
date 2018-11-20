@@ -4,7 +4,6 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.order.api.OrderInfoService;
 import com.ccicnavi.bims.order.dao.OrderInfoDao;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
@@ -14,6 +13,7 @@ import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
 import com.ccicnavi.bims.order.pojo.OrderItemSubDO;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Date;
@@ -45,44 +45,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
     /* *
      * @Author MengZiJie
-     * @Description 新增委托单
-     * @Date 17:31 2018/11/19
-     * @Param [orderInfoDO]
-     * @Return java.lang.Integer
-     */
-    @Override
-    public Integer insertOrderInfo(OrderInfoDTO orderInfoDTO) {
-        EqlTran eqlTran = null;
-        Integer integer = null;
-        try {
-            integer = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
-        } catch (Exception e) {
-            log.error("新增委托单失败",e);
-        }
-        return integer;
-    }
-
-    /* *
-     * @Author MengZiJie
-     * @Description 更新委托单
-     * @Date 17:31 2018/11/19
-     * @Param [orderInfoDO]
-     * @Return java.lang.Integer
-     */
-    @Override
-    public Integer updateOrderInfo(OrderInfoDTO orderInfoDTO) {
-        EqlTran eqlTran = null;
-        Integer integer = null;
-        try {
-            integer = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
-        } catch (Exception e) {
-            log.error("更新委托单信息",e);
-        }
-        return integer;
-    }
-
-    /* *
-     * @Author MengZiJie
      * @Description 保存委托单
      * @Date 9:55 2018/11/20
      * @Param [orderInfoDTO]
@@ -90,10 +52,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
      */
     @Override
     public ResultT saveOrderInfo(OrderInfoDTO orderInfoDTO) {
-        EqlTran eqlTran = EqlUtils.getInstance("DEFAULT").newTran();
+        EqlTran eqlTran = new Eql("DEFAULT").newTran();
         Integer shipment = null;
         Integer orderItem = null;
-        Integer orderItemSub = null;
+        Integer itemSub = null;
         Integer orderInfo = null;
         try {
             eqlTran.start();
@@ -109,7 +71,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                             List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
                             for (int j = 0; j < orderItemSubDO.size(); j++) {
                                 //更新服务子项信息
-                                orderItemSub += orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
+                                itemSub += orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
                             }
                         }
                     }
@@ -120,6 +82,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                     eqlTran.commit();
                     return ResultT.success();
                 }
+                return ResultT.failure(ResultCode.ADD_FAILURE);
             }
             String orderUuid = idWorkerService.getId(new Date());
             orderInfoDTO.setOrderUuid(orderUuid); //生成委托单id
@@ -146,7 +109,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
                             orderItemSubDO.get(j).setSubItemNo("");//生成子项编号
                             //添加子项信息
-                            orderItemSub += orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
+                            itemSub += orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
                         }
                     }
                 }
