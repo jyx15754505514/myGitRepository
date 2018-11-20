@@ -129,7 +129,7 @@ INSERT INTO prod_catalog
 UPDATE prod_catalog
 SET is_deleted='Y'
 WHERE is_deleted='N'
-AND prod_catalog_uuid='#itemUuid#'
+AND prod_catalog_uuid='#prodCatalogUuid#'
 
 
 

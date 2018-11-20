@@ -6,6 +6,9 @@ import com.ccicnavi.bims.breeder.api.PasswdService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
+import org.n3r.eql.util.Closes;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -22,22 +25,42 @@ import java.util.Date;
 @Slf4j
 public class BreederApplicationTest {
 
-    @Reference(timeout = 1000, url = "dubbo://127.0.0.1:20880")
+    @Reference(url = "dubbo://192.168.125.11:20880")
     IdWorkerService idWorkerService;
 
-    @Reference(url = "dubbo://127.0.0.1:20880")
+    @Reference(url = "dubbo://192.168.125.11:20880")
     PasswdService passwdService;
 
     @Test
     public void test1() {
-        System.out.println(idWorkerService.getId(new Date()));
+        String id = idWorkerService.getId(new Date());
+        log.info("id:{},length:{}",id,id.length());
         String salt = passwdService.getSalt();
-        System.out.println("salt:"+salt);
+        log.info("salt:{}",salt);
         String hash = passwdService.getHash("123456", salt);
-        System.out.println("hash:"+hash);
+        log.info("hash:{},length:{}",hash,hash.length());
         boolean verify = passwdService.verify(hash, "123455", salt);
-        System.out.println("verify:"+verify);
+        log.info("verify:{}",verify);
 
+    }
+
+    @Test
+    public void test2(){
+        EqlTran tran = new Eql("matrix").newTran();
+        try {
+            tran.start();
+            new Eql("matrix").useTran(tran).useSqlFile("").insert("insertAnonymousSingle").params("").execute();
+            new Eql("matrix").useTran(tran).useSqlFile("").insert("insertAnonymous").params("").execute();
+            new Eql("matrix").useTran(tran).useSqlFile("").insert("insertServicepwd").params("").execute();
+            tran.commit();
+        }
+        catch (Exception e) {
+            log.error("create service number bind info error: ", e);
+            tran.rollback();
+        }
+        finally {
+            Closes.closeQuietly(tran);
+        }
     }
 
 }
