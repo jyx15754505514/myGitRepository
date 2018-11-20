@@ -9,38 +9,24 @@ import java.util.Date;
 
 /**
  * @program: bims-backend
- * @description: 检测指标DO(product_test_item)
- * @author: wangynigling
- * @create: 2018-11-19 17:02
+ * @description: 该类的作用描述
+ * @author: 本人姓名
+ * @create: 2018-11-20 10:26
  */
 @Getter
 @Setter
 @ToString
-public class TestItemDO implements Serializable {
+public class CategoryTypeDO implements Serializable {
 
-    private String itemUuid;
+    private String productCategoryTypeUuid;
 
-    private String itemName;
+    private String parentTypeUuid;
 
-    private String itemNameEn;
+    private String hasTable;
 
-    private String itemUomUuid;
-
-    private String itemCode;
-
-    private Integer itemPrice;
-
-    private String itemWorkhour;
-
-    private String useStdUuid;
-
-    private String useStdName;
-
-    private String itemNameAlias;
+    private String typeName;
 
     private String comments;
-
-    private String prodCatalogUuid;
 
     private String isDeleted;
 
@@ -56,6 +42,8 @@ public class TestItemDO implements Serializable {
 
     private String updatedName;
 
+    private String prodCatalogUuid;
+
     private String orgUuid;
 
     private String appSysUuid;
@@ -65,5 +53,4 @@ public class TestItemDO implements Serializable {
     private String extend2;
 
     private String extend3;
-
 }
