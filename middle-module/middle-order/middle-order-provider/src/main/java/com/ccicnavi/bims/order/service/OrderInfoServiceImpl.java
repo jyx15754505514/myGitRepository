@@ -121,39 +121,38 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                     return ResultT.success();
                 }
             }
-            //生成委托单id
             String orderUuid = idWorkerService.getId(new Date());
-            orderInfoDTO.setOrderUuid(orderUuid);
-            //生成委托单号
-
-            //添加委托单运输信息
-            String shippingTypeId = idWorkerService.getId(new Date());
+            orderInfoDTO.setOrderUuid(orderUuid); //生成委托单id
+            String shippingTypeId = idWorkerService.getId(new Date());//运输表主键
             orderInfoDTO.setShippingTypeId(shippingTypeId);
+            //添加委托单运输信息
             shipment = orderShipmentDao.insertOrderShipment(orderInfoDTO,eqlTran);
             List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
             if(orderItemDTO.size() > 0){
                 for (int i = 0; i < orderItemDTO.size(); i++) {
-                    //添加委托单服务项
-                    //生成服务项主键
                     String orderItemUuid = idWorkerService.getId(new Date());
-                    orderItemDTO.get(i).setOrderItemUuid(orderItemUuid);
-                    //生成服务单编号
+                    orderItemDTO.get(i).setOrderItemUuid(orderItemUuid);//生成服务项主键
+                    orderItemDTO.get(i).setOrderUuid(orderUuid);//委托单id
 
+                    orderItemDTO.get(i).setOrderItemNo("");//生成服务单编号
+                    //添加委托单服务项
                     orderItem += orderItemDao.insertOrderItem(orderItemDTO.get(i),eqlTran);
                     if(orderItemDTO.get(i).getOrderItemSubDO() != null){
                         List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
                         for (int j = 0; j < orderItemSubDO.size(); j++) {
-                            //生成子项主键id
                             String orderItemSubUuid = idWorkerService.getId(new Date());
-                            orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);
-                            //生成子项编号
+                            orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);//生成子项主键id
+                            orderItemSubDO.get(j).setItemUuid(orderItemUuid);//生成服务项id
 
+                            orderItemSubDO.get(j).setSubItemNo("");//生成子项编号
                             //添加子项信息
                             orderItemSub += orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
                         }
                     }
                 }
             }
+
+            orderInfoDTO.setOrderNo("");//生成委托单号
             //添加委托单详情
             orderInfo = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
             if(shipment > 0 && orderItem > 0 && orderInfo > 0){

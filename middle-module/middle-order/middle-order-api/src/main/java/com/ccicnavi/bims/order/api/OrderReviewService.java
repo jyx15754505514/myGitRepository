@@ -3,6 +3,7 @@ package com.ccicnavi.bims.order.api;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.pojo.OrderReviewDO;
+import org.n3r.eql.EqlTran;
 
 /**
  * @Auther: fandongsheng
@@ -12,4 +13,7 @@ import com.ccicnavi.bims.order.pojo.OrderReviewDO;
 public interface OrderReviewService {
 
     public PageBean<OrderReviewDO> testPage(PageParameter<OrderReviewDO> pageParameter);
+
+    /**新增评审*/
+    Integer insertOrderReview(OrderReviewDO orderReviewDO , EqlTran tran);
 }

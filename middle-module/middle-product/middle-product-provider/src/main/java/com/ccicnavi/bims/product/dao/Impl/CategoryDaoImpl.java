@@ -20,8 +20,8 @@ import java.util.List;
 public class CategoryDaoImpl implements CategoryDao {
 
     @Override
-    public List<CategoryDO> listCategory() {
-        return new Eql().select("listCategory").returnType(CategoryDO.class).execute();
+    public List<CategoryDO> listCategory(CategoryDO category) {
+        return new Eql().select("listCategory").params(category).returnType(CategoryDO.class).execute();
     }
 
     @Override
@@ -56,4 +56,20 @@ public class CategoryDaoImpl implements CategoryDao {
             return null;
         }
     }
+
+    /**
+     * 根据所属公司与所属产品线查询其下的一级分类信息
+     * @param category
+     * @return
+     */
+    @Override
+    public List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDO category) {
+        return new Eql().select("listCategoryFirstByOrgAndProd").params(category).returnType(CategoryDO.class).execute();
+    }
+
+    @Override
+    public List<CategoryDO> listCategoryByParentUuid(CategoryDO category) throws Exception {
+        return new Eql().select("listCategoryFirstByOrgAndProd").params(category).returnType(CategoryDO.class).execute();
+    }
+
 }

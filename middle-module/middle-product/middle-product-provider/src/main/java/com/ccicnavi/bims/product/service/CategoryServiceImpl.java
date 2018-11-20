@@ -28,7 +28,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryDO> listCategory(CategoryDO category) {
         try {
-            return categoryDao.listCategory();
+            return categoryDao.listCategory(category);
         } catch (Exception e) {
             log.error("查询产品分类失败~",e);
             return null;
@@ -84,4 +84,35 @@ public class CategoryServiceImpl implements CategoryService {
             return null;
         }
     }
+
+    /**
+     * 根据所属公司机构和产品线查询出其下的一级分类信息(支持筛选服务种类)
+     * @param category
+     * @return
+     */
+    @Override
+    public List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDO category) {
+        try {
+            return categoryDao.listCategoryFirstByOrgAndProd(category);
+        } catch (Exception e) {
+            log.error("根据所属公司机构和产品线查询出其下的一级分类信息失败~",e);
+            return null;
+        }
+    }
+
+    /**
+     * 根据父级分类ID查询其子级分类信息
+     * @param category
+     * @return
+     */
+    @Override
+    public List<CategoryDO> listCategoryByParentUuid(CategoryDO category) {
+        try {
+            return categoryDao.listCategoryByParentUuid(category);
+        } catch (Exception e) {
+            log.error("根据父级分类ID查询其子级分类信息失败~",e);
+            return null;
+        }
+    }
+
 }
