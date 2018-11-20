@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.shiba.api;
 
+import java.util.concurrent.TimeUnit;
+
 public interface StringTemplate {
 
     /**
@@ -9,6 +11,14 @@ public interface StringTemplate {
      * @param value
      */
     void set(Object key, Object value);
+
+    /**
+     * 添加String类型的缓存
+     *
+     * @param key
+     * @param value
+     */
+    void setTime(Object key, Object value,long timeout, TimeUnit unit);
 
     /**
      * 根据key查询缓存
