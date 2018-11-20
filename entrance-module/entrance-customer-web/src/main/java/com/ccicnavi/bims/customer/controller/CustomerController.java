@@ -34,11 +34,13 @@ public class CustomerController {
     CustomerService customerService;
 
     /**
-     * 查询全部客户信息
-     *
-     * @param customerDO
-     * @return
-     */
+    *@Description: 查询全部客户信息(不分页)
+    *@Param: customerDO
+    *@return: List<CustomerDO>
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/listAllCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listAllCustomer(@RequestBody CustomerDO customerDO) {
         try {
@@ -46,22 +48,23 @@ public class CustomerController {
             return ResultT.success(customerList);
         } catch (Exception e) {
             log.error("查询客户信息失败", e);
-            return ResultT.failure(ResultCode.RESULE_DATA_NONE);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
 
     /**
-     * 分页查询全部客户信息
-     *
-     * @return
-     */
+    *@Description: 查询客户信息(分页)
+    *@Param: pageParameter
+    *@return: PageBean<CustomerDO>
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/listCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listCustomer(@RequestBody PageParameter<CustomerDO> pageParameter) {
         try {
             PageBean<CustomerDO> roleDOList = customerService.listCustomerPage(pageParameter);
-            if (roleDOList != null) {
-                return ResultT.success(roleDOList);
-            }
+            return ResultT.success(roleDOList);
         } catch (Exception e) {
             log.error("根据条件查询客户失败", e);
         }
@@ -69,21 +72,23 @@ public class CustomerController {
     }
 
 
-    /**
-     * 根据主键查询客户信息
-     *
-     * @return
-     */
+   /**
+   *@Description: 根据主键查询客户信息
+   *@Param: customerDO
+   *@return: CustomerDO
+   *@Author: zqq
+   *@date: 2018/11/19
+   */
+
     @RequestMapping(value = "/getCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT getCustomer(@RequestBody CustomerDO customerDO) {
+        if(StringUtils.isEmpty(customerDO.getCustUuid())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
-            if (!StringUtils.isEmpty(customerDO.getCustUuid())) {
-                CustomerDO customer = customerService.getCustomer(customerDO);
-                if (customer != null) {
-                    return ResultT.success(customer);
-                }
-            } else {
-                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            CustomerDO customer = customerService.getCustomer(customerDO);
+            if (customer != null) {
+                return ResultT.success(customer);
             }
         } catch (Exception e) {
             log.error("根据主键查询客户失败", e);
@@ -93,8 +98,13 @@ public class CustomerController {
 
 
     /**
-     * 新增客户信息
-     */
+    *@Description: 新增客户信息
+    *@Param: customerDTO
+    *@return: Integer
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/saveCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT saveCustomer(@RequestBody CustomerDTO customerDTO) {
         try {
@@ -111,33 +121,47 @@ public class CustomerController {
     }
 
     /**
-     * 修改客户信息
-     */
+    *@Description: 修改客户信息
+    *@Param: customerDO
+    *@return: Integer
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/updateCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT updateCustomer(@RequestBody CustomerDO customerDO) {
         try {
             Integer count = customerService.updateCustomer(customerDO);
-            if (count > 0) {
+            if(count > 0){
                 return ResultT.success("修改客户成功");
-            } else {
+            }else {
                 return ResultT.failure(ResultCode.UPDATE_FAILURE);
             }
+
         } catch (Exception e) {
             log.error("修改客户失败", e);
             return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
     }
 
-    /**
-     * 删除客户信息
-     */
+   /**
+   *@Description: 删除客户信息
+   *@Param: customerDO
+   *@return: Integer
+   *@Author: zqq
+   *@date: 2018/11/19
+   */
+
     @RequestMapping(value = "/removeCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT removeCustomer(@RequestBody CustomerDO customerDO) {
+        if(StringUtils.isEmpty(customerDO.getUuids())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
             Integer count = customerService.removeCustomer(customerDO);
-            if (count > 0) {
+            if(count > 0){
                 return ResultT.success("删除客户成功");
-            } else {
+            }else{
                 return ResultT.failure(ResultCode.DELETE_FAILURE);
             }
         } catch (Exception e) {
@@ -147,9 +171,14 @@ public class CustomerController {
     }
 
 
-    /**
-     * 客户信息唯一性验证
-     */
+   /**
+   *@Description: 客户信息唯一性校验
+   *@Param:customerDO
+   *@return:
+   *@Author: zqq
+   *@date: 2018/11/19
+   */
+
     @RequestMapping(value = "/verifyCustInfoOnly", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT verifyCustInfoOnly(@RequestBody CustomerDO customerDO) {
         try {
@@ -160,7 +189,6 @@ public class CustomerController {
             }
         } catch (Exception e) {
             log.error("客户信息唯一性验证失败~", e);
-            e.printStackTrace();
             return ResultT.failure(ResultCode.VERIFY_CUSTINFO_ONLY_FAILURE);
         }
     }

@@ -34,7 +34,7 @@ public class CustomerExtServiceImpl implements CustomerExtService {
     @Override
     public int saveCustomerExt(CustomerExtDO CustomerExt) {
         try {
-            return customerExtDao.saveCustomerExt(CustomerExt);
+            return customerExtDao.saveCustomerExt(CustomerExt,null);
         } catch (Exception e) {
             log.error("保存客户注册信息失败",e);
             return 0;
@@ -44,7 +44,7 @@ public class CustomerExtServiceImpl implements CustomerExtService {
     @Override
     public int removeCustomerExt(CustomerDO customerDO) {
         try {
-            return customerExtDao.removeCustomerExt(customerDO);
+            return customerExtDao.removeCustomerExt(customerDO,null);
         } catch (Exception e) {
             log.error("删除客户注册信息失败",e);
             return 0;
@@ -54,7 +54,7 @@ public class CustomerExtServiceImpl implements CustomerExtService {
     @Override
     public int updateCustomerExt(CustomerExtDO CustomerExt) {
         try {
-            return customerExtDao.updateCustomerExt(CustomerExt);
+            return customerExtDao.updateCustomerExt(CustomerExt,null);
         } catch (Exception e) {
             log.error("修改客户注册信息失败",e);
             return 0;

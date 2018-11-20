@@ -4,10 +4,9 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.LinkmanDao;
 import com.ccicnavi.bims.customer.pojo.LinkmanDO;
-import com.ccicnavi.bims.customer.util.EqlUtils;
-import org.junit.Test;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,18 +26,30 @@ public class LinkmanDaoImpl implements LinkmanDao {
     }
 
     @Override
-    public int saveLinkman(LinkmanDO linkmanDO) {
-        return new Eql().insert("insertLinkman").params(linkmanDO).returnType(int.class).execute();
+    public int saveLinkman(LinkmanDO linkmanDO, EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertLinkman").params(linkmanDO).returnType(int.class).execute();
     }
 
     @Override
-    public int removeLinkman(LinkmanDO linkmanDO) {
-        return new Eql().update("deleteLinkman").params(linkmanDO).returnType(int.class).execute();
+    public int removeLinkman(LinkmanDO linkmanDO,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("deleteLinkman").params(linkmanDO).returnType(int.class).execute();
     }
 
     @Override
-    public int updateLinkman(LinkmanDO linkmanDO) {
-        return new Eql().update("updateLinkman").params(linkmanDO).returnType(int.class).execute();
+    public int updateLinkman(LinkmanDO linkmanDO,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("updateLinkman").params(linkmanDO).returnType(int.class).execute();
     }
 
     @Override

@@ -73,14 +73,13 @@ public class CustTailController {
      */
     @RequestMapping(value = "/getCustTail", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT getCustTail(@RequestBody CustTailDO custTailDO) {
+        if(StringUtils.isEmpty(custTailDO.getTailUuid())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
-            if (!StringUtils.isEmpty(custTailDO.getTailUuid())) {
-                CustTailDO custTail = custTailService.getCustTail(custTailDO);
-                if (custTail != null) {
-                    return ResultT.success(custTail);
-                }
-            } else {
-                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            CustTailDO custTail = custTailService.getCustTail(custTailDO);
+            if (custTail != null) {
+                return ResultT.success(custTail);
             }
         } catch (Exception e) {
             log.error("根据主键查询客户跟踪失败", e);
@@ -130,6 +129,9 @@ public class CustTailController {
      */
     @RequestMapping(value = "/removeCustTail", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT removeCustTail(@RequestBody CustTailDO custTailDO) {
+        if(StringUtils.isEmpty(custTailDO.getUuids())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
             Integer count = custTailService.removeCustTail(custTailDO);
             if (count > 0) {

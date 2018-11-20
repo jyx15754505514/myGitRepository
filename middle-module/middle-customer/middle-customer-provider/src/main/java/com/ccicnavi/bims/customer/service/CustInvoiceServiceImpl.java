@@ -38,7 +38,7 @@ public class CustInvoiceServiceImpl implements CustInvoiceService {
     @Override
     public int saveCustInvoice(CustInvoiceDO custInvoice) {
         try {
-            return custInvoiceDao.saveCustInvoice(custInvoice);
+             return custInvoiceDao.saveCustInvoice(custInvoice,null);
         } catch (Exception e) {
             log.error("保存客户发票失败", e);
             return 0;
@@ -48,20 +48,17 @@ public class CustInvoiceServiceImpl implements CustInvoiceService {
     @Override
     public int removeCustInvoice(CustInvoiceDO custInvoice) {
         try {
-            if (!StringUtils.isEmpty(custInvoice.getInvoiceUuid())) {
-                custInvoice.setUuids(custInvoice.getInvoiceUuid().split(","));
-                return custInvoiceDao.removeCustInvoice(custInvoice);
-            }
+            return custInvoiceDao.removeCustInvoice(custInvoice,null);
         } catch (Exception e) {
             log.error("删除客户发票失败", e);
-        }
             return 0;
+        }
     }
 
     @Override
     public int updateCustInvoice(CustInvoiceDO custInvoice) {
         try {
-            return custInvoiceDao.updateCustInvoice(custInvoice);
+            return custInvoiceDao.updateCustInvoice(custInvoice,null);
         } catch (Exception e) {
             log.error("修改客户发票失败", e);
             return 0;

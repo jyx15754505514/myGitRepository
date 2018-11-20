@@ -33,9 +33,13 @@ public class CustAddrController {
     CustAddrService custAddrService;
 
     /**
-     * 查询全部客户地址信息
-     * @return
-     */
+    *@Description: 查询客户地址信息(不分页)
+    *@Param: custAddrDO
+    *@return: List<CustAddrDO>
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/listAllCustAddr", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listAllCustAddr(@RequestBody CustAddrDO custAddrDO) {
         try {
@@ -48,9 +52,13 @@ public class CustAddrController {
     }
 
     /**
-     * 分页查询全部客户地址信息
-     * @return
-     */
+    *@Description: 查询客户地址信息(分页)
+    *@Param: pageParameter
+    *@return: PageBean<CustAddrDO>
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/listCustAddr", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listCustAddr(@RequestBody PageParameter<CustAddrDO> pageParameter) {
         try {
@@ -65,20 +73,22 @@ public class CustAddrController {
     }
 
     /**
-     * 根据主键查询客户地址信息
-     *
-     * @return
-     */
+    *@Description: 根据主键查询客户地址信息
+    *@Param: custAddrDO
+    *@return: CustAddrDO
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/getCustAddr", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT getCustAddr(@RequestBody CustAddrDO custAddrDO) {
+        if(StringUtils.isEmpty(custAddrDO.getAddrUuid())){
+            ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
-            if (!StringUtils.isEmpty(custAddrDO.getAddrUuid())) {
-                CustAddrDO custAddr = custAddrService.getCustAddr(custAddrDO);
-                if (custAddr != null) {
-                    return ResultT.success(custAddr);
-                }
-            } else {
-                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            CustAddrDO custAddr = custAddrService.getCustAddr(custAddrDO);
+            if (custAddr != null) {
+                return ResultT.success(custAddr);
             }
         } catch (Exception e) {
             log.error("根据主键查询客户失败", e);
@@ -88,8 +98,13 @@ public class CustAddrController {
 
 
     /**
-     * 新增客户地址信息
-     */
+    *@Description: 新增客户地址信息
+    *@Param: custAddrDO
+    *@return: Integer
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/saveCustAddr", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT saveCustAddr(@RequestBody CustAddrDO custAddrDO) {
         try {
@@ -106,8 +121,13 @@ public class CustAddrController {
     }
 
     /**
-     * 修改客户地址信息
-     */
+    *@Description: 修改客户地址信息
+    *@Param: CustAddrDO
+    *@return: Integer
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/updateCustAddr", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT updateCustAddr(@RequestBody CustAddrDO CustAddrDO) {
         try {
@@ -128,10 +148,18 @@ public class CustAddrController {
     }
 
     /**
-     * 删除客户地址信息
-     */
+    *@Description: 删除客户地址信息
+    *@Param: custAddrDO
+    *@return: Integer
+    *@Author: zqq
+    *@date: 2018/11/19
+    */
+
     @RequestMapping(value = "/removeCustAddr", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT removeCustAddr(@RequestBody CustAddrDO custAddrDO) {
+        if(StringUtils.isEmpty(custAddrDO.getUuids())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
             Integer count = custAddrService.removeCustAddr(custAddrDO);
             if (count > 0) {

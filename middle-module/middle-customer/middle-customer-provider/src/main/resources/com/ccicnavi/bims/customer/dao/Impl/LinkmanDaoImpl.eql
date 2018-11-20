@@ -144,12 +144,6 @@ insert into crm_customer_linkman
      -- iff createdName != null and createdName  != ''
         created_name,
 
-     -- iff updatedTime != null and  updatedTime != ''
-        updated_time,
-
-     -- iff updatedName != null and  updatedName != ''
-        updated_name,
-
      -- iff extend1 != null and extend1  != ''
         extend1,
 
@@ -226,12 +220,6 @@ insert into crm_customer_linkman
 
      -- iff createdName != null and  createdName != ''
         '#createdName#',
-
-     -- iff updatedTime != null and  updatedTime != ''
-        '#updatedTime#',
-
-     -- iff updatedName != null and  updatedName != ''
-        '#updatedName#',
 
      -- iff extend1 != null and  extend1 != ''
         '#extend1#',
@@ -311,15 +299,6 @@ WHERE
 
       -- iff isDeleted != null
         is_deleted = '#isDeleted#'
-
-      -- iff createdTime != null
-        created_time = '#createdTime#'
-
-      -- iff createdUuid != null
-        created_uuid = '#createdUuid#',
-
-      -- iff createdName != null
-        created_name = '#createdName#',
 
       -- iff updatedTime != null
         updated_time = '#updatedTime#'

@@ -289,13 +289,9 @@
         sys_user
      WHERE
         is_deleted = 'N'
-        AND is_enabled = 'Y'
         --if userUuid != null and  userUuid != ''
-             and  User_uuid = '#UserUuid#'
+             and  user_uuid = '#userUuid#'
         --end
-        --if userName != null and  userName != ''
-             and  user_name = '#userName#'
-        --end
-        --if currentPassword != null and  currentPassword != ''
-             and  current_password = '#currentPassword#'
+        --if loginName != null and  loginName != ''
+             and  login_name = '#loginName#'
         --end

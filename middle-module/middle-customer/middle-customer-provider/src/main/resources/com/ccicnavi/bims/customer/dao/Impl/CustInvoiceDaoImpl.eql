@@ -29,6 +29,9 @@ WHERE
         --if invoiceUuid !=null and invoiceUuid != ''
             and invoice_uuid = '#invoiceUuid#'
         --end
+        --if custUuid !=null and custUuid != ''
+            and cust_uuid = '#custUuid#'
+        --end
 
 -- [insertCustInvoice]
 insert into crm_customer_invoice
@@ -74,12 +77,6 @@ insert into crm_customer_invoice
 
      -- iff createdName != null and  createdName != ''
         created_name,
-
-     -- iff updatedTime != null and  updatedTime != ''
-        updated_time,
-
-     -- iff updatedName != null and  updatedName != ''
-        updated_name,
 
      -- iff extend1 != null and  extend1 != ''
         extend1,
@@ -134,12 +131,6 @@ insert into crm_customer_invoice
      -- iff createdName != null and  createdName != ''
         '#createdName#',
 
-     -- iff updatedTime != null and updatedTime  != ''
-        '#updatedTime#',
-
-     -- iff updatedName != null and  updatedName != ''
-        '#updatedName#',
-
      -- iff extend1 != null and  extend1 != ''
         '#extend1#',
 
@@ -193,15 +184,6 @@ update crm_customer_invoice
 
       -- iff isDeleted != null
         is_deleted = '#isDeleted#',
-
-      -- iff createdTime != null and createdTime!= ''
-        created_time = '#createdTime#',
-
-      -- iff createdUuid != null
-        created_uuid = '#createdUuid#',
-
-      -- iff createdName != null
-        created_name = '#createdName#',
 
       -- iff updatedTime != null and updatedTime!= ''
         updated_time = '#updatedTime#',

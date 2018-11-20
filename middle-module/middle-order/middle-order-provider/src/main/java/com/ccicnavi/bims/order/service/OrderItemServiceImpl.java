@@ -3,7 +3,7 @@ package com.ccicnavi.bims.order.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.order.api.OrderItemService;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
-import com.ccicnavi.bims.order.pojo.OrderItemDO;
+import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +28,11 @@ public class OrderItemServiceImpl implements OrderItemService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertOrderItem(OrderItemDO orderItemDO) {
+    public Integer insertOrderItem(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
         Integer integer = null;
         try {
-            integer = orderItemDao.insertOrderItem(orderItemDO, eqlTran);
+            integer = orderItemDao.insertOrderItem(orderInfoDTO, eqlTran);
         } catch (Exception e) {
             log.error("添加服务项失败",e);
         }
@@ -47,11 +47,11 @@ public class OrderItemServiceImpl implements OrderItemService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer updateOrderItem(OrderItemDO orderItemDO) {
+    public Integer updateOrderItem(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
         Integer integer = null;
         try {
-            integer = orderItemDao.updateOrderItem(orderItemDO, eqlTran);
+            integer = orderItemDao.updateOrderItem(orderInfoDTO, eqlTran);
         } catch (Exception e) {
             log.error("更新服务项失败",e);
         }

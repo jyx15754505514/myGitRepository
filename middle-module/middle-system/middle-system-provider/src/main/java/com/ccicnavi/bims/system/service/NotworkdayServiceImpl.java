@@ -108,8 +108,8 @@ public class NotworkdayServiceImpl implements NotworkdayService {
             return notworkdayDao.getNotworkday(notworkday);
         } catch (Exception e) {
             log.error("获取指定非工作日失败", e);
-            return null;
         }
+        return null;
     }
 
 }

@@ -39,7 +39,7 @@ public class CustTailServiceImpl implements CustTailService {
     @Override
     public int saveCustTail(CustTailDO custTail) {
         try {
-            return custTailDao.saveCustTail(custTail);
+            return custTailDao.saveCustTail(custTail,null);
         } catch (Exception e) {
             log.error("保存客户跟踪信息失败~", e);
             return 0;
@@ -49,20 +49,17 @@ public class CustTailServiceImpl implements CustTailService {
     @Override
     public int removeCustTail(CustTailDO custTail) {
         try {
-            if (!StringUtils.isEmpty(custTail.getTailUuid())) {
-                custTail.setUuids(custTail.getTailUuid().split(","));
-                return custTailDao.removeCustTail(custTail);
-            }
+            return custTailDao.removeCustTail(custTail,null);
         } catch (Exception e) {
             log.error("删除客户跟踪信息失败~", e);
-        }
             return 0;
+        }
     }
 
     @Override
     public int updateCustTail(CustTailDO custTail) {
         try {
-            return custTailDao.updateCustTail(custTail);
+            return custTailDao.updateCustTail(custTail,null);
         } catch (Exception e) {
             log.error("修改客户跟踪信息失败~", e);
             return 0;

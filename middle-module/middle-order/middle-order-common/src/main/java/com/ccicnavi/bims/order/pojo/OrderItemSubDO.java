@@ -3,25 +3,24 @@ package com.ccicnavi.bims.order.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-/**
- * @program: bims-backend
- * @description: 委托单最小服务项子项（最小颗粒度）DO
- * @author: heibin
- * @create: 2018-11-20 9:36
- **/
+import java.io.Serializable;
+/* *
+ * @Author MengZiJie
+ * @Description
+ * @Date 9:37 2018/11/20
+ */
 @Getter
 @Setter
 @ToString
-public class OrderItemSubDO {
-    private String subItemUuid;
+public class OrderItemSubDO implements Serializable {
 
-    private String itemUuid;
+    private String subItemUuid; //子项主键
+
+    private String itemUuid; //服务项主键
 
     private String subItemNo;
 
     private String itemName;
 
-    private String productTestItemUuid;
-
+    private String productTestItemUuid; //产品主键
 }

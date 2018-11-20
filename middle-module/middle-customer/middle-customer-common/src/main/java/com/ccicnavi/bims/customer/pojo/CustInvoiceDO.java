@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 客户发票
@@ -52,5 +53,5 @@ public class CustInvoiceDO implements Serializable {
 
     private String extend3;
 
-    private String [] uuids;//要删除的客户发票主键
+    private List<String> uuids;//要删除的客户发票主键
 }
