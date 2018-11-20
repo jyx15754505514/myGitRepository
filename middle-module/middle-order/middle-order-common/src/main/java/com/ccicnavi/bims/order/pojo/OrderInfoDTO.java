@@ -1,5 +1,8 @@
 package com.ccicnavi.bims.order.pojo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +12,9 @@ import java.util.List;
  * @Description 委托单DTO
  * @Date 9:23 2018/11/20
  */
+@Getter
+@Setter
+@ToString
 public class OrderInfoDTO implements Serializable {
 
     private String orderUuid;//委托单基本信息
