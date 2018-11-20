@@ -9,7 +9,7 @@ import java.util.List;
  * @Description 委托单DTO
  * @Date 9:23 2018/11/20
  */
-public class OrderDTO implements Serializable {
+public class OrderInfoDTO implements Serializable {
 
     private String orderUuid;//委托单基本信息
 
