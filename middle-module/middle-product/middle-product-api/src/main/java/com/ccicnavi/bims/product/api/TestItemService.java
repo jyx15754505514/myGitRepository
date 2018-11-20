@@ -1,19 +1,35 @@
 package com.ccicnavi.bims.product.api;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
 
 import java.util.List;
 
+/**
+ * @program: bims-backend
+ * @description: 检测指标信息接口定义
+ * @author: WangYingLing
+ * @create: 2018-11-15 09:19
+ */
 public interface TestItemService {
 
-    List<TestItemDO> listTestItemDo(TestItemDO testItemDO) throws Exception;
+    /**查询全部检测指标信息*/
+    List<TestItemDO> listTestItemDo(TestItemDO testItemDO);
 
-    int saveTestItemDo(TestItemDO testItemDO) throws Exception;
+    /**新增检测指标信息*/
+    int saveTestItemDo(TestItemDO testItemDO);
 
-    int removeTestItemDo(TestItemDO testItemDO) throws Exception;
+    /**删除检测指标信息*/
+    int removeTestItemDo(TestItemDO testItemDO);
 
-    int updateTestItemDo(TestItemDO testItemDO) throws Exception;
+    /**修改检测指标信息*/
+    int updateTestItemDo(TestItemDO testItemDO);
 
-    TestItemDO getTestItemDo(TestItemDO testItemDO) throws Exception;
+    /**根据主键获取检测指标信息*/
+    TestItemDO getTestItemDo(TestItemDO testItemDO);
+
+    /**分页查询检测指标信息*/
+    PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDO> pageParameter);
 
 }

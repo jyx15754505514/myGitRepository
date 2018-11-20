@@ -1,17 +1,10 @@
--- [listTestItemDO]
+-- [lsitCategoryTypeDO]
 SELECT
-    item_uuid,
-    item_name,
-    item_name_en,
-    item_uom_uuid,
-    item_code,
-    item_price,
-    item_workhour,
-    use_std_uuid,
-    use_std_name,
-    item_name_alias,
+    product_category_type_uuid,
+    parent_type_uuid,
+    has_table,
+    type_name,
     comments,
-    prod_catalog_uuid,
     is_deleted,
     created_time,
     created_uuid,
@@ -19,54 +12,34 @@ SELECT
     updated_time,
     updated_uuid,
     updated_name,
+    prod_catalog_uuid,
     org_uuid,
     app_sys_uuid,
     extend1,
     extend2,
     extend3
 FROM
-    product_test_item
+    product_category_type
 WHERE
     is_deleted='N'
 
--- [saveTestItemDO]
-INSERT INTO product_test_item
+-- [saveCategoryTypeDO]
+INSERT INTO product_category_type
    -- trim prefix=( suffix=) suffixOverrides=,
-     -- iff itemUuid != null and itemUuid != ''
-        item_uuid,
+     -- iff productCategoryTypeUuid != null and productCategoryTypeUuid != ''
+        product_category_type_uuid,
 
-     -- iff itemName != null and itemName != ''
-        item_name,
+     -- iff parentTypeUuid != null and parentTypeUuid != ''
+        parent_type_uuid,
 
-     -- iff itemNameEn != null and itemNameEn != ''
-        item_name_en,
+     -- iff hasTable != null and hasTable != ''
+        has_table,
 
-     -- iff itemUomUuid != null and itemUomUuid != ''
-        item_uom_uuid,
-
-     -- iff itemCode != null and itemCode != ''
-        item_code,
-
-     -- iff itemPrice != null and itemPrice != ''
-        item_price,
-
-     -- iff itemWorkhour != null and itemWorkhour != ''
-        item_workhour,
-
-     -- iff useStdUuid != null and useStdUuid != ''
-        use_std_uuid,
-
-     -- iff useStdName != null and useStdName != ''
-        use_std_name,
-
-     -- iff itemNameAlias != null and itemNameAlias != ''
-        item_name_alias,
+     -- iff typeName != null and typeName != ''
+        type_name,
 
      -- iff comments != null and comments != ''
         comments,
-
-     -- iff prodCatalogUuid != null and prodCatalogUuid != ''
-        prod_catalog_uuid,
 
      -- iff isDeleted != null and isDeleted != ''
         is_deleted,
@@ -89,6 +62,9 @@ INSERT INTO product_test_item
      -- iff updatedName != null and updatedName != ''
         updated_name,
 
+     -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+
      -- iff orgUuid != null and orgUuid != ''
         org_uuid,
 
@@ -106,41 +82,20 @@ INSERT INTO product_test_item
 
    --end
    -- trim prefix=values( suffix=) suffixOverrides=,
-     -- iff itemUuid != null and itemUuid != ''
-        '#itemUuid#',
+     -- iff productCategoryTypeUuid != null and productCategoryTypeUuid != ''
+        '#productCategoryTypeUuid#',
 
-     -- iff itemName != null and itemName != ''
-        '#itemName#',
+     -- iff parentTypeUuid != null and parentTypeUuid != ''
+        '#parentTypeUuid#',
 
-     -- iff itemNameEn != null and itemNameEn != ''
-        '#itemNameEn#',
+     -- iff hasTable != null and hasTable != ''
+        '#hasTable#',
 
-     -- iff itemUomUuid != null and itemUomUuid != ''
-        '#itemUomUuid#',
-
-     -- iff itemCode != null and itemCode != ''
-        '#itemCode#',
-
-     -- iff itemPrice != null and itemPrice != ''
-        '#itemPrice#',
-
-     -- iff itemWorkhour != null and itemWorkhour != ''
-        '#itemWorkhour#',
-
-     -- iff useStdUuid != null and useStdUuid != ''
-        '#useStdUuid#',
-
-     -- iff useStdName != null and useStdName != ''
-        '#useStdName#',
-
-     -- iff itemNameAlias != null and itemNameAlias != ''
-        '#itemNameAlias#',
+     -- iff typeName != null and typeName != ''
+        '#typeName#',
 
      -- iff comments != null and comments != ''
         '#comments#',
-
-     -- iff prodCatalogUuid != null and prodCatalogUuid != ''
-        '#prodCatalogUuid#',
 
      -- iff isDeleted != null and isDeleted != ''
         '#isDeleted#',
@@ -163,6 +118,9 @@ INSERT INTO product_test_item
      -- iff updatedName != null and updatedName != ''
         '#updatedName#',
 
+     -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+
      -- iff orgUuid != null and orgUuid != ''
         '#orgUuid#',
 
@@ -181,53 +139,32 @@ INSERT INTO product_test_item
     --end
 
 
--- [removeTestItemDO]
-UPDATE product_test_item
+-- [removeCategoryTypeDO]
+UPDATE product_category_type
 SET is_deleted='Y'
 WHERE is_deleted='N'
-AND item_uuid='#itemUuid#'
+AND product_category_type_uuid='#productCategoryTypeUuid#'
 
 
 
 
--- [updateTestItemDO]
- update product_test_item
+-- [updateCategoryTypeDO]
+ update product_category_type
 	-- trim prefix=SET suffixOverrides=,
-      -- iff itemUuid != null
-        item_uuid = '#itemUuid#',
+      -- iff productCategoryTypeUuid != null
+        product_category_type_uuid = '#productCategoryTypeUuid#',
 
-      -- iff itemName != null
-        item_name = '#itemName#',
+      -- iff parentTypeUuid != null
+        parent_type_uuid = '#parentTypeUuid#',
 
-      -- iff itemNameEn != null
-        item_name_en = '#itemNameEn#',
+      -- iff hasTable != null
+        has_table = '#hasTable#',
 
-      -- iff itemUomUuid != null
-        item_uom_uuid = '#itemUomUuid#',
-
-      -- iff itemCode != null
-        item_code = '#itemCode#',
-
-      -- iff itemPrice != null
-        item_price = '#itemPrice#',
-
-      -- iff itemWorkhour != null
-        item_workhour = '#itemWorkhour#',
-
-      -- iff useStdUuid != null
-        use_std_uuid = '#useStdUuid#',
-
-      -- iff useStdName != null
-        use_std_name = '#useStdName#',
-
-      -- iff itemNameAlias != null
-        item_name_alias = '#itemNameAlias#',
+      -- iff typeName != null
+         type_name = '#typeName#',
 
       -- iff comments != null
         comments = '#comments#',
-
-      -- iff prodCatalogUuid != null
-        prod_catalog_uuid = '#prodCatalogUuid#',
 
       -- iff isDeleted != null
         is_deleted = '#isDeleted#',
@@ -250,6 +187,9 @@ AND item_uuid='#itemUuid#'
       -- iff updatedName != null
         updated_name = '#updatedName#',
 
+      -- iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
+
       -- iff orgUuid != null
         org_uuid = '#orgUuid#',
 
@@ -266,22 +206,15 @@ AND item_uuid='#itemUuid#'
         extend3 = '#extend3#',
 
     --end
-  where item_uuid = '#itemUuid#'
+  where product_category_type_uuid = '#productCategoryTypeUuid#'
 
--- [getTestItemDO]
+-- [getCategoryTypeDO]
   SELECT
-    item_uuid,
-    item_name,
-    item_name_en,
-    item_uom_uuid,
-    item_code,
-    item_price,
-    item_workhour,
-    use_std_uuid,
-    use_std_name,
-    item_name_alias,
+    product_category_type_uuid,
+    parent_type_uuid,
+    has_table,
+    type_name,
     comments,
-    prod_catalog_uuid,
     is_deleted,
     created_time,
     created_uuid,
@@ -289,14 +222,16 @@ AND item_uuid='#itemUuid#'
     updated_time,
     updated_uuid,
     updated_name,
+    prod_catalog_uuid,
     org_uuid,
     app_sys_uuid,
     extend1,
     extend2,
     extend3
-FROM product_test_item
+FROM product_category_type
 WHERE
     is_deleted='N'
-        --if itemUuid !=null and itemUuid != ''
-            and item_uuid = '#itemUuid#'
+        --if productCategoryTypeUuid !=null and productCategoryTypeUuid != ''
+            and product_category_type_uuid = '#productCategoryTypeUuid#'
+
         --end

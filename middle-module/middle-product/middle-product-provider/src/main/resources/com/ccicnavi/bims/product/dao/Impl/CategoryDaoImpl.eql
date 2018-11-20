@@ -26,6 +26,49 @@ FROM
 WHERE
 	is_deleted = 'N'
 
+-- [listCategoryFirstByOrgAndProd]
+SELECT
+	pc.product_category_uuid,
+	pc.product_category_type_uuid,
+	pc.parent_category_uuid,
+	pc.parent_all_category_uuid,
+	pc.category_name,
+	pc.category_code,
+	pc.seq_num,
+	pc.description,
+	pc.prod_catalog_uuid,
+	pc.is_enabled,
+	pc.is_deleted,
+	pc.created_time,
+	pc.created_uuid,
+	pc.created_name,
+	pc.updated_time,
+	pc.updated_name,
+	pc.org_uuid,
+	pc.app_sys_uuid,
+	pc.extend1,
+	pc.extend2,
+	pc.extend3
+FROM
+	product_category_org pco
+LEFT JOIN product_category pc ON pc.product_category_uuid = pco.product_category_uuid
+AND pc.is_deleted = 'N'
+WHERE
+	pco.is_deleted = 'N'
+AND pco.organization_uuid = '#orgUuid#'
+AND pco.prod_catalog_uuid = '#prodCatalogUuid#'
+        --if productCategoryTypeUuid !=null and productCategoryTypeUuid != ''
+            AND pc.product_category_type_uuid = '#productCategoryTypeUuid#'
+        --end
+AND pc.prod_catalog_uuid = '#prodCatalogUuid#'
+        --if parentCategoryUuid !=null and parentCategoryUuid != ''
+            AND pc.parent_category_uuid='#parentCategoryUuid#'
+        --else
+            AND pc.parent_category_uuid='#prodCatalogUuid#'
+        --end
+
+
+
 
 -- [insertCategory]
 insert into product_category

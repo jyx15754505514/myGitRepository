@@ -32,6 +32,14 @@ public interface CategoryService {
     /**分页查询产品分类信息*/
     PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDO> pageParameter);
 
+    /**根据所属公司与所属业务线查询出对应的一级分类信息*/
+    List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDO category);
+
+    /**根据父级分类ID查询其字类分类信息*/
+    List<CategoryDO> listCategoryByParentUuid(CategoryDO category);
+
+
+
 
 
 }

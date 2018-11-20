@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class CatalogDO {
+public class CatalogDO implements Serializable {
 
     private String prodCatalogUuid;
 
@@ -35,6 +36,8 @@ public class CatalogDO {
     private String createdName;
 
     private Date updatedTime;
+
+    private String updatedUuid;
 
     private String updatedName;
 
