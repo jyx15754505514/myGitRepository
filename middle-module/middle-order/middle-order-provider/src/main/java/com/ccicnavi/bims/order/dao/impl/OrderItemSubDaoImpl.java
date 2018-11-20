@@ -34,4 +34,9 @@ public class OrderItemSubDaoImpl implements OrderItemSubDao {
     public Integer updateOrderItemSub(OrderItemSubDO orderItemSubDO, EqlTran tran) throws Exception {
         return EqlUtils.getInstance("DEFAULT").update("updateOrderItemSub").params(orderItemSubDO).returnType(OrderItemSubDO.class).execute();
     }
+
+    @Override
+    public Integer deleteOrderItemSub(OrderItemSubDO orderItemSubDO, EqlTran tran) throws Exception {
+        return EqlUtils.getInstance("DEFAULT").delete("deleteOrderItemSub").params(orderItemSubDO).returnType(OrderItemSubDO.class).execute();
+    }
 }
