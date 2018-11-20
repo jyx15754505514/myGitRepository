@@ -85,5 +85,4 @@ public class OrderInfoDO implements Serializable {
 
     private String updatedName;
 
-    private List<String> orderUuidList;
 }

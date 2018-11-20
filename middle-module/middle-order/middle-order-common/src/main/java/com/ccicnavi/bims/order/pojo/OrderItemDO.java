@@ -43,6 +43,4 @@ public class OrderItemDO implements Serializable {
 
     private String useStdName;
 
-    private List<String> orderItemUuidList;
-
 }
