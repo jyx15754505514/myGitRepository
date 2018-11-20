@@ -23,11 +23,12 @@ public class CategoryDaoImplTest {
     @Test
     public void saveCategory() {
         CategoryDO categoryDO=new CategoryDO();
-        categoryDO.setProductCategoryUuid("KC_SY");
+        categoryDO.setProductCategoryUuid("KC_MT_SM");
         categoryDO.setProductCategoryTypeUuid("PCT_GOODS");
-        categoryDO.setParentCategoryUuid("CATALOG_PETRO");
-        categoryDO.setCategoryName("石油");
-        categoryDO.setSeqNum("100");
+        categoryDO.setParentCategoryUuid("KC_MT");
+        categoryDO.setParentAllCategoryUuid("KC_MT,CATALOG_MINERAL");
+        categoryDO.setCategoryName("瘦煤");
+        categoryDO.setSeqNum("67");
         categoryDO.setProdCatalogUuid("CATALOG_MINERAL");//产品线
         categoryDO.setOrgUuid("CCIC");
         categoryDO.setAppSysUuid("BIMS2.0");
@@ -43,11 +44,12 @@ public class CategoryDaoImplTest {
     @Test
     public void updateCategory() {
         CategoryDO categoryDO=new CategoryDO();
-        categoryDO.setProductCategoryUuid("KC_SY");
+        categoryDO.setProductCategoryUuid("KC_MT_SM");
         categoryDO.setProductCategoryTypeUuid("PCT_GOODS");
-        categoryDO.setParentCategoryUuid("CATALOG_PETRO");
-        categoryDO.setCategoryName("石油被修改了~");
-        categoryDO.setSeqNum("100");
+        categoryDO.setParentCategoryUuid("KC_MT");
+        categoryDO.setParentAllCategoryUuid("KC_MT,CATALOG_MINERAL");
+        categoryDO.setCategoryName("瘦煤被修改了~");
+        categoryDO.setCategoryCode("67");
         categoryDO.setProdCatalogUuid("CATALOG_MINERAL");//产品线
         categoryDO.setOrgUuid("CCIC");
         categoryDO.setAppSysUuid("BIMS2.0");
@@ -58,7 +60,7 @@ public class CategoryDaoImplTest {
     @Test
     public void getCategory() {
         CategoryDO categoryDO=new CategoryDO();
-        categoryDO.setProductCategoryUuid("KC_SY");
+        categoryDO.setProductCategoryUuid("KC_MT");
         CategoryDO category = categoryDaoImpl.getCategory(categoryDO);
         System.out.println(category);
     }
@@ -84,6 +86,7 @@ public class CategoryDaoImplTest {
         categoryDO.setOrgUuid("CCIC");//设置公司机构
         categoryDO.setProductCategoryTypeUuid("PCT_GOODS");//设置产品分类
         categoryDO.setParentCategoryUuid("KC_MT");//设置上级产品分类UUID
+        categoryDO.setAppSysUuid("BIMS2.0");
         List<CategoryDO> categoryDOS = categoryDaoImpl.listCategoryFirstByOrgAndProd(categoryDO);
         System.out.println(categoryDOS);
     }
