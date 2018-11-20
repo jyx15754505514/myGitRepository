@@ -34,7 +34,13 @@ public class OrderItemSubDaoImpl implements OrderItemSubDao {
     public Integer updateOrderItemSub(OrderItemSubDO orderItemSubDO, EqlTran tran) throws Exception {
         return EqlUtils.getInstance("DEFAULT").update("updateOrderItemSub").params(orderItemSubDO).returnType(OrderItemSubDO.class).execute();
     }
-
+    /* *
+     * @Author heibin
+     * @Description 删除委托单最小服务项子项
+     * @Date 10:12 2018/11/20
+     * @Param [orderItemSubDO, tran]
+     * @Return java.lang.Integer
+     */
     @Override
     public Integer deleteOrderItemSub(OrderItemSubDO orderItemSubDO, EqlTran tran) throws Exception {
         return EqlUtils.getInstance("DEFAULT").delete("deleteOrderItemSub").params(orderItemSubDO).returnType(OrderItemSubDO.class).execute();
