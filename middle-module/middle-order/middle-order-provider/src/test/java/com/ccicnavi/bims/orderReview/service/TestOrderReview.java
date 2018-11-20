@@ -1,16 +1,16 @@
 package com.ccicnavi.bims.orderReview.service;
 
-import com.alibaba.fastjson.JSONObject;
-import com.ccicnavi.bims.common.service.pojo.PageBean;
-import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.dao.impl.OrderReviewDaoImpl;
 import com.ccicnavi.bims.order.pojo.OrderReviewDO;
 import org.junit.Test;
 
-
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@SpringBootTest(classes = ApplicationTest.class)
-public class ApplicationTest {
+/**
+ * @Auther: fandongsheng
+ * @Date: 2018/11/20 22:01
+ * @Description:
+ */
+public class TestOrderReview {
+    /***新增评审信息*/
     @Test
     public void insertOrderReview() {
         try {
