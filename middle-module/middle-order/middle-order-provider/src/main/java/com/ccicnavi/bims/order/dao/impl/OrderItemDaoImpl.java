@@ -4,6 +4,8 @@ import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderItemDO;
+import com.ccicnavi.bims.order.pojo.OrderItemDTO;
+import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +25,12 @@ public class OrderItemDaoImpl implements OrderItemDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertOrderItem(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").insert("insertOrderItem").params(orderInfoDTO).returnType(OrderItemDO.class).execute();
+    public Integer insertOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception {
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null){
+            return eql.useTran(tran).insert("insertOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
+        }
+        return eql.insert("insertOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -35,7 +41,11 @@ public class OrderItemDaoImpl implements OrderItemDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer updateOrderItem(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").insert("updateOrderItem").params(orderInfoDTO).returnType(OrderItemDO.class).execute();
+    public Integer updateOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception {
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null){
+            return eql.useTran(tran).insert("updateOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
+        }
+        return eql.update("updateOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
     }
 }
