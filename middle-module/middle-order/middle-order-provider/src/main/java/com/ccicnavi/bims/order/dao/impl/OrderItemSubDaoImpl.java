@@ -3,6 +3,7 @@ package com.ccicnavi.bims.order.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.order.dao.OrderItemSubDao;
 import com.ccicnavi.bims.order.pojo.OrderItemSubDO;
+import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 /* *
@@ -21,7 +22,11 @@ public class OrderItemSubDaoImpl implements OrderItemSubDao {
      */
     @Override
     public Integer insertOrderItemSub(OrderItemSubDO orderItemSubDO, EqlTran tran) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").insert("insertOrderItemSub").params(orderItemSubDO).returnType(OrderItemSubDO.class).execute();
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null){
+            return eql.useTran(tran).insert("insertOrderItemSub").params(orderItemSubDO).returnType(Integer.class).execute();
+        }
+        return eql.insert("insertOrderItemSub").params(orderItemSubDO).returnType(Integer.class).execute();
     }
     /* *
      * @Author heibin
@@ -32,7 +37,11 @@ public class OrderItemSubDaoImpl implements OrderItemSubDao {
      */
     @Override
     public Integer updateOrderItemSub(OrderItemSubDO orderItemSubDO, EqlTran tran) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").update("updateOrderItemSub").params(orderItemSubDO).returnType(OrderItemSubDO.class).execute();
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null){
+            return eql.useTran(tran).update("updateOrderItemSub").params(orderItemSubDO).returnType(Integer.class).execute();
+        }
+        return eql.update("updateOrderItemSub").params(orderItemSubDO).returnType(Integer.class).execute();
     }
     /* *
      * @Author heibin
@@ -43,6 +52,10 @@ public class OrderItemSubDaoImpl implements OrderItemSubDao {
      */
     @Override
     public Integer deleteOrderItemSub(OrderItemSubDO orderItemSubDO, EqlTran tran) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").delete("deleteOrderItemSub").params(orderItemSubDO).returnType(OrderItemSubDO.class).execute();
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null){
+            return eql.useTran(tran).delete("deleteOrderItemSub").params(orderItemSubDO).returnType(Integer.class).execute();
+        }
+        return eql.delete("deleteOrderItemSub").params(orderItemSubDO).returnType(Integer.class).execute();
     }
 }
