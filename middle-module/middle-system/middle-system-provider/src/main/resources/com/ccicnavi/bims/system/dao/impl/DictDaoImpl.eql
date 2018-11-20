@@ -1,17 +1,17 @@
 -- [listDictType]
 SELECT
     dict_type_uuid dictTypeUuid, 
-dict_type_name dictTypeName, 
-dict_type_code dictTypeCode, 
-sort_num sortNum, 
-comments comments, 
-is_deleted isDeleted, 
-org_uuid orgUuid, 
-app_sys_uuid appSysUuid, 
-prod_catalog_uuid prodCatalogUuid, 
-extend1 extend1, 
-extend2 extend2, 
-extend3 extend3
+    dict_type_name dictTypeName,
+    dict_type_code dictTypeCode,
+    sort_num sortNum,
+    comments comments,
+    is_deleted isDeleted,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    prod_catalog_uuid prodCatalogUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
 from sys_dict_type
 WHERE dict_type_code in
 -- for item=item index=index collection=types open=( separator=, close=)
@@ -34,7 +34,8 @@ created_name createdName,
 updated_time updatedTime, 
 updated_name updatedName, 
 org_uuid orgUuid, 
-app_sys_uuid appSysUuid, 
+app_sys_uuid appSysUuid,
+is_system isSystem,
 prod_catalog_uuid prodCatalogUuid, 
 extend1 extend1, 
 extend2 extend2, 
