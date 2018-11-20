@@ -1,7 +1,6 @@
 package com.ccicnavi.bims.order.dao;
 
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
-import com.ccicnavi.bims.order.pojo.OrderShipmentDO;
 import org.n3r.eql.EqlTran;
 /* *
  * @Author MengZiJie
