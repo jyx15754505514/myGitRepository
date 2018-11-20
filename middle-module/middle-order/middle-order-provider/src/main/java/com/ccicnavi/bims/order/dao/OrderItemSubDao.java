@@ -14,4 +14,6 @@ public interface OrderItemSubDao {
     Integer insertOrderItemSub(OrderItemSubDO orderItemSubDO, EqlTran tran) throws Exception;
     /**更新最小颗粒度*/
     Integer updateOrderItemSub(OrderItemSubDO orderItemSubDO, EqlTran tran) throws Exception;
+    /**物理删除最小颗粒度*/
+    Integer deleteOrderItemSub(OrderItemSubDO orderItemSubDO, EqlTran tran) throws Exception;
 }

@@ -78,3 +78,14 @@ where
         -- for item=item index=index collection=subItemUuids open=( separator=, close=)
             '#item#'
         -- end
+-- [deleteOrderItemSub]
+        DELETE
+            order_item_sub
+        WHERE
+        --iff itemUuid != null and itemUuid != ''
+         item_uuid = '#itemUuid#'
+        --iff itemUuids != null
+        and item_uuid in
+        -- for item=item index=index collection=itemUuids open=( separator=, close=)
+            '#item#'
+        -- end
