@@ -1,0 +1,80 @@
+-- []
+SELECT
+    sub_item_uuid subItemUuid,
+    item_uuid itemUuid,
+    sub_item_no subItemNo,
+    item_name itemName,
+    product_test_item_uuid productTestItemUuid
+from
+    order_item_sub
+where
+--iff itemUuid != null and itemUuid != ''
+     item_uuid = '#itemUuid#'
+--iff itemName != null and itemName != ''
+     item_name like '#itemName:Like#'
+--end
+
+-- []
+SELECT
+    sub_item_uuid subItemUuid,
+    item_uuid itemUuid,
+    sub_item_no subItemNo,
+    item_name itemName,
+    product_test_item_uuid productTestItemUuid
+from
+    order_item_sub
+where
+--if subItemUuid != null and subItemUuid !=''
+     sub_item_uuid = '#subItemUuid#'
+--end
+
+-- [insertOrderItemSub]
+INSERT INTO order_item_sub
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff subItemUuid != null and subItemUuid != ''
+            sub_item_uuid,
+        --iff itemUuid != null and itemUuid != ''
+            item_uuid,
+        --iff subItemNo != null and subItemNo != ''
+            sub_item_no,
+        --iff itemName != null and itemName != ''
+            item_name,
+        --iff productTestItemUuid != null and productTestItemUuid != ''
+            product_test_item_uuid,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff subItemUuid != null and subItemUuid != ''
+        	'#subItemUuid#',
+        --iff itemUuid != null and itemUuid != ''
+            '#itemUuid#',
+        --iff subItemNo != null and subItemNo != ''
+            '#subItemNo#',
+        --iff itemName != null and itemName != ''
+            '#itemName#',
+        --iff productTestItemUuid != null and productTestItemUuid != ''
+            '#productTestItemUuid#',
+    -- end
+
+-- [updateOrderItemSub]
+UPDATE
+    order_item_sub
+    -- trim prefix= set suffixOverrides=,
+        --iff subItemUuid != null and subItemUuid != ''
+            sub_item_uuid = '#subItemUuid#',
+        --iff itemUuid != null and itemUuid != ''
+            item_uuid = '#itemUuid#',
+        --iff subItemNo != null and subItemNo != ''
+            sub_item_no = '#subItemNo#',
+        --iff itemName != null and itemName != ''
+            item_name = '#itemName#',
+        --iff productTestItemUuid != null and productTestItemUuid != ''
+            product_test_item_uuid = '#productTestItemUuid#',
+    -- end
+where
+    --iff subItemUuid != null and subItemUuid != ''
+        and sub_item_uuid = '#subItemUuid#'
+    --iff subItemUuids != null
+        and sub_item_uuid in
+        -- for item=item index=index collection=subItemUuids open=( separator=, close=)
+            '#item#'
+        -- end
