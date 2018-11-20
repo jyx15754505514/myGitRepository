@@ -22,7 +22,7 @@ public interface OrderInfoService {
     PageBean<OrderInfoDO> listOrderInfo(PageParameter<OrderInfoDO> pageParameter);
     /**保存委托单*/
     ResultT saveOrderInfo(OrderInfoDTO orderInfoDTO);
-    /**委托单置为无效**/
+    /**委托单状态调整**/
 
     /**委托单设置为加急**/
 
