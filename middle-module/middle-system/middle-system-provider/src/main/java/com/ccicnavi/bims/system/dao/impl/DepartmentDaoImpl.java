@@ -101,7 +101,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     *@date: 2018/11/19
     */
     @Override
-    public List<DepartmentDO> listDeptByUser(UserDO userDO){
+    public List<DepartmentDO> listDeptByUser(UserDO userDO) throws Exception {
         return new Eql().select("listDeptByUser").params(userDO).returnType(UserDeptDO.class).execute();
     }
 
