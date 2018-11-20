@@ -72,6 +72,12 @@
             <artifactId>breeder-api</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.bingoohuang</groupId>
+            <artifactId>eql</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
         <!--<dependency>-->
             <!--<groupId>org.projectlombok</groupId>-->
             <!--<artifactId>lombok</artifactId>-->
