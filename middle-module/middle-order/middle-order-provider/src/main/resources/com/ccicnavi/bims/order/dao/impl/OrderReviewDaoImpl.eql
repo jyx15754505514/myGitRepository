@@ -37,39 +37,39 @@
     -- end
     -- trim prefix=values( suffix=) suffixOverrides=,
       -- iff orderUuid != null
-      	'#orderUuid#'
+      	'#orderUuid#',
       -- iff reviewUserUuid != null
-      	'#reviewUserUuid#'
+      	'#reviewUserUuid#',
       -- iff reviewSuggest != null
-      	'#reviewSuggest#'
+      	'#reviewSuggest#',
       -- iff reviewDate != null
-      	'#reviewDate#'
+      	'#reviewDate#',
       -- iff isPass != null
-      	'#isPass#'
+      	'#isPass#',
       -- iff extend1 != null
-      	'#extend1#'
+      	'#extend1#',
       -- iff extend2 != null
-      	'#extend2#'
+      	'#extend2#',
       -- iff extend3 != null
-      	'#extend3#'
+      	'#extend3#',
    -- end
 
 -- [updateOrderReview]
     update order_review
      -- trim prefix=SET suffixOverrides=,
       -- iff reviewUserUuid != null
-        review_user_uuid = '#reviewUserUuid#'
+        review_user_uuid = '#reviewUserUuid#',
       -- iff reviewSuggest != null
-        review_suggest = '#reviewSuggest#'
+        review_suggest = '#reviewSuggest#',
       -- iff reviewDate != null
-        review_date = '#reviewDate#'
+        review_date = '#reviewDate#',
       -- iff isPass != null
-        is_pass = '#isPass#'
+        is_pass = '#isPass#',
       -- iff extend1 != null
-        extend1 = '#extend1#'
+        extend1 = '#extend1#',
       -- iff extend2 != null
-        extend2 = '#extend2#'
-      -- iff extend3 != '#extend3#'
+        extend2 = '#extend2#',
+      -- iff extend3 != '#extend3#',
     -- end
     where order_uuid = '#orderUuid#'
 

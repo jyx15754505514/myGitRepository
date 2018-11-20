@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.order.dao.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.order.dao.OrderReviewDao;
 import com.ccicnavi.bims.order.pojo.OrderReviewDO;
 import org.n3r.eql.Eql;
@@ -10,6 +11,7 @@ import org.n3r.eql.EqlTran;
  * @Date: 2018/11/20 10:38
  * @Description:
  */
+@Service
 public class OrderReviewDaoImpl implements OrderReviewDao {
     /**
      * 功能描述: 添加评审信息
