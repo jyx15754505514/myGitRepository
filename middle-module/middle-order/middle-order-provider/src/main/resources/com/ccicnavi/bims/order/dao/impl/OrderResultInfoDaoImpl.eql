@@ -1,3 +1,83 @@
+-- [listOrderResultInfo]
+SELECT
+       result_uuid  resultUuid,
+       result_no  resultNo,
+       cert_paper_no  certPaperNo,
+       cert_editer_uuid  certEditerUuid,
+       cert_edit_time  certEditTime,
+       cert_checker_uuid  certCheckerUuid,
+       cert_check_time  certCheckTime,
+       cert_signer_uuid  certSignerUuid,
+       cert_sign_time  certSignTime,
+       is_cert_upload  isCertUpload,
+       is_pdf  isPdf,
+       is_merge_report  isMergeReport,
+       status_uuid  statusUuid,
+       cert_print_page  certPrintPage,
+       comments  comments,
+       is_deleted  isDeleted,
+       created_time  createdTime,
+       created_uuid  createdUuid,
+       created_name  createdName,
+       updated_time  updatedTime,
+       updated_uuid  updatedUuid,
+       updated_name  updatedName,
+       prod_catalog_uuid  prodCatalogUuid,
+       org_uuid  orgUuid,
+       app_sys_uuid  appSysUuid,
+       extend1  extend1,
+       extend2  extend2,
+       extend3  extend3
+from
+    order_result_info
+where
+ is_deleted = 'N'
+--iff resultNo != null and resultNo != ''
+     and result_no = '#resultNo#'
+--iff createdName != null and createdName != ''
+     created_name like '#createdName:Like#'
+--end
+-- [getOrderResultInfo]
+select
+           result_uuid  resultUuid,
+           result_no  resultNo,
+           cert_paper_no  certPaperNo,
+           cert_editer_uuid  certEditerUuid,
+           cert_edit_time  certEditTime,
+           cert_checker_uuid  certCheckerUuid,
+           cert_check_time  certCheckTime,
+           cert_signer_uuid  certSignerUuid,
+           cert_sign_time  certSignTime,
+           is_cert_upload  isCertUpload,
+           is_pdf  isPdf,
+           is_merge_report  isMergeReport,
+           status_uuid  statusUuid,
+           cert_print_page  certPrintPage,
+           comments  comments,
+           is_deleted  isDeleted,
+           created_time  createdTime,
+           created_uuid  createdUuid,
+           created_name  createdName,
+           updated_time  updatedTime,
+           updated_uuid  updatedUuid,
+           updated_name  updatedName,
+           prod_catalog_uuid  prodCatalogUuid,
+           org_uuid  orgUuid,
+           app_sys_uuid  appSysUuid,
+           extend1  extend1,
+           extend2  extend2,
+           extend3  extend3
+from
+    order_result_info
+where
+    is_deleted = 'N'
+--iff resultUuid != null and resultUuid != ''
+and result_uuid = '#resultUuid#'
+--iff resultUuids != null
+and result_uuid in
+-- for item=item index=index collection=resultUuids open=( separator=, close=)
+    '#item#'
+-- end
 -- [insertOrderResultInfo]
  insert into order_result_info
     -- trim prefix=( suffix=) suffixOverrides=,

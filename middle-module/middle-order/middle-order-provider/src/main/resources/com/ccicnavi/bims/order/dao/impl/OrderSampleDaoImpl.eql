@@ -1,0 +1,297 @@
+-- [listOrderSample]
+select
+    sample_uuid sampleUuid,
+    order_uuid orderUuid,
+    sample_code sampleCode,
+    sample_name sampleName,
+    sample_spec sampleSpec,
+    sample_type sampleType,
+    sample_place samplePlace,
+    sample_unit sampleUnit,
+    send_person sendPerson,
+    send_time sendTime,
+    receive_person receivePerson,
+    receive_time receiveTime,
+    receipt_person receiptPerson,
+    receipt_time receiptTime,
+    receipt_type receiptType,
+    disposer disposer,
+    disposer_time disposerTime,
+    disposer_method disposerMethod,
+    sample_file sampleFile,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+from
+    order_sample
+where
+    is_deleted = 'N'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid != ''
+    and app_sys_uuid = '#appSysUuid#'
+
+-- [getOrderSample]
+select
+    sample_uuid sampleUuid,
+    order_uuid orderUuid,
+    sample_code sampleCode,
+    sample_name sampleName,
+    sample_spec sampleSpec,
+    sample_type sampleType,
+    sample_place samplePlace,
+    sample_unit sampleUnit,
+    send_person sendPerson,
+    send_time sendTime,
+    receive_person receivePerson,
+    receive_time receiveTime,
+    receipt_person receiptPerson,
+    receipt_time receiptTime,
+    receipt_type receiptType,
+    disposer disposer,
+    disposer_time disposerTime,
+    disposer_method disposerMethod,
+    sample_file sampleFile,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+from
+    order_sample
+where
+    is_deleted = 'N'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid != ''
+    and app_sys_uuid = '#appSysUuid#'
+--iff sampleUuid != null and sampleUuid != ''
+    and sample_uuid = '#sampleUuid#'
+
+-- [insertOrderSample]
+insert into order_sample
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff sampleUuid != null sampleUuid != ''
+            sample_uuid,
+        --iff orderUuid != null and orderUuid != ''
+            order_uuid,
+        --iff sampleCode != null and sampleCode != ''
+            sample_code,
+        --iff sampleName != null and sampleName != ''
+            sample_name,
+        --iff sampleSpec != null and sampleSpec != ''
+            sample_spec,
+        --iff sampleType != null and sampleType != ''
+            sample_type,
+        --iff samplePlace != null and samplePlace != ''
+            sample_place,
+        --iff sampleUnit != null and sampleUnit != ''
+            sample_unit,
+        --iff sendPerson != null and sendPerson != ''
+            send_person,
+        --iff sendTime != null
+            send_time,
+        --iff receivePerson != null and receivePerson != ''
+            receive_person,
+        --iff receiveTime != null
+            receive_time,
+        --iff receiptPerson != null and receiptPerson != ''
+            receipt_person,
+        --iff receiptTime != null
+            receipt_time,
+        --iff receiptType != null and receiptType != ''
+            receipt_type,
+        --iff disposer != null and disposer != ''
+            disposer,
+        --iff disposerTime != null
+            disposer_time,
+        --iff disposerMethod != null and disposerMethod != ''
+            disposer_method,
+        --iff sampleFile != null and sampleFile != ''
+            sample_file,
+        --iff comments != null and comments != ''
+            comments,
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted,
+        --iff createdTime != null
+            created_time,
+        --iff createdUuid != null and createdUuid != ''
+            created_uuid,
+        --iff createdName != null and createdName != ''
+            created_name,
+        --iff updatedTime != null
+            updated_time,
+        --iff updatedUuid != null and updatedUuid != ''
+            updated_uuid,
+        --iff updatedName != null and updatedName != ''
+            updated_name,
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            prod_catalog_uuid,
+        --iff orgUuid != null and orgUuid != ''
+            org_uuid,
+        --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff sampleUuid != null and sampleUuid != ''
+            '#sampleUuid#',
+        --iff orderUuid != null and orderUuid != ''
+            '#orderUuid#',
+        --iff sampleCode != null and sampleCode != ''
+            '#sampleCode#',
+        --iff sampleName != null and sampleName != ''
+            '#sampleName#',
+        --iff sampleSpec != null and sampleSpec != ''
+            '#sampleSpec#',
+        --iff sampleType != null and sampleType != ''
+            '#sampleType#',
+        --iff samplePlace != null and samplePlace != ''
+            '#samplePlace#',
+        --iff sampleUnit != null and sampleUnit != ''
+            '#sampleUnit#',
+        --iff sendPerson != null and sendPerson != ''
+            '#sendPerson#',
+        --iff sendTime != null
+            '#sendTime#',
+        --iff receivePerson != null and receivePerson != ''
+            '#receivePerson#',
+        --iff receiveTime != null
+            '#receiveTime#',
+        --iff receiptPerson != null and receiptPerson != ''
+            '#receiptPerson#',
+        --iff receiptTime != null
+        	'#receiptTime#',
+        --iff receiptType != null and receiptType != ''
+            '#receiptType#',
+        --iff disposer != null and disposer != ''
+            '#disposer#',
+        --iff disposerTime != null
+            '#disposerTime#',
+        --iff disposerMethod != null and disposerMethod != ''
+            '#disposerMethod#',
+        --iff sampleFile != null and sampleFile != ''
+            '#sampleFile#',
+        --iff comments != null and comments != ''
+            '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+        --iff createdTime != null
+            '#createdTime#',
+        --iff createdUuid != null createdUuid and != ''
+            '#createdUuid#',
+        --iff createdName != null and createdName != ''
+            '#createdName#',
+        --iff updatedTime != null
+            '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid != ''
+            '#updatedUuid#',
+        --iff updatedName != null and updatedName != ''
+            '#updatedName#',
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
+        --iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+    -- end
+
+-- [updateOrderSample]
+update order_sample
+    -- trim prefix= set suffixOverrides=,
+        --iff orderUuid != null and orderUuid != ''
+        	order_uuid = '#orderUuid#',
+        --iff sampleCode != null and sampleCode != ''
+        	sample_code = '#sampleCode#',
+        --iff sampleName != null and sampleName != ''
+        	sample_name = '#sampleName#',
+        --iff sampleSpec != null and sampleSpec != ''
+        	sample_spec = '#sampleSpec#',
+        --iff sampleType != null and sampleType != ''
+        	sample_type = '#sampleType#',
+        --iff samplePlace != null and samplePlace != ''
+        	sample_place = '#samplePlace#',
+        --iff sampleUnit != null and sampleUnit != ''
+        	sample_unit = '#sampleUnit#',
+        --iff sendPerson != null and sendPerson != ''
+        	send_person = '#sendPerson#',
+        --iff sendTime != null
+        	send_time = '#sendTime#',
+        --iff receivePerson != null and receivePerson != ''
+        	receive_person = '#receivePerson#',
+        --iff receiveTime != null
+        	receive_time = '#receiveTime#',
+        --iff receiptPerson != null and receiptPerson != ''
+        	receipt_person = '#receiptPerson#',
+        --iff receiptTime != null
+        	receipt_time = '#receiptTime#',
+        --iff receiptType != null and receiptType != ''
+        	receipt_type = '#receiptType#',
+        --iff disposer != null and disposer != ''
+        	disposer = '#disposer#',
+        --iff disposerTime != null
+        	disposer_time = '#disposerTime#',
+        --iff disposerMethod != null and disposerMethod != ''
+        	disposer_method = '#disposerMethod#',
+        --iff sampleFile != null and sampleFile != ''
+        	sample_file = '#sampleFile#',
+        --iff comments != null and comments != ''
+        	comments = '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+        	is_deleted = '#isDeleted#',
+        --iff createdTime != null
+        	created_time = '#createdTime#',
+        --iff createdUuid != null and createdUuid != ''
+        	created_uuid = '#createdUuid#',
+        --iff createdName != null and createdName != ''
+        	created_name = '#createdName#',
+        --iff updatedTime != null
+        	updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid != ''
+        	updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName != ''
+        	updated_name = '#updatedName#',
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        	prod_catalog_uuid = '#prodCatalogUuid#',
+        --iff orgUuid != null and orgUuid != ''
+        	org_uuid = '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+        	app_sys_uuid = '#appSysUuid#',
+    -- end
+where
+    is_deleted = 'N'
+--iff sampleUuid != null and sampleUuid != ''
+    and sample_uuid = '#sampleUuid#'
+
+-- [deleteOrderSample]
+update order_sample
+    -- trim prefix= set suffixOverrides=,
+            is_deleted = 'Y',
+        --iff updatedTime != null
+        	updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid != ''
+        	updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName != ''
+        	updated_name = '#updatedName#',
+    -- end
+where
+    is_deleted = 'N'
+--iff sampleUuid != null and sampleUuid != ''
+    and sample_uuid = '#sampleUuid#'
