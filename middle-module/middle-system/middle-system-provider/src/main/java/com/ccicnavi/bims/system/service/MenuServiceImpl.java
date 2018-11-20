@@ -5,6 +5,7 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.system.dao.MenuDao;
 import com.ccicnavi.bims.system.pojo.MenuDO;
+import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.service.api.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.util.List;
 public class MenuServiceImpl implements MenuService {
 
     @Autowired
-    MenuDao menuDao;
+    private MenuDao menuDao;
 
     /* *
      * @Author MengZiJie
@@ -120,5 +121,23 @@ public class MenuServiceImpl implements MenuService {
            return null;
         }
         return menu;
+    }
+
+
+    /*
+     * 根据用户的UUID查询所有的菜单UUID
+     * @Author zhaotao
+     * @Date  2018/11/19 11:21
+     * @Param [userDO]
+     * @return java.util.List<java.lang.String>
+     **/
+    @Override
+    public List<MenuDO> listMenuByUser(UserDO userDO) {
+        try {
+            return menuDao.listMenuByUser(userDO);
+        } catch (Exception e) {
+            log.error("根据用户查询菜单失败", e);
+            return null;
+        }
     }
 }

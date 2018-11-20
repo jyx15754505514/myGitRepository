@@ -1,0 +1,237 @@
+-- [lsitCategoryTypeDO]
+SELECT
+    product_category_type_uuid,
+    parent_type_uuid,
+    has_table,
+    type_name,
+    comments,
+    is_deleted,
+    created_time,
+    created_uuid,
+    created_name,
+    updated_time,
+    updated_uuid,
+    updated_name,
+    prod_catalog_uuid,
+    org_uuid,
+    app_sys_uuid,
+    extend1,
+    extend2,
+    extend3
+FROM
+    product_category_type
+WHERE
+    is_deleted='N'
+
+-- [saveCategoryTypeDO]
+INSERT INTO product_category_type
+   -- trim prefix=( suffix=) suffixOverrides=,
+     -- iff productCategoryTypeUuid != null and productCategoryTypeUuid != ''
+        product_category_type_uuid,
+
+     -- iff parentTypeUuid != null and parentTypeUuid != ''
+        parent_type_uuid,
+
+     -- iff hasTable != null and hasTable != ''
+        has_table,
+
+     -- iff typeName != null and typeName != ''
+        type_name,
+
+     -- iff comments != null and comments != ''
+        comments,
+
+     -- iff isDeleted != null and isDeleted != ''
+        is_deleted,
+
+     -- iff createdTime != null and createdTime != ''
+        created_time,
+
+     -- iff createdUuid != null and createdUuid != ''
+        created_uuid,
+
+     -- iff createdName != null and createdName != ''
+        created_name,
+
+     -- iff updatedTime != null and updatedTime != ''
+        updated_time,
+
+     -- iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
+
+     -- iff updatedName != null and updatedName != ''
+        updated_name,
+
+     -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+
+     -- iff orgUuid != null and orgUuid != ''
+        org_uuid,
+
+     -- iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid,
+
+     -- iff extend1 != null and extend1 != ''
+        extend1,
+
+     -- iff extend2 != null and extend2 != ''
+        extend2,
+
+     -- iff extend3 != null and extend3 != ''
+        extend3,
+
+   --end
+   -- trim prefix=values( suffix=) suffixOverrides=,
+     -- iff productCategoryTypeUuid != null and productCategoryTypeUuid != ''
+        '#productCategoryTypeUuid#',
+
+     -- iff parentTypeUuid != null and parentTypeUuid != ''
+        '#parentTypeUuid#',
+
+     -- iff hasTable != null and hasTable != ''
+        '#hasTable#',
+
+     -- iff typeName != null and typeName != ''
+        '#typeName#',
+
+     -- iff comments != null and comments != ''
+        '#comments#',
+
+     -- iff isDeleted != null and isDeleted != ''
+        '#isDeleted#',
+
+     -- iff createdTime != null and createdTime != ''
+        '#createdTime#',
+
+     -- iff createdUuid != null and createdUuid != ''
+        '#createdUuid#',
+
+     -- iff createdName != null and createdName != ''
+        '#createdName#',
+
+     -- iff updatedTime != null and updatedTime != ''
+        '#updatedTime#',
+
+     -- iff updatedUuid != null and updatedUuid != ''
+        '#updatedUuid#',
+
+     -- iff updatedName != null and updatedName != ''
+        '#updatedName#',
+
+     -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+
+     -- iff orgUuid != null and orgUuid != ''
+        '#orgUuid#',
+
+     -- iff appSysUuid != null and appSysUuid != ''
+        '#appSysUuid#',
+
+     -- iff extend1 != null and extend1 != ''
+        '#extend1#',
+
+     -- iff extend2 != null and extend2 != ''
+        '#extend2#',
+
+     -- iff extend3 != null and extend3 != ''
+        '#extend3#',
+
+    --end
+
+
+-- [removeCategoryTypeDO]
+UPDATE product_category_type
+SET is_deleted='Y'
+WHERE is_deleted='N'
+AND product_category_type_uuid='#productCategoryTypeUuid#'
+
+
+
+
+-- [updateCategoryTypeDO]
+ update product_category_type
+	-- trim prefix=SET suffixOverrides=,
+      -- iff productCategoryTypeUuid != null
+        product_category_type_uuid = '#productCategoryTypeUuid#',
+
+      -- iff parentTypeUuid != null
+        parent_type_uuid = '#parentTypeUuid#',
+
+      -- iff hasTable != null
+        has_table = '#hasTable#',
+
+      -- iff typeName != null
+         type_name = '#typeName#',
+
+      -- iff comments != null
+        comments = '#comments#',
+
+      -- iff isDeleted != null
+        is_deleted = '#isDeleted#',
+
+      -- iff createdTime != null
+        created_time = '#createdTime#',
+
+      -- iff createdUuid != null
+        created_uuid = '#createdUuid#',
+
+      -- iff createdName != null
+        created_name = '#createdName#',
+
+      -- iff updatedTime != null
+        updated_time = '#updatedTime#',
+
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+
+      -- iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
+
+      -- iff orgUuid != null
+        org_uuid = '#orgUuid#',
+
+      -- iff appSysUuid != null
+        app_sys_uuid = '#appSysUuid#',
+
+      -- iff extend1 != null
+        extend1 = '#extend1#',
+
+      -- iff extend2 != null
+        extend2 = '#extend2#',
+
+      -- iff extend3 != null
+        extend3 = '#extend3#',
+
+    --end
+  where product_category_type_uuid = '#productCategoryTypeUuid#'
+
+-- [getCategoryTypeDO]
+  SELECT
+    product_category_type_uuid,
+    parent_type_uuid,
+    has_table,
+    type_name,
+    comments,
+    is_deleted,
+    created_time,
+    created_uuid,
+    created_name,
+    updated_time,
+    updated_uuid,
+    updated_name,
+    prod_catalog_uuid,
+    org_uuid,
+    app_sys_uuid,
+    extend1,
+    extend2,
+    extend3
+FROM product_category_type
+WHERE
+    is_deleted='N'
+        --if productCategoryTypeUuid !=null and productCategoryTypeUuid != ''
+            and product_category_type_uuid = '#productCategoryTypeUuid#'
+
+        --end

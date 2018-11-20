@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -17,6 +18,13 @@ import java.util.Date;
 @Setter
 @ToString
 public class UserDO {
+
+    private List<RoleUserDO> roleList;
+
+    private List<MenuDO> menuList;
+
+    private List<DepartmentDO> deptList;
+
     private String userUuid;
 
     private String nickName;

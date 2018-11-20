@@ -73,14 +73,13 @@ public class CustInvoiceController {
      */
     @RequestMapping(value = "/getCustInvoice", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT getCustInvoice(@RequestBody CustInvoiceDO custInvoiceDO) {
+        if(StringUtils.isEmpty(custInvoiceDO.getInvoiceUuid())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
-            if (!StringUtils.isEmpty(custInvoiceDO.getInvoiceUuid())) {
-                CustInvoiceDO custInvoice = custInvoiceService.getCustInvoice(custInvoiceDO);
-                if (custInvoice != null) {
-                    return ResultT.success(custInvoice);
-                }
-            } else {
-                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            CustInvoiceDO custInvoice = custInvoiceService.getCustInvoice(custInvoiceDO);
+            if (custInvoice != null) {
+                return ResultT.success(custInvoice);
             }
         } catch (Exception e) {
             log.error("根据主键查询客户发票失败", e);
@@ -130,6 +129,9 @@ public class CustInvoiceController {
      */
     @RequestMapping(value = "/removeCustInvoice", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT removeCustInvoice(@RequestBody CustInvoiceDO custInvoiceDO) {
+        if(StringUtils.isEmpty(custInvoiceDO.getUuids())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
             Integer count = custInvoiceService.removeCustInvoice(custInvoiceDO);
             if (count > 0) {

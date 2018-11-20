@@ -8,6 +8,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 客户地址
@@ -55,5 +56,5 @@ public class CustAddrDO implements Serializable {
 
     private String extend3;
 
-    private String [] uuids;//要删除的客户地址主键
+    private List<String> uuids;//要删除的客户地址主键
 }

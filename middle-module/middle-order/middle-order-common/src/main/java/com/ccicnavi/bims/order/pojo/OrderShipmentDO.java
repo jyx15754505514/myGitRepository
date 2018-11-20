@@ -45,5 +45,4 @@ public class OrderShipmentDO implements Serializable {
 
     private String weightUnit;
 
-    private List<String> orderUuidList;
 }

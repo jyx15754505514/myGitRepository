@@ -14,8 +14,23 @@
     <parent>
         <groupId>com.ccicnavi.bims</groupId>
         <artifactId>middle-product</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
+
+    <dependencies>
+        <!--实体POJO-->
+        <dependency>
+            <groupId>middle-product</groupId>
+            <artifactId>middle-product-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--公共组件-->
+        <dependency>
+            <groupId>middle-module</groupId>
+            <artifactId>middle-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

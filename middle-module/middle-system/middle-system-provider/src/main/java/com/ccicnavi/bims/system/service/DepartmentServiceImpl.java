@@ -128,14 +128,14 @@ import java.util.List;
      *@date: 2018/11/19
      */
      @Override
-     public List<UserDeptDO> listDeptByUser(UserDO userDO){
-         List<UserDeptDO> userDeptDOList = null;
+     public List<DepartmentDO> listDeptByUser(UserDO userDO){
+         List<DepartmentDO> deptList = null;
          try {
-             userDeptDOList = departmentDao.listDeptByUser(userDO);
-             return userDeptDOList;
+             deptList = departmentDao.listDeptByUser(userDO);
+             return deptList;
          } catch (Exception e) {
              log.error("查询用户部门UUID失败",e);
-             return userDeptDOList;
+             return deptList;
          }
 
      }

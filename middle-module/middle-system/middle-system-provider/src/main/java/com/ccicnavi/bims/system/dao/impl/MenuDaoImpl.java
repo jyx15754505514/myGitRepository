@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.dao.impl;
 
 import com.ccicnavi.bims.system.dao.MenuDao;
 import com.ccicnavi.bims.system.pojo.MenuDO;
+import com.ccicnavi.bims.system.pojo.UserDO;
 import org.n3r.eql.Eql;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -67,5 +68,18 @@ public class MenuDaoImpl implements MenuDao {
     @Override
     public Integer deleteMenu(MenuDO menuDO) throws Exception {
         return new Eql().delete("deleteMenu").params(menuDO).returnType(Integer.class).execute();
+    }
+
+
+    /*
+     * 根据用户的UUID查询所有的菜单UUID
+     * @Author zhaotao
+     * @Date  2018/11/19 11:21
+     * @Param [userDO]
+     * @return java.util.List<java.lang.String>
+     **/
+    @Override
+    public List<MenuDO> listMenuByUser(UserDO userDO) throws Exception {
+        return new Eql().select("listMenuByUser").params(userDO).returnType(List.class).execute();
     }
 }

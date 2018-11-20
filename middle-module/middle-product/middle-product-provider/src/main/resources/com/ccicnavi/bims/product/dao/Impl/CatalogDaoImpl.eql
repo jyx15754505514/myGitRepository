@@ -1,0 +1,214 @@
+-- [listCatalogDO]
+SELECT
+    prod_catalog_uuid,
+    catalog_name,
+    catalog_code,
+    comments,
+    is_deleted,
+    created_time,
+    created_uuid,
+    created_name,
+    updated_time,
+    updated_uuid,
+    updated_name,
+    org_uuid,
+    app_sys_uuid,
+    extend1,
+    extend2,
+    extend3
+FROM
+    prod_catalog
+WHERE
+    is_deleted='N'
+
+-- [saveCatalogDO]
+INSERT INTO prod_catalog
+   -- trim prefix=( suffix=) suffixOverrides=,
+     -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+
+     -- iff catalogName != null and catalogName != ''
+        catalog_name,
+
+     -- iff catalogCode != null and catalogCode != ''
+        catalog_code,
+
+     -- iff comments != null and comments != ''
+        comments,
+
+     -- iff isDeleted != null and isDeleted != ''
+        is_deleted,
+
+     -- iff createdTime != null and createdTime != ''
+        created_time,
+
+     -- iff createdUuid != null and createdUuid != ''
+        created_uuid,
+
+     -- iff createdName != null and createdName != ''
+        created_name,
+
+     -- iff updatedTime != null and updatedTime != ''
+        updated_time,
+
+     -- iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
+
+     -- iff updatedName != null and updatedName != ''
+        updated_name,
+
+     -- iff orgUuid != null and orgUuid != ''
+        org_uuid,
+
+     -- iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid,
+
+     -- iff extend1 != null and extend1 != ''
+        extend1,
+
+     -- iff extend2 != null and extend2 != ''
+        extend2,
+
+     -- iff extend3 != null and extend3 != ''
+        extend3,
+
+   --end
+   -- trim prefix=values( suffix=) suffixOverrides=,
+     -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+
+     -- iff catalogName != null and catalogName != ''
+        '#catalogName#',
+
+     -- iff catalogCode != null and catalogCode != ''
+        '#catalogCode#',
+
+     -- iff comments != null and comments != ''
+        '#comments#',
+
+     -- iff isDeleted != null and isDeleted != ''
+        '#isDeleted#',
+
+     -- iff createdTime != null and createdTime != ''
+        '#createdTime#',
+
+     -- iff createdUuid != null and createdUuid != ''
+        '#createdUuid#',
+
+     -- iff createdName != null and createdName != ''
+        '#createdName#',
+
+     -- iff updatedTime != null and updatedTime != ''
+        '#updatedTime#',
+
+     -- iff updatedUuid != null and updatedUuid != ''
+        '#updatedUuid#',
+
+     -- iff updatedName != null and updatedName != ''
+        '#updatedName#',
+
+     -- iff orgUuid != null and orgUuid != ''
+        '#orgUuid#',
+
+     -- iff appSysUuid != null and appSysUuid != ''
+        '#appSysUuid#',
+
+     -- iff extend1 != null and extend1 != ''
+        '#extend1#',
+
+     -- iff extend2 != null and extend2 != ''
+        '#extend2#',
+
+     -- iff extend3 != null and extend3 != ''
+        '#extend3#',
+
+    --end
+
+
+-- [removeCatalogDO]
+UPDATE prod_catalog
+SET is_deleted='Y'
+WHERE is_deleted='N'
+AND prod_catalog_uuid='#itemUuid#'
+
+
+
+
+-- [updateCatalogDO]
+ update prod_catalog
+	-- trim prefix=SET suffixOverrides=,
+      -- iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
+
+      -- iff catalogName != null
+        catalog_name = '#catalogName#',
+
+      -- iff catalogCode != null
+        catalog_code = '#catalogCode#',
+
+      -- iff comments != null
+        comments = '#comments#',
+
+      -- iff isDeleted != null
+        is_deleted = '#isDeleted#',
+
+      -- iff createdTime != null
+        created_time = '#createdTime#',
+
+      -- iff createdUuid != null
+        created_uuid = '#createdUuid#',
+
+      -- iff createdName != null
+        created_name = '#createdName#',
+
+      -- iff updatedTime != null
+        updated_time = '#updatedTime#',
+
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+
+      -- iff orgUuid != null
+        org_uuid = '#orgUuid#',
+
+      -- iff appSysUuid != null
+        app_sys_uuid = '#appSysUuid#',
+
+      -- iff extend1 != null
+        extend1 = '#extend1#',
+
+      -- iff extend2 != null
+        extend2 = '#extend2#',
+
+      -- iff extend3 != null
+        extend3 = '#extend3#',
+
+    --end
+  where prod_catalog_uuid = '#prodCatalogUuid#'
+
+-- [getCatalogDO]
+  SELECT
+    prod_catalog_uuid,
+    catalog_name,
+    catalog_code,
+    comments,
+    is_deleted,
+    created_time,
+    created_uuid,
+    created_name,
+    updated_time,
+    updated_uuid,
+    updated_name,
+    org_uuid,
+    app_sys_uuid,
+    extend1,
+    extend2,
+    extend3
+FROM prod_catalog
+WHERE
+    is_deleted='N'
+        --if prodCatalogUuid !=null and prodCatalogUuid != ''
+            and prod_catalog_uuid = '#prodCatalogUuid#'
+        --end

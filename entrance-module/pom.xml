@@ -22,4 +22,20 @@
         <module>entrance-common</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>zoo-shiba</groupId>
+            <artifactId>shiba-api</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ccicnavi.bims</groupId>
+            <artifactId>breeder-api</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
 </project>
