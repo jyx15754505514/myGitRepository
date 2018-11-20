@@ -3,9 +3,8 @@ package com.ccicnavi.bims.order.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
 /**
  * @program: bims-backend
@@ -17,7 +16,12 @@ import java.util.List;
 @Setter
 @ToString
 public class OrderItemDO implements Serializable {
+
     private String orderItemUuid;
+
+    private String orderUuid;
+
+    private String orderItemNo;
 
     private String minItemName;
 
@@ -35,12 +39,38 @@ public class OrderItemDO implements Serializable {
 
     private String isSubpkgMgr;
 
-    private String acceptOrgUuid;
+    private String receOrgUuid;
 
-    private String acceptOrgName;
+    private String receOrgName;
+
+    private String receUserUuid;
+
+    private Date receUserTime;
 
     private String useStdUuid;
 
     private String useStdName;
+
+    private String comments;
+
+    private String isDeleted;
+
+    private Date createdTime;
+
+    private String createdUuid;
+
+    private String createdName;
+
+    private Date updatedTime;
+
+    private String updatedUuid;
+
+    private String updatedName;
+
+    private String extend1;
+
+    private String extend2;
+
+    private String extend3;
 
 }

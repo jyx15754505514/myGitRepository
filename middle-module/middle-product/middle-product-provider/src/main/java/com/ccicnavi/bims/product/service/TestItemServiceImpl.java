@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.product.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.TestItemDao;
 import com.ccicnavi.bims.product.api.TestItemService;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
@@ -11,8 +13,8 @@ import java.util.List;
 
 /**
  * @program: bims-backend
- * @description: 该类的作用描述
- * @author: 本人姓名
+ * @description: 检测指标ServiceImpl
+ * @author: WangYingLing
  * @create: 2018-11-19 18:06
  */
 @Service
@@ -24,61 +26,61 @@ public class TestItemServiceImpl implements TestItemService {
 
     @Override
     public List<TestItemDO> listTestItemDo(TestItemDO testItemDO){
-        List<TestItemDO> testItemDOS=null;
         try {
-            testItemDOS=testItemDao.listTestItemDO();
+            return testItemDao.listTestItemDO();
         } catch (Exception e) {
             log.error("查询检测指标信息失败",e);
-            e.printStackTrace();
+            return null;
         }
-        return testItemDOS;
     }
 
     @Override
     public int saveTestItemDo(TestItemDO testItemDO){
-        Integer count=0;
         try {
-            count=testItemDao.saveTestItemDO(testItemDO);
+            return testItemDao.saveTestItemDO(testItemDO);
         } catch (Exception e) {
             log.error("新增检测指标信息失败",e);
-            e.printStackTrace();
+            return 0;
         }
-        return count;
     }
 
     @Override
     public int removeTestItemDo(TestItemDO testItemDO){
-        Integer count=0;
         try {
-            count=testItemDao.removeTestItemDO(testItemDO);
+            return testItemDao.removeTestItemDO(testItemDO);
         } catch (Exception e) {
             log.error("删除检测指标信息失败",e);
-            e.printStackTrace();
+            return 0;
         }
-        return count;
     }
 
     @Override
     public int updateTestItemDo(TestItemDO testItemDO){
-        Integer count=0;
         try {
-            count=testItemDao.updateTestItemDO(testItemDO);
+            return testItemDao.updateTestItemDO(testItemDO);
         } catch (Exception e) {
             log.error("修改检测指标信息失败",e);
-            e.printStackTrace();
+            return 0;
         }
-        return count;
     }
 
     @Override
     public TestItemDO getTestItemDo(TestItemDO testItemDO){
-        TestItemDO testItemDOResult=null;
         try {
-            testItemDOResult=testItemDao.getTestItemDO(testItemDO);
+            return testItemDao.getTestItemDO(testItemDO);
         } catch (Exception e) {
             log.error("获取检测指标信息失败",e);
-            e.printStackTrace();
+            return null;
         }
-        return testItemDOResult;
+    }
+
+    @Override
+    public PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDO> pageParameter) {
+        try {
+            return testItemDao.listTestItemPage(pageParameter);
+        } catch (Exception e) {
+            log.error("分页查询检测指标信息失败",e);
+            return null;
+        }
     }
 }

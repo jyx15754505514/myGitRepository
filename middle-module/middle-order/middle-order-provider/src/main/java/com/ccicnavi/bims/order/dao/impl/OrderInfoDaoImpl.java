@@ -1,11 +1,16 @@
 package com.ccicnavi.bims.order.dao.impl;
 
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.dao.OrderInfoDao;
 import com.ccicnavi.bims.order.pojo.OrderInfoDO;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /* *
  * @Author MengZiJie
@@ -24,7 +29,11 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
      */
     @Override
     public Integer insertOrderInfo(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").insert("insertOrderInfo").params(orderInfoDTO).returnType(OrderInfoDO.class).execute();
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null){
+            return eql.useTran(tran).insert("insertOrderInfo").params(orderInfoDTO).returnType(Integer.class).execute();
+        }
+        return eql.insert("insertOrderInfo").params(orderInfoDTO).returnType(Integer.class).execute();
     }
 
     /* *
@@ -36,6 +45,30 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
      */
     @Override
     public Integer updateOrderInfo(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception {
-        return EqlUtils.getInstance("DEFAULT").update("updateOrderInfo").params(orderInfoDTO).returnType(OrderInfoDO.class).execute();
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null){
+            return eql.useTran(tran).update("updateOrderInfo").params(orderInfoDTO).returnType(Integer.class).execute();
+        }
+        return eql.update("updateOrderInfo").params(orderInfoDTO).returnType(Integer.class).execute();
+    }
+
+    /* *
+     * @Author fandongsheng
+     * @Description 更新委托单信息
+     * @Date 12018/11/20 20:27
+     * @Param [orderInfoDao]
+     * @Return PageBean<OrderInfoDO>
+     */
+    @Override
+    public PageBean<OrderInfoDO> listOrderInfoPage(PageParameter<OrderInfoDO> pageParameter) throws Exception {
+        //封装分页参数
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        //执行查询
+        List<OrderInfoDO> orderInfoList = new Eql().select("listOrderInfo").params(pageParameter.getParameter()).returnType(OrderInfoDO.class).limit(page).execute();
+        if(orderInfoList != null) {
+            return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),orderInfoList);
+        }else {
+            return null;
+        }
     }
 }

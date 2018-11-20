@@ -6,7 +6,7 @@ import lombok.ToString;
 import java.io.Serializable;
 /* *
  * @Author MengZiJie
- * @Description
+ * @Description 委托单服务项子项
  * @Date 9:37 2018/11/20
  */
 @Getter
