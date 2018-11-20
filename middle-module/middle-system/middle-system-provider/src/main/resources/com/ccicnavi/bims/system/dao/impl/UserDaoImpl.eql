@@ -273,6 +273,7 @@
            bind_login_ip as bindLoginIp,
            is_enabled as isEnabled,
            comments,
+           salt,
            is_deleted as isDeleted,
            created_time as createdTime,
            created_uuid as createdUuid,
