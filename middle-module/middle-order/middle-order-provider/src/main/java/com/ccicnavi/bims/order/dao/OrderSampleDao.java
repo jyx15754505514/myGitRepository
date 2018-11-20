@@ -2,7 +2,11 @@ package com.ccicnavi.bims.order.dao;
 
 import com.ccicnavi.bims.order.pojo.OrderSampleDO;
 import org.n3r.eql.EqlTran;
-
+/* *
+ * @Author MengZiJie
+ * @Description 标准样品库
+ * @Date 18:01 2018/11/20
+ */
 public interface OrderSampleDao {
 
    /* *

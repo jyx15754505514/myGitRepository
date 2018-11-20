@@ -7,7 +7,7 @@ import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 /* *
  * @Author MengZiJie
- * @Description 委托单
+ * @Description 标准样品库
  * @Date 16:28 2018/11/14
  */
 @Service
