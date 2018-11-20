@@ -1,25 +1,23 @@
 package com.ccicnavi.bims.order.pojo;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @program: bims-backend
- * @description: 订单主信息DO
- * @author: panyida
- * @create: 2018-11-19 15:26
- **/
+/* *
+ * @Author MengZiJie
+ * @Description 委托单DTO
+ * @Date 9:23 2018/11/20
+ */
 @Getter
 @Setter
 @ToString
-public class OrderInfoDO implements Serializable {
-    private String orderUuid;
+public class OrderInfoDTO implements Serializable {
+
+    private String orderUuid;//委托单基本信息
 
     private String prodCatalogUuid;
 
@@ -85,4 +83,31 @@ public class OrderInfoDO implements Serializable {
 
     private String updatedName;
 
+    private String shippingTypeId;//运输方式
+
+    private String shipName;
+
+    private String voyageName;
+
+    private String dispathPortId;
+
+    private String destPortId;
+
+    private String loadingPortId;
+
+    private String dischargePortId;
+
+    private String tradeNatureId;
+
+    private String customsCertNo;
+
+    private String customsDeclNo;
+
+    private String inspectionPerson;
+
+    private String weight;
+
+    private String weightUnit;
+
+    List<OrderItemDTO> orderItemDTO;//服务项
 }
