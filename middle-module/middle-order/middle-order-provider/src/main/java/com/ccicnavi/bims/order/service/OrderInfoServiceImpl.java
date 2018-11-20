@@ -4,11 +4,14 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.api.OrderInfoService;
 import com.ccicnavi.bims.order.dao.OrderInfoDao;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
 import com.ccicnavi.bims.order.dao.OrderItemSubDao;
 import com.ccicnavi.bims.order.dao.OrderShipmentDao;
+import com.ccicnavi.bims.order.pojo.OrderInfoDO;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
 import com.ccicnavi.bims.order.pojo.OrderItemSubDO;
@@ -42,6 +45,54 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
     @Autowired
     IdWorkerService idWorkerService;
+
+    /* *
+     * @Author MengZiJie
+     * @Description 新增委托单
+     * @Date 17:31 2018/11/19
+     * @Param [orderInfoDO]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer insertOrderInfo(OrderInfoDTO orderInfoDTO) {
+        EqlTran eqlTran = null;
+        Integer integer = null;
+        try {
+            integer = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
+        } catch (Exception e) {
+            log.error("新增委托单失败",e);
+        }
+        return integer;
+    }
+
+    /* *
+     * @Author MengZiJie
+     * @Description 更新委托单
+     * @Date 17:31 2018/11/19
+     * @Param [orderInfoDO]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer updateOrderInfo(OrderInfoDTO orderInfoDTO) {
+        EqlTran eqlTran = null;
+        Integer integer = null;
+        try {
+            integer = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
+        } catch (Exception e) {
+            log.error("更新委托单信息",e);
+        }
+        return integer;
+    }
+
+    @Override
+    public PageBean<OrderInfoDO> listOrderInfo(PageParameter<OrderInfoDO> pageParameter) {
+        try {
+            return orderInfoDao.listOrderInfoPage(pageParameter);
+        } catch (Exception e) {
+            log.error("委托单分页查询失败");
+            return null;
+        }
+    }
 
     /* *
      * @Author MengZiJie

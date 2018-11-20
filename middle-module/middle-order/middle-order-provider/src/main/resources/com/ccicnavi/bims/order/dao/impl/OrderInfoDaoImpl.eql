@@ -2,7 +2,7 @@
 select
     order_uuid orderUuid,
     prod_catalog_uuid prodCatalogUuid,
-    product_category_id productCategoryId,
+    product_category_uuid productCategoryUuid,
     order_no orderNo,
     order_name orderName,
     order_date orderDate,
