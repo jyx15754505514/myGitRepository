@@ -1,4 +1,4 @@
--- []
+-- [listOrderItemSub]
 SELECT
     sub_item_uuid subItemUuid,
     item_uuid itemUuid,
@@ -14,7 +14,7 @@ where
      item_name like '#itemName:Like#'
 --end
 
--- []
+-- [getOrderItemSub]
 SELECT
     sub_item_uuid subItemUuid,
     item_uuid itemUuid,
