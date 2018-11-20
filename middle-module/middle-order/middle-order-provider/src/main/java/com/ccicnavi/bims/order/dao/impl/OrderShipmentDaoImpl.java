@@ -1,9 +1,7 @@
 package com.ccicnavi.bims.order.dao.impl;
 
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.order.dao.OrderShipmentDao;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
-import com.ccicnavi.bims.order.pojo.OrderShipmentDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
