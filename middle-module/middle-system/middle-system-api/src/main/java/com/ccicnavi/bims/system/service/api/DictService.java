@@ -9,7 +9,7 @@ import com.ccicnavi.bims.system.pojo.UserDO;
  * @Date: 2018/11/19 22:46
  * @Description:
  */
-public interface SysDictService {
+public interface DictService {
     /**
      * 根据字典类别编号查询字典信息
      * @param types
