@@ -12,7 +12,9 @@ SELECT
     is_enabled isEnabled,
     sort_num sortNum,
     is_deleted isDeleted,
-    prod_catalog_uuid prodCatalogUuid
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
 from
     sys_menu
 where
@@ -21,6 +23,15 @@ where
     and app_sys_uuid = '#appSysUuid#'
 --iff menuName != null and menuName != ''
     and menu_name like '#menuName:Like#'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff parentUuid != null and parentUuid != ''
+    and parent_uuid = '#parentUuid#'
+--iff menuUuid != null and menuUuid != ''
+    and menu_uuid = '#menuUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+
 
 
 -- [getMenu]
@@ -37,7 +48,9 @@ SELECT
     is_enabled isEnabled,
     sort_num sortNum,
     is_deleted isDeleted,
-    prod_catalog_uuid prodCatalogUuid
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
 from
     sys_menu
 where
@@ -46,6 +59,8 @@ where
     and app_sys_uuid = '#appSysUuid#'
 --iff menuUuid != null and menuUuid != ''
     and menu_uuid = '#menuUuid#'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
 
 
 -- [insertMenu]
@@ -77,6 +92,10 @@ INSERT INTO sys_menu
         	is_deleted,
         --iff prodCatalogUuid != null and prodCatalogUuid != ''
         	prod_catalog_uuid,
+        --iff orgUuid != null and orgUuid != ''
+            org_uuid,
+        --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
     -- end
     -- trim prefix=values( suffix=) suffixOverrides=,
         --iff menuUuid != null and menuUuid != ''
@@ -105,6 +124,10 @@ INSERT INTO sys_menu
             '#isDeleted#',
         --iff prodCatalogUuid != null and prodCatalogUuid != ''
             '#prodCatalogUuid#',
+        --iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
     -- end
 
 
@@ -138,6 +161,10 @@ UPDATE
         app_sys_uuid = '#appSysUuid#',
     --iff prodCatalogUuid != null and prodCatalogUuid != ''
         prod_catalog_uuid = '#prodCatalogUuid#',
+    --iff orgUuid != null and orgUuid != ''
+        org_uuid = '#orgUuid#',
+    --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
 -- end
 where
     is_deleted = 'N'
@@ -167,3 +194,90 @@ WHERE
             '#item#'
         -- end
 
+--根据角色id查询菜单
+-- [listMenuRoleUuid]
+select
+     menu_uuid menuUuid,
+     parent_uuid parentUuid,
+     menu_name menuName,
+     menu_url menuUrl,
+     menu_icon menuIcon,
+     menu_fontcolor menuFontcolor,
+     menu_level menuLevel,
+     parent_all_uuid parentAllUuid,
+     is_enabled isEnabled,
+     sort_num sortNum,
+     is_deleted isDeleted,
+     prod_catalog_uuid prodCatalogUuid,
+     org_uuid orgUuid,
+     app_sys_uuid appSysUuid
+from sys_menu where parent_uuid in(select menu_uuid from sys_menu where parent_uuid in(
+select
+     sm.menu_uuid
+from
+    sys_menu sm LEFT JOIN sys_menu_button smb on sm.menu_uuid = smb.menu_uuid
+    LEFT JOIN sys_role_permission srp on smb.btn_uuid = srp.btn_uuid
+    where sm.is_deleted = 'N'
+ --iff roleUuids != null
+    and srp.role_uuid in
+    -- for item=item index=index collection=roleUuids open=( separator=, close=)
+           '#item#'
+    -- end
+ -- end
+     GROUP BY sm.menu_uuid))
+     UNION
+select
+    menu_uuid menuUuid,
+    parent_uuid parentUuid,
+    menu_name menuName,
+    menu_url menuUrl,
+    menu_icon menuIcon,
+    menu_fontcolor menuFontcolor,
+    menu_level menuLevel,
+    parent_all_uuid parentAllUuid,
+    is_enabled isEnabled,
+    sort_num sortNum,
+    is_deleted isDeleted,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+ from sys_menu where parent_uuid in(select
+    sm.menu_uuid
+ from
+        sys_menu sm LEFT JOIN sys_menu_button smb on sm.menu_uuid = smb.menu_uuid
+        LEFT JOIN sys_role_permission srp on smb.btn_uuid = srp.btn_uuid
+        where sm.is_deleted = 'N'
+  --iff roleUuids != null
+  and srp.role_uuid in
+     -- for item=item index=index collection=roleUuids open=( separator=, close=)
+            '#item#'
+     -- end
+  -- end
+     GROUP BY sm.menu_uuid)
+     UNION
+ select
+         sm.menu_uuid menuUuid,
+         sm.parent_uuid parentUuid,
+         sm.menu_name menuName,
+         sm.menu_url menuUrl,
+         sm.menu_icon menuIcon,
+         sm.menu_fontcolor menuFontcolor,
+         sm.menu_level menuLevel,
+         sm.parent_all_uuid parentAllUuid,
+         sm.is_enabled isEnabled,
+         sm.sort_num sortNum,
+         sm.is_deleted isDeleted,
+         sm.prod_catalog_uuid prodCatalogUuid,
+         sm.org_uuid orgUuid,
+         sm.app_sys_uuid appSysUuid
+from
+             sys_menu sm LEFT JOIN sys_menu_button smb on sm.menu_uuid = smb.menu_uuid
+             LEFT JOIN sys_role_permission srp on smb.btn_uuid = srp.btn_uuid
+             where sm.is_deleted = 'N'
+             --iff roleUuids != null
+             and srp.role_uuid in
+                  -- for item=item index=index collection=roleUuids open=( separator=, close=)
+                            '#item#'
+                  -- end
+             -- end
+             GROUP BY sm.menu_uuid ORDER BY menuUuid

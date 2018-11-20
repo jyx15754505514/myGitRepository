@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: bims-backend
@@ -146,6 +147,9 @@ public class CustomerDTO implements Serializable {
     private String taxNo;
 
 
+    private List<CustAddrDO> custAddrList; //地址信息
+
+    private List<LinkmanDO> linkmanList; //联系人信息
 
 
 }

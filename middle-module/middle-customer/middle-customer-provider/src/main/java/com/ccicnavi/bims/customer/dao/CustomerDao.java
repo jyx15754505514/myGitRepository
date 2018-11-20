@@ -35,4 +35,13 @@ public interface CustomerDao {
 
     /**客户分页信息展示*/
     PageBean<CustomerDO> listCustomerPage(PageParameter<CustomerDO> pageParameter);
+    /**
+    *@Description: 根据客户uuid客户信息
+    *@Param: customer
+    *@return: CustomerDTO
+    *@Author: zqq
+    *@date: 2018/11/20
+    */
+
+    CustomerDTO getCustomerUuid(CustomerDO customer) throws Exception;
 }

@@ -7,16 +7,16 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.List;
 
-/* *
- * @Author MengZiJie
- * @Description 菜单管理
- * @Date 16:04 2018/11/15
+/**
+ * @program: bims-backend
+ * @description: 菜单dto
+ * @author: zqq
+ * @create: 2018-11-20 09:48
  */
-@Getter
 @Setter
+@Getter
 @ToString
-public class MenuDO implements Serializable {
-
+public class MenuDTO implements Serializable {
     private java.lang.String menuUuid;//
 
     private java.lang.String parentUuid;//父级菜单
@@ -47,11 +47,7 @@ public class MenuDO implements Serializable {
 
     private java.lang.String appSysUuid;//应用系统id
 
-    private java.lang.String extend1;//预留字段1
+    private List<String> roleUuids;
 
-    private java.lang.String extend2;//预留字段2
-
-    private java.lang.String extend3;//预留字段3
-
-    private List<String> uuids;
+    private List<MenuButtonDO> menuButtonDOList;
 }
