@@ -4,7 +4,6 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.order.api.OrderItemService;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
-import com.ccicnavi.bims.order.pojo.OrderItemDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;

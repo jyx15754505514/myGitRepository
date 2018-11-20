@@ -8,12 +8,10 @@ import com.ccicnavi.bims.order.api.OrderInfoService;
 import com.ccicnavi.bims.order.dao.OrderInfoDao;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
 import com.ccicnavi.bims.order.dao.OrderShipmentDao;
-import com.ccicnavi.bims.order.pojo.OrderInfoDO;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
-
 /* *
  * @Author MengZiJie
  * @Description 委托单
@@ -83,22 +81,22 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         try {
             eqlTran.start();
             if(orderInfoDTO.getOrderUuid() != null && !orderInfoDTO.getOrderUuid().equals("")){
-                /**更新委托单运输信息*/
+                //更新委托单运输信息
                 Integer shipment = orderShipmentDao.updateOrderShipment(orderInfoDTO, eqlTran);
-                /**更新委托单服务项*/
+                //更新委托单服务项*/
                 Integer orderItem =  orderItemDao.updateOrderItem(orderInfoDTO,eqlTran);
-                /**更新委托单详情*/
+                //更新委托单详情*/
                 Integer orderInfo = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
                 if(shipment > 0 && orderItem > 0 && orderInfo > 0){
                     eqlTran.commit();
                     return ResultT.success();
                 }
             }else{
-                /**添加委托单运输信息*/
+                //添加委托单运输信息
                 Integer shipment = orderShipmentDao.insertOrderShipment(orderInfoDTO,eqlTran);
-                /**添加委托单服务项*/
+                //添加委托单服务项
                 Integer orderItem = orderItemDao.insertOrderItem(orderInfoDTO,eqlTran);
-                /**添加委托单详情*/
+                //添加委托单详情
                 Integer orderInfo = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
                 if(shipment > 0 && orderItem > 0 && orderInfo > 0){
                     eqlTran.commit();
