@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /* *
  * @Author heibin
  * @Description 证书结果
@@ -18,6 +20,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class OrderResultInfoServiceImpl implements OrderResultInfoService {
     @Autowired
     private OrderResultInfoDao orderResultInfoDao;
+    /* *
+     * @Author heibin
+     * @Description 根据主键id查询证书结果
+     * @Date 17:41 2018/11/20
+     * @Param [orderResultInfoDO]
+     * @Return OrderResultInfoDO
+     */
+    @Override
+    public OrderResultInfoDO getOrderResultInfo(OrderResultInfoDO orderResultInfoDO) {
+        try {
+            return orderResultInfoDao.getOrderResultInfo(orderResultInfoDO);
+        } catch (Exception e) {
+            log.error("根据主键id查询证书结果失败~",e);
+            return null;
+        }
+    }
+
+    /* *
+     * @Author heibin
+     * @Description 查询全部证书结果
+     * @Date 14:52 2018/11/20
+     * @Param [orderResultInfoDO]
+     * @Return List<OrderResultInfoDO>
+     */
+    @Override
+    public List<OrderResultInfoDO> listOrderResultInfo(OrderResultInfoDO orderResultInfoDO) {
+        try {
+            return orderResultInfoDao.listOrderResultInfo(orderResultInfoDO);
+        } catch (Exception e) {
+            log.error("查询所有证书结果失败~",e);
+            return null;
+        }
+    }
+
     /* *
      * @Author heibin
      * @Description 证书结果添加

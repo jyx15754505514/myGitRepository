@@ -5,6 +5,9 @@ import com.ccicnavi.bims.order.pojo.OrderResultInfoDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /* *
  * @Author heibin
  * @Description 证书结果
@@ -12,6 +15,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class OrderResultInfoDaoImpl implements OrderResultInfoDao {
+    /* *
+     * @Author heibin
+     * @Description 根据主键id查询单个证书结果对象
+     * @Date 17:45 2018/11/20
+     * @Param [orderResultInfoDO]
+     * @Return OrderResultInfoDO
+     */
+    @Override
+    public OrderResultInfoDO getOrderResultInfo(OrderResultInfoDO orderResultInfoDO) throws Exception {
+        return new Eql().select("getOrderResultInfo").params(orderResultInfoDO).returnType(OrderResultInfoDO.class).execute();
+    }
+
+    /* *
+     * @Author heibin
+     * @Description 查询所有证书结果
+     * @Date 17:09 2018/11/20
+     * @Param [orderResultInfoDO]
+     * @Return List<OrderResultInfoDO>
+     */
+    @Override
+    public List<OrderResultInfoDO> listOrderResultInfo(OrderResultInfoDO orderResultInfoDO) throws Exception {
+        return new Eql().select("listOrderResultInfo").params(orderResultInfoDO).returnType(OrderResultInfoDO.class).execute();
+    }
     /* *
      * @Author heibin
      * @Description 新增证书结果
