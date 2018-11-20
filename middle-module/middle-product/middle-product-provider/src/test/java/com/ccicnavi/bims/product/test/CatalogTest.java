@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.product.service;
+package com.ccicnavi.bims.product.test;
 
 import com.ccicnavi.bims.product.dao.Impl.CatalogDaoImpl;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
