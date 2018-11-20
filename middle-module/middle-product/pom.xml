@@ -25,6 +25,16 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <!--lombok-->
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.6</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
     <modules>
         <module>middle-product-api</module>
         <module>middle-product-provider</module>

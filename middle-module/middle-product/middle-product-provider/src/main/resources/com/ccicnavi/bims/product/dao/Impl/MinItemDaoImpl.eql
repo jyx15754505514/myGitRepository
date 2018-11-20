@@ -1,0 +1,301 @@
+-- [listMinItem]
+SELECT
+	min_item_uuid,
+	min_item_name,
+	min_item_code,
+	goods_category_uuid,
+	service_category_uuid,
+	goods_price,
+	service_price,
+	use_std_uuid,
+	use_std_name,
+	std_workhour,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_uuid,
+	updated_name,
+	prod_catalog_uuid,
+	org_uuid,
+	app_sys_uuid,
+	extend1,
+	extend2,
+	extend3
+FROM
+	product_min_item
+WHERE
+	is_deleted = 'N'
+
+-- [insertMinItem]
+ insert into product_min_item
+    -- trim prefix=( suffix=) suffixOverrides=,
+      -- iff minItemUuid != null and minItemUuid  != ''
+        min_item_uuid,
+
+      -- iff minItemName != null and minItemName  != ''
+        min_item_name,
+
+      -- iff minItemCode != null and  minItemCode != ''
+        min_item_code,
+
+      -- iff goodsCategoryUuid != null and  goodsCategoryUuid != ''
+        goods_category_uuid,
+
+      -- iff serviceCategoryUuid != null and serviceCategoryUuid  != ''
+        service_category_uuid,
+
+      -- iff goodsPrice != null and goodsPrice  != ''
+        goods_price,
+
+      -- iff servicePrice != null and servicePrice  != ''
+        service_price,
+
+      -- iff useStdUuid != null and useStdUuid  != ''
+        use_std_uuid,
+
+      -- iff useStdName != null and useStdName  != ''
+        use_std_name,
+
+      -- iff stdWorkhour != null and  stdWorkhour != ''
+        std_workhour,
+
+      -- iff comments != null and comments  != ''
+        comments,
+
+      -- iff isDeleted != null and isDeleted  != ''
+        is_deleted,
+
+      -- iff createdTime != null and createdTime  != ''
+        created_time,
+
+      -- iff createdUuid != null and  createdUuid != ''
+        created_uuid,
+
+      -- iff createdName != null and createdName  != ''
+        created_name,
+
+      -- iff updatedTime != null and updatedTime  != ''
+        updated_time,
+
+      -- iff updatedUuid != null and updatedUuid  != ''
+        updated_uuid,
+
+      -- iff updatedName != null and  updatedName != ''
+        updated_name,
+
+      -- iff prodCatalogUuid != null and  prodCatalogUuid != ''
+        prod_catalog_uuid,
+
+      -- iff orgUuid != null and  orgUuid != ''
+        org_uuid,
+
+      -- iff appSysUuid != null and  appSysUuid != ''
+        app_sys_uuid,
+
+      -- iff extend1 != null and extend1  != ''
+        extend1,
+
+      -- iff extend2 != null and  extend2 != ''
+        extend2,
+
+      -- iff extend3 != null and  extend3 != ''
+        extend3,
+
+    -- end
+    -- trim prefix=values( suffix=)  suffixOverrides=,
+      -- iff minItemUuid != null and minItemUuid  != ''
+        '#minItemUuid#',
+
+      -- iff minItemName != null and minItemName  != ''
+        '#minItemName#',
+
+      -- iff minItemCode != null and minItemCode  != ''
+        '#minItemCode#',
+
+      -- iff goodsCategoryUuid != null and goodsCategoryUuid  != ''
+        '#goodsCategoryUuid#',
+
+      -- iff serviceCategoryUuid != null and  serviceCategoryUuid != ''
+        '#serviceCategoryUuid#',
+
+      -- iff goodsPrice != null and  goodsPrice != ''
+        '#goodsPrice#',
+
+      -- iff servicePrice != null and  servicePrice != ''
+        '#servicePrice#',
+
+      -- iff useStdUuid != null and useStdUuid  != ''
+        '#useStdUuid#',
+
+      -- iff useStdName != null and  useStdName != ''
+        '#useStdName#',
+
+      -- iff stdWorkhour != null and stdWorkhour  != ''
+        '#stdWorkhour#',
+
+      -- iff comments != null and  comments != ''
+        '#comments#',
+
+      -- iff isDeleted != null and isDeleted  != ''
+        '#isDeleted#',
+
+      -- iff createdTime != null and createdTime  != ''
+        '#createdTime#',
+
+      -- iff createdUuid != null and createdUuid  != ''
+        '#createdUuid#',
+
+      -- iff createdName != null and createdName  != ''
+        '#createdName#',
+
+      -- iff updatedTime != null and  updatedTime != ''
+        '#updatedTime#',
+
+      -- iff updatedUuid != null and updatedUuid  != ''
+        '#updatedUuid#',
+
+      -- iff updatedName != null and updatedName  != ''
+        '#updatedName#',
+
+      -- iff prodCatalogUuid != null and  prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+
+      -- iff orgUuid != null and  orgUuid != ''
+        '#orgUuid#',
+
+      -- iff appSysUuid != null and appSysUuid  != ''
+        '#appSysUuid#',
+
+      -- iff extend1 != null and  extend1  != ''
+        '#extend1#',
+
+      -- iff extend2 != null and  extend2 != ''
+        '#extend2#',
+
+      -- iff extend3 != null and extend3  != ''
+        '#extend3#',
+
+    --end
+
+
+-- [deleteMinItem]
+  UPDATE product_min_item
+  SET is_deleted = 'Y'
+  WHERE
+  	is_deleted = 'N'
+  	 -- if uuids != null
+                AND min_item_uuid IN
+                -- for item=item index=index collection=uuids open=( separator=, close=)
+                    #item#
+                -- end
+            -- end
+
+-- [updateMinItem]
+update product_min_item
+    -- trim prefix=SET suffixOverrides=,
+      -- iff minItemName != null and  minItemName != ''
+        min_item_name = '#minItemName#',
+
+      -- iff minItemCode != null and minItemCode  != ''
+        min_item_code = '#minItemCode#',
+
+      -- iff goodsCategoryUuid != null and goodsCategoryUuid  != ''
+        goods_category_uuid = '#goodsCategoryUuid#',
+
+      -- iff serviceCategoryUuid != null and serviceCategoryUuid  != ''
+        service_category_uuid = '#serviceCategoryUuid#',
+
+      -- iff goodsPrice != null and goodsPrice  != ''
+        goods_price = '#goodsPrice#',
+
+      -- iff servicePrice != null and  servicePrice != ''
+        service_price = '#servicePrice#',
+
+      -- iff useStdUuid != null and  useStdUuid != ''
+        use_std_uuid = '#useStdUuid#',
+
+      -- iff useStdName != null and  useStdName != ''
+        use_std_name = '#useStdName#',
+
+      -- iff stdWorkhour != null and  stdWorkhour != ''
+        std_workhour = '#stdWorkhour#',
+
+      -- iff comments != null and  comments != ''
+        comments = '#comments#',
+
+      -- iff isDeleted != null and  isDeleted != ''
+        is_deleted = '#isDeleted#',
+
+      -- iff createdTime != null and createdTime  != ''
+        created_time = '#createdTime#',
+
+      -- iff createdUuid != null and  createdUuid != ''
+        created_uuid = '#createdUuid#',
+
+      -- iff createdName != null and  createdName != ''
+        created_name = '#createdName#',
+
+      -- iff updatedTime != null and  updatedTime != ''
+        updated_time = '#updatedTime#',
+
+      -- iff updatedUuid != null and  updatedUuid != ''
+        updated_uuid = '#updatedUuid#',
+
+      -- iff updatedName != null and updatedName  != ''
+        updated_name = '#updatedName#',
+
+      -- iff prodCatalogUuid != null and  prodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
+
+      -- iff orgUuid != null and orgUuid  != ''
+        org_uuid = '#orgUuid#',
+
+      -- iff appSysUuid != null and  appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
+
+      -- iff extend1 != null and  extend1 != ''
+        extend1 = '#extend1#',
+
+      -- iff extend2 != null and  extend2 != ''
+        extend2 = '#extend2#',
+
+      -- iff extend3 != null and  extend3 != ''
+        extend3 = '#extend3#',
+      --end
+    where min_item_uuid = '#minItemUuid#'
+
+
+-- [getMinItem]
+SELECT
+	min_item_uuid,
+	min_item_name,
+	min_item_code,
+	goods_category_uuid,
+	service_category_uuid,
+	goods_price,
+	service_price,
+	use_std_uuid,
+	use_std_name,
+	std_workhour,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_uuid,
+	updated_name,
+	prod_catalog_uuid,
+	org_uuid,
+	app_sys_uuid,
+	extend1,
+	extend2,
+	extend3
+FROM
+	product_min_item
+WHERE
+	is_deleted = 'N'
+AND min_item_uuid='#minItemUuid#'

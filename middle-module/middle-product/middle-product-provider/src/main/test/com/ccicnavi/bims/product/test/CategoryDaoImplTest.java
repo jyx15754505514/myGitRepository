@@ -1,0 +1,75 @@
+package com.ccicnavi.bims.product.test;
+
+
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.product.dao.Impl.CategoryDaoImpl;
+import com.ccicnavi.bims.product.pojo.CategoryDO;
+import org.junit.Test;
+
+import java.util.List;
+
+public class CategoryDaoImplTest {
+
+
+    CategoryDaoImpl categoryDaoImpl=new CategoryDaoImpl();
+
+    @Test
+    public void listCategory() {
+        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategory();
+        System.out.println(categoryDOS);
+    }
+
+    @Test
+    public void saveCategory() {
+        CategoryDO categoryDO=new CategoryDO();
+        categoryDO.setProductCategoryUuid("KC_SY");
+        categoryDO.setProductCategoryTypeUuid("PCT_GOODS");
+        categoryDO.setParentCategoryUuid("CATALOG_PETRO");
+        categoryDO.setCategoryName("石油");
+        categoryDO.setSeqNum("100");
+        categoryDO.setProdCatalogUuid("CATALOG_MINERAL");//产品线
+        categoryDO.setOrgUuid("CCIC");
+        categoryDO.setAppSysUuid("BIMS2.0");
+        int i = categoryDaoImpl.saveCategory(categoryDO);
+        System.out.println("count:"+i);
+    }
+
+    @Test
+    public void removeCategory() {
+
+    }
+
+    @Test
+    public void updateCategory() {
+        CategoryDO categoryDO=new CategoryDO();
+        categoryDO.setProductCategoryUuid("KC_SY");
+        categoryDO.setProductCategoryTypeUuid("PCT_GOODS");
+        categoryDO.setParentCategoryUuid("CATALOG_PETRO");
+        categoryDO.setCategoryName("石油被修改了~");
+        categoryDO.setSeqNum("100");
+        categoryDO.setProdCatalogUuid("CATALOG_MINERAL");//产品线
+        categoryDO.setOrgUuid("CCIC");
+        categoryDO.setAppSysUuid("BIMS2.0");
+        int i = categoryDaoImpl.updateCategory(categoryDO);
+        System.out.println("count:"+i);
+    }
+
+    @Test
+    public void getCategory() {
+        CategoryDO categoryDO=new CategoryDO();
+        categoryDO.setProductCategoryUuid("KC_SY");
+        CategoryDO category = categoryDaoImpl.getCategory(categoryDO);
+        System.out.println(category);
+    }
+
+    @Test
+    public void listCategoryPage() {
+        PageParameter<CategoryDO> pageParameter=new PageParameter<CategoryDO>();
+        pageParameter.setStartIndex(1);
+        pageParameter.setPageRows(2);
+        pageParameter.setStartPage(1);
+        PageBean<CategoryDO> categoryDOPageBean = categoryDaoImpl.listCategoryPage(pageParameter);
+        System.out.println(categoryDOPageBean);
+    }
+}
