@@ -14,6 +14,7 @@ import com.ccicnavi.bims.system.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -99,12 +100,18 @@ public class UserManagerImpl implements UserManager {
         //查部门
         List<DepartmentDO> deptList = deptService.listDeptByUser(userDO);
         //查权限
-      //  List<MenuDO> menuList = menuService.listMenuByUser(userDO);
+        MenuDTO menuDTO = new MenuDTO();
+        List<String> roleUuids = new ArrayList<>();
+        for (RoleUserDO roleUserDO : roleList) {
+            roleUuids.add(roleUserDO.getRoleUuid());
+        }
+        menuDTO.setRoleUuids(roleUuids);
+        List<MenuDTO> menuList = menuService.listMenuRoleUuid(menuDTO);
         //查菜单,根据角色查询菜单List，去除重复
         //查产品线
         user.setDeptList(deptList);
         user.setRoleList(roleList);
-       // user.setMenuList(menuList);
+        user.setMenuList(menuList);
         //保存到Redis中
         hashTemplate.put(jsessionID, user.getUserUuid(), user);
     }
