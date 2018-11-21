@@ -31,8 +31,8 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public int removeCategory(CategoryDO category) {
-        return new Eql().update("deleteCategory").params(category).returnType(int.class).execute();
+    public int removeCategory(CategoryDTO categoryDTO) {
+        return new Eql().update("deleteCategory").params(categoryDTO).returnType(int.class).execute();
     }
 
     @Override
@@ -68,8 +68,8 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public List<CategoryDO> listCategoryByParentUuid(CategoryDO category) throws Exception {
-        return new Eql().select("listCategoryFirstByOrgAndProd").params(category).returnType(CategoryDO.class).execute();
+    public List<CategoryDO> listCategoryByParentUuid(CategoryDTO categoryDTO) throws Exception {
+        return new Eql().select("listCategoryFirstByOrgAndProd").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 
 }

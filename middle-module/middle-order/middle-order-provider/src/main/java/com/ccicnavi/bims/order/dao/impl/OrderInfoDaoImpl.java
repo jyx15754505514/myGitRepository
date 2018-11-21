@@ -61,7 +61,7 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
     @Override
     public OrderInfoDTO getOrderInfo(OrderInfoDO orderInfoDO) throws Exception {
         Eql eql = new Eql("DEFAULT");
-        return eql.selectFirst("getOrderInfo").params(orderInfoDO).returnType(OrderInfoDO.class).execute();
+        return eql.selectFirst("getOrderInfo").params(orderInfoDO).returnType(OrderInfoDTO.class).execute();
     }
 
     /* *

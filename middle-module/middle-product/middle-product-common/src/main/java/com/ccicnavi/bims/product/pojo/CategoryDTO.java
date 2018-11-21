@@ -71,6 +71,10 @@ public class CategoryDTO implements Serializable {
     private String organizationUuid;
 
 
+    /**要删除的产品分类主键数组*/
+    private String [] uuids;
+
+
 
 
 }

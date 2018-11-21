@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.shiba.api;
 
+import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 public interface StringTemplate {
@@ -18,7 +19,7 @@ public interface StringTemplate {
      * @param key
      * @param value
      */
-    void setTime(Object key, Object value,long timeout, TimeUnit unit);
+    void setTime(Object key, Object value, long timeout, TimeUnit unit);
 
     /**
      * 根据key查询缓存
@@ -54,21 +55,12 @@ public interface StringTemplate {
     Boolean hasKey(Object key);
 
     /**
-     * 查看缓存大小
+     * 查看缓存大小 开始结尾会有"/",占2
      *
      * @param key
      * @return
      */
     Long size(Object key);
-
-    /**
-     * 在原有的值基础上新增字符串到末尾
-     *
-     * @param key
-     * @param value
-     * @return
-     */
-    Integer append(Object key, String value);
 
     /**
      * 获取原来key键对应的值并重新赋新值

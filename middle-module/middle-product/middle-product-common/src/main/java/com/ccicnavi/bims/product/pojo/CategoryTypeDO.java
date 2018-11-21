@@ -9,8 +9,8 @@ import java.util.Date;
 
 /**
  * @program: bims-backend
- * @description: 该类的作用描述
- * @author: 本人姓名
+ * @description: 产品类别的分类信息DO(product_category_type)
+ * @author: WangYingLing
  * @create: 2018-11-20 10:26
  */
 @Getter

@@ -22,7 +22,7 @@ public interface CategoryService {
     int saveCategory(CategoryDO category);
 
     /**删除产品分类信息*/
-    int removeCategory(CategoryDO category);
+    int removeCategory(CategoryDTO categoryDTO);
 
     /**修改产品分类信息*/
     int updateCategory(CategoryDO category);
@@ -37,7 +37,7 @@ public interface CategoryService {
     List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDTO categoryDTO);
 
     /**根据父级分类ID查询其字类分类信息*/
-    List<CategoryDO> listCategoryByParentUuid(CategoryDO category);
+    List<CategoryDO> listCategoryByParentUuid(CategoryDTO categoryDTO);
 
 
 
