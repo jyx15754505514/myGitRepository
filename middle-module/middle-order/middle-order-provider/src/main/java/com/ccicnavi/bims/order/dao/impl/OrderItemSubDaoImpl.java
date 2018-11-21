@@ -1,6 +1,5 @@
 package com.ccicnavi.bims.order.dao.impl;
 
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.order.dao.OrderItemSubDao;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
 import com.ccicnavi.bims.order.pojo.OrderItemSubDO;
