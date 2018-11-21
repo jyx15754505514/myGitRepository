@@ -32,4 +32,6 @@ public interface MinItemService {
     /**分页查询最小服务项信息*/
     PageBean<MinItemDO> listMinItemPage(PageParameter<MinItemDO> pageParameter);
 
+
+
 }

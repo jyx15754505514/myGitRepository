@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * @program: bims-backend
- * @description: 产品类别DO
+ * @description: 产品分类DO
  * @author: LiJie
  * @create: 2018-11-19 17:24
  */
@@ -18,25 +18,34 @@ import java.util.Date;
 @ToString
 public class CategoryDO implements Serializable {
 
-    private String productCategoryUuid;//主键
+    /**产品分类主键*/
+    private String productCategoryUuid;
 
-    private String productCategoryTypeUuid;//产品类别ID
+    /**产品类别ID*/
+    private String productCategoryTypeUuid;
 
-    private String parentCategoryUuid;//主父节点分类ID
+    /**主父节点分类ID*/
+    private String parentCategoryUuid;
 
-    private String parentAllCategoryUuid;//所有分类的ID
+    /**所有分类的ID*/
+    private String parentAllCategoryUuid;
 
-    private String categoryName;//类别名称
+    /**类别名称*/
+    private String categoryName;
 
-    private String categoryCode;//类别编码
+    /**类别编码*/
+    private String categoryCode;
 
-    private String seqNum;//排序号
+    /**排序号*/
+    private String seqNum;
 
     private String longDescription;
 
-    private String isEnabled;//是否可用(Y/N)
+    /**是否可用(Y/N)*/
+    private String isEnabled;
 
-    private String comments;//备注
+    /**备注*/
+    private String comments;
 
     private String isDeleted;
 
@@ -52,11 +61,13 @@ public class CategoryDO implements Serializable {
 
     private String updatedName;
 
-    private String prodCatalogUuid;//产品线ID
+    /**产品线ID*/
+    private String prodCatalogUuid;
 
     private String orgUuid;
 
-    private String appSysUuid;//应用系统ID
+    /**应用系统ID*/
+    private String appSysUuid;
 
     private String extend1;
 
