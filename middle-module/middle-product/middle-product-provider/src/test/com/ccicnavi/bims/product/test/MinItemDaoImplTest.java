@@ -27,9 +27,11 @@ public class MinItemDaoImplTest {
     @Test
     public void saveMinItem() {
         MinItemDO minItemDO=new MinItemDO();
-        minItemDO.setMinItemUuid("SY_TK");
-        minItemDO.setMinItemName("铁矿");
+        minItemDO.setMinItemUuid("KC_MT_JM_JC");
+        minItemDO.setMinItemName("焦煤检测5项");
         minItemDO.setMinItemCode("TK001");
+        minItemDO.setGoodsCategoryUuid("KC_MT_JM");
+        minItemDO.setServiceCategoryUuid("PCT_GOODS");
         minItemDO.setProdCatalogUuid("CATALOG_MINERAL");
         minItemDO.setOrgUuid("CCIC");
         minItemDO.setAppSysUuid("BIMS2.0");

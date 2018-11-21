@@ -18,9 +18,11 @@ import java.util.Date;
 @ToString
 public class CatalogWorkhourDO implements Serializable {
 
-    private String organizationUuid;//组织机构ID
+    /**组织机构*/
+    private String organizationUuid;
 
-    private String prodCatalogUuid;//产品线ID
+    /**产品线ID*/
+    private String prodCatalogUuid;
 
     private String salaryWorkhour;
 
