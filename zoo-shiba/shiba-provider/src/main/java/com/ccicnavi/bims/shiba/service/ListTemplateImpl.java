@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ListTemplateImpl implements ListTemplate {
@@ -71,6 +72,7 @@ public class ListTemplateImpl implements ListTemplate {
 
     /**
      * 查看缓存大小
+     *
      * @param key
      * @return
      */
@@ -80,11 +82,24 @@ public class ListTemplateImpl implements ListTemplate {
 
     /**
      * 根据下角标查询key
+     *
      * @param key
      * @param index
      * @return
      */
-    public Object index(Object key, long index){
-        return redisTemplate.opsForList().index(key,index);
+    public Object index(Object key, long index) {
+        return redisTemplate.opsForList().index(key, index);
+    }
+
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    public Boolean expire(Object key, long timeout, TimeUnit unit) {
+        return redisTemplate.expire(key, timeout, unit);
     }
 }

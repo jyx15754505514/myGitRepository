@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.shiba.api;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public interface ListTemplate {
 
@@ -63,4 +64,14 @@ public interface ListTemplate {
      * @return
      */
     Object index(Object key, long index);
+
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    Boolean expire(Object key, long timeout, TimeUnit unit);
 }
