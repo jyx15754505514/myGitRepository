@@ -2,6 +2,7 @@
 select
     order_item_uuid orderItemUuid,
     order_uuid orderUuid,
+    order_item_no orderItemNo,
     min_item_name minItemName,
     min_item_uuid minItemUuid,
     min_item_type minItemType,
@@ -10,10 +11,20 @@ select
     ref_workhour refWorkhour,
     is_subpkg isSubpkg,
     is_subpkg_mgr isSubpkgMgr,
-    accept_org_uuid acceptOrgUuid,
-    accept_org_name acceptOrgName,
+    rece_org_uuid receOrgUuid,
+    rece_org_name receOrgName,
+    rece_user_uuid receUserUuid,
+    rece_user_time receUserTime,
     use_std_uuid useStdUuid,
-    use_std_name useStdName
+    use_std_name useStdName,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName
 from
     order_item
 where
@@ -23,6 +34,7 @@ where
 select
     order_item_uuid orderItemUuid,
     order_uuid orderUuid,
+    order_item_no orderItemNo,
     min_item_name minItemName,
     min_item_uuid minItemUuid,
     min_item_type minItemType,
@@ -31,10 +43,20 @@ select
     ref_workhour refWorkhour,
     is_subpkg isSubpkg,
     is_subpkg_mgr isSubpkgMgr,
-    accept_org_uuid acceptOrgUuid,
-    accept_org_name acceptOrgName,
+    rece_org_uuid receOrgUuid,
+    rece_org_name receOrgName,
+    rece_user_uuid receUserUuid,
+    rece_user_time receUserTime,
     use_std_uuid useStdUuid,
-    use_std_name useStdName
+    use_std_name useStdName,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName
 from
     order_item
 where
@@ -42,99 +64,169 @@ where
 --iff orderItemUuid != null and orderItemUuid != ''
     and order_item_uuid = '#orderItemUuid#'
 --iff orderItemList != null
-and order_item_uuid in
--- for item=item index=index collection=orderItemList open=( separator=, close=)
-    '#item#'
--- end
+    and order_item_uuid in
+    -- for item=item index=index collection=orderItemList open=( separator=, close=)
+        '#item#'
+    -- end
 
 -- [insertOrderItem]
     insert into order_item
     --trim prefix=( suffix=) suffixOverrides=,
-      --iff orderItemUuid != null
-        order_item_uuid,
-      --iff minItemName != null
-        min_item_name,
-      --iff minItemUuid != null
-        min_item_uuid,
-      --iff minItemType != null
-        min_item_type,
-      --iff receivableAmount != null
-        receivable_amount,
-      --iff refAmount != null
-        ref_amount,
-      --iff refWorkhour != null
-        ref_workhour,
-      --iff isSubpkg != null
-        is_subpkg,
-      --iff isSubpkgMgr != null
-        is_subpkg_mgr,
-      --iff acceptOrgUuid != null
-        accept_org_uuid,
-      --iff acceptOrgName != null
-        accept_org_name,
-      --iff useStdUuid != null
-        use_std_uuid,
-      --iff useStdName != null
-        use_std_name
+        --iff orderItemUuid != null and orderItemUuid != ''
+            order_item_uuid,
+        --iff orderUuid != null and orderUuid != ''
+            order_uuid,
+        --iff orderItemNo != null and orderItemNo != ''
+            order_item_no,
+        --iff minItemName != null and minItemName != ''
+            min_item_name,
+        --iff minItemUuid != null and minItemUuid != ''
+            min_item_uuid,
+        --iff minItemType != null and minItemType != ''
+            min_item_type,
+        --iff receivableAmount != null and receivableAmount != ''
+            receivable_amount,
+        --iff refAmount != null and refAmount != ''
+            ref_amount,
+        --iff refWorkhour != null and refWorkhour != ''
+            ref_workhour,
+        --iff isSubpkg != null and isSubpkg != ''
+            is_subpkg,
+        --iff isSubpkgMgr != null and isSubpkgMgr != ''
+            is_subpkg_mgr,
+        --iff receOrgUuid != null and receOrgUuid != ''
+            rece_org_uuid,
+        --iff receOrgName != null and receOrgName != ''
+            rece_org_name,
+        --iff receUserUuid != null and receUserUuid != ''
+            rece_user_uuid,
+        --iff receUserTime != null
+            rece_user_time,
+        --iff useStdUuid != null and useStdUuid != ''
+            use_std_uuid,
+        --iff useStdName != null and useStdName != ''
+            use_std_name,
+        --iff comments != null and comments != ''
+            comments,
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted,
+        --iff createdTime != null
+            created_time,
+        --iff createdUuid != null and createdUuid != ''
+            created_uuid,
+        --iff createdName != null and createdName != ''
+            created_name,
+        --iff updatedTime != null
+            updated_time,
+        --iff updatedUuid != null and updatedUuid != ''
+            updated_uuid,
+        --iff updatedName != null and updatedName != ''
+            updated_name,
     --end
     --trim prefix=values ( suffix=) suffixOverrides=,
-      --iff orderItemUuid != null
-        '#orderItemUuid#',
-      --iff minItemName != null
-        '#minItemName#',
-      --iff minItemUuid != null
-        '#minItemUuid#',
-      --iff minItemType != null
-        '#minItemType#',
-      --iff receivableAmount != null
-        '#receivableAmount#',
-      --iff refAmount != null
-        '#refAmount#',
-      --iff refWorkhour != null
-        '#refWorkhour#',
-      --iff isSubpkg != null
-        '#isSubpkg#',
-      --iff isSubpkgMgr != null
-        '#isSubpkgMgr#',
-      --iff acceptOrgUuid != null
-        '#acceptOrgUuid#',
-      --iff acceptOrgName != null
-        '#acceptOrgName#',
-      --iff useStdUuid != null
-        '#useStdUuid#',
-      --iff useStdName != null
-        '#useStdName#'
+        --iff orderItemUuid != null and orderItemUuid != ''
+            '#orderItemUuid#',
+        --iff orderUuid != null and orderUuid != ''
+            '#orderUuid#',
+        --iff orderItemNo != null and orderItemNo != ''
+            '#orderItemNo#',
+        --iff minItemName != null and minItemName != ''
+            '#minItemName#',
+        --iff minItemUuid != null and minItemUuid != ''
+            '#minItemUuid#',
+        --iff minItemType != null and minItemType != ''
+            '#minItemType#',
+        --iff receivableAmount != null and receivableAmount != ''
+            '#receivableAmount#',
+        --iff refAmount != null and refAmount != ''
+            '#refAmount#',
+        --iff refWorkhour != null and refWorkhour != ''
+            '#refWorkhour#',
+        --iff isSubpkg != null and isSubpkg != ''
+            '#isSubpkg#',
+        --iff isSubpkgMgr != null and isSubpkgMgr != ''
+            '#isSubpkgMgr#',
+        --iff receOrgUuid != null and receOrgUuid != ''
+            '#receOrgUuid#',
+        --iff receOrgName != null and receOrgName != ''
+            '#receOrgName#',
+        --iff receUserUuid != null and receUserUuid != ''
+            '#receUserUuid#',
+        --iff receUserTime != null
+            '#receUserTime#',
+        --iff useStdUuid != null and useStdUuid != ''
+            '#useStdUuid#',
+        --iff useStdName != null and useStdName != ''
+            '#useStdName#',
+        --iff comments != null and comments != ''
+            '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+        --iff createdTime != null
+            '#createdTime#',
+        --iff createdUuid != null and createdUuid != ''
+            '#createdUuid#',
+        --iff createdName != null and createdName != ''
+            '#createdName#',
+        --iff updatedTime != null
+            '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid != ''
+            '#updatedUuid#',
+        --iff updatedName != null and updatedName != ''
+            '#updatedName#',
     --end
 
 -- [updateOrderItem]
     update order_item
     -- trim prefix= set suffixOverrides=,
-      --iff orderItemUuid != null
-        order_item_uuid = '#orderItemUuid#',
-      --iff minItemName != null
-        min_item_name = '#minItemName#',
-      --iff minItemUuid != null
-        min_item_uuid = '#minItemUuid#',
-      --iff minItemType != null
-        min_item_type = '#minItemType#',
-      --iff receivableAmount != null
-        receivable_amount = '#receivableAmount#',
-      --iff refAmount != null
-        ref_amount = '#refAmount#',
-      --iff refWorkhour != null
-        ref_workhour = '#refWorkhour#',
-      --iff isSubpkg != null
-        is_subpkg = '#isSubpkg#',
-      --iff isSubpkgMgr != null
-        is_subpkg_mgr = '#isSubpkgMgr#',
-      --iff acceptOrgUuid != null
-        accept_org_uuid = '#acceptOrgUuid#',
-      --iff acceptOrgName != null
-        accept_org_name = '#acceptOrgName#',
-      --iff useStdUuid != null
-        use_std_uuid = '#useStdUuid#',
-      --iff useStdName != null
-        use_std_name = '#useStdName#'
+        --iff orderUuid != null and orderUuid != ''
+            order_uuid = '#orderUuid#',
+        --iff orderItemNo != null and orderItemNo != ''
+            order_item_no = '#orderItemNo#',
+        --iff minItemName != null and minItemName != ''
+            min_item_name = '#minItemName#',
+        --iff minItemUuid != null and minItemUuid != ''
+            min_item_uuid = '#minItemUuid#',
+        --iff minItemType != null and minItemType != ''
+            min_item_type = '#minItemType#',
+        --iff receivableAmount != null and receivableAmount != ''
+            receivable_amount = '#receivableAmount#',
+        --iff refAmount != null and refAmount != ''
+            ref_amount = '#refAmount#',
+        --iff refWorkhour != null and refWorkhour != ''
+            ref_workhour = '#refWorkhour#',
+        --iff isSubpkg != null and isSubpkg != ''
+            is_subpkg = '#isSubpkg#',
+        --iff isSubpkgMgr != null and isSubpkgMgr != ''
+            is_subpkg_mgr = '#isSubpkgMgr#',
+        --iff receOrgUuid != null and receOrgUuid != ''
+            rece_org_uuid = '#receOrgUuid#',
+        --iff receOrgName != null and receOrgName != ''
+            rece_org_name = '#receOrgName#',
+        --iff receUserUuid != null and receUserUuid != ''
+            rece_user_uuid = '#receUserUuid#',
+        --iff receUserTime != null
+            rece_user_time = '#receUserTime#',
+        --iff useStdUuid != null and useStdUuid != ''
+            use_std_uuid = '#useStdUuid#',
+        --iff useStdName != null and useStdName != ''
+            use_std_name = '#useStdName#',
+        --iff comments != null and comments != ''
+            comments = '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted = '#isDeleted#',
+        --iff createdTime != null
+            created_time = '#createdTime#',
+        --iff createdUuid != null and createdUuid != ''
+            created_uuid = '#createdUuid#',
+        --iff createdName != null and createdName != ''
+            created_name = '#createdName#',
+        --iff updatedTime != null
+            updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid != ''
+            updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName != ''
+            updated_name = '#updatedName#',
     -- end
 where
     is_deleted = 'N'
@@ -150,9 +242,9 @@ UPDATE
 WHERE
   is_deleted = 'N'
 --iff orderItemUuid != null and orderItemUuid != ''
-and order_item_uuid = '#orderItemUuid#'
+    and order_item_uuid = '#orderItemUuid#'
 --iff orderItemUuidList != null
-and order_item_uuid in
--- for item=item index=index collection=orderItemUuidList open=( separator=, close=)
-    '#item#'
--- end
+    and order_item_uuid in
+    -- for item=item index=index collection=orderItemUuidList open=( separator=, close=)
+        '#item#'
+    -- end

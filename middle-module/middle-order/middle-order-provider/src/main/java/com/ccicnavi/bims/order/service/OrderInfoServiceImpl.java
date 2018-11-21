@@ -108,28 +108,41 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         Integer orderItem = null;
         Integer itemSub = null;
         Integer orderInfo = null;
+        boolean result=true;
         try {
             eqlTran.start();
             if(orderInfoDTO.getOrderUuid() != null && !orderInfoDTO.getOrderUuid().equals("")){
                 //更新委托单运输信息
                 shipment = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
+                if(shipment!=1){
+                    result=false;
+                }
                 List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
                 if(orderItemDTO.size() > 0){
                     for (int i = 0; i < orderItemDTO.size(); i++) {
                         //更新服务项信息
-                        orderItem +=orderItemDao.updateOrderItem(orderItemDTO.get(i),eqlTran);
+                        orderItem =orderItemDao.updateOrderItem(orderItemDTO.get(i),eqlTran);
+                        if(orderItem!=1){
+                            result=false;
+                        }
                         if(orderItemDTO.get(i).getOrderItemSubDO() != null){
                             List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
                             for (int j = 0; j < orderItemSubDO.size(); j++) {
                                 //更新服务子项信息
-                                itemSub += orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
+                                itemSub = orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
+                                if(itemSub!=1){
+                                    result=false;
+                                }
                             }
                         }
                     }
                 }
                 //更新委托单详情*/
                 orderInfo = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
-                if(shipment > 0 && orderItem > 0 && orderInfo > 0){
+                if(orderInfo!=1){
+                    result=false;
+                }
+                if(result){
                     eqlTran.commit();
                     return ResultT.success();
                 }
@@ -137,10 +150,11 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             }
             String orderUuid = idWorkerService.getId(new Date());
             orderInfoDTO.setOrderUuid(orderUuid); //生成委托单id
-            String shippingTypeId = idWorkerService.getId(new Date());//运输表主键
-            orderInfoDTO.setShippingTypeId(shippingTypeId);
             //添加委托单运输信息
             shipment = orderInspectionDao.insertOrderInspection(orderInfoDTO,eqlTran);
+            if(shipment!=1){
+                result=false;
+            }
             List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
             if(orderItemDTO.size() > 0){
                 for (int i = 0; i < orderItemDTO.size(); i++) {
@@ -150,7 +164,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
                     orderItemDTO.get(i).setOrderItemNo("");//生成服务单编号
                     //添加委托单服务项
-                    orderItem += orderItemDao.insertOrderItem(orderItemDTO.get(i),eqlTran);
+                    orderItem = orderItemDao.insertOrderItem(orderItemDTO.get(i),eqlTran);
+                    if(orderItem!=1){
+                        result=false;
+                    }
                     if(orderItemDTO.get(i).getOrderItemSubDO() != null){
                         List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
                         for (int j = 0; j < orderItemSubDO.size(); j++) {
@@ -160,7 +177,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
                             orderItemSubDO.get(j).setSubItemNo("");//生成子项编号
                             //添加子项信息
-                            itemSub += orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
+                            itemSub = orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
+                            if(itemSub!=1){
+                                result=false;
+                            }
                         }
                     }
                 }
@@ -169,7 +189,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             orderInfoDTO.setOrderNo("");//生成委托单号
             //添加委托单详情
             orderInfo = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
-            if(shipment > 0 && orderItem > 0 && orderInfo > 0){
+            if(orderInfo!=1){
+                result=false;
+            }
+            if(result){
                 eqlTran.commit();
                 return ResultT.success();
              }
