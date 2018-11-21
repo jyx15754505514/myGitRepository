@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.product.test;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.Impl.CatalogDaoImpl;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
 import org.junit.Test;
@@ -61,9 +63,14 @@ public class CatalogTest {
         System.out.println(catalogDOResult);
     }
 
-//    @Test
-//    public void listCatalogPageDOTest(){
-//
-//    }
+    @Test
+    public void listCatalogPageDOTest(){
+        PageParameter<CatalogDO> pageParameter=new PageParameter<>();
+        pageParameter.setStartIndex(2);
+        pageParameter.setPageRows(5);
+        pageParameter.setStartPage(1);
+        PageBean<CatalogDO> pageBean=catalogDaoTest.listCatalogPage(pageParameter);
+        System.out.println(pageBean);
+    }
 
 }

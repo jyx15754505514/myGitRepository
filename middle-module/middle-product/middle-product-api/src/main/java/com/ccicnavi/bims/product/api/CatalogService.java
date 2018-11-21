@@ -14,22 +14,48 @@ import java.util.List;
  */
 public interface CatalogService {
 
-    /**查询全部产品线信息*/
-    List<CatalogDO> listCatalogDO() throws Exception;
+    /**
+     * @description查询全部产品线信息
+     * @return List<CatalogDO>
+     */
+    List<CatalogDO> listCatalogDO(CatalogDO catalogDO);
 
-    /**新增产品线信息*/
-    int saveCatalogDO(CatalogDO catalogDO) throws Exception;
+    /**
+     * @description 新增产品线信息
+     * @param catalogDO
+     * @return int
+     */
+    int saveCatalogDO(CatalogDO catalogDO);
 
-    /**删除产品线信息*/
-    int removeCatalogDO(CatalogDO catalogDO) throws Exception;
+    /**
+     * @description 删除产品线信息
+     * @param catalogDO
+     * @return int
+     */
+    int removeCatalogDO(CatalogDO catalogDO);
 
-    /**修改产品线信息*/
-    int updateCatalogDO(CatalogDO catalogDO)throws Exception;
+    /**
+     * @description 修改产品线信息
+     * @param catalogDO
+     * @return int
+     */
+    int updateCatalogDO(CatalogDO catalogDO);
 
-    /**根据主键获取产品线信息*/
-    CatalogDO getCatalogDO(CatalogDO catalogDO)throws Exception;
+    /**
+     * @description 根据主键获取产品线信息
+     * @param catalogDO
+     * @return CatalogDO
+     */
+    CatalogDO getCatalogDO(CatalogDO catalogDO);
 
-    /**分页查询产品线信息*/
+    /**
+     * @description 分页查询产品线信息
+     * @param pageParameter
+     * @return PageBean<CatalogDO>
+     */
     PageBean<CatalogDO> listCatalogPage(PageParameter<CatalogDO> pageParameter);
+
+    //根据省级公司id获取产品线id
+    CatalogDO getCatalogThroughOrgnUUid();
 
 }
