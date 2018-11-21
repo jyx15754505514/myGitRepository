@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class OrderDTO implements Serializable {
+public class OrderLogicDTO implements Serializable {
 
     private String orderUuid;
 
