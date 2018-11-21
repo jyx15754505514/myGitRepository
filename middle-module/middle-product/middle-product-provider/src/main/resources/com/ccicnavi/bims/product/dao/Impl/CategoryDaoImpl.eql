@@ -58,7 +58,7 @@ FROM
 LEFT JOIN product_category pc ON pc.product_category_uuid = pco.product_category_uuid
 AND pc.is_deleted = 'N'
 WHERE
-        pco.organization_uuid = '#orgUuid#'
+        pco.organization_uuid = '#organizationUuid#'
         AND pco.prod_catalog_uuid = '#prodCatalogUuid#'
 
         --if productCategoryTypeUuid !=null and productCategoryTypeUuid != ''
