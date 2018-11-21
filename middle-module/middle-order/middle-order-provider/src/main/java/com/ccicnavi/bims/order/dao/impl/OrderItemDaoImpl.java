@@ -59,6 +59,6 @@ public class OrderItemDaoImpl implements OrderItemDao {
     @Override
     public List<OrderItemDTO> listOrderItemDTO(OrderInfoDO orderInfoDO) throws Exception {
         Eql eql = new Eql("DEFAULT");
-        return  eql.select("listOrderItem").params(orderInfoDO).returnType(OrderItemDO.class).execute();
+        return  eql.select("listOrderItem").params(orderInfoDO).returnType(OrderItemDTO.class).execute();
     }
 }

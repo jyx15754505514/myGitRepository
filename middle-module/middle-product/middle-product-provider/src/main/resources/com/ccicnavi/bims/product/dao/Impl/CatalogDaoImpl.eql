@@ -209,6 +209,18 @@ AND prod_catalog_uuid='#prodCatalogUuid#'
 FROM prod_catalog
 WHERE
     is_deleted='N'
-        --if prodCatalogUuid !=null and prodCatalogUuid != ''
+        --iff prodCatalogUuid !=null and prodCatalogUuid != ''
             and prod_catalog_uuid = '#prodCatalogUuid#'
         --end
+
+-- [getCatalogThroughOrgnUUid]
+SELECT
+	pc.prod_catalog_uuid
+FROM
+	prod_catalog_org pco
+	LEFT JOIN prod_catalog pc ON pco.prod_catalog_uuid = pc.prod_catalog_uuid
+WHERE
+	pc.is_deleted = 'N'
+	    --iff orgUUid !=null and orgUuid !=''
+	        AND pco.organization_uuid = 'CCICXN'
+	    --end

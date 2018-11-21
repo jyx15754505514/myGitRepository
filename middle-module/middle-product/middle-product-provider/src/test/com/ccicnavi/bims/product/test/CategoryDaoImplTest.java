@@ -45,7 +45,11 @@ public class CategoryDaoImplTest {
 
     @Test
     public void removeCategory() {
-
+        CategoryDTO categoryDTO=new CategoryDTO();
+        String [] uuids={"KC_MT","KC_MT_FM","KC_MT_JM"};
+        categoryDTO.setUuids(uuids);
+        int i = categoryDaoImpl.removeCategory(categoryDTO);
+        System.out.println("count:"+i);
     }
 
     @Test
@@ -103,9 +107,9 @@ public class CategoryDaoImplTest {
     public void listCategoryFirstByOrgAndProd2() {
         CategoryDTO categoryDTO=new CategoryDTO();
         categoryDTO.setProdCatalogUuid("CATALOG_MINERAL");//设置产品线——矿产
-        categoryDTO.setOrganizationUuid("CCIC");//设置公司机构
+        categoryDTO.setOrganizationUuid("XN102");//设置公司机构
         categoryDTO.setProductCategoryTypeUuid("PCT_GOODS");//设置产品分类
-        categoryDTO.setParentCategoryUuid("KC_MT");//设置上级产品分类UUID
+        //categoryDTO.setParentCategoryUuid("KC_MT");//设置上级产品分类UUID
         categoryDTO.setAppSysUuid("BIMS2.0");
         List<CategoryDO> categoryDOS = categoryDaoImpl.listCategoryFirstByOrgAndProd(categoryDTO);
         System.out.println(categoryDOS);

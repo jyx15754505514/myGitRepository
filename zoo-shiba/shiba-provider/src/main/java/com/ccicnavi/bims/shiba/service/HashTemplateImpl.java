@@ -6,9 +6,11 @@ import com.ccicnavi.bims.shiba.api.HashTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class HashTemplateImpl implements HashTemplate {
@@ -22,7 +24,7 @@ public class HashTemplateImpl implements HashTemplate {
      * @param key
      * @param map
      */
-    public void putAll(Object key, Map<Object, Object> map) {
+    public void putAll(Object key, Map<String, Object> map) {
         redisTemplate.opsForHash().putAll(key, map);
     }
 
@@ -44,6 +46,16 @@ public class HashTemplateImpl implements HashTemplate {
      */
     public void delete(Object key) {
         redisTemplate.delete(key);
+    }
+
+    /**
+     * 删除key缓存的mapkey
+     *
+     * @param key
+     * @return
+     */
+    public void deleteMap(Object key, Object... mapKey) {
+        redisTemplate.opsForHash().delete(key, mapKey);
     }
 
 
@@ -95,7 +107,7 @@ public class HashTemplateImpl implements HashTemplate {
      * @param key
      * @param keys
      */
-    public List multiGet(Object key, List<Object> keys) {
+    public List multiGet(Object key, Collection<Object> keys) {
         return redisTemplate.opsForHash().multiGet(key, keys);
     }
 
@@ -119,4 +131,15 @@ public class HashTemplateImpl implements HashTemplate {
         return redisTemplate.opsForHash().values(values);
     }
 
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    public Boolean expire(Object key, long timeout, TimeUnit unit) {
+        return redisTemplate.expire(key, timeout, unit);
+    }
 }
