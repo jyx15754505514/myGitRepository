@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.resource;
+package com.ccicnavi.bims;
 
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
