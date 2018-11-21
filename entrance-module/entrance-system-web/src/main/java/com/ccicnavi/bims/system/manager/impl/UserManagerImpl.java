@@ -54,6 +54,7 @@ public class UserManagerImpl implements UserManager {
     @Override
     public ResultT userLogin(UserDO userDO) {
         UserDO user = userService.getUser(userDO);
+        //对用户depteUuid和orgUuid进行判断，如果被禁用，返回被禁用
         if(user != null) {
             //判断账号是否被禁用
             if("N".equals(user.getIsEnabled())) {
@@ -102,12 +103,12 @@ public class UserManagerImpl implements UserManager {
         //查权限
         MenuDTO menuDTO = new MenuDTO();
         List<String> roleUuids = new ArrayList<>();
+        //封装业务线数据
         for (RoleUserDO roleUserDO : roleList) {
             roleUuids.add(roleUserDO.getRoleUuid());
         }
         menuDTO.setRoleUuids(roleUuids);
         List<MenuDTO> menuList = menuService.listMenuRoleUuid(menuDTO);
-        //查菜单,根据角色查询菜单List，去除重复
         //查产品线
         user.setDeptList(deptList);
         user.setRoleList(roleList);
