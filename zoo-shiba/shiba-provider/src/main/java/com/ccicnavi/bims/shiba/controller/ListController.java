@@ -2,7 +2,8 @@ package com.ccicnavi.bims.shiba.controller;
 
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
-import com.ccicnavi.bims.shiba.service.ListTemplateImpl;
+import com.ccicnavi.bims.shiba.api.ListTemplate;
+import com.ccicnavi.bims.shiba.service.ParamVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,12 @@ import java.util.List;
 public class ListController {
 
     @Autowired
-    ListTemplateImpl listTemplate;
+    ListTemplate listTemplate;
 
     @RequestMapping(value = "/rightPush", method = RequestMethod.POST)
-    public ResultT rightPush(@RequestParam(value = "key") Object key, @RequestParam(value = "list") Object value) {
+    public ResultT rightPush(@RequestBody ParamVo paramVo) {
         try {
-            listTemplate.rightPush(key, value);
+            listTemplate.rightPush(paramVo.getKey(), paramVo.getValue());
             return ResultT.success();
         } catch (Exception e) {
             log.error("单个添加list类型的缓存失败", e);
@@ -29,9 +30,9 @@ public class ListController {
     }
 
     @RequestMapping(value = "/rightPushAll", method = RequestMethod.POST)
-    public ResultT rightPushAll(@RequestParam(value = "key") Object key, @RequestBody Object... object) {
+    public ResultT rightPushAll(@RequestBody ParamVo paramVo) {
         try {
-            listTemplate.rightPushAll(key, object);
+            listTemplate.rightPushAll(paramVo.getKey(), paramVo.getList().toArray());
             return ResultT.success();
         } catch (Exception e) {
             log.error("多个添加list类型的缓存失败", e);
@@ -40,9 +41,9 @@ public class ListController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public ResultT delete(@RequestParam(value = "key") Object key) {
+    public ResultT delete(@RequestBody ParamVo paramVo) {
         try {
-            listTemplate.delete(key);
+            listTemplate.delete(paramVo.getKey());
             return ResultT.success();
         } catch (Exception e) {
             log.error("根据key删除缓存失败 ", e);
@@ -50,10 +51,10 @@ public class ListController {
         }
     }
 
-    @RequestMapping(value = "/hasKey", method = RequestMethod.GET)
-    public ResultT hasKey(@RequestParam(value = "key") Object key) {
+    @RequestMapping(value = "/hasKey", method = RequestMethod.POST)
+    public ResultT hasKey(@RequestBody ParamVo paramVo) {
         try {
-            Boolean hasKey = listTemplate.hasKey(key);
+            Boolean hasKey = listTemplate.hasKey(paramVo.getKey());
             return ResultT.success(hasKey);
         } catch (Exception e) {
             log.error("查询key缓存是否存在失败 ", e);
@@ -61,10 +62,10 @@ public class ListController {
         }
     }
 
-    @RequestMapping(value = "/range", method = RequestMethod.GET)
-    public ResultT range(@RequestParam(value = "key") Object key, @RequestParam(value = "start") long start, @RequestParam(value = "end") long end) {
+    @RequestMapping(value = "/range", method = RequestMethod.POST)
+    public ResultT range(@RequestBody ParamVo paramVo) {
         try {
-            List value = listTemplate.range(key, start, end);
+            List value = listTemplate.range(paramVo.getKey(), paramVo.getStart(), paramVo.getEnd());
             return ResultT.success(value);
         } catch (Exception e) {
             log.error("根据始末位置查询key缓存失败", e);
@@ -72,10 +73,10 @@ public class ListController {
         }
     }
 
-    @RequestMapping(value = "/size", method = RequestMethod.GET)
-    public ResultT size(@RequestParam(value = "key") Object key) {
+    @RequestMapping(value = "/size", method = RequestMethod.POST)
+    public ResultT size(@RequestBody ParamVo paramVo) {
         try {
-            Long size = listTemplate.size(key);
+            Long size = listTemplate.size(paramVo.getKey());
             return ResultT.success(size);
         } catch (Exception e) {
             log.error("查询key缓存的大小失败", e);
@@ -83,14 +84,25 @@ public class ListController {
         }
     }
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ResultT index(@RequestParam(value = "key") Object key, @RequestParam(value = "index") long index) {
+    @RequestMapping(value = "/index", method = RequestMethod.POST)
+    public ResultT index(@RequestBody ParamVo paramVo) {
         try {
-            Object value = listTemplate.index(key, index);
+            Object value = listTemplate.index(paramVo.getKey(), paramVo.getStart());
             return ResultT.success(value);
         } catch (Exception e) {
             log.error("根据下角标查询key", e);
             return ResultT.failure(ResultCode.GET_FAILURE);
+        }
+    }
+
+    @RequestMapping(value = "/setTime", method = RequestMethod.POST)
+    public ResultT setTime(@RequestBody ParamVo paramVo) {
+        try {
+            listTemplate.expire(paramVo.getKey(), paramVo.getOutTime(), paramVo.getUnit());
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("设置超时时间失败", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
         }
     }
 }

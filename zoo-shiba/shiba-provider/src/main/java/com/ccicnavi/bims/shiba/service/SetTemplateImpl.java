@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
 
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class SetTemplateImpl implements SetTemplate {
@@ -69,11 +71,33 @@ public class SetTemplateImpl implements SetTemplate {
      * 删除key缓存的values元素
      *
      * @param key
-     * @param values
+     * @param value
      * @return
      */
-    public Long remove(Object key, Object... values) {
-        return redisTemplate.opsForSet().remove(key, values);
+    public Long remove(Object key, Object... value) {
+        return redisTemplate.opsForSet().remove(key, value);
     }
 
+    /**
+     * 判断 value 元素是否是集合 key 的成员
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public Boolean isMember(Object key, Object value) {
+        return redisTemplate.opsForSet().isMember(key, value);
+    }
+
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    public Boolean expire(Object key, long timeout, TimeUnit unit) {
+        return redisTemplate.expire(key, timeout, unit);
+    }
 }

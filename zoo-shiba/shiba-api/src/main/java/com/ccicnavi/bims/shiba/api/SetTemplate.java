@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.shiba.api;
 
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public interface SetTemplate {
 
@@ -48,9 +50,28 @@ public interface SetTemplate {
      * 删除key缓存的values元素
      *
      * @param key
-     * @param values
+     * @param value
      * @return
      */
-    Long remove(Object key, Object... values);
+    Long remove(Object key, Object... value);
+
+    /**
+     * 判断 value 元素是否是集合 key 的成员
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    Boolean isMember(Object key, Object value);
+
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    Boolean expire(Object key, long timeout, TimeUnit unit);
 
 }
