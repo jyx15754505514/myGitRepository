@@ -1,9 +1,4 @@
-package com.ccicnavi.bims.order.dao.impl;/* *
- * @Author heibin
- * @Description
- * @Date
- * @Param
- */
+package com.ccicnavi.bims.order.dao.impl;
 
 import com.ccicnavi.bims.order.dao.OrderWorksheetDao;
 import com.ccicnavi.bims.order.pojo.OrderWorksheetDO;
@@ -17,7 +12,6 @@ import org.springframework.stereotype.Service;
  * @Param
  * @Return
  */
-
 @Service
 public class OrderWorksheetDaoImpl implements OrderWorksheetDao {
 
