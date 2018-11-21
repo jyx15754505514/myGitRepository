@@ -1,8 +1,10 @@
 package com.ccicnavi.bims.shiba.api;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public interface HashTemplate {
 
@@ -12,7 +14,7 @@ public interface HashTemplate {
      * @param key
      * @param map
      */
-    void putAll(Object key, Map<Object, Object> map);
+    void putAll(Object key, Map<String, Object> map);
 
     /**
      * 根据key查询缓存
@@ -29,6 +31,14 @@ public interface HashTemplate {
      * @return
      */
     void delete(Object key);
+
+    /**
+     * 删除key缓存的mapkey
+     *
+     * @param key
+     * @return
+     */
+    void deleteMap(Object key, Object... mapKey);
 
     /**
      * 查看缓存key中是否存在Map的key是key1的
@@ -70,7 +80,7 @@ public interface HashTemplate {
      * @param key
      * @param keys
      */
-    List multiGet(Object key, List<Object> keys);
+    List multiGet(Object key, Collection<Object> keys);
 
     /**
      * key缓存下的map的key集合
@@ -88,4 +98,13 @@ public interface HashTemplate {
      */
     List values(Object values);
 
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    Boolean expire(Object key, long timeout, TimeUnit unit);
 }

@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.product.test;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.Impl.TestItemDaoImpl;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
@@ -67,19 +68,12 @@ public class TestItemTest {
 
     @Test
     public void pageTestItemTest(){
-        TestItemDO testItemDO=null;
-        testItemDO.setItemUuid("item");
-        testItemDO.setItemName("检测指标");
-        testItemDO.setProdCatalogUuid("prodc_");
-        testItemDO.setOrgUuid("NX102");
-        testItemDO.setAppSysUuid("号系统");
         PageParameter<TestItemDO> page=new PageParameter<>();
         page.setStartIndex(1);
+        page.setPageRows(4);
         page.setStartPage(1);
-        page.setStartPage(4);
-        page.setParameter(testItemDO);
-        System.out.println(testItemDaoImpl.listTestItemPage(page));
-
+        PageBean<TestItemDO> testItemDOPageBean=testItemDaoImpl.listTestItemPage(page);
+        System.out.println(testItemDOPageBean);
     }
 
 }

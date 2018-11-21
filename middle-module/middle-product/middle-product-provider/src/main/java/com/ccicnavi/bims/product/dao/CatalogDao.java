@@ -20,4 +20,6 @@ public interface CatalogDao {
 
     PageBean<CatalogDO> listCatalogPage(PageParameter<CatalogDO> pageParameter);
 
+    CatalogDO getCatalogThroughOrgnUUid();
+
 }

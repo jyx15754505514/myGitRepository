@@ -6,6 +6,7 @@ import com.ccicnavi.bims.product.dao.CatalogDao;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,4 +58,8 @@ public class CatalogDaoImpl implements CatalogDao {
         }
     }
 
+    @Override
+    public CatalogDO getCatalogThroughOrgnUUid() {
+        return new Eql().selectFirst("getCatalogThroughOrgnUUid").params().returnType(CatalogDO.class).execute();
+    }
 }
