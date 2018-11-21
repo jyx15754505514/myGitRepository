@@ -69,10 +69,14 @@ public class SerialnumServiceImpl implements SerialnumService {
      * @auther: CongZhiYuan
      */
     @Override
-    public SerialnumCfgDO getSerialnumCfg(SerialQueryDTO serialQueryDTO) throws Exception {
+    public SerialnumCfgDTO getSerialnumCfg(SerialQueryDTO serialQueryDTO) throws Exception {
         try {
-//            SerialnumDaoImpl serialnumDaoImpl = new SerialnumDaoImpl();
-            return serialnumDao.getSerialnumCfg(serialQueryDTO);
+            SerialnumCfgDO serialnumCfgDO = serialnumDao.getSerialnumCfg(serialQueryDTO);
+            List<SerialnumCfgItemDO> itemList = serialnumDao.getSeriItemList(serialQueryDTO.getSncUuid());
+            SerialnumCfgDTO dto = new SerialnumCfgDTO();
+            BeanUtils.copyProperties(serialnumCfgDO, dto);
+            dto.setItems(itemList);
+            return dto;
         } catch (Exception e) {
             log.error("获取业务编码规则失败",e);
             return null;
