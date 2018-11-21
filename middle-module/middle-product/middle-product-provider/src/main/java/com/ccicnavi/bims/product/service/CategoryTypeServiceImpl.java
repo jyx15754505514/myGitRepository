@@ -26,7 +26,7 @@ public class CategoryTypeServiceImpl implements CategoryTypeService {
     CategoryTypeDao categoryTypeDao;
 
     @Override
-    public List<CategoryTypeDO> listCategoryTypeDO() {
+    public List<CategoryTypeDO> listCategoryTypeDO(CategoryTypeDO categoryTypeDO) {
         try {
             return categoryTypeDao.lsitCategoryTypeDO();
         } catch (Exception e) {
