@@ -1,10 +1,14 @@
 package com.ccicnavi.bims.order.dao.impl;
 
 import com.ccicnavi.bims.order.dao.OrderItemDao;
+import com.ccicnavi.bims.order.pojo.OrderInfoDO;
+import com.ccicnavi.bims.order.pojo.OrderItemDO;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /* *
  * @Author MengZiJie
@@ -44,5 +48,17 @@ public class OrderItemDaoImpl implements OrderItemDao {
             return eql.useTran(tran).insert("updateOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
         }
         return eql.update("updateOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
+    }
+    /**
+     * 功能描述: 根据委托单信息查询其下的服务项目信息
+     * @param:
+     * @return:
+     * @auther: fandongsheng
+     * @date: 2018/11/21 14:37
+     */
+    @Override
+    public List<OrderItemDTO> listOrderItemDTO(OrderInfoDO orderInfoDO) throws Exception {
+        Eql eql = new Eql("DEFAULT");
+        return  eql.select("listOrderItem").params(orderInfoDO).returnType(OrderItemDO.class).execute();
     }
 }

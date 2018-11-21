@@ -2,10 +2,14 @@ package com.ccicnavi.bims.order.dao.impl;
 
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.order.dao.OrderItemSubDao;
+import com.ccicnavi.bims.order.pojo.OrderItemDTO;
 import com.ccicnavi.bims.order.pojo.OrderItemSubDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /* *
  * @Author heibin
  * @Description 委托单最小服务项子项
@@ -57,5 +61,16 @@ public class OrderItemSubDaoImpl implements OrderItemSubDao {
             return eql.useTran(tran).delete("deleteOrderItemSub").params(orderItemSubDO).returnType(Integer.class).execute();
         }
         return eql.delete("deleteOrderItemSub").params(orderItemSubDO).returnType(Integer.class).execute();
+    }
+
+    /**
+     * @param orderItemDTO
+     * @return  List<OrderItemSubDO>
+     * @throws Exception
+     */
+    @Override
+    public List<OrderItemSubDO> listOrderItemSub(OrderItemDTO orderItemDTO) throws Exception {
+        Eql eql = new Eql("DEFAULT");
+        return eql.select("listOrderItemSub").params(orderItemDTO).returnType(OrderItemSubDO.class).execute();
     }
 }
