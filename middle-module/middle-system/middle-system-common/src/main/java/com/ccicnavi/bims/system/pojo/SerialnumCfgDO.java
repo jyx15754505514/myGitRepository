@@ -25,6 +25,8 @@ public class SerialnumCfgDO {
 
     private Integer sncStep;
 
+    private String sncPeriod;
+
     private String isHop;
 
     private String delimiter;

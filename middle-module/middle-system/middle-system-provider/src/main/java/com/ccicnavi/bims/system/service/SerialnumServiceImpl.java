@@ -182,7 +182,7 @@ public class SerialnumServiceImpl implements SerialnumService {
             serialnumDO.setBusUuid(serialQueryDTO.getBusUuid());
             SerialnumDO busiSerialDO = serialnumDao.getSerialnumDO(serialnumDO);
             //根据查询规则信息生成业务编码
-            busiNo = this.getBusiSerialNo(cfgDO, itemList, busiSerialDO);
+            busiNo = this.getBusiSerialNo(cfgDO, itemList, busiSerialDO, busUuid);
         } catch (Exception e) {
             log.error("获取业务编码规则失败",e);
         }
@@ -200,7 +200,7 @@ public class SerialnumServiceImpl implements SerialnumService {
      * @date:  2018/11/20 20:50
      * @auther: CongZhiYuan
      */
-    public String getBusiSerialNo(SerialnumCfgDO cfgDO, List<SerialnumCfgItemDO> itemList, SerialnumDO busiSerialDO){
+    public String getBusiSerialNo(SerialnumCfgDO cfgDO, List<SerialnumCfgItemDO> itemList, SerialnumDO busiSerialDO, String busUuid){
         StringBuffer busiSerialNo = new StringBuffer("");
         StringBuffer serialStr = new StringBuffer("");
         for(SerialnumCfgItemDO item:itemList){
@@ -211,9 +211,20 @@ public class SerialnumServiceImpl implements SerialnumService {
                 busiSerialNo.append(item.getSncdValue());
             }else if(item.getSncdType().equals("SYS")){//待用户信息完善再实现
                 busiSerialNo.append(this.getSysCfgValue(item.getSncdValue()));
-            }else if(item.getSncdValue().equals("N")){//解析当前序号
+            }else if(item.getSncdType().equals("OLD")){//原业务编号
+                busiSerialNo.append(busUuid);
+            }else if(item.getSncdType().equals("N")){//解析当前序号
                 int sncLength = cfgDO.getSncLength();
                 int sncStep = cfgDO.getSncStep();
+                String sncPeriod = cfgDO.getSncPeriod();
+                if(sncPeriod!=null){//超过周期，序号重新翻牌
+                    DateFormat df = new SimpleDateFormat(sncPeriod);
+                    int currTime = Integer.parseInt(df.format(new Date()));
+                    int beginTime = Integer.parseInt(busiSerialDO.getSeqYmd());
+                    if(currTime!=beginTime){
+                        busiSerialDO.setSeqId(cfgDO.getSncInitValue());
+                    }
+                }
                 int seqNo = cfgDO.getSncInitValue()==null?0:Integer.parseInt(cfgDO.getSncInitValue());
                 if(busiSerialDO!=null){//系统中已含有业务序号信息
                     seqNo = Integer.parseInt(busiSerialDO.getSeqId());

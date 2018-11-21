@@ -5,6 +5,7 @@ snc_name sncName,
 snc_init_value sncInitValue,
 snc_length sncLength,
 snc_step sncStep,
+snc_period sncPeriod,
 is_hop isHop,
 delimiter delimiter,
 is_delim_after_first isDelimAfterFirst,
@@ -31,6 +32,7 @@ snc_name sncName,
 snc_init_value sncInitValue,
 snc_length sncLength,
 snc_step sncStep,
+snc_period sncPeriod,
 is_hop isHop,
 delimiter delimiter,
 is_delim_after_first isDelimAfterFirst,
@@ -71,6 +73,9 @@ order by sort_num
     -- end
     -- if sncStep != null
       snc_step,
+    -- end
+    -- if sncPeriod != null
+      snc_period,
     -- end
     -- if isHop != null
       is_hop,
@@ -128,6 +133,9 @@ order by sort_num
     -- if sncStep != null
       '#sncStep#',
     -- end
+    -- if sncPeriod != null
+      '#sncPeriod#',
+    -- end
     -- if isHop != null
       '#isHop#',
     -- end
@@ -183,6 +191,9 @@ order by sort_num
   -- end
   -- if sncStep != null
     snc_step = '#sncStep#',
+  -- end
+  -- if sncPeriod != null
+    snc_period = '#sncPeriod#',
   -- end
   -- if isHop != null
     is_hop = '#isHop#',
