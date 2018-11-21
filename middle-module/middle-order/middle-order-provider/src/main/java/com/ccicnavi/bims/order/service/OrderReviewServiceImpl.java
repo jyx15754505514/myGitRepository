@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Slf4j
 @Service
-public class OrderReviewImpl implements OrderReviewService {
+public class OrderReviewServiceImpl implements OrderReviewService {
 
     @Autowired
     OrderReviewDao orderReviewDao;
@@ -54,17 +54,15 @@ public class OrderReviewImpl implements OrderReviewService {
     /* *
      * @Author MengZiJie
      * @Description 通过评审
-     * @Date 20:57 2018/11/21
-     * @Param [orderReviewDO]
-     * @Return java.lang.Integer
+     * @Date 22:07 2018/11/21
+     * @Param [orderReviewDO, orderInfoDTO]
+     * @Return com.ccicnavi.bims.common.ResultT
      */
     @Override
-    public ResultT passOrderReview(OrderReviewDO orderReviewDO) {
+    public ResultT passOrderReview(OrderReviewDO orderReviewDO,OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = new Eql("DEFAULT").newTran();
-        OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
         try {
             eqlTran.start();
-            orderInfoDTO.setOrderUuid(orderReviewDO.getOrderUuid());
             Integer orderInfo = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
             Integer orderReview = orderReviewDao.updateOrderReview(orderReviewDO,eqlTran);
             if(orderReview > 0 && orderInfo >0){
