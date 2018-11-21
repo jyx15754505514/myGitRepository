@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.system.dao;
 
 import com.ccicnavi.bims.system.pojo.MenuDO;
+import com.ccicnavi.bims.system.pojo.MenuDTO;
 import com.ccicnavi.bims.system.pojo.UserDO;
 
 import java.util.List;
@@ -31,4 +32,14 @@ public interface MenuDao {
     * @return java.util.List<java.lang.String>
     **/
     List<MenuDO> listMenuByUser(UserDO userDO) throws Exception;
+    /**
+     *@Description: 根据角色id查询菜单
+     *@Param: menuDTO
+     *@return: List<MenuDTO>
+     *@Author: zqq
+     *@date: 2018/11/20
+     */
+
+    List<MenuDTO> listMenuRoleUuid(MenuDTO menuDTO);
+    List<MenuDTO> listMenuByProdCatalogUuid(MenuDTO menuDTO);
 }

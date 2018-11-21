@@ -9,14 +9,14 @@ import java.util.Date;
 
 /**
  * @program: bims-backend
- * @description: 产品类别DO
+ * @description: 产品分类DTO(产品分类与产品分类组织机构关系表)
  * @author: LiJie
- * @create: 2018-11-19 17:24
+ * @create: 2018-11-20 23:32
  */
 @Setter
 @Getter
 @ToString
-public class CategoryDO implements Serializable {
+public class CategoryDTO implements Serializable {
 
     private String productCategoryUuid;//主键
 
@@ -64,6 +64,11 @@ public class CategoryDO implements Serializable {
 
     private String extend3;
 
+    /**
+     * 以下是产品分类与组织机构关系表字段：
+     */
+
+    private String organizationUuid;//产品分类与组织机构关系表所属组织机构UUID
 
 
 
