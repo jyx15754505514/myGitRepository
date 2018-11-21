@@ -24,6 +24,7 @@ SELECT
 	created_name,
 	updated_time,
 	updated_name,
+	updated_uuid,
 	extend1,
 	extend2,
 	extend3
@@ -36,6 +37,9 @@ WHERE
         --end
         --if linkmanUuid !=null and linkmanUuid != ''
             and linkman_uuid = '#linkmanUuid#'
+        --end
+        --if custUuid !=null and custUuid != ''
+            and cust_uuid = '#custUuid#'
         --end
 
 
@@ -65,6 +69,7 @@ SELECT
 	created_name,
 	updated_time,
 	updated_name,
+	updated_uuid,
 	extend1,
 	extend2,
 	extend3
@@ -305,7 +310,8 @@ WHERE
 
       -- iff updatedName != null
         updated_name = '#updatedName#',
-
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
       -- iff extend1 != null
         extend1 = '#extend1#',
 

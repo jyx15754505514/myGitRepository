@@ -1,7 +1,10 @@
 package com.ccicnavi.bims.order.dao;
 
+        import com.ccicnavi.bims.order.pojo.OrderInfoDO;
         import com.ccicnavi.bims.order.pojo.OrderItemDTO;
         import org.n3r.eql.EqlTran;
+
+        import java.util.List;
 
 /* *
  * @Author MengZiJie
@@ -14,5 +17,7 @@ public interface OrderItemDao {
     Integer insertOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception;
     /**更新服务项信息*/
     Integer updateOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception;
+
+    List<OrderItemDTO> listOrderItemDTO (OrderInfoDO orderInfoDO)throws  Exception;
 
 }

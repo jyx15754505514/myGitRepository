@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.system.pojo.MenuDO;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.system.pojo.MenuDTO;
 import com.ccicnavi.bims.system.pojo.UserDO;
 
 import java.util.List;
@@ -60,6 +61,24 @@ public interface MenuService {
     * @Param [userDO]
     * @return java.util.List<java.lang.String>
     **/
-    List<MenuDO> listMenuByUser(UserDO userDO);
+   // List<MenuDO> listMenuByUser(UserDO userDO);
     
+    /**
+    *@Description: 根据用户角色查询菜单
+    *@Param: menuDTO
+    *@return: List<MenuDTO>
+    *@Author: zqq
+    *@date: 2018/11/20
+    */
+    
+    List<MenuDTO> listMenuRoleUuid(MenuDTO menuDTO);
+    /**
+    *@Description: 根據大宗线id查詢菜单
+    *@Param: menuDTO
+    *@return: List<MenuDTO>
+    *@Author: 本人姓名
+    *@date: 2018/11/20
+    */
+
+    List<MenuDTO> listMenuByProdCatalogUuid(MenuDTO menuDTO);
 }

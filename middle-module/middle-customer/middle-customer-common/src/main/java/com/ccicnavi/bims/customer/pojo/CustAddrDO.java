@@ -44,11 +44,12 @@ public class CustAddrDO implements Serializable {
 
     private String updatedName;
 
-    private String prodCatalogUuid;
+    private String updatedUuid;
+   /* private String prodCatalogUuid;
 
     private String orgUuid;
 
-    private String appSysUuid;
+    private String appSysUuid;*/
 
     private String extend1;
 

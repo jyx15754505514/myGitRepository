@@ -107,7 +107,7 @@ and order_uuid in
         --iff comments != null and comments != ''
             comments,
     --end
-    --trim prefix=values ( suffix=) suffixOverrides=,
+    --trim prefix=values( suffix=) suffixOverrides=,
         --iff orderUuid != null and orderUuid != ''
         	'#orderUuid#',
         --iff shippingTypeId != null and shippingTypeId != ''

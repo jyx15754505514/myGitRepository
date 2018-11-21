@@ -106,9 +106,9 @@ public class CustomerController {
     */
 
     @RequestMapping(value = "/saveCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT saveCustomer(@RequestBody CustomerDTO customerDTO) {
+    public ResultT saveCustomer(@RequestBody CustomerDO customerDO) {
         try {
-            Integer count = customerService.saveCustomerAndExt(customerDTO);
+            Integer count = customerService.saveCustomer(customerDO);
             if (count > 0) {
                 return ResultT.success("新增客户成功");
             } else {
@@ -194,4 +194,19 @@ public class CustomerController {
     }
 
 
+    @RequestMapping(value = "/getCustomerUuid", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT getCustomerUuid(@RequestBody CustomerDO customerDO) {
+        if(StringUtils.isEmpty(customerDO.getCustUuid())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
+        try {
+            CustomerDTO customer = customerService.getCustomerUuid(customerDO);
+            if (customer != null) {
+                return ResultT.success(customer);
+            }
+        } catch (Exception e) {
+            log.error("根据主键查询客户失败", e);
+        }
+        return ResultT.failure(ResultCode.LIST_FAILURE);
+    }
 }

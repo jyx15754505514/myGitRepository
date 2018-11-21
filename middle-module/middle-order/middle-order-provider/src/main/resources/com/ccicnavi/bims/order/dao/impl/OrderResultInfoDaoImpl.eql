@@ -1,33 +1,30 @@
 -- [listOrderResultInfo]
 SELECT
-       result_uuid  resultUuid,
-       result_no  resultNo,
-       cert_paper_no  certPaperNo,
-       cert_editer_uuid  certEditerUuid,
-       cert_edit_time  certEditTime,
-       cert_checker_uuid  certCheckerUuid,
-       cert_check_time  certCheckTime,
-       cert_signer_uuid  certSignerUuid,
-       cert_sign_time  certSignTime,
-       is_cert_upload  isCertUpload,
-       is_pdf  isPdf,
-       is_merge_report  isMergeReport,
-       status_uuid  statusUuid,
-       cert_print_page  certPrintPage,
-       comments  comments,
-       is_deleted  isDeleted,
-       created_time  createdTime,
-       created_uuid  createdUuid,
-       created_name  createdName,
-       updated_time  updatedTime,
-       updated_uuid  updatedUuid,
-       updated_name  updatedName,
-       prod_catalog_uuid  prodCatalogUuid,
-       org_uuid  orgUuid,
-       app_sys_uuid  appSysUuid,
-       extend1  extend1,
-       extend2  extend2,
-       extend3  extend3
+    result_uuid resultUuid,
+    result_no resultNo,
+    cert_paper_no certPaperNo,
+    cert_editer_uuid certEditerUuid,
+    cert_edit_time certEditTime,
+    cert_checker_uuid certCheckerUuid,
+    cert_check_time certCheckTime,
+    cert_signer_uuid certSignerUuid,
+    cert_sign_time certSignTime,
+    is_cert_upload isCertUpload,
+    is_pdf isPdf,
+    is_merge_report isMergeReport,
+    status_uuid statusUuid,
+    cert_print_page certPrintPage,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
 from
     order_result_info
 where
@@ -37,248 +34,222 @@ where
 --iff createdName != null and createdName != ''
      created_name like '#createdName:Like#'
 --end
+
 -- [getOrderResultInfo]
 select
-           result_uuid  resultUuid,
-           result_no  resultNo,
-           cert_paper_no  certPaperNo,
-           cert_editer_uuid  certEditerUuid,
-           cert_edit_time  certEditTime,
-           cert_checker_uuid  certCheckerUuid,
-           cert_check_time  certCheckTime,
-           cert_signer_uuid  certSignerUuid,
-           cert_sign_time  certSignTime,
-           is_cert_upload  isCertUpload,
-           is_pdf  isPdf,
-           is_merge_report  isMergeReport,
-           status_uuid  statusUuid,
-           cert_print_page  certPrintPage,
-           comments  comments,
-           is_deleted  isDeleted,
-           created_time  createdTime,
-           created_uuid  createdUuid,
-           created_name  createdName,
-           updated_time  updatedTime,
-           updated_uuid  updatedUuid,
-           updated_name  updatedName,
-           prod_catalog_uuid  prodCatalogUuid,
-           org_uuid  orgUuid,
-           app_sys_uuid  appSysUuid,
-           extend1  extend1,
-           extend2  extend2,
-           extend3  extend3
+    result_uuid resultUuid,
+    result_no resultNo,
+    cert_paper_no certPaperNo,
+    cert_editer_uuid certEditerUuid,
+    cert_edit_time certEditTime,
+    cert_checker_uuid certCheckerUuid,
+    cert_check_time certCheckTime,
+    cert_signer_uuid certSignerUuid,
+    cert_sign_time certSignTime,
+    is_cert_upload isCertUpload,
+    is_pdf isPdf,
+    is_merge_report isMergeReport,
+    status_uuid statusUuid,
+    cert_print_page certPrintPage,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
 from
     order_result_info
 where
     is_deleted = 'N'
 --iff resultUuid != null and resultUuid != ''
-and result_uuid = '#resultUuid#'
+    and result_uuid = '#resultUuid#'
 --iff resultUuids != null
-and result_uuid in
--- for item=item index=index collection=resultUuids open=( separator=, close=)
-    '#item#'
--- end
+    and result_uuid in
+    -- for item=item index=index collection=resultUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
 -- [insertOrderResultInfo]
  insert into order_result_info
     -- trim prefix=( suffix=) suffixOverrides=,
-     -- iff resultUuid != null
-             result_uuid,
-          -- iff resultNo != null
-             result_no,
-          -- iff certPaperNo != null
-             cert_paper_no,
-           -- iff certEditerUuid != null
-             cert_editer_uuid,
-           -- iff certEditTime != null
-             cert_edit_time,
-           -- iff certCheckerUuid != null
-             cert_checker_uuid,
-           -- iff certCheckTime != null
-             cert_check_time,
-            -- iff certSignerUuid != null
-             cert_signer_uuid,
-            -- iff certSignTime != null
-             cert_sign_time,
-           -- iff isCertUpload != null
-             is_cert_upload,
-            -- iff isPdf != null
-             is_pdf,
-            -- iff isMergeReport != null
-             is_merge_report,
-            -- iff statusUuid != null
-             status_uuid,
-            -- iff certPrintPage != null
-             cert_print_page,
-          -- iff comments != null
-             comments,
-            -- iff isDeleted != null
-             is_deleted,
-            -- iff createdTime != null
-             created_time,
-           -- iff createdUuid != null
-             created_uuid,
-           -- iff createdName != null
-             created_name,
-           -- iff updatedTime != null
-             updated_time,
-           -- iff updatedUuid != null
-             updated_uuid,
-           -- iff updatedName != null
-             updated_name,
-           -- iff prodCatalogUuid != null
-             prod_catalog_uuid,
-           -- iff orgUuid != null
-             org_uuid,
-           -- iff appSysUuid != null
-             app_sys_uuid,
-           -- iff extend1 != null
-             extend1,
-           -- iff extend2 != null
-             extend2,
-           -- iff extend3 != null
-             extend3,
+        --iff resultUuid != null and resultUuid != ''
+        	result_uuid,
+        --iff resultNo != null and resultNo != ''
+        	result_no,
+        --iff certPaperNo != null and certPaperNo != ''
+        	cert_paper_no,
+        --iff certEditerUuid != null and certEditerUuid != ''
+        	cert_editer_uuid,
+        --iff certEditTime != null
+        	cert_edit_time,
+        --iff certCheckerUuid != null and certCheckerUuid != ''
+        	cert_checker_uuid,
+        --iff certCheckTime != null
+        	cert_check_time,
+        --iff certSignerUuid != null and certSignerUuid != ''
+        	cert_signer_uuid,
+        --iff certSignTime != null
+        	cert_sign_time,
+        --iff isCertUpload != null and isCertUpload != ''
+        	is_cert_upload,
+        --iff isPdf != null and isPdf != ''
+        	is_pdf,
+        --iff isMergeReport != null and isMergeReport != ''
+        	is_merge_report,
+        --iff statusUuid != null and statusUuid != ''
+        	status_uuid,
+        --iff certPrintPage != null and certPrintPage != ''
+        	cert_print_page,
+        --iff comments != null and comments != ''
+        	comments,
+        --iff isDeleted != null and isDeleted != ''
+        	is_deleted,
+        --iff createdTime != null
+        	created_time,
+        --iff createdUuid != null and createdUuid != ''
+        	created_uuid,
+        --iff createdName != null and createdName != ''
+        	created_name,
+        --iff updatedTime != null
+        	updated_time,
+        --iff updatedUuid != null and updatedUuid != ''
+        	updated_uuid,
+        --iff updatedName != null and updatedName != ''
+        	updated_name,
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        	prod_catalog_uuid,
+        --iff orgUuid != null and orgUuid != ''
+        	org_uuid,
+        --iff appSysUuid != null and appSysUuid != ''
+        	app_sys_uuid,
     -- end
     -- trim prefix=values( suffix=)  suffixOverrides=,
-      -- iff resultUuid != null
-              '#{resultUuid}#',
-            -- iff resultNo != null
-              '#{resultNo}#',
-            -- iff certPaperNo != null
-              '#{certPaperNo}#',
-           -- iff certEditerUuid != null
-              '#{certEditerUuid}#',
-            -- iff certEditTime != null
-              '#{certEditTime}#',
-            -- iff certCheckerUuid != null
-              '#{certCheckerUuid}#',
-            -- iff certCheckTime != null
-              '#{certCheckTime}#',
-            -- iff certSignerUuid != null
-              '#{certSignerUuid}#',
-            -- iff certSignTime != null
-              '#{certSignTime}#',
-            -- iff isCertUpload != null
-              '#{isCertUpload}#',
-            -- iff isPdf != null
-              '#{isPdf}#',
-            -- iff isMergeReport != null
-              '#{isMergeReport}#',
-           -- iff statusUuid != null
-              '#{statusUuid}#',
-            -- iff certPrintPage != null
-              '#{certPrintPage}#',
-            -- iff comments != null
-              '#{comments}#',
-            -- iff isDeleted != null
-              '#{isDeleted}#',
-            -- iff createdTime != null
-              '#{createdTime}#',
-            -- iff createdUuid != null
-              '#{createdUuid}#',
-           -- iff createdName != null
-              '#{createdName}#',
-            -- iff updatedTime != null
-              '#{updatedTime}#',
-            -- iff updatedUuid != null
-              '#{updatedUuid}#',
-            -- iff updatedName != null
-              '#{updatedName}#',
-            -- iff prodCatalogUuid != null
-              '#{prodCatalogUuid}#',
-            -- iff orgUuid != null
-              '#{orgUuid}#',
-            -- iff appSysUuid != null
-              '#{appSysUuid}#',
-            -- iff extend1 != null
-              '#{extend1}#',
-            -- iff extend2 != null
-              '#{extend2}#',
-            -- iff extend3 != null
-              '#{extend3}#',
+        --iff resultUuid != null and resultUuid != ''
+        	'#{resultUuid}#',
+        --iff resultNo != null and resultNo != ''
+            '#{resultNo}#',
+        --iff certPaperNo != null and certPaperNo != ''
+            '#{certPaperNo}#',
+        --iff certEditerUuid != null and certEditerUuid != ''
+            '#{certEditerUuid}#',
+        --iff certEditTime != null
+            '#{certEditTime}#',
+        --iff certCheckerUuid != null and certCheckerUuid != ''
+            '#{certCheckerUuid}#',
+        --iff certCheckTime != null
+            '#{certCheckTime}#',
+        --iff certSignerUuid != null and certSignerUuid != ''
+            '#{certSignerUuid}#',
+        --iff certSignTime != null
+            '#{certSignTime}#',
+        --iff isCertUpload != null and isCertUpload != ''
+            '#{isCertUpload}#',
+        --iff isPdf != null and isPdf != ''
+            '#{isPdf}#',
+        --iff isMergeReport != null and isMergeReport != ''
+            '#{isMergeReport}#',
+        --iff statusUuid != null and statusUuid != ''
+            '#{statusUuid}#',
+        --iff certPrintPage != null and certPrintPage != ''
+            '#{certPrintPage}#',
+        --iff comments != null and comments != ''
+            '#{comments}#',
+        --iff isDeleted != null and isDeleted != ''
+            '#{isDeleted}#',
+        --iff createdTime != null
+            '#{createdTime}#',
+        --iff createdUuid != null and createdUuid != ''
+            '#{createdUuid}#',
+        --iff createdName != null and createdName != ''
+            '#{createdName}#',
+        --iff updatedTime != null
+            '#{updatedTime}#',
+        --iff updatedUuid != null and updatedUuid != ''
+            '#{updatedUuid}#',
+        --iff updatedName != null and updatedName != ''
+            '#{updatedName}#',
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#{prodCatalogUuid}#',
+        --iff orgUuid != null and orgUuid != ''
+            '#{orgUuid}#',
+        --iff appSysUuid != null and appSysUuid != ''
+            '#{appSysUuid}#',
 	--end
+
 -- [updateOrderResultInfo]
- update order_result_info
+update order_result_info
     -- trim prefix=SET suffixOverrides=,
-                 -- iff resultNo != null
-                        result_no = '#resultNo#',
-                      -- iff certPaperNo != null
-                        cert_paper_no = '#certPaperNo#',
-                      -- iff certEditerUuid != null
-                        cert_editer_uuid = '#certEditerUuid#',
-                      -- iff certEditTime != null
-                        cert_edit_time = '#certEditTime#',
-                      -- iff certCheckerUuid != null
-                        cert_checker_uuid = '#certCheckerUuid#',
-                      -- iff certCheckTime != null
-                        cert_check_time = '#certCheckTime#',
-                      -- iff certSignerUuid != null
-                        cert_signer_uuid = '#certSignerUuid#',
-                      -- iff certSignTime != null
-                        cert_sign_time = '#certSignTime#',
-                      -- iff isCertUpload != null
-                        is_cert_upload = '#isCertUpload#',
-                      -- iff isPdf != null
-                        is_pdf = '#isPdf#',
-                      -- iff isMergeReport != null
-                        is_merge_report = '#isMergeReport#',
-                      -- iff statusUuid != null
-                        status_uuid = '#statusUuid#',
-                      -- iff certPrintPage != null
-                        cert_print_page = '#certPrintPage#',
-                      -- iff comments != null
-                        comments = '#comments#',
-                      -- iff isDeleted != null
-                        is_deleted = '#isDeleted#',
-
-                      -- iff createdTime != null
-                        created_time = '#createdTime#',
-
-                      -- iff createdUuid != null
-                        created_uuid = '#createdUuid#',
-
-                      -- iff createdName != null
-                        created_name = '#createdName#',
-
-                      -- iff updatedTime != null
-                        updated_time = '#updatedTime#',
-
-                      -- iff updatedUuid != null
-                        updated_uuid = '#updatedUuid#',
-
-                      -- iff updatedName != null
-                        updated_name = '#updatedName#',
-
-                      -- iff prodCatalogUuid != null
-                        prod_catalog_uuid = '#prodCatalogUuid#',
-
-                      -- iff orgUuid != null
-                        org_uuid = '#orgUuid#',
-
-                      -- iff appSysUuid != null
-                        app_sys_uuid = '#appSysUuid#',
-
-                      -- iff extend1 != null
-                        extend1 = '#extend1#',
-
-                      -- iff extend2 != null
-                        extend2 = '#extend2#',
-
-                      -- iff extend3 != null
-                        extend3 = '#extend3#',
-     --end
-    where
+        --iff resultNo != null and resultNo != ''
+            result_no = '#resultNo#',
+        --iff certPaperNo != null and certPaperNo != ''
+            cert_paper_no = '#certPaperNo#',
+        --iff certEditerUuid != null and certEditerUuid != ''
+            cert_editer_uuid = '#certEditerUuid#',
+        --iff certEditTime != null
+            cert_edit_time = '#certEditTime#',
+        --iff certCheckerUuid != null and certCheckerUuid != ''
+            cert_checker_uuid = '#certCheckerUuid#',
+        --iff certCheckTime != null
+            cert_check_time = '#certCheckTime#',
+        --iff certSignerUuid != null and certSignerUuid != ''
+            cert_signer_uuid = '#certSignerUuid#',
+        --iff certSignTime != null
+            cert_sign_time = '#certSignTime#',
+        --iff isCertUpload != null and isCertUpload != ''
+            is_cert_upload = '#isCertUpload#',
+        --iff isPdf != null and isPdf != ''
+            is_pdf = '#isPdf#',
+        --iff isMergeReport != null and isMergeReport != ''
+            is_merge_report = '#isMergeReport#',
+        --iff statusUuid != null and statusUuid != ''
+            status_uuid = '#statusUuid#',
+        --iff certPrintPage != null and certPrintPage != ''
+            cert_print_page = '#certPrintPage#',
+        --iff comments != null and comments != ''
+            comments = '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted = '#isDeleted#',
+        --iff createdTime != null
+            created_time = '#createdTime#',
+        --iff createdUuid != null and createdUuid != ''
+            created_uuid = '#createdUuid#',
+        --iff createdName != null and createdName != ''
+            created_name = '#createdName#',
+        --iff updatedTime != null
+            updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid != ''
+            updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName != ''
+            updated_name = '#updatedName#',
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            prod_catalog_uuid = '#prodCatalogUuid#',
+        --iff orgUuid != null and orgUuid != ''
+            org_uuid = '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid = '#appSysUuid#',
+    --end
+where
     is_deleted = 'N'
+--iff resultUuid != null and resultUuid != ''
     and result_uuid = '#resultUuid#'
-    -- end
+-- end
+
 -- [deleteOrderResultInfo]
 UPDATE order_result_info
-SET is_deleted = 'Y'
+   -- trim prefix= set suffixOverrides=,
+       is_deleted = 'Y'
+   -- end
 WHERE
-	is_deleted = 'N'
-	--iff resultUuid != null and resultUuid != ''
-        AND      result_uuid = '#resultUuid#'
- -- if resultUuids != null
-            AND result_uuid IN
-            -- for item=item index=index collection=resultUuids open=( separator=, close=)
-                '#item#'
--- end
+    is_deleted = 'N'
+--iff resultUuid != null and resultUuid != ''
+    AND result_uuid = '#resultUuid#'
+--iff resultUuids != null
+    AND result_uuid IN
+    --for item=item index=index collection=resultUuids open=( separator=, close=)
+        '#item#'
+    --end

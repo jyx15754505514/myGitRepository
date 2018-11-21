@@ -88,5 +88,10 @@ public class CustomerDaoImpl implements CustomerDao {
         }
     }
 
+    @Override
+    public CustomerDTO getCustomerUuid(CustomerDO customer) throws Exception {
+        return new Eql().selectFirst("getCustomer").params(customer).returnType(CustomerDTO.class).execute();
+    }
+
 
 }
