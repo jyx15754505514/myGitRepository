@@ -89,7 +89,7 @@ where
 -- [insertOrderSample]
 insert into order_sample
     -- trim prefix=( suffix=) suffixOverrides=,
-        --iff sampleUuid != null sampleUuid != ''
+        --iff sampleUuid != null and sampleUuid != ''
             sample_uuid,
         --iff orderUuid != null and orderUuid != ''
             order_uuid,
