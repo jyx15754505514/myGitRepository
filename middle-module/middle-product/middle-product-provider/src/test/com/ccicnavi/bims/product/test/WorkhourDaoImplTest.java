@@ -8,6 +8,12 @@ import org.junit.Test;
 
 import java.util.List;
 
+/**
+ * @program: bims-backend
+ * @description: 产品线对应工时工资测试
+ * @author: LiJie
+ * @create: 2018-11-19 20:17
+ */
 public class WorkhourDaoImplTest {
 
     CatalogWorkhourDaoImpl catalogWorkhourDaoImpl=new CatalogWorkhourDaoImpl();

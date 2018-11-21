@@ -41,7 +41,7 @@ public class DictController {
     *@date: 2018/11/20
     */
 
-    @RequestMapping(value = "/listDict", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/listDictValue", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listDict(@RequestBody DictTypeDTO dictTypeDTO ) {
         if(!StringUtils.isEmpty(dictTypeDTO.getTypeList())) {
             try {
