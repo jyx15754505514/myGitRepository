@@ -8,14 +8,8 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.api.OrderInfoService;
-import com.ccicnavi.bims.order.dao.OrderInfoDao;
-import com.ccicnavi.bims.order.dao.OrderItemDao;
-import com.ccicnavi.bims.order.dao.OrderItemSubDao;
-import com.ccicnavi.bims.order.dao.OrderInspectionDao;
-import com.ccicnavi.bims.order.pojo.OrderInfoDO;
-import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
-import com.ccicnavi.bims.order.pojo.OrderItemDTO;
-import com.ccicnavi.bims.order.pojo.OrderItemSubDO;
+import com.ccicnavi.bims.order.dao.*;
+import com.ccicnavi.bims.order.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
@@ -44,6 +38,9 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
     @Autowired
     OrderItemSubDao orderItemSubDao;
+
+    @Autowired
+    OrderSampleTypeDao orderSampleTypeDao;
 
     @Reference(timeout = 10000 ,url="192.168.11.18:20880")
     IdWorkerService idWorkerService;
@@ -110,6 +107,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         Integer orderItem = null;
         Integer itemSub = null;
         Integer orderInfo = null;
+        Integer orderSampleTypeResult = null;
         boolean result=true;
         try {
             eqlTran.start();
@@ -184,6 +182,22 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                                 result=false;
                             }
                         }
+                    }
+                }
+            }
+            //添加委托样品类型
+            List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
+            if(orderSampleTypeDO.size()>0){
+                for(OrderSampleTypeDO o :orderSampleTypeDO){
+                    OrderSampleTypeDO orderSampleType=new  OrderSampleTypeDO();
+                    String orderSplUuid = idWorkerService.getId(new Date());
+                    orderSampleType.setOrderSplUuid(orderSplUuid);
+                    orderSampleType.setOrderUuid(orderUuid);
+                    orderSampleType.setSplPurposeType(o.getSplPurposeType());
+                    orderSampleType.setSplPurposeQty(o.getSplPurposeQty());
+                    orderSampleTypeResult=orderSampleTypeDao.insertOrderSampleType(orderSampleType,eqlTran);
+                    if(orderSampleTypeResult!=1){
+                        result=false;
                     }
                 }
             }
