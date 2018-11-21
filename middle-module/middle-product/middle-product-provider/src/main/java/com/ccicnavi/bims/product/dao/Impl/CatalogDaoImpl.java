@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.CatalogDao;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
+import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.omg.CORBA.PUBLIC_MEMBER;
@@ -59,7 +60,7 @@ public class CatalogDaoImpl implements CatalogDao {
     }
 
     @Override
-    public CatalogDO getCatalogThroughOrgnUUid() {
-        return new Eql().selectFirst("getCatalogThroughOrgnUUid").params().returnType(CatalogDO.class).execute();
+    public List<CatalogDO> getCatalogThroughOrgUUid(CatalogOrgDO catalogOrgDO) {
+        return new Eql().select("getCatalogThroughOrgUUid").params(catalogOrgDO).returnType(CatalogDO.class).execute();
     }
 }

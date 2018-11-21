@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
+import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 
 import java.util.List;
 
@@ -20,6 +21,6 @@ public interface CatalogDao {
 
     PageBean<CatalogDO> listCatalogPage(PageParameter<CatalogDO> pageParameter);
 
-    CatalogDO getCatalogThroughOrgnUUid();
+    List<CatalogDO> getCatalogThroughOrgUUid(CatalogOrgDO catalogOrgDO);
 
 }

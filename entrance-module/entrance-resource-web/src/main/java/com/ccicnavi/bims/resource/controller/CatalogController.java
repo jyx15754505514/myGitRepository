@@ -8,6 +8,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CatalogService;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
+import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -130,6 +131,21 @@ public class CatalogController {
         }
     }
 
-
+    /**
+     * @description 根据组织id查询产品线信息
+     * @param catalogOrgDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
+    @RequestMapping(value = "/getThroughOrgUUid",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT getCatalogThroughOrgUUid(@RequestBody CatalogOrgDO catalogOrgDO){
+        try {
+            List<CatalogDO> catalogDOList=catalogService.getCatalogThroughOrgUUid(catalogOrgDO);
+            return ResultT.success(catalogDOList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultT.failure(ResultCode.GET_FAILURE);
+        }
+    }
 
 }
