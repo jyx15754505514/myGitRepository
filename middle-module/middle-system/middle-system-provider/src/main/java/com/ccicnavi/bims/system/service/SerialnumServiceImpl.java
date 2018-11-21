@@ -33,13 +33,13 @@ public class SerialnumServiceImpl implements SerialnumService {
     IdWorkerService idWorkerService;
 
     @Autowired
-    static SerialnumDao serialnumDao;
-    static SerialnumDaoImpl serialnumDaoImpl = null;
+    SerialnumDao serialnumDao;
+    /*static SerialnumDaoImpl serialnumDaoImpl = null;
 
     static{
         serialnumDaoImpl = new SerialnumDaoImpl();
         serialnumDao = serialnumDaoImpl;
-    }
+    }*/
 
     /**
      *
@@ -250,8 +250,8 @@ public class SerialnumServiceImpl implements SerialnumService {
             busiSerialDO = new SerialnumDO();
             BeanUtils.copyProperties(cfgDO, busiSerialDO);
 
-//            String snUuid = idWorkerService.getId(new Date());
-            String snUuid = new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
+            String snUuid = idWorkerService.getId(new Date());
+//            String snUuid = new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
             busiSerialDO.setSnUuid(snUuid);
             busiSerialDO.setSeqId(serialStr.toString());
             if(cfgDO.getSncPeriod()!=null){
