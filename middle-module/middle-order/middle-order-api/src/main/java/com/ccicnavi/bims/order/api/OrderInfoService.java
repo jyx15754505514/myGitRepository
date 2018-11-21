@@ -22,6 +22,8 @@ public interface OrderInfoService {
     PageBean<OrderInfoDO> listOrderInfo(PageParameter<OrderInfoDO> pageParameter);
     /**保存委托单*/
     ResultT saveOrderInfo(OrderInfoDTO orderInfoDTO);
+    /**回显委托单信息   根据委托单uuid**/
+    OrderInfoDTO getOrderInfo(OrderInfoDO orderInfoDO);
     /**委托单状态调整**/
 
     /**委托单设置为加急**/

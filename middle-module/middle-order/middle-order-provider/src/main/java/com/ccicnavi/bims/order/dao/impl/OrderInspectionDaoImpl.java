@@ -24,9 +24,9 @@ public class OrderInspectionDaoImpl implements OrderInspectionDao {
     public Integer insertOrderInspection(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception {
         Eql eql = new Eql("DEFAULT");
         if(tran != null){
-            return eql.useTran(tran).insert("insertOrderShipment").params(orderInfoDTO).returnType(Integer.class).execute();
+            return eql.useTran(tran).insert("insertOrderInspection").params(orderInfoDTO).returnType(Integer.class).execute();
         }
-        return eql.insert("insertOrderShipment").params(orderInfoDTO).returnType(Integer.class).execute();
+        return eql.insert("insertOrderInspection").params(orderInfoDTO).returnType(Integer.class).execute();
     }
 
     /* *
