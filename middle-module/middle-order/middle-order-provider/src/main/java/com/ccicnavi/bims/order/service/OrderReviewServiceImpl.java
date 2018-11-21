@@ -79,4 +79,32 @@ public class OrderReviewServiceImpl implements OrderReviewService {
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
+    /* *
+     * @Author MengZiJie
+     * @Description 驳回
+     * @Date 22:11 2018/11/21
+     * @Param [orderReviewDO, orderInfoDTO]
+     * @Return com.ccicnavi.bims.common.ResultT
+     */
+    @Override
+    public ResultT backOrderReview(OrderReviewDO orderReviewDO, OrderInfoDTO orderInfoDTO) {
+        EqlTran eqlTran = new Eql("DEFAULT").newTran();
+        try {
+            eqlTran.start();
+            Integer orderInfo = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
+            Integer orderReview = orderReviewDao.updateOrderReview(orderReviewDO,eqlTran);
+            if(orderReview > 0 && orderInfo >0){
+                eqlTran.commit();
+                return ResultT.success(ResultCode.SUCCESS);
+            }
+        } catch (Exception e) {
+            log.error("评审驳回失败",e);
+            eqlTran.rollback();
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
+        } finally {
+            eqlTran.close();
+        }
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
+    }
+
 }

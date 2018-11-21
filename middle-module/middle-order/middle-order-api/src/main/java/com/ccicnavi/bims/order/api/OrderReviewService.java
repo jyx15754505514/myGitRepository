@@ -8,7 +8,7 @@ import com.ccicnavi.bims.order.pojo.OrderReviewDO;
 /**
  * @Auther: fandongsheng
  * @Date: 2018/11/20 14:34
- * @Description:
+ * @Description: 委托单评审管理
  */
 public interface OrderReviewService {
 
@@ -25,10 +25,19 @@ public interface OrderReviewService {
 
     /* *
      * @Author MengZiJie
-     * @Description 通过评审
+     * @Description 通过
      * @Date 22:06 2018/11/21
      * @Param [orderReviewDO, orderInfoDTO]
      * @Return com.ccicnavi.bims.common.ResultT
      */
     ResultT passOrderReview(OrderReviewDO orderReviewDO, OrderInfoDTO orderInfoDTO);
+
+    /* *
+     * @Author MengZiJie
+     * @Description 驳回
+     * @Date 22:10 2018/11/21
+     * @Param [orderReviewDO, orderInfoDTO]
+     * @Return com.ccicnavi.bims.common.ResultT
+     */
+    ResultT backOrderReview(OrderReviewDO orderReviewDO, OrderInfoDTO orderInfoDTO);
 }
