@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.shiba.api;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public interface ZsetTemplate {
 
@@ -64,4 +65,14 @@ public interface ZsetTemplate {
      * @return
      */
     Long size(Object key);
+
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    Boolean expire(Object key, long timeout, TimeUnit unit);
 }
