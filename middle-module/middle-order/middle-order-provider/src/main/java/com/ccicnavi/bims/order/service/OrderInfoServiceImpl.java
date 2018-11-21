@@ -1,5 +1,4 @@
 package com.ccicnavi.bims.order.service;
-
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
@@ -15,6 +14,7 @@ import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Autowired
     OrderSampleTypeDao orderSampleTypeDao;
 
-    @Reference(timeout = 10000 ,url="192.168.11.18:20880")
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
     IdWorkerService idWorkerService;
 
     /* *
@@ -107,7 +107,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         Integer orderItem = null;
         Integer itemSub = null;
         Integer orderInfo = null;
-        Integer orderSampleTypeResult = null;
         boolean result=true;
         try {
             eqlTran.start();
@@ -185,22 +184,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                     }
                 }
             }
-            //添加委托样品类型
-            List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
-            if(orderSampleTypeDO.size()>0){
-                for(OrderSampleTypeDO o :orderSampleTypeDO){
-                    OrderSampleTypeDO orderSampleType=new  OrderSampleTypeDO();
-                    String orderSplUuid = idWorkerService.getId(new Date());
-                    orderSampleType.setOrderSplUuid(orderSplUuid);
-                    orderSampleType.setOrderUuid(orderUuid);
-                    orderSampleType.setSplPurposeType(o.getSplPurposeType());
-                    orderSampleType.setSplPurposeQty(o.getSplPurposeQty());
-                    orderSampleTypeResult=orderSampleTypeDao.insertOrderSampleType(orderSampleType,eqlTran);
-                    if(orderSampleTypeResult!=1){
-                        result=false;
-                    }
-                }
-            }
 
             orderInfoDTO.setOrderNo("");//生成委托单号
             //添加委托单详情
@@ -211,7 +194,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             if(result){
                 eqlTran.commit();
                 return ResultT.success();
-            }
+             }
         } catch (Exception e) {
             log.error("保存失败",e);
             eqlTran.rollback();
@@ -232,21 +215,21 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
         try {
             if(orderInfoDO.getOrderUuid()!=null){
-                orderInfoDTO = orderInfoDao.getOrderInfo(orderInfoDO);//查询所有的委托单信息
-                List<OrderItemDTO> orderItemDTOList = orderItemDao.listOrderItemDTO(orderInfoDO);//根据委托单主键查询服务项目信息 返回list
-                if(orderItemDTOList!=null){
-                    for(OrderItemDTO orderItemDTO:orderItemDTOList){
-                        List<OrderItemSubDO> orderItemSubDOList = orderItemSubDao.listOrderItemSub(orderItemDTO);
-                        if(orderItemSubDOList!=null){
-                            orderItemDTO.setOrderItemSubDO(orderItemSubDOList);
-                        }
-                    }
-                    orderInfoDTO.setOrderItemDTO(orderItemDTOList);
-                }
+               orderInfoDTO = orderInfoDao.getOrderInfo(orderInfoDO);//查询所有的委托单信息
+               List<OrderItemDTO> orderItemDTOList = orderItemDao.listOrderItemDTO(orderInfoDO);//根据委托单主键查询服务项目信息 返回list
+               if(orderItemDTOList!=null){
+                   for(OrderItemDTO orderItemDTO:orderItemDTOList){
+                       List<OrderItemSubDO> orderItemSubDOList = orderItemSubDao.listOrderItemSub(orderItemDTO);
+                       if(orderItemSubDOList!=null){
+                           orderItemDTO.setOrderItemSubDO(orderItemSubDOList);
+                       }
+                   }
+                   orderInfoDTO.setOrderItemDTO(orderItemDTOList);
+               }
             }
         } catch (Exception e) {
-            log.error("委托单回显失败",e);
-            return null;
+           log.error("委托单回显失败",e);
+           return null;
         }
         return orderInfoDTO;
     }
