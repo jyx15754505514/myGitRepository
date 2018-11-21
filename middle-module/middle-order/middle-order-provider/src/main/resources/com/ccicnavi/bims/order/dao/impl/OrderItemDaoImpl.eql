@@ -29,6 +29,9 @@ from
     order_item
 where
     is_deleted = 'N'
+--iff orderUuid != null and orderUuid != ''
+    and order_uuid = '#orderUuid#'
+
 
 -- [getOrderItem]
 select
