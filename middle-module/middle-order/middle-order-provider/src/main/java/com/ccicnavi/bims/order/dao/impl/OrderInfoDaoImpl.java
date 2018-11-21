@@ -45,4 +45,5 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
         }
         return eql.update("updateOrderInfo").params(orderInfoDTO).returnType(Integer.class).execute();
     }
+    
 }
