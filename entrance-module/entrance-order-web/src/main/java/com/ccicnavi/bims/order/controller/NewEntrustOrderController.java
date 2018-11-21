@@ -1,21 +1,30 @@
 package com.ccicnavi.bims.order.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.CustomerService;
 import com.ccicnavi.bims.customer.pojo.CustomerDO;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.ccicnavi.bims.order.api.OrderInfoService;
+import com.ccicnavi.bims.order.pojo.OrderInfoDO;
+import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Slf4j
 @RestController
 @RequestMapping("/NewEntrust")
 public class NewEntrustOrderController {
 
-    @Reference(version = "1.0.0", timeout = 1000, url = "dubbo://127.0.0.1:20886")
+    @Reference(timeout = 1000, url = "dubbo://127.0.0.1:20883")
     CustomerService customerService;
+
+
+    @Reference(url = "dubbo://127.0.0.1:20886",timeout = 1000000)
+    OrderInfoService orderInfoService;
 
     /*
      *@Param: [customerName]
@@ -79,5 +88,76 @@ public class NewEntrustOrderController {
     public ResultT listProductByCategory(@RequestParam(required = false, value = "") String categoryName){
         return ResultT.success();
     }
+
+    /**
+     * TODO 查询委托单列表
+     * @Param
+     * @return
+     * @Author limin
+     * @Date  2018/11/21 19:58
+     **/
+    @RequestMapping(value = "/listOrderInfo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT listOrderInfo(@RequestBody PageParameter<OrderInfoDO> pageParameter ){
+
+        PageBean<OrderInfoDO> pageBean = null;
+
+        try {
+            pageBean = orderInfoService.listOrderInfo(pageParameter);
+            if(pageBean != null){
+                return  ResultT.success(pageBean);
+            }
+            return ResultT.failure(ResultCode.RESULE_DATA_NONE);
+        } catch (Exception e) {
+            log.error("获取委托单列表失败"+e);
+            return  ResultT.failure(ResultCode.INTERFACE_INNER_INVOKE_ERROR);
+        }
+    }
+
+
+    /**
+     * TODO 获取委托单信息
+     * @Param
+     * @return
+     * @Author limin
+     * @Date  2018/11/21 19:58
+     **/
+    @RequestMapping(value = "/getOrderInfo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT getOrderInfo(@RequestBody OrderInfoDO orderInfoDO ){
+
+        OrderInfoDTO bean = null;
+
+        try {
+            bean = orderInfoService.getOrderInfo(orderInfoDO);
+            if(bean != null){
+                return  ResultT.success(bean);
+            }
+            return ResultT.failure(ResultCode.RESULE_DATA_NONE);
+        } catch (Exception e) {
+            log.error("获取委托单列表失败"+e);
+            return  ResultT.failure(ResultCode.INTERFACE_INNER_INVOKE_ERROR);
+        }
+    }
+
+
+    /**
+     * TODO 委托单新增
+     * @Param
+     * @return
+     * @Author limin
+     * @Date  2018/11/21 19:58
+     **/
+    @RequestMapping(value = "/saveOrderInfo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT saveOrderInfo(@RequestBody OrderInfoDTO orderInfoDTO ){
+
+        try {
+            return orderInfoService.saveOrderInfo(orderInfoDTO);
+        } catch (Exception e) {
+            log.error("获取委托单列表失败" + e);
+            return  ResultT.failure(ResultCode.INTERFACE_INNER_INVOKE_ERROR);
+        }
+    }
+
+
+
 
 }

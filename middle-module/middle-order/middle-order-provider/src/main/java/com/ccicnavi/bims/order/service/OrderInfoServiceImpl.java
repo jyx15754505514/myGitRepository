@@ -1,5 +1,4 @@
 package com.ccicnavi.bims.order.service;
-
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
@@ -8,19 +7,14 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.api.OrderInfoService;
-import com.ccicnavi.bims.order.dao.OrderInfoDao;
-import com.ccicnavi.bims.order.dao.OrderItemDao;
-import com.ccicnavi.bims.order.dao.OrderItemSubDao;
-import com.ccicnavi.bims.order.dao.OrderInspectionDao;
-import com.ccicnavi.bims.order.pojo.OrderInfoDO;
-import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
-import com.ccicnavi.bims.order.pojo.OrderItemDTO;
-import com.ccicnavi.bims.order.pojo.OrderItemSubDO;
+import com.ccicnavi.bims.order.dao.*;
+import com.ccicnavi.bims.order.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +39,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Autowired
     OrderItemSubDao orderItemSubDao;
 
-    @Reference(timeout = 10000 ,url="192.168.11.18:20880")
+    @Autowired
+    OrderSampleTypeDao orderSampleTypeDao;
+
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
     IdWorkerService idWorkerService;
 
     /* *
@@ -197,7 +194,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             if(result){
                 eqlTran.commit();
                 return ResultT.success();
-            }
+             }
         } catch (Exception e) {
             log.error("保存失败",e);
             eqlTran.rollback();
@@ -218,21 +215,21 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
         try {
             if(orderInfoDO.getOrderUuid()!=null){
-                orderInfoDTO = orderInfoDao.getOrderInfo(orderInfoDO);//查询所有的委托单信息
-                List<OrderItemDTO> orderItemDTOList = orderItemDao.listOrderItemDTO(orderInfoDO);//根据委托单主键查询服务项目信息 返回list
-                if(orderItemDTOList!=null){
-                    for(OrderItemDTO orderItemDTO:orderItemDTOList){
-                        List<OrderItemSubDO> orderItemSubDOList = orderItemSubDao.listOrderItemSub(orderItemDTO);
-                        if(orderItemSubDOList!=null){
-                            orderItemDTO.setOrderItemSubDO(orderItemSubDOList);
-                        }
-                    }
-                    orderInfoDTO.setOrderItemDTO(orderItemDTOList);
-                }
+               orderInfoDTO = orderInfoDao.getOrderInfo(orderInfoDO);//查询所有的委托单信息
+               List<OrderItemDTO> orderItemDTOList = orderItemDao.listOrderItemDTO(orderInfoDO);//根据委托单主键查询服务项目信息 返回list
+               if(orderItemDTOList!=null){
+                   for(OrderItemDTO orderItemDTO:orderItemDTOList){
+                       List<OrderItemSubDO> orderItemSubDOList = orderItemSubDao.listOrderItemSub(orderItemDTO);
+                       if(orderItemSubDOList!=null){
+                           orderItemDTO.setOrderItemSubDO(orderItemSubDOList);
+                       }
+                   }
+                   orderInfoDTO.setOrderItemDTO(orderItemDTOList);
+               }
             }
         } catch (Exception e) {
-            log.error("委托单回显失败",e);
-            return null;
+           log.error("委托单回显失败",e);
+           return null;
         }
         return orderInfoDTO;
     }

@@ -33,13 +33,13 @@ public class SerialnumServiceImpl implements SerialnumService {
     IdWorkerService idWorkerService;
 
     @Autowired
-    static SerialnumDao serialnumDao;
-    static SerialnumDaoImpl serialnumDaoImpl = null;
+    SerialnumDao serialnumDao;
+    /*static SerialnumDaoImpl serialnumDaoImpl = null;
 
     static{
         serialnumDaoImpl = new SerialnumDaoImpl();
         serialnumDao = serialnumDaoImpl;
-    }
+    }*/
 
     /**
      *
@@ -69,10 +69,14 @@ public class SerialnumServiceImpl implements SerialnumService {
      * @auther: CongZhiYuan
      */
     @Override
-    public SerialnumCfgDO getSerialnumCfg(SerialQueryDTO serialQueryDTO) throws Exception {
+    public SerialnumCfgDTO getSerialnumCfg(SerialQueryDTO serialQueryDTO) throws Exception {
         try {
-//            SerialnumDaoImpl serialnumDaoImpl = new SerialnumDaoImpl();
-            return serialnumDao.getSerialnumCfg(serialQueryDTO);
+            SerialnumCfgDO serialnumCfgDO = serialnumDao.getSerialnumCfg(serialQueryDTO);
+            List<SerialnumCfgItemDO> itemList = serialnumDao.getSeriItemList(serialQueryDTO.getSncUuid());
+            SerialnumCfgDTO dto = new SerialnumCfgDTO();
+            BeanUtils.copyProperties(serialnumCfgDO, dto);
+            dto.setItems(itemList);
+            return dto;
         } catch (Exception e) {
             log.error("获取业务编码规则失败",e);
             return null;
@@ -217,12 +221,13 @@ public class SerialnumServiceImpl implements SerialnumService {
                 int sncLength = cfgDO.getSncLength();
                 int sncStep = cfgDO.getSncStep();
                 String sncPeriod = cfgDO.getSncPeriod();
-                if(sncPeriod!=null){//超过周期，序号重新翻牌
+                if(busiSerialDO!=null&&sncPeriod!=null){//超过周期，序号重新翻牌
                     DateFormat df = new SimpleDateFormat(sncPeriod);
                     int currTime = Integer.parseInt(df.format(new Date()));
                     int beginTime = Integer.parseInt(busiSerialDO.getSeqYmd());
                     if(currTime!=beginTime){
-                        busiSerialDO.setSeqId(cfgDO.getSncInitValue());
+                        busiSerialDO.setSeqId((Integer.parseInt(cfgDO.getSncInitValue())-cfgDO.getSncStep().intValue())+"");
+                        busiSerialDO.setSeqYmd(currTime+"");
                     }
                 }
                 int seqNo = cfgDO.getSncInitValue()==null?0:Integer.parseInt(cfgDO.getSncInitValue());
@@ -244,9 +249,15 @@ public class SerialnumServiceImpl implements SerialnumService {
         if(busiSerialDO==null){
             busiSerialDO = new SerialnumDO();
             BeanUtils.copyProperties(cfgDO, busiSerialDO);
+
             String snUuid = idWorkerService.getId(new Date());
+//            String snUuid = new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
             busiSerialDO.setSnUuid(snUuid);
             busiSerialDO.setSeqId(serialStr.toString());
+            if(cfgDO.getSncPeriod()!=null){
+                DateFormat df = new SimpleDateFormat(cfgDO.getSncPeriod());
+                busiSerialDO.setSeqYmd(df.format(new Date()));
+            }
             serialnumDao.insertSerialnum(busiSerialDO);
         }else{
             busiSerialDO.setSeqId(serialStr.toString());
