@@ -1,8 +1,8 @@
 package com.ccicnavi.bims.system.service.api;
 
-import com.ccicnavi.bims.common.ResultT;
-import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.DictTypeDTO;
+
+import java.util.List;
 
 /**
  * @Auther: CongZhiYuan
@@ -10,10 +10,17 @@ import com.ccicnavi.bims.system.pojo.UserDO;
  * @Description:
  */
 public interface DictService {
+
     /**
-     * 根据字典类别编号查询字典信息
-     * @param types
-     * @return ResultT
-     */
-    public ResultT getDictsByTypes(String types);
+    *@Description: 根据字典类别编号查询字典信息
+    *@Param: [dictType]
+    *@return: java.util.List<DictTypeDTO>
+    *@Author: zhangxingbiao
+    *@date: 2018/11/20
+    */
+
+    public List<DictTypeDTO> listDictValue(List<String> dictType);
+
+
+
 }

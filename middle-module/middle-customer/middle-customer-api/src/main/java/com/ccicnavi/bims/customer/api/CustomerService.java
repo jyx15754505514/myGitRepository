@@ -36,4 +36,6 @@ public interface CustomerService {
 
     /**客户分页信息展示*/
     PageBean<CustomerDO> listCustomerPage(PageParameter<CustomerDO> pageParameter);
+
+    CustomerDTO getCustomerUuid(CustomerDO customer);
 }

@@ -46,7 +46,7 @@ public class RemindServiceImpl implements RemindService {
             return num;
         }catch (Exception e) {
             log.error("新增提醒设置失败", e);
-            return null;
+            return 0;
         }
     }
 
@@ -57,7 +57,7 @@ public class RemindServiceImpl implements RemindService {
             return num;
         }catch (Exception e) {
             log.error("修改提醒设置失败", e);
-            return null;
+            return 0;
         }
     }
 
@@ -68,7 +68,7 @@ public class RemindServiceImpl implements RemindService {
              return num;
         }catch (Exception e) {
             log.error("删除提醒设置失败", e);
-            return null;
+            return 0;
         }
     }
 

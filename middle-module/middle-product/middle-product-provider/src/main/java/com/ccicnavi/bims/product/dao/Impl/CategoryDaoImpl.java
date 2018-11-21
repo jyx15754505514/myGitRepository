@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.CategoryDao;
 import com.ccicnavi.bims.product.pojo.CategoryDO;
+import com.ccicnavi.bims.product.pojo.CategoryDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
@@ -59,12 +60,11 @@ public class CategoryDaoImpl implements CategoryDao {
 
     /**
      * 根据所属公司与所属产品线查询其下的一级分类信息
-     * @param category
      * @return
      */
     @Override
-    public List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDO category) {
-        return new Eql().select("listCategoryFirstByOrgAndProd").params(category).returnType(CategoryDO.class).execute();
+    public List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDTO categoryDTO) {
+        return new Eql().select("listCategoryFirstByOrgAndProd").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 
     @Override

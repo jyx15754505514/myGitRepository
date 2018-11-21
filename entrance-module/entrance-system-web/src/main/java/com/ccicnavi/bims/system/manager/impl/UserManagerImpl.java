@@ -99,12 +99,12 @@ public class UserManagerImpl implements UserManager {
         //查部门
         List<DepartmentDO> deptList = deptService.listDeptByUser(userDO);
         //查权限
-        List<MenuDO> menuList = menuService.listMenuByUser(userDO);
+      //  List<MenuDO> menuList = menuService.listMenuByUser(userDO);
         //查菜单,根据角色查询菜单List，去除重复
         //查产品线
         user.setDeptList(deptList);
         user.setRoleList(roleList);
-        user.setMenuList(menuList);
+       // user.setMenuList(menuList);
         //保存到Redis中
         hashTemplate.put(jsessionID, user.getUserUuid(), user);
     }

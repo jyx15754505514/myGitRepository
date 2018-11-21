@@ -17,6 +17,7 @@ SELECT
 	created_name,
 	updated_time,
 	updated_name,
+	updated_uuid,
 	extend1,
 	extend2,
 	extend3
@@ -50,6 +51,7 @@ SELECT
 	created_name,
 	updated_time,
 	updated_name,
+	updated_uuid,
 	extend1,
 	extend2,
 	extend3
@@ -226,6 +228,9 @@ WHERE
 
       -- iff updatedName != null
         updated_name = '#updatedName#',
+
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
 
       -- iff extend1 != null
         extend1 = '#extend1#',

@@ -6,6 +6,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CategoryService;
 import com.ccicnavi.bims.product.dao.CategoryDao;
 import com.ccicnavi.bims.product.pojo.CategoryDO;
+import com.ccicnavi.bims.product.pojo.CategoryDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -87,13 +88,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     /**
      * 根据所属公司机构和产品线查询出其下的一级分类信息(支持筛选服务种类)
-     * @param category
      * @return
      */
     @Override
-    public List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDO category) {
+    public List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDTO categoryDTO) {
         try {
-            return categoryDao.listCategoryFirstByOrgAndProd(category);
+            return categoryDao.listCategoryFirstByOrgAndProd(categoryDTO);
         } catch (Exception e) {
             log.error("根据所属公司机构和产品线查询出其下的一级分类信息失败~",e);
             return null;

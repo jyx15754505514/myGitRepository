@@ -44,6 +44,7 @@ SELECT
 	created_name,
 	updated_time,
 	updated_name,
+	updated_uuid,
 	prod_catalog_uuid,
 	org_uuid,
 	app_sys_uuid,
@@ -55,14 +56,14 @@ FROM
 WHERE
 	is_deleted = 'N'
         --if custName !=null and custName != ''
-            and cust_name = '#custName:like#'
+            and cust_name like '#custName:like#'
         --end
-         --if orgUuid != null and  orgUuid != ''
+        --if orgUuid != null and  orgUuid != ''
             and  org_uuid = '#orgUuid#'
-         --end
-         --if appSysUuid != null and  appSysUuid != ''
+        --end
+        --if appSysUuid != null and  appSysUuid != ''
             and  app_sys_uuid = '#appSysUuid#'
-         --end
+        --end
 
 -- [getCustomer]
 SELECT
@@ -110,6 +111,7 @@ SELECT
 	created_name,
 	updated_time,
 	updated_name,
+	updated_uuid,
 	prod_catalog_uuid,
 	org_uuid,
 	app_sys_uuid,
@@ -121,6 +123,12 @@ FROM
 WHERE
 	is_deleted = 'N'
 and cust_uuid = '#custUuid#'
+   --if orgUuid != null and  orgUuid != ''
+     and  org_uuid = '#orgUuid#'
+   --end
+   --if appSysUuid != null and  appSysUuid != ''
+     and  app_sys_uuid = '#appSysUuid#'
+   --end
 
 
  -- [insertCustomer]
@@ -548,20 +556,13 @@ and cust_uuid = '#custUuid#'
        -- iff isDeleted != null
          is_deleted ='#isDeleted#',
 
-       -- iff createdTime != null
-         created_time ='#createdTime#',
-
-       -- iff createdUuid != null
-         created_uuid ='#createdUuid#',
-
-       -- iff createdName != null
-         created_name ='#createdName#',
-
        -- iff updatedTime != null
          updated_time ='#updatedTime#',
 
        -- iff updatedName != null
          updated_name ='#updatedName#',
+       -- iff updatedUuid != null
+         updated_uuid ='#updatedUuid#',
 
        -- iff prodCatalogUuid != null
          prod_catalog_uuid ='#prodCatalogUuid#',

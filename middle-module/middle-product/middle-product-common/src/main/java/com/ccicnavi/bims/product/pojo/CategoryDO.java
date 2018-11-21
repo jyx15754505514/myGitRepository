@@ -17,10 +17,10 @@ import java.util.Date;
 @Getter
 @ToString
 public class CategoryDO implements Serializable {
-	
-    private String productCategoryUuid;//产品类别主键
 
-    private String productCategoryTypeUuid;//产品类别分类ID
+    private String productCategoryUuid;//主键
+
+    private String productCategoryTypeUuid;//产品类别ID
 
     private String parentCategoryUuid;//主父节点分类ID
 
@@ -32,15 +32,13 @@ public class CategoryDO implements Serializable {
 
     private String seqNum;//排序号
 
-    private String description;//备注
-    
     private String longDescription;
 
-    private String prodCatalogUuid;//产品线ID
+    private String isEnabled;//是否可用(Y/N)
 
-    private String isEnabled;//是否可用Y/N
+    private String comments;//备注
 
-    private String isDeleted;//是否删除
+    private String isDeleted;
 
     private Date createdTime;
 
@@ -50,17 +48,24 @@ public class CategoryDO implements Serializable {
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
 
-    private String orgUuid;//所属公司机构ID
+    private String prodCatalogUuid;//产品线ID
 
-    private String appSysUuid;//所属平台ID
+    private String orgUuid;
+
+    private String appSysUuid;//应用系统ID
 
     private String extend1;
 
     private String extend2;
 
     private String extend3;
+
+
+
 
 
 }

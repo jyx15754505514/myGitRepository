@@ -104,7 +104,7 @@ public class OrderResultInfoServiceImpl implements OrderResultInfoService {
         try {
             integer = orderResultInfoDao.deleteOrderResultInfo(orderResultInfoDO, eqlTran);
         } catch (Exception e) {
-            log.error("更新证书结果失败",e);
+            log.error("删除证书结果失败",e);
         }
         return integer;
     }

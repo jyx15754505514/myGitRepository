@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.List;
 
 /* *
  * @Author MengZiJie
@@ -16,35 +17,41 @@ import java.io.Serializable;
 @ToString
 public class MenuDO implements Serializable {
 
-    private String menuUuid;
+    private java.lang.String menuUuid;//
 
-    private String parentUuid;
+    private java.lang.String parentUuid;//父级菜单
 
-    private String menuName;
+    private java.lang.String menuName;//菜单名称
 
-    private String menuUrl;
+    private java.lang.String menuUrl;//请求地址
 
-    private String menuIcon;
+    private java.lang.String menuIcon;//菜单图标
 
-    private String menuFontcolor;
+    private java.lang.String menuFontcolor;//字体颜色
 
-    private Integer menuLevel;
+    private Integer menuLevel;//菜单层级
 
-    private String parentAllUuid;
+    private java.lang.String parentAllUuid;//所有的父级菜单id
 
-    private String isEnabled;
+    private java.lang.String isEnabled;//是Y否N启用
 
-    private String sortNum;
+    private java.lang.String sortNum;//
 
-    private String isDeleted;
+    private java.lang.String comments;//备注
 
-    private String appSysUuid;
+    private java.lang.String isDeleted;//删除标识（N正常Y删除）
 
-    private String businessLine;
+    private java.lang.String prodCatalogUuid;//产品线id
 
-    private String extend1;
+    private java.lang.String orgUuid;//归属机构id
 
-    private String extend2;
+    private java.lang.String appSysUuid;//应用系统id
 
-    private String extend3;
+    private java.lang.String extend1;//预留字段1
+
+    private java.lang.String extend2;//预留字段2
+
+    private java.lang.String extend3;//预留字段3
+
+    private List<String> uuids;
 }
