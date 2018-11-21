@@ -11,6 +11,7 @@
         is_change_password as isChangePassword,
         login_usertype as loginUsertype,
         disabled_time as disabledTime,
+        dept_uuid as deptUuid,
         disabled_reason as disabledReason,
         failed_logins as failedLogins,
         login_method as loginMethod,
@@ -102,6 +103,8 @@
           app_sys_uuid,
         --iff prodCatalogUuid != null
           prod_catalog_uuid,
+      --iff deptUuid != null and deptUuid != ''
+            dept_uuid,
         --iff extend1 != null
           extend1,
         --iff extend2 != null
@@ -148,6 +151,8 @@
             '#appSysUuid#',
           --iff prodCatalogUuid != null and prodCatalogUuid != ''
             '#prodCatalogUuid#',
+         --iff deptUuid != null and deptUuid != ''
+             '#deptUuid#',
           --iff extend1 != null
             '#extend1#',
           --iff extend2 != null
@@ -215,6 +220,8 @@
           app_sys_uuid = '#appSysUuid#',
         --iff prodCatalogUuid != null
           prod_catalog_uuid = '#prodCatalogUuid#',
+      --iff deptUuid != null
+          dept_uuid = '#deptUuid#',
         --iff extend1 != null
           extend1 = '#extend1#',
         --iff extend2 != null
@@ -272,6 +279,7 @@
            last_login_time as lastLoginTime,
            bind_login_ip as bindLoginIp,
            is_enabled as isEnabled,
+           dept_uuid as deptUuid,
            comments,
            salt,
            is_deleted as isDeleted,
