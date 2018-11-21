@@ -1,0 +1,17 @@
+-- [listMenuButtonByRole]
+SELECT
+    md.btn_uuid,
+    md.btn_name
+from
+    sys_menu_button md
+    LEFT JOIN sys_role_permission rp ON rp.btn_uuid = md.btn_uuid
+where
+   is_deleted = 'N'
+   and md.menu_uuid = '#menuUuid#'
+   --iff roleUuids != null
+       and rp.role_uuid in
+       -- for item=item index=index collection=roleUuids open=( separator=, close=)
+           '#item#'
+   -- end
+   	--iff prodCatalogUuid != null and prodCatalogUuid != ''
+       and md.prod_catalog_uuid = '#prodCatalogUuid#'

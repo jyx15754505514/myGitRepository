@@ -3,15 +3,18 @@ package com.ccicnavi.bims.system.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.system.dao.MenuButtonDao;
 import com.ccicnavi.bims.system.dao.MenuDao;
+import com.ccicnavi.bims.system.pojo.MenuButtonDO;
+import com.ccicnavi.bims.system.pojo.MenuButtonDTO;
 import com.ccicnavi.bims.system.pojo.MenuDO;
 import com.ccicnavi.bims.system.pojo.MenuDTO;
-import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.service.api.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
-import javax.xml.transform.Result;
+import java.util.ArrayList;
 import java.util.List;
 
 /* *
@@ -25,6 +28,9 @@ public class MenuServiceImpl implements MenuService {
 
     @Autowired
     private MenuDao menuDao;
+
+    @Autowired
+    private MenuButtonDao menuButtonDao;
 
     /* *
      * @Author MengZiJie
@@ -146,5 +152,31 @@ public class MenuServiceImpl implements MenuService {
     }
 
 
+    public List<MenuButtonDTO> listMenuWithBtn(MenuDTO menuDTO) {
+        List<MenuButtonDTO> resultList = new ArrayList<>();
+        try {
+            //查询菜单和按钮的中间表，获取所有的最底层的菜单对象
+            List<MenuDTO> menuList = menuDao.listMenuButton(menuDTO);
+            for (MenuDTO menu : menuList) {
+                //获取并解析最底层菜单对象的所有父级UUID
+                String parentAllUuid = menu.getParentAllUuid();
+                String[] split = StringUtils.split(",", parentAllUuid);
+                menuDTO.setMenuUuids(split);
+                menuDTO.setMenuUuid(menu.getMenuUuid());
+                //根据菜单UUID集合排序查询顶级到底层菜单集合
+                List<MenuDO> menuDOList = menuDao.listMenuWithSort(menuDTO);
+                //根据角色和最底层的菜单查询所有按钮
+                List<MenuButtonDO> menuButtonList = menuButtonDao.listMenuButtonByRole(menuDTO);
+                MenuButtonDTO menuBtn = new MenuButtonDTO();
+                menuBtn.setMenuList(menuDOList);
+                menuBtn.setMenuButtonList(menuButtonList);
+                resultList.add(menuBtn);
+            }
+            return resultList;
+        } catch (Exception e) {
+            log.error("查询菜单失败", e);
+            return null;
+        }
+    }
 
 }
