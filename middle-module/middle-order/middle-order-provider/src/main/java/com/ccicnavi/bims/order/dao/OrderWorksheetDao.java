@@ -1,22 +1,12 @@
-package com.ccicnavi.bims.order.dao;/* *
- * @Author heibin
- * @Description
- * @Date
- * @Param
- */
-
+package com.ccicnavi.bims.order.dao;
 
 import com.ccicnavi.bims.order.pojo.OrderWorksheetDO;
 import org.n3r.eql.EqlTran;
-
 /**
  * @Author songyateng
  * @Description 工作单
  * @Date 15:49 2018/11/21
- * @Param
- * @Return
  */
-
 
 public interface OrderWorksheetDao {
     /**
@@ -30,10 +20,10 @@ public interface OrderWorksheetDao {
 
     /**
      * @Author songyateng
-     * @Description 删除信息
-     * @Date 15:52 2018/11/21
-     * @Param
-     * @Return
+     * @Description 删除工作单
+     * @Date 20:06 2018/11/21
+     * @Param [orderWorksheetDO, tran]
+     * @Return java.lang.Integer
      */
     Integer deleteOrderWorksheet(OrderWorksheetDO orderWorksheetDO,EqlTran tran) throws Exception;
 
