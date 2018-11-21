@@ -51,6 +51,18 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
         }
         return eql.update("updateOrderInfo").params(orderInfoDTO).returnType(Integer.class).execute();
     }
+    /**
+     * 功能描述: 根据委托单主键查询委托单信息
+     * @param: orderInfoDTO
+     * @return: OrderInfoDO
+     * @auther: fandongsheng
+     * @date: 2018/11/21 14:18
+     */
+    @Override
+    public OrderInfoDTO getOrderInfo(OrderInfoDO orderInfoDO) throws Exception {
+        Eql eql = new Eql("DEFAULT");
+        return eql.selectFirst("getOrderInfo").params(orderInfoDO).returnType(OrderInfoDO.class).execute();
+    }
 
     /* *
      * @Author fandongsheng

@@ -29,6 +29,9 @@ from
     order_item
 where
     is_deleted = 'N'
+--iff orderUuid != null and orderUuid != ''
+    and order_uuid = '#orderUuid#'
+
 
 -- [getOrderItem]
 select
@@ -123,7 +126,7 @@ where
         --iff updatedName != null and updatedName != ''
             updated_name,
     --end
-    --trim prefix=values ( suffix=) suffixOverrides=,
+    --trim prefix=values( suffix=) suffixOverrides=,
         --iff orderItemUuid != null and orderItemUuid != ''
             '#orderItemUuid#',
         --iff orderUuid != null and orderUuid != ''

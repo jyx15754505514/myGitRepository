@@ -19,6 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -203,5 +205,35 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             eqlTran.close();
         }
         return ResultT.failure(ResultCode.ADD_FAILURE);
+    }
+    /**
+     * 功能描述: 根据委托单主键回显委托单相应信息
+     * @param: orderInfoDO
+     * @return: OrderInfoDTO
+     * @auther: fandongsheng
+     * @date: 2018/11/21 14:08
+     */
+    @Override
+    public OrderInfoDTO getOrderInfo(OrderInfoDO orderInfoDO) {
+        OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
+        try {
+            if(orderInfoDO.getOrderUuid()!=null){
+               orderInfoDTO = orderInfoDao.getOrderInfo(orderInfoDO);//查询所有的委托单信息
+               List<OrderItemDTO> orderItemDTOList = orderItemDao.listOrderItemDTO(orderInfoDO);//根据委托单主键查询服务项目信息 返回list
+               if(orderItemDTOList!=null){
+                   for(OrderItemDTO orderItemDTO:orderItemDTOList){
+                       List<OrderItemSubDO> orderItemSubDOList = orderItemSubDao.listOrderItemSub(orderItemDTO);
+                       if(orderItemSubDOList!=null){
+                           orderItemDTO.setOrderItemSubDO(orderItemSubDOList);
+                       }
+                   }
+                   orderInfoDTO.setOrderItemDTO(orderItemDTOList);
+               }
+            }
+        } catch (Exception e) {
+           log.error("委托单回显失败",e);
+           return null;
+        }
+        return orderInfoDTO;
     }
 }
