@@ -134,7 +134,7 @@ order by sort_num
       '#sncStep#',
     -- end
     -- if sncPeriod != null
-      sncPeriod,
+      '#sncPeriod#',
     -- end
     -- if isHop != null
       '#isHop#',
