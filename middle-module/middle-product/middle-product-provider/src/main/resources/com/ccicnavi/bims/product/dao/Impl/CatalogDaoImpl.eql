@@ -213,7 +213,7 @@ WHERE
             and prod_catalog_uuid = '#prodCatalogUuid#'
         --end
 
--- [getCatalogThroughOrgnUUid]
+-- [getCatalogThroughOrgUUid]
 SELECT
 	pc.prod_catalog_uuid
 FROM
@@ -221,6 +221,6 @@ FROM
 	LEFT JOIN prod_catalog pc ON pco.prod_catalog_uuid = pc.prod_catalog_uuid
 WHERE
 	pc.is_deleted = 'N'
-	    --iff orgUUid !=null and orgUuid !=''
-	        AND pco.organization_uuid = 'CCICXN'
+	    --iff organizationUuid !=null and organizationUuid !=''
+	        AND pco.organization_uuid = '#organizationUuid#'
 	    --end

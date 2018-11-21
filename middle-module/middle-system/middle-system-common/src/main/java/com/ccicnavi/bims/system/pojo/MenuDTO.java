@@ -50,4 +50,7 @@ public class MenuDTO implements Serializable {
     private List<String> roleUuids;
 
     private List<MenuButtonDO> menuButtonDOList;
+
+    private List<MenuDTO> menuDTO;
+
 }

@@ -1,9 +1,4 @@
-package com.ccicnavi.bims.order.dao.impl;/* *
- * @Author heibin
- * @Description
- * @Date
- * @Param
- */
+package com.ccicnavi.bims.order.dao.impl;
 
 import com.ccicnavi.bims.order.dao.OrderWorksheetDao;
 import com.ccicnavi.bims.order.pojo.OrderWorksheetDO;
@@ -17,7 +12,6 @@ import org.springframework.stereotype.Service;
  * @Param
  * @Return
  */
-
 @Service
 public class OrderWorksheetDaoImpl implements OrderWorksheetDao {
 
@@ -28,7 +22,6 @@ public class OrderWorksheetDaoImpl implements OrderWorksheetDao {
      * @Param [orderWorksheetDO, tran]
      * @Return java.lang.Integer
      */
-
     @Override
     public Integer insertOrderWorksheet(OrderWorksheetDO orderWorksheetDO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
@@ -37,6 +30,7 @@ public class OrderWorksheetDaoImpl implements OrderWorksheetDao {
         }
         return eql.insert("insertOrderWorksheet").params(orderWorksheetDO).returnType(Integer.class).execute();
     }
+
     /**
      * @Author songyateng
      * @Description 删除工作单
@@ -44,15 +38,15 @@ public class OrderWorksheetDaoImpl implements OrderWorksheetDao {
      * @Param [orderWorksheetDO, tran]
      * @Return java.lang.Integer
      */
-
     @Override
     public Integer deleteOrderWorksheet(OrderWorksheetDO orderWorksheetDO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
         if(tran != null){
             return eql.useTran(tran).update("deleteOrderWorksheet").params(orderWorksheetDO).returnType(Integer.class).execute();
+        }
+        return eql.update("deleteOrderWorksheet").params(orderWorksheetDO).returnType(Integer.class).execute();
     }
-        return eql.delete("deleteOrderWorksheet").params(orderWorksheetDO).returnType(Integer.class).execute();
-    }
+
     /**
      * @Author songyateng
      * @Description 修改工作单
@@ -60,7 +54,6 @@ public class OrderWorksheetDaoImpl implements OrderWorksheetDao {
      * @Param [orderReviewDO, tran]
      * @Return java.lang.Integer
      */
-
     @Override
     public Integer updateOrderWorksheet(OrderWorksheetDO orderWorksheetDO, EqlTran tran) throws Exception {
         Eql eql = new Eql("DEFAULT");

@@ -18,7 +18,7 @@ public interface CategoryTypeService {
      * @description 查询全部产品类别的分类信息
      * @return List<CategoryTypeDO>
      */
-    List<CategoryTypeDO> listCategoryTypeDO();
+    List<CategoryTypeDO> listCategoryTypeDO(CategoryTypeDO categoryTypeDO);
 
     /**
      * @description 新增产品类别的分类信息
