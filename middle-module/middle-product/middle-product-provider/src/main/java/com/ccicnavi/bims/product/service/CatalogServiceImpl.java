@@ -6,6 +6,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CatalogService;
 import com.ccicnavi.bims.product.dao.CatalogDao;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
+import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -85,7 +86,13 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public CatalogDO getCatalogThroughOrgnUUid() {
-        return null;
+    public List<CatalogDO> getCatalogThroughOrgUUid(CatalogOrgDO catalogOrgDO) {
+        try {
+            return catalogDao.getCatalogThroughOrgUUid(catalogOrgDO);
+        } catch (Exception e) {
+            log.error("根据组织机构id查询产品线信息失败");
+            return null;
+        }
     }
+
 }

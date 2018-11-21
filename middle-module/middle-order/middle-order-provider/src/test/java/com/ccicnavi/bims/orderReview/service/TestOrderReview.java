@@ -16,7 +16,7 @@ public class TestOrderReview {
         try {
             OrderReviewDaoImpl order = new OrderReviewDaoImpl();
             OrderReviewDO orderReviewDO = new OrderReviewDO();
-            orderReviewDO.setOrderUuid("111");
+            orderReviewDO.setOrderUuid("222");
             orderReviewDO.setReviewSuggest("222");
             orderReviewDO.setReviewUserUuid("333");
             System.err.print(order.insertOrderReview(orderReviewDO,null));

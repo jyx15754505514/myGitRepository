@@ -1,0 +1,82 @@
+-- [listOrderSampleType]
+SELECT
+    order_spl_uuid orderSplUuid,
+    order_uuid orderUuid,
+    spl_purpose_type splPurposeType,
+    spl_purpose_qty splPurposeQty
+from
+    order_sample_type
+where
+--iff orderUuid != null and orderUuid != ''
+     order_uuid =  '#orderUuid#'
+--end
+
+-- [getOrderSampleType]
+SELECT
+    order_spl_uuid orderSplUuid,
+    order_uuid orderUuid,
+    spl_purpose_type splPurposeType,
+    spl_purpose_qty splPurposeQty
+from
+    order_sample_type
+where
+--if orderSplUuid != null and orderSplUuid !=''
+    order_spl_uuid = '#orderSplUuid#'
+--end
+
+-- [insertOrderSampleType]
+INSERT INTO order_sample_type
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff orderSplUuid != null and orderSplUuid != ''
+            order_spl_uuid,
+        --iff orderUuid != null and orderUuid != ''
+            order_uuid,
+        --iff splPurposeType != null and splPurposeType != ''
+            spl_purpose_type,
+        --iff splPurposeQty != null and splPurposeQty != ''
+            spl_purpose_qty,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff orderSplUuid != null and orderSplUuid != ''
+        	'#orderSplUuid#',
+        --iff orderUuid != null and orderUuid != ''
+            '#orderUuid#',
+        --iff splPurposeType != null and splPurposeType != ''
+            '#splPurposeType#',
+        --iff splPurposeQty != null and splPurposeQty != ''
+            '#splPurposeQty#',
+    -- end
+
+-- [updateOrderSampleType]
+UPDATE
+    order_sample_type
+    -- trim prefix= set suffixOverrides=,
+        --iff orderSplUuid != null and orderSplUuid != ''
+            order_spl_uuid = '#orderSplUuid#',
+        --iff orderUuid != null and orderUuid != ''
+            order_uuid = '#orderUuid#',
+        --iff splPurposeType != null and splPurposeType != ''
+            spl_purpose_type = '#splPurposeType#',
+        --iff splPurposeQty != null and splPurposeQty != ''
+            spl_purpose_qty = '#splPurposeQty#',
+    -- end
+where
+    --iff orderSplUuid != null and orderSplUuid != ''
+         order_spl_uuid = '#orderSplUuid#'
+    --iff orderSplUuids != null
+        and order_spl_uuid in
+        -- for item=item index=index collection=orderSplUuids open=( separator=, close=)
+            '#item#'
+        -- end
+
+-- [deleteOrderSampleType]
+delete from
+    order_sample_type
+where
+    --iff orderSplUuid != null and orderSplUuid != ''
+         order_spl_uuid = '#orderSplUuid#'
+    --iff orderSplUuids != null
+        and order_spl_uuid in
+        -- for item=item index=index collection=orderSplUuids open=( separator=, close=)
+            '#item#'
+        -- end
