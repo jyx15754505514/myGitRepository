@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ZsetTemplateImpl implements ZsetTemplate {
@@ -89,5 +90,17 @@ public class ZsetTemplateImpl implements ZsetTemplate {
      */
     public Long size(Object key) {
         return redisTemplate.opsForZSet().size(key);
+    }
+
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    public Boolean expire(Object key, long timeout, TimeUnit unit) {
+        return redisTemplate.expire(key, timeout, unit);
     }
 }
