@@ -63,6 +63,8 @@ public class LinkmanDO implements Serializable {
 
     private String updatedName;
 
+    private String updatedUuid;
+
     private String extend1;
 
     private String extend2;

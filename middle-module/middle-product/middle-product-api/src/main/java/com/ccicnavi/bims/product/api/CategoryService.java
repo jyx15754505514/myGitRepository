@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.api;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.CategoryDO;
+import com.ccicnavi.bims.product.pojo.CategoryDTO;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public interface CategoryService {
     PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDO> pageParameter);
 
     /**根据所属公司与所属业务线查询出对应的一级分类信息*/
-    List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDO category);
+    List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDTO categoryDTO);
 
     /**根据父级分类ID查询其字类分类信息*/
     List<CategoryDO> listCategoryByParentUuid(CategoryDO category);

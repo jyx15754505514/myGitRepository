@@ -31,7 +31,7 @@ public class RoleServiceImpl implements RoleService {
         } catch (Exception e) {
             log.error("查询失败",e);
         }
-        return new PageBean<RoleDO>(0,0,0,0,0,new ArrayList<RoleDO>());
+        return null;
     }
 
     @Override

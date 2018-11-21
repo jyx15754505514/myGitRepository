@@ -5,6 +5,8 @@ import com.ccicnavi.bims.shiba.api.StringTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
+import java.util.concurrent.TimeUnit;
+
 @Service
 public class StringTemplateImpl implements StringTemplate {
 
@@ -19,6 +21,16 @@ public class StringTemplateImpl implements StringTemplate {
      */
     public void set(Object key, Object value) {
         redisTemplate.opsForValue().set(key, value);
+    }
+
+    /**
+     * 添加String类型的缓存
+     *
+     * @param key
+     * @param value
+     */
+    public void setTime(Object key, Object value, long timeout, TimeUnit unit) {
+        redisTemplate.opsForValue().set(key, value, timeout, unit);
     }
 
     /**

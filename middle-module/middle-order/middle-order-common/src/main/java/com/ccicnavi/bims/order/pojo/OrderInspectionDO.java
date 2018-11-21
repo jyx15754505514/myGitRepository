@@ -3,25 +3,25 @@ package com.ccicnavi.bims.order.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 import java.io.Serializable;
-import java.util.List;
 
-/**
- * @program: bims-backend
- * @description: 标准样品库DO
- * @author: panyida
- * @create: 2018-11-19 15:41
- **/
+/* *
+ * @Author MengZiJie
+ * @Description 运输单
+ * @Date 21:19 2018/11/20
+ */
 @Getter
 @Setter
 @ToString
-public class OrderShipmentDO implements Serializable {
+public class OrderInspectionDO implements Serializable {
+
     private String orderUuid;
 
     private String shippingTypeId;
 
-    private String shipName;
+    private String vesselName;
+
+    private String blNo;
 
     private String voyageName;
 
@@ -45,4 +45,21 @@ public class OrderShipmentDO implements Serializable {
 
     private String weightUnit;
 
+    private String consignerName;
+
+    private String consigneeName;
+
+    private String provideCertUuid;
+
+    private String provideCertName;
+
+    private String isOpenCert;
+
+    private String comments;
+
+    private String extend1;
+
+    private String extend2;
+
+    private String extend3;
 }

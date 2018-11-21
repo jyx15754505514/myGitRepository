@@ -7,10 +7,14 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.CustomerService;
+import com.ccicnavi.bims.customer.dao.CustAddrDao;
 import com.ccicnavi.bims.customer.dao.CustomerDao;
 import com.ccicnavi.bims.customer.dao.CustomerExtDao;
+import com.ccicnavi.bims.customer.dao.LinkmanDao;
+import com.ccicnavi.bims.customer.pojo.CustAddrDO;
 import com.ccicnavi.bims.customer.pojo.CustomerDO;
 import com.ccicnavi.bims.customer.pojo.CustomerDTO;
+import com.ccicnavi.bims.customer.pojo.LinkmanDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
@@ -35,6 +39,10 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerDao customerDao;
     @Autowired
     CustomerExtDao customerExtDao;
+    @Autowired
+    CustAddrDao custAddrDao;
+    @Autowired
+    LinkmanDao linkmanDao;
 
     @Override
     public List<CustomerDO> listCustomer(CustomerDO customer) {
@@ -58,21 +66,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public int removeCustomer(CustomerDO customer) {
-        EqlTran tran = new Eql().newTran();
         int num =0;
         try {
-            tran.start();
             num=customerDao.removeCustomer(customer,null);//删除客户基本信息
-            int numExt =customerExtDao.removeCustomerExt(customer,null);//删除客户公司注册信息
-            if (num >0 && numExt >0) {
-                tran.commit();
-                return num;
-            }
         } catch (Exception e) {
             log.error("删除客户信息失败~", e);
-            tran.rollback();
-        }finally {
-            Closes.closeQuietly(tran);//关闭事物
         }
         return num;
     }
@@ -111,8 +109,7 @@ public class CustomerServiceImpl implements CustomerService {
         try {
             tran.start();
             saveCust = customerDao.saveCustomerAndExt(customerDTO, tran);//新增客户基本信息
-            saveCustExt = customerExtDao.saveCustomerAndExt(customerDTO, tran);//新增客户注册信息
-            if (saveCust > 0 && saveCustExt > 0) {
+            if (saveCust > 0 ) {
                 tran.commit();
                 return saveCust;
             }
@@ -181,6 +178,30 @@ public class CustomerServiceImpl implements CustomerService {
             log.error("服务端客户分页查询失败");
             return null;
         }
+    }
+
+    @Override
+    public CustomerDTO getCustomerUuid(CustomerDO customer) {
+        try {
+            CustomerDTO customerDTO = customerDao.getCustomerUuid(customer);
+            if(customerDTO!=null &&!StringUtils.isEmpty(customerDTO.getCustUuid())){
+                CustAddrDO custAddrDO = new CustAddrDO();
+                custAddrDO.setCustUuid(customer.getCustUuid());
+                //查询地址信息
+                List<CustAddrDO> listAddr = custAddrDao.listCustAddr(custAddrDO);
+                LinkmanDO linkmanDO = new LinkmanDO();
+                linkmanDO.setCustUuid(customer.getCustUuid());
+                //查询联系人信息
+                List<LinkmanDO> listMan = linkmanDao.listLinkman(linkmanDO);
+                customerDTO.setLinkmanList(listMan);
+                customerDTO.setCustAddrList(listAddr);
+            }
+            return customerDTO;
+        } catch (Exception e) {
+            log.error("根据客户uuid查询客户信息失败",e);
+            return null;
+        }
+
     }
 
 

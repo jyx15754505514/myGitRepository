@@ -13,9 +13,7 @@ SELECT
 	created_name,
 	updated_time,
 	updated_name,
-	prod_catalog_uuid,
-	org_uuid,
-	app_sys_uuid,
+    updated_uuid,
 	extend1,
 	extend2,
 	extend3
@@ -35,6 +33,9 @@ WHERE
          --if appSysUuid != null and  appSysUuid != ''
             and  app_sys_uuid = '#appSysUuid#'
           --end
+         --if custUuid !=null and custUuid != ''
+            and cust_uuid = '#custUuid#'
+         --end
 
 -- [insertCustAddr]
 insert into crm_customer_addr
@@ -71,15 +72,6 @@ insert into crm_customer_addr
 
      -- iff createdName != null and  createdName != ''
         created_name,
-
-     -- iff prodCatalogUuid != null and prodCatalogUuid  != ''
-        prod_catalog_uuid,
-
-     -- iff orgUuid != null and   orgUuid != ''
-        org_uuid,
-
-     -- iff appSysUuid != null and  appSysUuid != ''
-        app_sys_uuid,
 
      -- iff extend1 != null and  extend1 != ''
         extend1,
@@ -124,15 +116,6 @@ insert into crm_customer_addr
 
      -- iff createdName != null and  createdName != ''
         '#createdName#',
-
-     -- iff prodCatalogUuid != null and  prodCatalogUuid != ''
-        '#prodCatalogUuid#',
-
-     -- iff orgUuid != null and orgUuid  != ''
-        '#orgUuid#',
-
-     -- iff appSysUuid != null and  appSysUuid != ''
-        '#appSysUuid#',
 
      -- iff extend1 != null and extend1  != ''
         '#extend1#',
@@ -185,16 +168,8 @@ WHERE  	is_deleted = 'N'
 
       -- iff updatedName != null
         updated_name = '#updatedName#',
-
-      -- iff prodCatalogUuid != null
-        prod_catalog_uuid = '#prodCatalogUuid#',
-
-      -- iff orgUuid != null
-        org_uuid = '#orgUuid#',
-
-      -- iff appSysUuid != null
-        app_sys_uuid = '#appSysUuid#',
-
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
       -- iff extend1 != null
         extend1 = '#extend1#',
 
@@ -222,9 +197,7 @@ WHERE  	is_deleted = 'N'
   	created_name,
   	updated_time,
   	updated_name,
-  	prod_catalog_uuid,
-  	org_uuid,
-  	app_sys_uuid,
+    updated_uuid,
   	extend1,
   	extend2,
   	extend3
