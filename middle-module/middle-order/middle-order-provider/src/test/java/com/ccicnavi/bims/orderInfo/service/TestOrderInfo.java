@@ -141,7 +141,7 @@ public class TestOrderInfo {
                         for (int j = 0; j < orderItemSubDO.size(); j++) {
                             Date currentTime1 = new Date();
                             String orderItemSubUuid = timeFormat.format(currentTime1);
-                            orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);//生成最小颗粒度id
+                            orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid+j);//生成最小颗粒度id
                             orderItemSubDO.get(j).setItemUuid(orderItemUuid);//生成服务项id
                             orderItemSubDO.get(j).setSubItemNo("最小颗粒度NO."+j);//生成z最小颗粒度的编号
                             //添加子项信息

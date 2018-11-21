@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.order.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
@@ -20,7 +21,6 @@ import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Autowired
     OrderItemSubDao orderItemSubDao;
 
-    @Autowired
+    @Reference(timeout = 10000 ,url="192.168.11.18:20880")
     IdWorkerService idWorkerService;
 
     /* *
