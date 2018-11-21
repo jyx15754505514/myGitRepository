@@ -1,19 +1,43 @@
 package com.ccicnavi.bims.order.api;
 
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderReviewDO;
-import org.n3r.eql.EqlTran;
-
 /**
  * @Auther: fandongsheng
  * @Date: 2018/11/20 14:34
- * @Description:
+ * @Description: 委托单评审管理
  */
 public interface OrderReviewService {
 
-    public PageBean<OrderReviewDO> testPage(PageParameter<OrderReviewDO> pageParameter);
+    PageBean<OrderReviewDO> testPage(PageParameter<OrderReviewDO> pageParameter);
 
-    /**新增评审*/
-    Integer insertOrderReview(OrderReviewDO orderReviewDO , EqlTran tran);
+    /* *
+     * @Author MengZiJie
+     * @Description 新增评审
+     * @Date 22:06 2018/11/21
+     * @Param [orderReviewDO]
+     * @Return java.lang.Integer
+     */
+    Integer insertOrderReview(OrderReviewDO orderReviewDO);
+
+    /* *
+     * @Author MengZiJie
+     * @Description 通过
+     * @Date 22:06 2018/11/21
+     * @Param [orderReviewDO, orderInfoDTO]
+     * @Return com.ccicnavi.bims.common.ResultT
+     */
+    ResultT passOrderReview(OrderReviewDO orderReviewDO, OrderInfoDTO orderInfoDTO);
+
+    /* *
+     * @Author MengZiJie
+     * @Description 驳回
+     * @Date 22:10 2018/11/21
+     * @Param [orderReviewDO, orderInfoDTO]
+     * @Return com.ccicnavi.bims.common.ResultT
+     */
+    ResultT backOrderReview(OrderReviewDO orderReviewDO, OrderInfoDTO orderInfoDTO);
 }

@@ -21,7 +21,7 @@ public class UserDO {
 
     private List<RoleUserDO> roleList;
 
-    private List<MenuDO> menuList;
+    private List<MenuDTO> menuList;
 
     private List<DepartmentDO> deptList;
 
