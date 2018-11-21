@@ -6,8 +6,10 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.MinItemService;
 import com.ccicnavi.bims.product.dao.MinItemDao;
 import com.ccicnavi.bims.product.pojo.MinItemDO;
+import com.ccicnavi.bims.product.pojo.MinItemDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -46,13 +48,16 @@ public class MinItemServiceImpl implements MinItemService {
     }
 
     @Override
-    public int removeMinItem(MinItemDO minItem) {
+    public int removeMinItem(MinItemDTO minItemDTO) {
         try {
-            return minItemDao.removeMinItem(minItem);
+            if (!StringUtils.isEmpty(minItemDTO.getMinItemUuid())) {
+                minItemDTO.setUuids(minItemDTO.getMinItemUuid().split(","));
+                return minItemDao.removeMinItem(minItemDTO);
+            }
         } catch (Exception e) {
             log.error("删除最小服务项失败~", e);
-            return 0;
         }
+        return 0;
     }
 
     @Override

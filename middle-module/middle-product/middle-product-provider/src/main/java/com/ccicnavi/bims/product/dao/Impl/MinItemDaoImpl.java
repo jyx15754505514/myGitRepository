@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.MinItemDao;
 import com.ccicnavi.bims.product.pojo.MinItemDO;
+import com.ccicnavi.bims.product.pojo.MinItemDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,8 @@ public class MinItemDaoImpl implements MinItemDao {
     }
 
     @Override
-    public int removeMinItem(MinItemDO minItem) {
-        return new Eql().update("deleteMinItem").params(minItem).returnType(int.class).execute();
+    public int removeMinItem(MinItemDTO minItemDTO) {
+        return new Eql().update("deleteMinItem").params(minItemDTO).returnType(int.class).execute();
     }
 
     @Override
