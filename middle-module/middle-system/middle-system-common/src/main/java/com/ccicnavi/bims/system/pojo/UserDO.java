@@ -27,6 +27,8 @@ public class UserDO {
 
     private String userUuid;
 
+    private String salt;
+
     private String nickName;
 
     private String loginName;

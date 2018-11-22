@@ -7,10 +7,16 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.UserDao;
+import com.ccicnavi.bims.system.pojo.RoleDO;
+import com.ccicnavi.bims.system.pojo.RoleUserDO;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
+import com.ccicnavi.bims.system.service.api.RoleService;
 import com.ccicnavi.bims.system.service.api.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  *@program: bims-backend
@@ -25,6 +31,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private RoleService roleService;
+
     /**
     *@Description: 查询登录用户信息
     *@Param: [UserDO]
@@ -35,9 +44,16 @@ public class UserServiceImpl implements UserService{
     @Override
     public ResultT listUser(PageParameter<UserDO> pageParameter){
         try{
-            PageBean<UserDO> pageBean = userDao.listUser(pageParameter);
+            PageBean<UserDTO> pageBean = userDao.listUser(pageParameter);
             if (pageBean != null){
-                return ResultT.success(pageBean);
+                List<UserDTO> userList = pageBean.getProducts();
+                if(userList != null && userList.size() > 0) {
+                    for (UserDTO user : userList) {
+                        List<RoleDO> roleUserList = roleService.listRoleByUser(user);
+                        user.setRoleList(roleUserList);
+                    }
+                }
+                 return ResultT.success(pageBean);
             }
         }catch (Exception e){
             log.error("查询登录用户信息失败", e);
@@ -106,9 +122,12 @@ public class UserServiceImpl implements UserService{
     *@date: 2018/11/15
     */
     @Override
-    public UserDO getUser(UserDO userDO){
+    public UserDTO getUser(UserDTO userDTO){
         try {
-            return userDao.getUser(userDO);
+            userDTO = userDao.getUser(userDTO);
+            List<RoleDO> roleUserList = roleService.listRoleByUser(userDTO);
+            userDTO.setRoleList(roleUserList);
+            return userDTO;
         } catch (Exception e) {
             log.error("根据主键获取登录用户信息失败",e);
             return null;
