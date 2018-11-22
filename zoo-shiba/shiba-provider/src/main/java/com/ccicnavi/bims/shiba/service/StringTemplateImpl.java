@@ -96,5 +96,16 @@ public class StringTemplateImpl implements StringTemplate {
         return redisTemplate.opsForValue().getAndSet(key, value);
     }
 
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    public Boolean expire(Object key, long timeout, TimeUnit unit) {
+        return redisTemplate.expire(key, timeout, unit);
+    }
 }
 
