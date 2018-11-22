@@ -14,5 +14,9 @@ public interface OrderItemService {
     Integer insertOrderItem(OrderItemDTO orderItemDTO);
     /**更新服务项信息*/
     Integer updateOrderItem(OrderItemDTO orderItemDTO);
+    /**指派任务*/
+    Integer assignOrderItem(OrderItemDTO orderItemDTO);
+    /**外包任务*/
+    Integer outsourcOrderItem(OrderItemDTO orderItemDTO);
 
 }
