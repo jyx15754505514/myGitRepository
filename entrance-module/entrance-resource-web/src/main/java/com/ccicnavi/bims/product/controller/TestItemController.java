@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.resource.controller;
+package com.ccicnavi.bims.product.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
@@ -16,8 +16,8 @@ import java.util.List;
 
 /**
  * @program: bims-backend
- * @description: 该类的作用描述
- * @author: 本人姓名
+ * @description: 检测指标(testItem)Controller
+ * @author: WangYingLing
  * @create: 2018-11-21 16:21
  */
 @RestController

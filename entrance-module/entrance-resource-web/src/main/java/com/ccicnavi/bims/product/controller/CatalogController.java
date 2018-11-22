@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.resource.controller;
+package com.ccicnavi.bims.product.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -81,7 +81,7 @@ public class CatalogController {
     }
 
     /**
-     * @description 查询修改产品线信息
+     * @description 修改产品线信息
      * @param catalogDO
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
