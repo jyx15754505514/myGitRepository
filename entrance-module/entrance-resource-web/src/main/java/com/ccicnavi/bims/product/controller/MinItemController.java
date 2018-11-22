@@ -6,8 +6,9 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.MinItemService;
-import com.ccicnavi.bims.product.pojo.MinItemDO;
-import com.ccicnavi.bims.product.pojo.MinItemDTO;
+import com.ccicnavi.bims.product.api.MinItemStdService;
+import com.ccicnavi.bims.product.api.MinItemTestService;
+import com.ccicnavi.bims.product.pojo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -34,6 +35,12 @@ public class MinItemController {
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     MinItemService minItemService;
 
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    MinItemStdService minItemStdService;
+
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    MinItemTestService minItemTestService;
+
     /**
      * 查询全部最小服务项信息()
      *
@@ -53,6 +60,7 @@ public class MinItemController {
 
     /**
      * 分页查询最小服务项
+     *
      * @return
      */
     @RequestMapping(value = "/listMinItemPage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -69,6 +77,7 @@ public class MinItemController {
 
     /**
      * 根据主键查询对应最小服务项信息
+     *
      * @return
      */
     @RequestMapping(value = "/getMinItem", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -90,6 +99,7 @@ public class MinItemController {
 
     /**
      * 保存最小服务项信息
+     *
      * @return
      */
     @RequestMapping(value = "/saveMinItem", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -109,6 +119,7 @@ public class MinItemController {
 
     /**
      * 修改最小服务项信息
+     *
      * @return
      */
     @RequestMapping(value = "/updateMinItem", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -150,5 +161,109 @@ public class MinItemController {
             return ResultT.failure(ResultCode.DELETE_FAILURE);
         }
     }
+
+    /***
+     * ——————————————最小服务项与标准关系服务管理——————————————
+     */
+    /**
+     * 保存最小服务项与标准关系信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/saveMinItemStd", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT saveMinItemStd(@RequestBody MinItemStdDO minItemStdDO) {
+        try {
+            Integer count = minItemStdService.saveMinItemStd(minItemStdDO);
+            if (count > 0) {
+                return ResultT.success("新增最小服务项与标准关系成功~");
+            } else {
+                return ResultT.failure(ResultCode.ADD_FAILURE);
+            }
+        } catch (Exception e) {
+            log.error("新增最小服务项与标准关系失败~", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
+        }
+    }
+
+    /**
+     * 删除最小服务项与标准关系信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/removeMinItemStd", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT removeMinItemStd(@RequestBody MinItemStdDO minItemStdDO) {
+        try {
+            Integer count = minItemStdService.removeMinItemStd(minItemStdDO);
+            if (count > 0) {
+                return ResultT.success("删除最小服务项与标准关系成功~");
+            } else {
+                return ResultT.failure(ResultCode.ADD_FAILURE);
+            }
+        } catch (Exception e) {
+            log.error("删除最小服务项与标准关系失败~", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
+        }
+    }
+
+
+    /***
+     * ——————————————最小服务项与检测指标关系服务管理——————————————
+     */
+    /**
+     * 保存最小服务项与检测指标关系信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/saveMinItemTest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT saveMinItemTest(@RequestBody MinItemTestDO minItemTestDO) {
+        try {
+            Integer count = minItemTestService.saveMinItemTest(minItemTestDO);
+            if (count > 0) {
+                return ResultT.success("新增最小服务项与检测指标关系成功~");
+            } else {
+                return ResultT.failure(ResultCode.ADD_FAILURE);
+            }
+        } catch (Exception e) {
+            log.error("新增最小服务项与检测指标关系失败~", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
+        }
+    }
+
+    /**
+     * 删除最小服务项与检测指标关系信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/removeMinItemTest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT removeMinItemTest(@RequestBody MinItemTestDO minItemTestDO) {
+        try {
+            Integer count = minItemTestService.removeMinItemTest(minItemTestDO);
+            if (count > 0) {
+                return ResultT.success("删除最小服务项与检测指标关系成功~");
+            } else {
+                return ResultT.failure(ResultCode.ADD_FAILURE);
+            }
+        } catch (Exception e) {
+            log.error("删除最小服务项与检测指标关系失败~", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
+        }
+    }
+
+    /**
+     * 根据最小服务项ID和所属机构ID查询出对应的检测指标信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/findTestItemByMinItemUuid", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT findTestItemByMinItemUuid(@RequestBody MinItemTestDO minItemTestDO) {
+        try {
+            List<TestItemDO> testItemByMinItemUuid = minItemTestService.findTestItemByMinItemUuid(minItemTestDO);
+            return ResultT.success(testItemByMinItemUuid);
+        } catch (Exception e) {
+            log.error("根据最小服务项ID和所属机构ID查询出对应的检测指标信息失败~", e);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+    }
+
 
 }
