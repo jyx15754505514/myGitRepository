@@ -162,7 +162,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                     }
                 }
             }
-            orderInfoDTO.setOrderNo("");//生成委托单号
             //添加委托单详情
             orderInfo = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
             if(orderInfo!=1){
@@ -195,6 +194,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         Integer itemSub = null;
         Integer orderInfo = null;
         boolean result=true;
+        Integer orderSampleTypeResult =null;
         try {
             //更新委托单运输信息
             shipment = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
@@ -265,6 +265,29 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                                 }
                             }
                         }
+                    }
+                }
+            }
+            //物理删除委托样品类型
+            OrderSampleTypeDO sampleType=new OrderSampleTypeDO ();
+            sampleType.setOrderUuid(orderInfoDTO.getOrderUuid());
+            orderSampleTypeResult=orderSampleTypeDao.deleteOrderSampleType(sampleType,eqlTran);
+            if(orderSampleTypeResult!=1){
+                result=false;
+            }
+            //添加委托样品类型
+            List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
+            if(orderSampleTypeDO.size()>0){
+                for(OrderSampleTypeDO o :orderSampleTypeDO){
+                    OrderSampleTypeDO orderSampleType=new  OrderSampleTypeDO();
+                    String orderSplUuid = idWorkerService.getId(new Date());
+                    orderSampleType.setOrderSplUuid(orderSplUuid);
+                    orderSampleType.setOrderUuid(orderInfoDTO.getOrderUuid());
+                    orderSampleType.setSplPurposeType(o.getSplPurposeType());
+                    orderSampleType.setSplPurposeQty(o.getSplPurposeQty());
+                    orderSampleTypeResult= orderSampleTypeDao.insertOrderSampleType(orderSampleType,eqlTran);
+                    if(orderSampleTypeResult!=1){
+                        result=false;
                     }
                 }
             }
