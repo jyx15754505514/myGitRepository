@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.api;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.CatalogWorkhourDO;
+import com.ccicnavi.bims.product.pojo.CatalogWorkhourDTO;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface CatalogWorkhourService {
     int saveCatalogWorkhour(CatalogWorkhourDO catalogWorkhour);
 
     /**删除产品工时工资信息*/
-    int removeCatalogWorkhour(CatalogWorkhourDO catalogWorkhour);
+    int removeCatalogWorkhour(CatalogWorkhourDTO catalogWorkhourDTO);
 
     /**修改产品工时工资信息*/
     int updateCatalogWorkhour(CatalogWorkhourDO catalogWorkhour);

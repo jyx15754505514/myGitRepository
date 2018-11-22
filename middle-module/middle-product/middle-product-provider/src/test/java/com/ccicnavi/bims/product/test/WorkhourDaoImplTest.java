@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.Impl.CatalogWorkhourDaoImpl;
 import com.ccicnavi.bims.product.pojo.CatalogWorkhourDO;
+import com.ccicnavi.bims.product.pojo.CatalogWorkhourDTO;
 import org.junit.Test;
 
 import java.util.List;
@@ -38,7 +39,11 @@ public class WorkhourDaoImplTest {
 
     @Test
     public void removeCatalogWorkhour() {
-
+        CatalogWorkhourDTO catalogWorkhourDTO=new CatalogWorkhourDTO();
+        String [] uuids={"CATALOG_MINERAL","CATALOG_PETRO"};
+        catalogWorkhourDTO.setUuids(uuids);
+        int i = catalogWorkhourDaoImpl.removeCatalogWorkhour(catalogWorkhourDTO);
+        System.out.println("counts:"+i);
     }
 
     @Test
