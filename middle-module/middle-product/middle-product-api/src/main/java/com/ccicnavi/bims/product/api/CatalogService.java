@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.api;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
+import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 
 import java.util.List;
 
@@ -56,6 +57,6 @@ public interface CatalogService {
     PageBean<CatalogDO> listCatalogPage(PageParameter<CatalogDO> pageParameter);
 
     //根据省级公司id获取产品线id
-    CatalogDO getCatalogThroughOrgnUUid();
+    List<CatalogDO> getCatalogThroughOrgUUid(CatalogOrgDO catalogOrgDO);
 
 }

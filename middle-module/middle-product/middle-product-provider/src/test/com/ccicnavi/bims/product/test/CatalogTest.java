@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.Impl.CatalogDaoImpl;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
+import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import org.junit.Test;
 
 import java.util.List;
@@ -71,6 +72,14 @@ public class CatalogTest {
         pageParameter.setStartPage(1);
         PageBean<CatalogDO> pageBean=catalogDaoTest.listCatalogPage(pageParameter);
         System.out.println(pageBean);
+    }
+
+    @Test
+    public void getCatalogThroughOrgnUUidTest(){
+        CatalogOrgDO catalogOrgDO=new CatalogOrgDO();
+        catalogOrgDO.setOrganizationUuid("CCICXN");
+        List<CatalogDO> catalogDO=catalogDaoTest.getCatalogThroughOrgUUid(catalogOrgDO);
+        System.out.println(catalogDO);
     }
 
 }

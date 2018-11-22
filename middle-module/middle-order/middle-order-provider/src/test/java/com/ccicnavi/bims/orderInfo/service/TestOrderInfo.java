@@ -102,17 +102,26 @@ public class TestOrderInfo {
             orderItemDTOList.add(orderItemDTO);
         }
         orderInfoDTO.setOrderItemDTO(orderItemDTOList);
-
-
+        //委托样品类型
+        List<OrderSampleTypeDO> orderSampleTypeDOList=new ArrayList<OrderSampleTypeDO>();
+        for(int k=1;k<4;k++){
+            OrderSampleTypeDO orderSampleTypeDO=new OrderSampleTypeDO();
+            orderSampleTypeDO.setSplPurposeType("样品类型id"+k);
+            orderSampleTypeDO.setSplPurposeQty(k);
+            orderSampleTypeDOList.add(orderSampleTypeDO);
+        }
+        orderInfoDTO.setOrderSampleTypeDO(orderSampleTypeDOList);
         Integer shipment = null;
         Integer orderItem = null;
         Integer itemSub = null;
         Integer orderInfo = null;
+        Integer orderSampleTypeResult = null;
         boolean result=true;
         OrderInspectionDaoImpl orderInspectionDaoImpl = new OrderInspectionDaoImpl();
         OrderItemSubDaoImpl orderItemSubDaoImpl=new OrderItemSubDaoImpl();
         OrderInfoDaoImpl orderInfoDao = new OrderInfoDaoImpl();
         OrderItemDaoImpl orderItemDaoImpl = new OrderItemDaoImpl();
+        OrderSampleTypeDaoImpl orderSampleTypeDaoImpl =new OrderSampleTypeDaoImpl();
         try {
             eqlTran.start();
             //String orderUuid = idWorkerService.getId(new Date());
@@ -141,7 +150,7 @@ public class TestOrderInfo {
                         for (int j = 0; j < orderItemSubDO.size(); j++) {
                             Date currentTime1 = new Date();
                             String orderItemSubUuid = timeFormat.format(currentTime1);
-                            orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);//生成最小颗粒度id
+                            orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid+j);//生成最小颗粒度id
                             orderItemSubDO.get(j).setItemUuid(orderItemUuid);//生成服务项id
                             orderItemSubDO.get(j).setSubItemNo("最小颗粒度NO."+j);//生成z最小颗粒度的编号
                             //添加子项信息
@@ -150,6 +159,22 @@ public class TestOrderInfo {
                                 result=false;
                             }
                         }
+                    }
+                }
+            }
+            //添加委托样品类型
+            List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
+            if(orderSampleTypeDO.size()>0){
+                for(OrderSampleTypeDO o :orderSampleTypeDO){
+                    OrderSampleTypeDO orderSampleType=new  OrderSampleTypeDO();
+                    String orderSplUuid = timeFormat.format(new Date());
+                    orderSampleType.setOrderSplUuid(orderSplUuid);
+                    orderSampleType.setOrderUuid(orderUuid);
+                    orderSampleType.setSplPurposeType(o.getSplPurposeType());
+                    orderSampleType.setSplPurposeQty(o.getSplPurposeQty());
+                    orderSampleTypeResult= orderSampleTypeDaoImpl.insertOrderSampleType(orderSampleType,eqlTran);
+                    if(orderSampleTypeResult!=1){
+                        result=false;
                     }
                 }
             }

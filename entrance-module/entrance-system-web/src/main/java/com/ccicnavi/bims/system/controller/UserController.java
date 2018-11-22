@@ -126,7 +126,7 @@ public class UserController {
     }
 
     /**
-    *@Description: 删除登录用户信息
+    *@Description: 用户登录
     *@Param: [UserDO]
     *@return: ResultT
     *@Author: zhaotao
@@ -142,5 +142,20 @@ public class UserController {
         }
     }
 
-
+    /**
+     *@Description: 用户登出
+     *@Param: [UserDO]
+     *@return: ResultT
+     *@Author: zhaotao
+     *@date: 2018/11/16
+     */
+    @RequestMapping(value = "/userLogout", method = RequestMethod.POST)
+    public ResultT userLogout(@RequestBody String jsessionId) {
+        try {
+            //return userManager.userLogin(UserDO);
+        } catch (Exception e) {
+            log.error("用户登出失败", e);
+        }
+        return ResultT.failure(ResultCode.USER_NOT_EXIST);
+    }
 }

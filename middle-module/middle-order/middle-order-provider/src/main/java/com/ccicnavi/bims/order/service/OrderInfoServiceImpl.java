@@ -1,5 +1,5 @@
 package com.ccicnavi.bims.order.service;
-
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
@@ -7,14 +7,8 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.api.OrderInfoService;
-import com.ccicnavi.bims.order.dao.OrderInfoDao;
-import com.ccicnavi.bims.order.dao.OrderItemDao;
-import com.ccicnavi.bims.order.dao.OrderItemSubDao;
-import com.ccicnavi.bims.order.dao.OrderInspectionDao;
-import com.ccicnavi.bims.order.pojo.OrderInfoDO;
-import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
-import com.ccicnavi.bims.order.pojo.OrderItemDTO;
-import com.ccicnavi.bims.order.pojo.OrderItemSubDO;
+import com.ccicnavi.bims.order.dao.*;
+import com.ccicnavi.bims.order.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
@@ -46,6 +40,9 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     OrderItemSubDao orderItemSubDao;
 
     @Autowired
+    OrderSampleTypeDao orderSampleTypeDao;
+
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
     IdWorkerService idWorkerService;
 
     /* *
