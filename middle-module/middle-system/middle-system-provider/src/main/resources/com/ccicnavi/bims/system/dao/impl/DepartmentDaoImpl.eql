@@ -317,7 +317,108 @@
          extend1,
          extend2,
          extend3
+        dp.dept_uuid as deptUuid,
+        dp.dept_code as deptCode,
+        dp.dept_name as deptName,
+        dp.dept_type as deptType,
+        dp.parent_name as parentName,
+        dp.parent_uuid as parentUuid,
+        dp.dept_tel as deptTel,
+        dp.dept_sort as deptSort,
+        dp.manager,
+        dp.is_business,
+        dp.is_enabled as isEnabled,
+        dp.comments,
+        dp.is_deleted as isDeleted,
+        dp.created_time as createdTime,
+        dp.created_uuid as createdUuid,
+        dp.created_name as createdName,
+        dp.updated_time as updatedTime,
+        dp.updated_uuid as updatedUuid,
+        dp.updated_name as updatedName,
+        dp.prod_catalog_uuid as prodCatalogUuid,
+        dp.org_uuid as orgUuid,
+        dp.app_sys_uuid as appSysUuid,
+        dp.extend1,
+        dp.extend2,
+        dp.extend3
+    FROM
+        sys_department as dp,
+        sys_user_authdata as uad
+    WHERE
+        dp.is_deleted = 'N'
+        and uad.user_uuid = '#userUuid#'
+        and uad.org_uuid = dp.org_uuid
+        and dp.dept_type = uad.auth_type
+        and uad.org_uuid = '#orgUuid#'
+
+-- 根据部门类型查询部门信息
+-- [listDeptByDeptType]
+    SELECT
+        dept_uuid as deptUuid,
+        dept_code as deptCode,
+        dept_name as deptName,
+        dept_type as deptType,
+        parent_name as parentName,
+        parent_uuid as parentUuid,
+        dept_tel as deptTel,
+        dept_sort as deptSort,
+        manager,
+        is_business,
+        is_enabled as isEnabled,
+        comments,
+        is_deleted as isDeleted,
+        created_time as createdTime,
+        created_uuid as createdUuid,
+        created_name as createdName,
+        updated_time as updatedTime,
+        updated_uuid as updatedUuid,
+        updated_name as updatedName,
+        prod_catalog_uuid as prodCatalogUuid,
+        org_uuid as orgUuid,
+        app_sys_uuid as appSysUuid,
+        extend1,
+        extend2,
+        extend3
+    FROM
+        sys_department
+    WHERE
+        is_deleted = 'N'
+        and dept_type = '#deptType#'
+
+
+-- 根据orgUuid和parentUuid查询部门
+-- [listDept]
+    SELECT
+        dept_uuid as deptUuid,
+        dept_code as deptCode,
+        dept_name as deptName,
+        dept_type as deptType,
+        parent_name as parentName,
+        parent_uuid as parentUuid,
+        dept_tel as deptTel,
+        dept_sort as deptSort,
+        manager,
+        is_business,
+        is_enabled as isEnabled,
+        comments,
+        is_deleted as isDeleted,
+        created_time as createdTime,
+        created_uuid as createdUuid,
+        created_name as createdName,
+        updated_time as updatedTime,
+        updated_uuid as updatedUuid,
+        updated_name as updatedName,
+        prod_catalog_uuid as prodCatalogUuid,
+        org_uuid as orgUuid,
+        app_sys_uuid as appSysUuid,
+        extend1,
+        extend2,
+        extend3
     FROM
         sys_department
     WHERE
         dept_uuid = '#deptUuid#'
+        is_deleted = 'N'
+        and parent_uuid = '#parentUuid#'
+        and org_uuid = '#orgUuid#'
