@@ -1,0 +1,75 @@
+-- [insertMinItemTest]
+insert into product_min_item_test
+    -- trim prefix=( suffix=) suffixOverrides=,
+      -- iff minItemUuid != null and  minItemUuid != ''
+        min_item_uuid,
+
+      -- iff testItemUuid != null and testItemUuid  != ''
+        test_item_uuid,
+
+      -- iff orgUuid != null and  orgUuid != ''
+        org_uuid,
+
+      -- iff appSysUuid != null and  appSysUuid != ''
+        app_sys_uuid,
+
+    -- end
+    -- trim prefix=values( suffix=)  suffixOverrides=,
+      -- iff minItemUuid != null and  minItemUuid != ''
+        '#minItemUuid#',
+
+      -- iff testItemUuid != null and  testItemUuid != ''
+        '#testItemUuid#',
+
+      -- iff orgUuid != null and orgUuid  != ''
+        '#orgUuid#',
+
+      -- iff appSysUuid != null and appSysUuid  != ''
+        '#appSysUuid#',
+
+	--end
+
+
+-- [deleteMinItemTest]
+DELETE
+FROM
+	product_min_item_test
+WHERE
+	min_item_uuid = '#minItemUuid#'
+AND test_item_uuid = '#testItemUuid#'
+AND org_uuid = '#orgUuid#'
+
+-- [findTestItemByMinItemUuid]
+SELECT
+	pti.item_uuid,
+	pti.item_name,
+	pti.item_name_en,
+	pti.item_uom_uuid,
+	pti.item_code,
+	pti.item_price,
+	pti.item_workhour,
+	pti.use_std_uuid,
+	pti.use_std_name,
+	pti.item_name_alias,
+	pti.comments,
+	pti.is_deleted,
+	pti.created_time,
+	pti.created_uuid,
+	pti.created_name,
+	pti.updated_time,
+	pti.updated_uuid,
+	pti.updated_name,
+	pti.prod_catalog_uuid,
+	pti.org_uuid,
+	pti.app_sys_uuid,
+	pti.extend1,
+	pti.extend2,
+	pti.extend3
+FROM
+	product_min_item_test pmit
+LEFT JOIN product_test_item pti ON pmit.test_item_uuid = pti.item_uuid
+WHERE
+	pti.is_deleted = 'N'
+AND pmit.org_uuid = '#orgUuid#'
+AND pmit.min_item_uuid='#minItemUuid#'
+AND pmit.app_sys_uuid = '#appSysUuid#'
