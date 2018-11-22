@@ -198,3 +198,24 @@ where
     -- for item=item index=index collection=worksheetUuids open=( separator=, close=)
         '#item#'
     -- end
+
+-- [deleteOrderWorksheet]
+update order_worksheet
+    -- trim prefix= set suffixOverrides=,
+            is_deleted = 'Y',
+        --iff updatedTime != null
+            updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid !=''
+            updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName !=''
+            updated_name = '#updatedName#',
+    -- end
+where
+    is_deleted = 'N'
+--iff worksheetUuid != null and worksheetUuid != ''
+    and worksheet_uuid = '#worksheetUuid#'
+--iff worksheetUuids != null
+    and worksheet_uuid in
+    -- for item=item index=index collection=worksheetUuids open=( separator=, close=)
+        '#item#'
+    -- end

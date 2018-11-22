@@ -14,7 +14,7 @@ public interface CategoryDao {
 
     int saveCategory(CategoryDO category) throws Exception;
 
-    int removeCategory(CategoryDO category) throws Exception;
+    int removeCategory(CategoryDTO categoryDTO) throws Exception;
 
     int updateCategory(CategoryDO category) throws Exception;
 
@@ -24,5 +24,5 @@ public interface CategoryDao {
 
     List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDTO categoryDTO) throws Exception;
 
-    List<CategoryDO> listCategoryByParentUuid(CategoryDO category) throws Exception;
+    List<CategoryDO> listCategoryByParentUuid(CategoryDTO categoryDTO) throws Exception;
 }

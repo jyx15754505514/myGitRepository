@@ -1,0 +1,499 @@
+-- [getSerialnumCfg]
+SELECT
+snc_uuid sncUuid,
+snc_name sncName,
+snc_init_value sncInitValue,
+snc_length sncLength,
+snc_step sncStep,
+snc_period sncPeriod,
+is_hop isHop,
+delimiter delimiter,
+is_delim_after_first isDelimAfterFirst,
+is_delim_before_last isDelimBeforeLast,
+sort_num sortNum,
+comments comments,
+is_deleted isDeleted,
+org_uuid orgUuid,
+app_sys_uuid appSysUuid,
+prod_catalog_uuid prodCatalogUuid,
+extend1 extend1,
+extend2 extend2,
+extend3 extend3
+from sys_serialnum_cfg
+WHERE snc_uuid = '#sncUuid#' and is_deleted = 'N'
+and org_uuid = '#orgUuid#'
+and app_sys_uuid = '#appSysUuid#'
+and prod_catalog_uuid = '#prodCatalogUuid#'
+
+-- [listSerialnumCfg]
+SELECT
+snc_uuid sncUuid,
+snc_name sncName,
+snc_init_value sncInitValue,
+snc_length sncLength,
+snc_step sncStep,
+snc_period sncPeriod,
+is_hop isHop,
+delimiter delimiter,
+is_delim_after_first isDelimAfterFirst,
+is_delim_before_last isDelimBeforeLast,
+sort_num sortNum,
+comments comments,
+is_deleted isDeleted,
+org_uuid orgUuid,
+app_sys_uuid appSysUuid,
+prod_catalog_uuid prodCatalogUuid,
+extend1 extend1,
+extend2 extend2,
+extend3 extend3
+from sys_serialnum_cfg
+WHERE
+is_deleted = 'N'
+and org_uuid = '#orgUuid#'
+and app_sys_uuid = '#appSysUuid#'
+and prod_catalog_uuid = '#prodCatalogUuid#'
+--iff sncName != null and sncName != ''
+    snc_name = '#sncName#'
+order by sort_num
+
+-- [insertSerialnumCfg]
+    insert into sys_serialnum_cfg
+-- trim prefix=( suffix=) suffixOverrides=,
+    -- if sncUuid != null
+      snc_uuid,
+    -- end
+    -- if sncName != null
+      snc_name,
+    -- end
+    -- if sncInitValue != null
+      snc_init_value,
+    -- end
+    -- if sncLength != null
+      snc_length,
+    -- end
+    -- if sncStep != null
+      snc_step,
+    -- end
+    -- if sncPeriod != null
+      snc_period,
+    -- end
+    -- if isHop != null
+      is_hop,
+    -- end
+    -- if delimiter != null
+      delimiter,
+    -- end
+    -- if isDelimAfterFirst != null
+      is_delim_after_first,
+    -- end
+    -- if isDelimBeforeLast != null
+      is_delim_before_last,
+    -- end
+    -- if sortNum != null
+      sort_num,
+    -- end
+    -- if comments != null
+      comments,
+    -- end
+    -- if isDeleted != null
+      is_deleted,
+    -- end
+    -- if orgUuid != null
+      org_uuid,
+    -- end
+    -- if appSysUuid != null
+      app_sys_uuid,
+    -- end
+    -- if prodCatalogUuid != null
+      prod_catalog_uuid,
+    -- end
+    -- if extend1 != null
+      extend1,
+    -- end
+    -- if extend2 != null
+      extend2,
+    -- end
+    -- if extend3 != null
+      extend3,
+    -- end
+-- end
+-- trim prefix=values( suffix=) suffixOverrides=,
+    -- if sncUuid != null
+      '#sncUuid#',
+    -- end
+    -- if sncName != null
+      '#sncName#',
+    -- end
+    -- if sncInitValue != null
+      '#sncInitValue#',
+    -- end
+    -- if sncLength != null
+      '#sncLength#',
+    -- end
+    -- if sncStep != null
+      '#sncStep#',
+    -- end
+    -- if sncPeriod != null
+      '#sncPeriod#',
+    -- end
+    -- if isHop != null
+      '#isHop#',
+    -- end
+    -- if delimiter != null
+      '#delimiter#',
+    -- end
+    -- if isDelimAfterFirst != null
+      '#isDelimAfterFirst#',
+    -- end
+    -- if isDelimBeforeLast != null
+      '#isDelimBeforeLast#',
+    -- end
+    -- if sortNum != null
+      '#sortNum#',
+    -- end
+    -- if comments != null
+      '#comments#',
+    -- end
+    -- if isDeleted != null
+      '#isDeleted#',
+    -- end
+    -- if orgUuid != null
+      '#orgUuid#',
+    -- end
+    -- if appSysUuid != null
+      '#appSysUuid#',
+    -- end
+    -- if prodCatalogUuid != null
+      '#prodCatalogUuid#',
+    -- end
+    -- if extend1 != null
+      '#extend1#',
+    -- end
+    -- if extend2 != null
+      '#extend2#',
+    -- end
+    -- if extend3 != null
+      '#extend3#',
+    -- end
+-- end
+
+-- [updateSerialnumCfg]
+    update sys_serialnum_cfg
+-- trim prefix=SET suffixOverrides=,
+  -- if sncName != null
+    snc_name = '#sncName#',
+  -- end
+  -- if sncInitValue != null
+    snc_init_value = '#sncInitValue#',
+  -- end
+  -- if sncLength != null
+    snc_length = '#sncLength#',
+  -- end
+  -- if sncStep != null
+    snc_step = '#sncStep#',
+  -- end
+  -- if sncPeriod != null
+    snc_period = '#sncPeriod#',
+  -- end
+  -- if isHop != null
+    is_hop = '#isHop#',
+  -- end
+  -- if delimiter != null
+    delimiter = '#delimiter#',
+  -- end
+  -- if isDelimAfterFirst != null
+    is_delim_after_first = '#isDelimAfterFirst#',
+  -- end
+  -- if isDelimBeforeLast != null
+    is_delim_before_last = '#isDelimBeforeLast#',
+  -- end
+  -- if sortNum != null
+    sort_num = '#sortNum#',
+  -- end
+  -- if comments != null
+    comments = '#comments#',
+  -- end
+  -- if isDeleted != null
+    is_deleted = '#isDeleted#',
+  -- end
+  -- if orgUuid != null
+    org_uuid = '#orgUuid#',
+  -- end
+  -- if appSysUuid != null
+    app_sys_uuid = '#appSysUuid#',
+  -- end
+  -- if prodCatalogUuid != null
+    prod_catalog_uuid = '#prodCatalogUuid#',
+  -- end
+  -- if extend1 != null
+    extend1 = '#extend1#',
+  -- end
+  -- if extend2 != null
+    extend2 = '#extend2#',
+  -- end
+  -- if extend3 != null
+    extend3 = '#extend3#',
+  -- end
+-- end
+    where snc_uuid = '#sncUuid#'
+-- [deleteSerialnumCfg]
+    UPDATE
+        sys_serialnum_cfg
+    SET
+        is_deleted = 'Y'
+    WHERE snc_uuid = '##'
+
+-- [getSerialnumCfgItem]
+    select
+    sncd_uuid sncdUuid,
+    snc_uuid sncUuid,
+    sncd_type sncdType,
+    sncd_value sncdValue,
+    sncd_order_num sncdOrderNum
+    from sys_serialnum_cfg_item
+    where sncd_uuid='#sncdUuid#'
+
+
+-- [insertSerialnumCfgItem]
+    INSERT into sys_serialnum_cfg_item
+    (sncd_uuid,
+      snc_uuid,
+      sncd_type,
+      sncd_value,
+      sncd_order_num) values
+    ('#sncdUuid#',
+                  '#sncUuid#',
+                  '#sncdType#',
+                  '#sncdValue#',
+                  '#sncdOrderNum#')
+
+-- [deleteSerialnumCfgItem]
+    delete from
+        sys_serialnum_cfg_item
+    WHERE snc_uuid = '##'
+
+-- [getSeriItemList]
+    select
+        sncd_uuid sncdUuid,
+        snc_uuid sncUuid,
+        sncd_type sncdType,
+        sncd_value sncdValue,
+        sncd_order_num sncdOrderNum
+        from sys_serialnum_cfg_item
+        where snc_uuid='##'
+        order by sncd_order_num
+-- [getSerialnumDO]
+    select
+    sn_uuid snUuid,
+    snc_uuid sncUuid,
+    sn_dept_code snDeptCode,
+    bus_uuid busUuid,
+    seq_id seqId,
+    seq_ymd seqYmd,
+    sort_num sortNum,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    prod_catalog_uuid prodCatalogUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
+    from sys_serialnum where 1=1
+    -- if sncUuid != null and sncUuid != ''
+        and snc_uuid = '#sncUuid#'
+    -- end
+    -- if orgUuid != null and orgUuid != ''
+        and org_uuid = '#orgUuid#'
+    -- end
+    -- if busUuid != null and busUuid != ''
+        and bus_uuid = '#busUuid#'
+    -- end
+    and is_deleted = 'N'
+
+-- [insertSerialnum]
+    insert into sys_serialnum
+    -- trim prefix=( suffix=) suffixOverrides=,
+      -- if snUuid != null
+        sn_uuid,
+      -- end
+      -- if sncUuid != null
+        snc_uuid,
+      -- end
+      -- if snDeptCode != null
+        sn_dept_code,
+      -- end
+      -- if seqId != null
+        seq_id,
+      -- end
+      -- if seqYmd != null
+        seq_ymd,
+      -- end
+      -- if sortNum != null
+        sort_num,
+      -- end
+      -- if comments != null
+        comments,
+      -- end
+      -- if isDeleted != null
+        is_deleted,
+      -- end
+      -- if createdTime != null
+        created_time,
+      -- end
+      -- if createdUuid != null
+        created_uuid,
+      -- end
+      -- if createdName != null
+        created_name,
+      -- end
+      -- if updatedTime != null
+        updated_time,
+      -- end
+      -- if updatedName != null
+        updated_name,
+      -- end
+      -- if orgUuid != null
+        org_uuid,
+      -- end
+      -- if appSysUuid != null
+        app_sys_uuid,
+      -- end
+      -- if prodCatalogUuid != null
+        prod_catalog_uuid,
+      -- end
+      -- if extend1 != null
+        extend1,
+      -- end
+      -- if extend2 != null
+        extend2,
+      -- end
+      -- if extend3 != null
+        extend3,
+      -- end
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      -- if snUuid != null
+        '#snUuid#',
+      -- end
+      -- if sncUuid != null
+        '#sncUuid#',
+      -- end
+      -- if snDeptCode != null
+        '#snDeptCode#',
+      -- end
+      -- if seqId != null
+        '#seqId#',
+      -- end
+      -- if seqYmd != null
+        '#seqYmd#',
+      -- end
+      -- if sortNum != null
+        '#sortNum#',
+      -- end
+      -- if comments != null
+        '#comments#',
+      -- end
+      -- if isDeleted != null
+        '#isDeleted#',
+      -- end
+      -- if createdTime != null
+        '#createdTime#',
+      -- end
+      -- if createdUuid != null
+        '#createdUuid#',
+      -- end
+      -- if createdName != null
+        '#createdName#',
+      -- end
+      -- if updatedTime != null
+        '#updatedTime#',
+      -- end
+      -- if updatedName != null
+        '#updatedName#',
+      -- end
+      -- if orgUuid != null
+        '#orgUuid#',
+      -- end
+      -- if appSysUuid != null
+        '#appSysUuid#',
+      -- end
+      -- if prodCatalogUuid != null
+        '#prodCatalogUuid#',
+      -- end
+      -- if extend1 != null
+        '#extend1#',
+      -- end
+      -- if extend2 != null
+        '#extend2#',
+      -- end
+      -- if extend3 != null
+        '#extend3#',
+      -- end
+    -- end
+-- [updateSerialnum]
+    UPDATE
+        sys_serialnum
+    -- trim prefix=SET suffixOverrides=,
+        -- if sncUuid != null
+          snc_uuid = '#sncUuid#',
+        -- end
+        -- if snDeptCode != null
+          sn_dept_code = '#snDeptCode#',
+        -- end
+        -- if seqId != null
+          seq_id = '#seqId#',
+        -- end
+        -- if seqYmd != null
+          seq_ymd = '#seqYmd#',
+        -- end
+        -- if sortNum != null
+          sort_num = '#sortNum#',
+        -- end
+        -- if comments != null
+          comments = '#comments#',
+        -- end
+        -- if isDeleted != null
+          is_deleted = '#isDeleted#',
+        -- end
+        -- if createdTime != null
+          created_time = '#createdTime#',
+        -- end
+        -- if createdUuid != null
+          created_uuid = '#createdUuid#',
+        -- end
+        -- if createdName != null
+          created_name = '#createdName#',
+        -- end
+        -- if updatedTime != null
+          updated_time = '#updatedTime#',
+        -- end
+        -- if updatedName != null
+          updated_name = '#updatedName#',
+        -- end
+        -- if orgUuid != null
+          org_uuid = '#orgUuid#',
+        -- end
+        -- if appSysUuid != null
+          app_sys_uuid = '#appSysUuid#',
+        -- end
+        -- if prodCatalogUuid != null
+          prod_catalog_uuid = '#prodCatalogUuid#',
+        -- end
+        -- if extend1 != null
+          extend1 = '#extend1#',
+        -- end
+        -- if extend2 != null
+          extend2 = '#extend2#',
+        -- end
+        -- if extend3 != null
+          extend3 = '#extend3#',
+        -- end
+    -- end
+    WHERE
+		sn_uuid='#snUuid#'

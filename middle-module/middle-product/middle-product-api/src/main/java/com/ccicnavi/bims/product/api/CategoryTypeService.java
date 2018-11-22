@@ -14,22 +14,45 @@ import java.util.List;
  */
 public interface CategoryTypeService {
 
-    /**查询全部产品类别的分类信息*/
-    List<CategoryTypeDO> listCategoryTypeDO();
+    /**
+     * @description 查询全部产品类别的分类信息
+     * @return List<CategoryTypeDO>
+     */
+    List<CategoryTypeDO> listCategoryTypeDO(CategoryTypeDO categoryTypeDO);
 
-    /**新增产品类别的分类信息*/
+    /**
+     * @description 新增产品类别的分类信息
+     * @param categoryTypeDO
+     * @return int
+     */
     int saveCategoryTypeDO(CategoryTypeDO categoryTypeDO);
 
-    /**删除产品类别的分类信息*/
+    /**
+     * @description 删除产品类别的分类信息
+     * @param categoryTypeDO
+     * @return int
+     */
     int removeCategoryTypeDO(CategoryTypeDO categoryTypeDO);
 
-    /**修改产品类别的分类信息*/
+    /**
+     * @description 修改产品类别的分类信息
+     * @param categoryTypeDO
+     * @return int
+     */
     int updateCategoryTypeDO(CategoryTypeDO categoryTypeDO);
 
-    /**根据主键获取产品类别的分类信息*/
+    /**
+     * @description 根据主键获取产品类别的分类信息
+     * @param categoryTypeDO
+     * @return CategoryTypeDO
+     */
     CategoryTypeDO getCategoryTypeDO(CategoryTypeDO categoryTypeDO);
 
-    /**分页查询产品类别的分类信息*/
+    /**
+     * @description 分页查询产品类别的分类信息
+     * @param pageParameter
+     * @return PageBean<CategoryTypeDO>
+     */
     PageBean<CategoryTypeDO> listCategoryTypePage(PageParameter<CategoryTypeDO> pageParameter);
 
 }

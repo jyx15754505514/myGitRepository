@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.product.test;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.Impl.CategoryTypeDaoImpl;
 import com.ccicnavi.bims.product.pojo.CategoryTypeDO;
 import org.junit.Test;
@@ -8,8 +10,8 @@ import java.util.List;
 
 /**
  * @program: bims-backend
- * @description: 该类的作用描述
- * @author: 本人姓名
+ * @description: 产品类别的分类信息测试
+ * @author: WangYingLing
  * @create: 2018-11-20 14:29
  */
 public class CategoryTypeTest {
@@ -61,9 +63,14 @@ public class CategoryTypeTest {
         System.out.println(categoryTypeDOResult);
     }
 
-//    @Test
-//    public void listCategoryTypePageDOTest(){
-//
-//    }
+    @Test
+    public void listCategoryTypePageDOTest(){
+        PageParameter<CategoryTypeDO> pageParameter=new PageParameter<>();
+        pageParameter.setStartIndex(5);
+        pageParameter.setPageRows(9);
+        pageParameter.setStartPage(1);
+        PageBean<CategoryTypeDO> pageBean=categoryTypeDaoTest.listCategoryTypePage(pageParameter);
+        System.out.println(pageBean);
+    }
 
 }

@@ -3,6 +3,7 @@
     person_uuid as personUuid,
       person_code as personCode,
       name as name,
+      user_uuid as userUuid，
       person_type as personType,
       former_name as formerName,
       gender as gender,
@@ -120,6 +121,8 @@
                 app_sys_uuid,
               -- iff businessLine != null and businessLine != ''
                 business_line,
+            -- iff userUuid != null
+                  user_uuid,
               -- iff extend1 != null and extend1 != ''
                 extend1,
               -- iff extend2 != null and extend2 != ''
@@ -200,6 +203,8 @@
               '#appSysUuid#',
              -- iff businessLine != null and businessLine != ''
               '#businessLine#',
+              -- iff userUuid != null
+                '#userUuid#',
              -- iff extend1 != null and extend1 != ''
               '#extend1#',
              -- iff extend2 != null and extend2 != ''
@@ -248,6 +253,8 @@
           app_sys_uuid = '#appSysUuid#',
         -- iff businessLine != null
           business_line = '#businessLine#',
+        -- iff userUuid != null
+          user_uuid = '#userUuid#',
         -- iff extend1 != null
           extend1 = '#extend1#',
         -- iff extend2 != null
@@ -283,6 +290,7 @@
 -- [getPerson]
   SELECT
      person_uuid as personUuid,
+     user_uuid as userUuid，
           person_code as personCode,
           name as name,
           person_type as personType,

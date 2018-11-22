@@ -8,11 +8,11 @@ SELECT
 from
     order_item_sub
 where
---iff itemUuid != null and itemUuid != ''
-     item_uuid = '#itemUuid#'
---iff itemName != null and itemName != ''
-     item_name like '#itemName:Like#'
---end
+     --iff itemUuid != null and itemUuid != ''
+          item_uuid = '#itemUuid#'
+     --iff itemName != null and itemName != ''
+          item_name like '#itemName:Like#'
+     --end
 
 -- [getOrderItemSub]
 SELECT

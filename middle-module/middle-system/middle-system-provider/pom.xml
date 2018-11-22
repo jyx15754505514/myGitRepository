@@ -107,6 +107,15 @@
             <version>3.8.1</version>
         </dependency>
 
+        <dependency>
+            <artifactId>zoo-shiba</artifactId>
+            <groupId>com.ccicnavi.bims</groupId>
+            <version>1.0</version>
+        </dependency>
+
+
+
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
