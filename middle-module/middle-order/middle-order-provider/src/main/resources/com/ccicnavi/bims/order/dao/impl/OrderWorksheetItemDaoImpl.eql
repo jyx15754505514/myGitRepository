@@ -1,0 +1,21 @@
+-- [insertOrderWorksheetItem]
+Insert into order_worksheet_item
+     -- trim prefix=( suffix=) suffixOverrides=,
+        --iff worksheetUuid != null and worksheetUuid != ''
+        worksheet_uuid,
+        --iff orderItemUuid != null and orderItemUuid != ''
+        order_item_uuid,
+
+	-- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff worksheetUuid != null and worksheetUuid != ''
+        '#worksheetUuid#',
+        --iff orderItemUuid != null and orderItemUuid != ''
+        '#orderItemUuid#',
+	-- end
+
+-- [deleteOrderWorksheetItem]
+DELETE FROM
+    order_worksheet_item
+WHERE
+    worksheet_uuid = '#worksheetUuid#'

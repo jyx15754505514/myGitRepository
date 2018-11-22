@@ -1,0 +1,90 @@
+-- [insertOrderWorksheetCost]
+insert into order_worksheet_cost
+     -- trim prefix=( suffix=) suffixOverrides=,
+        --iff worksheetCostUuid != null and worksheetCostUuid != ''
+            worksheet_cost_uuid,
+        --iff worksheetUuid != null and worksheetUuid != ''
+            worksheet_uuid,
+        --iff orderItemUuid != null and orderItemUuid != ''
+            order_item_uuid,
+        --iff costTypeId != null and costTypeId != ''
+            cost_type_id,
+        --iff costTypeName != null and costTypeName != ''
+            cost_type_name,
+        --iff costFee != null and costFee != ''
+            cost_fee,
+        --iff comments != null and comments != ''
+            comments,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff worksheetCostUuid != null and worksheetCostUuid != ''
+            '#worksheetCostUuid#',
+        --iff worksheetUuid != null and worksheetUuid != ''
+            '#worksheetUuid#',
+        --iff orderItemUuid != null and orderItemUuid != ''
+            '#orderItemUuid#',
+        --iff costTypeId != null and costTypeId != ''
+            '#costTypeId#',
+        --iff costTypeName != null and costTypeName != ''
+            '#costTypeName#',
+        --iff costFee != null and costFee != ''
+            '#costFee#',
+        --iff comments != null and comments != ''
+            '#comments#',
+    -- end
+
+-- [updateOrderWorksheetCost]
+update order_worksheet_cost
+    -- trim prefix= set suffixOverrides=,
+        --iff worksheetCostUuid != null and worksheetCostUuid != ''
+            worksheet_cost_uuid = '#worksheet_cost_uuid#',
+        --iff worksheetUuid != null and worksheetUuid != ''
+            worksheet_uuid = '#worksheet_uuid#',
+        --iff orderItemUuid != null and orderItemUuid != ''
+            order_item_uuid = '#order_item_uuid#',
+        --iff costTypeId != null and costTypeId != ''
+            cost_type_id = '#cost_type_id#',
+        --iff costTypeName != null and costTypeName != ''
+            cost_type_name = '#cost_type_name#',
+        --iff costFee != null and costFee != ''
+            cost_fee = '#cost_fee#',
+        --iff comments != null and comments != ''
+            comments = '#comments#',
+            -- end
+    where
+        worksheet_cost_uuid = '#worksheetCostUuid#'
+
+-- [getOrderWorksheetCost]
+select
+    worksheetCostUuid worksheet_cost_uuid,
+    worksheetUuid worksheet_uuid,
+    orderItemUuid order_item_uuid,
+    costTypeId cost_type_id,
+    costTypeName cost_type_name,
+    costFee cost_fee,
+    comments comments
+from
+    order_worksheet_cost
+--iff worksheetUuid != null and worksheetUuid !=''
+    where worksheet_uuid = '#worksheetUuid#'
+--end
+
+-- [listOrderWorksheetCost]
+select
+    worksheetCostUuid worksheet_cost_uuid,
+    worksheetUuid worksheet_uuid,
+    orderItemUuid order_item_uuid,
+    costTypeId cost_type_id,
+    costTypeName cost_type_name,
+    costFee cost_fee,
+    comments comments
+from
+    order_worksheet_cost
+
+
+-- [deleteOrderWorksheetCost]
+DELETE FROM
+        order_worksheet_cost
+    --iff worksheetUuid != null and worksheetUuid !=''
+        where worksheet_uuid = '#worksheetUuid#'
+    --end
