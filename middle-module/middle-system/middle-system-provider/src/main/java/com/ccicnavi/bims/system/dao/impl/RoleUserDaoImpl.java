@@ -32,7 +32,7 @@ public class RoleUserDaoImpl implements RoleUserDao {
     */
 
     @Override
-    public Integer insertRoleUser(UserDTO userDTO, EqlTran tran) {
+    public Integer insertRoleUsers(UserDTO userDTO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
         if(tran != null) {
             eql.useTran(tran);
@@ -75,7 +75,7 @@ public class RoleUserDaoImpl implements RoleUserDao {
     */
 
     @Override
-    public Integer deleteRoleUser(UserDTO userDTO, EqlTran tran) {
+    public Integer deleteRoleUsers(UserDTO userDTO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
         if (tran != null) {
             eql.useTran(tran);

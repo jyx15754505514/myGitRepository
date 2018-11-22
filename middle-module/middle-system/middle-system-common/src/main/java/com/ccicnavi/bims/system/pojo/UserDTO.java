@@ -140,4 +140,7 @@ public class UserDTO implements Serializable {
     /**角色主键*/
     private String roleUuid;
 
+    /**批量操作uuids*/
+    private List<String> uuids;
+
 }
