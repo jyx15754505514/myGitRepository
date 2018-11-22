@@ -13,14 +13,24 @@ import java.io.Serializable;
 @Setter
 @ToString
 public class OrderItemSubDO implements Serializable {
-
-    private String subItemUuid; //子项主键
-
-    private String itemUuid; //服务项主键
-
+    /**
+     * 主键
+     */
+    private String subItemUuid;
+    /**
+     * 服务项目id
+     */
+    private String itemUuid;
+    /**
+     * 服务项子项编号
+     */
     private String subItemNo;
-
+    /**
+     * 子项名称
+     */
     private String itemName;
-
+    /**
+     * 子项名称id
+     */
     private String productTestItemUuid; //产品主键
 }

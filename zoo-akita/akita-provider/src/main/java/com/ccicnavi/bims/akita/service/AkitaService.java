@@ -2,7 +2,6 @@ package com.ccicnavi.bims.akita.service;
 
 import com.ccicnavi.bims.akita.domain.ReturnCode;
 import com.ccicnavi.bims.akita.domain.ReturnMessageTest;
-import com.sun.javaws.jnl.MatcherReturnCode;
 
 /**
  * @Auther: husky
@@ -16,19 +15,19 @@ public interface AkitaService {
      * 测试文件上传
      *
      * */
-    public ReturnMessageTest FileUpload(FastDFSFile fastDFSFile);
+     ReturnMessageTest FileUpload(FastDFSFile fastDFSFile);
 
     /**
      * 测试上传缩略图
      */
-    public ReturnMessageTest Thumbnail(FastDFSFile fastDFSFile);
+     ReturnMessageTest Thumbnail(FastDFSFile fastDFSFile);
     /**
      * 测试文件下载
      */
-    public ReturnCode FileDownload(FastDFSFile fastDFSFile);
+     ReturnCode FileDownload(FastDFSFile fastDFSFile);
     /**
      * 测试文件删除
      */
-    public ReturnCode FileDelete(FastDFSFile fastDFSFile);
+     ReturnCode FileDelete(FastDFSFile fastDFSFile);
 
 }

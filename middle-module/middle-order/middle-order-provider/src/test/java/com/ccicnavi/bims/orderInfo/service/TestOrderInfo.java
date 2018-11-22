@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.orderInfo.service;
 
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.dao.OrderInfoDao;
 import com.ccicnavi.bims.order.dao.OrderInspectionDao;
@@ -197,5 +198,143 @@ public class TestOrderInfo {
        // return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
-
+/**
+ * 更新委托单
+ */
+    @Test
+    public void updateOrderInfo() {
+        EqlTran eqlTran = new Eql("DEFAULT").newTran();
+        OrderInspectionDaoImpl orderInspectionDaoImpl = new OrderInspectionDaoImpl();
+        OrderItemSubDaoImpl orderItemSubDaoImpl=new OrderItemSubDaoImpl();
+        OrderInfoDaoImpl orderInfoDao = new OrderInfoDaoImpl();
+        OrderItemDaoImpl orderItemDaoImpl = new OrderItemDaoImpl();
+        OrderSampleTypeDaoImpl orderSampleTypeDaoImpl =new OrderSampleTypeDaoImpl();
+        Integer shipment = null;
+        Integer orderItem = null;
+        Integer itemSub = null;
+        Integer orderInfo = null;
+        boolean result=true;
+        Integer orderSampleTypeResult =null;
+        //委托单
+        OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
+        orderInfoDTO.setOrderName("委托名称Q+1");
+        orderInfoDTO.setProdCatalogUuid("大宗线+1");
+        orderInfoDTO.setOrgUuid("CCIC"+1);
+        orderInfoDTO.setAppSysUuid("BIMS+1");
+        orderInfoDTO.setOrderUuid("181121222505");
+        orderInfoDTO.setShippingTypeId("111");
+        try {
+            //更新委托单运输信息
+            shipment = orderInspectionDaoImpl.updateOrderInspection(orderInfoDTO, eqlTran);
+            if(shipment!=1){
+                result=false;
+            }
+            OrderItemDTO item=new OrderItemDTO();
+            item.setOrderUuid(orderInfoDTO.getOrderUuid());
+            //逻辑删除数据库中存的最小服务项
+            Integer orderItemResult=orderItemDaoImpl.deleteOrderItem(item,eqlTran);
+            if(orderItemResult<0){
+                result=false;
+            }
+            //页面传过来的最小服务项
+            List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
+         //   System.out.println(orderItemDTO.size());
+            if(orderItemDTO!=null){
+                for (int i = 0; i < orderItemDTO.size(); i++) {
+                    if(orderItemDTO.get(i).getOrderItemUuid()!=null){
+                        orderItemDTO.get(i).setIsDeleted("N");
+                        //判断标识
+                        orderItemDTO.get(i).setFlag("1");
+                        //更新服务项信息
+                        orderItem =orderItemDaoImpl.updateOrderItem(orderItemDTO.get(i),eqlTran);
+                        if(orderItem!=1){
+                            result=false;
+                        }
+                        if(orderItemDTO.get(i).getOrderItemSubDO() != null){
+                            OrderItemSubDO orderItemSub =new OrderItemSubDO ();
+                            orderItemSub.setItemUuid(orderItemDTO.get(i).getOrderItemUuid());
+                            //物理删除服务子项信息
+                            Integer orderItemSubResult=orderItemSubDaoImpl.deleteOrderItemSub(orderItemSub,eqlTran);
+                            if(orderItemSubResult!=1){
+                                result=false;
+                            }
+                            List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
+                            for (int j = 0; j < orderItemSubDO.size(); j++) {
+                                String orderItemSubUuid = timeFormat.format(new Date());
+                                orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);
+                                //更新服务子项信息
+                                itemSub = orderItemSubDaoImpl.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
+                                if(itemSub!=1){
+                                    result=false;
+                                }
+                            }
+                        }
+                    }
+                    //新增操作(之前没有选择的最小服务项和最小颗粒度)
+                    if(orderItemDTO.get(i).getOrderItemUuid()==null){
+                        String orderItemUuid = timeFormat.format(new Date());
+                        orderItemDTO.get(i).setOrderItemUuid(orderItemUuid);//生成服务项主键
+                        orderItemDTO.get(i).setOrderItemNo("");//生成服务单编号
+                        //添加委托单服务项
+                        orderItem = orderItemDaoImpl.insertOrderItem(orderItemDTO.get(i),eqlTran);
+                        if(orderItem!=1){
+                            result=false;
+                        }
+                        if(orderItemDTO.get(i).getOrderItemSubDO() != null){
+                            List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
+                            for (int j = 0; j < orderItemSubDO.size(); j++) {
+                                String orderItemSubUuid = timeFormat.format(new Date());
+                                orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);//生成子项主键id
+                                orderItemSubDO.get(j).setItemUuid(orderItemUuid);//生成服务项id
+                                orderItemSubDO.get(j).setSubItemNo("");//生成子项编号
+                                //添加子项信息
+                                itemSub = orderItemSubDaoImpl.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
+                                if(itemSub!=1){
+                                    result=false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            //物理删除委托样品类型
+            OrderSampleTypeDO sampleType=new OrderSampleTypeDO ();
+            sampleType.setOrderUuid(orderInfoDTO.getOrderUuid());
+            orderSampleTypeResult=orderSampleTypeDaoImpl.deleteOrderSampleType(sampleType,eqlTran);
+            if(orderSampleTypeResult<0){
+                result=false;
+            }
+            //添加委托样品类型
+            List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
+            if(orderSampleTypeDO!=null){
+                for(OrderSampleTypeDO o :orderSampleTypeDO){
+                    OrderSampleTypeDO orderSampleType=new  OrderSampleTypeDO();
+                    String orderSplUuid = timeFormat.format(new Date());
+                    orderSampleType.setOrderSplUuid(orderSplUuid);
+                    orderSampleType.setOrderUuid(orderInfoDTO.getOrderUuid());
+                    orderSampleType.setSplPurposeType(o.getSplPurposeType());
+                    orderSampleType.setSplPurposeQty(o.getSplPurposeQty());
+                    orderSampleTypeResult= orderSampleTypeDaoImpl.insertOrderSampleType(orderSampleType,eqlTran);
+                    if(orderSampleTypeResult!=1){
+                        result=false;
+                    }
+                }
+            }
+            //更新委托单详情*/
+            orderInfo = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
+            if(orderInfo!=1){
+                result=false;
+            }
+            if(result){
+                eqlTran.commit();
+               // return ResultT.success();
+            }
+        } catch (Exception e) {
+          //  log.error("修改失败",e);
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
+        }
+      //  return ResultT.failure(ResultCode.UPDATE_FAILURE);
+    }
 }

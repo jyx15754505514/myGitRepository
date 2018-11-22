@@ -58,7 +58,9 @@ update order_item_cost
                 apply_user_uuid = '#applyUserUuid#',
          --iff applyDate != null and applyDate != ''
                 apply_date = '#applyDate#'
-        where item_cost_uuid = '#orderItemUuid#'
+    -- end
+where
+    item_cost_uuid = '#orderItemUuid#'
 
 -- [listOrderItemCost]
 select

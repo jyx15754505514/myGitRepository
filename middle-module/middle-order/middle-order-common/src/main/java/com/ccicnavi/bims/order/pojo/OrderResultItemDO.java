@@ -15,11 +15,20 @@ import java.io.Serializable;
 @Setter
 @ToString
 public class OrderResultItemDO  implements Serializable {
+    /**
+     * 主键
+     */
     private String resultItemUuid;
-
+    /**
+     * 结果报告ID
+     */
     private String resultUuid;
-
+    /**
+     * 委托单ID
+     */
     private String orderUuid;
-
+    /**
+     * 委托服务项ID
+     */
     private String orderItemUuid;
 }
