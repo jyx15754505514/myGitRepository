@@ -20,7 +20,9 @@ import java.util.List;
 @ToString
 public class UserDTO implements Serializable {
 
-    private List<RoleDO> roleList;
+    private List<RoleDO> roleDOList;
+
+    private List<RoleUserDO> roleUserDOList;
 
     private List<MenuDTO> menuList;
 
@@ -90,5 +92,10 @@ public class UserDTO implements Serializable {
 
     private String extend3;
 
+    private String roleUuid;
+
+    private List<UserDO> authUserList;//授权用户集合
+
+    private List<UserDO> unauthUserList;//未授权用户集合
 
 }

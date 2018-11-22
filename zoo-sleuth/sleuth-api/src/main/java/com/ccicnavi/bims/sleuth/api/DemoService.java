@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.order.api;
+package com.ccicnavi.bims.sleuth.api;
 
 public interface DemoService {
 

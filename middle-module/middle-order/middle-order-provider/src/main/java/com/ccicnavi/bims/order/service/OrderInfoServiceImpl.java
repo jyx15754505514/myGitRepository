@@ -117,7 +117,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                 result=false;
             }
             List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
-            if(orderItemDTO.size() > 0){
+            if(orderItemDTO!=null){
                 for (int i = 0; i < orderItemDTO.size(); i++) {
                     String orderItemUuid = idWorkerService.getId(new Date());
                     orderItemDTO.get(i).setOrderItemUuid(orderItemUuid);//生成服务项主键
@@ -133,8 +133,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                             String orderItemSubUuid = idWorkerService.getId(new Date());
                             orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);//生成子项主键id
                             orderItemSubDO.get(j).setItemUuid(orderItemUuid);//生成服务项id
-
-                            orderItemSubDO.get(j).setSubItemNo("");//生成子项编号
                             //添加子项信息
                             itemSub = orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
                             if(itemSub!=1){
@@ -146,7 +144,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             }
             //添加委托样品类型
             List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
-            if(orderSampleTypeDO.size()>0){
+            if(orderSampleTypeDO!=null){
                 for(OrderSampleTypeDO o :orderSampleTypeDO){
                     OrderSampleTypeDO orderSampleType=new  OrderSampleTypeDO();
                     String orderSplUuid = idWorkerService.getId(new Date());
@@ -203,12 +201,12 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             item.setOrderUuid(orderInfoDTO.getOrderUuid());
             //逻辑删除数据库中存的最小服务项
             Integer orderItemResult=orderItemDao.deleteOrderItem(item,eqlTran);
-            if(orderItemResult!=1){
+            if(orderItemResult<0){
                 result=false;
             }
             //页面传过来的最小服务项
             List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
-            if(orderItemDTO.size() > 0){
+            if(orderItemDTO!=null){
                 for (int i = 0; i < orderItemDTO.size(); i++) {
                     if(orderItemDTO.get(i).getOrderItemUuid()!=null){
                         orderItemDTO.get(i).setIsDeleted("N");
@@ -224,7 +222,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                             orderItemSub.setItemUuid(orderItemDTO.get(i).getOrderItemUuid());
                             //物理删除服务子项信息
                             Integer orderItemSubResult=orderItemSubDao.deleteOrderItemSub(orderItemSub,eqlTran);
-                            if(orderItemSubResult!=1){
+                            if(orderItemSubResult<0){
                                 result=false;
                             }
                             List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
@@ -243,7 +241,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                     if(orderItemDTO.get(i).getOrderItemUuid()==null){
                         String orderItemUuid = idWorkerService.getId(new Date());
                         orderItemDTO.get(i).setOrderItemUuid(orderItemUuid);//生成服务项主键
-                        orderItemDTO.get(i).setOrderItemNo("");//生成服务单编号
                         //添加委托单服务项
                         orderItem = orderItemDao.insertOrderItem(orderItemDTO.get(i),eqlTran);
                         if(orderItem!=1){
@@ -255,7 +252,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                                 String orderItemSubUuid = idWorkerService.getId(new Date());
                                 orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);//生成子项主键id
                                 orderItemSubDO.get(j).setItemUuid(orderItemUuid);//生成服务项id
-                                orderItemSubDO.get(j).setSubItemNo("");//生成子项编号
                                 //添加子项信息
                                 itemSub = orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
                                 if(itemSub!=1){
@@ -270,12 +266,12 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             OrderSampleTypeDO sampleType=new OrderSampleTypeDO ();
             sampleType.setOrderUuid(orderInfoDTO.getOrderUuid());
             orderSampleTypeResult=orderSampleTypeDao.deleteOrderSampleType(sampleType,eqlTran);
-            if(orderSampleTypeResult!=1){
+            if(orderSampleTypeResult<0){
                 result=false;
             }
             //添加委托样品类型
             List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
-            if(orderSampleTypeDO.size()>0){
+            if(orderSampleTypeDO!=null){
                 for(OrderSampleTypeDO o :orderSampleTypeDO){
                     OrderSampleTypeDO orderSampleType=new  OrderSampleTypeDO();
                     String orderSplUuid = idWorkerService.getId(new Date());
@@ -306,7 +302,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             }
             return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
-
     /**
      * 功能描述: 根据委托单主键回显委托单相应信息
      * @param: orderInfoDO

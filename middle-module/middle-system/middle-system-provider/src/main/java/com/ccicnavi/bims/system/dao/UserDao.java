@@ -3,7 +3,10 @@ package com.ccicnavi.bims.system.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import org.n3r.eql.EqlTran;
+
+import java.util.List;
 
 /**
  * @program: bims-backend
@@ -57,4 +60,23 @@ public interface UserDao {
     *@date: 2018/11/15
     */
     public  UserDO getUser(UserDO UserDO);
+    /**
+     *@Description: 查询授权用户
+     *@Param: userDTO
+     *@return:  List<UserDO>
+     *@Author: zqq
+     *@date: 2018/11/22
+     */
+
+    public List<UserDO> listauthUserList(UserDTO userDTO);
+
+    /**
+     *@Description: 查询未授权用户
+     *@Param: userDTO
+     *@return: List<UserDO>
+     *@Author: zqq
+     *@date: 2018/11/22
+     */
+
+    public List<UserDO> selectunauthUserList(UserDTO userDTO);
 }

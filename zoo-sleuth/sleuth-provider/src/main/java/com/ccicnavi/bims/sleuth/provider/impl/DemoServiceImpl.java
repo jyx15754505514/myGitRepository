@@ -1,10 +1,11 @@
-package com.ccicnavi.bims.order.dao.impl;
+package com.ccicnavi.bims.sleuth.provider.impl;
 
 import java.util.Date;
 
-import com.ccicnavi.bims.order.api.DemoService;
+import com.ccicnavi.bims.sleuth.api.DemoService;
 
 import com.alibaba.dubbo.config.annotation.Service;
+
 
 @Service(version = "1.0.0")
 public class DemoServiceImpl implements DemoService {

@@ -2,10 +2,9 @@ package com.ccicnavi.bims.order.dao;
 
 import com.ccicnavi.bims.order.pojo.OrderSampleTypeDO;
 import org.n3r.eql.EqlTran;
-
 import java.util.List;
 
-/* *
+/**
  * @Author heibin
  * @Description 委托样品类型
  * @Date 20:27 2018/11/21

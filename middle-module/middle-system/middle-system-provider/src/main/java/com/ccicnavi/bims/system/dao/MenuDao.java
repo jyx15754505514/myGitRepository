@@ -25,12 +25,12 @@ public interface MenuDao {
     Integer deleteMenu(MenuDO menuDO) throws Exception;
 
     /**
-    * 根据角色查询所有的菜单
-    * @Author zhaotao
-    * @Date  2018/11/19 11:24
-    * @Param [userDO]
-    * @return java.util.List<java.lang.String>
-    **/
+     * 根据角色查询所有的菜单
+     * @Author zhaotao
+     * @Date  2018/11/19 11:24
+     * @Param [userDO]
+     * @return java.util.List<java.lang.String>
+     **/
     List<MenuDO> listMenuByUser(UserDO userDO) throws Exception;
     /**
      *@Description: 根据角色id查询菜单
@@ -45,20 +45,29 @@ public interface MenuDao {
     List<MenuDTO> listMenuByProdCatalogUuid(MenuDTO menuDTO);
 
     /*
-    * 根据产品线或角色查询所有拥有按钮的菜单
-    * @Author zhaotao
-    * @Date  2018/11/21 21:07
-    * @Param [MenuDTO]
-    * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuDTO>
-    **/
+     * 根据产品线或角色查询所有拥有按钮的菜单
+     * @Author zhaotao
+     * @Date  2018/11/21 21:07
+     * @Param [MenuDTO]
+     * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuDTO>
+     **/
     List<MenuDTO> listMenuButton(MenuDTO menuDTO);
 
     /*
-    * 排序查询菜单
-    * @Author zhaotao
-    * @Date  2018/11/21 21:23
-    * @Param [menuDTO]
-    * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuDO>
-    **/
-    List<MenuDO> listMenuWithSort(MenuDTO menuDTO);
+     * 排序查询菜单
+     * @Author zhaotao
+     * @Date  2018/11/21 21:23
+     * @Param [menuDTO]
+     * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuDO>
+     **/
+    List<MenuDTO> listMenuWithSort(MenuDTO menuDTO);
+    /**
+     *@Description: 根据父节点查询菜单
+     *@Param: menuDTO
+     *@return: List<MenuDTO>
+     *@Author: zqq
+     *@date: 2018/11/22
+     */
+
+    List<MenuDTO> listMenuByParent(MenuDTO menuDTO);
 }
