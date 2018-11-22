@@ -14,7 +14,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class OrderItemCostDo implements Serializable {
+public class OrderItemCostDO implements Serializable {
     /**
      * 主键
      */

@@ -1,8 +1,7 @@
 package com.ccicnavi.bims.order.dao;
 
-import com.ccicnavi.bims.order.pojo.OrderItemCostDo;
+import com.ccicnavi.bims.order.pojo.OrderItemCostDO;
 import org.n3r.eql.EqlTran;
-
 /**
  * @Author songyateng
  * @Description 成本单服务项Dao
@@ -16,7 +15,7 @@ public interface OrderItemCostDao {
      * @Param [orderItemCostDo, tran]
      * @Return java.lang.Integer
      */
-    Integer insertOrderItemCost(OrderItemCostDo orderItemCostDo, EqlTran tran) throws Exception;
+    Integer insertOrderItemCost(OrderItemCostDO orderItemCostDO, EqlTran tran) throws Exception;
     /**
      * @Author songyateng
      * @Description 修改成本单
@@ -24,5 +23,5 @@ public interface OrderItemCostDao {
      * @Param [orderItemCostDo, tran]
      * @Return java.lang.Integer
      */
-    Integer updateOrderItemCost(OrderItemCostDo orderItemCostDo, EqlTran tran) throws Exception;
+    Integer updateOrderItemCost(OrderItemCostDO orderItemCostDO, EqlTran tran) throws Exception;
 }

@@ -83,14 +83,7 @@ public class RoleUserDaoImpl implements RoleUserDao {
         return new Eql("DEFAULT").delete("deleteRoleUser").params(userDTO).returnType(Integer.class).execute();
     }
 
-    @Override
-    public Integer deleteRoleUser(RoleUserDTO roleUserDTO, EqlTran tran) {
-        Eql eql = new Eql("DEFAULT");
-        if (tran != null) {
-            eql.useTran(tran);
-        }
-        return new Eql("DEFAULT").delete("deleteRoleUser").params(roleUserDTO).returnType(Integer.class).execute();
-    }
+
 
     /**
     *@Description: 查询用户角色

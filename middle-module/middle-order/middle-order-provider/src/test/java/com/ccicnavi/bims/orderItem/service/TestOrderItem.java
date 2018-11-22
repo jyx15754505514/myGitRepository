@@ -2,7 +2,7 @@ package com.ccicnavi.bims.orderItem.service;
 
 import com.ccicnavi.bims.order.dao.impl.OrderItemCostDaoImpl;
 import com.ccicnavi.bims.order.dao.impl.OrderItemDaoImpl;
-import com.ccicnavi.bims.order.pojo.OrderItemCostDo;
+import com.ccicnavi.bims.order.pojo.OrderItemCostDO;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -63,9 +63,9 @@ public class TestOrderItem {
         OrderItemDaoImpl orderItemDaoImpl = new OrderItemDaoImpl();
         OrderItemCostDaoImpl orderItemCostDaoImpl = new OrderItemCostDaoImpl();
         OrderItemDTO orderItemDTO = new OrderItemDTO();
-        OrderItemCostDo orderItemCostDo = new OrderItemCostDo();
-        OrderItemCostDo orderItemCostDoSecond = new OrderItemCostDo();
-        List<OrderItemCostDo> arr = new ArrayList<>();
+        OrderItemCostDO orderItemCostDO = new OrderItemCostDO();
+        OrderItemCostDO orderItemCostDOSecond = new OrderItemCostDO();
+        List<OrderItemCostDO> arr = new ArrayList<>();
         Integer itemCost = null;
         try {
             eqlTran.start();
@@ -77,17 +77,17 @@ public class TestOrderItem {
             orderItemDTO.setIsSubpkgMgr("Y");
             Integer orderItem = orderItemDaoImpl.updateOrderItem(orderItemDTO, eqlTran);
             System.out.println("item！"+orderItem);
-            orderItemCostDo.setItemCostUuid("costUuid");
-            orderItemCostDo.setCostFee(12000);
-            orderItemCostDoSecond.setItemCostUuid("costUuidSecond");
-            orderItemCostDoSecond.setCostFee(12000);
-            arr.add(orderItemCostDo);
-            arr.add(orderItemCostDoSecond);
-            orderItemDTO.setOrderItemCostDo(arr);
-            if (orderItemDTO.getOrderItemCostDo().size() > 0) {
-                List<OrderItemCostDo> orderItemCostDoThree = orderItemDTO.getOrderItemCostDo();
-                for (int i = 0;i < orderItemCostDoThree.size();i++) {
-                    itemCost = orderItemCostDaoImpl.updateOrderItemCost(orderItemCostDoThree.get(i), eqlTran);
+            orderItemCostDO.setItemCostUuid("costUuid");
+            orderItemCostDO.setCostFee(12000);
+            orderItemCostDOSecond.setItemCostUuid("costUuidSecond");
+            orderItemCostDOSecond.setCostFee(12000);
+            arr.add(orderItemCostDO);
+            arr.add(orderItemCostDOSecond);
+            orderItemDTO.setOrderItemCostDO(arr);
+            if (orderItemDTO.getOrderItemCostDO().size() > 0) {
+                List<OrderItemCostDO> orderItemCostDOThree = orderItemDTO.getOrderItemCostDO();
+                for (int i = 0;i < orderItemCostDOThree.size();i++) {
+                    itemCost = orderItemCostDaoImpl.updateOrderItemCost(orderItemCostDOThree.get(i), eqlTran);
                 }
             }
             System.out.println("cost!"+itemCost);
