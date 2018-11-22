@@ -7,6 +7,8 @@ import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @program: bims-backend
  * @description: 角色按钮dao实现类
@@ -15,6 +17,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RolePermissionDaoImpl  implements RolePermissionDao {
+    @Override
+    public List<RolePermissionDTO> selectRolePermission(RolePermissionDTO rolePermissionDTO) {
+        return new Eql().select("selectRolePermission").params(rolePermissionDTO).returnType(RolePermissionDTO.class).execute();
+    }
+
     @Override
     public Integer insertRolePermission(RolePermissionDO rolePermissionDO, EqlTran tran) {
         Eql eql = new Eql();

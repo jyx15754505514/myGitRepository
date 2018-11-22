@@ -1,4 +1,4 @@
--- 根据角色查询
+-- 根据按钮查询
 -- [selectRolePermission]
     select
        role_uuid,
@@ -6,8 +6,13 @@
        app_sys_uuid,
        prod_catalog_uuid
 from sys_role_permission
+
+ --iff butUuid != null and butUuid != ''
+   where btn_uuid = '#butUuid#'
+  --end
  --iff roleUuid != null and roleUuid != ''
-  where role_uuid = '#roleUuid#'
+  and role_uuid = '#roleUuid#'
+  --end
 
 -- 新增角色按钮
 -- [insertRolePermission]
@@ -35,10 +40,12 @@ from sys_role_permission
 
 -- 删除角色按钮
 -- [deleteRolePermission]
-        -- if deleteButUuid != null
+
     delete from sys_role_permission
-    where        btn_uuid in
-                -- for item=item index=index collection=deleteButUuid open=( separator=, close=)
-                	'#item#'
-                -- end
-        -- end
+    where
+     --iff butUuid != null and butUuid != ''
+       btn_uuid = '#butUuid#'
+     --end
+     --iff roleUuid != null and roleUuid != ''
+      and role_uuid = '#roleUuid#'
+     --end
