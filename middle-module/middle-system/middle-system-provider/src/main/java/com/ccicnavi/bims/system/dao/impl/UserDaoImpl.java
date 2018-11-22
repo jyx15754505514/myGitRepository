@@ -59,6 +59,24 @@ public class UserDaoImpl implements UserDao {
         return eql.delete("insertUser").params(userDTO).returnType(Integer.class).execute();
     }
 
+
+    /**
+    *@Description: 保存登录用户信息
+    *@Param: [personDTO, tran]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/21
+    */
+    @Override
+    public Integer saveUser(UserDTO userDTO, EqlTran tran) {
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertUser").params(userDTO).returnType(Integer.class).execute();
+    }
+
+
     /**
     *@Description: 更新登录用户信息
     *@Param: [UserDO]
@@ -113,4 +131,19 @@ public class UserDaoImpl implements UserDao {
         return new Eql().select("selectunauthUserList").params(userDTO).returnType(UserDO.class).execute();
 
     }
+
+
+    /**
+    *@Description: 更改启用禁用状态
+    *@Param: [userDO, tran]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/22
+    */
+    @Override
+    public Integer updateIsEnabled(UserDTO userDTO) {
+        return new Eql("DEFAULT").update("updateIsEnabled").params(userDTO).returnType(Integer.class).execute();
+    }
+
+
 }

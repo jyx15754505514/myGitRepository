@@ -33,15 +33,14 @@ public class RoleUserServiceImpl implements RoleUserService {
     *@Author: zqq
     *@date: 2018/11/22
     */
-
     @Override
     public Integer insertRoleUser(RoleUserDTO roleUserDTO) {
         EqlTran tran = EqlUtils.getInstance("DEFAULT").newTran();
-        Integer deletenum =0;
+        Integer deletenum = 0;
         Integer savenum = 0;
         try {
             if(!StringUtils.isEmpty(roleUserDTO.getDeleteUserUuid())){
-                deletenum = roleUserDao.deleteRoleUser(roleUserDTO,tran);
+                deletenum = roleUserDao.deleteRoleUser(roleUserDTO, tran);
             }else{
                 deletenum =1;
             }
@@ -52,7 +51,7 @@ public class RoleUserServiceImpl implements RoleUserService {
                     roleUserDO.setRoleUuid(roleUserDTO.getRoleUuid());
                     roleUserDO.setUserUuid(useruuid);
                     roleUserDO.setOrgUuid(roleUserDTO.getOrgUuid());
-                    savenum = roleUserDao.insertRoleUser(roleUserDO,tran);
+                    savenum = roleUserDao.insertRoleUser(roleUserDO, tran);
                 }
             }else{
                 savenum=1;
