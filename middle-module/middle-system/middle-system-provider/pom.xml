@@ -114,6 +114,11 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.ccicnavi.bims</groupId>
+            <artifactId>entrance-common</artifactId>
+            <version>1.0</version>
+        </dependency>
 
 
 

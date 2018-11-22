@@ -44,6 +44,8 @@ public class RoleDTO implements Serializable {
 
     private String orgUuid;
 
+    private String orgName;
+
     private String appSysUuid;
 
     private String businessLine;

@@ -36,7 +36,7 @@ public class DepartmentDO implements Serializable {
 
     private String manager;
 
-    private String business;
+    private String isBusiness;
 
     private String isEnabled;
 
@@ -52,6 +52,8 @@ public class DepartmentDO implements Serializable {
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
 
     private String orgUuid;
@@ -65,10 +67,5 @@ public class DepartmentDO implements Serializable {
     private String extend2;
 
     private String extend3;
-
-    private List<String> uuids;
-
-
-
 
 }

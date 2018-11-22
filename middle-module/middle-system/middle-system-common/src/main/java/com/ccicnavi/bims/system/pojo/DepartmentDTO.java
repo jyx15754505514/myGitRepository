@@ -1,12 +1,30 @@
-package com.ccicnavi.bims.sso.common.pojo;
+package com.ccicnavi.bims.system.pojo;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Data
-public class Department {
+/**
+ *@program: bims-backend
+ *@description: 部门信息表的DTO实体
+ *@author: zhangxingbiao
+ *@create: 2018-11-15 14:45
+ */
+@Getter
+@Setter
+@ToString
+public class DepartmentDTO implements Serializable {
+
+    private List<String> uuids;                 //部门主键集合
+
+    private Long levels;                        //所在级别
+
+    private List<DepartmentDTO> deptChildList; //子集
+
     private String deptUuid;
 
     private String deptCode;
@@ -25,7 +43,7 @@ public class Department {
 
     private String manager;
 
-    private String business;
+    private String isBusiness;
 
     private String isEnabled;
 
@@ -41,6 +59,8 @@ public class Department {
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
 
     private String orgUuid;
@@ -54,7 +74,5 @@ public class Department {
     private String extend2;
 
     private String extend3;
-
-    private List<String> uuids;
 
 }

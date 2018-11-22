@@ -20,6 +20,12 @@ import java.util.List;
 @ToString
 public class UserDTO implements Serializable {
 
+    /**添加角色的主键集合*/
+    private List<String> addRoleList;
+
+    /**删除角色的主键集合*/
+    private List<String> deleteRoleList;
+
     /**已授权用户集合*/
     private List<UserDO> authUserList;
 

@@ -78,4 +78,22 @@ public interface UserDao {
      *@date: 2018/11/22
      */
     public List<UserDO> selectunauthUserList(UserDTO userDTO);
+
+    /**
+     *@Description: 保存登录用户信息
+     *@Param: [personDTO, tran]
+     *@return: java.lang.Integer
+     *@Author: zhangxingbiao
+     *@date: 2018/11/21
+     */
+    public Integer saveUser(UserDTO userDTO, EqlTran tran);
+
+    /**
+     *@Description: 更改启用禁用状态
+     *@Param: [userDO, tran]
+     *@return: java.lang.Integer
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    public Integer updateIsEnabled(UserDTO userDTO);
 }

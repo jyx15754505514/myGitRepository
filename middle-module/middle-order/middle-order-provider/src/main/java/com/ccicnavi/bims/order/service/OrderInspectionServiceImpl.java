@@ -28,13 +28,16 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
     @Override
     public Integer insertOrderInspection(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
-        Integer integer = null;
+        Integer inspection = null;
         try {
-            integer = orderInspectionDao.insertOrderInspection(orderInfoDTO, eqlTran);
+            inspection = orderInspectionDao.insertOrderInspection(orderInfoDTO, eqlTran);
+            if(inspection > 0){
+                return  inspection;
+            }
         } catch (Exception e) {
             log.error("添加委托单运输方式失败",e);
         }
-        return integer;
+        return -1;
     }
 
     /**
@@ -47,12 +50,15 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
     @Override
     public Integer updateOrderInspection(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
-        Integer integer = null;
+        Integer inspection = null;
         try {
-            integer = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
+            inspection = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
+            if (inspection > 0) {
+                return inspection;
+            }
         } catch (Exception e) {
             log.error("更新委托单运输方式失败",e);
         }
-        return integer;
+        return -1;
     }
 }
