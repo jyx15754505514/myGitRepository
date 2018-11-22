@@ -9,6 +9,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.impl.DepartmentDaoImpl;
 import com.ccicnavi.bims.system.dao.impl.SettingDaoImpl;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.pojo.UserDeptDO;
 import com.ccicnavi.bims.system.service.api.DepartmentService;
 import com.ccicnavi.bims.system.dao.DepartmentDao;
@@ -128,10 +129,10 @@ import java.util.List;
      *@date: 2018/11/19
      */
      @Override
-     public List<DepartmentDO> listDeptByUser(UserDO userDO){
+     public List<DepartmentDO> listDeptByUser(UserDTO userDTO){
          List<DepartmentDO> deptList = null;
          try {
-             deptList = departmentDao.listDeptByUser(userDO);
+             deptList = departmentDao.listDeptByUser(userDTO);
              return deptList;
          } catch (Exception e) {
              log.error("查询用户部门UUID失败",e);
