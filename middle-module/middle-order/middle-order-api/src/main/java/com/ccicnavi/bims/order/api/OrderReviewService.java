@@ -14,7 +14,7 @@ public interface OrderReviewService {
 
     PageBean<OrderReviewDO> testPage(PageParameter<OrderReviewDO> pageParameter);
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 新增评审
      * @Date 22:06 2018/11/21
@@ -23,7 +23,7 @@ public interface OrderReviewService {
      */
     Integer insertOrderReview(OrderReviewDO orderReviewDO);
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 通过
      * @Date 22:06 2018/11/21
@@ -32,7 +32,7 @@ public interface OrderReviewService {
      */
     ResultT passOrderReview(OrderReviewDO orderReviewDO, OrderInfoDTO orderInfoDTO);
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 驳回
      * @Date 22:10 2018/11/21
