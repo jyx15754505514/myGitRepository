@@ -40,6 +40,15 @@ public class RoleUserDaoImpl implements RoleUserDao {
         return new Eql("DEFAULT").insert("insertRoleUser").params(userDTO).returnType(Integer.class).execute();
     }
 
+    @Override
+    public Integer insertRoleUser(RoleUserDO roleUserDO, EqlTran tran) {
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null) {
+            eql.useTran(tran);
+        }
+        return new Eql("DEFAULT").insert("insertRoleUser").params(roleUserDO).returnType(Integer.class).execute();
+    }
+
     /**
     *@Description: 更新用户角色信息
     *@Param: [userDTO, tran]
@@ -72,6 +81,15 @@ public class RoleUserDaoImpl implements RoleUserDao {
             eql.useTran(tran);
         }
         return new Eql("DEFAULT").delete("deleteRoleUser").params(userDTO).returnType(Integer.class).execute();
+    }
+
+    @Override
+    public Integer deleteRoleUser(RoleUserDTO roleUserDTO, EqlTran tran) {
+        Eql eql = new Eql("DEFAULT");
+        if (tran != null) {
+            eql.useTran(tran);
+        }
+        return new Eql("DEFAULT").delete("deleteRoleUser").params(roleUserDTO).returnType(Integer.class).execute();
     }
 
     /**

@@ -56,4 +56,14 @@ public interface UserService {
      *@date: 2018/11/22
      */
     public UserDTO selectByRoleUser(UserDTO userDTO);
+
+
+    /**
+     *@Description: 更改启用禁用状态
+     *@Param: [userDO]
+     *@return: java.lang.Integer
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    Integer updateIsEnabled(UserDTO userDTO);
 }

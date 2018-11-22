@@ -6,6 +6,7 @@ import com.ccicnavi.bims.system.dao.RoleDao;
 import com.ccicnavi.bims.system.pojo.*;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -69,4 +70,6 @@ public class RoleDaoImpl implements RoleDao {
             return roleDOList;
         }
     }
+
+
 }

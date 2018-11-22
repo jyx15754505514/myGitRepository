@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Integer saveUser(UserDTO userDTO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
-        if(tran !=null){
+        if(tran != null){
             eql.useTran(tran);
         }
         return eql.insert("insertUser").params(userDTO).returnType(Integer.class).execute();
@@ -132,21 +132,6 @@ public class UserDaoImpl implements UserDao {
 
     }
 
-    /**
-    *@Description: 更新用户信息
-    *@Param: [userDTO, tran]
-    *@return: java.lang.Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/21
-    */
-    @Override
-    public Integer updateUser(UserDTO userDTO, EqlTran tran){
-        Eql eql = new Eql("DEFAULT");
-        if(tran != null) {
-            eql.useTran(tran);
-        }
-        return eql.update("updateUser").params(userDTO).returnType(Integer.class).execute();
-    }
 
     /**
     *@Description: 更改启用禁用状态
@@ -156,8 +141,7 @@ public class UserDaoImpl implements UserDao {
     *@date: 2018/11/22
     */
     @Override
-    public Integer updateIsEnabled(UserDTO.UserDTO userDTO) {
-
+    public Integer updateIsEnabled(UserDTO userDTO) {
         return new Eql("DEFAULT").update("updateIsEnabled").params(userDTO).returnType(Integer.class).execute();
     }
 

@@ -9,32 +9,12 @@
   where role_uuid = '#roleUuid#'
 --end
 
---新增角色用户
--- [insertRoleUser]
-    INSERT INTO sys_role_user
-    -- trim prefix=( suffix=) suffixOverrides=,
-        --iff roleUuid != null and roleUuid != ''
-          role_uuid,
-        --iff userUuid != null and userUuid != ''
-          user_uuid,
-        --iff orgUuid != null and orgUuid != ''
-          org_uuid,
-    --end
-    --trim prefix= values( suffix=) suffixOverrides=,
-        --iff roleUuid != null and roleUuid !=''
-          '#roleUuid#',
-        --iff userUuid != null and userUuid !=''
-          '#userUuid#',
-        --iff orgUuid != null and orgUuid !=''
-          '#orgUuid#',
-    --end
-
 -- 删除角色用户
 -- [deleteRoleUser]
    delete from sys_role_user
    where
     -- if deleteUserUuid != null
-               user_uuid in
+            user_uuid in
                    -- for item=item index=index collection=deleteUserUuid open=( separator=, close=)
                    	'#item#'
                    -- end
