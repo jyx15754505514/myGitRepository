@@ -80,7 +80,11 @@
             <version>1.0</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>zoo-sso</groupId>
+            <artifactId>sso-api</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
