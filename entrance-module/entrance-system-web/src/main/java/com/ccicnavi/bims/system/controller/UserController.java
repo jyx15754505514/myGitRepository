@@ -13,7 +13,7 @@ import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +39,7 @@ public class UserController {
     private UserManager userManager;
 
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
-    IdWorkerService idWorkerService;
+    private IdWorkerService idWorkerService;
 
     /**
     *@Description: 查询登录用户信息(条件查询)
@@ -180,7 +180,7 @@ public class UserController {
             if (StringUtils.isEmpty(userDTO.getUserUuid())) {
                 String userUuid = idWorkerService.getId(new Date());
                 userDTO.setUserUuid(userUuid);
-                integer = userService.saveUser(userDTO);
+                integer = userService.insertUser(userDTO);
             } else {
                 integer = userService.updateUser(userDTO);
             }
@@ -200,7 +200,6 @@ public class UserController {
     *@Author: zhangxingbiao
     *@date: 2018/11/22
     */
-
     @RequestMapping(value = "/updateIsEnabled", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT updateIsEnabled(@RequestBody UserDTO userDTO) {
         Integer integer = null;
