@@ -10,8 +10,20 @@ import org.n3r.eql.EqlTran;
  */
 public interface OrderReviewDao {
 
-    /**新增委托单评审信息*/
+    /**
+     * @Author fandongsheng
+     * @Description 新增委托单评审信息
+     * @Date 2018/11/20 10:36
+     * @Param [orderReviewDO, tran]
+     * @Return java.lang.Integer
+     */
     Integer insertOrderReview(OrderReviewDO orderReviewDO, EqlTran tran) throws Exception;
-    /**更新委托单评审信息*/
+    /**
+     * @Author fandongsheng
+     * @Description 更新委托单评审信息
+     * @Date 2018/11/20 10:36
+     * @Param [orderReviewDO, tran]
+     * @Return java.lang.Integer
+     */
     Integer updateOrderReview(OrderReviewDO orderReviewDO, EqlTran tran) throws Exception;
 }
