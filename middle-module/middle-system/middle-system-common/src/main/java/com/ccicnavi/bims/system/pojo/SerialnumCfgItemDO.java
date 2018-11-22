@@ -13,13 +13,13 @@ import lombok.ToString;
 @Setter
 @ToString
 public class SerialnumCfgItemDO {
-    private String sncdUuid;
+    private String sncdUuid;//项uuid
 
-    private String sncUuid;
+    private String sncUuid;//规则uuid
 
-    private String sncdType;
+    private String sncdType;//规则项类型，DATE,TEXT,SYS,OLD,N
 
-    private String sncdValue;
+    private String sncdValue;//规则项值
 
-    private Integer sncdOrderNum;
+    private Integer sncdOrderNum;//排序序号
 }

@@ -15,19 +15,19 @@ import java.util.List;
 @Setter
 @ToString
 public class SerialnumCfgDTO {
-    private String sncUuid;
+    private String sncUuid;//规则uuid
 
-    private String sncName;
+    private String sncName;//规则名称
 
-    private String sncInitValue;
+    private String sncInitValue;//序号初始值
 
-    private Integer sncLength;
+    private Integer sncLength;//序号长度
 
-    private Integer sncStep;
+    private Integer sncStep;//步长
 
-    private String sncPeriod;
+    private String sncPeriod;//周期
 
-    private String isHop;
+    private String isHop;//
 
     private String delimiter;
 
@@ -35,7 +35,7 @@ public class SerialnumCfgDTO {
 
     private String isDelimBeforeLast;
 
-    private String sortNum;
+    private String sortNum;//排序编号
 
     private String comments;
 
@@ -53,5 +53,5 @@ public class SerialnumCfgDTO {
 
     private String extend3;
 
-    private List<SerialnumCfgItemDO> items;
+    private List<SerialnumCfgItemDO> items;//规则项
 }
