@@ -103,4 +103,15 @@ public class StringController {
             return ResultT.failure(ResultCode.ADD_FAILURE);
         }
     }
+
+    @RequestMapping(value = "/expire", method = RequestMethod.POST)
+    public ResultT expire(@RequestBody ParamVo paramVo) {
+        try {
+            stringTemplate.expire(paramVo.getKey(), paramVo.getOutTime(), paramVo.getUnit());
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("设置超时时间失败", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
+        }
+    }
 }

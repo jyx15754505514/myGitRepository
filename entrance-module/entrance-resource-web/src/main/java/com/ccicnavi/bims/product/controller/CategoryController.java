@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.resource.controller;
+package com.ccicnavi.bims.product.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;

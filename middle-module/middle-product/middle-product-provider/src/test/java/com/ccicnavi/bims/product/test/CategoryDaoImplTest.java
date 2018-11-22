@@ -71,7 +71,7 @@ public class CategoryDaoImplTest {
     @Test
     public void getCategory() {
         CategoryDO categoryDO=new CategoryDO();
-        categoryDO.setProductCategoryUuid("KC_MT");
+        categoryDO.setProductCategoryUuid("KC_MT_WYM");
         CategoryDO category = categoryDaoImpl.getCategory(categoryDO);
         System.out.println(category);
     }
@@ -106,12 +106,26 @@ public class CategoryDaoImplTest {
     @Test
     public void listCategoryFirstByOrgAndProd2() {
         CategoryDTO categoryDTO=new CategoryDTO();
-        categoryDTO.setProdCatalogUuid("CATALOG_MINERAL");//设置产品线——矿产
+        categoryDTO.setProdCatalogUuid("CATALOG_AGRI");//设置产品线——矿产
         categoryDTO.setOrganizationUuid("XN102");//设置公司机构
-        categoryDTO.setProductCategoryTypeUuid("PCT_GOODS");//设置产品分类
-        //categoryDTO.setParentCategoryUuid("KC_MT");//设置上级产品分类UUID
+        //categoryDTO.setProductCategoryTypeUuid("PCT_GOODS");//设置产品分类
+        categoryDTO.setParentCategoryUuid("gricultural_products_code");//设置上级产品分类UUID
         categoryDTO.setAppSysUuid("BIMS2.0");
         List<CategoryDO> categoryDOS = categoryDaoImpl.listCategoryFirstByOrgAndProd(categoryDTO);
+        System.out.println(categoryDOS);
+    }
+
+
+    @Test
+    public void listCategoryByParentUuid() {
+        CategoryDTO categoryDTO=new CategoryDTO();
+        categoryDTO.setProdCatalogUuid("CATALOG_AGRI");//设置产品线——矿产
+        categoryDTO.setOrganizationUuid("XN102");//设置公司机构
+        //categoryDTO.setProductCategoryTypeUuid("PCT_GOODS");//设置产品分类
+        categoryDTO.setParentCategoryUuid("gricultural_products_code");//设置上级产品分类UUID
+        categoryDTO.setOrgUuid("XN102");
+        categoryDTO.setAppSysUuid("BIMS2.0");
+        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategoryByParentUuid(categoryDTO);
         System.out.println(categoryDOS);
     }
 

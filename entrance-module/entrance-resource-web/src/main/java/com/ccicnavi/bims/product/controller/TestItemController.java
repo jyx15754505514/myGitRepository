@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.resource.controller;
+package com.ccicnavi.bims.product.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
@@ -16,8 +16,8 @@ import java.util.List;
 
 /**
  * @program: bims-backend
- * @description: 该类的作用描述
- * @author: 本人姓名
+ * @description: 检测指标(testItem)Controller
+ * @author: WangYingLing
  * @create: 2018-11-21 16:21
  */
 @RestController
@@ -27,7 +27,7 @@ public class TestItemController {
     @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20884")
     TestItemService testItemService;
 
-    @RequestMapping(value = "/list",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/listTestItemDo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listTestItemDo(@RequestBody TestItemDO testItemDO){
         try {
             List<TestItemDO> testItemDOList=testItemService.listTestItemDo(testItemDO);
@@ -38,7 +38,7 @@ public class TestItemController {
         }
     }
 
-    @RequestMapping(value = "/save",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/saveTestItemDo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT saveTestItemDo(@RequestBody TestItemDO testItemDO){
         try {
             Integer num=testItemService.saveTestItemDo(testItemDO);
@@ -49,7 +49,7 @@ public class TestItemController {
         }
     }
 
-    @RequestMapping(value = "/remove",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/removeTestItemDo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT removeTestItemDo(@RequestBody TestItemDO testItemDO){
         try {
             Integer num=testItemService.removeTestItemDo(testItemDO);
@@ -60,7 +60,7 @@ public class TestItemController {
         }
     }
 
-    @RequestMapping(value = "/update",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/updateTestItemDo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT updateTestItemDo(@RequestBody TestItemDO testItemDO){
         try {
             Integer num=testItemService.updateTestItemDo(testItemDO);
@@ -71,7 +71,7 @@ public class TestItemController {
         }
     }
 
-    @RequestMapping(value = "/get",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/getTestItemDo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getTestItemDo(@RequestBody TestItemDO testItemDO){
         try {
             TestItemDO testItemDOResult=testItemService.getTestItemDo(testItemDO);
@@ -82,7 +82,7 @@ public class TestItemController {
         }
     }
 
-    @RequestMapping(value = "/listPage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/listTestItemPage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listTestItemPage(@RequestBody PageParameter<TestItemDO> pageParameter){
         try {
             PageBean<TestItemDO> testItemDOPageBean=testItemService.listTestItemPage(pageParameter);
