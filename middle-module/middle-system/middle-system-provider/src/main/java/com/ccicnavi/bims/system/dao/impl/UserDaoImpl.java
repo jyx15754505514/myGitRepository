@@ -33,11 +33,11 @@ public class UserDaoImpl implements UserDao {
     *@date: 2018/11/15
     */
     @Override
-    public PageBean<UserDO> listUser(PageParameter<UserDO> pageParameter){
+    public PageBean<UserDTO> listUser(PageParameter<UserDTO> pageParameter){
         EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
-        List<UserDO> UserDOListList = new Eql("DEFAULT").select("listUser").params(pageParameter.getParameter()).limit(eqlPage).returnType(UserDO.class).execute();
+        List<UserDTO> UserDOListList = new Eql("DEFAULT").select("listUser").params(pageParameter.getParameter()).limit(eqlPage).returnType(UserDTO.class).execute();
         if(UserDOListList != null) {
-            return  new PageBean<UserDO>(eqlPage.getTotalRows(),eqlPage.getTotalPages(), eqlPage.getCurrentPage(), eqlPage.getPageRows(), eqlPage.getStartIndex(), UserDOListList);
+            return  new PageBean<UserDTO>(eqlPage.getTotalRows(),eqlPage.getTotalPages(), eqlPage.getCurrentPage(), eqlPage.getPageRows(), eqlPage.getStartIndex(), UserDOListList);
         }else {
             return null;
         }
@@ -51,12 +51,12 @@ public class UserDaoImpl implements UserDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer insertUser(UserDO UserDO, EqlTran tran) {
+    public Integer insertUser(UserDTO userDTO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
         if(tran != null) {
             eql.useTran(tran);
         }
-        return eql.delete("insertUser").params(UserDO).returnType(Integer.class).execute();
+        return eql.delete("insertUser").params(userDTO).returnType(Integer.class).execute();
     }
 
 
@@ -85,12 +85,12 @@ public class UserDaoImpl implements UserDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer updateUser(UserDO UserDO, EqlTran tran){
+    public Integer updateUser(UserDTO userDTO, EqlTran tran){
         Eql eql = new Eql("DEFAULT");
         if(tran != null) {
             eql.useTran(tran);
         }
-        return eql.update("updateUser").params(UserDO).returnType(Integer.class).execute();
+        return eql.update("updateUser").params(userDTO).returnType(Integer.class).execute();
     }
 
     /**
@@ -101,12 +101,12 @@ public class UserDaoImpl implements UserDao {
     *@date: 2018/11/15
     */
     @Override
-    public Integer deleteUser(UserDO UserDO, EqlTran tran){
+    public Integer deleteUser(UserDTO userDTO, EqlTran tran){
         Eql eql = new Eql("DEFAULT");
         if(tran != null) {
             eql.useTran(tran);
         }
-        return eql.delete("deleteUser").params(UserDO).returnType(Integer.class).execute();
+        return eql.delete("deleteUser").params(userDTO).returnType(Integer.class).execute();
     }
 
     /**
@@ -117,8 +117,8 @@ public class UserDaoImpl implements UserDao {
     *@date: 2018/11/15
     */
     @Override
-    public UserDO getUser(UserDO UserDO){
-        return new Eql().selectFirst("getUser").params(UserDO).returnType(UserDO.class).execute();
+    public UserDTO getUser(UserDTO userDTO){
+        return new Eql().selectFirst("getUser").params(userDTO).returnType(UserDTO.class).execute();
     }
 
     @Override

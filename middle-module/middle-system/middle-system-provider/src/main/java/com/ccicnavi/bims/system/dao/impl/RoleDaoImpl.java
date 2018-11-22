@@ -3,10 +3,7 @@ package com.ccicnavi.bims.system.dao.impl;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.RoleDao;
-import com.ccicnavi.bims.system.pojo.RoleDO;
-import com.ccicnavi.bims.system.pojo.RoleDTO;
-import com.ccicnavi.bims.system.pojo.RoleUserDO;
-import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.*;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
@@ -63,8 +60,8 @@ public class RoleDaoImpl implements RoleDao {
     *@date: 2018/11/19
     */
     @Override
-    public List<RoleUserDO> listRoleByUser(UserDO userDO){
-        List<RoleUserDO> roleDOList = null;
+    public List<RoleDO> listRoleByUser(UserDTO userDO){
+        List<RoleDO> roleDOList = null;
         try {
             roleDOList =  new Eql("DEFAULT").selectFirst("listRoleByUser").params(userDO).returnType(RoleDO.class).execute();
             return roleDOList;

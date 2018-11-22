@@ -4,8 +4,6 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
-import java.util.List;
-
 
 /**
  *@program: bims-backend
@@ -19,63 +17,35 @@ public interface UserService {
      * @param pageParameter
      * @return List<UserDO>
      */
-    public ResultT listUser(PageParameter<UserDO> pageParameter);
+    public ResultT listUser(PageParameter<UserDTO> pageParameter);
 
     /**
      * 新增登录用户
      * @param UserDO
      * @return Integer
      */
-    public Integer insertUser(UserDO UserDO);
+    public Integer insertUser(UserDTO UserDO);
 
     /**
      * 更改登录用户
      * @param UserDO
      * @return Integer
      */
-    public Integer updateUser(UserDO UserDO);
+    public Integer updateUser(UserDTO UserDO);
 
     /**
      * 删除登录用户
-     * @param userDTO
+     * @param UserDO
      * @return Integer
      */
-    public Integer deleteUser(UserDTO userDTO);
+    public Integer deleteUser(UserDTO UserDO);
 
     /**
      * 根据主键获取单个登录用户信息
      * @param UserDO
      * @return UserDO
      */
-    public  UserDO getUser(UserDO UserDO);
-
-    /**
-    *@Description: 保存登录用户信息
-    *@Param: [userDTO]
-    *@return: java.lang.Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/21
-    */
-    public Integer saveUser(UserDTO userDTO);
-
-
-    /**
-    *@Description: 更改登录用户信息
-    *@Param: [userDTO]
-    *@return: java.lang.Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/21
-    */
-    public Integer updateUser(UserDTO userDTO);
-
-    /**
-    *@Description: 更改启用禁用状态
-    *@Param: [userDO]
-    *@return: java.lang.Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/22
-    */
-    public Integer updateIsEnabled(UserDTO userDTO);
+    public  UserDTO getUser(UserDTO UserDO);
 
 
     /**

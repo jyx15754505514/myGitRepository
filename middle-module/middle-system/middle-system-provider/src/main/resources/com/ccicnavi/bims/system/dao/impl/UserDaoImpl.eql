@@ -385,8 +385,7 @@
         su.extend3
     FROM
         sys_user su
-    LEFT JOIN sys_role_user sr
-    on su.user_uuid = sr.user_uuid
+    LEFT JOIN sys_role_user sr ON su.user_uuid = sr.user_uuid
     WHERE
      su.is_deleted = 'N'
      and sr.role_uuid ='#roleUuid#'
@@ -427,12 +426,13 @@
          extend1,
          extend2,
          extend3
- from sys_user where user_uuid not in( SELECT
+ from sys_user
+ where
+    user_uuid not in ( SELECT
         su.user_uuid
     FROM
         sys_user su
-    LEFT JOIN sys_role_user sr
-    on su.user_uuid = sr.user_uuid
+    LEFT JOIN sys_role_user sr ON su.user_uuid = sr.user_uuid
     WHERE
-     su.is_deleted = 'N'
-     and sr.role_uuid ='#roleUuid#')
+        su.is_deleted = 'N'
+        and sr.role_uuid ='#roleUuid#')

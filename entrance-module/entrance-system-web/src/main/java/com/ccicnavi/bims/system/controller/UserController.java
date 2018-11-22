@@ -49,7 +49,7 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/listUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listUser(@RequestBody PageParameter<UserDO> pageParameter) {
+    public ResultT listUser(@RequestBody PageParameter<UserDTO> pageParameter) {
         try {
             return userService.listUser(pageParameter);
         } catch (Exception e) {
@@ -66,11 +66,10 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/getUser", method = RequestMethod.POST)
-    public ResultT getUser(@RequestBody UserDO UserDO) {
-        UserDO User = null;
+    public ResultT getUser(@RequestBody UserDTO userDTO) {
         try {
-            User = userService.getUser(UserDO);
-            return ResultT.success(User);
+            userDTO = userService.getUser(userDTO);
+            return ResultT.success(userDTO);
         } catch (Exception e) {
             log.error("根据主键查询登录用户信息失败", e);
             return ResultT.failure(ResultCode.GET_FAILURE);
@@ -85,10 +84,10 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/insertUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT insertUser(@RequestBody UserDO UserDO) {
+    public ResultT insertUser(@RequestBody UserDTO userDTO) {
         Integer integer = null;
         try {
-            integer = userService.insertUser(UserDO);
+            integer = userService.insertUser(userDTO);
             return ResultT.success();
         } catch (Exception e) {
             log.error("新增登录用户信息失败",e);
@@ -104,10 +103,10 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-    public ResultT updateUser(@RequestBody UserDO UserDO) {
+    public ResultT updateUser(@RequestBody UserDTO userDTO) {
         Integer integer = null;
         try {
-            integer = userService.updateUser(UserDO);
+            integer = userService.updateUser(userDTO);
             return ResultT.success();
         } catch (Exception e) {
             log.error("更新登录用户信息失败", e);
@@ -142,9 +141,9 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
-    public ResultT userLogin(@RequestBody UserDO UserDO) {
+    public ResultT userLogin(@RequestBody UserDTO userDTO) {
         try {
-            return userManager.userLogin(UserDO);
+            return userManager.userLogin(userDTO);
         } catch (Exception e) {
             log.error("用户登录失败", e);
             return ResultT.failure(ResultCode.USER_LOGIN_ERROR);
