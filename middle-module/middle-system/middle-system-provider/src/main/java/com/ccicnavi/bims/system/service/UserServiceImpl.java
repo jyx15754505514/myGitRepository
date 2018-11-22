@@ -9,6 +9,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.RoleUserDao;
 import com.ccicnavi.bims.system.dao.UserDao;
 import com.ccicnavi.bims.system.pojo.RoleDO;
+import com.ccicnavi.bims.system.pojo.RoleDTO;
 import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.RoleService;
@@ -56,8 +57,8 @@ public class UserServiceImpl implements UserService{
                 List<UserDTO> userList = pageBean.getProducts();
                 if(userList != null && userList.size() > 0) {
                     for (UserDTO user : userList) {
-                        List<RoleDO> roleUserList = roleService.listRoleByUser(user);
-                        user.setRoleDOList(roleUserList);
+                        List<RoleDTO> roleDTOList = roleService.listRoleByUser(user);
+                        user.setRoleDTOList(roleDTOList);
                     }
                 }
                  return ResultT.success(pageBean);
@@ -191,8 +192,8 @@ public class UserServiceImpl implements UserService{
     public UserDTO getUser(UserDTO userDTO){
         try {
             userDTO = userDao.getUser(userDTO);
-            List<RoleDO> roleUserList = roleService.listRoleByUser(userDTO);
-            userDTO.setRoleDOList(roleUserList);
+            List<RoleDTO> roleDTOList = roleService.listRoleByUser(userDTO);
+            userDTO.setRoleDTOList(roleDTOList);
             return userDTO;
         } catch (Exception e) {
             log.error("根据主键获取登录用户信息失败",e);

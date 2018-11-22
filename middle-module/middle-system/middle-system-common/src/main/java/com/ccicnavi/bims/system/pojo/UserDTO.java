@@ -35,6 +35,9 @@ public class UserDTO implements Serializable {
     /**用户拥有的角色集合*/
     private List<RoleDO> roleDOList;
 
+    /**用户拥有的角色集合,多公司名称*/
+    private List<RoleDTO> roleDTOList;
+
     /**用户拥有的权限集合*/
     private List<MenuDTO> menuList;
 

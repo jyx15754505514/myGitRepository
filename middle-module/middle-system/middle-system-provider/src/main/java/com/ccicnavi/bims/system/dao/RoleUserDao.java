@@ -40,7 +40,6 @@ public interface RoleUserDao {
     *@date: 2018/11/22
     */
     public Integer deleteRoleUsers(UserDTO userDTO, EqlTran tran);
-    public Integer deleteRoleUser(RoleUserDTO roleUserDTO, EqlTran tran);
 
     /**
     *@Description: 查询用户角色
