@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableApolloConfig
-@ComponentScan(basePackages = "com.ccicnavi.bims.resource.*")
+@ComponentScan(basePackages = "com.ccicnavi.bims.*")
 @SpringBootApplication
 public class ResourceWebApplication {
 
