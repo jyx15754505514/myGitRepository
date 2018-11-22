@@ -17,7 +17,10 @@ public interface OrderItemDao {
     Integer insertOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception;
     /**更新服务项信息*/
     Integer updateOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception;
-
+    /**查询所有的服务项信息*/
     List<OrderItemDTO> listOrderItemDTO (OrderInfoDO orderInfoDO)throws  Exception;
+    /**删除服务项信息*/
+    Integer deleteOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception;
+
 
 }

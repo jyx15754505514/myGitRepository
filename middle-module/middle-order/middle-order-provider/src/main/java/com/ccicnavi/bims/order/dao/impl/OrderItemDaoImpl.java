@@ -45,7 +45,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
     public Integer updateOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception {
         Eql eql = new Eql("DEFAULT");
         if(tran != null){
-            return eql.useTran(tran).insert("updateOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
+            return eql.useTran(tran).update("updateOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
         }
         return eql.update("updateOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
     }
@@ -60,5 +60,20 @@ public class OrderItemDaoImpl implements OrderItemDao {
     public List<OrderItemDTO> listOrderItemDTO(OrderInfoDO orderInfoDO) throws Exception {
         Eql eql = new Eql("DEFAULT");
         return  eql.select("listOrderItem").params(orderInfoDO).returnType(OrderItemDTO.class).execute();
+    }
+    /* *
+     * @Author heibin
+     * @Description 删除服务项信息
+     * @Date 14:14 2018/11/22
+     * @Param [orderItemDTO, tran]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer deleteOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception {
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null){
+            return eql.useTran(tran).update("deleteOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
+        }
+        return eql.update("deleteOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
     }
 }
