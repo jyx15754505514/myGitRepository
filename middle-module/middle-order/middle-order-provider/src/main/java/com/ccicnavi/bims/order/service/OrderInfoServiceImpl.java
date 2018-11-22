@@ -13,12 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单
  * @Date 17:06 2018/11/19
@@ -45,7 +43,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
     IdWorkerService idWorkerService;
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 新增委托单
      * @Date 17:31 2018/11/19
@@ -64,7 +62,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         return integer;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 更新委托单
      * @Date 17:31 2018/11/19
@@ -93,7 +91,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         }
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 保存委托单
      * @Date 9:55 2018/11/20

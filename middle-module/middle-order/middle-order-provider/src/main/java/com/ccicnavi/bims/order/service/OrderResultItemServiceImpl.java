@@ -9,7 +9,7 @@ import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-/* *
+/**
  * @Author heibin
  * @Description 委托服务项-证书关系
  * @Date 20:22 2018/11/20
@@ -19,7 +19,7 @@ import java.util.List;
 public class OrderResultItemServiceImpl implements OrderResultItemService {
     @Autowired
     private OrderResultItemDao orderResultItemDao;
-    /* *
+    /**
      * @Author heibin
      * @Description 根据主键id查询委托服务项-证书关系
      * @Date 20:23 2018/11/20
@@ -35,7 +35,7 @@ public class OrderResultItemServiceImpl implements OrderResultItemService {
             return null;
         }
     }
-    /* *
+    /**
      * @Author heibin
      * @Description 查询全部委托服务项-证书关系
      * @Date 20:25 2018/11/20
@@ -51,7 +51,7 @@ public class OrderResultItemServiceImpl implements OrderResultItemService {
             return null;
         }
     }
-    /* *
+    /**
      * @Author heibin
      * @Description 委托服务项-证书关系添加
      * @Date 20:28 2018/11/20
@@ -69,7 +69,7 @@ public class OrderResultItemServiceImpl implements OrderResultItemService {
         }
         return integer;
     }
-    /* *
+    /**
      * @Author heibin
      * @Description 委托服务项-证书关系更新
      * @Date 20:30 2018/11/20
@@ -87,7 +87,7 @@ public class OrderResultItemServiceImpl implements OrderResultItemService {
         }
         return integer;
     }
-    /* *
+    /**
      * @Author heibin
      * @Description 委托服务项-证书关系删除
      * @Date 20:32 2018/11/20
