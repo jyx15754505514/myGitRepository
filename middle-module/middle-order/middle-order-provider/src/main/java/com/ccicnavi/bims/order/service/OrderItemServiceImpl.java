@@ -115,7 +115,7 @@ public class OrderItemServiceImpl implements OrderItemService {
                     }
                 }
             }
-            if (statu = true) {
+            if (statu) {
                 eqlTran.commit();
                 return 1;
             }
