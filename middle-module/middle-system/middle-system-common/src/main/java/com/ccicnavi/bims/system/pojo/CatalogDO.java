@@ -6,27 +6,24 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+
+/**
+ * @program: bims-backend
+ * @description: 产品线信息DO(prod_catalog)
+ * @author: WangYingLing
+ * @create: 2018-11-19 22:46
+ */
 
 @Getter
 @Setter
 @ToString
-public class RoleDTO implements Serializable {
-    private String roleUuid;
+public class CatalogDO implements Serializable {
 
-    private String uuids;
+    private String prodCatalogUuid;
 
-    private List<String> roleUuids;
+    private String catalogName;
 
-    private String parentRoleUuid;
-
-    private String roleName;
-
-    private String roleCode;
-
-    private String isSystem;
-
-    private String isEnabled;
+    private String catalogCode;
 
     private String comments;
 
@@ -40,19 +37,18 @@ public class RoleDTO implements Serializable {
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
 
     private String orgUuid;
 
-    private String orgName;
-
     private String appSysUuid;
-
-    private String businessLine;
 
     private String extend1;
 
     private String extend2;
 
     private String extend3;
+
 }

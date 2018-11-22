@@ -57,9 +57,12 @@
     DELETE
     FROM
         sys_role_user
-     where
+    where
         -- if userUuid != null and userUuid != ''
                  user_uuid = '#userUuid#'
+        -- end
+        --iff roleUuid != null and roleUuid != ''
+              and role_uuid = '#roleUuid#'
         -- end
 
 --查询用户角色信息
@@ -70,7 +73,12 @@
         role_uuid roleUuid
     FROM
         sys_role_user
-    WHERE
-        user_uuid = '#userUuid#'
+
+    --iff userUuid != null and userUuid != ''
+     WHERE    user_uuid = '#userUuid#'
+    --end
+    --iff roleUuid != null and roleUuid != ''
+      and role_uuid = '#roleUuid#'
+    --end
 
 

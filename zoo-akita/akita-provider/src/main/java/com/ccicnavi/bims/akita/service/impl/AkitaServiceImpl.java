@@ -1,9 +1,12 @@
-package com.ccicnavi.bims.akita.impl;
+package com.ccicnavi.bims.akita.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.akita.dao.SysFileDao;
 import com.ccicnavi.bims.akita.domain.ReturnCode;
+import com.ccicnavi.bims.akita.pojo.SysFileParallel;
+import com.ccicnavi.bims.akita.pojo.SysFile;
 import com.ccicnavi.bims.akita.service.AkitaService;
-import com.ccicnavi.bims.akita.service.FastDFSFile;
+import com.ccicnavi.bims.akita.pojo.FastDFSFile;
 import com.ccicnavi.bims.akita.domain.ReturnMessageTest;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.proto.storage.DownloadByteArray;
@@ -12,6 +15,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.*;
+import java.util.List;
 
 /**
  * @Auther: husky
@@ -25,6 +29,8 @@ public class AkitaServiceImpl implements AkitaService {
     @Autowired
     private FastFileStorageClient fastFileStorageClient;
 
+    @Autowired
+    private SysFileDao sysFileDao;
     /*
      * 测试文件上传实现
      *
@@ -44,12 +50,28 @@ public class AkitaServiceImpl implements AkitaService {
      * 测试上传缩略图
      */
     @Override
-    public ReturnMessageTest Thumbnail(FastDFSFile fastDFSFile) {
+    public ReturnCode Thumbnail(FastDFSFile fastDFSFile) {
+
+        try{
             InputStream inputStream = new ByteArrayInputStream(fastDFSFile.getContent());
             StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(inputStream, fastDFSFile.getFileSize(), fastDFSFile.getExt(), null);
             System.out.println(storePath.getGroup() + "  " + storePath.getPath());
-            ReturnMessageTest returnMessageTest = new ReturnMessageTest(storePath.getGroup(),storePath.getPath());
-            return returnMessageTest;
+            SysFile sysFile = new SysFile();
+            sysFile.setFileNme(storePath.getGroup());
+            sysFile.setFilePath(storePath.getPath());
+            sysFileDao.insertSysFile(sysFile);
+            List<SysFile> sysFiles = sysFileDao.listSysFile();
+            for (SysFile file:sysFiles) {
+                SysFileParallel fileFastSys = new SysFileParallel();
+                fileFastSys.setFileUuId(file.getFileUuid());
+                sysFileDao.insertFileFastSys(fileFastSys);
+            }
+         // ReturnMessageTest returnMessageTest = new ReturnMessageTest(storePath.getGroup(), storePath.getPath());
+           return ReturnCode.SUCCESS;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ReturnCode.SUCCESS;
     }
     /**
      * 测试文件下载
@@ -64,7 +86,7 @@ public class AkitaServiceImpl implements AkitaService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return  ReturnCode.SUCCESS;
+        return ReturnCode.SUCCESS;
     }
     /**
      * 测试文件删除

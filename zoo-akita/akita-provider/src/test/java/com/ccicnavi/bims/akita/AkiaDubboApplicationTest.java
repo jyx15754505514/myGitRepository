@@ -2,7 +2,7 @@ package com.ccicnavi.bims.akita;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.akita.service.AkitaService;
-import com.ccicnavi.bims.akita.service.FastDFSFile;
+import com.ccicnavi.bims.akita.pojo.FastDFSFile;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,8 +20,9 @@ public class AkiaDubboApplicationTest {
     AkitaService akitaService;
 
 /*
-* 测试文件上传demo
-* */
+     * 测试文件上传demo
+     * */
+
     @Test
     public void upload(){
         try {
@@ -65,7 +66,7 @@ public class AkiaDubboApplicationTest {
 
             FastDFSFile fastDFSFile = new FastDFSFile();
             fastDFSFile.setName("group1");
-            fastDFSFile.setPath("M00/00/00/wKh9B1v1dZOAIoyoAAA5aX69MdU157.jpg");
+            fastDFSFile.setPath("M00/00/00/wKh9B1v2rcCAe67ZAAA5aX69MdU013.jpg");
             fastDFSFile.setContent(toByteArray(inputStream));
             akitaService.FileDownload(fastDFSFile);
             inputStream.close();
@@ -82,7 +83,7 @@ public class AkiaDubboApplicationTest {
 
             FastDFSFile fastDFSFile = new FastDFSFile();
             fastDFSFile.setName("group1");
-            fastDFSFile.setPath("M00/00/00/wKh9B1v1dRGAa4_KAAA5aX69MdU700.jpg");
+            fastDFSFile.setPath("M00/00/00/wKh9B1v2rcCAe67ZAAA5aX69MdU013.jpg");
             fastDFSFile.setContent(toByteArray(inputStream));
             akitaService.FileDelete(fastDFSFile);
             inputStream.close();

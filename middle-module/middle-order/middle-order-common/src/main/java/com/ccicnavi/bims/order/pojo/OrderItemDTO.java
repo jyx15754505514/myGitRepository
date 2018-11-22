@@ -6,7 +6,6 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
 /**
  * @Author MengZiJie
  * @Description 委托单服务项DTO
@@ -83,7 +82,7 @@ public class OrderItemDTO implements Serializable {
 
     private List<OrderItemSubDO> orderItemSubDO;//子项
 
-    private List<OrderItemCostDo> orderItemCostDo;//成本
+    private List<OrderItemCostDO> orderItemCostDO;//成本
 
     private String flag;
 }

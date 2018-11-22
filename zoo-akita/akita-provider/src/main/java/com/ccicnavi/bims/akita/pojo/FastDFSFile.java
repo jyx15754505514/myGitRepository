@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.akita.service;
+package com.ccicnavi.bims.akita.pojo;
 
 
 
@@ -9,10 +9,15 @@ import java.io.Serializable;
 
 public class FastDFSFile implements Serializable {
 
+
+
+    //文件ID
+    private String fileId;
     //文件名字
     private String name;
    //文件内容
     private byte[] content;
+    //文件扩展名
     private String ext;
     private String md5;
     //文件作者
@@ -22,6 +27,14 @@ public class FastDFSFile implements Serializable {
     //文件大小
     private Long fileSize;
 
+
+    public String getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
+    }
 
     public String getPath() {
         return path;

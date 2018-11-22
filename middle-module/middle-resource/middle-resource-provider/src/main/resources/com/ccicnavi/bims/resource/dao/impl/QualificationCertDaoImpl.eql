@@ -14,14 +14,17 @@ select
     register_company  registerCompany,
     register_date  registerDate,
     is_file  isFile,
+    comments comments,
     is_deleted  isDeleted,
     created_time  createdTime,
     created_uuid  createdUuid,
+    created_name  createdName,
     updated_time  updatedTime,
+    updated_uuid  updatedUuid,
     updated_name  updatedName,
+    prod_catalog_uuid  prodCatalogUuid,
     org_uuid  orgUuid,
     app_sys_uuid  appSysUuid,
-    prod_catalog_uuid  prodCatalogUuid,
     extend1  extend1,
     extend2  extend2,
     extend3  extend3
@@ -77,6 +80,9 @@ where
      -- if isFile != null and isFile != ''
             is_file,
      --end
+     -- if comments != null and comments != ''
+            comments,
+     --end
      -- if isDeleted != null and isDeleted != ''
             is_deleted,
      --end
@@ -86,20 +92,26 @@ where
      -- if createdUuid != null and createdUuid != ''
             created_uuid,
      --end
+     -- if createdName != null and createdName != ''
+            created_name,
+     --end
      -- if updatedTime != null and updatedTime != ''
             updated_time,
      --end
+     -- if updatedUuid != null and updatedUuid != ''
+            updated_uuid,
+     --end
      -- if updatedName != null and updatedName != ''
             updated_name,
+     --end
+     -- if prodCatalogUuid != null and prodCatalogUuid != ''
+           prod_catalog_uuid,
      --end
      -- if orgUuid != null and orgUuid != ''
             org_uuid,
      --end
      -- if appSysUuid != null and appSysUuid != ''
             app_sys_uuid,
-     --end
-     -- if prodCatalogUuid != null and prodCatalogUuid != ''
-            prod_catalog_uuid,
      --end
      -- if extend1 != null and extend1 != ''
             extend1,
@@ -154,6 +166,9 @@ where
      -- if isFile != null and isFile != ''
             '#isFile#',
      --end
+     -- if comments != null and comments != ''
+             '#comments#',
+     --end
      -- if isDeleted != null and isDeleted != ''
             '#isDeleted#',
      --end
@@ -163,20 +178,26 @@ where
      -- if createdUuid != null and createdUuid != ''
             '#createdUuid#',
      --end
+     -- if createdName != null and createdName != ''
+            '#created_name#',
+     --end
      -- if updatedTime != null and updatedTime != ''
             '#updatedTime#',
      --end
+     -- if updatedUuid != null and updatedUuid != ''
+            '#updated_uuid#',
+     --end
      -- if updatedName != null and updatedName != ''
             '#updatedName#',
+     --end
+     -- if prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
      --end
      -- if orgUuid != null and orgUuid != ''
             '#orgUuid#',
      --end
      -- if appSysUuid != null and appSysUuid != ''
             '#appSysUuid#',
-     --end
-     -- if prodCatalogUuid != null and prodCatalogUuid != ''
-            '#prodCatalogUuid#',
      --end
      -- if extend1 != null and extend1 != ''
             '#extend1#',
@@ -235,6 +256,9 @@ where
      -- if isFile != null and isFile != ''
             is_file = '#isFile#',
      --end
+     -- if comments != null and comments != ''
+            comments = '#comments#',
+     --end
      -- if isDeleted != null and isDeleted != ''
             is_deleted = '#isDeleted#',
      --end
@@ -244,11 +268,20 @@ where
      -- if createdUuid != null and createdUuid != ''
             created_uuid = '#createdUuid#',
      --end
+     -- if createdName != null and createdName != ''
+           created_name = '#createdName#',
+     --end
      -- if updatedTime != null and updatedTime != ''
             updated_time = '#updatedTime#',
      --end
+     -- if updatedUuid != null and updatedUuid != ''
+            updated_uuid = '#updatedUuid#',
+     --end
      -- if updatedName != null and updatedName != ''
             updated_name = '#updatedName#',
+     --end
+     -- if prodCatalogUuid != null and prodCatalogUuid != ''
+            prod_catalog_uuid = '#prodCatalogUuid#',
      --end
      -- if orgUuid != null and orgUuid != ''
             org_uuid = '#orgUuid#',
@@ -256,12 +289,9 @@ where
      -- if appSysUuid != null and appSysUuid != ''
             app_sys_uuid = '#appSysUuid#',
      --end
-     -- if prodCatalogUuid != null and prodCatalogUuid != ''
-            prod_catalog_uuid = '#prodCatalogUuid#',
+     -- if extend1 != null and extend1 != ''
+            extend1 = '#extend1#',
      --end
-      -- if extend1 != null and extend1 != ''
-                 extend1 = '#extend1#',
-          --end
      -- if extend2 != null and extend2 != ''
             extend2 = '#extend2#',
      --end
@@ -290,31 +320,34 @@ where
 
 --[getQualificationCertDO]
     select
-        cation_uuid  cationUuid,
-        person_uuid  personUuid,
-        cation_cert_uuid  cationCertUuid,
-        cation_cert_name  cationCertName,
-        cation_areas_uuid  cationAreasUuid,
-        cation_levl  cationLevl,
-        cation_cert_no  cationCertNo,
-        cation_company  cationCompany,
-        issue_date  issueDate,
-        update_date  updateDate,
-        register_number  registerNumber,
-        register_company  registerCompany,
-        register_date  registerDate,
-        is_file  isFile,
-        is_deleted  isDeleted,
-        created_time  createdTime,
-        created_uuid  createdUuid,
-        updated_time  updatedTime,
-        updated_name  updatedName,
-        org_uuid  orgUuid,
-        app_sys_uuid  appSysUuid,
-        prod_catalog_uuid  prodCatalogUuid,
-        extend1  extend1,
-        extend2  extend2,
-        extend3  extend3
+   cation_uuid  cationUuid,
+    person_uuid  personUuid,
+    cation_cert_uuid  cationCertUuid,
+    cation_cert_name  cationCertName,
+    cation_areas_uuid  cationAreasUuid,
+    cation_levl  cationLevl,
+    cation_cert_no  cationCertNo,
+    cation_company  cationCompany,
+    issue_date  issueDate,
+    update_date  updateDate,
+    register_number  registerNumber,
+    register_company  registerCompany,
+    register_date  registerDate,
+    is_file  isFile,
+    comments comments,
+    is_deleted  isDeleted,
+    created_time  createdTime,
+    created_uuid  createdUuid,
+    created_name  createdName,
+    updated_time  updatedTime,
+    updated_uuid  updatedUuid,
+    updated_name  updatedName,
+    prod_catalog_uuid  prodCatalogUuid,
+    org_uuid  orgUuid,
+    app_sys_uuid  appSysUuid,
+    extend1  extend1,
+    extend2  extend2,
+    extend3  extend3
     from
         res_qualification_cert
     where
@@ -325,31 +358,34 @@ where
 
 --[getQualificationCertPage]
 select
-        cation_uuid  cationUuid,
-        person_uuid  personUuid,
-        cation_cert_uuid  cationCertUuid,
-        cation_cert_name  cationCertName,
-        cation_areas_uuid  cationAreasUuid,
-        cation_levl  cationLevl,
-        cation_cert_no  cationCertNo,
-        cation_company  cationCompany,
-        issue_date  issueDate,
-        update_date  updateDate,
-        register_number  registerNumber,
-        register_company  registerCompany,
-        register_date  registerDate,
-        is_file  isFile,
-        is_deleted  isDeleted,
-        created_time  createdTime,
-        created_uuid  createdUuid,
-        updated_time  updatedTime,
-        updated_name  updatedName,
-        org_uuid  orgUuid,
-        app_sys_uuid  appSysUuid,
-        prod_catalog_uuid  prodCatalogUuid,
-        extend1  extend1,
-        extend2  extend2,
-        extend3  extend3
+   cation_uuid  cationUuid,
+    person_uuid  personUuid,
+    cation_cert_uuid  cationCertUuid,
+    cation_cert_name  cationCertName,
+    cation_areas_uuid  cationAreasUuid,
+    cation_levl  cationLevl,
+    cation_cert_no  cationCertNo,
+    cation_company  cationCompany,
+    issue_date  issueDate,
+    update_date  updateDate,
+    register_number  registerNumber,
+    register_company  registerCompany,
+    register_date  registerDate,
+    is_file  isFile,
+    comments comments,
+    is_deleted  isDeleted,
+    created_time  createdTime,
+    created_uuid  createdUuid,
+    created_name  createdName,
+    updated_time  updatedTime,
+    updated_uuid  updatedUuid,
+    updated_name  updatedName,
+    prod_catalog_uuid  prodCatalogUuid,
+    org_uuid  orgUuid,
+    app_sys_uuid  appSysUuid,
+    extend1  extend1,
+    extend2  extend2,
+    extend3  extend3
     from
         res_qualification_cert
         -- iff cationUuid != null and cationUuid != ""
