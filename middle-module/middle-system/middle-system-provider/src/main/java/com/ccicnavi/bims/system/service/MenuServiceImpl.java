@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-/* *
+/**
  * @Author MengZiJie
  * @Description 菜单管理
  * @Date 20:27 2018/11/15
@@ -32,7 +32,7 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuButtonDao menuButtonDao;
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 查询所有菜单
      * @Date 20:26 2018/11/15
@@ -54,7 +54,7 @@ public class MenuServiceImpl implements MenuService {
         }
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 获取指定菜单
      * @Date 20:26 2018/11/15
@@ -73,7 +73,7 @@ public class MenuServiceImpl implements MenuService {
         return menu;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 新增菜单
      * @Date 20:30 2018/11/15
@@ -92,7 +92,7 @@ public class MenuServiceImpl implements MenuService {
         return menu;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 更新菜单
      * @Date 20:30 2018/11/15
@@ -111,7 +111,7 @@ public class MenuServiceImpl implements MenuService {
         return menu;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 删除菜单
      * @Date 20:31 2018/11/15
