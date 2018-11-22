@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @program: bims-backend
@@ -15,7 +16,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class RoleUserDO implements Serializable {
+public class RoleUserDTO implements Serializable {
 
     private String roleUuid;
 
@@ -23,4 +24,6 @@ public class RoleUserDO implements Serializable {
 
     private String orgUuid;
 
+    private List<String> saveUserUuid;
+    private List<String> deleteUserUuid;
 }

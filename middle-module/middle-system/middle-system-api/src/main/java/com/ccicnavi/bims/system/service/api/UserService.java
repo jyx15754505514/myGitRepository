@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.service.api;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 
 /**
  *@program: bims-backend
@@ -45,4 +46,14 @@ public interface UserService {
      * @return UserDO
      */
     public  UserDO getUser(UserDO UserDO);
+
+    /**
+     *@Description: 根据角色查询用户
+     *@Param: userDTO
+     *@return: UserDTO
+     *@Author: 本人姓名
+     *@date: 2018/11/22
+     */
+
+    public UserDTO selectByRoleUser(UserDTO userDTO);
 }

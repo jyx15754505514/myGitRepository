@@ -81,4 +81,14 @@ public interface MenuService {
     */
 
     List<MenuDTO> listMenuByProdCatalogUuid(MenuDTO menuDTO);
+    /**
+    *@Description: 根据主键查询菜单
+    *@Param: menuDTO
+    *@return: List<MenuDTO>
+    *@Author: zqq
+    *@date: 2018/11/22
+    */
+
+
+    public List<MenuDTO> listMenuWithBtn(MenuDTO menuDTO);
 }

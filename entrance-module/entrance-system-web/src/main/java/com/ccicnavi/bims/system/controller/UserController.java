@@ -1,12 +1,14 @@
 package com.ccicnavi.bims.system.controller;
 
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.manager.UserManager;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,5 +159,27 @@ public class UserController {
             log.error("用户登出失败", e);
         }
         return ResultT.failure(ResultCode.USER_NOT_EXIST);
+    }
+
+    /**
+     *@Description: 根据角色查询用户
+     *@Param: userDTO
+     *@return: UserDTO
+     *@Author: zqq
+     *@date: 2018/11/22
+     */
+
+    @RequestMapping(value = "/selectByRoleUser", method = RequestMethod.POST)
+    public ResultT selectByRoleUser(@RequestBody UserDTO userDTO) {
+        if(StringUtils.isEmpty(userDTO.getRoleUuid())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
+        try {
+            UserDTO userDto = userService.selectByRoleUser(userDTO);
+            return ResultT.success(userDto);
+        } catch (Exception e) {
+            log.error("查询用户信息失败", e);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
+        }
     }
 }
