@@ -223,6 +223,38 @@ public class TestOrderInfo {
         orderInfoDTO.setAppSysUuid("BIMS+1");
         orderInfoDTO.setOrderUuid("181121222505");
         orderInfoDTO.setShippingTypeId("111");
+        //委托样品类型
+        List<OrderSampleTypeDO> orderSampleTypeDOList=new ArrayList<OrderSampleTypeDO>();
+        for(int k=1;k<4;k++){
+            OrderSampleTypeDO orderSampleTypeDO=new OrderSampleTypeDO();
+            orderSampleTypeDO.setSplPurposeType("样品类型id"+k);
+            orderSampleTypeDO.setSplPurposeQty(k);
+            orderSampleTypeDOList.add(orderSampleTypeDO);
+        }
+        orderInfoDTO.setOrderSampleTypeDO(orderSampleTypeDOList);
+        List<OrderItemDTO> orderItemDTOList = new ArrayList<>();
+        //最小服务项目
+        for(int j=0;j<3;j++){
+            OrderItemDTO orderItemDTO = new OrderItemDTO();
+            if(j==0){
+                orderItemDTO.setOrderItemUuid("1811212225050");
+            }
+            orderItemDTO.setOrderItemNo("服务单编号Q1"+j);//服务单编号
+            //最小颗粒度
+            List<OrderItemSubDO> orderItemSubList = new ArrayList<>();
+            for(int i=0;i<2;i++){
+                OrderItemSubDO orderItemSubDO = new OrderItemSubDO();
+                orderItemSubDO.setItemName("最小颗粒度名称Q1"+i);
+                orderItemSubDO.setSubItemNo("最小颗粒度编号Q1"+i);
+                orderItemSubList.add(orderItemSubDO);
+            }
+            orderItemDTO.setOrderItemSubDO(orderItemSubList);
+            orderItemDTOList.add(orderItemDTO);
+        }
+        orderInfoDTO.setOrderItemDTO(orderItemDTOList);
+
+
+
         try {
             //更新委托单运输信息
             shipment = orderInspectionDaoImpl.updateOrderInspection(orderInfoDTO, eqlTran);
@@ -255,13 +287,14 @@ public class TestOrderInfo {
                             orderItemSub.setItemUuid(orderItemDTO.get(i).getOrderItemUuid());
                             //物理删除服务子项信息
                             Integer orderItemSubResult=orderItemSubDaoImpl.deleteOrderItemSub(orderItemSub,eqlTran);
-                            if(orderItemSubResult!=1){
+                            if(orderItemSubResult<0){
                                 result=false;
                             }
                             List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
                             for (int j = 0; j < orderItemSubDO.size(); j++) {
                                 String orderItemSubUuid = timeFormat.format(new Date());
                                 orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);
+                                orderItemSubDO.get(j).setItemUuid(orderItemDTO.get(i).getOrderItemUuid());
                                 //更新服务子项信息
                                 itemSub = orderItemSubDaoImpl.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
                                 if(itemSub!=1){
@@ -273,6 +306,7 @@ public class TestOrderInfo {
                     //新增操作(之前没有选择的最小服务项和最小颗粒度)
                     if(orderItemDTO.get(i).getOrderItemUuid()==null){
                         String orderItemUuid = timeFormat.format(new Date());
+                        System.out.println("============"+orderItemUuid);
                         orderItemDTO.get(i).setOrderItemUuid(orderItemUuid);//生成服务项主键
                         orderItemDTO.get(i).setOrderItemNo("");//生成服务单编号
                         //添加委托单服务项
