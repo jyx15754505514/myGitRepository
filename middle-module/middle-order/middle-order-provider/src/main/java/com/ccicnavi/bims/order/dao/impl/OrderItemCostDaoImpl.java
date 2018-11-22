@@ -16,7 +16,7 @@ public class OrderItemCostDaoImpl implements OrderItemCostDao {
      * @Author songyateng
      * @Description 新增成本单
      * @Date 14:31 2018/11/22
-     * @Param [orderItemCostDo, tran]
+     * @Param [orderItemCostDO, tran]
      * @Return java.lang.Integer
      */
     @Override
@@ -32,7 +32,7 @@ public class OrderItemCostDaoImpl implements OrderItemCostDao {
      * @Author songyateng 
      * @Description 修改成本单
      * @Date 15:23 2018/11/22
-     * @Param [orderItemCostDo, tran]
+     * @Param [orderItemCostDO, tran]
      * @Return java.lang.Integer
      */
     @Override
