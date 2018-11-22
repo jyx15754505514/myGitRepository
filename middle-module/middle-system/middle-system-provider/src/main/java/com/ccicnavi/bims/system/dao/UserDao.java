@@ -23,7 +23,7 @@ public interface UserDao {
     *@Author: zhaotao
     *@date: 2018/11/15
     */
-    public PageBean<UserDO> listUser(PageParameter<UserDO> pageParameter);
+    public PageBean<UserDTO> listUser(PageParameter<UserDTO> pageParameter);
 
     /**
     *@Description: 新增登录用户
@@ -32,7 +32,7 @@ public interface UserDao {
     *@Author: zhaotao
     *@date: 2018/11/15
     */
-    public Integer insertUser(UserDO UserDO, EqlTran tran);
+    public Integer insertUser(UserDTO userDTO, EqlTran tran);
 
     /**
     *@Description: 更新登录用户信息
@@ -41,7 +41,7 @@ public interface UserDao {
     *@Author: zhaotao
     *@date: 2018/11/15
     */
-    public Integer updateUser(UserDO UserDO, EqlTran tran);
+    public Integer updateUser(UserDTO userDTO, EqlTran tran);
 
     /**
     *@Description: 删除登录用户信息
@@ -50,7 +50,7 @@ public interface UserDao {
     *@Author: zhaotao
     *@date: 2018/11/15
     */
-    public Integer deleteUser(UserDO UserDO, EqlTran tran);
+    public Integer deleteUser(UserDTO userDTO, EqlTran tran);
 
     /**
     *@Description: 根据主键获取单个登录用户信息
@@ -59,7 +59,8 @@ public interface UserDao {
     *@Author: zhaotao
     *@date: 2018/11/15
     */
-    public  UserDO getUser(UserDO UserDO);
+    public  UserDTO getUser(UserDTO userDTO);
+
     /**
      *@Description: 查询授权用户
      *@Param: userDTO
@@ -67,7 +68,6 @@ public interface UserDao {
      *@Author: zqq
      *@date: 2018/11/22
      */
-
     public List<UserDO> listauthUserList(UserDTO userDTO);
 
     /**
@@ -77,6 +77,5 @@ public interface UserDao {
      *@Author: zqq
      *@date: 2018/11/22
      */
-
     public List<UserDO> selectunauthUserList(UserDTO userDTO);
 }

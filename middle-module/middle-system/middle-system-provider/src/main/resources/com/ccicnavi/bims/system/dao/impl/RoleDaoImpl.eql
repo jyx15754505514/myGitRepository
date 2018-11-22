@@ -192,12 +192,14 @@
 -- 根据用户UUID获取所有角色UUID
 -- [listRoleByUser]
    SELECT
-        role_uuid as roleUuid
+        ru.role_uuid as roleUuid,
+        r.role_name as roleName
    FROM
-        sys_role_user
+        sys_role_user ru
+        LEFT JOIN sys_role r ON ru.role_uuid = r.role_uuid
    WHERE
-        user_uuid = '#userUuid#'
-        and org_uuid = '#orgUuid#'
+        ru.user_uuid = '#userUuid#'
+
 
 
 
