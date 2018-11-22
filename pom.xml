@@ -11,8 +11,10 @@
     <modules>
         <module>entrance-module</module>
         <module>middle-module</module>
+        <module>zoo-akita</module>
         <module>zoo-shiba</module>
         <module>zoo-breeder</module>
+        <module>zoo-sso</module>
     </modules>
     <dependencies>
         <dependency>
