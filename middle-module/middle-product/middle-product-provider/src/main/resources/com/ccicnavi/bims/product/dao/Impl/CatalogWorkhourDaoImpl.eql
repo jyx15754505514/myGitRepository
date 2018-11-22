@@ -132,7 +132,7 @@ WHERE
  -- if uuids != null
             AND prod_catalog_uuid IN
             -- for item=item index=index collection=uuids open=( separator=, close=)
-                #item#
+                '#item#'
             -- end
         -- end
 

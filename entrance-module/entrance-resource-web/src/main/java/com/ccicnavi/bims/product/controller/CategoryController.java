@@ -145,7 +145,7 @@ public class CategoryController {
     }
 
     /**
-     * 修改产业分类信息
+     * 修改产品分类信息
      *
      * @param categoryDO
      * @return
@@ -155,19 +155,19 @@ public class CategoryController {
         try {
             Integer count = categoryService.updateCategory(categoryDO);
             if (count > 0) {
-                return ResultT.success("修改产业分类成功");
+                return ResultT.success("修改产品分类成功");
             } else {
                 return ResultT.failure(ResultCode.UPDATE_FAILURE);
             }
         } catch (Exception e) {
-            log.error("修改产业分类失败", e);
+            log.error("修改产品分类失败", e);
             return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
     }
 
 
     /**
-     * 删除产业分类信息
+     * 删除产品分类信息
      * @return
      */
     @RequestMapping(value = "/removeCategory", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -178,13 +178,13 @@ public class CategoryController {
             } else {
                 Integer count = categoryService.removeCategory(categoryDTO);
                 if (count > 0) {
-                    return ResultT.success("删除产业分类成功");
+                    return ResultT.success("删除产品分类成功");
                 } else {
                     return ResultT.failure(ResultCode.DELETE_FAILURE);
                 }
             }
         } catch (Exception e) {
-            log.error("删除产业分类信息失败", e);
+            log.error("删除产品分类信息失败", e);
             return ResultT.failure(ResultCode.DELETE_FAILURE);
         }
     }
