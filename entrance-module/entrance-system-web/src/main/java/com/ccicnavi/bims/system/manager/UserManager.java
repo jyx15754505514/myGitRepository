@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.manager;
 
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 
 
 /**
@@ -19,5 +20,5 @@ public interface UserManager {
     * @Param [UserDO]
     * @return com.ccicnavi.bims.common.ResultT
     **/
-    ResultT userLogin(UserDO UserDO);
+    ResultT userLogin(UserDTO userDTO);
 }

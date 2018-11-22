@@ -11,7 +11,6 @@ import com.ccicnavi.bims.system.service.api.DepartmentService;
 import com.ccicnavi.bims.system.service.api.MenuService;
 import com.ccicnavi.bims.system.service.api.RoleService;
 import com.ccicnavi.bims.system.service.api.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.List;
 
 /**
  * @ClassName: UserManagerImpl
- * @description: TODO
+ * @description: 用户业务逻辑管理层
  * @author: zhaotao
  * @create: 2018-11-19 10:50
  **/
@@ -52,34 +51,34 @@ public class UserManagerImpl implements UserManager {
     * @return com.ccicnavi.bims.common.ResultT
     **/
     @Override
-    public ResultT userLogin(UserDO userDO) {
-        UserDO user = userService.getUser(userDO);
+    public ResultT userLogin(UserDTO userDTO) {
+        userDTO = userService.getUser(userDTO);
         //对用户depteUuid和orgUuid进行判断，如果被禁用，返回被禁用
-        if(user != null) {
+        if(userDTO != null) {
             //判断账号是否被禁用
-            if("N".equals(user.getIsEnabled())) {
+            if("N".equals(userDTO.getIsEnabled()) || "Y".equals(userDTO.getIsDeleted())) {
                 return ResultT.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
             }
-            String password = userDO.getCurrentPassword();
+            String password = userDTO.getCurrentPassword();
             //获取盐值
-            String salt = "";
-            boolean verify = passwdService.verify(user.getCurrentPassword(), password, salt);
+            String salt = userDTO.getSalt();
+            boolean verify = passwdService.verify(userDTO.getCurrentPassword(), password, salt);
             //密码错误
             if(!verify) {
-                Integer failedLogins = userDO.getFailedLogins();
+                Integer failedLogins = userDTO.getFailedLogins();
                 failedLogins += 1;
-                userDO.setFailedLogins(failedLogins);
+                userDTO.setFailedLogins(failedLogins);
                 //失败5次处理逻辑
                 if(failedLogins >= 5) {
 
                 }
-                userService.updateUser(userDO);
+                userService.updateUser(userDTO);
                 return ResultT.failure(ResultCode.USER_LOGIN_ERROR);
             }
-            getUserBaseData(userDO, user);
+            getUserBaseData(userDTO);
             //设置过期时间
             //响应结果
-            return ResultT.success(user);
+            return ResultT.success(userDTO);
         }else {
             //账号不存在
             return ResultT.failure(ResultCode.USER_LOGIN_ERROR);
@@ -93,27 +92,27 @@ public class UserManagerImpl implements UserManager {
     * @Param [userDO, user]
     * @return void
     **/
-    private void getUserBaseData(UserDO userDO, UserDO user) {
+    private void getUserBaseData(UserDTO userDTO) {
         //创建jsessionID
         String jsessionID = "";
         //查角色
-        List<RoleUserDO> roleList = roleService.listRoleByUser(userDO);
+        List<RoleDO> roleList = roleService.listRoleByUser(userDTO);
         //查部门
-        List<DepartmentDO> deptList = deptService.listDeptByUser(userDO);
+        List<DepartmentDO> deptList = deptService.listDeptByUser(userDTO);
         //查权限
         MenuDTO menuDTO = new MenuDTO();
         List<String> roleUuids = new ArrayList<>();
-        //封装业务线数据
-        for (RoleUserDO roleUserDO : roleList) {
-            roleUuids.add(roleUserDO.getRoleUuid());
+        for (RoleDO roleDO : roleList) {
+            roleUuids.add(roleDO.getRoleUuid());
         }
         menuDTO.setRoleUuids(roleUuids);
         List<MenuDTO> menuList = menuService.listMenuRoleUuid(menuDTO);
         //查产品线
-        user.setDeptList(deptList);
-        user.setRoleList(roleList);
-        user.setMenuList(menuList);
+
+        userDTO.setDeptList(deptList);
+        userDTO.setRoleList(roleList);
+        userDTO.setMenuList(menuList);
         //保存到Redis中
-        hashTemplate.put(jsessionID, user.getUserUuid(), user);
+        hashTemplate.put(jsessionID, userDTO.getUserUuid(), userDTO);
     }
 }

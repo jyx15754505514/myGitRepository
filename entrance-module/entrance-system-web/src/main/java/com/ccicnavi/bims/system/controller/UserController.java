@@ -7,6 +7,7 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.manager.UserManager;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +58,10 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/getUser", method = RequestMethod.POST)
-    public ResultT getUser(@RequestBody UserDO UserDO) {
-        UserDO User = null;
+    public ResultT getUser(@RequestBody UserDTO userDTO) {
         try {
-            User = userService.getUser(UserDO);
-            return ResultT.success(User);
+            userDTO = userService.getUser(userDTO);
+            return ResultT.success(userDTO);
         } catch (Exception e) {
             log.error("根据主键查询登录用户信息失败", e);
             return ResultT.failure(ResultCode.GET_FAILURE);
@@ -133,9 +133,9 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
-    public ResultT userLogin(@RequestBody UserDO UserDO) {
+    public ResultT userLogin(@RequestBody UserDTO userDTO) {
         try {
-            return userManager.userLogin(UserDO);
+            return userManager.userLogin(userDTO);
         } catch (Exception e) {
             log.error("用户登录失败", e);
             return ResultT.failure(ResultCode.USER_LOGIN_ERROR);
