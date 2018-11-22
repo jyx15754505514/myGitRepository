@@ -5,12 +5,10 @@ import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
-/* *
+/**
  * @Author heibin
  * @Description 证书结果
  * @Date 14:55 2018/11/20
- * @Param
- * @Return
  */
 public interface OrderResultInfoDao {
     /**根据主键id查询证书结果信息*/

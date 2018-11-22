@@ -1,0 +1,63 @@
+-- [insertOrderType]
+insert into order_type
+    -- trim prefix=( suffix=) suffixOverrides=,
+     --iff orderTypeId != null and orderTypeId != ''
+            order_type_id,
+     --iff parentTypeId != null and parentTypeId != ''
+            parent_type_id,
+     --iff hasTable != null and hasTable != ''
+            has_table,
+     --iff typeName != null and typeName != ''
+            type_name,
+-- end
+-- trim prefix=values( suffix=) suffixOverrides=,
+     --iff orderTypeId != null and orderTypeId != ''
+        '#orderTypeId#',
+     --iff parentTypeId != null and parentTypeId != ''
+        '#parentTypeId#',
+     --iff hasTable != null and hasTable != ''
+        '#hasTable#',
+     --iff typeName != null and typeName != ''
+        '#typeName#',
+-- end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- [deleteOrderType]

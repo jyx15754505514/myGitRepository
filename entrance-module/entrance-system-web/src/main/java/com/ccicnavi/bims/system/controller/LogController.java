@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-/* *
+/**
  * @Author MengZiJie
  * @Description 日志管理
  * @Date 9:16 2018/11/16
@@ -25,7 +25,7 @@ public class LogController {
     @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20881")
     LogService logService;
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 查询日志
      * @Date 9:14 2018/11/16
@@ -38,7 +38,7 @@ public class LogController {
     }
 
 
-   /* *
+   /**
     * @Author MengZiJie
     * @Description 获取日志失败
     * @Date 14:06 2018/11/16
@@ -50,7 +50,7 @@ public class LogController {
         return logService.getLog(logDTO);
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 新增日志
      * @Date 14:07 2018/11/16
@@ -62,7 +62,7 @@ public class LogController {
         return logService.insertLog(logDTO);
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 更新日志
      * @Date 14:09 2018/11/16
@@ -74,7 +74,7 @@ public class LogController {
         return logService.updateLog(logDTO);
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 删除日志
      * @Date 14:10 2018/11/16
