@@ -232,7 +232,7 @@ where
             updated_name = '#updatedName#',
     -- end
 where
-     --if flag!=null and flag =='1'
+     --if flag ==1
      order_item_uuid = '#orderItemUuid#'
      --else
     is_deleted = 'N'

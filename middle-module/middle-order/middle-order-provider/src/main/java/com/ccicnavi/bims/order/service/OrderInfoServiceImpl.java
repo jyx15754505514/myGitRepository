@@ -1,4 +1,5 @@
 package com.ccicnavi.bims.order.service;
+
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
@@ -53,13 +54,16 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Override
     public Integer insertOrderInfo(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
-        Integer integer = null;
+        Integer orderInfo = null;
         try {
-            integer = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
+            orderInfo = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
+            if(orderInfo > 0){
+                return orderInfo;
+            }
         } catch (Exception e) {
             log.error("新增委托单失败",e);
         }
-        return integer;
+        return -1;
     }
 
     /**
@@ -72,15 +76,25 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Override
     public Integer updateOrderInfo(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
-        Integer integer = null;
+        Integer orderInfo = null;
         try {
-            integer = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
+            orderInfo = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
+            if(orderInfo > 0){
+                return orderInfo;
+            }
         } catch (Exception e) {
             log.error("更新委托单信息",e);
         }
-        return integer;
+        return -1;
     }
 
+    /**
+     * @Author MengZiJie
+     * @Description 分页查看委托单
+     * @Date 17:31 2018/11/19
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderInfoDO>
+     */
     @Override
     public PageBean<OrderInfoDO> listOrderInfo(PageParameter<OrderInfoDO> pageParameter) {
         try {

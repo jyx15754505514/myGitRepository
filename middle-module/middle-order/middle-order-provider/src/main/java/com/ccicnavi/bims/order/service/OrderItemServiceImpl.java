@@ -30,8 +30,8 @@ public class OrderItemServiceImpl implements OrderItemService {
     /**
      * @Author MengZiJie
      * @Description 添加服务项
-     * @Date 17:30 2018/11/19
-     * @Param [orderItemDO]
+     * @Data 2018/11/19 17:30
+     * @Param [orderItemDTO]
      * @Return java.lang.Integer
      */
     @Override
@@ -115,7 +115,7 @@ public class OrderItemServiceImpl implements OrderItemService {
                     }
                 }
             }
-            if (statu = true) {
+            if (statu) {
                 eqlTran.commit();
                 return 1;
             }

@@ -10,14 +10,21 @@ import java.util.List;
 
 /**
  *@program: bims-backend
- *@description: 部门信息表的DO实体
+ *@description: 部门信息表的DTO实体
  *@author: zhangxingbiao
  *@create: 2018-11-15 14:45
  */
 @Getter
 @Setter
 @ToString
-public class DepartmentDO implements Serializable {
+public class DepartmentDTO implements Serializable {
+
+    private List<String> uuids;                 //部门主键集合
+
+    private Long levels;                        //所在级别
+
+    private List<DepartmentDTO> deptChildList; //子集
+
     private String deptUuid;
 
     private String deptCode;
