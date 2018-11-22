@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单服务项DTO
  * @Date 9:30 2018/11/20
@@ -68,4 +68,6 @@ public class OrderItemDTO implements Serializable {
     private String updatedName;
 
     List<OrderItemSubDO> orderItemSubDO;
+
+    private String flag;
 }

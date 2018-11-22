@@ -6,7 +6,7 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单DTO
  * @Date 9:23 2018/11/20

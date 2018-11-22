@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/* *
+/**
  * @Author heibin
  * @Description 委托单最小服务项子项（最小颗粒度）
  * @Date 9:44 2018/11/20
@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class OrderItemSubServiceImpl implements OrderItemSubService {
     @Autowired
     private OrderItemSubDao orderItemSubDao;
-    /* *
+    /**
      * @Author heibin
      * @Description 委托单最小服务项子项（最小颗粒度）添加
      * @Date 9:46 2018/11/20
@@ -36,7 +36,7 @@ public class OrderItemSubServiceImpl implements OrderItemSubService {
         }
         return integer;
     }
-    /* *
+    /**
      * @Author heibin
      * @Description 委托单最小服务项子项（最小颗粒度）更新
      * @Date 9:46 2018/11/20
@@ -54,7 +54,7 @@ public class OrderItemSubServiceImpl implements OrderItemSubService {
         }
         return integer;
     }
-    /* *
+    /**
      * @Author heibin
      * @Description 委托单最小服务项子项（最小颗粒度）物理删除
      * @Date 11:19 2018/11/20
