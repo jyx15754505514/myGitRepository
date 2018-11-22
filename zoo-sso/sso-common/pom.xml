@@ -24,15 +24,22 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.6</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>middle-system</groupId>
+            <artifactId>middle-system-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.ccicnavi.bims</groupId>
+                    <artifactId>entrance-common</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

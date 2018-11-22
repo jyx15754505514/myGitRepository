@@ -1,44 +1,29 @@
 package com.ccicnavi.bims.system.pojo;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-@Setter
+/**
+ * @program: bims-backend
+ * @description: 产品线信息DO(prod_catalog)
+ * @author: WangYingLing
+ * @create: 2018-11-19 22:46
+ */
+
 @Getter
+@Setter
 @ToString
-public class OrganizationDO implements Serializable{
+public class CatalogDO implements Serializable {
 
-    private String organizationUuid;
+    private String prodCatalogUuid;
 
-    private String orgParentUuid;
+    private String catalogName;
 
-    private String orgName;
-
-    private String orgShortName;
-
-    private String orgCode;
-
-    private String orgType;
-
-    private String orgTel;
-
-    private String orgTelExt;
-
-    private String orgFax;
-
-    private String orgUrl;
-
-    private String orgAddr;
-
-    private String isEnabled;
-
-    private String sortNum;
+    private String catalogCode;
 
     private String comments;
 
@@ -52,13 +37,13 @@ public class OrganizationDO implements Serializable{
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
 
     private String orgUuid;
 
     private String appSysUuid;
-
-    private String businessLine;
 
     private String extend1;
 
