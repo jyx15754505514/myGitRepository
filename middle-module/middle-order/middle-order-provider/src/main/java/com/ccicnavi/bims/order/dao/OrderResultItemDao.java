@@ -4,6 +4,11 @@ import com.ccicnavi.bims.order.pojo.OrderResultItemDO;
 import org.n3r.eql.EqlTran;
 import java.util.List;
 
+/**
+ * @Author heibin
+ * @Description 证书与服务项关系
+ * @Date 14:55 2018/11/20
+ */
 public interface OrderResultItemDao {
     /**根据主键id查询委托服务项-证书关系*/
     OrderResultItemDO getOrderResultItem(OrderResultItemDO orderResultItemDO) throws Exception;
