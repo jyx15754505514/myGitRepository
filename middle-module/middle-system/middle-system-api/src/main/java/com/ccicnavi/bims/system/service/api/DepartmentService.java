@@ -2,10 +2,7 @@ package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.system.pojo.DepartmentDO;
-import com.ccicnavi.bims.system.pojo.UserDO;
-import com.ccicnavi.bims.system.pojo.UserDTO;
-import com.ccicnavi.bims.system.pojo.UserDeptDO;
+import com.ccicnavi.bims.system.pojo.*;
 
 import java.util.List;
 
@@ -58,5 +55,5 @@ public interface DepartmentService {
     * @Param [userDO]
     * @return java.util.List<com.ccicnavi.bims.system.pojo.DepartmentDO>
     **/
-    List<DepartmentDO> listDeptByUser(UserDTO userDTO);
+    List<DepartmentDTO> listDeptByUser(UserDTO userDTO);
 }

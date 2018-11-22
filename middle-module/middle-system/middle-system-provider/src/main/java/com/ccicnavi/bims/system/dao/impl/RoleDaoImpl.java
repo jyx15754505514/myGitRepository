@@ -61,13 +61,13 @@ public class RoleDaoImpl implements RoleDao {
     *@date: 2018/11/19
     */
     @Override
-    public List<RoleDO> listRoleByUser(UserDTO userDO){
-        List<RoleDO> roleDOList = null;
+    public List<RoleDTO> listRoleByUser(UserDTO userDO){
+        List<RoleDTO> roleDTOList = null;
         try {
-            roleDOList =  new Eql("DEFAULT").selectFirst("listRoleByUser").params(userDO).returnType(RoleDO.class).execute();
-            return roleDOList;
+            roleDTOList =  new Eql("DEFAULT").selectFirst("listRoleByUser").params(userDO).returnType(RoleDTO.class).execute();
+            return roleDTOList;
         } catch (Exception e) {
-            return roleDOList;
+            return roleDTOList;
         }
     }
 

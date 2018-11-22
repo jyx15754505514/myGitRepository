@@ -7,6 +7,7 @@ import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.sso.api.SSOService;
 import com.ccicnavi.bims.system.manager.UserManager;
 import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
@@ -40,6 +41,9 @@ public class UserController {
 
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
     private IdWorkerService idWorkerService;
+
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    private SSOService ssoService;
 
     /**
     *@Description: 查询登录用户信息(条件查询)
@@ -160,7 +164,7 @@ public class UserController {
     @RequestMapping(value = "/userLogout", method = RequestMethod.POST)
     public ResultT userLogout(@RequestBody String jsessionId) {
         try {
-            //return userManager.userLogin(UserDO);
+            ssoService.logout(jsessionId);
         } catch (Exception e) {
             log.error("用户登出失败", e);
         }

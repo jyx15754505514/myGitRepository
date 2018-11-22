@@ -8,12 +8,9 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.impl.DepartmentDaoImpl;
 import com.ccicnavi.bims.system.dao.impl.SettingDaoImpl;
-import com.ccicnavi.bims.system.pojo.UserDO;
-import com.ccicnavi.bims.system.pojo.UserDTO;
-import com.ccicnavi.bims.system.pojo.UserDeptDO;
+import com.ccicnavi.bims.system.pojo.*;
 import com.ccicnavi.bims.system.service.api.DepartmentService;
 import com.ccicnavi.bims.system.dao.DepartmentDao;
-import com.ccicnavi.bims.system.pojo.DepartmentDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,8 +126,8 @@ import java.util.List;
      *@date: 2018/11/19
      */
      @Override
-     public List<DepartmentDO> listDeptByUser(UserDTO userDTO){
-         List<DepartmentDO> deptList = null;
+     public List<DepartmentDTO> listDeptByUser(UserDTO userDTO){
+         List<DepartmentDTO> deptList = null;
          try {
              deptList = departmentDao.listDeptByUser(userDTO);
              return deptList;

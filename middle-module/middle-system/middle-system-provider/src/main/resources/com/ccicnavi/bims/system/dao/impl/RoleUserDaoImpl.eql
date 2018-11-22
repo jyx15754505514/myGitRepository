@@ -53,7 +53,7 @@
                  user_uuid = '#userUuid#'
          -- end
 --删除用户角色信息
---[deleteRoleUser]
+--[deleteRoleUsers]
     DELETE
     FROM
         sys_role_user

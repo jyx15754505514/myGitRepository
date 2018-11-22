@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.DepartmentDO;
+import com.ccicnavi.bims.system.pojo.DepartmentDTO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 
 import java.util.List;
@@ -67,6 +68,6 @@ public interface DepartmentDao {
     *@Author: zhangpengwei
     *@date: 2018/11/19
     */
-    public List<DepartmentDO> listDeptByUser(UserDTO userDTO) throws Exception;
+    public List<DepartmentDTO> listDeptByUser(UserDTO userDTO) throws Exception;
 
 }

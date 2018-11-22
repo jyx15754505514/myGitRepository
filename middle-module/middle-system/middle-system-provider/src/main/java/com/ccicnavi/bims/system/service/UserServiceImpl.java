@@ -9,6 +9,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.RoleUserDao;
 import com.ccicnavi.bims.system.dao.UserDao;
 import com.ccicnavi.bims.system.pojo.RoleDO;
+import com.ccicnavi.bims.system.pojo.RoleDTO;
 import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.RoleService;
@@ -56,8 +57,8 @@ public class UserServiceImpl implements UserService{
                 List<UserDTO> userList = pageBean.getProducts();
                 if(userList != null && userList.size() > 0) {
                     for (UserDTO user : userList) {
-                        List<RoleDO> roleUserList = roleService.listRoleByUser(user);
-                        user.setRoleDOList(roleUserList);
+                        List<RoleDTO> roleDTOList = roleService.listRoleByUser(user);
+                        user.setRoleDTOList(roleDTOList);
                     }
                 }
                  return ResultT.success(pageBean);
@@ -91,7 +92,7 @@ public class UserServiceImpl implements UserService{
                 for(String roleUuid : roleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表
-                    insertRole = roleUserDao.insertRoleUser(userDTO, tran);
+                    insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
             if(saveUser != null && saveUser > 0 && insertRole != null && insertRole > 0) {
@@ -129,12 +130,16 @@ public class UserServiceImpl implements UserService{
             //删除角色的集合不为空就根据用户uuid删除中间表角色信息
             List<String> deleteRoleList = userDTO.getDeleteRoleList();
             if(deleteRoleList != null && deleteRoleList.size() > 0){
-                deleteRoleUser = roleUserDao.deleteRoleUser(userDTO, tran);
+                deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
             }
             //添加角色的集合不为空就根据用户uuid添加用户和角色信息
             List<String> addRoleList = userDTO.getAddRoleList();
             if(addRoleList != null && addRoleList.size() > 0){
-                insertRole = roleUserDao.insertRoleUser(userDTO, tran);
+                for(String roleUuid : addRoleList){
+                    userDTO.setRoleUuid(roleUuid);
+                    //新增用户角色中间表
+                    insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
+                }
             }
             if(deleteRoleUser != null && insertRole != null) {
                 tran.commit();
@@ -157,13 +162,23 @@ public class UserServiceImpl implements UserService{
     *@date: 2018/11/15
     */
     @Override
-    public Integer deleteUser(UserDTO userDO){
+    public Integer deleteUser(UserDTO userDTO){
+        EqlTran tran = new Eql("DEFAULT").newTran();
+        Integer deleteUser = 0;
+        Integer deleteRoleUser = 0;
         try {
-            return userDao.deleteUser(userDO, null);
+            tran.start();
+            deleteUser = userDao.deleteUser(userDTO, null);
+            deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, null);
+            if(deleteUser != null && deleteRoleUser != null){
+                tran.commit();
+            }
         } catch (Exception e) {
             log.error("删除登录用户信息失败",e);
+            tran.rollback();
             return null;
         }
+        return deleteUser;
     }
 
     /**
@@ -177,8 +192,8 @@ public class UserServiceImpl implements UserService{
     public UserDTO getUser(UserDTO userDTO){
         try {
             userDTO = userDao.getUser(userDTO);
-            List<RoleDO> roleUserList = roleService.listRoleByUser(userDTO);
-            userDTO.setRoleDOList(roleUserList);
+            List<RoleDTO> roleDTOList = roleService.listRoleByUser(userDTO);
+            userDTO.setRoleDTOList(roleDTOList);
             return userDTO;
         } catch (Exception e) {
             log.error("根据主键获取登录用户信息失败",e);

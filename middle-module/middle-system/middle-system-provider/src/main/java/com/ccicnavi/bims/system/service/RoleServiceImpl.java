@@ -85,8 +85,8 @@ public class RoleServiceImpl implements RoleService {
     *@date: 2018/11/19
     */
     @Override
-    public List<RoleDO> listRoleByUser(UserDTO userDO){
-        List<RoleDO> roleDOList = null;
+    public List<RoleDTO> listRoleByUser(UserDTO userDO){
+        List<RoleDTO> roleDOList = null;
         try {
             roleDOList = roleDao.listRoleByUser(userDO);
             return roleDOList;
