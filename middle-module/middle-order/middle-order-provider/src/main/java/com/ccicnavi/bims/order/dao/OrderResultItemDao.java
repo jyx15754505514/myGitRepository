@@ -2,7 +2,6 @@ package com.ccicnavi.bims.order.dao;
 
 import com.ccicnavi.bims.order.pojo.OrderResultItemDO;
 import org.n3r.eql.EqlTran;
-
 import java.util.List;
 
 public interface OrderResultItemDao {

@@ -2,7 +2,7 @@ package com.ccicnavi.bims.order.dao;
 
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import org.n3r.eql.EqlTran;
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单运输方式
  * @Date 16:01 2018/11/19
