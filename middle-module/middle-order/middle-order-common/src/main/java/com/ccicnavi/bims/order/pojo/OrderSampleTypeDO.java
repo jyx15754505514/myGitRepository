@@ -15,11 +15,20 @@ import java.io.Serializable;
 @Setter
 @ToString
 public class OrderSampleTypeDO implements Serializable {
+    /**
+     * 委托单样品主键
+     */
     private String orderSplUuid;
-
+    /**
+     * 委托单主键
+     */
     private String orderUuid;
-
+    /**
+     * 样品类型id（意图）
+     */
     private String splPurposeType;
-
+    /**
+     * 样品数量（意图）
+     */
     private Integer splPurposeQty;
 }
