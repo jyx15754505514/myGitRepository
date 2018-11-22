@@ -177,7 +177,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         }
         return ResultT.failure(ResultCode.ADD_FAILURE);
     }
-    /* *
+    /**
      * @Author heibin
      * @Description 修改委托单
      * @Date 10:43 2018/11/20

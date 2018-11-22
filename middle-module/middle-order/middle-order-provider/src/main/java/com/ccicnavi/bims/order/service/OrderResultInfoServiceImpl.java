@@ -7,7 +7,6 @@ import com.ccicnavi.bims.order.pojo.OrderResultInfoDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 /**
