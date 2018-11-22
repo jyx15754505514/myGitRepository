@@ -7,7 +7,6 @@ import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
 /**
  * @Author MengZiJie
  * @Description 委托单服务项
@@ -49,9 +48,11 @@ public class OrderItemDaoImpl implements OrderItemDao {
     }
 
     /**
-     * 功能描述: 根据委托单信息查询其下的服务项目信息
-     * @auther: fandongsheng
-     * @date: 2018/11/21 14:37
+     * @Author fandongsheng
+     * @Description 根据委托单信息查询其下的服务项目信息
+     * @Date 14:37 2018/11/21
+     * @Param [orderInfoDO]
+     * @Return java.util.List<com.ccicnavi.bims.order.pojo.OrderItemDTO>
      */
     @Override
     public List<OrderItemDTO> listOrderItemDTO(OrderInfoDO orderInfoDO) throws Exception {

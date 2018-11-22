@@ -15,27 +15,49 @@ import java.util.Date;
 @Setter
 @ToString
 public class OrderItemCostDo implements Serializable {
-
+    /**
+     * 主键
+     */
     private String itemCostUuid;
-
+    /**
+     * 最小服务项id
+     */
     private String orderItemUuid;
-
+    /**
+     * 成本类型id
+     */
     private String costTypeId;
-
+    /**
+     * 成本名称
+     */
     private String costTypeName;
-
+    /**
+     * 成本费用
+     */
     private Integer costFee;
-
+    /**
+     * 申请人
+     */
     private String applyUserUuid;
-
+    /**
+     * 申请日期
+     */
     private Date applyDate;
-
+    /**
+     * 备注
+     */
     private String comments;
-
+    /**
+     * 预留字段1
+     */
     private String extend1;
-
+    /**
+     * 预留字段2
+     */
     private String extend2;
-
+    /**
+     * 预留字段3
+     */
     private String extend3;
 
 }
