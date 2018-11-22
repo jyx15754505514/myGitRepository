@@ -28,6 +28,8 @@ public class UserDO implements Serializable {
 
     private String userUuid;
 
+    private String salt;
+
     private String nickName;
 
     private String loginName;
