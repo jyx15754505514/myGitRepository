@@ -35,13 +35,9 @@ from sys_role_permission
 
 -- 删除角色按钮
 -- [deleteRolePermission]
-    delete from sys_role_permission
-    where
-        -- if roleUuid != null and roleUuid != ''
-        	role_uuid = '#roleUuid#'
-        -- end
         -- if deleteButUuid != null
-            btn_uuid in
+    delete from sys_role_permission
+    where        btn_uuid in
                 -- for item=item index=index collection=deleteButUuid open=( separator=, close=)
                 	'#item#'
                 -- end
