@@ -15,7 +15,7 @@ import java.util.Set;
 @SpringBootTest(classes = ShibaApplication.class)
 public class ShibaZsetTest {
 
-    @Reference(timeout = 1000, url = "dubbo://127.0.0.1:20888")
+    @Reference(timeout = 1000, url = "dubbo://192.168.125.11:20888")
     ZsetTemplate zsetTemplate;
 
     @Test
