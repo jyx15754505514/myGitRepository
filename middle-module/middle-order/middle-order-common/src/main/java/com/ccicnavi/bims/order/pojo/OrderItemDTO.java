@@ -82,7 +82,7 @@ public class OrderItemDTO implements Serializable {
 
     private List<OrderItemSubDO> orderItemSubDO;//子项
 
-    private List<OrderItemCostDO> orderItemCostDo;//成本
+    private List<OrderItemCostDO> orderItemCostDO;//成本
 
     private String flag;
 }
