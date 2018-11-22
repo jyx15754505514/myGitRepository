@@ -15,7 +15,7 @@ import java.util.List;
 @SpringBootTest(classes = ShibaApplication.class)
 public class ShibaListTest {
 
-    @Reference(timeout = 1000, url = "dubbo://127.0.0.1:20888")
+    @Reference(timeout = 1000, url = "dubbo://192.168.125.11:20888")
     ListTemplate listRedisTemplate;
 
     @Test

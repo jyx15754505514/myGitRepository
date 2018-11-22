@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.CatalogWorkhourDO;
+import com.ccicnavi.bims.product.pojo.CatalogWorkhourDTO;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface CatalogWorkhourDao {
 
     int saveCatalogWorkhour(CatalogWorkhourDO catalogWorkhour) throws Exception;
 
-    int removeCatalogWorkhour(CatalogWorkhourDO catalogWorkhour) throws Exception;
+    int removeCatalogWorkhour(CatalogWorkhourDTO catalogWorkhourDTO) throws Exception;
 
     int updateCatalogWorkhour(CatalogWorkhourDO catalogWorkhour) throws Exception;
 

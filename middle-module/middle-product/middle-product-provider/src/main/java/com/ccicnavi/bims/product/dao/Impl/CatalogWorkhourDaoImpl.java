@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.CatalogWorkhourDao;
 import com.ccicnavi.bims.product.pojo.CatalogWorkhourDO;
+import com.ccicnavi.bims.product.pojo.CatalogWorkhourDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,8 @@ public class CatalogWorkhourDaoImpl implements CatalogWorkhourDao {
     }
 
     @Override
-    public int removeCatalogWorkhour(CatalogWorkhourDO catalogWorkhour) {
-        return new Eql().update("deleteCatalogWorkhour").params(catalogWorkhour).returnType(int.class).execute();
+    public int removeCatalogWorkhour(CatalogWorkhourDTO catalogWorkhourDTO) {
+        return new Eql().update("deleteCatalogWorkhour").params(catalogWorkhourDTO).returnType(int.class).execute();
     }
 
     @Override

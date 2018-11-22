@@ -71,4 +71,14 @@ public interface StringTemplate {
      */
     Object getAndSet(Object key, Object value);
 
+
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    Boolean expire(Object key, long timeout, TimeUnit unit);
 }

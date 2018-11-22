@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * @Auther: CongZhiYuan
  * @Date: 2018/11/21 11:55
@@ -12,7 +14,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class SerialQueryDTO {
+public class SerialQueryDTO implements Serializable {
     private String orgUuid;
 
     private String appSysUuid;

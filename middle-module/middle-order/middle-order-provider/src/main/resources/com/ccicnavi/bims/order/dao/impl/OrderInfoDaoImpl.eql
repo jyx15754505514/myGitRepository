@@ -14,6 +14,7 @@ select
     crm_email crmEmail,
     crm_contract_no crmContractNo,
     crm_emer_name crmEmerName,
+    crm_emer_telphone crmEmerTelphone,
     order_item_name orderItemName,
     order_item_type orderItemType,
     order_item_spec orderItemSpec,
@@ -33,11 +34,17 @@ select
     currency_type currencyType,
     conclusion_type conclusionType,
     cert_lang_uuid certLangUuid,
+    cert_qty certQty,
+    cert_copy_qty certCopyQty,
     accept_date acceptDate,
     accept_org_uuid acceptOrgUuid,
     accept_org_name acceptOrgName,
     status_uuid statusUuid,
     status_name statusName,
+    lbl_subpkg lblSubpkg,
+    lbl_exec lblExec,
+    lbl_crm_capc lblCrmCapc,
+    is_review isReview,
     is_deleted isDeleted,
     created_time createdTime,
     created_uuid createdUuid,
@@ -69,6 +76,7 @@ select
     crm_email crmEmail,
     crm_contract_no crmContractNo,
     crm_emer_name crmEmerName,
+    crm_emer_telphone crmEmerTelphone,
     order_item_name orderItemName,
     order_item_type orderItemType,
     order_item_spec orderItemSpec,
@@ -88,11 +96,17 @@ select
     currency_type currencyType,
     conclusion_type conclusionType,
     cert_lang_uuid certLangUuid,
+    cert_qty certQty,
+    cert_copy_qty certCopyQty,
     accept_date acceptDate,
     accept_org_uuid acceptOrgUuid,
     accept_org_name acceptOrgName,
     status_uuid statusUuid,
     status_name statusName,
+    lbl_subpkg lblSubpkg,
+    lbl_exec lblExec,
+    lbl_crm_capc lblCrmCapc,
+    is_review isReview,
     is_deleted isDeleted,
     created_time createdTime,
     created_uuid createdUuid,
@@ -146,6 +160,8 @@ insert into order_info
             crm_contract_no,
         -- iff crmEmerName != null and crmEmerName != ''
             crm_emer_name,
+        --iff crmEmerTelphone != null and crmEmerTelphone !=''
+            crm_emer_telphone,
         -- iff orderItemName != null and orderItemName != ''
             order_item_name,
         -- iff orderItemType != null and orderItemType != ''
@@ -184,6 +200,10 @@ insert into order_info
             conclusion_type,
         -- iff certLangUuid != null and certLangUuid != ''
             cert_lang_uuid,
+        --iff certQty != null and certQty != ''
+            cert_qty,
+        --iff certCopyQty != null and certCopyQty !=''
+            cert_copy_qty,
         -- iff acceptDate != null
             accept_date,
         -- iff acceptOrgUuid != null and acceptOrgUuid != ''
@@ -194,6 +214,14 @@ insert into order_info
             status_uuid,
         -- iff statusName != null and statusName != ''
             status_name,
+        --iff lblSubpkg != null and lblSubpkg != ''
+            lbl_subpkg,
+        --iff lblExec != null and lblExec != ''
+            lbl_exec,
+        --iff lblCrmCapc != null and lblCrmCapc != ''
+            lbl_crm_capc,
+        --iff isReview != null and isReview != ''
+            is_review,
         -- iff isDeleted != null and isDeleted != ''
             is_deleted,
         -- iff createdTime != nul
@@ -244,6 +272,8 @@ insert into order_info
             '#crmContractNo#',
         --iff crmEmerName != null and crmEmerName!= ''
             '#crmEmerName#',
+        --iff crmEmerTelphone != null and crmEmerTelphone !=''
+            '#crmEmerTelphone#',
         --iff orderItemName != null and orderItemName != ''
             '#orderItemName#',
         --iff orderItemType != null and orderItemType != ''
@@ -282,6 +312,10 @@ insert into order_info
             '#conclusionType#',
         --iff certLangUuid != null and certLangUuid != ''
             '#certLangUuid#',
+        --iff certQty != null and certQty != ''
+            '#certQty#',
+        --iff certCopyQty != null and certCopyQty !=''
+            '#certCopyQty#',
         --iff acceptDate != null
             '#acceptDate#',
         --iff acceptOrgUuid != null and acceptOrgUuid != ''
@@ -292,6 +326,14 @@ insert into order_info
             '#statusUuid#',
         --iff statusName != null and statusName != ''
             '#statusName#',
+        --iff lblSubpkg != null and lblSubpkg != ''
+            '#lblSubpkg#',
+        --iff lblExec != null and lblExec != ''
+            '#lblExec#',
+        --iff lblCrmCapc != null and lblCrmCapc != ''
+            '#lblCrmCapc#',
+        --iff isReview != null and isReview != ''
+            '#isReview#',
         --iff isDeleted != null and isDeleted != ''
             '#isDeleted#',
         --iff createdTime != null
@@ -343,6 +385,8 @@ update order_info
             crm_contract_no = '#crmContractNo#',
         --iff crmEmerName != null and crmEmerName != ''
             crm_emer_name = '#crmEmerName#',
+        --iff crmEmerTelphone != null and crmEmerTelphone !=''
+            crm_emer_telphone = '#crmEmerTelphone#',
         --iff orderItemName != null and orderItemName != ''
             order_item_name = '#orderItemName#',
         --iff orderItemType != null and orderItemType != ''
@@ -381,6 +425,10 @@ update order_info
             conclusion_type = '#conclusionType#',
         --iff certLangUuid != null and certLangUuid != ''
             cert_lang_uuid = '#certLangUuid#',
+        --iff certQty != null and certQty != ''
+            cert_qty = '#certQty#',
+        --iff certCopyQty != null and certCopyQty !=''
+            cert_copy_qty = '#certCopyQty#',
         --iff acceptDate != null
             accept_date = '#acceptDate#',
         --iff acceptOrgUuid != null and acceptOrgUuid != ''
@@ -391,6 +439,14 @@ update order_info
             status_uuid = '#statusUuid#',
         --iff statusName != null and statusName != ''
             status_name = '#statusName#',
+        --iff lblSubpkg != null and lblSubpkg != ''
+            lbl_subpkg = '#lblSubpkg#',
+        --iff lblExec != null and lblExec != ''
+            lbl_exec = '#lblExec#',
+        --iff lblCrmCapc != null and lblCrmCapc != ''
+            lbl_crm_capc = '#lblCrmCapc#',
+        --iff isReview != null and isReview != ''
+            is_review = '#isReview#',
         --iff isDeleted != null and isDeleted != ''
             is_deleted = '#isDeleted#',
         --iff createdTime != null
@@ -412,6 +468,10 @@ update order_info
         --iff appSysUuid != null and appSysUuid != ''
             app_sys_uuid = '#appSysUuid#',
     -- end
+where
+    is_deleted = 'N'
+--iff orderUuid != null and orderUuid != ''
+    and order_uuid = '#orderUuid#'
 
 -- [deleteOrderInfo]
 UPDATE order_info

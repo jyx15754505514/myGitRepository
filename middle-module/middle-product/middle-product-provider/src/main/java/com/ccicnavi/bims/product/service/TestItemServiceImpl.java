@@ -25,9 +25,9 @@ public class TestItemServiceImpl implements TestItemService {
     TestItemDao testItemDao;
 
     @Override
-    public List<TestItemDO> listTestItemDo(TestItemDO testItemDO){
+    public List<TestItemDO> listTestItem(TestItemDO testItemDO){
         try {
-            return testItemDao.listTestItemDO();
+            return testItemDao.listTestItem();
         } catch (Exception e) {
             log.error("查询检测指标信息失败",e);
             return null;
@@ -35,9 +35,9 @@ public class TestItemServiceImpl implements TestItemService {
     }
 
     @Override
-    public int saveTestItemDo(TestItemDO testItemDO){
+    public int saveTestItem(TestItemDO testItemDO){
         try {
-            return testItemDao.saveTestItemDO(testItemDO);
+            return testItemDao.saveTestItem(testItemDO);
         } catch (Exception e) {
             log.error("新增检测指标信息失败",e);
             return 0;
@@ -45,9 +45,9 @@ public class TestItemServiceImpl implements TestItemService {
     }
 
     @Override
-    public int removeTestItemDo(TestItemDO testItemDO){
+    public int removeTestItem(TestItemDO testItemDO){
         try {
-            return testItemDao.removeTestItemDO(testItemDO);
+            return testItemDao.removeTestItem(testItemDO);
         } catch (Exception e) {
             log.error("删除检测指标信息失败",e);
             return 0;
@@ -55,9 +55,9 @@ public class TestItemServiceImpl implements TestItemService {
     }
 
     @Override
-    public int updateTestItemDo(TestItemDO testItemDO){
+    public int updateTestItem(TestItemDO testItemDO){
         try {
-            return testItemDao.updateTestItemDO(testItemDO);
+            return testItemDao.updateTestItem(testItemDO);
         } catch (Exception e) {
             log.error("修改检测指标信息失败",e);
             return 0;
@@ -65,9 +65,9 @@ public class TestItemServiceImpl implements TestItemService {
     }
 
     @Override
-    public TestItemDO getTestItemDo(TestItemDO testItemDO){
+    public TestItemDO getTestItem(TestItemDO testItemDO){
         try {
-            return testItemDao.getTestItemDO(testItemDO);
+            return testItemDao.getTestItem(testItemDO);
         } catch (Exception e) {
             log.error("获取检测指标信息失败",e);
             return null;

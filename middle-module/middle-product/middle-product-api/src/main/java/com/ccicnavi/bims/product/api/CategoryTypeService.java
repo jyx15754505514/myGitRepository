@@ -18,35 +18,35 @@ public interface CategoryTypeService {
      * @description 查询全部产品类别的分类信息
      * @return List<CategoryTypeDO>
      */
-    List<CategoryTypeDO> listCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    List<CategoryTypeDO> listCategoryType(CategoryTypeDO categoryTypeDO);
 
     /**
      * @description 新增产品类别的分类信息
      * @param categoryTypeDO
      * @return int
      */
-    int saveCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    int saveCategoryType(CategoryTypeDO categoryTypeDO);
 
     /**
      * @description 删除产品类别的分类信息
      * @param categoryTypeDO
      * @return int
      */
-    int removeCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    int removeCategoryType(CategoryTypeDO categoryTypeDO);
 
     /**
      * @description 修改产品类别的分类信息
      * @param categoryTypeDO
      * @return int
      */
-    int updateCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    int updateCategoryType(CategoryTypeDO categoryTypeDO);
 
     /**
      * @description 根据主键获取产品类别的分类信息
      * @param categoryTypeDO
      * @return CategoryTypeDO
      */
-    CategoryTypeDO getCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    CategoryTypeDO getCategoryType(CategoryTypeDO categoryTypeDO);
 
     /**
      * @description 分页查询产品类别的分类信息

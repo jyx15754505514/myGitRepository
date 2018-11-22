@@ -45,6 +45,8 @@ public class OrderInfoDO implements Serializable {
 
     private String crmEmerName;
 
+    private String crmEmerTelphone;
+
     private String orderItemName;
 
     private String orderItemType;
@@ -83,6 +85,10 @@ public class OrderInfoDO implements Serializable {
 
     private String certLangUuid;
 
+    private Integer certQty;
+
+    private Integer certCopyQty;
+
     private Date acceptDate;
 
     private String acceptOrgUuid;
@@ -92,6 +98,14 @@ public class OrderInfoDO implements Serializable {
     private String statusUuid;
 
     private String statusName;
+
+    private String lblSubpkg;
+
+    private String lblExec;
+
+    private String lblCrmCapc;
+
+    private String isReview;
 
     private String isDeleted;
 
