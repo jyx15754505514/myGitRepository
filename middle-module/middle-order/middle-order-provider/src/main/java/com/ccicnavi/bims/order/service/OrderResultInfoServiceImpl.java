@@ -7,10 +7,9 @@ import com.ccicnavi.bims.order.pojo.OrderResultInfoDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
-/* *
+/**
  * @Author heibin
  * @Description 证书结果
  * @Date 14:51 2018/11/20
@@ -20,7 +19,7 @@ import java.util.List;
 public class OrderResultInfoServiceImpl implements OrderResultInfoService {
     @Autowired
     private OrderResultInfoDao orderResultInfoDao;
-    /* *
+    /**
      * @Author heibin
      * @Description 根据主键id查询证书结果
      * @Date 17:41 2018/11/20
@@ -37,7 +36,7 @@ public class OrderResultInfoServiceImpl implements OrderResultInfoService {
         }
     }
 
-    /* *
+    /**
      * @Author heibin
      * @Description 查询全部证书结果
      * @Date 14:52 2018/11/20
@@ -54,7 +53,7 @@ public class OrderResultInfoServiceImpl implements OrderResultInfoService {
         }
     }
 
-    /* *
+    /**
      * @Author heibin
      * @Description 证书结果添加
      * @Date 14:52 2018/11/20
@@ -72,7 +71,7 @@ public class OrderResultInfoServiceImpl implements OrderResultInfoService {
         }
         return integer;
     }
-    /* *
+    /**
      * @Author heibin
      * @Description 证书结果更新
      * @Date 14:52 2018/11/20
@@ -90,7 +89,7 @@ public class OrderResultInfoServiceImpl implements OrderResultInfoService {
         }
         return integer;
     }
-    /* *
+    /**
      * @Author heibin
      * @Description 证书结果删除
      * @Date 16:53 2018/11/20

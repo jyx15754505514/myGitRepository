@@ -4,7 +4,7 @@ import com.ccicnavi.bims.order.pojo.OrderSampleTypeDO;
 
 import java.util.List;
 
-/* *
+/**
  * @Author heibin
  * @Description 委托样品类型
  * @Date 20:27 2018/11/21

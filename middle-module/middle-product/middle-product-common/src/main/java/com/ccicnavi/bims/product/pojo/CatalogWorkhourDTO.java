@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.system.pojo;
+package com.ccicnavi.bims.product.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,27 +8,23 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @Auther: CongZhiYuan
- * @Date: 2018/11/20 10:21
- * @Description:
+ * @program: bims-backend
+ * @description: 该类的作用描述
+ * @author: LiJie
+ * @create: 2018-11-22 11:19
  */
-@Getter
 @Setter
+@Getter
 @ToString
-public class SerialnumDO implements Serializable {
-    private String snUuid;
+public class CatalogWorkhourDTO implements Serializable {
 
-    private String sncUuid;
+    /**组织机构*/
+    private String organizationUuid;
 
-    private String snDeptCode;
+    /**产品线ID*/
+    private String prodCatalogUuid;
 
-    private String busUuid;
-
-    private String seqId;
-
-    private String seqYmd;
-
-    private String sortNum;
+    private String salaryWorkhour;
 
     private String comments;
 
@@ -42,17 +38,21 @@ public class SerialnumDO implements Serializable {
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
 
     private String orgUuid;
 
     private String appSysUuid;
 
-    private String prodCatalogUuid;
-
     private String extend1;
 
     private String extend2;
 
     private String extend3;
+
+    /**需要删除的产品工时工资主键*/
+    private String [] uuids;
+
 }

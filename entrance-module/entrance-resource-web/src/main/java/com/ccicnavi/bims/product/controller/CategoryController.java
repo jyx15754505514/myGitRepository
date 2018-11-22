@@ -5,9 +5,12 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.product.api.CategoryOrgService;
 import com.ccicnavi.bims.product.api.CategoryService;
 import com.ccicnavi.bims.product.pojo.CategoryDO;
 import com.ccicnavi.bims.product.pojo.CategoryDTO;
+import com.ccicnavi.bims.product.pojo.CategoryOrgDO;
+import com.ccicnavi.bims.product.pojo.CategoryOrgDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -32,6 +35,8 @@ public class CategoryController {
 
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     CategoryService categoryService;
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    CategoryOrgService categoryOrgService;
 
     /**
      * 查询全部产品分类信息()
@@ -145,7 +150,7 @@ public class CategoryController {
     }
 
     /**
-     * 修改产业分类信息
+     * 修改产品分类信息
      *
      * @param categoryDO
      * @return
@@ -155,19 +160,19 @@ public class CategoryController {
         try {
             Integer count = categoryService.updateCategory(categoryDO);
             if (count > 0) {
-                return ResultT.success("修改产业分类成功");
+                return ResultT.success("修改产品分类成功");
             } else {
                 return ResultT.failure(ResultCode.UPDATE_FAILURE);
             }
         } catch (Exception e) {
-            log.error("修改产业分类失败", e);
+            log.error("修改产品分类失败", e);
             return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
     }
 
 
     /**
-     * 删除产业分类信息
+     * 删除产品分类信息
      * @return
      */
     @RequestMapping(value = "/removeCategory", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -178,14 +183,50 @@ public class CategoryController {
             } else {
                 Integer count = categoryService.removeCategory(categoryDTO);
                 if (count > 0) {
-                    return ResultT.success("删除产业分类成功");
+                    return ResultT.success("删除产品分类成功");
                 } else {
                     return ResultT.failure(ResultCode.DELETE_FAILURE);
                 }
             }
         } catch (Exception e) {
-            log.error("删除产业分类信息失败", e);
+            log.error("删除产品分类信息失败", e);
             return ResultT.failure(ResultCode.DELETE_FAILURE);
+        }
+    }
+
+    /**
+     * @Author guojinxu
+     * @Description 查询产品类别与组织机构关系
+     * @Date 2018/11/22 15:27
+     * @Param [categoryOrgDO]
+     * @return com.ccicnavi.bims.common.ResultT
+     **/
+    @RequestMapping(value = "/listCategoryOrgDO", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT listCategoryOrgDO(@RequestBody CategoryOrgDO categoryOrgDO){
+        try {
+            List<CategoryOrgDO> categoryOrgDOList = categoryOrgService.listCategoryOrgDO(categoryOrgDO);
+            return ResultT.success(categoryOrgDOList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultT.failure(ResultCode.GET_FAILURE);
+        }
+    }
+
+    /**
+     * @Author guojinxu
+     * @Description 更新产品类别与组织机构关系
+     * @Date 2018/11/22 15:29
+     * @Param [categoryOrgDTO]
+     * @return com.ccicnavi.bims.common.ResultT
+     **/
+    @RequestMapping(value = "/updateCategoryOrgDO", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT updateCategoryOrgDO(@RequestBody CategoryOrgDTO categoryOrgDTO){
+        try {
+            int num = categoryOrgService.updateCategoryOrgDO(categoryOrgDTO);
+            return ResultT.success(num);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultT.failure(ResultCode.RENEW_FAILURE);
         }
     }
 

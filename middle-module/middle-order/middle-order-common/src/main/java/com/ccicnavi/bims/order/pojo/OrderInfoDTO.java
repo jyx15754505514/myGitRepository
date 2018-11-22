@@ -6,7 +6,7 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单DTO
  * @Date 9:23 2018/11/20
@@ -170,7 +170,7 @@ public class OrderInfoDTO implements Serializable {
 
     private String isOpenCert;
 
-    List<OrderItemDTO> orderItemDTO;//服务项
+    private List<OrderItemDTO> orderItemDTO;//服务项
 
-    List<OrderSampleTypeDO> orderSampleTypeDO;//委托样品类型
+    private List<OrderSampleTypeDO> orderSampleTypeDO;//委托样品类型
 }

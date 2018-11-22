@@ -27,10 +27,10 @@ public class CategoryTypeController {
     @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20884")
     CategoryTypeService categoryTypeService;
 
-    @RequestMapping(value = "/listCategoryTypeDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listCategoryTypeDO(@RequestBody CategoryTypeDO categoryTypeDO){
+    @RequestMapping(value = "/listCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT listCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
-            List<CategoryTypeDO> categoryTypeDOList=categoryTypeService.listCategoryTypeDO(categoryTypeDO);
+            List<CategoryTypeDO> categoryTypeDOList=categoryTypeService.listCategoryType(categoryTypeDO);
             return ResultT.success(categoryTypeDOList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,10 +38,10 @@ public class CategoryTypeController {
         }
     }
 
-    @RequestMapping(value = "/saveCategoryTypeDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT saveCategoryTypeDO(@RequestBody CategoryTypeDO categoryTypeDO){
+    @RequestMapping(value = "/saveCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT saveCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
-            Integer num=categoryTypeService.saveCategoryTypeDO(categoryTypeDO);
+            Integer num=categoryTypeService.saveCategoryType(categoryTypeDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,10 +49,10 @@ public class CategoryTypeController {
         }
     }
 
-    @RequestMapping(value = "/removeCategoryTypeDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeCategoryTypeDO(@RequestBody CategoryTypeDO categoryTypeDO){
+    @RequestMapping(value = "/removeCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT removeCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
-            Integer num=categoryTypeService.removeCategoryTypeDO(categoryTypeDO);
+            Integer num=categoryTypeService.removeCategoryType(categoryTypeDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,10 +60,10 @@ public class CategoryTypeController {
         }
     }
 
-    @RequestMapping(value = "/updateCategoryTypeDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT updateCategoryTypeDO(@RequestBody CategoryTypeDO categoryTypeDO){
+    @RequestMapping(value = "/updateCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT updateCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
-            Integer num=categoryTypeService.updateCategoryTypeDO(categoryTypeDO);
+            Integer num=categoryTypeService.updateCategoryType(categoryTypeDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,10 +71,10 @@ public class CategoryTypeController {
         }
     }
 
-    @RequestMapping(value = "/getCategoryTypeDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT getCategoryTypeDO(@RequestBody CategoryTypeDO categoryTypeDO){
+    @RequestMapping(value = "/getCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT getCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
-            CategoryTypeDO categoryTypeDOResult=categoryTypeService.getCategoryTypeDO(categoryTypeDO);
+            CategoryTypeDO categoryTypeDOResult=categoryTypeService.getCategoryType(categoryTypeDO);
             return ResultT.success(categoryTypeDOResult);
         } catch (Exception e) {
             e.printStackTrace();

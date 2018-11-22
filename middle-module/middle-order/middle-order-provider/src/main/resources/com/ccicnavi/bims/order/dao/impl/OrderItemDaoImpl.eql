@@ -232,6 +232,9 @@ where
             updated_name = '#updatedName#',
     -- end
 where
+     --if flag!=null and flag =='1'
+     order_item_uuid = '#orderItemUuid#'
+     --else
     is_deleted = 'N'
     and order_item_uuid = '#orderItemUuid#'
 -- end
@@ -246,6 +249,8 @@ WHERE
   is_deleted = 'N'
 --iff orderItemUuid != null and orderItemUuid != ''
     and order_item_uuid = '#orderItemUuid#'
+    --iff orderUuid != null and orderUuid != ''
+        and order_uuid = '#orderUuid#'
 --iff orderItemUuidList != null
     and order_item_uuid in
     -- for item=item index=index collection=orderItemUuidList open=( separator=, close=)

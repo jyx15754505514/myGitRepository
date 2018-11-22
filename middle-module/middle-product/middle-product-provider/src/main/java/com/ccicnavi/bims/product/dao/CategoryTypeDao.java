@@ -8,15 +8,15 @@ import java.util.List;
 
 public interface CategoryTypeDao {
 
-    List<CategoryTypeDO> lsitCategoryTypeDO();
+    List<CategoryTypeDO> lsitCategoryType();
 
-    int saveCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    int saveCategoryType(CategoryTypeDO categoryTypeDO);
 
-    int removeCategoryTypeDO(CategoryTypeDO categoryTypeDO) throws Exception;
+    int removeCategoryType(CategoryTypeDO categoryTypeDO) throws Exception;
 
-    int updateCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    int updateCategoryType(CategoryTypeDO categoryTypeDO);
 
-    CategoryTypeDO getCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    CategoryTypeDO getCategoryType(CategoryTypeDO categoryTypeDO);
 
     PageBean<CategoryTypeDO> listCategoryTypePage(PageParameter<CategoryTypeDO> pageParameter);
 

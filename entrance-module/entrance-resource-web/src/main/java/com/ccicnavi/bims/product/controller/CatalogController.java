@@ -6,9 +6,11 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.product.api.CatalogOrgService;
 import com.ccicnavi.bims.product.api.CatalogService;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
 import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
+import com.ccicnavi.bims.product.pojo.CatalogOrgDTO;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +30,9 @@ public class CatalogController {
 
     @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20884")
     CatalogService catalogService;
+    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20884")
+    CatalogOrgService catalogOrgService;
+
 
     /**
      * @description 查询全部产品线信息
@@ -35,10 +40,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/listCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listCatalogDO(@RequestBody CatalogDO catalogDO){
+    @RequestMapping(value = "/listCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT listCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            List<CatalogDO> catalogDOList=catalogService.listCatalogDO(catalogDO);
+            List<CatalogDO> catalogDOList=catalogService.listCatalog(catalogDO);
             return ResultT.success(catalogDOList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,10 +57,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/saveCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT saveCatalogDO(@RequestBody CatalogDO catalogDO){
+    @RequestMapping(value = "/saveCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT saveCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            Integer num=catalogService.saveCatalogDO(catalogDO);
+            Integer num=catalogService.saveCatalog(catalogDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,10 +74,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/removeCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeCatalogDO(@RequestBody CatalogDO catalogDO){
+    @RequestMapping(value = "/removeCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT removeCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            Integer num=catalogService.removeCatalogDO(catalogDO);
+            Integer num=catalogService.removeCatalog(catalogDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,10 +91,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/updateCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT updateCatalogDO(@RequestBody CatalogDO catalogDO){
+    @RequestMapping(value = "/updateCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT updateCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            Integer num=catalogService.updateCatalogDO(catalogDO);
+            Integer num=catalogService.updateCatalog(catalogDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,10 +108,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/getCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT getCatalogDO(@RequestBody CatalogDO catalogDO){
+    @RequestMapping(value = "/getCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT getCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            CatalogDO catalogDOResult=catalogService.getCatalogDO(catalogDO);
+            CatalogDO catalogDOResult=catalogService.getCatalog(catalogDO);
             return ResultT.success(catalogDOResult);
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,14 +142,50 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/getCatalogThroughOrgUUid",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT getCatalogThroughOrgUUid(@RequestBody CatalogOrgDO catalogOrgDO){
+    @RequestMapping(value = "/getCatalogByOrgUUid",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT getCatalogByOrgUUid(@RequestBody CatalogOrgDO catalogOrgDO){
         try {
-            List<CatalogDO> catalogDOList=catalogService.getCatalogThroughOrgUUid(catalogOrgDO);
+            List<CatalogDO> catalogDOList=catalogService.getCatalogByOrgUUid(catalogOrgDO);
             return ResultT.success(catalogDOList);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.GET_FAILURE);
+        }
+    }
+
+    /**
+     * @Author guojinxu
+     * @Description 组织机构与产品线关系查询
+     * @Date 2018/11/22 15:17
+     * @Param [catalogOrgDO]
+     * @return com.ccicnavi.bims.common.ResultT
+     **/
+    @RequestMapping(value = "/listCatalogOrgDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT listCatalogOrgDO(@RequestBody CatalogOrgDO catalogOrgDO){
+        try {
+            List<CatalogOrgDO> catalogOrgDOList = catalogOrgService.listCatalogOrgDO(catalogOrgDO);
+            return ResultT.success(catalogOrgDOList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultT.failure(ResultCode.GET_FAILURE);
+        }
+    }
+
+    /**
+     * @Author guojinxu
+     * @Description 更新组织机构与产品线间的关系
+     * @Date 2018/11/22 15:23
+     * @Param [catalogOrgDTO]
+     * @return com.ccicnavi.bims.common.ResultT
+     **/
+    @RequestMapping(value = "/updateCatalogOrgDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT updateCatalogOrgDO(@RequestBody CatalogOrgDTO catalogOrgDTO){
+        try {
+            int num = catalogOrgService.updateCatalogOrgDO(catalogOrgDTO);
+            return ResultT.success(num);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultT.failure(ResultCode.RENEW_FAILURE);
         }
     }
 

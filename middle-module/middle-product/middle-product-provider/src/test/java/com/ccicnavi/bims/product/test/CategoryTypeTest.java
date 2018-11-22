@@ -20,7 +20,7 @@ public class CategoryTypeTest {
 
     @Test
     public void lsitCategoryTypeDOTest(){
-        List<CategoryTypeDO> categoryDOList=categoryTypeDaoTest.lsitCategoryTypeDO();
+        List<CategoryTypeDO> categoryDOList=categoryTypeDaoTest.lsitCategoryType();
         System.out.println(categoryDOList);
     }
 
@@ -33,7 +33,7 @@ public class CategoryTypeTest {
             categoryTypeDO.setProdCatalogUuid("石化"+i+"线");
             categoryTypeDO.setOrgUuid("KM102");
             categoryTypeDO.setAppSysUuid(i+"号系统");
-            int count=categoryTypeDaoTest.saveCategoryTypeDO(categoryTypeDO);
+            int count=categoryTypeDaoTest.saveCategoryType(categoryTypeDO);
             System.out.println(count);
         }
     }
@@ -42,7 +42,7 @@ public class CategoryTypeTest {
     public void removeCategoryTypeDOTest(){
         CategoryTypeDO categoryTypeDO=new CategoryTypeDO();
         categoryTypeDO.setProductCategoryTypeUuid("pctu_10");
-        int count=categoryTypeDaoTest.removeCategoryTypeDO(categoryTypeDO);
+        int count=categoryTypeDaoTest.removeCategoryType(categoryTypeDO);
         System.out.println(count);
     }
 
@@ -51,7 +51,7 @@ public class CategoryTypeTest {
         CategoryTypeDO categoryTypeDO=new CategoryTypeDO();
         categoryTypeDO.setProductCategoryTypeUuid("pctu_5");
         categoryTypeDO.setComments("备注被修改了");
-        int count=categoryTypeDaoTest.updateCategoryTypeDO(categoryTypeDO);
+        int count=categoryTypeDaoTest.updateCategoryType(categoryTypeDO);
         System.out.println(count);
     }
 
@@ -59,7 +59,7 @@ public class CategoryTypeTest {
     public void getCategoryTypeDOTest(){
         CategoryTypeDO categoryTypeDO=new CategoryTypeDO();;
         categoryTypeDO.setProductCategoryTypeUuid("pctu_9");
-        CategoryTypeDO categoryTypeDOResult=categoryTypeDaoTest.getCategoryTypeDO(categoryTypeDO);
+        CategoryTypeDO categoryTypeDOResult=categoryTypeDaoTest.getCategoryType(categoryTypeDO);
         System.out.println(categoryTypeDOResult);
     }
 

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单
  * @Date 16:28 2018/11/14
@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class OrderInfoDaoImpl implements OrderInfoDao {
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 新增委托单
      * @Date 15:35 2018/11/19
@@ -36,7 +36,7 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
         return eql.insert("insertOrderInfo").params(orderInfoDTO).returnType(Integer.class).execute();
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 更新委托单信息
      * @Date 15:37 2018/11/19
@@ -51,6 +51,7 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
         }
         return eql.update("updateOrderInfo").params(orderInfoDTO).returnType(Integer.class).execute();
     }
+
     /**
      * 功能描述: 根据委托单主键查询委托单信息
      * @param: orderInfoDTO
@@ -64,7 +65,7 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
         return eql.selectFirst("getOrderInfo").params(orderInfoDO).returnType(OrderInfoDTO.class).execute();
     }
 
-    /* *
+    /**
      * @Author fandongsheng
      * @Description 更新委托单信息
      * @Date 12018/11/20 20:27
