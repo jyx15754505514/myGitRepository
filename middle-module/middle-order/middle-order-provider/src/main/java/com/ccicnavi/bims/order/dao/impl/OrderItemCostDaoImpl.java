@@ -28,6 +28,13 @@ public class OrderItemCostDaoImpl implements OrderItemCostDao {
         return eql.insert("insertOrderItemCost").params(orderItemCostDo).returnType(Integer.class).execute();
     }
 
+    /**
+     * @Author songyateng 
+     * @Description 修改成本单
+     * @Date 15:23 2018/11/22
+     * @Param [orderItemCostDo, tran]
+     * @Return java.lang.Integer
+     */
     @Override
     public Integer updateOrderItemCost(OrderItemCostDo orderItemCostDo, EqlTran tran) throws Exception {
         Eql eql = new Eql("DEFAULT");
