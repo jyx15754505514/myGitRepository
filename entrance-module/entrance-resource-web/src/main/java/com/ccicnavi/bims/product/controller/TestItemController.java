@@ -27,10 +27,10 @@ public class TestItemController {
     @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20884")
     TestItemService testItemService;
 
-    @RequestMapping(value = "/listTestItemDo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listTestItemDo(@RequestBody TestItemDO testItemDO){
+    @RequestMapping(value = "/listTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT listTestItem(@RequestBody TestItemDO testItemDO){
         try {
-            List<TestItemDO> testItemDOList=testItemService.listTestItemDo(testItemDO);
+            List<TestItemDO> testItemDOList=testItemService.listTestItem(testItemDO);
             return ResultT.success(testItemDOList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,10 +38,10 @@ public class TestItemController {
         }
     }
 
-    @RequestMapping(value = "/saveTestItemDo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT saveTestItemDo(@RequestBody TestItemDO testItemDO){
+    @RequestMapping(value = "/saveTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT saveTestItem(@RequestBody TestItemDO testItemDO){
         try {
-            Integer num=testItemService.saveTestItemDo(testItemDO);
+            Integer num=testItemService.saveTestItem(testItemDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,10 +49,10 @@ public class TestItemController {
         }
     }
 
-    @RequestMapping(value = "/removeTestItemDo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeTestItemDo(@RequestBody TestItemDO testItemDO){
+    @RequestMapping(value = "/removeTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT removeTestItem(@RequestBody TestItemDO testItemDO){
         try {
-            Integer num=testItemService.removeTestItemDo(testItemDO);
+            Integer num=testItemService.removeTestItem(testItemDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,10 +60,10 @@ public class TestItemController {
         }
     }
 
-    @RequestMapping(value = "/updateTestItemDo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT updateTestItemDo(@RequestBody TestItemDO testItemDO){
+    @RequestMapping(value = "/updateTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT updateTestItem(@RequestBody TestItemDO testItemDO){
         try {
-            Integer num=testItemService.updateTestItemDo(testItemDO);
+            Integer num=testItemService.updateTestItem(testItemDO);
             return ResultT.success(testItemDO);
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,10 +71,10 @@ public class TestItemController {
         }
     }
 
-    @RequestMapping(value = "/getTestItemDo",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT getTestItemDo(@RequestBody TestItemDO testItemDO){
+    @RequestMapping(value = "/getTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT getTestItem(@RequestBody TestItemDO testItemDO){
         try {
-            TestItemDO testItemDOResult=testItemService.getTestItemDo(testItemDO);
+            TestItemDO testItemDOResult=testItemService.getTestItem(testItemDO);
             return ResultT.success(testItemDOResult);
         } catch (Exception e) {
             e.printStackTrace();

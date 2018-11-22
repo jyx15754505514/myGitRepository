@@ -20,27 +20,27 @@ import java.util.List;
 public class CategoryTypeDaoImpl implements CategoryTypeDao {
 
     @Override
-    public List<CategoryTypeDO> lsitCategoryTypeDO() {
+    public List<CategoryTypeDO> lsitCategoryType() {
         return new Eql().select("lsitCategoryTypeDO").returnType(CategoryTypeDO.class).execute();
     }
 
     @Override
-    public int saveCategoryTypeDO(CategoryTypeDO categoryTypeDO) {
+    public int saveCategoryType(CategoryTypeDO categoryTypeDO) {
         return new Eql().insert("saveCategoryTypeDO").params(categoryTypeDO).returnType(int.class).execute();
     }
 
     @Override
-    public int removeCategoryTypeDO(CategoryTypeDO categoryTypeDO) {
+    public int removeCategoryType(CategoryTypeDO categoryTypeDO) {
         return new Eql().update("removeCategoryTypeDO").params(categoryTypeDO).returnType(int.class).execute();
     }
 
     @Override
-    public int updateCategoryTypeDO(CategoryTypeDO categoryTypeDO) {
+    public int updateCategoryType(CategoryTypeDO categoryTypeDO) {
         return new Eql().update("updateCategoryTypeDO").params(categoryTypeDO).returnType(int.class).execute();
     }
 
     @Override
-    public CategoryTypeDO getCategoryTypeDO(CategoryTypeDO categoryTypeDO) {
+    public CategoryTypeDO getCategoryType(CategoryTypeDO categoryTypeDO) {
         return new Eql().selectFirst("getCategoryTypeDO").params(categoryTypeDO).returnType(CategoryTypeDO.class).execute();
     }
 

@@ -35,10 +35,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/listCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listCatalogDO(@RequestBody CatalogDO catalogDO){
+    @RequestMapping(value = "/listCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT listCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            List<CatalogDO> catalogDOList=catalogService.listCatalogDO(catalogDO);
+            List<CatalogDO> catalogDOList=catalogService.listCatalog(catalogDO);
             return ResultT.success(catalogDOList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,10 +52,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/saveCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT saveCatalogDO(@RequestBody CatalogDO catalogDO){
+    @RequestMapping(value = "/saveCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT saveCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            Integer num=catalogService.saveCatalogDO(catalogDO);
+            Integer num=catalogService.saveCatalog(catalogDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,10 +69,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/removeCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeCatalogDO(@RequestBody CatalogDO catalogDO){
+    @RequestMapping(value = "/removeCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT removeCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            Integer num=catalogService.removeCatalogDO(catalogDO);
+            Integer num=catalogService.removeCatalog(catalogDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,10 +86,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/updateCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT updateCatalogDO(@RequestBody CatalogDO catalogDO){
+    @RequestMapping(value = "/updateCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT updateCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            Integer num=catalogService.updateCatalogDO(catalogDO);
+            Integer num=catalogService.updateCatalog(catalogDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,10 +103,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/getCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT getCatalogDO(@RequestBody CatalogDO catalogDO){
+    @RequestMapping(value = "/getCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT getCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            CatalogDO catalogDOResult=catalogService.getCatalogDO(catalogDO);
+            CatalogDO catalogDOResult=catalogService.getCatalog(catalogDO);
             return ResultT.success(catalogDOResult);
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,10 +137,10 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/getCatalogThroughOrgUUid",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT getCatalogThroughOrgUUid(@RequestBody CatalogOrgDO catalogOrgDO){
+    @RequestMapping(value = "/getCatalogByOrgUUid",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT getCatalogByOrgUUid(@RequestBody CatalogOrgDO catalogOrgDO){
         try {
-            List<CatalogDO> catalogDOList=catalogService.getCatalogThroughOrgUUid(catalogOrgDO);
+            List<CatalogDO> catalogDOList=catalogService.getCatalogByOrgUUid(catalogOrgDO);
             return ResultT.success(catalogDOList);
         } catch (Exception e) {
             e.printStackTrace();

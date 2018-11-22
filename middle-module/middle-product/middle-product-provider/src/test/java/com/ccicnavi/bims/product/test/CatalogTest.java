@@ -21,7 +21,7 @@ public class CatalogTest {
 
     @Test
     public void listCatalogDOTest(){
-        List<CatalogDO> catalogDOList=catalogDaoTest.listCatalogDO();
+        List<CatalogDO> catalogDOList=catalogDaoTest.listCatalog();
         System.out.println(catalogDOList);
     }
 
@@ -34,7 +34,7 @@ public class CatalogTest {
             catalogDO.setCreatedUuid("proc_"+i);
             catalogDO.setOrgUuid("XN102");
             catalogDO.setAppSysUuid(i+"号系统");
-            int count=catalogDaoTest.saveCatalogDO(catalogDO);
+            int count=catalogDaoTest.saveCatalog(catalogDO);
             System.out.println(count);
         }
     }
@@ -43,7 +43,7 @@ public class CatalogTest {
     public void removeCatalogDOTest(){
         CatalogDO catalogDO=new CatalogDO();
         catalogDO.setProdCatalogUuid("石化10线");
-        int count=catalogDaoTest.removeCatalogDO(catalogDO);
+        int count=catalogDaoTest.removeCatalog(catalogDO);
         System.out.println(count);
     }
 
@@ -52,7 +52,7 @@ public class CatalogTest {
         CatalogDO catalogDO=new CatalogDO();
         catalogDO.setProdCatalogUuid("石化5线");
         catalogDO.setComments("看见没，备注被改了");
-        int count=catalogDaoTest.updateCatalogDO(catalogDO);
+        int count=catalogDaoTest.updateCatalog(catalogDO);
         System.out.println(count);
     }
 
@@ -60,7 +60,7 @@ public class CatalogTest {
     public void getCatalogDOTest(){
         CatalogDO catalogDO=new CatalogDO();
         catalogDO.setProdCatalogUuid("石化9线");
-        CatalogDO catalogDOResult=catalogDaoTest.getCatalogDO(catalogDO);
+        CatalogDO catalogDOResult=catalogDaoTest.getCatalog(catalogDO);
         System.out.println(catalogDOResult);
     }
 
@@ -78,7 +78,7 @@ public class CatalogTest {
     public void getCatalogThroughOrgnUUidTest(){
         CatalogOrgDO catalogOrgDO=new CatalogOrgDO();
         catalogOrgDO.setOrganizationUuid("CCICXN");
-        List<CatalogDO> catalogDO=catalogDaoTest.getCatalogThroughOrgUUid(catalogOrgDO);
+        List<CatalogDO> catalogDO=catalogDaoTest.getCatalogByOrgUUid(catalogOrgDO);
         System.out.println(catalogDO);
     }
 

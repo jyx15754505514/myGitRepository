@@ -20,7 +20,7 @@ public class TestItemTest {
 
     @Test
     public void listTestItemTest(){
-        List<TestItemDO> testItemDOS=testItemDaoImpl.listTestItemDO();
+        List<TestItemDO> testItemDOS=testItemDaoImpl.listTestItem();
         System.out.println(testItemDOS);
     }
 
@@ -35,7 +35,7 @@ public class TestItemTest {
             testItemDO.setProdCatalogUuid("prodc_"+i);
             testItemDO.setOrgUuid("NX102");
             testItemDO.setAppSysUuid(i+"号系统");
-            count=testItemDaoImpl.saveTestItemDO(testItemDO);
+            count=testItemDaoImpl.saveTestItem(testItemDO);
             System.out.println(count);
         }
     }
@@ -45,7 +45,7 @@ public class TestItemTest {
         int count=0;
         TestItemDO testItemDO=new TestItemDO();
         testItemDO.setItemUuid("item_10");
-        count= testItemDaoImpl.removeTestItemDO(testItemDO);
+        count= testItemDaoImpl.removeTestItem(testItemDO);
         System.out.println(count);
     }
 
@@ -54,7 +54,7 @@ public class TestItemTest {
         TestItemDO testItemDO=new TestItemDO();
         testItemDO.setItemUuid("item_5");
         testItemDO.setComments("多了备注，修改成功，666");
-        int count=testItemDaoImpl.updateTestItemDO(testItemDO);
+        int count=testItemDaoImpl.updateTestItem(testItemDO);
         System.out.println(count);
     }
 
@@ -62,7 +62,7 @@ public class TestItemTest {
     public void getTestItemTest(){
         TestItemDO testItemDO=new TestItemDO();
         testItemDO.setItemUuid("item_9");
-        TestItemDO testItemDOResult=testItemDaoImpl.getTestItemDO(testItemDO);
+        TestItemDO testItemDOResult=testItemDaoImpl.getTestItem(testItemDO);
         System.out.println(testItemDOResult);
     }
 
