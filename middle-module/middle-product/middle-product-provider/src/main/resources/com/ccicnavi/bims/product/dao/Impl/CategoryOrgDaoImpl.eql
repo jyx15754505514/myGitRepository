@@ -1,0 +1,55 @@
+--[listCategoryOrgDO]
+select
+    product_category_uuid,
+    organization_uuid,
+    prod_catalog_uuid,
+    app_sys_uuid
+from product_category_org
+where 1=1
+    --iff organizationUuid != null and organizationUuid != ''
+        and organization_uuid = '#organizationUuid#'
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and prod_catalog_uuid = '#prodCatalogUuid#'
+    --iff productCategoryUuid != null and productCategoryUuid != ''
+        and product_category_uuid = '#productCategoryUuid#'
+
+--[saveCategoryOrgDO]
+insert into product_category_org
+    --trim prefix=( suffix=) suffixOverrides=,
+      --iff productCategoryUuid != null and productCategoryUuid != ''
+        product_category_uuid,
+
+      --iff organizationUuid != null and organizationUuid != ''
+        organization_uuid,
+
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+
+      --iff appSysUuid != null and appSysUuid !=''
+        app_sys_uuid,
+
+    --end
+    --trim prefix=values( suffix=) suffixOverrides=,
+      --iff productCategoryUuid != null and productCategoryUuid != ''
+        '#productCategoryUuid#',
+
+      --iff organizationUuid != null and organizationUuid != ''
+        '#organizationUuid#',
+
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+
+      --iff appSysUuid != null and appSysUuid != ''
+        '#appSysUuid#',
+
+    --end
+
+--[removeCategoryOrgDO]
+delete from product_category_org
+where 1=1
+    --iff productCategoryUuid != null and productCategoryUuid != ''
+        and product_category_uuid = '#productCategoryUuid#'
+    --iff organizationUuid != null and organizationUuid != ''
+        and organization_uuid = '#organizationUuid#'
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and prod_catalog_uuid = '#prodCatalogUuid#'

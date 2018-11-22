@@ -7,8 +7,10 @@ import com.ccicnavi.bims.shiba.service.ParamVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Slf4j
+@EnableSwagger2
 @RequestMapping(value = "/string")
 @RestController
 public class StringController {
@@ -100,6 +102,17 @@ public class StringController {
             return ResultT.success(values);
         } catch (Exception e) {
             log.error("获取原来key键对应的值并重新赋新值", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
+        }
+    }
+
+    @RequestMapping(value = "/expire", method = RequestMethod.POST)
+    public ResultT expire(@RequestBody ParamVo paramVo) {
+        try {
+            stringTemplate.expire(paramVo.getKey(), paramVo.getOutTime(), paramVo.getUnit());
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("设置超时时间失败", e);
             return ResultT.failure(ResultCode.ADD_FAILURE);
         }
     }
