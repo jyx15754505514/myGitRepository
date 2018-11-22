@@ -31,8 +31,8 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public int removeCategory(CategoryDO category) {
-        return new Eql().update("deleteCategory").params(category).returnType(int.class).execute();
+    public int removeCategory(CategoryDTO categoryDTO) {
+        return new Eql().update("deleteCategory").params(categoryDTO).returnType(int.class).execute();
     }
 
     @Override
@@ -67,9 +67,15 @@ public class CategoryDaoImpl implements CategoryDao {
         return new Eql().select("listCategoryFirstByOrgAndProd").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 
+    /**
+     * 根据父级ID查询其子类产品分类信息
+     * @param categoryDTO
+     * @return
+     * @throws Exception
+     */
     @Override
-    public List<CategoryDO> listCategoryByParentUuid(CategoryDO category) throws Exception {
-        return new Eql().select("listCategoryFirstByOrgAndProd").params(category).returnType(CategoryDO.class).execute();
+    public List<CategoryDO> listCategoryByParentUuid(CategoryDTO categoryDTO) {
+        return new Eql().select("listCategoryByParentUuid").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 
 }

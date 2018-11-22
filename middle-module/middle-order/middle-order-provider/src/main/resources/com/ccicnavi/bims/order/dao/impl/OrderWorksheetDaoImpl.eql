@@ -1,0 +1,221 @@
+-- [listOrderWorksheet]
+select
+    worksheet_uuid worksheetUuid,
+    assign_user_uuid assignUserUuid,
+    assign_time assignTime,
+    assign_comments assignComments,
+    plan_start_date planStartDate,
+    plan_end_date planEndDate,
+    impl_dept_uuid implDeptUuid,
+    impl_mgr_uuid implMgrUuid,
+    impl_start_date implStartDate,
+    impl_end_date implEndDate,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+from order_worksheet
+where
+    is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid != ''
+    and app_sys_uuid = '#appSysUuid#'
+
+-- [getOrderWorksheet]
+select
+    worksheet_uuid worksheetUuid,
+    assign_user_uuid assignUserUuid,
+    assign_time assignTime,
+    assign_comments assignComments,
+    plan_start_date planStartDate,
+    plan_end_date planEndDate,
+    impl_dept_uuid implDeptUuid,
+    impl_mgr_uuid implMgrUuid,
+    impl_start_date implStartDate,
+    impl_end_date implEndDate,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+from order_worksheet
+where
+    is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid != ''
+    and app_sys_uuid = '#appSysUuid#'
+--iff worksheetUuid != null and worksheetUuid != ''
+    and worksheet_uuid = '#worksheetUuid#'
+
+--[insertOrderWorksheet]
+insert into order_worksheet
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff worksheetUuid != null and worksheetUuid != ''
+            worksheet_uuid,
+        --iff assignUserUuid != null and assignUserUuid != ''
+            assign_user_uuid,
+        --iff assignTime != null
+            assign_time,
+        --iff assignComments != null and assignComments != ''
+            assign_comments,
+        --iff planStartDate != null
+            plan_start_date,
+        --iff planEndDate != null
+            plan_end_date,
+        --iff implDeptUuid != null and implDeptUuid != ''
+            impl_dept_uuid,
+        --iff implMgrUuid != null and implMgrUuid != ''
+            impl_mgr_uuid,
+        --iff implStartDate != null
+            impl_start_date,
+        --iff implEndDate != null
+            impl_end_date,
+        --iff comments != null and comments != ''
+            comments,
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted,
+        --iff createdTime != null
+            created_time,
+        --iff createdUuid != null and createdUuid != ''
+            created_uuid,
+        --iff createdName != null and createdName != ''
+            created_name,
+        --iff updatedTime != null
+            updated_time,
+        --iff updatedUuid != null and updatedUuid != ''
+            updated_uuid,
+        --iff updatedName != null and updatedName != ''
+            updated_name,
+        --iff orgUuid != null and orgUuid != ''
+            org_uuid,
+        --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff worksheetUuid != null and worksheetUuid !=''
+            '#worksheetUuid#',
+        --iff assignUserUuid != null and assignUserUuid != ''
+            '#assignUserUuid#',
+        --iff assignTime != null
+            '#assignTime#',
+        --iff assignComments != null and assignComments != ''
+            '#assignComments#',
+        --iff planStartDate != null
+            '#planStartDate#',
+        --iff planEndDate != null
+            '#planEndDate#',
+        --iff implDeptUuid != null and implDeptUuid != ''
+            '#implDeptUuid#',
+        --iff implMgrUuid != null and implMgrUuid != ''
+            '#implMgrUuid#',
+        --iff implStartDate != null
+            '#implStartDate#',
+        --iff implEndDate != null
+            '#implEndDate#',
+        --iff comments != null and comments != ''
+            '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+        --iff createdTime != null
+            '#createdTime#',
+        --iff createdUuid != null and createdUuid != ''
+            '#createdUuid#',
+        --iff createdName != null and createdName != ''
+            '#createdName#',
+        --iff updatedTime != null
+            '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid != ''
+            '#updatedUuid#',
+        --iff updatedName != null and updatedName != ''
+            '#updatedName#',
+        --iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+    -- end
+
+-- [updateOrderWorksheet]
+update order_worksheet
+    -- trim prefix= set suffixOverrides=,
+        --iff assignUserUuid != null and assignUserUuid != ''
+            assign_user_uuid = '#assignUserUuid#',
+        --iff assignTime != null
+            assign_time = '#assignTime#',
+        --iff assignComments != null and assignComments !=''
+            assign_comments = '#assignComments#',
+        --iff planStartDate != null
+            plan_start_date = '#planStartDate#',
+        --iff planEndDate != null
+            plan_end_date = '#planEndDate#',
+        --iff implDeptUuid != null and implDeptUuid !=''
+            impl_dept_uuid = '#implDeptUuid#',
+        --iff implMgrUuid != null and implMgrUuid !=''
+            impl_mgr_uuid = '#implMgrUuid#',
+        --iff implStartDate != null
+            impl_start_date = '#implStartDate#',
+        --iff implEndDate != null
+            impl_end_date = '#implEndDate#',
+        --iff comments != null and comments !=''
+            comments = '#comments#',
+        --iff isDeleted != null and isDeleted !=''
+            is_deleted = '#isDeleted#',
+        --iff createdTime != null
+            created_time = '#createdTime#',
+        --iff createdUuid != null and createdUuid !=''
+            created_uuid = '#createdUuid#',
+        --iff createdName != null and createdName !=''
+            created_name = '#createdName#',
+        --iff updatedTime != null
+            updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid !=''
+            updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName !=''
+            updated_name = '#updatedName#',
+        --iff orgUuid != null and orgUuid !=''
+            org_uuid = '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid !=''
+            app_sys_uuid = '#appSysUuid#',
+    -- end
+where
+    is_deleted = 'N'
+--iff worksheetUuid != null and worksheetUuid != ''
+    and worksheet_uuid = '#worksheetUuid#'
+--iff worksheetUuids != null
+    and worksheet_uuid in
+    -- for item=item index=index collection=worksheetUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
+-- [deleteOrderWorksheet]
+update order_worksheet
+    -- trim prefix= set suffixOverrides=,
+            is_deleted = 'Y',
+        --iff updatedTime != null
+            updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid !=''
+            updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName !=''
+            updated_name = '#updatedName#',
+    -- end
+where
+    is_deleted = 'N'
+--iff worksheetUuid != null and worksheetUuid != ''
+    and worksheet_uuid = '#worksheetUuid#'
+--iff worksheetUuids != null
+    and worksheet_uuid in
+    -- for item=item index=index collection=worksheetUuids open=( separator=, close=)
+        '#item#'
+    -- end

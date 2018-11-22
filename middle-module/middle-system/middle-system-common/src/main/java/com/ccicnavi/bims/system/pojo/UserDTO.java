@@ -1,9 +1,5 @@
-package com.ccicnavi.bims.system.pojo;/**
- * @program: bims-backend
- * @description: 该类的作用描述
- * @author: zhangxingbiao
- * @create: 2018-11-21 17:07
- */
+package com.ccicnavi.bims.system.pojo;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,15 +10,21 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *@program: bims-backend
- *@description: 该类的作用描述
- *@author: zhangxingbiao
- *@create: 2018-11-21 17:07
- */
-@ToString
-@Setter
+ * @program: bims-backend
+ * @description: 用户DTO实体类
+ * @author: zhaotao
+ * @create: 2018-11-14 23:33
+ **/
 @Getter
-public class UserDTO implements Serializable {
+@Setter
+@ToString
+public class UserDTO implements Serializable{
+
+    private List<RoleUserDO> roleUserDOList;
+
+    private List<MenuDTO> menuList;
+
+    private List<DepartmentDO> deptList;
 
     private String userUuid;
 
@@ -88,6 +90,7 @@ public class UserDTO implements Serializable {
 
     private String extend3;
 
+
     private String deptUuid;
 
     private String roleUuid;
@@ -95,4 +98,9 @@ public class UserDTO implements Serializable {
     private List<String> roleList;
 
     private List<String> uuids;
+
+    private List<UserDO> authUserList;//授权用户集合
+
+    private List<UserDO> unauthUserList;//未授权用户集合
+
 }

@@ -48,7 +48,7 @@
 
 -- 新增登录用户信息
 -- [insertUser]
-    INSERT INTO sys_User
+    INSERT INTO sys_user
     --trim prefix=( suffix=) suffixOverrides=,
          --iff userUuid != null 
           user_uuid,
@@ -64,8 +64,6 @@
           current_password,
         --iff salt != null
             salt,
-        --iff deptUuid !=null
-            dept_uuid,
         --iff passwordHints != null
           password_hints,
         --iff isChangePassword != null
@@ -108,6 +106,8 @@
           app_sys_uuid,
         --iff prodCatalogUuid != null
           prod_catalog_uuid,
+      --iff deptUuid != null and deptUuid != ''
+            dept_uuid,
         --iff extend1 != null
           extend1,
         --iff extend2 != null
@@ -130,8 +130,6 @@
             '#currentPassword#',
           --iff salt != null
             '#salt#',
-          --iff deptUuid != null
-            '#deptUuid#',
           --iff passwordHints != null
              '#passwordHints#',
           --iff isChangePassword != null
@@ -168,12 +166,14 @@
             '#createdUuid#',
           --iff createdName != null
             '#createdName#',
-          --iff prodCatalogUuid != null and prodCatalogUuid != ''
-            '#prodCatalogUuid#',
           --iff orgUuid != null and orgUuid != ''
             '#orgUuid#',
           --iff appSysUuid != null and appSysUuid != ''
             '#appSysUuid#',
+          --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
+         --iff deptUuid != null and deptUuid != ''
+             '#deptUuid#',
           --iff extend1 != null
             '#extend1#',
           --iff extend2 != null
@@ -327,6 +327,8 @@
         --if loginName != null and  loginName != ''
              and  login_name = '#loginName#'
         --end
+
+
 -- 启用禁用
 --[updateIsEnabled]
    UPDATE
@@ -343,3 +345,94 @@
                   '#item#'
              -- end
           -- end
+
+
+-- 查询已授权的用户
+-- [listauthUserList]
+ SELECT
+        su.user_uuid as  userUuid,
+        su.nick_name as nickName,
+        su.login_name as loginName,
+        su.login_email as loginEmail,
+        su.login_phone as loginPhone,
+        su.current_password as currentPassword,
+        su.password_hints as passwordHints,
+        su.is_change_password as isChangePassword,
+        su.login_usertype as loginUsertype,
+        su.disabled_time as disabledTime,
+        su.dept_uuid as deptUuid,
+        su.disabled_reason as disabledReason,
+        su.failed_logins as failedLogins,
+        su.login_method as loginMethod,
+        su.last_time_zone as lastTimeZone,
+        su.last_local as lastLocal,
+        su.last_login_ip as lastLoginIp,
+        su.last_login_time as lastLoginTime,
+        su.bind_login_ip as bindLoginIp,
+        su.is_enabled as isEnabled,
+        su.comments,
+        su.is_deleted as isDeleted,
+        su.created_time as createdTime,
+        su.created_uuid as createdUuid,
+        su.created_name as createdName,
+        su.updated_time as updatedTime,
+        su.updated_name as updatedName,
+        su.org_uuid as orgUuid,
+        su.app_sys_uuid as appSysUuid,
+        su.prod_catalog_uuid as prodCatalogUuid,
+        su.extend1,
+        su.extend2,
+        su.extend3
+    FROM
+        sys_user su
+    LEFT JOIN sys_role_user sr
+    on su.user_uuid = sr.user_uuid
+    WHERE
+     su.is_deleted = 'N'
+     and sr.role_uuid ='#roleUuid#'
+
+-- 查询未授权用户
+-- [selectunauthUserList]
+ select
+         user_uuid as  userUuid,
+         nick_name as nickName,
+         login_name as loginName,
+         login_email as loginEmail,
+         login_phone as loginPhone,
+         current_password as currentPassword,
+         password_hints as passwordHints,
+         is_change_password as isChangePassword,
+         login_usertype as loginUsertype,
+         disabled_time as disabledTime,
+         dept_uuid as deptUuid,
+         disabled_reason as disabledReason,
+         failed_logins as failedLogins,
+         login_method as loginMethod,
+         last_time_zone as lastTimeZone,
+         last_local as lastLocal,
+         last_login_ip as lastLoginIp,
+         last_login_time as lastLoginTime,
+         bind_login_ip as bindLoginIp,
+         is_enabled as isEnabled,
+         comments,
+         is_deleted as isDeleted,
+         created_time as createdTime,
+         created_uuid as createdUuid,
+         created_name as createdName,
+         updated_time as updatedTime,
+         updated_name as updatedName,
+         org_uuid as orgUuid,
+         app_sys_uuid as appSysUuid,
+         prod_catalog_uuid as prodCatalogUuid,
+         extend1,
+         extend2,
+         extend3
+ from sys_user where user_uuid not in( SELECT
+        su.user_uuid
+    FROM
+        sys_user su
+    LEFT JOIN sys_role_user sr
+    on su.user_uuid = sr.user_uuid
+    WHERE
+     su.is_deleted = 'N'
+     and sr.role_uuid ='#roleUuid#')

@@ -11,8 +11,12 @@
     <modules>
         <module>entrance-module</module>
         <module>middle-module</module>
+        <module>zoo-akita</module>
         <module>zoo-shiba</module>
         <module>zoo-breeder</module>
+        <module>zoo-sso</module>
+        <module>zoo-sleuth</module>
+        <module>bims-tools</module>
     </modules>
     <dependencies>
         <dependency>

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -17,11 +18,11 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class UserDO {
+public class UserDO implements Serializable {
 
     private List<RoleUserDO> roleList;
 
-    private List<MenuDO> menuList;
+    private List<MenuDTO> menuList;
 
     private List<DepartmentDO> deptList;
 

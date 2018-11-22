@@ -4,7 +4,7 @@ import com.ccicnavi.bims.order.pojo.OrderResultInfoDO;
 
 import java.util.List;
 
-/* *
+/**
  * @Author heibin
  * @Description 证书结果
  * @Date 14:17 2018/11/20

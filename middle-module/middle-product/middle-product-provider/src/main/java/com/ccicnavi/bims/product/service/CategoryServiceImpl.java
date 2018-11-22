@@ -9,6 +9,7 @@ import com.ccicnavi.bims.product.pojo.CategoryDO;
 import com.ccicnavi.bims.product.pojo.CategoryDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -47,13 +48,16 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public int removeCategory(CategoryDO category) {
+    public int removeCategory(CategoryDTO categoryDTO) {
         try {
-            return categoryDao.removeCategory(category);
+            if(!StringUtils.isEmpty(categoryDTO.getProductCategoryUuid())){
+                categoryDTO.setUuids(categoryDTO.getProductCategoryUuid().split(","));
+                return categoryDao.removeCategory(categoryDTO);
+            }
         } catch (Exception e) {
             log.error("删除产品分类失败~",e);
-            return 0;
         }
+            return 0;
     }
 
     @Override
@@ -102,13 +106,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     /**
      * 根据父级分类ID查询其子级分类信息
-     * @param category
      * @return
      */
     @Override
-    public List<CategoryDO> listCategoryByParentUuid(CategoryDO category) {
+    public List<CategoryDO> listCategoryByParentUuid(CategoryDTO categoryDTO) {
         try {
-            return categoryDao.listCategoryByParentUuid(category);
+            return categoryDao.listCategoryByParentUuid(categoryDTO);
         } catch (Exception e) {
             log.error("根据父级分类ID查询其子级分类信息失败~",e);
             return null;

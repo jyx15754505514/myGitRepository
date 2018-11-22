@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.dao.impl;
 
 import com.ccicnavi.bims.system.dao.MenuButtonDao;
 import com.ccicnavi.bims.system.pojo.MenuButtonDO;
+import com.ccicnavi.bims.system.pojo.MenuDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
@@ -51,5 +52,10 @@ public class MenuButtonDaoImpl implements MenuButtonDao {
     @Override
     public MenuButtonDO getMenuButton(MenuButtonDO menuButtonDO) {
         return new Eql().selectFirst("getMenuButton").params(menuButtonDO).returnType(MenuButtonDO.class).execute();
+    }
+
+    @Override
+    public List<MenuButtonDO> listMenuButtonByRole(MenuDTO menuDTO) {
+        return new Eql().selectFirst("listMenuButtonByRole").params(menuDTO).returnType(MenuButtonDO.class).execute();
     }
 }

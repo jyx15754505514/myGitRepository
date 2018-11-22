@@ -14,22 +14,46 @@ import java.util.List;
  */
 public interface TestItemService {
 
-    /**查询全部检测指标信息*/
-    List<TestItemDO> listTestItemDo(TestItemDO testItemDO);
+    /**
+     * @description 查询全部检测指标信息
+     * @param testItemDO
+     * @return List<TestItemDO>
+     */
+    List<TestItemDO> listTestItem(TestItemDO testItemDO);
 
-    /**新增检测指标信息*/
-    int saveTestItemDo(TestItemDO testItemDO);
+    /**
+     * @description 新增检测指标信息
+     * @param testItemDO
+     * @return int
+     */
+    int saveTestItem(TestItemDO testItemDO);
 
-    /**删除检测指标信息*/
-    int removeTestItemDo(TestItemDO testItemDO);
+    /**
+     * @description 删除检测指标信息
+     * @param testItemDO
+     * @return int
+     */
+    int removeTestItem(TestItemDO testItemDO);
 
-    /**修改检测指标信息*/
-    int updateTestItemDo(TestItemDO testItemDO);
+    /**
+     * @description 修改检测指标信息
+     * @param testItemDO
+     * @return int
+     */
+    int updateTestItem(TestItemDO testItemDO);
 
-    /**根据主键获取检测指标信息*/
-    TestItemDO getTestItemDo(TestItemDO testItemDO);
+    /**
+     * @description 根据主键获取检测指标信息
+     * @param testItemDO
+     * @return TestItemDO
+     */
+    TestItemDO getTestItem(TestItemDO testItemDO);
 
-    /**分页查询检测指标信息*/
+    /**
+     * @description 分页查询检测指标信息
+     * @param pageParameter
+     * @return PageBean<TestItemDO>
+     */
     PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDO> pageParameter);
 
 }

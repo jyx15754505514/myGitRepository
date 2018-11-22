@@ -91,4 +91,23 @@ public interface UserDao {
     */
 
     public Integer updateIsEnabled(UserDTO userDTO);
+    /**
+     *@Description: 查询授权用户
+     *@Param: userDTO
+     *@return:  List<UserDO>
+     *@Author: zqq
+     *@date: 2018/11/22
+     */
+
+    public List<UserDO> listauthUserList(UserDTO userDTO);
+
+    /**
+     *@Description: 查询未授权用户
+     *@Param: userDTO
+     *@return: List<UserDO>
+     *@Author: zqq
+     *@date: 2018/11/22
+     */
+
+    public List<UserDO> selectunauthUserList(UserDTO userDTO);
 }

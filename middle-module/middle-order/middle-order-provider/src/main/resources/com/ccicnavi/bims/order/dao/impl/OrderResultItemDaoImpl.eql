@@ -1,18 +1,15 @@
 -- [listOrderResultItem]
 SELECT
     result_item_uuid resultItemUuid,
-        result_uuid resultUuid,
-        order_uuid orderUuid,
-        order_item_uuid orderItemUuid
+    result_uuid resultUuid,
+    order_uuid orderUuid,
+    order_item_uuid orderItemUuid
 from
     order_result_item
-where
-   1=1
 --iff resultItemUuid != null and resultItemUuid != ''
-    and result_item_uuid = '#resultItemUuid#'
-    --iff resultUuid != null and resultUuid != ''
-        and result_uuid = '#resultUuid#'
---end
+    where and result_item_uuid = '#resultItemUuid#'
+--iff resultUuid != null and resultUuid != ''
+    where and result_uuid = '#resultUuid#'
 
 -- [getOrderResultItem]
 SELECT
@@ -22,9 +19,8 @@ SELECT
     order_item_uuid orderItemUuid
 from
     order_result_item
-where
 --if resultItemUuid != null and resultItemUuid !=''
-    and result_item_uuid = '#resultItemUuid#'
+    where and result_item_uuid = '#resultItemUuid#'
 --end
 
 -- [insertOrderResultItem]
@@ -63,23 +59,21 @@ UPDATE
         --iff orderItemUuid != null and orderItemUuid != ''
             order_item_uuid = '#orderItemUuid#',
     -- end
-where
-    --iff resultItemUuid != null and resultItemUuid != ''
-        and result_item_uuid = '#resultItemUuid#'
-    --iff resultItemUuids != null
-        and result_item_uuid in
-        -- for item=item index=index collection=resultItemUuids open=( separator=, close=)
-            '#item#'
-        -- end
+--iff resultItemUuid != null and resultItemUuid != ''
+    where and result_item_uuid = '#resultItemUuid#'
+--iff resultItemUuids != null
+    where and result_item_uuid in
+    -- for item=item index=index collection=resultItemUuids open=( separator=, close=)
+        '#item#'
+    -- end
 
 -- [deleteOrderResultItem]
 delete from
     order_result_item
-WHERE
-    --iff resultItemUuid != null and resultItemUuid != ''
-        and result_item_uuid = '#resultItemUuid#'
-    --iff resultItemUuids != null
-        and result_item_uuid in
-        -- for item=item index=index collection=resultItemUuids open=( separator=, close=)
-            '#item#'
-        -- end
+--iff resultItemUuid != null and resultItemUuid != ''
+    where and result_item_uuid = '#resultItemUuid#'
+--iff resultItemUuids != null
+    where and result_item_uuid in
+    -- for item=item index=index collection=resultItemUuids open=( separator=, close=)
+        '#item#'
+    -- end

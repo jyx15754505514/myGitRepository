@@ -6,7 +6,6 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.system.dao.RoleDao;
 import com.ccicnavi.bims.system.dao.RoleUserDao;
 import com.ccicnavi.bims.system.dao.UserDao;
 import com.ccicnavi.bims.system.pojo.RoleUserDO;
@@ -18,7 +17,6 @@ import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.n3r.eql.util.Closes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -262,6 +260,22 @@ public class UserServiceImpl implements UserService{
             log.error("更改启用禁用状态失败",e);
             return null;
 
+        }
+    }
+
+    @Override
+    public UserDTO selectByRoleUser(UserDTO userDTO) {
+        //授权用户
+        try {
+            UserDTO userDto =new UserDTO();
+            List<UserDO> authUserList = userDao.listauthUserList(userDTO);
+            List<UserDO> unauthUserList =userDao.selectunauthUserList(userDTO);
+            userDto.setAuthUserList(authUserList);
+            userDto.setUnauthUserList(unauthUserList);
+            return userDto;
+        } catch (Exception e) {
+            log.error("根据角色查询用户信息失败",e);
+            return null;
         }
     }
 }

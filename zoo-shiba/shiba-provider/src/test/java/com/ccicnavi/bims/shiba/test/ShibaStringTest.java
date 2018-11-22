@@ -8,17 +8,25 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.concurrent.TimeUnit;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ShibaApplication.class)
 public class ShibaStringTest {
 
-    @Reference(timeout = 1000, url = "dubbo://127.0.0.1:20888")
+    @Reference(timeout = 1000, url = "dubbo://192.168.125.11:20888")
     StringTemplate stringTemplate;
 
     @Test
     public void set() {
         stringTemplate.set("102", "112");
+        System.out.println("添加缓存成功");
+    }
+
+    @Test
+    public void setTime() {
+        stringTemplate.setTime("102", "112", 5, TimeUnit.SECONDS);
         System.out.println("添加缓存成功");
     }
 
@@ -54,13 +62,6 @@ public class ShibaStringTest {
     public void size() {
         Long size = stringTemplate.size("key4");
         System.out.println(size);
-    }
-
-    @Test
-    public void append() {
-        stringTemplate.append("102", "103");
-        String stringValueAppend = stringTemplate.get("102") + "";
-        System.out.println("通过append(K key, String value)方法修改后的字符串:" + stringValueAppend);
     }
 
     @Test

@@ -16,13 +16,13 @@ import java.util.*;
 @SpringBootTest(classes = ShibaApplication.class)
 public class ShibaHashTest {
 
-    @Reference(timeout = 1000, url = "dubbo://127.0.0.1:20888")
+    @Reference(timeout = 1000, url = "dubbo://192.168.125.11:20888")
     HashTemplate hashRedisTemplate;
 
     @Test
     public void putAll() {
         Object key = "key111";
-        Map<Object, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("map1", "111111");
         map.put("map2", "2222222");
         map.put("map3", "3333333");
@@ -35,7 +35,7 @@ public class ShibaHashTest {
 
     @Test
     public void entries() {
-        String key = "key222";
+        String key = "key111";
         Map<Object, Object> entries = hashRedisTemplate.entries(key);
         System.out.println(key + "的缓存:" + entries);
     }
@@ -44,6 +44,16 @@ public class ShibaHashTest {
     public void delete() {
         String key = "key111";
         hashRedisTemplate.delete(key);
+        System.out.println("删除成功");
+    }
+
+    @Test
+    public void deleteMap() {
+        String key = "key111";
+        List<Object> list = new ArrayList<>();
+        list.add("map3");
+        list.add("map4");
+        hashRedisTemplate.deleteMap(key, list.toArray());
         System.out.println("删除成功");
     }
 

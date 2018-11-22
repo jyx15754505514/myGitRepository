@@ -18,25 +18,25 @@ import java.util.Date;
 @ToString
 public class CategoryDTO implements Serializable {
 
-    private String productCategoryUuid;//主键
+    private String productCategoryUuid;
 
-    private String productCategoryTypeUuid;//产品类别ID
+    private String productCategoryTypeUuid;
 
-    private String parentCategoryUuid;//主父节点分类ID
+    private String parentCategoryUuid;
 
-    private String parentAllCategoryUuid;//所有分类的ID
+    private String parentAllCategoryUuid;
 
-    private String categoryName;//类别名称
+    private String categoryName;
 
-    private String categoryCode;//类别编码
+    private String categoryCode;
 
-    private String seqNum;//排序号
+    private String seqNum;
 
     private String longDescription;
 
-    private String isEnabled;//是否可用(Y/N)
+    private String isEnabled;
 
-    private String comments;//备注
+    private String comments;
 
     private String isDeleted;
 
@@ -52,11 +52,11 @@ public class CategoryDTO implements Serializable {
 
     private String updatedName;
 
-    private String prodCatalogUuid;//产品线ID
+    private String prodCatalogUuid;
 
     private String orgUuid;
 
-    private String appSysUuid;//应用系统ID
+    private String appSysUuid;
 
     private String extend1;
 
@@ -67,8 +67,12 @@ public class CategoryDTO implements Serializable {
     /**
      * 以下是产品分类与组织机构关系表字段：
      */
+    /**产品分类与组织机构关系表所属组织机构UUID*/
+    private String organizationUuid;
 
-    private String organizationUuid;//产品分类与组织机构关系表所属组织机构UUID
+
+    /**要删除的产品分类主键数组*/
+    private String [] uuids;
 
 
 

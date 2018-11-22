@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.api;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.MinItemDO;
+import com.ccicnavi.bims.product.pojo.MinItemDTO;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface MinItemService {
     int saveMinItem(MinItemDO minItem);
 
     /**删除最小服务项信息*/
-    int removeMinItem(MinItemDO minItem);
+    int removeMinItem(MinItemDTO minItemDTO);
 
     /**修改最小服务项信息*/
     int updateMinItem(MinItemDO minItem);
@@ -31,5 +32,8 @@ public interface MinItemService {
 
     /**分页查询最小服务项信息*/
     PageBean<MinItemDO> listMinItemPage(PageParameter<MinItemDO> pageParameter);
+
+
+
 
 }

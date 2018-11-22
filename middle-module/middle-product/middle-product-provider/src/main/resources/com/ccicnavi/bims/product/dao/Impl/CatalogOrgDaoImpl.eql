@@ -1,0 +1,45 @@
+--[listCatalogOrgDO]
+SELECT
+    prod_catalog_uuid,
+    organization_uuid,
+    app_sys_uuid
+FROM
+    prod_catalog_org
+WHERE 1=1
+    --iff organizationUuid != null and organizationUuid != ''
+        and organization_uuid = '#organizationUuid#'
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and prod_catalog_uuid = '#prodCatalogUuid#'
+
+--[saveCatalogOrgDO]
+INSERT INTO prod_catalog_org
+    --trim prefix=( suffix=) suffixOverrides=,
+         --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            prod_catalog_uuid,
+
+         --iff organizationUuid != null and organizationUuid !=''
+            organization_uuid,
+
+         --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
+
+    --end
+    --trim prefix=values( suffix=) suffixOverrides=,
+         --iff prodCatalogUuid != null and prodCatalogUuid !=''
+            '#prodCatalogUuid#',
+
+         --iff organizationUuid != null and organizationUuid != ''
+            '#organizationUuid#',
+
+         --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+
+    --end
+
+--[removeCatalogOrgDO]
+delete from prod_catalog_org
+where 1=1
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and prod_catalog_uuid = '#prodCatalogUuid#'
+    --iff organizationUuid != null and organizationUuid != ''
+        and organization_uuid = '#organizationUuid#'

@@ -4,8 +4,10 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.CatalogDao;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
+import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,27 +22,27 @@ import java.util.List;
 public class CatalogDaoImpl implements CatalogDao {
 
     @Override
-    public List<CatalogDO> listCatalogDO(){
+    public List<CatalogDO> listCatalog(){
         return new Eql().select("listCatalogDO").returnType(CatalogDO.class).execute();
     }
 
     @Override
-    public int saveCatalogDO(CatalogDO catalogDO){
+    public int saveCatalog(CatalogDO catalogDO){
         return new Eql().insert("saveCatalogDO").params(catalogDO).returnType(int.class).execute();
     }
 
     @Override
-    public int removeCatalogDO(CatalogDO catalogDO){
+    public int removeCatalog(CatalogDO catalogDO){
         return new Eql().update("removeCatalogDO").params(catalogDO).returnType(int.class).execute();
     }
 
     @Override
-    public int updateCatalogDO(CatalogDO catalogDO){
+    public int updateCatalog(CatalogDO catalogDO){
         return new Eql().update("updateCatalogDO").params(catalogDO).returnType(int.class).execute();
     }
 
     @Override
-    public CatalogDO getCatalogDO(CatalogDO catalogDO){
+    public CatalogDO getCatalog(CatalogDO catalogDO){
         return new Eql().selectFirst("getCatalogDO").params(catalogDO).returnType(CatalogDO.class).execute();
     }
 
@@ -57,4 +59,8 @@ public class CatalogDaoImpl implements CatalogDao {
         }
     }
 
+    @Override
+    public List<CatalogDO> getCatalogByOrgUUid(CatalogOrgDO catalogOrgDO) {
+        return new Eql().select("getCatalogThroughOrgUUid").params(catalogOrgDO).returnType(CatalogDO.class).execute();
+    }
 }

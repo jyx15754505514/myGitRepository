@@ -19,8 +19,8 @@ public class RoleUserDO implements Serializable {
 
     private String roleUuid;
 
-    private String orgUuid;
+    private String userUuid;
 
-    private String appSysUuid;
+    private String orgUuid;
 
 }

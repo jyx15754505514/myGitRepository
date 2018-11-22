@@ -86,17 +86,6 @@ public class StringTemplateImpl implements StringTemplate {
     }
 
     /**
-     * 在原有的值基础上新增字符串到末尾。
-     *
-     * @param key
-     * @param value
-     * @return
-     */
-    public Integer append(Object key, String value) {
-        return redisTemplate.opsForValue().append(key, value);
-    }
-
-    /**
      * 获取原来key键对应的值并重新赋新值
      *
      * @param key
@@ -107,5 +96,16 @@ public class StringTemplateImpl implements StringTemplate {
         return redisTemplate.opsForValue().getAndSet(key, value);
     }
 
+    /**
+     * 设置key的超时时间
+     *
+     * @param key
+     * @param timeout
+     * @param unit
+     * @return
+     */
+    public Boolean expire(Object key, long timeout, TimeUnit unit) {
+        return redisTemplate.expire(key, timeout, unit);
+    }
 }
 

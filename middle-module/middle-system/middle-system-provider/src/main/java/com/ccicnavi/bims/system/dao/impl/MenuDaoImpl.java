@@ -32,7 +32,7 @@ public class MenuDaoImpl implements MenuDao {
      */
     @Override
     public MenuDO getMenu(MenuDO menuDO) throws Exception {
-       return new Eql().selectFirst("getMenu").params(menuDO).returnType(MenuDO.class).execute();
+        return new Eql().selectFirst("getMenu").params(menuDO).returnType(MenuDO.class).execute();
     }
 
     /* *
@@ -91,6 +91,36 @@ public class MenuDaoImpl implements MenuDao {
 
     @Override
     public List<MenuDTO> listMenuByProdCatalogUuid(MenuDTO menuDTO) {
+        return new Eql().select("listMenuRoleUuid").params(menuDTO).returnType(MenuDTO.class).execute();
+    }
+
+    /*
+     * 查询所有拥有按钮的菜单
+     * @Author zhaotao
+     * @Date  2018/11/21 21:07
+     * @Param [MenuDTO]
+     * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuDTO>
+     **/
+    @Override
+    public List<MenuDTO> listMenuButton(MenuDTO menuDTO) {
+        return new Eql().select("listMenuButton").params(menuDTO).returnType(MenuDTO.class).execute();
+    }
+
+    /**
+     *@Description: 根据菜单id查询菜单
+     *@Param:
+     *@return:
+     *@Author: zqq
+     *@date: 2018/11/22
+     */
+
+    @Override
+    public List<MenuDTO> listMenuWithSort(MenuDTO menuDTO) {
+        return new Eql().select("listMenuWithSort").params(menuDTO).returnType(MenuDTO.class).execute();
+    }
+
+    @Override
+    public List<MenuDTO> listMenuByParent(MenuDTO menuDTO) {
         return new Eql().select("listMenu").params(menuDTO).returnType(MenuDTO.class).execute();
     }
 }

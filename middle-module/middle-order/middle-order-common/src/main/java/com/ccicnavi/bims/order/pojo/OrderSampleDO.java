@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单-样品库
  * @Date 16:46 2018/11/20

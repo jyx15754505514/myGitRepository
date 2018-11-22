@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.MinItemDO;
+import com.ccicnavi.bims.product.pojo.MinItemDTO;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface MinItemDao {
 
     int saveMinItem(MinItemDO minItem) throws Exception;
 
-    int removeMinItem(MinItemDO minItem) throws Exception;
+    int removeMinItem(MinItemDTO minItemDTO) throws Exception;
 
     int updateMinItem(MinItemDO minItem) throws Exception;
 

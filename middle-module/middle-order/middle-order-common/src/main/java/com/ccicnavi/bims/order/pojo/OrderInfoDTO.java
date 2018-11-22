@@ -6,7 +6,7 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单DTO
  * @Date 9:23 2018/11/20
@@ -16,99 +16,123 @@ import java.util.List;
 @ToString
 public class OrderInfoDTO implements Serializable {
 
-    private String orderUuid; //委托单id
+    private String orderUuid;//委托单id
 
-    private String productCategoryUuid;//产品分类id
+    private String productCategoryUuid;
 
-    private String orderNo; //委托编号
+    private String orderNo;
 
-    private String orderName; //委托名称
+    private String orderName;
 
-    private Date orderDate; //委托日期
+    private Date orderDate;
 
-    private String orderCrmNo;  //客户号
+    private String orderCrmNo;
 
-    private String orderAreaId; //区域id
+    private String orderAreaId;
 
-    private String crmUuid; //客户id
+    private String crmUuid;
 
-    private String crmName; //客户名称
+    private String crmName;
 
-    private String crmLinkman; //联系人
+    private String crmLinkman;
 
-    private String crmTelphone; //联系人电话
+    private String crmTelphone;
 
-    private String crmEmail; //联系人邮箱
+    private String crmEmail;
 
-    private String crmContractNo; //合同编号
+    private String crmContractNo;
 
-    private String crmEmerName; //紧急联系人
+    private String crmEmerName;
 
-    private String orderItemName; //委托项目名称
+    private String crmEmerTelphone;
 
-    private String orderItemType; //委托项目类型
+    private String orderItemName;
 
-    private String orderItemSpec; //项目规格
+    private String orderItemType;
 
-    private Integer orderItemQty; //数量
+    private String orderItemSpec;
 
-    private String orderItemQtyUnit; //数量单位
+    private Integer orderItemQty;
 
-    private String useStdUuid; //使用标准id
+    private String orderItemQtyUnit;
 
-    private String useStdName; //使用标准名称
+    private String useStdUuid;
 
-    private String useStdComment; //标准说明
+    private String useStdName;
 
-    private Integer totalFee; //总费用
+    private String useStdComment;
 
-    private Date firstFeeDate; //首次计费日期
+    private Integer totalFee;
 
-    private String isInternal; //是Y否N内部委托单
+    private Date firstFeeDate;
 
-    private String sourceOrgUuid; //委托单来源机构id
+    private String isInternal;
 
-    private String sourceOrgName; //委托单来源机构名称
+    private String sourceOrgUuid;
 
-    private Date planInspectDate; //计划检验时间
+    private String sourceOrgName;
 
-    private Date planInspectAddr; //计划检验地
+    private Date planInspectDate;
 
-    private String comments; //备注
+    private Date planInspectAddr;
 
-    private String currencyType; //币种id
+    private String comments;
 
-    private String conclusionType; //结论方式
+    private String currencyType;
 
-    private String certLangUuid; //证书语种id
+    private String conclusionType;
 
-    private Date acceptDate; //受理日期
+    private String certLangUuid;
 
-    private String statusUuid; //状态uuid
+    private Integer certQty;
 
-    private String statusName; //状态名称
+    private Integer certCopyQty;
 
-    private String isDeleted; //删除标识（N正常Y删除）
+    private Date acceptDate;
 
-    private Date createdTime; //创建时间
+    private String acceptOrgUuid;
 
-    private String createdUuid; //创建人id
+    private String acceptOrgName;
 
-    private String createdName; //创建人
+    private String statusUuid;
 
-    private Date updatedTime; //最后一次更新时间
+    private String statusName;
 
-    private String updatedUuid; //更新人uuid
+    private String lblSubpkg;
 
-    private String updatedName; //更新人
+    private String lblExec;
 
-    private String prodCatalogUuid; //'产品线id
+    private String lblCrmCapc;
 
-    private String orgUuid; //归属机构id
+    private String isReview;
 
-    private String appSysUuid; //应用系统id
+    private String isDeleted;
 
-    private String shippingTypeId; //运输单信息
+    private Date createdTime;
+
+    private String createdUuid;
+
+    private String createdName;
+
+    private Date updatedTime;
+
+    private String updatedUuid;
+
+    private String updatedName;
+
+    private String prodCatalogUuid;
+
+    private String orgUuid;
+
+    private String appSysUuid;
+
+    private String currentStatus;//委托单当前状态
+
+    private String nextStatus;//委托单下一状态
+
+    private List<String> orderUuids;//委托单id集合
+
+    private String shippingTypeId;//运输单信息
 
     private String vesselName;
 
@@ -146,5 +170,7 @@ public class OrderInfoDTO implements Serializable {
 
     private String isOpenCert;
 
-    List<OrderItemDTO> orderItemDTO;//服务项
+    private List<OrderItemDTO> orderItemDTO;//服务项
+
+    private List<OrderSampleTypeDO> orderSampleTypeDO;//委托样品类型
 }

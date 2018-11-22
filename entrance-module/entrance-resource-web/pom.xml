@@ -72,6 +72,12 @@
             <version>1.0</version>
             <scope>compile</scope>
         </dependency>
+        <!--产品Api依赖-->
+        <dependency>
+            <groupId>middle-product</groupId>
+            <artifactId>middle-product-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>entrance-module</groupId>
             <artifactId>entrance-system-web</artifactId>

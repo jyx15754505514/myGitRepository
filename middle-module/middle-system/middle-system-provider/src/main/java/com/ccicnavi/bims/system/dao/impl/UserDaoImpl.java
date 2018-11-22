@@ -95,18 +95,18 @@ public class UserDaoImpl implements UserDao {
 
     /**
     *@Description: 删除登录用户信息
-    *@Param: userDTO
+    *@Param: [UserDO]
     *@return: Integer
     *@Author: zhaotao
     *@date: 2018/11/15
     */
     @Override
-    public Integer deleteUser(UserDTO userDTO, EqlTran tran){
+    public Integer deleteUser(UserDO UserDO, EqlTran tran){
         Eql eql = new Eql("DEFAULT");
         if(tran != null) {
             eql.useTran(tran);
         }
-        return eql.delete("deleteUser").params(userDTO).returnType(Integer.class).execute();
+        return eql.delete("deleteUser").params(UserDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -121,6 +121,17 @@ public class UserDaoImpl implements UserDao {
         return new Eql().selectFirst("getUser").params(UserDO).returnType(UserDO.class).execute();
     }
 
+    @Override
+    public List<UserDO> listauthUserList(UserDTO userDTO) {
+        return new Eql().select("listauthUserList").params(userDTO).returnType(UserDO.class).execute();
+    }
+
+    @Override
+    public List<UserDO> selectunauthUserList(UserDTO userDTO) {
+        return new Eql().select("selectunauthUserList").params(userDTO).returnType(UserDO.class).execute();
+
+    }
+
     /**
     *@Description: 更新用户信息
     *@Param: [userDTO, tran]
@@ -128,7 +139,6 @@ public class UserDaoImpl implements UserDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/21
     */
-
     @Override
     public Integer updateUser(UserDTO userDTO, EqlTran tran){
         Eql eql = new Eql("DEFAULT");
@@ -145,9 +155,8 @@ public class UserDaoImpl implements UserDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/22
     */
-
     @Override
-    public Integer updateIsEnabled(UserDTO userDTO) {
+    public Integer updateIsEnabled(UserDTO.UserDTO userDTO) {
 
         return new Eql("DEFAULT").update("updateIsEnabled").params(userDTO).returnType(Integer.class).execute();
     }

@@ -6,6 +6,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CatalogService;
 import com.ccicnavi.bims.product.dao.CatalogDao;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
+import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,9 +26,9 @@ public class CatalogServiceImpl implements CatalogService {
     CatalogDao catalogDao;
 
     @Override
-    public List<CatalogDO> listCatalogDO(){
+    public List<CatalogDO> listCatalog(CatalogDO catalogDO){
         try {
-            return catalogDao.listCatalogDO();
+            return catalogDao.listCatalog();
         } catch (Exception e) {
             log.error("查询产品线信息失败",e);
             return null;
@@ -35,9 +36,9 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public int saveCatalogDO(CatalogDO catalogDO){
+    public int saveCatalog(CatalogDO catalogDO){
         try {
-            return catalogDao.saveCatalogDO(catalogDO);
+            return catalogDao.saveCatalog(catalogDO);
         } catch (Exception e) {
             log.error("新增产品线信息失败",e);
             return 0;
@@ -45,9 +46,9 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public int removeCatalogDO(CatalogDO catalogDO){
+    public int removeCatalog(CatalogDO catalogDO){
         try {
-            return catalogDao.removeCatalogDO(catalogDO);
+            return catalogDao.removeCatalog(catalogDO);
         } catch (Exception e) {
             log.error("删除产品线信息失败",e);
             return 0;
@@ -55,9 +56,9 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public int updateCatalogDO(CatalogDO catalogDO){
+    public int updateCatalog(CatalogDO catalogDO){
         try {
-            return catalogDao.updateCatalogDO(catalogDO);
+            return catalogDao.updateCatalog(catalogDO);
         } catch (Exception e) {
             log.error("修改产品线信息失败",e);
             return 0;
@@ -65,9 +66,9 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public CatalogDO getCatalogDO(CatalogDO catalogDO){
+    public CatalogDO getCatalog(CatalogDO catalogDO){
         try {
-            return catalogDao.getCatalogDO(catalogDO);
+            return catalogDao.getCatalog(catalogDO);
         } catch (Exception e) {
             log.error("获取产品线信息失败",e);
             return null;
@@ -83,4 +84,15 @@ public class CatalogServiceImpl implements CatalogService {
             return null;
         }
     }
+
+    @Override
+    public List<CatalogDO> getCatalogByOrgUUid(CatalogOrgDO catalogOrgDO) {
+        try {
+            return catalogDao.getCatalogByOrgUUid(catalogOrgDO);
+        } catch (Exception e) {
+            log.error("根据组织机构id查询产品线信息失败");
+            return null;
+        }
+    }
+
 }

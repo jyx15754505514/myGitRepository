@@ -14,22 +14,45 @@ import java.util.List;
  */
 public interface CategoryTypeService {
 
-    /**查询全部产品类别的分类信息*/
-    List<CategoryTypeDO> listCategoryTypeDO();
+    /**
+     * @description 查询全部产品类别的分类信息
+     * @return List<CategoryTypeDO>
+     */
+    List<CategoryTypeDO> listCategoryType(CategoryTypeDO categoryTypeDO);
 
-    /**新增产品类别的分类信息*/
-    int saveCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    /**
+     * @description 新增产品类别的分类信息
+     * @param categoryTypeDO
+     * @return int
+     */
+    int saveCategoryType(CategoryTypeDO categoryTypeDO);
 
-    /**删除产品类别的分类信息*/
-    int removeCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    /**
+     * @description 删除产品类别的分类信息
+     * @param categoryTypeDO
+     * @return int
+     */
+    int removeCategoryType(CategoryTypeDO categoryTypeDO);
 
-    /**修改产品类别的分类信息*/
-    int updateCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    /**
+     * @description 修改产品类别的分类信息
+     * @param categoryTypeDO
+     * @return int
+     */
+    int updateCategoryType(CategoryTypeDO categoryTypeDO);
 
-    /**根据主键获取产品类别的分类信息*/
-    CategoryTypeDO getCategoryTypeDO(CategoryTypeDO categoryTypeDO);
+    /**
+     * @description 根据主键获取产品类别的分类信息
+     * @param categoryTypeDO
+     * @return CategoryTypeDO
+     */
+    CategoryTypeDO getCategoryType(CategoryTypeDO categoryTypeDO);
 
-    /**分页查询产品类别的分类信息*/
+    /**
+     * @description 分页查询产品类别的分类信息
+     * @param pageParameter
+     * @return PageBean<CategoryTypeDO>
+     */
     PageBean<CategoryTypeDO> listCategoryTypePage(PageParameter<CategoryTypeDO> pageParameter);
 
 }

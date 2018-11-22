@@ -17,27 +17,39 @@ import java.util.Date;
 @Getter
 @ToString
 public class MinItemDO implements Serializable {
-    private String minItemUuid;//最小服务项ID
 
-    private String minItemName;//服务项名称
+    /**最小服务项ID*/
+    private String minItemUuid;
 
-    private String minItemCode;//服务项编码
+    /**服务项名称*/
+    private String minItemName;
 
-    private String goodsCategoryUuid;//所属产品分类ID
+    /**服务项编码*/
+    private String minItemCode;
 
-    private String serviceCategoryUuid;//所属服务分类ID
+    /**所属商品分类ID*/
+    private String goodsCategoryUuid;
 
+    /**所属服务分类ID*/
+    private String serviceCategoryUuid;
+
+    /**商品价*/
     private Integer goodsPrice;
 
+    /**服务价*/
     private Integer servicePrice;
 
-    private String useStdUuid;//使用标准ID
+    /**使用标准ID*/
+    private String useStdUuid;
 
-    private String useStdName;//使用标准名称
+    /**使用标准名称*/
+    private String useStdName;
 
-    private String stdWorkhour;//标准工时
+    /**标准工时*/
+    private String stdWorkhour;
 
-    private String comments;  //备注
+    /**备注*/
+    private String comments;
 
     private String isDeleted;
 
@@ -53,10 +65,13 @@ public class MinItemDO implements Serializable {
 
     private Date updatedName;
 
-    private String prodCatalogUuid;//产品线ID
+    /**产品线ID*/
+    private String prodCatalogUuid;
 
+    /**所属机构ID*/
     private String orgUuid;
 
+    /**所属平台ID*/
     private String appSysUuid;
 
     private String extend1;

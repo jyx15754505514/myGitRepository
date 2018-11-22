@@ -1,10 +1,8 @@
-package com.ccicnavi.bims.system.dao.impl;/**
- * @program: bims-backend
- * @description: 该类的作用描述
- * @author: zhangxingbiao
- * @create: 2018-11-21 22:01
- */
+package com.ccicnavi.bims.system.dao.impl;
 
+import com.ccicnavi.bims.system.dao.RoleUserDao;
+import com.ccicnavi.bims.system.pojo.RoleUserDO;
+import com.ccicnavi.bims.system.pojo.RoleUserDTO;
 import com.ccicnavi.bims.system.dao.RoleUserDao;
 import com.ccicnavi.bims.system.pojo.RoleUserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
@@ -12,8 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
+
 
 /**
  *@program: bims-backend

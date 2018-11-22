@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.system.controller;
 
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
@@ -134,7 +135,7 @@ public class UserController {
     }
 
     /**
-    *@Description: 删除登录用户信息
+    *@Description: 用户登录
     *@Param: [UserDO]
     *@return: ResultT
     *@Author: zhaotao
@@ -150,6 +151,22 @@ public class UserController {
         }
     }
 
+    /**
+     *@Description: 用户登出
+     *@Param: [UserDO]
+     *@return: ResultT
+     *@Author: zhaotao
+     *@date: 2018/11/16
+     */
+    @RequestMapping(value = "/userLogout", method = RequestMethod.POST)
+    public ResultT userLogout(@RequestBody String jsessionId) {
+        try {
+            //return userManager.userLogin(UserDO);
+        } catch (Exception e) {
+            log.error("用户登出失败", e);
+        }
+        return ResultT.failure(ResultCode.USER_NOT_EXIST);
+    }
     /**
     *@Description: 保存登录用户信息
     *@Param: [userDTO]
@@ -197,4 +214,24 @@ public class UserController {
         }
     }
 
+    /**
+     *@Description: 根据角色查询用户
+     *@Param: userDTO
+     *@return: UserDTO
+     *@Author: zqq
+     *@date: 2018/11/22
+     */
+    @RequestMapping(value = "/selectByRoleUser", method = RequestMethod.POST)
+    public ResultT selectByRoleUser(@RequestBody UserDTO userDTO) {
+        if(StringUtils.isEmpty(userDTO.getRoleUuid())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
+        try {
+            UserDTO userDto = userService.selectByRoleUser(userDTO);
+            return ResultT.success(userDto);
+        } catch (Exception e) {
+            log.error("查询用户信息失败", e);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+    }
 }

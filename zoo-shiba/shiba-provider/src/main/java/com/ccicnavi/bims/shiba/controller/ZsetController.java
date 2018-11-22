@@ -2,7 +2,8 @@ package com.ccicnavi.bims.shiba.controller;
 
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
-import com.ccicnavi.bims.shiba.service.ZsetTemplateImpl;
+import com.ccicnavi.bims.shiba.api.ZsetTemplate;
+import com.ccicnavi.bims.shiba.service.ParamVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,12 @@ import java.util.Set;
 public class ZsetController {
 
     @Autowired
-    ZsetTemplateImpl zsetTemplate;
+    ZsetTemplate zsetTemplate;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResultT add(@RequestParam(value = "key") Object key, @RequestParam(value = "value") Object value, @RequestParam(value = "score") double score) {
+    public ResultT add(@RequestBody ParamVo paramVo) {
         try {
-            zsetTemplate.add(key, value, score);
+            zsetTemplate.add(paramVo.getKey(), paramVo.getValue(), paramVo.getScore());
             return ResultT.success();
         } catch (Exception e) {
             log.error("添加set类型的缓存失败", e);
@@ -28,21 +29,21 @@ public class ZsetController {
         }
     }
 
-    @RequestMapping(value = "/range", method = RequestMethod.GET)
-    public ResultT range(@RequestParam(value = "key") Object key, @RequestParam(value = "start") long start, @RequestParam(value = "end") long end) {
+    @RequestMapping(value = "/range", method = RequestMethod.POST)
+    public ResultT range(@RequestBody ParamVo paramVo) {
         try {
-            Set value = zsetTemplate.range(key, start, end);
-            return ResultT.success();
+            Set value = zsetTemplate.range(paramVo.getKey(), paramVo.getStart(), paramVo.getEnd());
+            return ResultT.success(value);
         } catch (Exception e) {
             log.error("根据key查询start-end的缓存失败", e);
             return ResultT.failure(ResultCode.GET_FAILURE);
         }
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public ResultT delete(@RequestParam(value = "key") Object key) {
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public ResultT delete(@RequestBody ParamVo paramVo) {
         try {
-            zsetTemplate.delete(key);
+            zsetTemplate.delete(paramVo.getKey());
             return ResultT.success();
         } catch (Exception e) {
             log.error("根据key删除缓存失败 ", e);
@@ -50,10 +51,10 @@ public class ZsetController {
         }
     }
 
-    @RequestMapping(value = "/hasKey", method = RequestMethod.GET)
-    public ResultT hasKey(@RequestParam(value = "key") Object key) {
+    @RequestMapping(value = "/hasKey", method = RequestMethod.POST)
+    public ResultT hasKey(@RequestBody ParamVo paramVo) {
         try {
-            Boolean hasKey = zsetTemplate.hasKey(key);
+            Boolean hasKey = zsetTemplate.hasKey(paramVo.getKey());
             return ResultT.success(hasKey);
         } catch (Exception e) {
             log.error("查询key缓存是否存在失败 ", e);
@@ -62,9 +63,9 @@ public class ZsetController {
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public ResultT remove(@RequestParam(value = "key") Object key, @RequestBody Object... value) {
+    public ResultT remove(@RequestBody ParamVo paramVo) {
         try {
-            zsetTemplate.remove(key, value);
+            zsetTemplate.remove(paramVo.getKey(), paramVo.getList().toArray());
             return ResultT.success();
         } catch (Exception e) {
             log.error("values从排序集中删除 ", e);
@@ -73,9 +74,9 @@ public class ZsetController {
     }
 
     @RequestMapping(value = "/removeRange", method = RequestMethod.POST)
-    public ResultT removeRange(@RequestParam(value = "key") Object key, @RequestParam(value = "start") long start, @RequestParam(value = "end") long end) {
+    public ResultT removeRange(@RequestBody ParamVo paramVo) {
         try {
-            zsetTemplate.remove(key, start, end);
+            zsetTemplate.removeRange(paramVo.getKey(), paramVo.getStart(), paramVo.getEnd());
             return ResultT.success();
         } catch (Exception e) {
             log.error("删除有序集之间start和end之间的元素 ", e);
@@ -83,14 +84,25 @@ public class ZsetController {
         }
     }
 
-    @RequestMapping(value = "/size", method = RequestMethod.GET)
-    public ResultT size(@RequestParam(value = "key") Object key) {
+    @RequestMapping(value = "/size", method = RequestMethod.POST)
+    public ResultT size(@RequestBody ParamVo paramVo) {
         try {
-            Long size = zsetTemplate.size(key);
+            Long size = zsetTemplate.size(paramVo.getKey());
             return ResultT.success(size);
         } catch (Exception e) {
             log.error("查询key缓存大小失败", e);
             return ResultT.failure(ResultCode.GET_FAILURE);
+        }
+    }
+
+    @RequestMapping(value = "/setTime", method = RequestMethod.POST)
+    public ResultT setTime(@RequestBody ParamVo paramVo) {
+        try {
+            zsetTemplate.expire(paramVo.getKey(), paramVo.getOutTime(), paramVo.getUnit());
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("设置超时时间失败", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
         }
     }
 }

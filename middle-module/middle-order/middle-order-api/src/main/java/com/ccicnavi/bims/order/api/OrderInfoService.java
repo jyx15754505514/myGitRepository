@@ -5,8 +5,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.pojo.OrderInfoDO;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
-
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单
  * @Date 15:30 2018/11/19
@@ -22,6 +21,10 @@ public interface OrderInfoService {
     PageBean<OrderInfoDO> listOrderInfo(PageParameter<OrderInfoDO> pageParameter);
     /**保存委托单*/
     ResultT saveOrderInfo(OrderInfoDTO orderInfoDTO);
+    /**修改委托单*/
+    ResultT reNewOrderInfo(OrderInfoDTO orderInfoDTO);
+    /**回显委托单信息   根据委托单uuid**/
+    OrderInfoDTO getOrderInfo(OrderInfoDO orderInfoDO);
     /**委托单状态调整**/
 
     /**委托单设置为加急**/

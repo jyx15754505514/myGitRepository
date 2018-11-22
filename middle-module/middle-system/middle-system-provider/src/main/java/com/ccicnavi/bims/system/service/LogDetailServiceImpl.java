@@ -1,7 +1,6 @@
 package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.LogDetailDao;
 import com.ccicnavi.bims.system.pojo.LogDTO;
 import com.ccicnavi.bims.system.pojo.LogDetailDO;
@@ -9,8 +8,7 @@ import com.ccicnavi.bims.system.service.api.LogDetailService;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
-
-/* *
+/**
  * @Author MengZiJie
  * @Description 日志详情
  * @Date 18:33 2018/11/14
@@ -22,7 +20,7 @@ public class LogDetailServiceImpl implements LogDetailService {
     @Autowired
     private LogDetailDao LogDetailDao;
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 获取日志信息
      * @Date 18:36 2018/11/14
@@ -40,7 +38,7 @@ public class LogDetailServiceImpl implements LogDetailService {
         return logDetail;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 添加日志详情
      * @Date 18:36 2018/11/14
@@ -59,7 +57,7 @@ public class LogDetailServiceImpl implements LogDetailService {
         return logDetail;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 更新日志详情
      * @Date 18:36 2018/11/14
@@ -78,7 +76,7 @@ public class LogDetailServiceImpl implements LogDetailService {
         return logDetail;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 删除日志详情
      * @Date 18:36 2018/11/14
