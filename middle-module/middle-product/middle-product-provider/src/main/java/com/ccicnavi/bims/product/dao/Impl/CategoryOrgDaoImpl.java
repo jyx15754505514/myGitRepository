@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.dao.Impl;
 import com.ccicnavi.bims.product.dao.CategoryOrgDao;
 import com.ccicnavi.bims.product.pojo.CategoryOrgDO;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,13 +21,13 @@ public class CategoryOrgDaoImpl implements CategoryOrgDao {
     }
 
     @Override
-    public int saveCategoryOrgDO(CategoryOrgDO categoryOrgDO){
-        return new Eql().insert("saveCategoryOrgDO").params(categoryOrgDO).returnType(int.class).execute();
+    public int saveCategoryOrgDO(CategoryOrgDO categoryOrgDO, EqlTran eqlTran){
+        return new Eql().useTran(eqlTran).insert("saveCategoryOrgDO").params(categoryOrgDO).returnType(int.class).execute();
     }
 
     @Override
-    public int removeCategoryOrgDO(CategoryOrgDO categoryOrgDO){
-        return new Eql().delete("removeCategoryOrgDO").params(categoryOrgDO).returnType(int.class).execute();
+    public int removeCategoryOrgDO(CategoryOrgDO categoryOrgDO, EqlTran eqlTran){
+        return new Eql().useTran(eqlTran).delete("removeCategoryOrgDO").params(categoryOrgDO).returnType(int.class).execute();
     }
 
 }
