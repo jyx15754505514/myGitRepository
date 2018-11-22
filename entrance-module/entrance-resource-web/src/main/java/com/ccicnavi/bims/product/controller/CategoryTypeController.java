@@ -85,8 +85,8 @@ public class CategoryTypeController {
     @RequestMapping(value = "/listCategoryTypePage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listCategoryTypePage(@RequestBody PageParameter<CategoryTypeDO> pageParameter){
         try {
-            PageBean<CategoryTypeDO> pageBean=categoryTypeService.listCategoryTypePage(pageParameter);
-            return ResultT.success(pageBean);
+            PageBean<CategoryTypeDO> categoryTypeDOPageBean=categoryTypeService.listCategoryTypePage(pageParameter);
+            return ResultT.success(categoryTypeDOPageBean);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.LIST_FAILURE);
