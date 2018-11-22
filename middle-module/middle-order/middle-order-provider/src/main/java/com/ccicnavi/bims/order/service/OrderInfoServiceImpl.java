@@ -160,8 +160,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                     String orderItemUuid = idWorkerService.getId(new Date());
                     orderItemDTO.get(i).setOrderItemUuid(orderItemUuid);//生成服务项主键
                     orderItemDTO.get(i).setOrderUuid(orderUuid);//委托单id
-
-                    orderItemDTO.get(i).setOrderItemNo("");//生成服务单编号
                     //添加委托单服务项
                     orderItem = orderItemDao.insertOrderItem(orderItemDTO.get(i),eqlTran);
                     if(orderItem!=1){

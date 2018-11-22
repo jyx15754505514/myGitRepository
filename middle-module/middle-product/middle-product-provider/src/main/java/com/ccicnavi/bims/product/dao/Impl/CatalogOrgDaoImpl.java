@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.dao.Impl;
 import com.ccicnavi.bims.product.dao.CatalogOrgDao;
 import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,14 +21,14 @@ public class CatalogOrgDaoImpl implements CatalogOrgDao {
     }
 
     @Override
-    public int saveCatalogOrgDO(CatalogOrgDO catalogOrgDO) {
-        return new Eql().insert("saveCatalogOrgDO").params(catalogOrgDO).returnType(int.class).execute();
+    public int saveCatalogOrgDO(CatalogOrgDO catalogOrgDO, EqlTran eqlTran) {
+        return new Eql().useTran(eqlTran).insert("saveCatalogOrgDO").params(catalogOrgDO).returnType(int.class).execute();
     }
 
 
     @Override
-    public int removeCatalogOrgDO(CatalogOrgDO catalogOrgDO) {
-        return new Eql().delete("removeCatalogOrgDO").params(catalogOrgDO).returnType(int.class).execute();
+    public int removeCatalogOrgDO(CatalogOrgDO catalogOrgDO, EqlTran eqlTran) {
+        return new Eql().useTran(eqlTran).delete("removeCatalogOrgDO").params(catalogOrgDO).returnType(int.class).execute();
     }
 
 }

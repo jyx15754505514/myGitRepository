@@ -7,6 +7,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CatalogWorkhourService;
 import com.ccicnavi.bims.product.pojo.CatalogWorkhourDO;
+import com.ccicnavi.bims.product.pojo.CatalogWorkhourDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -132,12 +133,12 @@ public class CatalogWorkhourController {
      * @return
      */
     @RequestMapping(value = "/removeCatalogWorkhour", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT removeCatalogWorkhour(@RequestBody CatalogWorkhourDO catalogWorkhourDO) {
+    public ResultT removeCatalogWorkhour(@RequestBody CatalogWorkhourDTO catalogWorkhourDTO) {
         try {
-            if (StringUtils.isEmpty(catalogWorkhourDO.getProdCatalogUuid())) {
+            if (StringUtils.isEmpty(catalogWorkhourDTO.getProdCatalogUuid())) {
                 return ResultT.failure(ResultCode.PARAM_IS_BLANK);
             } else {
-                Integer count = catalogWorkhourService.removeCatalogWorkhour(catalogWorkhourDO);
+                Integer count = catalogWorkhourService.removeCatalogWorkhour(catalogWorkhourDTO);
                 if (count > 0) {
                     return ResultT.success("删除产品线对应工时工资成功");
                 } else {
