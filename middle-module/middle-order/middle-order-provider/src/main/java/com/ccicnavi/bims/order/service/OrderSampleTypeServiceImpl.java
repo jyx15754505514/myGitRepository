@@ -7,7 +7,6 @@ import com.ccicnavi.bims.order.pojo.OrderSampleTypeDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 /**
@@ -36,6 +35,7 @@ public class OrderSampleTypeServiceImpl implements OrderSampleTypeService {
             return null;
         }
     }
+
     /**
      * @Author heibin
      * @Description 查询全部委托样品类型
@@ -52,6 +52,7 @@ public class OrderSampleTypeServiceImpl implements OrderSampleTypeService {
             return null;
         }
     }
+
     /**
      * @Author heibin
      * @Description 委托样品类型添加

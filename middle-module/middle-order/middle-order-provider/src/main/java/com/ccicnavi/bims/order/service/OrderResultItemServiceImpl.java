@@ -7,7 +7,6 @@ import com.ccicnavi.bims.order.pojo.OrderResultItemDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 /**
  * @Author heibin
@@ -35,6 +34,7 @@ public class OrderResultItemServiceImpl implements OrderResultItemService {
             return null;
         }
     }
+
     /**
      * @Author heibin
      * @Description 查询全部委托服务项-证书关系
@@ -51,6 +51,7 @@ public class OrderResultItemServiceImpl implements OrderResultItemService {
             return null;
         }
     }
+
     /**
      * @Author heibin
      * @Description 委托服务项-证书关系添加
@@ -69,6 +70,7 @@ public class OrderResultItemServiceImpl implements OrderResultItemService {
         }
         return integer;
     }
+
     /**
      * @Author heibin
      * @Description 委托服务项-证书关系更新
@@ -87,6 +89,7 @@ public class OrderResultItemServiceImpl implements OrderResultItemService {
         }
         return integer;
     }
+
     /**
      * @Author heibin
      * @Description 委托服务项-证书关系删除
