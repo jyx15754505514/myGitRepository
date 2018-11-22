@@ -108,9 +108,10 @@
         </dependency>
 
         <dependency>
-            <artifactId>zoo-shiba</artifactId>
-            <groupId>com.ccicnavi.bims</groupId>
+            <groupId>zoo-shiba</groupId>
+            <artifactId>shiba-api</artifactId>
             <version>1.0</version>
+            <scope>compile</scope>
         </dependency>
 
 

@@ -3,16 +3,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>akita-api</artifactId>
+    <groupId>com.ccicnavi.bims</groupId>
+    <artifactId>sleuth-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>akita-api</name>
+    <name>sleuth-api</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
         <groupId>com.ccicnavi.bims</groupId>
-        <artifactId>zoo-akita</artifactId>
+        <artifactId>zoo-sleuth</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
