@@ -1,6 +1,5 @@
 package com.ccicnavi.bims.system.pojo;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,10 +8,22 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Setter
+/**
+ * @program: bims-backend
+ * @description: 该类的作用描述
+ * @author: zhangpengwei
+ * @create: 2018-11-21 22:09
+ */
 @Getter
+@Setter
 @ToString
-public class OrganizationDO implements Serializable{
+public class OrganizationDTO implements Serializable{
+
+    private List<String> uuids;                 //部门主键集合
+
+    private Long levels;                        //所在级别
+
+    private List<OrganizationDTO> orgChildList; //子集
 
     private String organizationUuid;
 
@@ -65,5 +76,4 @@ public class OrganizationDO implements Serializable{
     private String extend2;
 
     private String extend3;
-
 }
