@@ -412,6 +412,10 @@ update order_info
         --iff appSysUuid != null and appSysUuid != ''
             app_sys_uuid = '#appSysUuid#',
     -- end
+where
+    is_deleted = 'N'
+--iff orderUuid != null and orderUuid != ''
+    and order_uuid = '#orderUuid#'
 
 -- [deleteOrderInfo]
 UPDATE order_info
