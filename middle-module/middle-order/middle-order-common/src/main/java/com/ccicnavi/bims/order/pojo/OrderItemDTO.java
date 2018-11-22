@@ -68,4 +68,6 @@ public class OrderItemDTO implements Serializable {
     private String updatedName;
 
     List<OrderItemSubDO> orderItemSubDO;
+
+    private String flag;
 }
