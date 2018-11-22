@@ -7,10 +7,7 @@ import org.n3r.eql.EqlTran;
  * @Author songyateng
  * @Description 成本单服务项Dao
  * @Date 14:21 2018/11/22
- * @Param
- * @Return
  */
-
 public interface OrderItemCostDao {
     /**
      * @Author songyateng
@@ -27,6 +24,5 @@ public interface OrderItemCostDao {
      * @Param [orderItemCostDo, tran]
      * @Return java.lang.Integer
      */
-
     Integer updateOrderItemCost(OrderItemCostDo orderItemCostDo, EqlTran tran) throws Exception;
 }
