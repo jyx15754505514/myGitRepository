@@ -8,11 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
-
 /**
  * @Auther: fandongsheng
  * @Date: 2018/11/20 22:01
- * @Description:
+ * @Description: 评审管理接口测试
  */
 @Slf4j
 public class TestOrderReview {
@@ -26,14 +25,13 @@ public class TestOrderReview {
         try {
             OrderReviewDaoImpl order = new OrderReviewDaoImpl();
             OrderReviewDO orderReviewDO = new OrderReviewDO();
-            orderReviewDO.setOrderUuid("222");
+            orderReviewDO.setOrderUuid("222");//设置主键
             orderReviewDO.setReviewSuggest("222");
             orderReviewDO.setReviewUserUuid("333");
             System.err.print(order.insertOrderReview(orderReviewDO,null));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     /* *
