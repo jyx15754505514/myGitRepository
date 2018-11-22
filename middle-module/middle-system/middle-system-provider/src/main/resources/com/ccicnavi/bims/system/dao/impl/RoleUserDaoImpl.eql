@@ -9,16 +9,6 @@
   where role_uuid = '#roleUuid#'
 --end
 
--- 删除角色用户
--- [deleteRoleUser]
-   delete from sys_role_user
-   where
-    -- if deleteUserUuid != null
-            user_uuid in
-                   -- for item=item index=index collection=deleteUserUuid open=( separator=, close=)
-                   	'#item#'
-                   -- end
-     -- end
 -- 新增角色用户
 -- [insertRoleUser]
     INSERT INTO

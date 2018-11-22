@@ -21,7 +21,7 @@ public interface RoleUserDao {
      *@Author: zhangxingbiao
      *@date: 2018/11/21
      */
-    Integer insertRoleUser(UserDTO userDTO, EqlTran tran);
+    Integer insertRoleUsers(UserDTO userDTO, EqlTran tran);
     Integer insertRoleUser(RoleUserDO roleUserDO, EqlTran tran);
 
     /**
@@ -39,7 +39,7 @@ public interface RoleUserDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/22
     */
-    public Integer deleteRoleUser(UserDTO userDTO, EqlTran tran);
+    public Integer deleteRoleUsers(UserDTO userDTO, EqlTran tran);
     public Integer deleteRoleUser(RoleUserDTO roleUserDTO, EqlTran tran);
 
     /**
