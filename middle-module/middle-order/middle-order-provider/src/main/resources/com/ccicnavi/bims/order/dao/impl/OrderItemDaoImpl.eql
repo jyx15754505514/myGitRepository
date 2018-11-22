@@ -146,9 +146,9 @@ where
         --iff refWorkhour != null and refWorkhour != ''
             '#refWorkhour#',
         --iff isSubpkg != null and isSubpkg != ''
-            '#isSubpkg#',
+            'N',
         --iff isSubpkgMgr != null and isSubpkgMgr != ''
-            '#isSubpkgMgr#',
+            'Y',
         --iff receOrgUuid != null and receOrgUuid != ''
             '#receOrgUuid#',
         --iff receOrgName != null and receOrgName != ''
@@ -164,7 +164,7 @@ where
         --iff comments != null and comments != ''
             '#comments#',
         --iff isDeleted != null and isDeleted != ''
-            '#isDeleted#',
+            'N',
         --iff createdTime != null
             '#createdTime#',
         --iff createdUuid != null and createdUuid != ''
