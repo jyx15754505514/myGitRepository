@@ -80,7 +80,7 @@ public class RoleUserDaoImpl implements RoleUserDao {
         if (tran != null) {
             eql.useTran(tran);
         }
-        return new Eql("DEFAULT").delete("deleteRoleUser").params(userDTO).returnType(Integer.class).execute();
+        return new Eql("DEFAULT").delete("deleteRoleUsers").params(userDTO).returnType(Integer.class).execute();
     }
 
 
