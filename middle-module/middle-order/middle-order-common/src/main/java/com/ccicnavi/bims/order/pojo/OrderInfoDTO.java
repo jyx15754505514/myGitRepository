@@ -170,7 +170,7 @@ public class OrderInfoDTO implements Serializable {
 
     private String isOpenCert;
 
-    List<OrderItemDTO> orderItemDTO;//服务项
+    private List<OrderItemDTO> orderItemDTO;//服务项
 
-    List<OrderSampleTypeDO> orderSampleTypeDO;//委托样品类型
+    private List<OrderSampleTypeDO> orderSampleTypeDO;//委托样品类型
 }
