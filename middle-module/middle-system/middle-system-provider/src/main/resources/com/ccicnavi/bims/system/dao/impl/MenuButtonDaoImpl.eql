@@ -224,5 +224,26 @@ where
        -- end
    -- end
    	--iff prodCatalogUuid != null and prodCatalogUuid != ''
-       and md.prod_catalog_uuid = '#prodCatalogUuid#'
+       and rp.prod_catalog_uuid = '#prodCatalogUuid#'
 
+-- 登录接口中，根据用户的角色和产品线，查询所有的按钮URL集合
+-- [listButtonUrlByRole]
+select
+    md.btn_url
+from
+    sys_menu_button md
+    LEFT JOIN sys_role_permission rp ON rp.btn_uuid = md.btn_uuid
+where
+   md.is_deleted = 'N'
+    --iff roleUuids != null
+       and rp.role_uuid in
+       -- for item=item index=index collection=roleUuids open=( separator=, close=)
+           '#item#'
+       -- end
+   -- end
+   --iff prodCatalogUuids != null
+          and rp.prod_catalog_uuid in
+          -- for item=item index=index collection=prodCatalogUuids open=( separator=, close=)
+              '#item#'
+          -- end
+      -- end

@@ -62,5 +62,5 @@ public interface RoleDao {
     *@Author: zhangpengwei
     *@date: 2018/11/19
     */
-    public List<RoleDO> listRoleByUser(UserDTO userDO) throws  Exception;
+    public List<RoleDTO> listRoleByUser(UserDTO userDO) throws  Exception;
 }
