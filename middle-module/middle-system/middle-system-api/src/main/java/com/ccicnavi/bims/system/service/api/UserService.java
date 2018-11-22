@@ -3,6 +3,9 @@ package com.ccicnavi.bims.system.service.api;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
+
+import java.util.List;
 
 /**
  *@program: bims-backend
@@ -34,10 +37,10 @@ public interface UserService {
 
     /**
      * 删除登录用户
-     * @param UserDO
+     * @param userDTO
      * @return Integer
      */
-    public Integer deleteUser(UserDO UserDO);
+    public Integer deleteUser(UserDTO userDTO);
 
     /**
      * 根据主键获取单个登录用户信息
@@ -45,4 +48,32 @@ public interface UserService {
      * @return UserDO
      */
     public  UserDO getUser(UserDO UserDO);
+
+    /**
+    *@Description: 保存登录用户信息
+    *@Param: [userDTO]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/21
+    */
+    public Integer saveUser(UserDTO userDTO);
+
+    /**
+    *@Description: 更改登录用户信息
+    *@Param: [userDTO]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/21
+    */
+
+    public Integer updateUser(UserDTO userDTO);
+
+    /**
+    *@Description: 更改启用禁用状态
+    *@Param: [userDO]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/22
+    */
+    public Integer updateIsEnabled(UserDTO userDTO);
 }

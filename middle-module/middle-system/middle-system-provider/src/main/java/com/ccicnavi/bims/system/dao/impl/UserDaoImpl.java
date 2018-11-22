@@ -5,6 +5,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.UserDao;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
@@ -58,6 +59,24 @@ public class UserDaoImpl implements UserDao {
         return eql.delete("insertUser").params(UserDO).returnType(Integer.class).execute();
     }
 
+
+    /**
+    *@Description: 保存登录用户信息
+    *@Param: [personDTO, tran]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/21
+    */
+    @Override
+    public Integer saveUser(UserDTO userDTO, EqlTran tran) {
+        Eql eql = new Eql("DEFAULT");
+        if(tran !=null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertUser").params(userDTO).returnType(Integer.class).execute();
+    }
+
+
     /**
     *@Description: 更新登录用户信息
     *@Param: [UserDO]
@@ -76,18 +95,18 @@ public class UserDaoImpl implements UserDao {
 
     /**
     *@Description: 删除登录用户信息
-    *@Param: [UserDO]
+    *@Param: userDTO
     *@return: Integer
     *@Author: zhaotao
     *@date: 2018/11/15
     */
     @Override
-    public Integer deleteUser(UserDO UserDO, EqlTran tran){
+    public Integer deleteUser(UserDTO userDTO, EqlTran tran){
         Eql eql = new Eql("DEFAULT");
         if(tran != null) {
             eql.useTran(tran);
         }
-        return eql.delete("deleteUser").params(UserDO).returnType(Integer.class).execute();
+        return eql.delete("deleteUser").params(userDTO).returnType(Integer.class).execute();
     }
 
     /**
@@ -101,4 +120,37 @@ public class UserDaoImpl implements UserDao {
     public UserDO getUser(UserDO UserDO){
         return new Eql().selectFirst("getUser").params(UserDO).returnType(UserDO.class).execute();
     }
+
+    /**
+    *@Description: 更新用户信息
+    *@Param: [userDTO, tran]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/21
+    */
+
+    @Override
+    public Integer updateUser(UserDTO userDTO, EqlTran tran){
+        Eql eql = new Eql("DEFAULT");
+        if(tran != null) {
+            eql.useTran(tran);
+        }
+        return eql.update("updateUser").params(userDTO).returnType(Integer.class).execute();
+    }
+
+    /**
+    *@Description: 更改启用禁用状态
+    *@Param: [userDO, tran]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/22
+    */
+
+    @Override
+    public Integer updateIsEnabled(UserDTO userDTO) {
+
+        return new Eql("DEFAULT").update("updateIsEnabled").params(userDTO).returnType(Integer.class).execute();
+    }
+
+
 }

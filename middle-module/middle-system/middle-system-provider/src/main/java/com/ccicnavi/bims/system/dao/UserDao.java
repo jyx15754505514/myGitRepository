@@ -3,7 +3,10 @@ package com.ccicnavi.bims.system.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import org.n3r.eql.EqlTran;
+
+import java.util.List;
 
 /**
  * @program: bims-backend
@@ -32,6 +35,15 @@ public interface UserDao {
     public Integer insertUser(UserDO UserDO, EqlTran tran);
 
     /**
+     *@Description: 保存登录用户
+     *@Param: [UserDO]
+     *@return: Integer
+     *@Author: zhaotao
+     *@date: 2018/11/15
+     */
+    public Integer saveUser(UserDTO userDTO, EqlTran tran);
+
+    /**
     *@Description: 更新登录用户信息
     *@Param: [UserDO]
     *@return: Integer
@@ -47,7 +59,7 @@ public interface UserDao {
     *@Author: zhaotao
     *@date: 2018/11/15
     */
-    public Integer deleteUser(UserDO UserDO, EqlTran tran);
+    public Integer deleteUser(UserDTO userDTO, EqlTran tran);
 
     /**
     *@Description: 根据主键获取单个登录用户信息
@@ -57,4 +69,26 @@ public interface UserDao {
     *@date: 2018/11/15
     */
     public  UserDO getUser(UserDO UserDO);
+
+
+    /**
+    *@Description: 更新登录用户信息
+    *@Param: [UserDTO, tran]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/21
+    */
+
+    public Integer updateUser(UserDTO userDTO, EqlTran tran);
+
+
+    /**
+    *@Description: 更改启用禁用状态
+    *@Param: [userDO, tran]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/22
+    */
+
+    public Integer updateIsEnabled(UserDTO userDTO);
 }
