@@ -35,7 +35,7 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/list",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/listCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listCatalogDO(@RequestBody CatalogDO catalogDO){
         try {
             List<CatalogDO> catalogDOList=catalogService.listCatalogDO(catalogDO);
@@ -52,7 +52,7 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/save",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/saveCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT saveCatalogDO(@RequestBody CatalogDO catalogDO){
         try {
             Integer num=catalogService.saveCatalogDO(catalogDO);
@@ -69,7 +69,7 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/remove",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/removeCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT removeCatalogDO(@RequestBody CatalogDO catalogDO){
         try {
             Integer num=catalogService.removeCatalogDO(catalogDO);
@@ -86,7 +86,7 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/update",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/updateCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT updateCatalogDO(@RequestBody CatalogDO catalogDO){
         try {
             Integer num=catalogService.updateCatalogDO(catalogDO);
@@ -103,7 +103,7 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/get",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/getCatalogDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getCatalogDO(@RequestBody CatalogDO catalogDO){
         try {
             CatalogDO catalogDOResult=catalogService.getCatalogDO(catalogDO);
@@ -120,7 +120,7 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/listPage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/listCatalogPage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listCatalogPage(@RequestBody PageParameter<CatalogDO> pageParameter){
         try {
             PageBean<CatalogDO> catalogDOPageBean=catalogService.listCatalogPage(pageParameter);
@@ -137,7 +137,7 @@ public class CatalogController {
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
-    @RequestMapping(value = "/getThroughOrgUUid",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/getCatalogThroughOrgUUid",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getCatalogThroughOrgUUid(@RequestBody CatalogOrgDO catalogOrgDO){
         try {
             List<CatalogDO> catalogDOList=catalogService.getCatalogThroughOrgUUid(catalogOrgDO);
