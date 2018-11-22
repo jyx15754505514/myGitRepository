@@ -2,13 +2,12 @@ package com.ccicnavi.bims.order.dao;
 
 import com.ccicnavi.bims.order.pojo.OrderWorksheetCostDo;
 import org.n3r.eql.EqlTran;
-import org.springframework.stereotype.Service;
 /**
  * @Author songyateng
  * @Description 成本表
  * @Date 16:30 2018/11/21
  */
-@Service
+
 public interface OrderWorksheetCostDao {
 
     /**

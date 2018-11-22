@@ -6,17 +6,16 @@ import com.ccicnavi.bims.order.pojo.OrderItemSubDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-/* *
+/**
  * @Author heibin
  * @Description 委托单最小服务项子项
  * @Date 10:11 2018/11/20
  */
 @Service
 public class OrderItemSubDaoImpl implements OrderItemSubDao {
-    /* *
+    /**
      * @Author heibin
      * @Description 新增委托单最小服务项子项
      * @Date 10:12 2018/11/20
@@ -31,7 +30,8 @@ public class OrderItemSubDaoImpl implements OrderItemSubDao {
         }
         return eql.insert("insertOrderItemSub").params(orderItemSubDO).returnType(Integer.class).execute();
     }
-    /* *
+
+    /**
      * @Author heibin
      * @Description 更新委托单最小服务项子项
      * @Date 10:12 2018/11/20
@@ -46,7 +46,8 @@ public class OrderItemSubDaoImpl implements OrderItemSubDao {
         }
         return eql.update("updateOrderItemSub").params(orderItemSubDO).returnType(Integer.class).execute();
     }
-    /* *
+
+    /**
      * @Author heibin
      * @Description 删除委托单最小服务项子项
      * @Date 10:12 2018/11/20
