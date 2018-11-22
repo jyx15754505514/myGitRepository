@@ -2,20 +2,28 @@
 Insert into order_worksheet_item
      -- trim prefix=( suffix=) suffixOverrides=,
         --iff worksheetUuid != null and worksheetUuid != ''
-        worksheet_uuid,
+            worksheet_uuid,
         --iff orderItemUuid != null and orderItemUuid != ''
-        order_item_uuid,
+            order_item_uuid,
+        --iff worksheetItemUuid != null and worksheetItemUuid != ''
+            worksheet_item_uuid,
+        --iff itemSubUuid != null and itemSubUuid != ''
+            item_sub_uuid,
 
 	-- end
     -- trim prefix=values( suffix=) suffixOverrides=,
         --iff worksheetUuid != null and worksheetUuid != ''
-        '#worksheetUuid#',
+            '#worksheetUuid#',
         --iff orderItemUuid != null and orderItemUuid != ''
-        '#orderItemUuid#',
+            '#orderItemUuid#',
+        --iff worksheetItemUuid != null and worksheetItemUuid != ''
+            '#worksheetItemUuid#',
+        --iff itemSubUuid != null and itemSubUuid != ''
+            '#itemSubUuid#',
 	-- end
 
 -- [deleteOrderWorksheetItem]
 DELETE FROM
     order_worksheet_item
 WHERE
-    worksheet_uuid = '#worksheetUuid#'
+    worksheet_item_uuid = '#worksheetItemUuid#'
