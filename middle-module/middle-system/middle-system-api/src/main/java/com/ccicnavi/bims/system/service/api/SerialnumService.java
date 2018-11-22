@@ -15,7 +15,7 @@ public interface SerialnumService {
     /**查询所有的地区*/
     PageBean<SerialnumCfgDO> listSerialnumCfg(PageParameter<SerialnumCfgDO> pageParameter) throws Exception;
     /**获取编号规则配置信息*/
-    SerialnumCfgDO getSerialnumCfg(SerialQueryDTO serialQueryDTO) throws Exception;
+    SerialnumCfgDTO getSerialnumCfg(SerialQueryDTO serialQueryDTO) throws Exception;
     /**新增编号规则配置信息*/
     void addSerialnumCfg(SerialnumCfgDTO serialnumCfgDTO) throws Exception;
     /**更新编号规则配置信息*/

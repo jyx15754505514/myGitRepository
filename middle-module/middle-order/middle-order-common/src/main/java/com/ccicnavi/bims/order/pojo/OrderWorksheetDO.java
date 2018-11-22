@@ -1,25 +1,16 @@
-package com.ccicnavi.bims.order.pojo;/* *
- * @Author heibin
- * @Description
- * @Date
- * @Param
- */
+package com.ccicnavi.bims.order.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @Author songyateng 
- * @Description //TODO
+ * @Description 工作单
  * @Date 15:14 2018/11/21
- * @Param 
- * @Return 
  */
-
 @Getter
 @Setter
 @ToString

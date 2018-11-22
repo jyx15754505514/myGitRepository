@@ -33,6 +33,45 @@ where
     and prod_catalog_uuid = '#prodCatalogUuid#'
 
 
+-- [listMenuWithSort]
+SELECT
+    menu_uuid menuUuid,
+    menu_name menuName,
+    menu_level menuLevel,
+    sort_num sortNum,
+    is_deleted isDeleted
+from
+    sys_menu
+where
+    is_deleted = 'N'
+--iff menuUuids != null
+    and menu_uuid in
+    -- for item=item index=index collection=menuUuids open=( separator=, close=)
+        '#item#'
+    -- end
+ORDER BY sort_num DESC
+
+
+-- 查询所有拥有按钮的菜单
+-- [listMenuButton]
+select
+	md.menu_uuid,
+	m.parent_all_uuid
+from
+	sys_menu_button md
+	LEFT JOIN sys_role_permission rp ON rp.btn_uuid = md.btn_uuid
+	LEFT JOIN sys_menu m ON md.menu_uuid = m.menu_uuid
+
+where
+    is_deleted = 'N'
+    --iff roleUuids != null
+        and rp.role_uuid in
+        -- for item=item index=index collection=roleUuids open=( separator=, close=)
+            '#item#'
+    -- end
+	--iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and md.prod_catalog_uuid = '#prodCatalogUuid#'
+
 
 -- [getMenu]
 SELECT

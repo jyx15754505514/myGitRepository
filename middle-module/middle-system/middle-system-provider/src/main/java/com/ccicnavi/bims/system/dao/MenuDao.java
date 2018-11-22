@@ -41,5 +41,24 @@ public interface MenuDao {
      */
 
     List<MenuDTO> listMenuRoleUuid(MenuDTO menuDTO);
+
     List<MenuDTO> listMenuByProdCatalogUuid(MenuDTO menuDTO);
+
+    /*
+    * 根据产品线或角色查询所有拥有按钮的菜单
+    * @Author zhaotao
+    * @Date  2018/11/21 21:07
+    * @Param [MenuDTO]
+    * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuDTO>
+    **/
+    List<MenuDTO> listMenuButton(MenuDTO menuDTO);
+
+    /*
+    * 排序查询菜单
+    * @Author zhaotao
+    * @Date  2018/11/21 21:23
+    * @Param [menuDTO]
+    * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuDO>
+    **/
+    List<MenuDO> listMenuWithSort(MenuDTO menuDTO);
 }

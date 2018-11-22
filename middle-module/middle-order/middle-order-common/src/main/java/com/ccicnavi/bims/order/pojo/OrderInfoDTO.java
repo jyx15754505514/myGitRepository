@@ -112,7 +112,13 @@ public class OrderInfoDTO implements Serializable {
 
     private String appSysUuid;
 
-    private String shippingTypeId; //运输单
+    private String currentStatus;//委托单当前状态
+
+    private String nextStatus;//委托单下一状态
+
+    private List<String> orderUuids;//委托单id集合
+
+    private String shippingTypeId;//运输单信息
 
     private String vesselName;
 
@@ -151,4 +157,6 @@ public class OrderInfoDTO implements Serializable {
     private String isOpenCert;
 
     List<OrderItemDTO> orderItemDTO;//服务项
+
+    List<OrderSampleTypeDO> orderSampleTypeDO;//委托样品类型
 }

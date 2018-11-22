@@ -93,4 +93,22 @@ public class MenuDaoImpl implements MenuDao {
     public List<MenuDTO> listMenuByProdCatalogUuid(MenuDTO menuDTO) {
         return new Eql().select("listMenu").params(menuDTO).returnType(MenuDTO.class).execute();
     }
+
+    /*
+     * 根据产品线或角色查询所有拥有按钮的菜单
+     * @Author zhaotao
+     * @Date  2018/11/21 21:07
+     * @Param [MenuDTO]
+     * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuDTO>
+     **/
+    @Override
+    public List<MenuDTO> listMenuButton(MenuDTO menuDTO) {
+        return new Eql().select("listMenuButton").params(menuDTO).returnType(MenuDTO.class).execute();
+    }
+
+
+    @Override
+    public List<MenuDO> listMenuWithSort(MenuDTO menuDTO) {
+        return new Eql().select("listMenuWithSort").params(menuDTO).returnType(MenuDO.class).execute();
+    }
 }

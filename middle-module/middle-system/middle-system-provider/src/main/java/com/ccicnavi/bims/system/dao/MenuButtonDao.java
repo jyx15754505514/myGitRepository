@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.system.dao;
 
 import com.ccicnavi.bims.system.pojo.MenuButtonDO;
+import com.ccicnavi.bims.system.pojo.MenuDTO;
 import org.n3r.eql.EqlTran;
 
 import java.util.List;
@@ -58,6 +59,14 @@ public interface MenuButtonDao {
     *@Author: zqq
     *@date: 2018/11/20
     */
-
     public MenuButtonDO getMenuButton(MenuButtonDO menuButtonDO);
+
+    /*
+    * 根据菜单和角色查询所有按钮
+    * @Author zhaotao
+    * @Date  2018/11/21 21:40
+    * @Param [menuDTO]
+    * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuButtonDO>
+    **/
+    List<MenuButtonDO> listMenuButtonByRole(MenuDTO menuDTO);
 }
