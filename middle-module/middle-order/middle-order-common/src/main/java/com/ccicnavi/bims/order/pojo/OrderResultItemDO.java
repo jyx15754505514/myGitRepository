@@ -6,7 +6,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
-/* *
+/**
  * @Author heibin
  * @Description 委托服务项-证书关系
  * @Date 20:14 2018/11/20

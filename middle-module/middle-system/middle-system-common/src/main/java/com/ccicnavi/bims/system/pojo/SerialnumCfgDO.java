@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class SerialnumCfgDO {
+public class SerialnumCfgDO implements Serializable {
     private String sncUuid;
 
     private String sncName;

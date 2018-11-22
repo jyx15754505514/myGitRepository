@@ -1,0 +1,41 @@
+-- [insertMinItemStd]
+ insert into product_min_item_std
+    -- trim prefix=( suffix=) suffixOverrides=,
+      -- iff minItemUuid != null and minItemUuid  != ''
+        min_item_uuid,
+
+      -- iff stdUuid != null and stdUuid  != ''
+        std_uuid,
+
+      -- iff orgUuid != null and  orgUuid != ''
+        org_uuid,
+
+      -- iff appSysUuid != null and  appSysUuid != ''
+        app_sys_uuid,
+
+    -- end
+    -- trim prefix=values( suffix=)  suffixOverrides=,
+      -- iff minItemUuid != null and minItemUuid  != ''
+        '#minItemUuid#',
+
+      -- iff stdUuid != null and  stdUuid != ''
+        '#stdUuid#',
+
+      -- iff orgUuid != null and  orgUuid != ''
+        '#orgUuid#',
+
+      -- iff appSysUuid != null and  appSysUuid != ''
+        '#appSysUuid#',
+
+    --end
+
+-- [deleteMinItemStd]
+DELETE
+FROM
+	product_min_item_std
+WHERE
+	min_item_uuid = '#minItemUuid#'
+AND std_uuid = '#stdUuid#'
+AND org_uuid = '#orgUuid#'
+
+

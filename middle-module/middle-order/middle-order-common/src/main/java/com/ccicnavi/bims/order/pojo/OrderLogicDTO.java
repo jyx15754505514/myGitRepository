@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单逻辑信息
  * @Date 17:10 2018/11/21

@@ -1,0 +1,97 @@
+-- [insertOrderItemCost]
+insert into order_item_cost
+    --trim prefix=( suffix=) suffixOverrides=,
+        --iff itemCostUuid != null and itemCostUuid != ''
+                item_cost_uuid,
+        --iff orderItemUuid != null and orderItemUuid != ''
+                order_item_uuid,
+        --iff costTypeId != null and costTypeId != ''
+                cost_type_id,
+        --iff costTypeName != null and costTypeName != ''
+                cost_type_name,
+        --iff costFee != null and costFee != ''
+                cost_fee,
+        --iff applyUserUuid != null and applyUserUuid != ''
+                apply_user_uuid,
+        --iff applyDate != null and applyDate != ''
+                apply_date,
+        --iff comments != null and comments != ''
+                comments,
+        --iff extend1 != null and extend1 != ''
+                extend1,
+        --iff extend2 != null and extend2 != ''
+                extend2,
+        --iff extend3 != null and extend3 != ''
+                extend3,
+        --end
+        --trim prefix=values( suffix=) suffixOverrides=,
+        --iff itemCostUuid != null and itemCostUuid != ''
+                 '#itemCostUuid#',
+         --iff orderItemUuid != null and orderItemUuid != ''
+                 '#orderItemUuid#',
+         --iff costTypeId != null and costTypeId != ''
+                 '#costTypeId#',
+         --iff costTypeName != null and costTypeName != ''
+                 '#costTypeName#',
+         --iff costFee != null and costFee != ''
+                 '#costFee#',
+         --iff applyUserUuid != null and applyUserUuid != ''
+                 '#applyUserUuid#',
+         --iff applyDate != null and applyDate != ''
+                 '#applyDate#',
+         --iff comments != null and comments != ''
+                 '#comments#',
+        --end
+
+-- [updateOrderItemCost]
+update order_item_cost
+    -- trim prefix= set suffixOverrides=,
+         --iff orderItemUuid != null and orderItemUuid != ''
+                order_item_uuid = '#orderItemUuid#',
+         --iff costTypeId != null and costTypeId != ''
+                cost_type_id = '#costTypeId#',
+         --iff costTypeName != null and costTypeName != ''
+                cost_type_name = '#costTypeName#',
+         --iff costFee != null and costFee != ''
+                cost_fee = '#costFee#',
+         --iff applyUserUuid != null and applyUserUuid != ''
+                apply_user_uuid = '#applyUserUuid#',
+         --iff applyDate != null and applyDate != ''
+                apply_date = '#applyDate#'
+        where item_cost_uuid = '#orderItemUuid#'
+
+-- [listOrderItemCost]
+select
+      itemCostUuid item_cost_uuid,
+      orderItemUuid order_item_uuid,
+      costTypeId  cost_type_id,
+      costTypeName cost_type_name,
+      costFee cost_fee,
+      applyUserUuid apply_user_uuid,
+      applyDate apply_date,
+      comments  comments
+from
+      order_item_cost
+
+-- [getOrderItemCost]
+select
+      itemCostUuid item_cost_uuid,
+      orderItemUuid order_item_uuid,
+      costTypeId  cost_type_id,
+      costTypeName cost_type_name,
+      costFee cost_fee,
+      applyUserUuid apply_user_uuid,
+      applyDate apply_date,
+      comments  comments
+from
+    order_item_cost
+--iff itemCostUuid != null and itemCostUuid !=''
+    where item_cost_uuid = '#itemCostUuid#'
+    --end
+
+-- [deletegetOrderItemCost]
+DELETE FROM
+    order_item_cost
+--iff itemCostUuid != null and itemCostUuid !=''
+    where item_cost_uuid = '#itemCostUuid#'
+    --end

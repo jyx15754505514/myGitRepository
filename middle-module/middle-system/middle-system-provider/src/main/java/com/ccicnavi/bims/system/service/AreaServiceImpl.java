@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
-/* *
+/**
  * @Author MengZiJie
  * @Description 地区管理
  * @Date 19:59 2018/11/14
@@ -20,7 +20,7 @@ public class AreaServiceImpl implements AreaService {
     @Autowired
     private AreaDao areaDao;
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 查找所有
      * @Date 20:00 2018/11/14
@@ -38,7 +38,7 @@ public class AreaServiceImpl implements AreaService {
         return listArea;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 获取指定地区信息
      * @Date 20:00 2018/11/14
@@ -56,7 +56,7 @@ public class AreaServiceImpl implements AreaService {
         return area;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 添加地区
      * @Date 20:01 2018/11/14
@@ -74,7 +74,7 @@ public class AreaServiceImpl implements AreaService {
         return area;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 更新地区
      * @Date 20:01 2018/11/14
@@ -92,7 +92,7 @@ public class AreaServiceImpl implements AreaService {
         return area;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 删除地区
      * @Date 20:01 2018/11/14

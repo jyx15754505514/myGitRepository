@@ -8,9 +8,12 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.UserDao;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  *@program: bims-backend
@@ -111,6 +114,22 @@ public class UserServiceImpl implements UserService{
             return userDao.getUser(userDO);
         } catch (Exception e) {
             log.error("根据主键获取登录用户信息失败",e);
+            return null;
+        }
+    }
+
+    @Override
+    public UserDTO selectByRoleUser(UserDTO userDTO) {
+        //授权用户
+        try {
+            UserDTO userDto =new UserDTO();
+            List<UserDO> authUserList = userDao.listauthUserList(userDTO);
+            List<UserDO> unauthUserList =userDao.selectunauthUserList(userDTO);
+            userDto.setAuthUserList(authUserList);
+            userDto.setUnauthUserList(unauthUserList);
+            return userDto;
+        } catch (Exception e) {
+            log.error("根据角色查询用户信息失败",e);
             return null;
         }
     }

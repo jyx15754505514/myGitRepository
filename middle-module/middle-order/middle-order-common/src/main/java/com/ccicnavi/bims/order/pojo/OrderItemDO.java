@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * @program: bims-backend
- * @description: 委托服务项目DO
+ * @description: 委托服务项DO
  * @author: panyida
  * @create: 2018-11-19 15:39
  **/
@@ -51,6 +51,20 @@ public class OrderItemDO implements Serializable {
 
     private String useStdName;
 
+    private String statusUuid;
+
+    private String statusName;
+
+    private String isBack;
+
+    private String backReason;
+
+    private String isCancel;
+
+    private String cancelReason;
+
+    private String isUrgent;
+
     private String comments;
 
     private String isDeleted;
@@ -72,5 +86,4 @@ public class OrderItemDO implements Serializable {
     private String extend2;
 
     private String extend3;
-
 }

@@ -4,10 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-
 /**
  * @program: bims-backend
  * @description: 用户DTO实体类
@@ -17,8 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class UserDTO {
-
+public class UserDTO implements Serializable{
     private List<RoleUserDO> roleList;
 
     private List<MenuDTO> menuList;
@@ -89,5 +88,9 @@ public class UserDTO {
 
     private String extend3;
 
+
+    private String roleUuid;
+    private List<UserDO> authUserList;//授权用户集合
+    private List<UserDO> unauthUserList;//未授权用户集合
 
 }

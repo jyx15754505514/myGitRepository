@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @program: bims-backend
@@ -49,12 +50,15 @@ public class MenuDTO implements Serializable {
 
     private List<String> roleUuids;
 
-    private List<MenuButtonDO> menuButtonDOList;
-
     private String[] menuUuids;
 
     private List<MenuDTO> menuDTO;
 
     private List<MenuDO> menuDOList;
 
+    private List<String> menuUuidList;
+
+    private List<MenuButtonDO> menuButtonDOList;//所有按钮
+
+    private List<MenuButtonDO> selectdMenuButtonDOList;//所有按钮
 }

@@ -7,7 +7,7 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 
-/* *
+/**
  * @Author heibin
  * @Description 证书结果
  * @Date 14:35 2018/11/20

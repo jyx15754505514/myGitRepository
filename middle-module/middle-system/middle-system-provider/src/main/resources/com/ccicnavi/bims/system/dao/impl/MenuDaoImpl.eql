@@ -13,8 +13,7 @@ SELECT
     sort_num sortNum,
     is_deleted isDeleted,
     prod_catalog_uuid prodCatalogUuid,
-    org_uuid orgUuid,
-    app_sys_uuid appSysUuid
+    org_uuid orgUuid
 from
     sys_menu
 where
@@ -27,8 +26,6 @@ where
     and org_uuid = '#orgUuid#'
 --iff parentUuid != null and parentUuid != ''
     and parent_uuid = '#parentUuid#'
---iff menuUuid != null and menuUuid != ''
-    and menu_uuid = '#menuUuid#'
 --iff prodCatalogUuid != null and prodCatalogUuid != ''
     and prod_catalog_uuid = '#prodCatalogUuid#'
 
@@ -44,12 +41,12 @@ from
     sys_menu
 where
     is_deleted = 'N'
---iff menuUuids != null
+--iff menuUuidList != null
     and menu_uuid in
-    -- for item=item index=index collection=menuUuids open=( separator=, close=)
+    -- for item=item index=index collection=menuUuidList open=( separator=, close=)
         '#item#'
     -- end
-ORDER BY sort_num DESC
+ORDER BY sort_num asc
 
 
 -- 查询所有拥有按钮的菜单
@@ -63,7 +60,7 @@ from
 	LEFT JOIN sys_menu m ON md.menu_uuid = m.menu_uuid
 
 where
-    is_deleted = 'N'
+    m.is_deleted = 'N'
     --iff roleUuids != null
         and rp.role_uuid in
         -- for item=item index=index collection=roleUuids open=( separator=, close=)
@@ -233,40 +230,11 @@ WHERE
             '#item#'
         -- end
 
---根据角色id查询菜单
+--查询菜单一级
 -- [listMenuRoleUuid]
-select
-     menu_uuid menuUuid,
-     parent_uuid parentUuid,
-     menu_name menuName,
-     menu_url menuUrl,
-     menu_icon menuIcon,
-     menu_fontcolor menuFontcolor,
-     menu_level menuLevel,
-     parent_all_uuid parentAllUuid,
-     is_enabled isEnabled,
-     sort_num sortNum,
-     is_deleted isDeleted,
-     prod_catalog_uuid prodCatalogUuid,
-     org_uuid orgUuid,
-     app_sys_uuid appSysUuid
-from sys_menu where parent_uuid in(select menu_uuid from sys_menu where parent_uuid in(
-select
-     sm.menu_uuid
-from
-    sys_menu sm LEFT JOIN sys_menu_button smb on sm.menu_uuid = smb.menu_uuid
-    LEFT JOIN sys_role_permission srp on smb.btn_uuid = srp.btn_uuid
-    where sm.is_deleted = 'N'
- --iff roleUuids != null
-    and srp.role_uuid in
-    -- for item=item index=index collection=roleUuids open=( separator=, close=)
-           '#item#'
-    -- end
- -- end
-     GROUP BY sm.menu_uuid))
-     UNION
-select
+SELECT
     menu_uuid menuUuid,
+    app_sys_uuid appSysUuid,
     parent_uuid parentUuid,
     menu_name menuName,
     menu_url menuUrl,
@@ -278,45 +246,20 @@ select
     sort_num sortNum,
     is_deleted isDeleted,
     prod_catalog_uuid prodCatalogUuid,
-    org_uuid orgUuid,
-    app_sys_uuid appSysUuid
- from sys_menu where parent_uuid in(select
-    sm.menu_uuid
- from
-        sys_menu sm LEFT JOIN sys_menu_button smb on sm.menu_uuid = smb.menu_uuid
-        LEFT JOIN sys_role_permission srp on smb.btn_uuid = srp.btn_uuid
-        where sm.is_deleted = 'N'
-  --iff roleUuids != null
-  and srp.role_uuid in
-     -- for item=item index=index collection=roleUuids open=( separator=, close=)
-            '#item#'
-     -- end
-  -- end
-     GROUP BY sm.menu_uuid)
-     UNION
- select
-         sm.menu_uuid menuUuid,
-         sm.parent_uuid parentUuid,
-         sm.menu_name menuName,
-         sm.menu_url menuUrl,
-         sm.menu_icon menuIcon,
-         sm.menu_fontcolor menuFontcolor,
-         sm.menu_level menuLevel,
-         sm.parent_all_uuid parentAllUuid,
-         sm.is_enabled isEnabled,
-         sm.sort_num sortNum,
-         sm.is_deleted isDeleted,
-         sm.prod_catalog_uuid prodCatalogUuid,
-         sm.org_uuid orgUuid,
-         sm.app_sys_uuid appSysUuid
+    org_uuid orgUuid
 from
-             sys_menu sm LEFT JOIN sys_menu_button smb on sm.menu_uuid = smb.menu_uuid
-             LEFT JOIN sys_role_permission srp on smb.btn_uuid = srp.btn_uuid
-             where sm.is_deleted = 'N'
-             --iff roleUuids != null
-             and srp.role_uuid in
-                  -- for item=item index=index collection=roleUuids open=( separator=, close=)
-                            '#item#'
-                  -- end
-             -- end
-             GROUP BY sm.menu_uuid ORDER BY menuUuid
+    sys_menu
+where
+    is_deleted = 'N'   and parent_uuid  =''
+--iff appSysUuid != null and appSysUuid != ''
+    and app_sys_uuid = '#appSysUuid#'
+--iff menuName != null and menuName != ''
+    and menu_name like '#menuName:Like#'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff menuUuid != null and menuUuid != ''
+    and menu_uuid = '#menuUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+
+
