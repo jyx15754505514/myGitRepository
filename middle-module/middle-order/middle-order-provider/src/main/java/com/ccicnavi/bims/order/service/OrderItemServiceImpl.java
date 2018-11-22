@@ -106,8 +106,8 @@ public class OrderItemServiceImpl implements OrderItemService {
             if(integer <= 0){
                 statu = false;
             }
-            if (orderItemDTO.getOrderItemCostDo().size() > 0) {
-                List<OrderItemCostDO> orderItemCostDo = orderItemDTO.getOrderItemCostDo();
+            if (orderItemDTO.getOrderItemCostDO().size() > 0) {
+                List<OrderItemCostDO> orderItemCostDo = orderItemDTO.getOrderItemCostDO();
                 for (int i = 0;i < orderItemCostDo.size();i++) {
                     Integer itemCost = orderItemCostDao.updateOrderItemCost(orderItemCostDo.get(i), eqlTran);
                     if (itemCost <= 0) {

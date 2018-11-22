@@ -83,9 +83,9 @@ public class TestOrderItem {
             orderItemCostDoSecond.setCostFee(12000);
             arr.add(orderItemCostDo);
             arr.add(orderItemCostDoSecond);
-            orderItemDTO.setOrderItemCostDo(arr);
-            if (orderItemDTO.getOrderItemCostDo().size() > 0) {
-                List<OrderItemCostDO> orderItemCostDoThree = orderItemDTO.getOrderItemCostDo();
+            orderItemDTO.setOrderItemCostDO(arr);
+            if (orderItemDTO.getOrderItemCostDO().size() > 0) {
+                List<OrderItemCostDO> orderItemCostDoThree = orderItemDTO.getOrderItemCostDO();
                 for (int i = 0;i < orderItemCostDoThree.size();i++) {
                     itemCost = orderItemCostDaoImpl.updateOrderItemCost(orderItemCostDoThree.get(i), eqlTran);
                 }
