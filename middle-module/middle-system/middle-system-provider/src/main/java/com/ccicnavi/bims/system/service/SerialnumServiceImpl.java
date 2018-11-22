@@ -97,8 +97,12 @@ public class SerialnumServiceImpl implements SerialnumService {
         log.info("更新业务编码规则,serialnumCfgDTO={}", serialnumCfgDTO);
         SerialnumCfgDO cfgDO = new SerialnumCfgDO();
         BeanUtils.copyProperties(serialnumCfgDTO, cfgDO);
+        String sncUuid = idWorkerService.getId(new Date());
+        cfgDO.setSncUuid(sncUuid);
         serialnumDao.insertSerialnumCfg(cfgDO);
         for(SerialnumCfgItemDO serialnumCfgItemDO:serialnumCfgDTO.getItems()){
+            String sncdUuid = idWorkerService.getId(new Date());
+            serialnumCfgItemDO.setSncdUuid(sncdUuid);
             serialnumDao.insertSerialnumCfgItem(serialnumCfgItemDO);
         }
         log.error("创建业务编码规则失败");
@@ -121,6 +125,8 @@ public class SerialnumServiceImpl implements SerialnumService {
         int rtnval = serialnumDao.updateSerialnumCfg(cfgDO);//更新cfg数据
         serialnumDao.deleteSerialnumCfgItem(serialnumCfgDTO.getSncUuid());//先删除原有表达式
         for(SerialnumCfgItemDO serialnumCfgItemDO:serialnumCfgDTO.getItems()){
+            String sncdUuid = idWorkerService.getId(new Date());
+            serialnumCfgItemDO.setSncdUuid(sncdUuid);
             serialnumDao.insertSerialnumCfgItem(serialnumCfgItemDO);//插入新表达式
         }
         log.error("更新业务编码规则完成");
