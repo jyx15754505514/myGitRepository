@@ -67,9 +67,15 @@ public class CategoryDaoImpl implements CategoryDao {
         return new Eql().select("listCategoryFirstByOrgAndProd").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 
+    /**
+     * 根据父级ID查询其子类产品分类信息
+     * @param categoryDTO
+     * @return
+     * @throws Exception
+     */
     @Override
-    public List<CategoryDO> listCategoryByParentUuid(CategoryDTO categoryDTO) throws Exception {
-        return new Eql().select("listCategoryFirstByOrgAndProd").params(categoryDTO).returnType(CategoryDO.class).execute();
+    public List<CategoryDO> listCategoryByParentUuid(CategoryDTO categoryDTO) {
+        return new Eql().select("listCategoryByParentUuid").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 
 }

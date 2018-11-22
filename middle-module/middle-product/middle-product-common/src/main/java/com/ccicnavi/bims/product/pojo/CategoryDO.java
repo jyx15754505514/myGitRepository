@@ -27,13 +27,13 @@ public class CategoryDO implements Serializable {
     /**主父节点分类ID*/
     private String parentCategoryUuid;
 
-    /**所有分类的ID*/
+    /**所有父级产品分类的ID*/
     private String parentAllCategoryUuid;
 
-    /**类别名称*/
+    /**产品分类名称*/
     private String categoryName;
 
-    /**类别编码*/
+    /**产品分类编码*/
     private String categoryCode;
 
     /**排序号*/

@@ -66,13 +66,45 @@ WHERE
         --end
 
         AND pc.prod_catalog_uuid = '#prodCatalogUuid#'
-        --if parentCategoryUuid !=null and parentCategoryUuid != ''
-            AND pc.parent_category_uuid='#parentCategoryUuid#'
-        --else
-            AND pc.parent_category_uuid='#prodCatalogUuid#'
-        --end
+        AND pc.parent_category_uuid IS null
         AND pc.app_sys_uuid='#appSysUuid#'
 
+
+-- [listCategoryByParentUuid]
+SELECT
+	product_category_uuid,
+	product_category_type_uuid,
+	parent_category_uuid,
+	parent_all_category_uuid,
+	category_name,
+	category_code,
+	seq_num,
+	long_description
+	is_enabled,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_uuid,
+	updated_name,
+	prod_catalog_uuid,
+	org_uuid,
+	app_sys_uuid,
+	extend1,
+	extend2,
+	extend3
+FROM
+	product_category
+WHERE
+	is_deleted = 'N'
+        --if prodCatalogUuid !=null and prodCatalogUuid != ''
+            AND prod_catalog_uuid = '#prodCatalogUuid#'
+        --end
+AND parent_category_uuid = '#parentCategoryUuid#'
+AND org_uuid='CCIC' OR org_uuid='#orgUuid#'
+AND app_sys_uuid='#appSysUuid#'
 
 
 
