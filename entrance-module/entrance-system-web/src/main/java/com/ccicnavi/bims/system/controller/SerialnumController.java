@@ -46,7 +46,7 @@ public class SerialnumController {
         } catch (Exception e) {
             log.error("查询角色列表失败", e);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
+        return ResultT.failure(ResultCode.SERIAL_CFG_GET_FAILURE);
     }
     /**
      * 获取业务编码生成规则
@@ -60,10 +60,10 @@ public class SerialnumController {
     public ResultT getSerialnumCfg(@RequestBody SerialQueryDTO serialQueryDTO) {
         try {
             SerialnumCfgDTO dto = serialnumService.getSerialnumCfg(serialQueryDTO);
-            return ResultT.success("添加业务编码生成规则成功");
+            return ResultT.success(dto);
         } catch (Exception e) {
-            log.error("添加业务编码生成规则失败", e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            log.error("查询业务编码规则失败", e);
+            return ResultT.failure(ResultCode.SERIAL_CFG_GET_FAILURE);
         }
     }
     /**
@@ -81,7 +81,7 @@ public class SerialnumController {
             return ResultT.success("添加业务编码生成规则成功");
         } catch (Exception e) {
             log.error("添加业务编码生成规则失败", e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            return ResultT.failure(ResultCode.SERIAL_CFG_ADD_FAILURE);
         }
     }
     /**
@@ -99,7 +99,7 @@ public class SerialnumController {
             return ResultT.success("修改业务编码生成规则成功");
         } catch (Exception e) {
             log.error("修改业务编码生成规则失败", e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            return ResultT.failure(ResultCode.SERIAL_CFG_MODIFY_FAILURE);
         }
     }
     /**
@@ -117,7 +117,7 @@ public class SerialnumController {
             return ResultT.success("删除业务编码生成规则成功");
         } catch (Exception e) {
             log.error("删除业务编码生成规则失败", e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            return ResultT.failure(ResultCode.SERIAL_CFG_REMOVE_FAILURE);
         }
     }
 }

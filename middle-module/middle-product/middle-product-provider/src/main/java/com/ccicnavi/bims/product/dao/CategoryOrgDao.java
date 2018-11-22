@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.product.dao;
 
 import com.ccicnavi.bims.product.pojo.CategoryOrgDO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
@@ -13,8 +14,8 @@ public interface CategoryOrgDao {
 
     List<CategoryOrgDO> listCategoryOrgDO(CategoryOrgDO categoryOrgDO)throws Exception;
 
-    int saveCategoryOrgDO(CategoryOrgDO categoryOrgDO)throws Exception;
+    int saveCategoryOrgDO(CategoryOrgDO categoryOrgDO, EqlTran eqlTran)throws Exception;
 
-    int removeCategoryOrgDO(CategoryOrgDO categoryOrgDO)throws Exception;
+    int removeCategoryOrgDO(CategoryOrgDO categoryOrgDO, EqlTran eqlTran)throws Exception;
 
 }
