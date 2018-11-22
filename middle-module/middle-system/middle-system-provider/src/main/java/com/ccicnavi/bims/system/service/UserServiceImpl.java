@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService{
     *@date: 2018/11/15
     */
     @Override
-    public ResultT listUser(PageParameter<UserDO> pageParameter){
+    public ResultT listUser(PageParameter<UserDTO> pageParameter){
         try{
             PageBean<UserDTO> pageBean = userDao.listUser(pageParameter);
             if (pageBean != null){
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService{
                 if(userList != null && userList.size() > 0) {
                     for (UserDTO user : userList) {
                         List<RoleDO> roleUserList = roleService.listRoleByUser(user);
-                        user.setRoleList(roleUserList);
+                        user.setRoleDOList(roleUserList);
                     }
                 }
                  return ResultT.success(pageBean);
@@ -69,9 +69,9 @@ public class UserServiceImpl implements UserService{
     *@date: 2018/11/15
     */
     @Override
-    public Integer insertUser(UserDO userDO){
+    public Integer insertUser(UserDTO userDTO){
         try {
-            return userDao.insertUser(userDO, null);
+            return userDao.insertUser(userDTO, null);
         }catch (Exception e){
             log.error("新增登录用户信息失败",e);
             return null;
@@ -86,9 +86,9 @@ public class UserServiceImpl implements UserService{
     *@date: 2018/11/15
     */
     @Override
-    public Integer updateUser(UserDO userDO){
+    public Integer updateUser(UserDTO userDTO){
         try {
-            return userDao.updateUser(userDO, null);
+            return userDao.updateUser(userDTO, null);
         } catch (Exception e) {
             log.error("更新登录用户信息失败",e);
             return null;
@@ -104,7 +104,7 @@ public class UserServiceImpl implements UserService{
     *@date: 2018/11/15
     */
     @Override
-    public Integer deleteUser(UserDO userDO){
+    public Integer deleteUser(UserDTO userDO){
         try {
             return userDao.deleteUser(userDO, null);
         } catch (Exception e) {
@@ -125,7 +125,7 @@ public class UserServiceImpl implements UserService{
         try {
             userDTO = userDao.getUser(userDTO);
             List<RoleDO> roleUserList = roleService.listRoleByUser(userDTO);
-            userDTO.setRoleList(roleUserList);
+            userDTO.setRoleDOList(roleUserList);
             return userDTO;
         } catch (Exception e) {
             log.error("根据主键获取登录用户信息失败",e);

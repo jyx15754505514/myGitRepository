@@ -42,7 +42,7 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/listUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listUser(@RequestBody PageParameter<UserDO> pageParameter) {
+    public ResultT listUser(@RequestBody PageParameter<UserDTO> pageParameter) {
         try {
             return userService.listUser(pageParameter);
         } catch (Exception e) {
@@ -77,10 +77,10 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/insertUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT insertUser(@RequestBody UserDO UserDO) {
+    public ResultT insertUser(@RequestBody UserDTO userDTO) {
         Integer integer = null;
         try {
-            integer = userService.insertUser(UserDO);
+            integer = userService.insertUser(userDTO);
             return ResultT.success();
         } catch (Exception e) {
             log.error("新增登录用户信息失败",e);
@@ -96,10 +96,10 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-    public ResultT updateUser(@RequestBody UserDO UserDO) {
+    public ResultT updateUser(@RequestBody UserDTO userDTO) {
         Integer integer = null;
         try {
-            integer = userService.updateUser(UserDO);
+            integer = userService.updateUser(userDTO);
             return ResultT.success();
         } catch (Exception e) {
             log.error("更新登录用户信息失败", e);
@@ -115,10 +115,10 @@ public class UserController {
     *@date: 2018/11/16
     */
     @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
-    public ResultT deleteUser(@RequestBody UserDO UserDO) {
+    public ResultT deleteUser(@RequestBody UserDTO userDTO) {
         Integer integer = null;
         try {
-            integer = userService.deleteUser(UserDO);
+            integer = userService.deleteUser(userDTO);
             return ResultT.success();
         } catch (Exception e) {
             log.error("删除登录用户信息失败", e);
@@ -167,7 +167,6 @@ public class UserController {
      *@Author: zqq
      *@date: 2018/11/22
      */
-
     @RequestMapping(value = "/selectByRoleUser", method = RequestMethod.POST)
     public ResultT selectByRoleUser(@RequestBody UserDTO userDTO) {
         if(StringUtils.isEmpty(userDTO.getRoleUuid())){

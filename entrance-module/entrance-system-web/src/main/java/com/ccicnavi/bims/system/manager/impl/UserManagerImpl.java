@@ -96,13 +96,13 @@ public class UserManagerImpl implements UserManager {
         //创建jsessionID
         String jsessionID = "";
         //查角色
-        List<RoleDO> roleList = roleService.listRoleByUser(userDTO);
+        List<RoleDO> roleDOList = roleService.listRoleByUser(userDTO);
         //查部门
         List<DepartmentDO> deptList = deptService.listDeptByUser(userDTO);
         //查权限
         MenuDTO menuDTO = new MenuDTO();
         List<String> roleUuids = new ArrayList<>();
-        for (RoleDO roleDO : roleList) {
+        for (RoleDO roleDO : roleDOList) {
             roleUuids.add(roleDO.getRoleUuid());
         }
         menuDTO.setRoleUuids(roleUuids);
@@ -110,7 +110,7 @@ public class UserManagerImpl implements UserManager {
         //查产品线
 
         userDTO.setDeptList(deptList);
-        userDTO.setRoleList(roleList);
+        userDTO.setRoleDOList(roleDOList);
         userDTO.setMenuList(menuList);
         //保存到Redis中
         hashTemplate.put(jsessionID, userDTO.getUserUuid(), userDTO);
