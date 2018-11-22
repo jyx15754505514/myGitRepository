@@ -46,13 +46,15 @@ public class PersonWorkExpeDO implements Serializable {
 
     private Date updatedTime;
 
+    private Date updatedUuid;
+
     private String updatedName;
+
+    private String prodCatalogUuid;
 
     private String orgUuid;
 
     private String appSysUuid;
-
-    private String prodCatalogUuid;
 
     private String extend1;
 
