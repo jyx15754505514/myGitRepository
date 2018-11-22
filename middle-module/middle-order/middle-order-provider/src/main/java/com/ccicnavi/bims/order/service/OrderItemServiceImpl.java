@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.order.api.OrderItemService;
 import com.ccicnavi.bims.order.dao.OrderItemCostDao;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
-import com.ccicnavi.bims.order.pojo.OrderItemCostDo;
+import com.ccicnavi.bims.order.pojo.OrderItemCostDO;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
@@ -107,7 +107,7 @@ public class OrderItemServiceImpl implements OrderItemService {
                 statu = false;
             }
             if (orderItemDTO.getOrderItemCostDo().size() > 0) {
-                List<OrderItemCostDo> orderItemCostDo = orderItemDTO.getOrderItemCostDo();
+                List<OrderItemCostDO> orderItemCostDo = orderItemDTO.getOrderItemCostDo();
                 for (int i = 0;i < orderItemCostDo.size();i++) {
                     Integer itemCost = orderItemCostDao.updateOrderItemCost(orderItemCostDo.get(i), eqlTran);
                     if (itemCost <= 0) {
