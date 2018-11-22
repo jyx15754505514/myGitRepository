@@ -45,6 +45,7 @@ public enum ResultCode {
     SERIAL_CFG_ADD_FAILURE(30019, "添加业务规则信息出错"),
     SERIAL_CFG_MODIFY_FAILURE(30020, "修改业务规则信息出错"),
     SERIAL_CFG_REMOVE_FAILURE(30021, "删除业务规则信息出错"),
+    RENEW_FAILURE(30022, "更新失败"),
 
     /* 系统错误：40001-49999 */
     SYSTEM_INNER_ERROR(40001, "系统繁忙，请稍后重试"),
