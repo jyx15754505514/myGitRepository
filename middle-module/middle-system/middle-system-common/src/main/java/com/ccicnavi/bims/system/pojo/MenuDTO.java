@@ -77,7 +77,6 @@ public class MenuDTO implements Serializable {
      */
     private String appSysUuid;
     private List<String> roleUuids;
-
     private String[] menuUuids;
 
     private List<MenuDTO> menuDTO;
@@ -88,9 +87,9 @@ public class MenuDTO implements Serializable {
     /**
      * 所有按钮
      */
-    private List<MenuButtonDO> menuButtonDOList;
+    private List<MenuButtonDTO> menuButtonDOList;
     /**
      * 所选按钮
      */
-    private List<MenuButtonDO> selectdMenuButtonDOList;
+    private List<MenuButtonDTO> selectdMenuButtonDOList;
 }
