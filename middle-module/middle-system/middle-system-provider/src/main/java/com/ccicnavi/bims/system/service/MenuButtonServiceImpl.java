@@ -2,7 +2,6 @@ package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.system.dao.MenuButtonDao;
-import com.ccicnavi.bims.system.pojo.MenuButtonDO;
 import com.ccicnavi.bims.system.pojo.MenuButtonDTO;
 import com.ccicnavi.bims.system.service.api.MenuButtonService;
 import lombok.extern.slf4j.Slf4j;
