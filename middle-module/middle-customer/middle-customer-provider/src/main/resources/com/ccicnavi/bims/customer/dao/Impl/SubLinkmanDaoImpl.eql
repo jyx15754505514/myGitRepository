@@ -1,0 +1,337 @@
+-- [listSubLinkman]
+SELECT
+	linkman_uuid linkmanUuid,
+	subc_uuid subcUuid,
+	linkman_name linkmanName,
+	gender gender,
+	phone phone,
+	email email,
+	fax fax,
+	office_phone officePhone,
+	addr addr,
+	is_default isDefault,
+	status_uuid statusUuid,
+	dept dept,
+	position position,
+	role role,
+	qq qq,
+	we_chat weChat,
+	type_of_service typeOfService,
+	comments comments,
+	is_deleted isDeleted,
+	created_time createdTime,
+	created_uuid createdUuid,
+	created_name createdName,
+	updated_time updatedTime,
+	updated_name updatedName,
+	updated_uuid updatedUuid,
+	extend1,
+	extend2,
+	extend3
+FROM
+	crm_customer_linkman
+WHERE
+	is_deleted = 'N'
+        --if linkmanName !=null and linkmanName != ''
+            and linkman_name = '#linkmanName:like#'
+        --end
+        --if linkmanUuid !=null and linkmanUuid != ''
+            and linkman_uuid = '#linkmanUuid#'
+        --end
+        --if custUuid !=null and custUuid != ''
+            and subc_uuid = '#custUuid#'
+        --end
+
+
+-- [getSubLinkman]
+SELECT
+    linkman_uuid linkmanUuid,
+    subc_uuid subcUuid,
+    linkman_name linkmanName,
+    gender gender,
+    phone phone,
+    email email,
+    fax fax,
+    office_phone officePhone,
+    addr addr,
+    is_default isDefault,
+    status_uuid statusUuid,
+    dept dept,
+    position position,
+    role role,
+    qq qq,
+    we_chat weChat,
+    type_of_service typeOfService,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    updated_uuid updatedUuid,
+    extend1,
+    extend2,
+    extend3
+FROM
+	crm_customer_linkman
+WHERE
+	is_deleted = 'N'
+and linkman_uuid = '#linkmanUuid#'
+
+
+-- [insertSubLinkman]
+insert into crm_customer_linkman
+    -- trim prefix=( suffix=) suffixOverrides=,
+     -- iff linkmanUuid != null and  linkmanUuid != ''
+        linkman_uuid,
+
+     -- iff subcUuid != null and  subcUuid != ''
+        subc_uuid,
+
+     -- iff linkmanName != null and  linkmanName != ''
+        linkman_name,
+
+     -- iff gender != null and  gender != ''
+        gender,
+
+     -- iff phone != null and  phone != ''
+        phone,
+
+     -- iff email != null and  email != ''
+        email,
+
+     -- iff fax != null and faxfax  != ''
+        fax,
+
+     -- iff officePhone != null and officePhone  != ''
+        office_phone,
+
+     -- iff addr != null and  addr != ''
+        addr,
+
+     -- iff isDefault != null and  isDefault != ''
+        is_default,
+
+     -- iff statusUuid != null and statusUuid  != ''
+        status_uuid,
+
+     -- iff dept != null and  dept != ''
+        dept,
+
+     -- iff position != null and position  != ''
+        position,
+
+     -- iff role != null and role  != ''
+        role,
+
+     -- iff qq != null and  qq != ''
+        qq,
+
+     -- iff weChat != null and weChat  != ''
+        we_chat,
+
+     -- iff typeOfService != null and  typeOfService != ''
+        type_of_service,
+
+     -- iff comments != null and  comments != ''
+        comments,
+
+     -- iff isDeleted != null and isDeleted  != ''
+        is_deleted,
+
+     -- iff createdTime != null and createdTime  != ''
+        created_time,
+
+     -- iff createdUuid != null and createdUuid  != ''
+        created_uuid,
+
+     -- iff createdName != null and createdName  != ''
+        created_name,
+     -- iff updatedTime != null and updatedTime  != ''
+        updated_time,
+
+     -- iff updatedUuid != null and updatedUuid  != ''
+        updated_uuid,
+
+     -- iff updatedName != null and updatedName  != ''
+        updated_name,
+
+     -- iff extend1 != null and extend1  != ''
+        extend1,
+
+     -- iff extend2 != null and extend2  != ''
+        extend2,
+
+     -- iff extend3 != null and  extend3 != ''
+        extend3,
+
+    -- end
+   --trim prefix=values( suffix=) suffixOverrides=,
+     -- iff linkmanUuid != null and  linkmanUuid != ''
+        '#linkmanUuid#',
+
+     -- iff subcUuid != null and subcUuid  != ''
+        '#subcUuid#',
+
+     -- iff linkmanName != null and  linkmanName != ''
+        '#linkmanName#',
+
+     -- iff gender != null and  gender != ''
+        '#gender#',
+
+     -- iff phone != null and  phone != ''
+        '#phone#',
+
+     -- iff email != null and  email != ''
+        '#email#',
+
+     -- iff fax != null and fax  != ''
+        '#fax#',
+
+     -- iff officePhone != null and  officePhone != ''
+        '#officePhone#',
+
+     -- iff addr != null and  addr != ''
+        '#addr#',
+
+     -- iff isDefault != null and isDefault  != ''
+        '#isDefault#',
+
+     -- iff statusUuid != null and  statusUuid != ''
+        '#statusUuid#',
+
+     -- iff dept != null and dept  != ''
+        '#dept#',
+
+     -- iff position != null and position  != ''
+        '#position#',
+
+     -- iff role != null and  role != ''
+        '#role#',
+
+     -- iff qq != null and  qq != ''
+        '#qq#',
+
+     -- iff weChat != null and  weChat != ''
+        '#weChat#',
+
+     -- iff typeOfService != null and typeOfService  != ''
+        '#typeOfService#',
+
+     -- iff comments != null and  comments != ''
+        '#comments#',
+
+     -- iff isDeleted != null and isDeleted  != ''
+        '#isDeleted#',
+
+     -- iff createdTime != null and  createdTime != ''
+        '#createdTime#',
+
+     -- iff createdUuid != null and  createdUuid != ''
+        '#createdUuid#',
+
+     -- iff createdName != null and  createdName != ''
+        '#createdName#',
+    -- iff updatedTime != null and updatedTime  != ''
+        '#updatedTime#',
+     -- iff updatedUuid != null and updatedUuid  != ''
+        '#updatedUuid#',
+     -- iff updatedName != null and updatedName  != ''
+           '#updatedName#',
+     -- iff extend1 != null and  extend1 != ''
+        '#extend1#',
+
+     -- iff extend2 != null and  extend2 != ''
+        '#extend2#',
+
+     -- iff extend3 != null and  extend3 != ''
+        '#extend3#',
+    -- end
+
+-- [deleteSubLinkman]
+UPDATE crm_customer_linkman
+SET is_deleted = 'Y'
+WHERE
+	is_deleted = 'N'
+     -- if uuids != null
+           AND linkman_uuid IN
+            -- for item=item index=index collection=uuids open=( separator=, close=)
+                #item#
+            -- end
+        -- end
+
+-- [updateSubLinkman]
+ update crm_customer_linkman
+    -- trim prefix=SET suffixOverrides=,
+      -- iff subcUuid != null
+        subc_uuid = '#subcUuid#',
+
+      -- iff linkmanName != null
+        linkman_name = '#linkmanName#',
+
+      -- iff gender != null
+        gender = '#gender#',
+
+      -- iff phone != null
+        phone = '#phone#',
+
+      -- iff email != null
+        email = '#email#',
+
+      -- iff fax != null
+        fax = '#fax#',
+
+      -- iff officePhone != null
+        office_phone = '#officePhone#',
+
+      -- iff addr != null
+        addr = '#addr#',
+
+      -- iff isDefault != null
+        is_default = '#isDefault#',
+
+      -- iff statusUuid != null
+        status_uuid = '#statusUuid#',
+
+      -- iff dept != null
+        dept = '#dept#',
+
+      -- iff position != null
+        position = '#position#',
+
+      -- iff role != null
+        role = '#role#',
+
+      -- iff qq != null
+        qq = '#qq#',
+
+      -- iff weChat != null
+        we_chat = '#weChat#',
+
+      -- iff typeOfService != null
+        type_of_service = '#typeOfService#',
+
+      -- iff comments != null
+        comments = '#comments#',
+
+      -- iff isDeleted != null
+        is_deleted = '#isDeleted#'
+
+      -- iff updatedTime != null
+        updated_time = '#updatedTime#'
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
+      -- iff extend1 != null
+        extend1 = '#extend1#',
+
+      -- iff extend2 != null
+        extend2 = '#extend2#',
+
+      -- iff extend3 != null
+        extend3 = '#extend3#',
+     -- end
+    where linkman_uuid = '#linkmanUuid#'

@@ -8,6 +8,9 @@ import com.ccicnavi.bims.product.pojo.CategoryDO;
 import com.ccicnavi.bims.product.pojo.CategoryDTO;
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -109,7 +112,7 @@ public class CategoryDaoImplTest {
         categoryDTO.setProdCatalogUuid("CATALOG_AGRI");//设置产品线——矿产
         categoryDTO.setOrganizationUuid("XN102");//设置公司机构
         //categoryDTO.setProductCategoryTypeUuid("PCT_GOODS");//设置产品分类
-        categoryDTO.setParentCategoryUuid("gricultural_products_code");//设置上级产品分类UUID
+        //categoryDTO.setParentCategoryUuid("gricultural_products_code");//设置上级产品分类UUID
         categoryDTO.setAppSysUuid("BIMS2.0");
         List<CategoryDO> categoryDOS = categoryDaoImpl.listCategoryFirstByOrgAndProd(categoryDTO);
         System.out.println(categoryDOS);
@@ -126,6 +129,54 @@ public class CategoryDaoImplTest {
         categoryDTO.setOrgUuid("XN102");
         categoryDTO.setAppSysUuid("BIMS2.0");
         List<CategoryDO> categoryDOS = categoryDaoImpl.listCategoryByParentUuid(categoryDTO);
+        System.out.println(categoryDOS);
+    }
+
+    @Test
+    public void listCategoryByPage(){
+        PageParameter<CategoryDO> pageParameter =new PageParameter<CategoryDO>();
+        pageParameter.setPageRows(10);
+        pageParameter.setStartPage(1);
+        CategoryDO categoryDO=new CategoryDO();
+        categoryDO.setCategoryName("二");
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        Date parses = null;
+        try {
+            parses = sdf.parse("2018-11-22");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        categoryDO.setCreatedTime(parses);
+        pageParameter.setParameter(categoryDO);
+        PageBean<CategoryDO> categoryDOPageBean = categoryDaoImpl.listCategoryPage(pageParameter);
+        System.out.println("分页信息如下："+categoryDOPageBean);
+    }
+
+
+    /**
+     * 根据所属机构和产品线ID查询其所有子级分类信息(省级公司)
+     */
+    @Test
+    public void findlistCategoryByOrgAndProdUuid(){
+        CategoryDTO categoryDTO=new CategoryDTO();
+        categoryDTO.setOrganizationUuid("XN102");
+        categoryDTO.setAppSysUuid("BIMS2.0");
+        //categoryDTO.setProdCatalogUuid("CATALOG_MINERAL");
+        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategoryByOrgAndProd(categoryDTO);
+        System.out.println(categoryDOS);
+    }
+
+
+    /***
+     * 根据所属机构和产品线查询出其子级分类信息(子级公司)
+     */
+    @Test
+    public void listCategorySubByOrgAndProd(){
+        CategoryDTO categoryDTO=new CategoryDTO();
+        categoryDTO.setOrganizationUuid("XN102");
+        categoryDTO.setAppSysUuid("BIMS2.0");
+        categoryDTO.setProdCatalogUuid("CATALOG_MINERAL");
+        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategorySubByOrgAndProd(categoryDTO);
         System.out.println(categoryDOS);
     }
 

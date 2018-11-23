@@ -39,8 +39,10 @@ public interface CategoryService {
     /**根据父级分类ID查询其字类分类信息*/
     List<CategoryDO> listCategoryByParentUuid(CategoryDTO categoryDTO);
 
+    /**根据所属机构和产品线ID查询出其下的产品分类信息*/
+    List<CategoryDO> listCategoryByOrgAndProd(CategoryDTO categoryDTO);
 
-
-
+    /**根据所属机构和产品线ID查询出其下的产品分类信息(子公司)*/
+    List<CategoryDO> listCategorySubByOrgAndProd(CategoryDTO categoryDTO);
 
 }
