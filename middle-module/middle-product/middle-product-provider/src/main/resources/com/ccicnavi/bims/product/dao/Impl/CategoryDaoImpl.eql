@@ -27,6 +27,10 @@ FROM
 	product_category
 WHERE
 	is_deleted = 'N'
+--if categoryName !=null and categoryName != ''
+            AND category_name like '#categoryName:like#'
+--end
+
 
 -- [listCategoryFirstByOrgAndProd]
 SELECT
@@ -105,6 +109,83 @@ WHERE
 AND parent_category_uuid = '#parentCategoryUuid#'
 AND org_uuid='CCIC' OR org_uuid='#orgUuid#'
 AND app_sys_uuid='#appSysUuid#'
+
+
+-- [listCategoryByOrgAndProd]
+SELECT
+	pc.product_category_uuid,
+    pc.product_category_type_uuid,
+    pc.parent_category_uuid,
+    pc.parent_all_category_uuid,
+    pc.category_name,
+    pc.category_code,
+    pc.seq_num,
+    pc.long_description,
+    pc.is_enabled,
+    pc.comments,
+    pc.is_deleted,
+    pc.created_time,
+    pc.created_uuid,
+    pc.created_name,
+    pc.updated_time,
+    pc.updated_uuid,
+    pc.updated_name,
+    pc.prod_catalog_uuid,
+    pc.org_uuid,
+    pc.app_sys_uuid,
+    pc.extend1,
+    pc.extend2,
+    pc.extend3
+FROM
+	prod_catalog_org pco
+LEFT JOIN product_category pc ON pc.prod_catalog_uuid = pco.prod_catalog_uuid
+AND pc.is_deleted = 'N' AND pc.is_enabled='Y'
+WHERE
+	pco.organization_uuid = '#organizationUuid#'
+AND pco.app_sys_uuid = '#appSysUuid#'
+        --if prodCatalogUuid !=null and prodCatalogUuid != ''
+            AND pco.prod_catalog_uuid = '#prodCatalogUuid#'
+        --end
+ORDER BY
+	pc.seq_num
+
+-- [listCategorySubByOrgAndProd]
+SELECT
+	pc.product_category_uuid,
+    pc.product_category_type_uuid,
+    pc.parent_category_uuid,
+    pc.parent_all_category_uuid,
+    pc.category_name,
+    pc.category_code,
+    pc.seq_num,
+    pc.long_description,
+    pc.is_enabled,
+    pc.comments,
+    pc.is_deleted,
+    pc.created_time,
+    pc.created_uuid,
+    pc.created_name,
+    pc.updated_time,
+    pc.updated_uuid,
+    pc.updated_name,
+    pc.prod_catalog_uuid,
+    pc.org_uuid,
+    pc.app_sys_uuid,
+    pc.extend1,
+    pc.extend2,
+    pc.extend3
+FROM
+	product_category_org pco
+LEFT JOIN product_category pc ON pco.prod_catalog_uuid = pc.prod_catalog_uuid
+AND pc.is_deleted = 'N' AND pc.is_enabled = 'Y'
+WHERE
+	pco.organization_uuid = '#organizationUuid#'
+AND pco.app_sys_uuid = '#appSysUuid#'
+        --if prodCatalogUuid !=null and prodCatalogUuid != ''
+            AND pco.prod_catalog_uuid = '#prodCatalogUuid#'
+        --end
+ORDER BY
+	pc.seq_num
 
 
 

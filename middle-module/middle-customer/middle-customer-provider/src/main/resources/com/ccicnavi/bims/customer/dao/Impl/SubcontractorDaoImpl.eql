@@ -6,6 +6,8 @@ SELECT
     en_name as enName,
     subc_short_name as subcShortName,
     subc_post_code as subcPostCode,
+    legal_rep as legalRep,
+    reg_capital as regCapital,
     subc_url as subcUrl,
     fax as fax,
     tel as tel,
@@ -32,7 +34,7 @@ FROM
 WHERE
     is_deleted='N'
 
--- [saveSubcontractor]
+-- [insertSubcontractor]
 INSERT INTO crm_subcontractor
    -- trim prefix=( suffix=) suffixOverrides=,
      -- iff subcontractorUuid != null and subcontractorUuid != ''
@@ -43,6 +45,11 @@ INSERT INTO crm_subcontractor
         name,
      -- iff enName != null and enName != ''
         en_name,
+     -- iff legalRep != null and legalRep != ''
+        legal_rep,
+     -- iff regCapital != null and regCapital != ''
+        reg_capital,
+
      -- iff subcShortName != null and subcShortName != ''
         subc_short_name,
      -- iff subcPostCode != null and subcPostCode != ''
@@ -88,7 +95,7 @@ INSERT INTO crm_subcontractor
      -- iff extend3 != null and extend3 != ''
         extend3,
    --end
-   -- trim prefix=values( suffix=) suffixOverrides=,
+   --trim prefix=values( suffix=) suffixOverrides=,
      -- iff subcontractorUuid != null and subcontractorUuid != ''
         '#subcontractorUuid#',
      -- iff subcCode != null and subcCode != ''
@@ -105,6 +112,10 @@ INSERT INTO crm_subcontractor
         '#subcUrl#',
      -- iff fax != null and fax != ''
         '#fax#',
+      -- iff legalRep != null and legalRep != ''
+        '#legalRep#',
+     -- iff regCapital != null and regCapital != ''
+        '#regCapital#',
      -- iff tel != null and tel != ''
         '#tel#',
      -- iff subcPhone != null and subcPhone != ''
@@ -171,6 +182,10 @@ AND subcontractor_uuid='#subcontractorUuid#'
         fax = '#fax#',
       -- iff tel != null
         tel = '#tel#',
+     -- iff legalRep != null
+        legal_rep = '#legalRep#',
+      -- iff regCapital != null
+        reg_capital = '#regCapital#',
       -- iff subcPhone != null
         subc_phone = '#subcPhone#',
       -- iff addr != null
@@ -219,6 +234,8 @@ AND subcontractor_uuid='#subcontractorUuid#'
     subc_short_name subcShortName,
     subc_post_code subcPostCode,
     subc_url subcUrl,
+    legal_rep as legalRep,
+    reg_capital as regCapital,
     fax fax,
     tel tel,
     subc_phone subcPhone,

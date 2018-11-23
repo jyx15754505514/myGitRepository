@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.dao.impl;
 
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.system.dao.UserDao;
 import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
@@ -143,6 +144,18 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Integer updateIsEnabled(UserDTO userDTO) {
         return new Eql("DEFAULT").update("updateIsEnabled").params(userDTO).returnType(Integer.class).execute();
+    }
+
+    /*
+    * 用户登录获取用户信息
+    * @Author zhaotao
+    * @Date  2018/11/23 16:45
+    * @Param [userDTO]
+    * @return com.ccicnavi.bims.sso.common.pojo.SSOUser
+    **/
+    @Override
+    public SSOUser login(UserDTO userDTO) {
+        return new Eql("DEFAULT").update("login").params(userDTO).returnType(SSOUser.class).execute();
     }
 
 

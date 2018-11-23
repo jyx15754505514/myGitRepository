@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.customer.test;
+package com.ccicnavi.bims.customer.service;
 
 import org.springframework.util.StringUtils;
 

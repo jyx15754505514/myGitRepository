@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.customer.test;
+package com.ccicnavi.bims.customer.service;
 
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
@@ -75,7 +75,7 @@ public class TestCustomer {
             customer.setCustName("客户"+i);
             customer.setIsSediment("Y");
             customer.setCustAddr("客户地址"+i);
-            customer.setBusinessLine("CUSTOMER");
+            customer.setProdCatalogUuid("CUSTOMER");
             customer.setOrgUuid("XN102");
             customer.setAppSysUuid("KKLIMS102");
             int count= EqlUtils.getInstance("druid").select("insertCustomer").params(customer).execute();

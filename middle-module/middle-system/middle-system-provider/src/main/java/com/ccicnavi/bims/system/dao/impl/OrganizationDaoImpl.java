@@ -7,8 +7,6 @@ import com.ccicnavi.bims.system.pojo.OrganizationDTO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
-import org.n3r.eql.EqlTran;
-import org.n3r.eql.util.Closes;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,23 +37,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
      */
     @Override
     public Integer insertOrganization(OrganizationDTO organizationDTO) throws  Exception {
-        Integer num = 0;
-        EqlTran tran = new Eql("DEFAULT").newTran();
-        try {
-            tran.start();
-            num = new Eql("DEFAULT").useTran(tran).useSqlFile("OrganizationDaoImpl.eql").select("insertOrganization").params(organizationDTO).returnType(Integer.class).execute();
-            tran.commit();
-        }
-        catch (Exception e) {
-            //异常抛到service层处理
-            tran.rollback();
-            throw e;
-        }
-        finally {
-            Closes.closeQuietly(tran);
-        }
-
-        return num;
+        return new Eql().insert("insertOrganization").params(organizationDTO).returnType(Integer.class).execute();
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.customer.test;
+package com.ccicnavi.bims.customer.service;
 
 import com.ccicnavi.bims.customer.dao.Impl.CustomerExtDaoImpl;
 import com.ccicnavi.bims.customer.pojo.CustomerDTO;

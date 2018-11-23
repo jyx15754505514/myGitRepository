@@ -167,7 +167,7 @@ insert into crm_customer_linkman
         extend3,
 
     -- end
-    -- trim prefix="values (" suffix=) suffixOverrides=, and   != ''
+   --trim prefix=values( suffix=) suffixOverrides=,
      -- iff linkmanUuid != null and  linkmanUuid != ''
         '#linkmanUuid#',
 
