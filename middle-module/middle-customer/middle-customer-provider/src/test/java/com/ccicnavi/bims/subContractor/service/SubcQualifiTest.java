@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.product.service;
+package com.ccicnavi.bims.subContractor.service;
 
 import com.ccicnavi.bims.customer.dao.Impl.SubcQualifiDaoImpl;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;

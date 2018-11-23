@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.customer.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.SubcontractorService;
 import com.ccicnavi.bims.customer.dao.SubcontractorDao;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
@@ -23,41 +25,37 @@ public class SubcontractorServiceImpl implements SubcontractorService{
     SubcontractorDao subcontractorDao;
 
     /**
-     * @Author WangYingling
-     * @Description 查询所有分包方信息
-     * @Date 20:00 2018/11/14
-     * @param subcontractor
-     * @return java.util.List<com.ccicnavi.bims.customer.pojo.SubcontractorDO>
+     * @Author FanDongSheng
+     * @Description //TODO 分页查询分包方信息
+     * @Date 16:16 2018/11/23
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.customer.pojo.SubcontractorDO>
      */
     @Override
-    public List<SubcontractorDO> listSubcontractor(SubcontractorDO subcontractor) {
-        List<SubcontractorDO> subcontractorList=null;
+    public PageBean<SubcontractorDO> listSubcontractor(PageParameter<SubcontractorDO> pageParameter) {
         try {
-            subcontractorList=subcontractorDao.listSubcontractor();
+            return subcontractorDao.listSubcontractor(pageParameter);
         } catch (Exception e) {
-            log.error("Service层查询分包方信息失败",e);
-            e.printStackTrace();
+            log.error("分包方分页查询失败",e);
+            return null;
         }
-        return subcontractorList;
     }
 
     /**
-     * @Author WangYingling
-     * @Description 新增分包方信息
-     * @Date 20:00 2018/11/14
-     * @param subcontractor
-     * @return java.lang.Integer
+     * @Author FanDongSheng
+     * @Description //TODO 新增分包方信息
+     * @Date 16:16 2018/11/23
+     * @Param [subcontractor]
+     * @Return java.lang.Integer
      */
     @Override
-    public int saveSubcontractor(SubcontractorDO subcontractor) {
-        Integer count=0;
+    public Integer insertSubcontractor(SubcontractorDO subcontractor) {
         try {
-            count=subcontractorDao.saveSubcontractor(subcontractor);
+           return subcontractorDao.insertSubcontractor(subcontractor);
         } catch (Exception e) {
             log.error("Service层新增分包方信息失败",e);
-            e.printStackTrace();
+            return  null;
         }
-        return count;
     }
 
     /**
@@ -68,7 +66,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
      * @return java.lang.Integer
      */
     @Override
-    public int removeSubcontractor(SubcontractorDO subcontractor) {
+    public Integer removeSubcontractor(SubcontractorDO subcontractor) {
         Integer count=0;
         try {
             count=subcontractorDao.removeSubcontractor(subcontractor);
@@ -87,7 +85,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
      * @return java.lang.Integer
      */
     @Override
-    public int updateSubcontractor(SubcontractorDO subcontractor) {
+    public Integer updateSubcontractor(SubcontractorDO subcontractor) {
         Integer count=0;
         try {
             count=subcontractorDao.updateSubcontractor(subcontractor);

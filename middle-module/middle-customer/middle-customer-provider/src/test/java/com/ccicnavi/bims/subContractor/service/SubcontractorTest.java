@@ -1,4 +1,4 @@
-package com.ccicnavi.bims.product.service;
+package com.ccicnavi.bims.subContractor.service;
 
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.Impl.SubcontractorDaoImpl;
