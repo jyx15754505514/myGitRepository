@@ -329,6 +329,54 @@
         --end
 
 
+
+-- 用户登录查询登录用户
+-- [login]
+    SELECT
+       u.user_uuid as  userUuid,
+       u.nick_name as nickName,
+       u.login_name as loginName,
+       u.login_email as loginEmail,
+       u.login_phone as loginPhone,
+       u.current_password as currentPassword,
+       u.password_hints as passwordHints,
+       u.is_change_password as isChangePassword,
+       u.login_usertype as loginUsertype,
+       u.disabled_time as disabledTime,
+       u.disabled_reason as disabledReason,
+       u.failed_logins as failedLogins,
+       u.login_method as loginMethod,
+       u.last_time_zone as lastTimeZone,
+       u.last_local as lastLocal,
+       u.last_login_ip as lastLoginIp,
+       u.last_login_time as lastLoginTime,
+       u.bind_login_ip as bindLoginIp,
+       u.is_enabled as isEnabled,
+       u.comments,
+       u.salt,
+       u.dept_uuid as deptUuid,
+       u.is_deleted as isDeleted,
+       u.created_time as createdTime,
+       u.created_uuid as createdUuid,
+       u.created_name as createdName,
+       u.updated_time as updatedTime,
+       u.updated_name as updatedName,
+       u.org_uuid as orgUuid,
+       u.app_sys_uuid as appSysUuid,
+       u.prod_catalog_uuid as prodCatalogUuid,
+       o.org_name as orgName,
+       o.org_code as orgCode,
+       u.extend1,
+       u.extend2,
+       u.extend3
+     FROM
+        sys_user u
+        LEFT JOIN sys_organization o ON u.org_uuid = o.organization_uuid
+     WHERE
+         u.login_name = '#loginName#'
+
+
+
 -- 启用禁用
 --[updateIsEnabled]
    UPDATE
