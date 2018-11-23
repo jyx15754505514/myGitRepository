@@ -1,0 +1,218 @@
+-- [insertStandardInfo]
+    INSERT INTO product_standard_info
+    -- trim prefix=( suffix=) suffixOverrides=,
+    -- iff stdUuid != null and stdUuid != ''
+        std_uuid,
+    -- iff stdName != null and stdName != ''
+        std_name,
+    -- iff stdCode != null and stdCode != ''
+        std_code,
+    -- iff stdReplaceCode != null and stdReplaceCode != ''
+        std_replace_code,
+    -- iff deptUuid != null and deptUuid != ''
+        dept_uuid,
+    -- iff comments != null and comments != ''
+        comments,
+    -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+    -- iff isDeleted != null and isDeleted != ''
+        is_deleted,
+    -- iff createdTime != null
+        created_time,
+    -- iff createdUuid != null and createdUuid != ''
+        created_uuid,
+    -- iff createdName != null and createdName != ''
+        created_name,
+    -- iff updatedTime != null
+        updated_time,
+    -- iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
+    -- iff updatedName != null and updatedName != ''
+        updated_name,
+    -- iff orgUuid != null and orgUuid != ''
+        org_uuid,
+    -- iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid,
+    -- iff extend1 != null and extend1 != ''
+        extend1,
+    -- iff extend2 != null and extend2 != ''
+        extend2,
+    -- iff extend3 != null and extend3 != ''
+        extend3
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      -- iff stdUuid != null and stdUuid != ''
+        '#stdUuid#',
+      -- iff stdName != null and stdName != ''
+        '#stdName#',
+      -- iff stdCode != null and stdCode != ''
+        '#stdCode#',
+      -- iff stdReplaceCode != null and stdReplaceCode != ''
+        '#stdReplaceCode#',
+      -- iff deptUuid != null and deptUuid != ''
+        '#deptUuid#',
+      -- iff comments != null and comments != ''
+         '#comments#',
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+         '#prodCatalogUuid#',
+      -- iff isDeleted != null and isDeleted != ''
+         '#isDeleted#',
+      -- iff createdTime != null
+         '#createdTime#',
+      -- iff createdUuid != null and createdUuid != ''
+         '#createdUuid#',
+      -- iff createdName != null and createdName != ''
+         '#createdName#',
+      -- iff updatedTime != null
+         '#updatedTime#',
+      -- iff updatedUuid != null and updatedUuid != ''
+         '#updatedUuid#',
+      -- iff updatedName != null and updatedName != ''
+          '#updatedName#',
+      -- iff orgUuid != null and orgUuid != ''
+          '#orgUuid#',
+      -- iff appSysUuid != null and appSysUuid != ''
+          '#appSysUuid#',
+      -- iff extend1 != null and extend1 != ''
+          '#extend1#',
+      -- iff extend2 != null and extend2 != ''
+          '#extend2#',
+      -- iff extend3 != null and extend3 != ''
+          '#extend3#'
+    -- end
+
+-- [deleteStandarInfo]
+    UPDATE
+        product_standard_info
+    -- trim prefix= set suffixOverrides=,
+        is_deleted = 'Y'
+    -- end
+    WHERE
+        is_deleted = 'N'
+        -- iff stdCode != null and stdCode != ''
+            and std_code = '#stdCode#'
+        -- end
+        -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+            and prod_catalog_uuid = '#prodCatalogUuid#'
+        -- end
+        -- iff uuids != null
+            and std_uuid IN
+            -- for item=item index=index collection=uuids open=( separator=, close=)
+                '#item#'
+        -- end
+
+-- [updateStandarInfo]
+UPDATE
+    product_standard_info
+-- trim prefix= set suffixOverrides=,
+    -- iff stdUuid != null and stdUuid != ''
+        std_uuid = '#stdUuid#',
+    -- iff stdName != null and stdName != ''
+        std_name = '#stdName#',
+    -- iff stdCode != null and stdCode != ''
+        std_code = '#stdCode#',
+    -- iff stdReplaceCode != null and stdReplaceCode != ''
+        std_replace_code = '#stdReplaceCode#',
+    -- iff deptUuid != null and deptUuid != ''
+        dept_uuid = '#deptUuid#',
+    -- iff comments != null and comments != ''
+        comments = '#comments#',
+    -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
+    -- iff isDeleted != null and isDeleted != ''
+        is_deleted = '#isDeleted#',
+    -- iff createdTime != null
+        created_time = '#createdTime#',
+    -- iff createdUuid != null and createdUuid != ''
+        created_uuid = '#createdUuid#',
+    -- iff createdName != null and createdName != ''
+        created_name = '#createdName#',
+    -- iff updatedTime != null
+        updated_time = '#updatedTime#',
+    -- iff updatedUuid != null and updatedUuid != ''
+        updated_uuid = '#updatedUuid#',
+    -- iff updatedName != null and updatedName != ''
+        updated_name = '#updatedName#',
+    -- iff orgUuid != null and orgUuid != ''
+        org_uuid = '#orgUuid#',
+    -- iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
+    -- iff extend1 != null and extend1 != ''
+        extend1 = '#extend1#',
+    -- iff extend2 != null and extend2 != ''
+        extend2 = '#extend2#',
+    -- iff extend3 != null and extend3 != ''
+        extend3 = '#extend3#'
+-- end
+where
+    is_deleted = 'N'
+    -- iff stdUuid != null and stdUuid != ''
+        and std_uuid = '#stdUuid#'
+    -- end
+
+-- [getStandardInfo]
+SELECT
+    std_uuid as stdUuid,
+    std_name as stdName,
+    std_code as stdCode,
+    std_replace_code as stdReplaceCode,
+    dept_uuid as deptUuid,
+    comments as comments,
+    prod_catalog_uuid as prodCatalogUuid,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_name as updatedName,
+    org_uuid as orgUuid,
+    app_sys_uuid as appSysUuid,
+    extend1 as extend1,
+    extend2 as extend2,
+    extend3 as extend3
+from
+    product_standard_info
+where
+    is_deleted = 'N'
+    -- iff stdUuid != null and stdUuid != ''
+        and std_uuid = '#stdUuid#'
+    -- end
+
+
+-- [listStandardInfo]
+SELECT
+    std_uuid as stdUuid,
+    std_name as stdName,
+    std_code as stdCode,
+    std_replace_code as stdReplaceCode,
+    dept_uuid as deptUuid,
+    comments as comments,
+    prod_catalog_uuid as prodCatalogUuid,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_name as updatedName,
+    org_uuid as orgUuid,
+    app_sys_uuid as appSysUuid,
+    extend1 as extend1,
+    extend2 as extend2,
+    extend3 as extend3
+from
+    product_standard_info
+where
+    is_deleted = 'N'
+    -- iff stdUuid != null and stdUuid != ''
+        and std_uuid = '#stdUuid#'
+    -- end
+    --iff stdCode != null and stdCode != ''
+        and std_code = '#stdCode#'
+    -- end
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and prod_catalog_uuid = '#prodCatalogUuid#'
+    -- end
+    --iff stdName != null and stdName != ''
+       and std_name like '#stdName:Like#'
+    --end
+
