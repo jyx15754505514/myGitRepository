@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.sso.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.sso.api.SSOService;
 import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.sso.common.result.ReturnT;
@@ -9,6 +10,7 @@ import com.ccicnavi.bims.sso.login.SsoTokenLoginHelper;
 import com.ccicnavi.bims.sso.store.SsoLoginStore;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,7 +40,7 @@ public class SSOServiceImpl implements SSOService {
         ssoTokenLoginHelper.login(sessionId, xxlUser);
 
         // 4、return sessionId
-        return new ReturnT<String>(sessionId);
+        return new ReturnT<String>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message(),sessionId);
 
     }
 
@@ -49,7 +51,7 @@ public class SSOServiceImpl implements SSOService {
      */
     public ReturnT<String> logout(String sessionId) {
         ssoTokenLoginHelper.logout(sessionId);
-        return ReturnT.SUCCESS;
+        return new ReturnT<String>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message());
     }
 
     /**
@@ -61,12 +63,12 @@ public class SSOServiceImpl implements SSOService {
         SSOUser xxlUser = ssoTokenLoginHelper.loginCheck(sessionId);
         if (xxlUser == null) {
             if(ssoTokenLoginHelper.hasLandedOnKey(sessionId)){
-                return new ReturnT<SSOUser>(ReturnT.LOGIN_OUT_CODE, "sso login out.");
+                return new ReturnT<SSOUser>(ResultCode.USER_LOGIN_OUT.code(),ResultCode.USER_LOGIN_OUT.message());
             }else{
-                return new ReturnT<SSOUser>(ReturnT.NO_LOGIN_CODE, "sso not login.");
+                return new ReturnT<SSOUser>(ResultCode.USER_NOT_LOGIN.code(),ResultCode.USER_NOT_LOGIN.message());
             }
         }
-        return new ReturnT<SSOUser>(xxlUser);
+        return new ReturnT<SSOUser>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message(),xxlUser);
     }
 
     /**
@@ -78,16 +80,16 @@ public class SSOServiceImpl implements SSOService {
     public ReturnT<SSOUser> checkAccess(String sessionId,String path){
         //判断登录
         ReturnT<SSOUser> ssoUserReturnT = logincheck(sessionId);
-        if(ssoUserReturnT.getCode() != 200){
+        if(ssoUserReturnT.getCode() != 1){
             return ssoUserReturnT;
         }
 
-        List<String> btnUrlList = ssoUserReturnT.getData().getBtnUrlList();
+        List<String> btnUrlList = ssoUserReturnT.getData().getBtnUrlList() == null ? new ArrayList<>() : ssoUserReturnT.getData().getBtnUrlList();
         if(btnUrlList.contains(path)){
 
-            return new ReturnT<SSOUser>(ssoUserReturnT.getData());
+            return new ReturnT<SSOUser>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message(),ssoUserReturnT.getData());
         }else{
-            return new ReturnT<SSOUser>(ReturnT.CANT_ACCESS_CODE, "sso can't access.");
+            return new ReturnT<SSOUser>(ResultCode.USER_CANT_ACCESS.code(),ResultCode.USER_CANT_ACCESS.message());
         }
     }
 
