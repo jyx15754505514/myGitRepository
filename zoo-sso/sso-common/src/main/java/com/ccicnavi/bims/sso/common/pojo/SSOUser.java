@@ -31,6 +31,8 @@ public class SSOUser implements Serializable {
 
     private String loginName;
 
+    private String salt;
+
     private String loginEmail;
 
     private String loginPhone;
@@ -78,6 +80,10 @@ public class SSOUser implements Serializable {
     private String updatedName;
 
     private String orgUuid;
+
+    private String orgName;
+
+    private String orgCode;
 
     private String appSysUuid;
 

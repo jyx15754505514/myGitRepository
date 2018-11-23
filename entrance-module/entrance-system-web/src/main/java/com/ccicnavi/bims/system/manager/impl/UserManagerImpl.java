@@ -60,25 +60,29 @@ public class UserManagerImpl implements UserManager {
     **/
     @Override
     public ResultT userLogin(UserDTO userDTO) {
+        SSOUser ssoUser = new SSOUser();
         try {
-            userDTO = userService.getUser(userDTO);
+            ssoUser = userService.login(userDTO);
             //对用户depteUuid和orgUuid进行判断，如果被禁用，返回被禁用
-            if(userDTO != null) {
+            if(ssoUser != null) {
                 //判断账号是否被禁用
-                if("N".equals(userDTO.getIsEnabled()) || "Y".equals(userDTO.getIsDeleted())) {
+                if("N".equals(ssoUser.getIsEnabled()) || "Y".equals(ssoUser.getIsDeleted())) {
                     return ResultT.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
                 }
-                String password = userDTO.getCurrentPassword();
+                String password = ssoUser.getCurrentPassword();
                 //获取盐值
-                String salt = userDTO.getSalt();
+                String salt = ssoUser.getSalt();
                 //根据用户的盐值，验证密码是否正确
-                boolean verify = passwdService.verify(userDTO.getCurrentPassword(), password, salt);
+                boolean verify = passwdService.verify(ssoUser.getCurrentPassword(), password, salt);
                 //密码错误
                 if(!verify) {
                     //记录登录失败次数
                     Integer failedLogins = userDTO.getFailedLogins();
                     failedLogins += 1;
                     userDTO.setFailedLogins(failedLogins);
+                    userDTO.setUserUuid(ssoUser.getUserUuid());
+                    userDTO.setOrgUuid(ssoUser.getOrgUuid());
+                    userDTO.setAppSysUuid(ssoUser.getAppSysUuid());
                     //失败5次处理逻辑
                     if(failedLogins >= 5) {
 
@@ -86,7 +90,6 @@ public class UserManagerImpl implements UserManager {
                     userService.updateUser(userDTO);
                     return ResultT.failure(ResultCode.USER_LOGIN_ERROR);
                 }
-                SSOUser ssoUser = new SSOUser();
                 getUserBaseData(userDTO, ssoUser);
                 //调用SSO服务登录操作
                 ReturnT<String> login = ssoService.login(ssoUser);
