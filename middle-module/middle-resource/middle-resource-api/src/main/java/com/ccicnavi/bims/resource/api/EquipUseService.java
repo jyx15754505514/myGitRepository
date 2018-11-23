@@ -2,10 +2,8 @@ package com.ccicnavi.bims.resource.api;
 
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 import com.ccicnavi.bims.resource.pojo.EquipUseDO;
 import com.ccicnavi.bims.resource.pojo.EquipUseDTO;
-
 import java.util.List;
 
 /**
@@ -35,6 +33,15 @@ public interface EquipUseService {
     EquipUseDO getEquipUse(String EquipUseUuid);
 
     /**
+     * @Author MengZiJie
+     * @Description 根据uuids获取领用信息
+     * @Data 2018/11/23 17:16
+     * @Param [equipUseDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipUseDTO>
+     */
+    List<EquipUseDO> getEquipUseList(EquipUseDTO equipUseDTO);
+
+    /**
      * @Author panyida
      * @Description 新增设备领用归还
      * @Date 11:45 2018/11/14
@@ -59,7 +66,7 @@ public interface EquipUseService {
      * @Param [equipUseUuid]
      * @Return java.lang.Integer
      */
-    Integer deleteEquipUse(String EquipUseUuid);
+    Integer deleteEquipUse(EquipUseDTO equipUseDTO);
 
     /**
      * @Author panyida

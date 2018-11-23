@@ -1,5 +1,5 @@
 -- [getEquipUse]
-  SELECT
+SELECT
     equip_use_uuid equipUseUuid,
     equip_uuid equipUuid,
     use_date useDate,
@@ -16,12 +16,17 @@
     updated_name updatedName,
     org_uuid orgUuid,
     app_sys_uuid appSysUuid
-  from
-        res_equip_use
-  where
+from
+    res_equip_use
+where
     is_deleted = 'N'
-  --iff equipUseUuid != null and equipUseUuid != ''
-    and equip_use_uuid = '#equipUseUuid#'
+--iff equipUseUuids != null
+    and equip_use_uuid in
+    -- for item=item index=index collection=equipUseUuids open=( separator=, close=)
+        '#item#'
+    -- end
+-- iff equipUuid != null and equipUuid != ''
+    and equip_uuid = '#equipUuid#'
 
 -- [listEquipUse]
   SELECT
@@ -164,8 +169,13 @@ UPDATE
 -- end
 WHERE
     is_deleted = 'N'
+-- iff equipUseUuid != null and equipUseUuid != ''
     and equip_use_uuid = '#equipUseUuid#'
--- end
+-- iff equipUseUuids != null
+    and equip_use_uuid in
+    -- for item=item index=index collection=equipUseUuids open=( separator=, close=)
+        '#item#'
+    -- end
 
 -- [listEquipUseDTO]
   SELECT

@@ -3,9 +3,9 @@ package com.ccicnavi.bims.resource.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: bims-backend
@@ -60,4 +60,6 @@ public class EquipUseDTO implements Serializable {
     private String manufacture;
 
     private String useDeptUuid;
+
+    private List<String> equipUseUuids; //uuids集合
 }

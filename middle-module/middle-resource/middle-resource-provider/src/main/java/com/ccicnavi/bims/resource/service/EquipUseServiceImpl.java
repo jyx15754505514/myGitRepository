@@ -45,6 +45,24 @@ public class EquipUseServiceImpl implements EquipUseService {
     }
 
     /**
+     * @Author MengZiJie
+     * @Description 根据uuids查询设备领用信息
+     * @Data 2018/11/23 17:30
+     * @Param [equipUseDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipUseDTO>
+     */
+    @Override
+    public List<EquipUseDO> getEquipUseList(EquipUseDTO equipUseDTO) {
+        List<EquipUseDO> equipUseDO = null;
+        try {
+            equipUseDO = equipUseDao.getEquipUseList(equipUseDTO);
+        } catch (Exception e) {
+            log.error("获取领用信息失败",e);
+        }
+        return equipUseDO;
+    }
+
+    /**
      * @Author panyida
      * @Description 设备领用归还信息查询
      * @Date 16:28 2018/11/14
@@ -73,7 +91,7 @@ public class EquipUseServiceImpl implements EquipUseService {
     public Integer insertEquipUse(EquipUseDO equipUseDO){
         Integer count = null;
         try {
-            count = equipUseDao.insertEquipUse(equipUseDO);
+            count = equipUseDao.insertEquipUse(equipUseDO,null);
         } catch (Exception e) {
             log.error("新增设备领用归还信息错误",e);
         }
@@ -91,7 +109,7 @@ public class EquipUseServiceImpl implements EquipUseService {
     public Integer updateEquipUse(EquipUseDO equipUseDO){
         Integer count = null;
         try {
-            count = equipUseDao.updateEquipUse(equipUseDO);
+            count = equipUseDao.updateEquipUse(equipUseDO,null);
         } catch (Exception e) {
             log.error("更新设备领用归还信息错误",e);
         }
@@ -106,10 +124,10 @@ public class EquipUseServiceImpl implements EquipUseService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquipUse(String equipUseUuid){
+    public Integer deleteEquipUse(EquipUseDTO equipUseDTO){
         Integer count = null;
         try {
-            count = equipUseDao.deleteEquipUse(equipUseUuid);
+            count = equipUseDao.deleteEquipUse(equipUseDTO,null);
         } catch (Exception e) {
             log.error("根据设备领用归还信息主键删除设备领用归还信息错误",e);
         }
