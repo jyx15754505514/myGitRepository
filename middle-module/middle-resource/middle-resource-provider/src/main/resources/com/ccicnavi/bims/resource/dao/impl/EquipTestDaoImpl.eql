@@ -1,5 +1,5 @@
 -- [listEquipTest]
-  SELECT
+ SELECT
     equip_test_uuid equipTestUuid,
     equip_uuid equipUuid,
     cert_no certNo,
@@ -24,13 +24,19 @@
     org_uuid orgUuid,
     updated_uuid updatedUuid,
     app_sys_uuid appSysUuid
-    from
+ from
     res_equip_test
-where
+ where
     is_deleted = 'N'
+ --iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+ --iff appSysUuid != null and appSysUuid !=''
+    and app_sys_uuid = '#appSysUuid#'
+ --iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
 
 -- [getEquipTest]
-  SELECT
+SELECT
     equip_test_uuid equipTestUuid,
     equip_uuid equipUuid,
     cert_no certNo,
@@ -55,10 +61,16 @@ where
     org_uuid orgUuid,
     updated_uuid updatedUuid,
     app_sys_uuid appSysUuid
-    from
+from
     res_equip_test
 where
     is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid !=''
+    and app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff equipTestUuid != null and equipTestUuid != ''
     and equip_test_uuid = '#equipTestUuid#'
 
@@ -92,13 +104,20 @@ where
     res_equip_test
 where
     is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid !=''
+    and app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff equipTestUuids != null
     and equip_test_uuid in
-     -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
-        '#item#'
-     -- end
+    -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
+       '#item#'
+    -- end
 -- iff equipUuid != null and equipUuid != ''
     equip_uuid = '#equipUuid#'
+
 
 -- [insertEquipTest]
   insert into res_equip_test
@@ -253,19 +272,27 @@ where
     -- end
     where
     is_deleted = 'N'
+--iff equipTestUuid != null and equipTestUuid != ''
     and equip_test_uuid = '#equipTestUuid#'
--- end
+
+
 
 -- [deleteEquipTest]
 UPDATE
     res_equip_test
 -- trim prefix= set suffixOverrides=,
-    is_deleted = 'Y'.
+    is_deleted = 'Y'
 -- end
 WHERE
     is_deleted = 'N'
+--iff equipTestUuid != null and equipTestUuid !=''
     and equip_test_uuid = '#equipTestUuid#'
--- end
+--iff equipTestUuids != null
+    and equip_test_uuid in
+    -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
 
 -- [listEquipTestDTO]
   SELECT
@@ -302,3 +329,9 @@ WHERE
     LEFT JOIN res_equip e ON e.equip_uuid = et.equip_uuid
 where
     et.is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and et.org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid !=''
+    and et.app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and et.prod_catalog_uuid = '#prodCatalogUuid#'

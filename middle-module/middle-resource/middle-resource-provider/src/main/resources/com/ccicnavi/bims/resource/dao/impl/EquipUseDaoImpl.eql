@@ -20,6 +20,12 @@ from
     res_equip_use
 where
     is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid !=''
+    and app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
 -- iff equipUseUuid != null and equipUseUuid != ''
     and equip_use_uuid = '#equipUseUuid#'
 
@@ -46,6 +52,12 @@ from
     res_equip_use
 where
     is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid !=''
+    and app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff equipUseUuids != null
     and equip_use_uuid in
     -- for item=item index=index collection=equipUseUuids open=( separator=, close=)
@@ -77,6 +89,12 @@ where
         res_equip_use
   where
     is_deleted = 'N'
+  --iff orgUuid != null and orgUuid != ''
+      and org_uuid = '#orgUuid#'
+  --iff appSysUuid != null and appSysUuid !=''
+      and app_sys_uuid = '#appSysUuid#'
+  --iff prodCatalogUuid != null and prodCatalogUuid != ''
+      and prod_catalog_uuid = '#prodCatalogUuid#'
 
 -- [insertEquipUse]
     insert into res_equip_use
@@ -206,22 +224,22 @@ WHERE
 
 -- [listEquipUseDTO]
   SELECT
-    equip_use_uuid equipUseUuid,
-    equip_uuid equipUuid,
-    use_date useDate,
-    use_person usePerson,
-    use_dept useDept,
-    back_date backDate,
-    prod_catalog_uuid prodCatalogPuid,
-    comments comments,
-    is_deleted isDeleted,
-    created_time createdTime,
-    created_uuid createdUuid,
-    created_name createdName,
-    updated_time updatedTime,
-    updated_name updatedName,
-    org_uuid orgUuid,
-    app_sys_uuid appSysUuid,
+    eu.equip_use_uuid equipUseUuid,
+    eu.equip_uuid equipUuid,
+    eu.use_date useDate,
+    eu.use_person usePerson,
+    eu.use_dept useDept,
+    eu.back_date backDate,
+    eu.prod_catalog_uuid prodCatalogPuid,
+    eu.comments comments,
+    eu.is_deleted isDeleted,
+    eu.created_time createdTime,
+    eu.created_uuid createdUuid,
+    eu.created_name createdName,
+    eu.updated_time updatedTime,
+    eu.updated_name updatedName,
+    eu.org_uuid orgUuid,
+    eu.app_sys_uuid appSysUuid,
     e.equip_name equipName,
     e.equip_name_en equipNameEn,
     e.equip_spec equipSpec,
@@ -233,3 +251,9 @@ WHERE
   LEFT JOIN res_equip e ON e.equip_uuid = eu.equip_uuid
   where
     eu.is_deleted = 'N'
+  --iff orgUuid != null and orgUuid != ''
+      and eu.org_uuid = '#orgUuid#'
+  --iff appSysUuid != null and appSysUuid !=''
+      and eu.app_sys_uuid = '#appSysUuid#'
+  --iff prodCatalogUuid != null and prodCatalogUuid != ''
+      and eu.prod_catalog_uuid = '#prodCatalogUuid#'
