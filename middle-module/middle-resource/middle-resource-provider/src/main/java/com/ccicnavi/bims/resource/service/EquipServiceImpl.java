@@ -9,12 +9,10 @@ import com.ccicnavi.bims.resource.pojo.EquipDO;
 import com.ccicnavi.bims.resource.pojo.EquipDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
 /**
  * @program: bims-backend
  * @description: 设备信息api接口实现类
@@ -27,24 +25,6 @@ public class EquipServiceImpl implements EquipService {
 
     @Autowired
     private EquipDao equipDao;
-
-    /**
-     * @Author panyida
-     * @Description 根据设备信息主键获取设备信息
-     * @Date 16:29 2018/11/14
-     * @Param [equipUuid]
-     * @Return com.ccicnavi.bims.resource.pojo.EquipDO
-     */
-    @Override
-    public EquipDO getEquip(String equipUuid){
-        EquipDO equipDO = null;
-        try {
-            equipDO = equipDao.getEquip(equipUuid);
-        } catch (Exception e) {
-            log.error("根据设备信息主键获取设备信息错误",e);
-        }
-        return equipDO;
-    }
 
     /**
      * @Author panyida
@@ -98,6 +78,42 @@ public class EquipServiceImpl implements EquipService {
 
     /**
      * @Author panyida
+     * @Description 根据设备信息主键获取设备信息
+     * @Date 16:29 2018/11/14
+     * @Param [equipUuid]
+     * @Return com.ccicnavi.bims.resource.pojo.EquipDO
+     */
+    @Override
+    public EquipDO getEquip(String equipUuid){
+        EquipDO equipDO = null;
+        try {
+            equipDO = equipDao.getEquip(equipUuid);
+        } catch (Exception e) {
+            log.error("根据设备信息主键获取设备信息错误",e);
+        }
+        return equipDO;
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 根据uuids查询设备
+     * @Data 2018/11/23 15:34
+     * @Param [equipDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDTO>
+     */
+    @Override
+    public List<EquipDO> getEquipList(EquipDTO equipDTO) {
+        List<EquipDO> equipDO = null;
+        try {
+            equipDO = equipDao.getEquipList(equipDTO);
+        } catch (Exception e) {
+            log.error("获取信息失败",e);
+        }
+        return equipDO;
+    }
+
+    /**
+     * @Author panyida
      * @Description 更新设备信息
      * @Date 16:30 2018/11/14
      * @Param [equipDO]
@@ -107,7 +123,7 @@ public class EquipServiceImpl implements EquipService {
     public Integer updateEquip(EquipDO equipDO){
         Integer count = null;
         try {
-            count = equipDao.updateEquip(equipDO);
+            count = equipDao.updateEquip(equipDO,null);
         } catch (Exception e) {
             log.error("更新设备信息错误",e);
         }
@@ -125,7 +141,7 @@ public class EquipServiceImpl implements EquipService {
     public Integer insertEquip(EquipDO equipDO){
         Integer count = null;
         try {
-            count = equipDao.insertEquip(equipDO);
+            count = equipDao.insertEquip(equipDO,null);
         } catch (Exception e) {
             log.error("新增设备信息错误",e);
         }
@@ -140,10 +156,10 @@ public class EquipServiceImpl implements EquipService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquip(String equipUuid){
+    public Integer deleteEquip(EquipDTO equipDTO){
         Integer count = null;
         try {
-            count = equipDao.deleteEquip(equipUuid);
+            count = equipDao.deleteEquip(equipDTO,null);
         } catch (Exception e) {
             log.error("根据设备信息主键删除设备信息错误",e);
         }

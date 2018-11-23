@@ -64,6 +64,75 @@ where
 --iff equipUuid != null and equipUuid != ''
     and equip_uuid = '#equipUuid#'
 
+-- [getEquipList]
+  SELECT
+     equip_uuid equipUuid,
+     equip_name equipName,
+     equip_name_en equipNameEn,
+     control_code controlCode,
+     equip_model equipModel,
+     equip_spec equipSpec,
+     factory_no factoryNo,
+     manufacture manufacture,
+     factory_level factoryLevel,
+     measure_range measureRange,
+     accuracy_level accuracyLevel,
+     equip_abc equipAbc,
+     status_uuid statusUuid,
+     equip_plan_uuid equipPlanUuid,
+     equip_order_uuid equipOrderUuid,
+     appoint_uuid appointUuid,
+     cert_no certNo,
+     test_date testDate,
+     use_date useDate,
+     use_dept_uuid useDeptUuid,
+     is_verify isVerify,
+     test_cycle testCycle,
+     is_long_term isLongTerm,
+     test_valid_date testValidDate,
+     test_result testResult,
+     purchase_date purchaseDate,
+     purchase_price purchasePrice,
+     purchase_count purchaseCount,
+     is_rent isRent,
+     is_local_test isLocalTest,
+     is_self_test isSelfTest,
+     agency_uuid agencyUuid,
+     agency_name agencyName,
+     test_type testType,
+     test_fee testFee,
+     repair_fee repairFee,
+     fee_desc feeDesc,
+     location_addr locationAddr,
+     dept_uuid deptUuid,
+     mgr_uuid mgrUuid,
+     parts_desc partsDesc,
+     standard_desc standardDesc,
+     row_type rowType,
+     is_file isFile,
+     is_cert_file isCertFile,
+     online_cert_url onlineCertUrl,
+     source_cfm_name sourceCfmName,
+     source_cfm_date sourceCfmDate,
+     comments comments,
+     is_deleted isDeleted,
+     created_time createdTime,
+     created_uuid createdUuid,
+     updated_time updatedTime,
+     updated_name updatedName,
+     org_uuid orgUuid,
+     app_sys_uuid appSysUuid,
+     prod_catalog_uuid prodCatalogUuid
+from
+    res_equip
+where
+    is_deleted = 'N'
+--iff equipUuids != null
+    and equip_uuid in
+    -- for item=item index=index collection=equipUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
 -- [listEquip]
   SELECT
      equip_uuid equipUuid,
@@ -127,6 +196,8 @@ from
     res_equip
 where
     is_deleted = 'N'
+--iff testValidDate != null
+    and test_valid_date <= '#testValidDate#'
 
 -- [insertEquip]
     insert into res_equip
@@ -352,7 +423,7 @@ where
       --iff createdUuid != null
         '#createdUuid#',
       --iff updatedTime != null
-        '#updatedTime#,
+        '#updatedTime#',
       --iff updatedName != null
         '#updatedName#',
       --iff orgUuid != null
@@ -399,9 +470,9 @@ where
       --iff certNo != null
         cert_no = '#certNo#',
       --iff testDate != null
-        test_date = '#testDate,
+        test_date = '#testDate',
       --iff useDate != null
-        use_date = '#useDate,
+        use_date = '#useDate' ,
       --iff useDeptUuid != null
         use_dept_uuid = '#useDeptUuid#',
       --iff isVerify != null
@@ -486,11 +557,16 @@ where
 
 -- [deleteEquip]
 UPDATE
-    res_equip_use
+    res_equip
 -- trim prefix= set suffixOverrides=,
     is_deleted = 'Y',
 -- end
 WHERE
     is_deleted = 'N'
+-- iff equipUuid != null and equipUuid != ''
     and equip_uuid = '#equipUuid#'
--- end
+-- iff equipUuids != null
+    and equip_uuid in
+    -- for item=item index=index collection=equipUuids open=( separator=, close=)
+        '#item#'
+    -- end

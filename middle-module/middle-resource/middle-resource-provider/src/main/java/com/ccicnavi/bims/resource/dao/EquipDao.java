@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
 import com.ccicnavi.bims.resource.pojo.EquipDTO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
@@ -24,6 +25,15 @@ public interface EquipDao {
     PageBean<EquipDO> listEquip(PageParameter<EquipDTO> pageParameter);
 
     /**
+     * @Author MengZiJie
+     * @Description 根据uuids查询设备信息
+     * @Data 2018/11/23 15:29
+     * @Param [equipDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDTO>
+     */
+    List<EquipDO> getEquipList(EquipDTO equipDTO);
+
+    /**
      * @Author panyida
      * @Description 根据设备主键获取设备信息
      * @Date 11:45 2018/11/14
@@ -39,7 +49,7 @@ public interface EquipDao {
      * @Param [equipDO]
      * @Return java.lang.Integer
      */
-    Integer insertEquip(EquipDO equipDO);
+    Integer insertEquip(EquipDO equipDO, EqlTran tran);
 
     /**
      * @Author panyida
@@ -48,7 +58,7 @@ public interface EquipDao {
      * @Param [equipDO]
      * @Return java.lang.Integer
      */
-    Integer updateEquip(EquipDO equipDO);
+    Integer updateEquip(EquipDO equipDO,EqlTran tran);
 
     /**
      * @Author panyida
@@ -57,5 +67,5 @@ public interface EquipDao {
      * @Param [equipUuid]
      * @Return java.lang.Integer
      */
-    Integer deleteEquip(String equipUuid);
+    Integer deleteEquip(EquipDTO equipDTO,EqlTran tran);
 }
