@@ -30,25 +30,25 @@ import java.util.List;
 @Slf4j
 public class UserManagerImpl implements UserManager {
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private UserService userService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private RoleService roleService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private DepartmentService deptService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private MenuService menuService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20888")
+    @Reference
     private HashTemplate hashTemplate;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference
     private PasswdService passwdService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    @Reference
     private SSOService ssoService;
     
     /*
@@ -90,9 +90,10 @@ public class UserManagerImpl implements UserManager {
                 getUserBaseData(userDTO, ssoUser);
                 //调用SSO服务登录操作
                 ReturnT<String> login = ssoService.login(ssoUser);
+                ssoUser.setJsessionID(login.getData());
                 if(login.getCode() == 200) {
                     //SSO返回200 登录成功
-                    return ResultT.success(login.getData());
+                    return ResultT.success(ssoUser);
                 }else {
                     //SSO服务登录失败
                     return ResultT.failure(ResultCode.SSO_LOGIN_FAILURE);

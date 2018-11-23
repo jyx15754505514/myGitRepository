@@ -22,7 +22,7 @@ public class LogController {
 
     private final static Logger log = LoggerFactory.getLogger(LogController.class);
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20881")
+    @Reference
     LogService logService;
 
     /**

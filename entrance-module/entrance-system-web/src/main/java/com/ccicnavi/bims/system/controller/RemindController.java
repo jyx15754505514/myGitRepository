@@ -31,7 +31,7 @@ import static com.ccicnavi.bims.common.ResultCode.*;
 public class RemindController {
 
     private final static Logger log = LoggerFactory.getLogger(RemindController.class);
-    @Reference(timeout = 3000,url = "dubbo://127.0.0.1:20881")
+    @Reference
     private RemindService remindServic;
 
     /**

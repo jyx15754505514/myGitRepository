@@ -195,7 +195,7 @@ insert into order_sample
             '#isDeleted#',
         --iff createdTime != null
             '#createdTime#',
-        --iff createdUuid != null createdUuid and != ''
+        --iff createdUuid != null and createdUuid != ''
             '#createdUuid#',
         --iff createdName != null and createdName != ''
             '#createdName#',
