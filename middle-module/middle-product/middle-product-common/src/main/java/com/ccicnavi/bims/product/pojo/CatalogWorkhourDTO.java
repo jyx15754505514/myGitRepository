@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * @program: bims-backend
- * @description: 该类的作用描述
+ * @description: 产品线对应工时工资DTO
  * @author: LiJie
  * @create: 2018-11-22 11:19
  */
@@ -24,8 +24,10 @@ public class CatalogWorkhourDTO implements Serializable {
     /**产品线ID*/
     private String prodCatalogUuid;
 
+    /**工时工资*/
     private String salaryWorkhour;
 
+    /**备注*/
     private String comments;
 
     private String isDeleted;

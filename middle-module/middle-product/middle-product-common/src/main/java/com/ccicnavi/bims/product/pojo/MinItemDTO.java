@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * @program: bims-backend
- * @description: 该类的作用描述
+ * @description: 最小服务项DTO
  * @author: LiJie
  * @create: 2018-11-21 17:15
  */
