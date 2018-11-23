@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.customer.dao;
 
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
+import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    Integer removeSubcuQuali(SubcQualifiDO subcuQuali) throws Exception;
+    Integer deleteSubcuQuali(SubcQualifiDTO subcQualifiDTO) throws Exception;
 
     /**
      *@Description: 修改分包方资质信息

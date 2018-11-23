@@ -2,6 +2,7 @@ package com.ccicnavi.bims.customer.api;
 
 
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
+import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 
 import java.util.List;
@@ -24,14 +25,26 @@ public interface SubcQualifiService {
      */
     List<SubcQualifiDO> listSubcQuali(SubcontractorDTO subcontractorDTO) throws Exception;
 
-    /**新增分包方资质信息*/
-    int saveSubcQuali(SubcQualifiDO subcQuali) throws Exception;
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 分包方资质信息添加
+     * @Date 22:05 2018/11/23
+     * @Param [subcQuali]
+     * @Return java.lang.Integer
+     */
+    Integer insertSubcQuali(SubcQualifiDO subcQuali) throws Exception;
 
-    /**删除分包方资质信息*/
-    int removeSubcQuali(SubcQualifiDO subcQuali) throws Exception;
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 删除分包方资质信息
+     * @Date 22:25 2018/11/23
+     * @Param [subcQuali]
+     * @Return java.lang.Integer
+     */
+    Integer deleteSubcQuali(SubcQualifiDTO subcQualifiDTO) throws Exception;
 
     /**修改分包方资质信息*/
-    int updateSubcQuali(SubcQualifiDO subcQuali) throws Exception;
+    Integer updateSubcQuali(SubcQualifiDO subcQuali) throws Exception;
 
     /**根据主键返回对应的分包方资质信息*/
     SubcQualifiDO getSubcQuali(SubcQualifiDO subcQuali) throws Exception;

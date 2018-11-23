@@ -117,11 +117,17 @@ INSERT INTO crm_subc_qualification
      -- iff extend3 != null and extend3 != ''
         '#extend3#',
     --end
--- [removeSubcuQuali]
+
+-- [deleteSubcuQuali]
 UPDATE crm_subc_qualification
 SET is_deleted='Y'
 WHERE is_deleted='N'
-AND subc_qualifi_uuid='#subcQualifiUuid#'
+ -- if subcQualifiUuids != null
+       AND subc_qualifi_uuid IN
+        -- for item=item index=index collection=subcQualifiUuids open=( separator=, close=)
+            #item#
+        -- end
+    -- end
 
 
 
