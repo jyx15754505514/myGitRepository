@@ -3,17 +3,13 @@ package com.ccicnavi.bims.orderSample.service;
 import com.ccicnavi.bims.order.dao.impl.OrderSampleDaoImpl;
 import com.ccicnavi.bims.order.pojo.OrderSampleDO;
 import org.junit.Test;
-import org.n3r.eql.Eql;
-
 import java.util.Date;
-
 
 /**
  * @Author songyateng
- * @Description 测试
+ * @Description 测试样品单
  * @Date 17:32 2018/11/22
  */
-
 public class TestOrderSample {
     /**
       * @author songyateng
@@ -25,7 +21,7 @@ public class TestOrderSample {
         try {
             OrderSampleDaoImpl order = new OrderSampleDaoImpl();
             OrderSampleDO orderSampleDO = new OrderSampleDO();
-            orderSampleDO.setSampleUuid("zzzzzzz");
+            orderSampleDO.setSampleUuid("yangpin");
             orderSampleDO.setOrderUuid("AAA");
             orderSampleDO.setSampleCode("DD");
             orderSampleDO.setSampleName("大红包");
@@ -55,7 +51,6 @@ public class TestOrderSample {
             orderSampleDO.setProdCatalogUuid("chanpinxianid");
             orderSampleDO.setOrgUuid("opnnn");
             orderSampleDO.setAppSysUuid("ddddd");
-
             System.err.print(order.insertOrderSample(orderSampleDO, null));
         }   catch (Exception e){
             e.printStackTrace();
@@ -72,11 +67,27 @@ public class TestOrderSample {
         try {
             OrderSampleDaoImpl order = new OrderSampleDaoImpl();
             OrderSampleDO orderSampleDO = new OrderSampleDO();
-            orderSampleDO.setSampleUnit("zzzzzzz");
+            orderSampleDO.setSampleUnit("yangpin");
             System.err.print(order.deleteOrderSample(orderSampleDO, null));
         }   catch (Exception e){
             e.printStackTrace();
         }
+    }
 
+    /**
+      * @author songyateng
+      * @description 查询全部样品
+      * @date 2018/11/23 14:48
+      */
+    @Test
+    public void listOrderSample(){
+        try {
+            OrderSampleDaoImpl order = new OrderSampleDaoImpl();
+            OrderSampleDO orderSampleDO = new OrderSampleDO();
+            orderSampleDO.setSampleUuid("yangpin");
+            System.err.print(order.listOrderSample(orderSampleDO));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
