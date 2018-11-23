@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -52,7 +53,6 @@ public class CatalogOrgServiceImpl implements CatalogOrgService {
     public int updateCatalogOrgDO(CatalogOrgDTO catalogOrgDTO) {
         EqlTran eqlTran = new Eql("DEFAULT").newTran();
         eqlTran.start();
-        boolean success = true ;
         try {
             int count = 0;
             CatalogOrgDO catalogOrgDO = new CatalogOrgDO();
@@ -60,40 +60,33 @@ public class CatalogOrgServiceImpl implements CatalogOrgService {
             if(catalogOrgDTO.getOrganizationUuid()!=null && !"".equals(catalogOrgDTO.getOrganizationUuid())){
                 catalogOrgDO.setOrganizationUuid(catalogOrgDTO.getOrganizationUuid());
                 catalogOrgDao.removeCatalogOrgDO(catalogOrgDO, eqlTran);
-                String[] catalogUuidList = catalogOrgDTO.getCatalogUuidList().split(",",-1);
-                if(catalogUuidList.length>0){
-                    for(int i = 0;i<catalogUuidList.length-1;i++){
-                        CatalogOrgDO catalogOrgDO1 = new CatalogOrgDO();
-                        catalogOrgDO1.setAppSysUuid(catalogOrgDTO.getAppSysUuid());
-                        catalogOrgDO1.setOrganizationUuid(catalogOrgDTO.getOrganizationUuid());
-                        catalogOrgDO1.setProdCatalogUuid(catalogUuidList[i]);
-                        count += catalogOrgDao.saveCatalogOrgDO(catalogOrgDO1,eqlTran);
+                String[] catalogUuidList = catalogOrgDTO.getCatalogUuidList().split(",");
+                for(int i = 0;catalogUuidList!=null&&i<catalogUuidList.length;i++){
+                    if(StringUtils.isEmpty(catalogUuidList[i])){
+                        continue;
                     }
-                }
-                if(catalogUuidList.length-1 != count){
-                    success=false;
+                    CatalogOrgDO catalogOrgDO1 = new CatalogOrgDO();
+                    catalogOrgDO1.setAppSysUuid(catalogOrgDTO.getAppSysUuid());
+                    catalogOrgDO1.setOrganizationUuid(catalogOrgDTO.getOrganizationUuid());
+                    catalogOrgDO1.setProdCatalogUuid(catalogUuidList[i]);
+                    count += catalogOrgDao.saveCatalogOrgDO(catalogOrgDO1,eqlTran);
                 }
             }
             //以产品线id进行更新
             if(catalogOrgDTO.getProdCatalogUuid()!=null && !"".equals(catalogOrgDTO.getProdCatalogUuid())){
                 catalogOrgDO.setProdCatalogUuid(catalogOrgDTO.getProdCatalogUuid());
                 catalogOrgDao.removeCatalogOrgDO(catalogOrgDO,eqlTran);
-                String[] orgUuidList = catalogOrgDTO.getOrgUuidList().split(",",-1);
-                if(orgUuidList.length>0){
-                    for(int i = 0;i<orgUuidList.length-1;i++){
-                        CatalogOrgDO catalogOrgDO1 = new CatalogOrgDO();
-                        catalogOrgDO1.setAppSysUuid(catalogOrgDTO.getAppSysUuid());
-                        catalogOrgDO1.setOrganizationUuid(orgUuidList[i]);
-                        catalogOrgDO1.setProdCatalogUuid(catalogOrgDTO.getProdCatalogUuid());
-                        count += catalogOrgDao.saveCatalogOrgDO(catalogOrgDO1,eqlTran);
+                String[] orgUuidList = catalogOrgDTO.getOrgUuidList().split(",");
+                for(int i = 0;orgUuidList!=null&&i<orgUuidList.length;i++){
+                    if(StringUtils.isEmpty(orgUuidList[i])){
+                        continue;
                     }
+                    CatalogOrgDO catalogOrgDO1 = new CatalogOrgDO();
+                    catalogOrgDO1.setAppSysUuid(catalogOrgDTO.getAppSysUuid());
+                    catalogOrgDO1.setOrganizationUuid(orgUuidList[i]);
+                    catalogOrgDO1.setProdCatalogUuid(catalogOrgDTO.getProdCatalogUuid());
+                    count += catalogOrgDao.saveCatalogOrgDO(catalogOrgDO1,eqlTran);
                 }
-                if(orgUuidList.length-1 != count){
-                    success=false;
-                }
-            }
-            if(!success){
-                eqlTran.rollback();
             }
             eqlTran.commit();
             return count;
