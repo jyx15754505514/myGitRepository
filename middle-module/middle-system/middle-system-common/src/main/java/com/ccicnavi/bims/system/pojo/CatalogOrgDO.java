@@ -16,11 +16,17 @@ import java.io.Serializable;
 @Setter
 @ToString
 public class CatalogOrgDO implements Serializable {
-
+    /**
+     *机构uuid
+     */
     private String organizationUuid;
-
+    /**
+     *产品线uuid
+     */
     private String prodCatalogUuid;
-
+    /**
+     *系统编号
+     */
     private String appSysUuid;
 
 
