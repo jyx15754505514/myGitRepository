@@ -32,9 +32,9 @@ public class SubcQualifiTest {
         {
             subcQualifiDOTest.setSubcQualifiUuid("wzy"+i);
             subcQualifiDOTest.setSubcUuid("sub"+i);
-            subcQualifiDOTest.setBusinessLine("化工"+i+"号线");
-            subcQualifiDOTest.setOrgUuid("wylzsyforever");
-            subcQualifiDOTest.setAppSysUuid("wylzsyeveryday");
+            //subcQualifiDOTest.setBusinessLine("化工"+i+"号线");
+           // subcQualifiDOTest.setOrgUuid("wylzsyforever");
+            //subcQualifiDOTest.setAppSysUuid("wylzsyeveryday");
             int count=subcQualifiDaoTest.saveSubcuQuali(subcQualifiDOTest);
             System.out.println(count);
         }

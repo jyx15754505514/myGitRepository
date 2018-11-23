@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.product.service;
 
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.Impl.SubcontractorDaoImpl;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
@@ -21,8 +22,16 @@ public class SubcontractorTest {
 
     @Test
     public void testListSubcontractor() {
-        List<SubcontractorDO> subcontractorDOList = subcontractorDaoTest.listSubcontractor();
-        System.out.println(subcontractorDOList);
+        try{
+            PageParameter<SubcontractorDO> pageParameter = new PageParameter<>();
+            pageParameter.startPage = 1;
+            pageParameter.pageRows = 2;
+            SubcontractorDO subcontractorDO = new SubcontractorDO();
+            pageParameter.setParameter(subcontractorDO);
+            subcontractorDaoTest.listSubcontractor(pageParameter);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -30,12 +39,12 @@ public class SubcontractorTest {
         for (int i = 1; i <= 10; i++) {
             SubcontractorDO subcontractorDO = new SubcontractorDO();
             subcontractorDO.setSubcontractorUuid("asd" + i);
-            subcontractorDO.setBusinessLine("类型" + i);
+            subcontractorDO.setProdCatalogUuid("类型" + i);
             subcontractorDO.setOrgUuid("另一个"+i);
             subcontractorDO.setAppSysUuid("DeptUuid"+i);
             subcontractorDO.setCreatedUuid("cud"+i);
             subcontractorDO.setCreatedName("徐"+i);
-            int count = subcontractorDaoTest.saveSubcontractor(subcontractorDO);
+            int count = subcontractorDaoTest.insertSubcontractor(subcontractorDO);
             System.out.println("count-----" + count);
         }
     }
