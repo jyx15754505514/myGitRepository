@@ -80,8 +80,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public Integer insertUser(UserDTO userDTO){
         EqlTran tran = new Eql("DEFAULT").newTran();
-        Integer saveUser = null;
-        Integer insertRole = null;
+        Integer saveUser = 0;
+        Integer insertRole = 0;
         try{
             tran.start();
             //新增用户表信息
@@ -92,14 +92,15 @@ public class UserServiceImpl implements UserService{
                 for(String roleUuid : roleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表
-                    insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
+                    insertRole += roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
-            if(saveUser != null && saveUser > 0 && insertRole != null && insertRole > 0) {
-                tran.commit();
-            }else {
-                new RuntimeException("新建用户失败");
+            if(saveUser == 0 || insertRole != roleList.size()) {
+                tran.rollback();
+                log.debug("新建用户失败");
+                return null;
             }
+            tran.commit();
         }catch (Exception e){
             log.error("新建用户失败", e);
             tran.rollback();
