@@ -4,7 +4,6 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
 import com.ccicnavi.bims.resource.pojo.EquipDTO;
-
 import java.util.List;
 
 /**
@@ -33,6 +32,14 @@ public interface EquipService {
      */
     PageBean<EquipDO> expireListEquip(PageParameter<EquipDTO> pageParameter);
 
+    /**
+     * @Author MengZiJie
+     * @Description 获取设备信息及领用、检定记录
+     * @Data 2018/11/23 20:21
+     * @Param [equipDTO]
+     * @Return com.ccicnavi.bims.resource.pojo.EquipDTO
+     */
+    EquipDTO getEquipInfolist(EquipDO equipDO);
 
     /**
      * @Author MengZiJie
@@ -50,7 +57,7 @@ public interface EquipService {
      * @Param [equipUuid]
      * @Return com.ccicnavi.bims.ource.pojo.EquipDO
      */
-    EquipDO getEquip(String equipUuid);
+    EquipDTO getEquip(EquipDO equipDO);
 
     /**
      * @Author panyida
