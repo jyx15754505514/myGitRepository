@@ -42,7 +42,7 @@ public interface SerialnumDao {
     List<SerialnumCfgItemDO> getSeriItemList(String sncUuid);
     /**
      * 根据业务编号、机构编号、原业务编号查询编号信息。包括当前序号
-     * */
+     */
     SerialnumDO getSerialnumDO(SerialnumDO serialnumDO);
 
     /**新增规则编号信息*/
