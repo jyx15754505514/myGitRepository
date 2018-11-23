@@ -236,4 +236,23 @@ public class UserController {
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
+
+    /**
+     *@Description: 根据用户分配角色
+     *@Param: [userDO]
+     *@return: com.ccicnavi.bims.common.ResultT
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    @RequestMapping(value = "/addUserRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT addUserRole(@RequestBody UserDTO userDTO) {
+        Integer integer = null;
+        try {
+            integer = userService.addUserRole(userDTO);
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("根据用户分配角色失败", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
+        }
+    }
 }
