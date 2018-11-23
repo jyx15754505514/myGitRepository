@@ -1,16 +1,14 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.EquipTestDao;
-import com.ccicnavi.bims.resource.pojo.EquipHoldDO;
 import com.ccicnavi.bims.resource.pojo.EquipTestDO;
 import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -29,8 +27,20 @@ public class EquipTestDaoImpl implements EquipTestDao {
      * @Return com.ccicnavi.bims.resource.pojo.EquipTestDO
      */
     @Override
-    public EquipTestDO getEquipTest(String equipTestUuid){
-        return EqlUtils.getInstance("druid").selectFirst("getEquipTest").params(equipTestUuid).returnType(EquipTestDO.class).execute();
+    public EquipTestDO getEquipTest(EquipTestDO equipTestDO){
+        return new Eql().selectFirst("getEquipTest").params(equipTestDO).returnType(EquipTestDO.class).execute();
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 根据uuids查询设备信息
+     * @Data 2018/11/23 19:50
+     * @Param [equipTestDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDO>
+     */
+    @Override
+    public List<EquipTestDO> getEquipTestList(EquipTestDTO equipTestDTO) {
+        return new Eql().select("getEquipTestList").params(equipTestDTO).returnType(EquipTestDO.class).execute();
     }
 
     /**
@@ -43,7 +53,7 @@ public class EquipTestDaoImpl implements EquipTestDao {
     @Override
     public PageBean<EquipTestDO> listEquipTest(PageParameter<EquipTestDO> pageParameter){
         EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
-        List<EquipTestDO> listEquipTest = new Eql("druid").select("listEquipTest").params(pageParameter.getParameter()).returnType(EquipTestDO.class).limit(eqlPage).execute();
+        List<EquipTestDO> listEquipTest = new Eql().select("listEquipTest").params(pageParameter.getParameter()).returnType(EquipTestDO.class).limit(eqlPage).execute();
         return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquipTest);
     }
 
@@ -55,8 +65,11 @@ public class EquipTestDaoImpl implements EquipTestDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertEquipTest(EquipTestDO equipTestDO){
-        return EqlUtils.getInstance("druid").insert("insertEquipTest").params(equipTestDO).returnType(Integer.class).execute();
+    public Integer insertEquipTest(EquipTestDO equipTestDO, EqlTran tran){
+        if(tran != null){
+            return new Eql().useTran(tran).insert("insertEquipTest").params(equipTestDO).returnType(Integer.class).execute();
+        }
+        return new Eql().insert("insertEquipTest").params(equipTestDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -67,8 +80,11 @@ public class EquipTestDaoImpl implements EquipTestDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer updateEquipTest(EquipTestDO equipTestDO){
-        return EqlUtils.getInstance("druid").update("updateEquipTest").params(equipTestDO).returnType(Integer.class).execute();
+    public Integer updateEquipTest(EquipTestDO equipTestDO, EqlTran tran){
+        if(tran != null){
+            return new Eql().useTran(tran).update("updateEquipTest").params(equipTestDO).returnType(Integer.class).execute();
+        }
+        return new Eql().update("updateEquipTest").params(equipTestDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -79,8 +95,11 @@ public class EquipTestDaoImpl implements EquipTestDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquipTest(String equipTestUuid){
-        return EqlUtils.getInstance("druid").delete("deleteEquipTest").params(equipTestUuid).returnType(Integer.class).execute();
+    public Integer deleteEquipTest(EquipTestDTO equipTestDTO, EqlTran tran){
+        if(tran != null){
+            return new Eql().useTran(tran).delete("deleteEquipTest").params(equipTestDTO).returnType(Integer.class).execute();
+        }
+        return new Eql().delete("deleteEquipTest").params(equipTestDTO).returnType(Integer.class).execute();
     }
 
     /**
@@ -93,7 +112,7 @@ public class EquipTestDaoImpl implements EquipTestDao {
     @Override
     public PageBean<EquipTestDTO> listEquipTestDTO(PageParameter<EquipTestDTO> pageParameter){
         EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
-        List<EquipTestDTO> listEquipTestDTO = new Eql("druid").select("listEquipTestDTO").params(pageParameter.getParameter()).returnType(EquipTestDTO.class).limit(eqlPage).execute();
+        List<EquipTestDTO> listEquipTestDTO = new Eql().select("listEquipTestDTO").params(pageParameter.getParameter()).returnType(EquipTestDTO.class).limit(eqlPage).execute();
         return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquipTestDTO);
     }
 }

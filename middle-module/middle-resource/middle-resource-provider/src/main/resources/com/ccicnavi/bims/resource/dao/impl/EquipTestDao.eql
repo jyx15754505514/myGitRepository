@@ -62,6 +62,44 @@ where
 --iff equipTestUuid != null and equipTestUuid != ''
     and equip_test_uuid = '#equipTestUuid#'
 
+-- [getEquipTestList]
+  SELECT
+    equip_test_uuid equipTestUuid,
+    equip_uuid equipUuid,
+    cert_no certNo,
+    test_date testDate,
+    test_cycle testCycle,
+    is_long_term isLongTerm,
+    test_valid_date testValidDate,
+    test_result testResult,
+    test_type testType,
+    test_fee testFee,
+    fee_desc feeDesc,
+    standard_desc standardDesc,
+    online_cert_url onlineCertUrl,
+    prod_catalog_uuid prodCatalogUuid,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    updated_uuid updatedUuid,
+    app_sys_uuid appSysUuid
+    from
+    res_equip_test
+where
+    is_deleted = 'N'
+--iff equipTestUuids != null
+    and equip_test_uuid in
+     -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
+        '#item#'
+     -- end
+-- iff equipUuid != null and equipUuid != ''
+    equip_uuid = '#equipUuid#'
+
 -- [insertEquipTest]
   insert into res_equip_test
     -- trim prefix=( suffix=) suffixOverrides=,
