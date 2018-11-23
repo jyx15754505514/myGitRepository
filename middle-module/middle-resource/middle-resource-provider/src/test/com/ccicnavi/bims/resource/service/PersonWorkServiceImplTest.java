@@ -1,8 +1,8 @@
-package com.ccicnavi.bims.resource.service;
-
 import com.ccicnavi.bims.resource.dao.impl.PersonWorkDaoImpl;
 import com.ccicnavi.bims.resource.pojo.PersonWorkDO;
 import org.junit.Test;
+
+
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class PersonWorkServiceImplTest {
         personWorkDO.setProdCatalogUuid("33");
         personWorkDO.setPersonUuid("33");
         personWorkDO.setWorkUuid("33");
-        personWorkDO.setOrgName("33");
+        //personWorkDO.setOrgName("33");
         personWorkDO.setOrgUuid("33");
         personWorkDO.setAppSysUuid("33");
        // Integer integer = personWorkDao.insertPersonWorkDO(personWorkDO);

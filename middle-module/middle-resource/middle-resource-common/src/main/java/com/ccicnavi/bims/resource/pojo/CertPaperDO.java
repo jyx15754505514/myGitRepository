@@ -3,8 +3,10 @@ package com.ccicnavi.bims.resource.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.io.Serializable;
 import java.util.Date;
-/**
+/*
  * 证书纸
  * @Date 2018/11/13 17 54
  * @Auther mzj
@@ -12,7 +14,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class CertPaperDO {
+public class CertPaperDO  implements Serializable {
     private String paperUuid;
 
     private String paperStartNum;
@@ -56,4 +58,8 @@ public class CertPaperDO {
     private String extend2;
 
     private String extend3;
+
+    private String comments;
+
+    private String prodCatalogUuid;
 }
