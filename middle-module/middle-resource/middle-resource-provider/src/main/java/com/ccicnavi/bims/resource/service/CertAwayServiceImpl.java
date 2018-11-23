@@ -4,6 +4,8 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.CertAwayService;
 import com.ccicnavi.bims.resource.dao.CertAwayDao;
 import com.ccicnavi.bims.resource.dao.CertPaperDao;
@@ -73,5 +75,36 @@ public class CertAwayServiceImpl implements CertAwayService {
             eqlTran.close();
         }
         return ResultT.failure(ResultCode.ADD_FAILURE);
+    }
+    /*
+     * @Author heibin
+     * @Description  证书纸管理-分发记录分页列表
+     * @Date 22:42 2018/11/23
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.CertAwayDO>
+     */
+    @Override
+    public PageBean<CertAwayDO> listCertAwayPage(PageParameter<CertAwayDO> pageParameter) {
+        try {
+            return certAwayDao.listCertAwayPage(pageParameter);
+        } catch (Exception e) {
+            log.error(" 证书纸管理-分发记录分页查询失败");
+            return null;
+        }
+    }
+    /*
+     * 作废证书纸
+     * @param certPaper
+     * @return
+     */
+    @Override
+    public Integer deleteCertAway(CertAwayDO certAwayDO) {
+        try {
+            return certAwayDao.deleteCertAway(certAwayDO);
+        } catch (Exception e) {
+            log.debug("作废证书纸管理-分发记录失败",e);
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
