@@ -32,7 +32,7 @@ public class ProductStandardInfoController {
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     private StandardInfoService standardInfoService;
 
-    /*
+    /**
      * 保存产品标准信息
      * @Author lvqiru
      * @Date  2018/11/21 20:00
@@ -42,8 +42,6 @@ public class ProductStandardInfoController {
     @RequestMapping(value = "saveStandardInfo",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT saveStandardInfo(@RequestBody StandardInfoDTO psiDto){
         log.info("开始保存产品标准信息 Param: " + JSON.toJSONString(psiDto) + " Time: " + new Date());
-        ResultT resultT = new ResultT();
-
         try {
             Integer count = standardInfoService.insertStandardInfo(psiDto);
             if (count > 0) {
@@ -60,7 +58,7 @@ public class ProductStandardInfoController {
         }
     }
 
-    /*
+    /**
      * 移除产品标准信息
      * @Author lvqiru
      * @Date  2018/11/21 20:00
@@ -70,8 +68,6 @@ public class ProductStandardInfoController {
     @RequestMapping(value = "removeStandardInfo",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT removeStandardInfo(@RequestBody StandardInfoDTO psiDto){
         log.info("开始移除产品标准信息 Param: " + JSON.toJSONString(psiDto) + " Time: " + new Date());
-        ResultT resultT = new ResultT();
-
         try {
             Integer count = standardInfoService.deleteStandarInfo(psiDto);
             if (count > 0) {
@@ -88,7 +84,7 @@ public class ProductStandardInfoController {
         }
     }
 
-    /*
+    /**
      * 修改产品标准信息
      * @Author lvqiru
      * @Date  2018/11/21 20:00
@@ -98,8 +94,6 @@ public class ProductStandardInfoController {
     @RequestMapping(value = "updateStandardInfo",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT updateStandardInfo(@RequestBody StandardInfoDTO psiDto){
         log.info("开始修改产品标准信息 Param: " + JSON.toJSONString(psiDto) + " Time: " + new Date());
-        ResultT resultT = new ResultT();
-
         try {
             Integer count = standardInfoService.updateStandarInfo(psiDto);
             if (count > 0) {
@@ -116,7 +110,7 @@ public class ProductStandardInfoController {
         }
     }
 
-    /*
+    /**
      * 查询产品标准信息
      * @Author lvqiru
      * @Date  2018/11/21 20:00
@@ -126,8 +120,6 @@ public class ProductStandardInfoController {
     @RequestMapping(value = "getStandardInfo",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT getStandardInfo(@RequestBody StandardInfoDTO psiDto){
         log.info("开始查询产品标准信息 Param: " + JSON.toJSONString(psiDto) + " Time: " + new Date());
-        ResultT resultT = new ResultT();
-
         try {
             StandardInfoDO standardInfoDo = standardInfoService.getStandardInfo(psiDto);
             if (null == standardInfoDo) {
@@ -143,7 +135,7 @@ public class ProductStandardInfoController {
         }
     }
 
-    /*
+    /**
      * 查询产品标准信息列表
      * @Author lvqiru
      * @Date  2018/11/21 20:00
@@ -153,8 +145,6 @@ public class ProductStandardInfoController {
     @RequestMapping(value = "listStandardInfo",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listStandardInfo(@RequestBody StandardInfoDTO psiDto){
         log.info("开始查询产品标准信息列表 Param: " + JSON.toJSONString(psiDto) + " Time: " + new Date());
-        ResultT resultT = new ResultT();
-
         try {
             List<StandardInfoDO> productStandardInfoList = standardInfoService.listStandardInfo(psiDto);
             if (null == productStandardInfoList) {
@@ -170,7 +160,7 @@ public class ProductStandardInfoController {
         }
     }
 
-    /*
+    /**
      * 分页查询产品标准信息
      * @Author lvqiru
      * @Date  2018/11/21 20:00
@@ -180,8 +170,6 @@ public class ProductStandardInfoController {
     @RequestMapping(value = "pageStandardInfo",method = RequestMethod.POST)
     public ResultT pageStandardInfo(@RequestBody PageParameter<StandardInfoDTO> pageParameter){
         log.info("开始分页查询产品标准信息 Param: " + pageParameter.getParameter() + " Time: " + new Date());
-        ResultT resultT = new ResultT();
-
         try {
             PageBean<StandardInfoDO> productStandardInfoList = standardInfoService.listStandardInfoPage(pageParameter);
             log.info("分页查询产品标准信息结果: " + JSON.toJSONString(productStandardInfoList));
