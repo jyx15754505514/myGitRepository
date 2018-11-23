@@ -41,12 +41,12 @@ public class RoleUserDaoImpl implements RoleUserDao {
     }
 
     @Override
-    public Integer insertRoleUser(RoleUserDO roleUserDO, EqlTran tran) {
+    public Integer insertRoleUser(RoleUserDTO roleUserDTO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
         if(tran != null) {
             eql.useTran(tran);
         }
-        return new Eql("DEFAULT").insert("insertRoleUser").params(roleUserDO).returnType(Integer.class).execute();
+        return new Eql("DEFAULT").insert("insertRoleUser").params(roleUserDTO).returnType(Integer.class).execute();
     }
 
     /**

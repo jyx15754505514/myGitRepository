@@ -80,8 +80,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public Integer insertUser(UserDTO userDTO){
         EqlTran tran = new Eql("DEFAULT").newTran();
-        Integer saveUser = null;
-        Integer insertRole = null;
+        Integer saveUser = 0;
+        Integer insertRole = 0;
         try{
             tran.start();
             //新增用户表信息
@@ -92,14 +92,15 @@ public class UserServiceImpl implements UserService{
                 for(String roleUuid : roleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表
-                    insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
+                    insertRole += roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
-            if(saveUser != null && saveUser > 0 && insertRole != null && insertRole > 0) {
-                tran.commit();
-            }else {
-                new RuntimeException("新建用户失败");
+            if(saveUser == 0 || insertRole != roleList.size()) {
+                tran.rollback();
+                log.debug("新建用户失败");
+                return null;
             }
+            tran.commit();
         }catch (Exception e){
             log.error("新建用户失败", e);
             tran.rollback();
@@ -144,7 +145,6 @@ public class UserServiceImpl implements UserService{
             if(deleteRoleUser != null && insertRole != null) {
                 tran.commit();
             }
-
         } catch (Exception e) {
             log.error("更新登录用户信息失败",e);
             tran.rollback();
@@ -247,26 +247,29 @@ public class UserServiceImpl implements UserService{
     public Integer addUserRole(UserDTO userDTO) {
         EqlTran tran = new Eql("DEFAULT").newTran();
         Integer insertRole = null;
+        Integer deleteRoleUser = null;
         try {
             tran.start();
-            List<String> roleList = userDTO.getAddRoleList();
-            //判断角色是否为空
-            if(roleList != null && roleList.size() > 0){
-                for(String roleUuid : roleList){
+            List<String> deleteRoleList = userDTO.getDeleteRoleList();
+            if(deleteRoleList != null && deleteRoleList.size() > 0){
+                deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
+            }
+            //添加角色的集合不为空就根据用户uuid添加用户和角色信息
+            List<String> addRoleList = userDTO.getAddRoleList();
+            if(addRoleList != null && addRoleList.size() > 0){
+                for(String roleUuid : addRoleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表
                     insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
-            if(insertRole !=null){
-                tran.commit();
-            }else {
-                new RuntimeException("分配角色失败");
+            if((insertRole != null && insertRole != addRoleList.size()) || (deleteRoleUser != null && deleteRoleUser != deleteRoleList.size())) {
+                tran.rollback();
+                return null;
             }
+            tran.commit();
         } catch (Exception e) {
             log.error("分配角色失败",e);
-            tran.rollback();
-            return null;
         }
         return insertRole;
     }

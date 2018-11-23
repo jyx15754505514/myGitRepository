@@ -17,22 +17,22 @@ import java.io.Serializable;
 public class SerialnumCfgItemDO implements Serializable {
     /**
      * 项uuid
-     * */
+     */
     private String sncdUuid;
     /**
      * 规则uuid
-     * */
+     */
     private String sncUuid;
     /**
      * 规则项类型，DATE,TEXT,SYS,OLD,N
-     * */
+     */
     private String sncdType;
     /**
      * 规则项值
-     * */
+     */
     private String sncdValue;
     /**
      * 排序序号
-     * */
+     */
     private Integer sncdOrderNum;
 }
