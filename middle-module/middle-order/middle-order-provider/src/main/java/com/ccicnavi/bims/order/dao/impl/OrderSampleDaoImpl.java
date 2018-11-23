@@ -5,6 +5,9 @@ import com.ccicnavi.bims.order.pojo.OrderSampleDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /**
  * @Author MengZiJie
  * @Description 标准样品库
@@ -42,5 +45,17 @@ public class OrderSampleDaoImpl implements OrderSampleDao {
             return eql.useTran(tran).update("deleteOrderSample").params(orderSampleDO).returnType(Integer.class).execute();
         }
         return eql.update("deleteOrderSample").params(orderSampleDO).returnType(Integer.class).execute();
+    }
+    /**
+      * @author songyateng
+      * @description
+      * @date 2018/11/23 14:46
+      * @Param [orderSampleDO]
+      * @return java.util.List<com.ccicnavi.bims.order.pojo.OrderSampleDO>
+      */
+    @Override
+    public List<OrderSampleDO> listOrderSample(OrderSampleDO orderSampleDO) throws Exception {
+        Eql eql = new Eql("DEFAULT");
+        return eql.select("listOrderSample").params(orderSampleDO).returnType(OrderSampleDO.class).execute();
     }
 }

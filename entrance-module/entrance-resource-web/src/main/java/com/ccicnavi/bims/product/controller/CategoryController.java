@@ -57,6 +57,7 @@ public class CategoryController {
 
     /**
      * 查询全部产品分类信息()
+     *
      * @return
      */
     @RequestMapping(value = "/listCategoryPage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -69,7 +70,6 @@ public class CategoryController {
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
-
 
 
     /**
@@ -173,6 +173,7 @@ public class CategoryController {
 
     /**
      * 删除产品分类信息
+     *
      * @return
      */
     @RequestMapping(value = "/removeCategory", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -195,14 +196,14 @@ public class CategoryController {
     }
 
     /**
+     * @return com.ccicnavi.bims.common.ResultT
      * @Author guojinxu
      * @Description 查询产品类别与组织机构关系
      * @Date 2018/11/22 15:27
      * @Param [categoryOrgDO]
-     * @return com.ccicnavi.bims.common.ResultT
      **/
     @RequestMapping(value = "/listCategoryOrgDO", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listCategoryOrgDO(@RequestBody CategoryOrgDO categoryOrgDO){
+    public ResultT listCategoryOrgDO(@RequestBody CategoryOrgDO categoryOrgDO) {
         try {
             List<CategoryOrgDO> categoryOrgDOList = categoryOrgService.listCategoryOrgDO(categoryOrgDO);
             return ResultT.success(categoryOrgDOList);
@@ -213,20 +214,53 @@ public class CategoryController {
     }
 
     /**
+     * @return com.ccicnavi.bims.common.ResultT
      * @Author guojinxu
      * @Description 更新产品类别与组织机构关系
      * @Date 2018/11/22 15:29
      * @Param [categoryOrgDTO]
-     * @return com.ccicnavi.bims.common.ResultT
      **/
     @RequestMapping(value = "/updateCategoryOrgDO", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT updateCategoryOrgDO(@RequestBody CategoryOrgDTO categoryOrgDTO){
+    public ResultT updateCategoryOrgDO(@RequestBody CategoryOrgDTO categoryOrgDTO) {
         try {
             int num = categoryOrgService.updateCategoryOrgDO(categoryOrgDTO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.RENEW_FAILURE);
+        }
+    }
+
+
+    /**
+     * 根据所属公司机构和业务线查询出所有子级产品分类信息(省公司)
+     *
+     * @return
+     */
+    @RequestMapping(value = "/listCategoryByOrgAndProd", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT listCategoryByOrgAndProd(@RequestBody CategoryDTO categoryDTO) {
+        try {
+            List<CategoryDO> CustInvoiceList = categoryService.listCategoryByOrgAndProd(categoryDTO);
+            return ResultT.success(CustInvoiceList);
+        } catch (Exception e) {
+            log.error("根据所属公司机构和业务线查询出所有子级产品分类信息(省公司)~", e);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+    }
+
+    /**
+     * 根据所属公司机构和业务线查询出所有子级产品分类信息(子公司)
+     *
+     * @return
+     */
+    @RequestMapping(value = "/listCategorySubByOrgAndProd", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT listCategorySubByOrgAndProd(@RequestBody CategoryDTO categoryDTO) {
+        try {
+            List<CategoryDO> CustInvoiceList = categoryService.listCategorySubByOrgAndProd(categoryDTO);
+            return ResultT.success(CustInvoiceList);
+        } catch (Exception e) {
+            log.error("根据所属公司机构和业务线查询出所有子级产品分类信息(子公司)~", e);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
 

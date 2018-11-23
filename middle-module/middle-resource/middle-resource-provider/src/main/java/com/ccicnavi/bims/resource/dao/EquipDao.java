@@ -3,6 +3,7 @@ package com.ccicnavi.bims.resource.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
+import com.ccicnavi.bims.resource.pojo.EquipDTO;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface EquipDao {
      * @Param [equipDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipDO>
      */
-    PageBean<EquipDO> listEquip(PageParameter<EquipDO> pageParameter);
+    PageBean<EquipDO> listEquip(PageParameter<EquipDTO> pageParameter);
 
     /**
      * @Author panyida
