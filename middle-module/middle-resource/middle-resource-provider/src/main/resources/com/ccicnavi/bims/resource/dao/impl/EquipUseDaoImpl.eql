@@ -13,6 +13,7 @@ SELECT
     created_uuid createdUuid,
     created_name createdName,
     updated_time updatedTime,
+    updated_uuid updatedUuid,
     updated_name updatedName,
     org_uuid orgUuid,
     app_sys_uuid appSysUuid
@@ -82,6 +83,7 @@ where
     created_uuid createdUuid,
     created_name createdName,
     updated_time updatedTime,
+    updated_uuid updatedUuid,
     updated_name updatedName,
     org_uuid orgUuid,
     app_sys_uuid appSysUuid
@@ -99,114 +101,122 @@ where
 -- [insertEquipUse]
     insert into res_equip_use
     -- trim prefix=( suffix=) suffixOverrides=,
-      --iff equipUseUuid != null
+      --iff equipUseUuid != null and equipUseUuid != ''
         equip_use_uuid,
-      --iff equipUuid != null
+      --iff equipUuid != null and equipUuid != ''
         equip_uuid,
       --iff useDate != null
         use_date,
-      --iff usePerson != null
+      --iff usePerson != null and usePerson != ''
         use_person,
-      --iff useDept != null
+      --iff useDept != null and useDept != ''
         use_dept,
       --iff backDate != null
         back_date,
-      --iff prodCatalogPuid != null
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
         prod_catalog_uuid,
-      --iff comments != null
+      --iff comments != null and comments != ''
         comments,
-      --iff isDeleted != null
+      --iff isDeleted != null and isDeleted != ''
         is_deleted,
       --iff createdTime != null
         created_time,
-      --iff createdUuid != null
+      --iff createdUuid != null and createdUuid != ''
         created_uuid,
-      --iff createdName != null
+      --iff createdName != null and createdName != ''
         created_name,
       --iff updatedTime != null
         updated_time,
-      --iff updatedName != null
+      --iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
+      --iff updatedName != null and updatedName != ''
         updated_name,
-      --iff orgUuid != null
+      --iff orgUuid != null and orgUuid != ''
         org_uuid,
-      --iff appSysUuid != null
-        app_sys_uuid
+      --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid,
     --end
     -- trim prefix=values( suffix=) suffixOverrides=,
-      --iff equipUseUuid != null
+      --iff equipUseUuid != null and equipUseUuid != ''
         '#equipUseUuid#',
-      --iff equipUuid != null
+      --iff equipUuid != null and equipUseUuid != ''
         '#equipUuid#',
       --iff useDate != null
         '#useDate#',
-      --iff usePerson != null
+      --iff usePerson != null and usePerson != ''
         '#usePerson#',
-      --iff useDept != null
+      --iff useDept != null and useDept != ''
         '#useDept#',
       --iff backDate != null
         '#backDate#',
-      --iff prodCatalogPuid != null
-        '#prodCatalogPuid#',
-      --iff comments != null
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+      --iff comments != null and comments != ''
         '#comments#',
-      --iff isDeleted != null
+      --iff isDeleted != null and isDeleted != ''
         '#isDeleted#',
       --iff createdTime != null
         '#createdTime#',
-      --iff createdUuid != null
+      --iff createdUuid != null and createdUuid != ''
         '#createdUuid#',
-      --iff createdName != null
+      --iff createdName != null and createdName != ''
         '#createdName#',
       --iff updatedTime != null
         '#updatedTime#',
-      --iff updatedName != null
+      --iff updatedUuid != null and updatedUuid != ''
+        '#updatedUuid#',
+      --iff updatedName != null and updatedName != ''
         '#updatedName#',
-      --iff orgUuid != null
+      --iff orgUuid != null and orgUuid != ''
         '#orgUuid#',
-      --iff appSysUuid != null
-        '#appSysUuid#'
+      --iff appSysUuid != null and appSysUuid != ''
+        '#appSysUuid#',
     --end
 
--- [updateEquip]
+-- [updateEquipUse]
     update res_equip_use
     -- trim prefix= set suffixOverrides=,
-      --iff equipUuid != null
+      --iff equipUseUuid != null and equipUseUuid != ''
+        equip_use_uuid = '#equipUseUuid#',
+      --iff equipUuid != null and equipUuid != ''
         equip_uuid = '#equipUuid#',
       --iff useDate != null
         use_date = '#useDate#',
-      --iff usePerson != null
+      --iff usePerson != null and usePerson != ''
         use_person = '#usePerson#',
-      --iff useDept != null
+      --iff useDept != null and useDept != ''
         use_dept = '#useDept#',
       --iff backDate != null
         back_date = '#backDate#',
-      --iff prodCatalogPuid != null
-        prod_catalog_uuid = '#prodCatalogPuid#',
-      --iff comments != null
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
+      --iff comments != null and comments != ''
         comments = '#comments#',
-      --iff isDeleted != null
+      --iff isDeleted != null and isDeleted != ''
         is_deleted = '#isDeleted#',
       --iff createdTime != null
         created_time = '#createdTime#',
-      --iff createdUuid != null
+      --iff createdUuid != null and createdUuid != ''
         created_uuid = '#createdUuid#',
-      --iff createdName != null
+      --iff createdName != null and createdName != ''
         created_name = '#createdName#',
       --iff updatedTime != null
         updated_time = '#updatedTime#',
-      --iff updatedName != null
+      --iff updatedUuid != null and updatedUuid != ''
+        updated_uuid = '#updatedUuid#',
+      --iff updatedName != null and updatedName != ''
         updated_name = '#updatedName#',
-      --iff orgUuid != null
+      --iff orgUuid != null and orgUuid != ''
         org_uuid = '#orgUuid#',
-      --iff appSysUuid != null
-        app_sys_uuid = '#appSysUuid#'
+      --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
   -- end
 where
     is_deleted = 'N'
     and equip_use_uuid = '#equipUseUuid#'
 -- end
 
--- [deleteEquip]
+-- [deleteEquipUse]
 UPDATE
     res_equip_use
 -- trim prefix= set suffixOverrides=,
