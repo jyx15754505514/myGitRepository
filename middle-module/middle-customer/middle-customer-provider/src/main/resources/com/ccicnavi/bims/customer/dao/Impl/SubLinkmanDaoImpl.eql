@@ -1,4 +1,4 @@
--- [listLinkman]
+-- [listSubLinkman]
 SELECT
 	linkman_uuid linkmanUuid,
 	subc_uuid subcUuid,
@@ -43,7 +43,7 @@ WHERE
         --end
 
 
--- [getLinkman]
+-- [getSubLinkman]
 SELECT
     linkman_uuid linkmanUuid,
     subc_uuid subcUuid,
@@ -80,7 +80,7 @@ WHERE
 and linkman_uuid = '#linkmanUuid#'
 
 
--- [insertLinkman]
+-- [insertSubLinkman]
 insert into crm_customer_linkman
     -- trim prefix=( suffix=) suffixOverrides=,
      -- iff linkmanUuid != null and  linkmanUuid != ''
@@ -249,7 +249,7 @@ insert into crm_customer_linkman
         '#extend3#',
     -- end
 
--- [deleteLinkman]
+-- [deleteSubLinkman]
 UPDATE crm_customer_linkman
 SET is_deleted = 'Y'
 WHERE
@@ -261,7 +261,7 @@ WHERE
             -- end
         -- end
 
--- [updateLinkman]
+-- [updateSubLinkman]
  update crm_customer_linkman
     -- trim prefix=SET suffixOverrides=,
       -- iff subcUuid != null
