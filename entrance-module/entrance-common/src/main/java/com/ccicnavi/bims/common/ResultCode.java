@@ -22,6 +22,11 @@ public enum ResultCode {
     USER_HAS_EXISTED(20005, "用户已存在"),
     SSO_LOGIN_FAILURE(20006, "SSO服务登录失败"),
     USER_LOGIN_FAILURE(20007, "用户登录失败"),
+    USER_LOGIN_OUT(20008, "用户登录超时"),
+    USER_NOT_LOGIN(20009, "用户未登录"),
+    USER_CANT_ACCESS(20010, "无权限访问"),
+
+
 
     /* 业务错误：30001-39999 */
     SPECIFIED_QUESTIONED_USER_NOT_EXIST(30001, "某业务出现问题"),

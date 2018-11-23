@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.sso.common.result;
 
 
+import com.ccicnavi.bims.common.ResultCode;
+
 import java.io.Serializable;
 
 /**
@@ -11,25 +13,17 @@ import java.io.Serializable;
 public class ReturnT<T> implements Serializable {
     public static final long serialVersionUID = 42L;
 
-    public static final int SUCCESS_CODE = 200;
-    public static final int NO_LOGIN_CODE = 201;
-    public static final int LOGIN_OUT_CODE = 202;
-    public static final int CANT_ACCESS_CODE = 203;
-
-
-
-    public static final ReturnT<String> SUCCESS = new ReturnT<String>("");
-
     private int code;
     private String msg;
     private T data;
 
-    public ReturnT(int code, String msg) {
+    public ReturnT(int code,String msg) {
         this.code = code;
         this.msg = msg;
     }
-    public ReturnT(T data) {
-        this.code = SUCCESS_CODE;
+    public ReturnT(int code,String msg,T data) {
+        this.code = code;
+        this.msg = msg;
         this.data = data;
     }
 
