@@ -59,11 +59,11 @@ public class RoleUserServiceImpl implements RoleUserService {
             if(!StringUtils.isEmpty(roleUserDTO.getSaveUserUuid())){
                 List<String> list = roleUserDTO.getSaveUserUuid();
                 for(String useruuid:list){
-                    RoleUserDO roleUserDO = new RoleUserDO();
-                    roleUserDO.setRoleUuid(roleUserDTO.getRoleUuid());
-                    roleUserDO.setUserUuid(useruuid);
-                    roleUserDO.setOrgUuid(roleUserDTO.getOrgUuid());
-                    savenum = roleUserDao.insertRoleUser(roleUserDO, tran);
+                    RoleUserDTO roleUserDto = new RoleUserDTO();
+                    roleUserDto.setRoleUuid(roleUserDTO.getRoleUuid());
+                    roleUserDto.setUserUuid(useruuid);
+                    roleUserDto.setOrgUuid(roleUserDTO.getOrgUuid());
+                    savenum = roleUserDao.insertRoleUser(roleUserDTO, tran);
                 }
             }else{
                 savenum=1;

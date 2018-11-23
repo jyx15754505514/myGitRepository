@@ -24,14 +24,14 @@ import java.util.List;
 public class RemindDaoImpl implements RemindDao {
 
     @Override
-    public PageBean<RemindDO> listRemind(PageParameter<RemindDO> PageParameter){
+    public PageBean<RemindDTO> listRemind(PageParameter<RemindDTO> PageParameter){
         EqlPage page = new EqlPage(PageParameter.getStartIndex(),PageParameter.getPageRows());
-        List<RemindDO> list = new Eql().select("listsysremind").params(PageParameter.getParameter()).returnType(RemindDO.class).limit(page).execute();
-        return new PageBean<RemindDO>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),list);
+        List<RemindDTO> list = new Eql().select("listsysremind").params(PageParameter.getParameter()).returnType(RemindDTO.class).limit(page).execute();
+        return new PageBean<RemindDTO>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),list);
     }
 
     @Override
-    public Integer insertRemind(RemindDO sysremind,EqlTran tran){
+    public Integer insertRemind(RemindDTO sysremind,EqlTran tran){
         Eql eql = new Eql();
         if(tran != null){
             eql.useTran(tran);
@@ -40,7 +40,7 @@ public class RemindDaoImpl implements RemindDao {
     }
 
     @Override
-    public Integer updateRemind(RemindDO sysremind,EqlTran tran){
+    public Integer updateRemind(RemindDTO sysremind,EqlTran tran){
         Eql eql = new Eql();
         if(tran != null){
             eql.useTran(tran);
@@ -49,7 +49,7 @@ public class RemindDaoImpl implements RemindDao {
     }
 
     @Override
-    public Integer deleteRemind(RemindDO sysremind,EqlTran tran){
+    public Integer deleteRemind(RemindDTO sysremind,EqlTran tran){
         Eql eql = new Eql();
         if(tran != null){
             eql.useTran(tran);
@@ -58,20 +58,20 @@ public class RemindDaoImpl implements RemindDao {
     }
 
     @Override
-    public RemindDO getRemind(RemindDO sysremind){
-        return new Eql().selectFirst("getsysremind").params(sysremind).returnType(RemindDO.class).execute();
+    public RemindDTO getRemind(RemindDTO sysremind){
+        return new Eql().selectFirst("getsysremind").params(sysremind).returnType(RemindDTO.class).execute();
     }
 
     @Override
-    public PageBean<RemindDTO> listRemindOrg(PageParameter<RemindDO> PageParameter){
+    public PageBean<RemindDTO> listRemindOrg(PageParameter<RemindDTO> PageParameter){
         EqlPage page = new EqlPage(PageParameter.getStartIndex(),PageParameter.getPageRows());
         List<RemindDTO> list = new Eql().select("listremindorg").params(PageParameter.getParameter()).returnType(RemindDTO.class).limit(page).execute();
         return new PageBean<RemindDTO>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),list);
     }
 
     @Override
-    public List<RemindDO> listRemindList(RemindDO remind) {
-        List<RemindDO> list = new Eql().select("listsysremind").params(remind).returnType(RemindDO.class).execute();
+    public List<RemindDTO> listRemindList(RemindDTO remind) {
+        List<RemindDTO> list = new Eql().select("listsysremind").params(remind).returnType(RemindDTO.class).execute();
         return list;
     }
 }

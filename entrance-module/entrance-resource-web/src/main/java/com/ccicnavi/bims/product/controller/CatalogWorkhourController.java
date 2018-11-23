@@ -84,7 +84,7 @@ public class CatalogWorkhourController {
         } catch (Exception e) {
             log.error("根据主键查询产品线对应工时工资失败", e);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
 

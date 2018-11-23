@@ -16,8 +16,8 @@ import java.util.List;
 
 /**
  * @program: bims-backend
- * @description: 该类的作用描述
- * @author: 本人姓名
+ * @description: 角色按钮api实现类
+ * @author: zqq
  * @create: 2018-11-22 11:35
  */
 @Slf4j
@@ -51,12 +51,12 @@ public class RolePermissionServiceImpl implements RolePermissionService {
             if(!StringUtils.isEmpty(rolePermissionDTO.getSaveButUuid())){
                 List<String> list = rolePermissionDTO.getSaveButUuid();
                 for(String butuuid:list){
-                    RolePermissionDO rolePermissionDO = new RolePermissionDO();
-                    rolePermissionDO.setRoleUuid(rolePermissionDTO.getRoleUuid());
-                    rolePermissionDO.setButUuid(butuuid);
-                    rolePermissionDO.setAppSysUuid(rolePermissionDTO.getAppSysUuid());
-                    rolePermissionDO.setProdCatalogUuid(rolePermissionDTO.getProdCatalogUuid());
-                    savenum=rolePermissionDao.insertRolePermission(rolePermissionDO,tran);
+                    RolePermissionDTO rolePermissionDto = new RolePermissionDTO();
+                    rolePermissionDto.setRoleUuid(rolePermissionDTO.getRoleUuid());
+                    rolePermissionDto.setButUuid(butuuid);
+                    rolePermissionDto.setAppSysUuid(rolePermissionDTO.getAppSysUuid());
+                    rolePermissionDto.setProdCatalogUuid(rolePermissionDTO.getProdCatalogUuid());
+                    savenum=rolePermissionDao.insertRolePermission(rolePermissionDto,tran);
                 }
             }else{
                 savenum=1;

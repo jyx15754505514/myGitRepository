@@ -26,7 +26,7 @@ public class RoleUserController {
 
     private final static Logger log = LoggerFactory.getLogger(RolePermissionController.class);
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20881")
+    @Reference
     private RoleUserService roleUserService;
 
 

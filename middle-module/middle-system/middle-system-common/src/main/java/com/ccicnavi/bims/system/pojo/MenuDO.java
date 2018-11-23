@@ -17,41 +17,76 @@ import java.util.List;
 @ToString
 public class MenuDO implements Serializable {
 
-    private java.lang.String menuUuid;//
+    /**
+     * 主键uuid
+     */
+    private String menuUuid;
+    /**
+     * 父级菜单
+     */
+    private String parentUuid;
+    /**
+     * 菜单名称
+     */
+    private String menuName;
+    /**
+     * 请求地址
+     */
+    private String menuUrl;
+    /**
+     * 菜单图标
+     */
+    private String menuIcon;
+    /**
+     * 字体颜色
+     */
+    private String menuFontcolor;
+    /**
+     * 菜单层级
+     */
+    private Integer menuLevel;
+    /**
+     * 所有的父级菜单id
+     */
+    private String parentAllUuid;
+    /**
+     * 是Y否N启用
+     */
+    private String isEnabled;
 
-    private java.lang.String parentUuid;//父级菜单
-
-    private java.lang.String menuName;//菜单名称
-
-    private java.lang.String menuUrl;//请求地址
-
-    private java.lang.String menuIcon;//菜单图标
-
-    private java.lang.String menuFontcolor;//字体颜色
-
-    private Integer menuLevel;//菜单层级
-
-    private java.lang.String parentAllUuid;//所有的父级菜单id
-
-    private java.lang.String isEnabled;//是Y否N启用
-
-    private java.lang.String sortNum;//
-
-    private java.lang.String comments;//备注
-
-    private java.lang.String isDeleted;//删除标识（N正常Y删除）
-
-    private java.lang.String prodCatalogUuid;//产品线id
-
-    private java.lang.String orgUuid;//归属机构id
-
-    private java.lang.String appSysUuid;//应用系统id
-
-    private java.lang.String extend1;//预留字段1
-
-    private java.lang.String extend2;//预留字段2
-
-    private java.lang.String extend3;//预留字段3
+    private String sortNum;
+    /**
+     * 备注
+     */
+    private String comments;
+    /**
+     * 删除标识（N正常Y删除）
+     */
+    private String isDeleted;
+    /**
+     * 产品线id
+     */
+    private String prodCatalogUuid;
+    /**
+     * 归属机构id
+     */
+    private String orgUuid;
+    /**
+     * 应用系统id
+     */
+    private String appSysUuid;
+    /**
+     * 预留字段1
+     */
+    private String extend1;
+    /**
+     * 预留字段2
+     */
+    private String extend2;
+    /**
+     * 预留字段3
+     */
+    private String extend3;
 
     private List<String> uuids;
 }

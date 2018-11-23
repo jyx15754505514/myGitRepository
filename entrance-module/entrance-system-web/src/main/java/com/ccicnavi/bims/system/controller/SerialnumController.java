@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("system")
 @Slf4j
 public class SerialnumController {
-    @Reference(url = "dubbo://127.0.0.1:20881", timeout = 10000)
+    @Reference
     private SerialnumService serialnumService;
 
     /**

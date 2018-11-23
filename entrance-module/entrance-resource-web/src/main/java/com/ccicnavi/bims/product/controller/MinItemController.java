@@ -93,7 +93,7 @@ public class MinItemController {
         } catch (Exception e) {
             log.error("根据主键查询最小服务项失败", e);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
 
@@ -197,11 +197,11 @@ public class MinItemController {
             if (count > 0) {
                 return ResultT.success("删除最小服务项与标准关系成功~");
             } else {
-                return ResultT.failure(ResultCode.ADD_FAILURE);
+                return ResultT.failure(ResultCode.DELETE_FAILURE);
             }
         } catch (Exception e) {
             log.error("删除最小服务项与标准关系失败~", e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            return ResultT.failure(ResultCode.DELETE_FAILURE);
         }
     }
 
@@ -241,11 +241,11 @@ public class MinItemController {
             if (count > 0) {
                 return ResultT.success("删除最小服务项与检测指标关系成功~");
             } else {
-                return ResultT.failure(ResultCode.ADD_FAILURE);
+                return ResultT.failure(ResultCode.DELETE_FAILURE);
             }
         } catch (Exception e) {
             log.error("删除最小服务项与检测指标关系失败~", e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            return ResultT.failure(ResultCode.DELETE_FAILURE);
         }
     }
 

@@ -27,12 +27,7 @@ import java.util.List;
 public class CatalogServiceImpl implements CatalogService {
 
     @Autowired
-    static CatalogDao catalogDao;
-    static {
-        catalogDao = new CatalogDaoImpl();
-    }
-    @Reference(timeout = 1000000,url = "dubbo://192.168.125.11:20880")
-    IdWorkerService idWorkerService;
+    CatalogDao catalogDao;
 
     @Override
     public List<CatalogDO> listCatalog(CatalogDO catalogDO){
@@ -77,8 +72,6 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public CatalogDO getCatalog(CatalogDO catalogDO){
         try {
-            String id = idWorkerService.getId(new Date());
-            log.info("--------------"+id);
             return catalogDao.getCatalog(catalogDO);
         } catch (Exception e) {
             log.error("获取产品线信息失败",e);
