@@ -1,8 +1,11 @@
 package com.ccicnavi.bims.subContractor.service;
 
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.customer.dao.Impl.SubBankDaoImpl;
+import com.ccicnavi.bims.customer.dao.Impl.SubLinkmanDaoImpl;
+import com.ccicnavi.bims.customer.dao.Impl.SubcQualifiDaoImpl;
 import com.ccicnavi.bims.customer.dao.Impl.SubcontractorDaoImpl;
-import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
+import com.ccicnavi.bims.customer.pojo.*;
 import com.ccicnavi.bims.customer.util.EqlUtils;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +22,10 @@ import java.util.Map;
 public class SubcontractorTest {
 
     SubcontractorDaoImpl subcontractorDaoTest=new SubcontractorDaoImpl();
+    SubcontractorDaoImpl subcontractorDao=new SubcontractorDaoImpl();
+    SubcQualifiDaoImpl subcQualifiDao=new SubcQualifiDaoImpl();
+    SubBankDaoImpl subBankDao=new SubBankDaoImpl();
+    SubLinkmanDaoImpl subLinkmanDao=new SubLinkmanDaoImpl();
     /**
      * @Author FanDongSheng
      * @Description //TODO 新增分包方信息
@@ -90,7 +97,7 @@ public class SubcontractorTest {
      * @Return void
      */
     @Test
-    public void testRemoveSubcontractor() {
+    public void removeSubcontractor() {
 //        String uuids = "asd1,asd10,asd2";
 //        String[] ids = uuids.split(",");
 //        Map<String, Object> data = new HashMap<String, Object>();
@@ -102,17 +109,32 @@ public class SubcontractorTest {
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 查询一条分包方信息
+     * @Description //TODO 查询一条分包方信息以及相应的资质联系人银行信息
      * @Date 17:45 2018/11/23
      * @Param []
      * @Return void
      */
     @Test
-    public void testGetSubcontractor() {
-        SubcontractorDO subcontractorDO = new SubcontractorDO();
-        subcontractorDO.setSubcontractorUuid("00000010");
-        SubcontractorDO getSubcontractor = subcontractorDaoTest.getSubcontractor(subcontractorDO);
-        System.out.println(getSubcontractor);
+    public void getSubcontractorList() {
+        try{
+            SubcontractorDTO subcontractorDTO = new SubcontractorDTO();
+            subcontractorDTO.setSubcUuid("000000100");
+            //得到分包方信息
+            subcontractorDTO = subcontractorDao.getSubcontractor(subcontractorDTO);
+            //添加资质信息
+            List<SubcQualifiDO> subcQualifiDOList = subcQualifiDao.listSubcuQuali(subcontractorDTO);
+            subcontractorDTO.setSubcQualifiDOList(subcQualifiDOList);
+            //添加银行的信息
+            List<SubBankDO> subBankList = subBankDao.listSubBank(subcontractorDTO);
+            subcontractorDTO.setSubBankDOList(subBankList);
+            //添加联系人信息
+            List<SubLinkmanDO> subLinkmanDOList = subLinkmanDao.listSubLinkman(subcontractorDTO);
+            subcontractorDTO.setSubLinkmanDOList(subLinkmanDOList);
+            System.out.println(subcontractorDTO);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }

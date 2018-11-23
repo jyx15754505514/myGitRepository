@@ -4,6 +4,8 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.SubBankDao;
 import com.ccicnavi.bims.customer.pojo.SubBankDO;
+import com.ccicnavi.bims.customer.pojo.SubBankDTO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.n3r.eql.EqlTran;
@@ -24,8 +26,8 @@ public class SubBankDaoImpl implements SubBankDao {
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubBankDO>
      */
     @Override
-    public List<SubBankDO> listSubBank(SubBankDO subBankDO) throws Exception {
-        return new Eql().select("listSubBank").params(subBankDO).execute();
+    public List<SubBankDO> listSubBank(SubcontractorDTO subcontractorDTO) throws Exception {
+        return new Eql().select("listSubBank").params(subcontractorDTO).returnType(SubBankDO.class).execute();
     }
     /**
      * @Author FanDongSheng
@@ -35,7 +37,7 @@ public class SubBankDaoImpl implements SubBankDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer saveSubBank(SubBankDO subBankDO, EqlTran tran) throws Exception {
+    public Integer insertSubBank(SubBankDO subBankDO, EqlTran tran) throws Exception {
         Eql eql = new Eql();
         if(tran != null){
             eql.useTran(tran);
@@ -50,12 +52,12 @@ public class SubBankDaoImpl implements SubBankDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer removeSubBank(SubBankDO subBankDO, EqlTran tran) throws Exception {
+    public Integer deleteSubBank(SubBankDTO subBankDTO, EqlTran tran) throws Exception {
         Eql eql = new Eql();
         if(tran != null){
             eql.useTran(tran);
         }
-        return eql.update("deleteSubBank").params(subBankDO).returnType(Integer.class).execute();
+        return eql.update("deleteSubBank").params(subBankDTO).returnType(Integer.class).execute();
     }
     /**
      * @Author FanDongSheng

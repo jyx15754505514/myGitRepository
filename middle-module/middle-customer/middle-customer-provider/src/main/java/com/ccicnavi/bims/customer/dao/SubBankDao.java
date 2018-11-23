@@ -3,6 +3,8 @@ package com.ccicnavi.bims.customer.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.SubBankDO;
+import com.ccicnavi.bims.customer.pojo.SubBankDTO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import org.n3r.eql.EqlTran;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public interface SubBankDao {
      * @Param [linkmanDO]
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubBankDO>
      */
-    List<SubBankDO> listSubBank(SubBankDO subBankDO) throws Exception;
+    List<SubBankDO> listSubBank(SubcontractorDTO subcontractorDTO) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description 保存分包方银行信息
@@ -28,7 +30,7 @@ public interface SubBankDao {
      * @Param [subBankDO, tran]
      * @Return int
      */
-    Integer saveSubBank(SubBankDO subBankDO, EqlTran tran) throws Exception;
+    Integer insertSubBank(SubBankDO subBankDO, EqlTran tran) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description 删除分包方银行
@@ -36,7 +38,7 @@ public interface SubBankDao {
      * @Param [subBankDO, tran]
      * @Return int
      */
-    Integer removeSubBank(SubBankDO subBankDO,EqlTran tran) throws Exception;
+    Integer deleteSubBank(SubBankDTO subBankDTO, EqlTran tran) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description 更新银行信息
