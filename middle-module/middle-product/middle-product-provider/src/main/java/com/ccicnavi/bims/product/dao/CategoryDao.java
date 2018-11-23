@@ -25,4 +25,8 @@ public interface CategoryDao {
     List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDTO categoryDTO) throws Exception;
 
     List<CategoryDO> listCategoryByParentUuid(CategoryDTO categoryDTO) throws Exception;
+
+    List<CategoryDO> listCategoryByOrgAndProd(CategoryDTO categoryDTO) throws Exception;
+
+    List<CategoryDO> listCategorySubByOrgAndProd(CategoryDTO categoryDTO) throws Exception;
 }

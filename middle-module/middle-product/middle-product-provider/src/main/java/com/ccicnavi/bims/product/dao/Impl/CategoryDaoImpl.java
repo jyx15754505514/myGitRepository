@@ -51,15 +51,16 @@ public class CategoryDaoImpl implements CategoryDao {
         EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
         //执行查询
         List<CategoryDO> categoryList = new Eql().select("listCategory").params(pageParameter.getParameter()).returnType(CategoryDO.class).limit(page).execute();
-        if(categoryList != null) {
-            return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),categoryList);//封装分页
-        }else {
+        if (categoryList != null) {
+            return new PageBean<>(page.getTotalRows(), page.getTotalPages(), page.getCurrentPage(), page.getPageRows(), page.getStartIndex(), categoryList);//封装分页
+        } else {
             return null;
         }
     }
 
     /**
      * 根据所属公司与所属产品线查询其下的一级分类信息
+     *
      * @return
      */
     @Override
@@ -69,6 +70,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
     /**
      * 根据父级ID查询其子类产品分类信息
+     *
      * @param categoryDTO
      * @return
      * @throws Exception
@@ -76,6 +78,28 @@ public class CategoryDaoImpl implements CategoryDao {
     @Override
     public List<CategoryDO> listCategoryByParentUuid(CategoryDTO categoryDTO) {
         return new Eql().select("listCategoryByParentUuid").params(categoryDTO).returnType(CategoryDO.class).execute();
+    }
+
+    /***
+     * 根据所属机构和产品线ID查询出其下的所有子级分类信息(省公司、包括子级分类)
+     * @param categoryDTO
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<CategoryDO> listCategoryByOrgAndProd(CategoryDTO categoryDTO) {
+        return new Eql().select("listCategoryByOrgAndProd").params(categoryDTO).returnType(CategoryDO.class).execute();
+    }
+
+    /***
+     * 根据所属机构和产品线ID查询出其下的所有子级分类信息(子公司、包括子级分类)
+     * @param categoryDTO
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<CategoryDO> listCategorySubByOrgAndProd(CategoryDTO categoryDTO){
+        return new Eql().select("listCategorySubByOrgAndProd").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 
 }

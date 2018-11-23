@@ -118,4 +118,35 @@ public class CategoryServiceImpl implements CategoryService {
         }
     }
 
+    /**
+     * 根据所属机构和产品线ID查询出其下的所有产品分类信息(省公司、包括其子级分类信息)
+     * @param categoryDTO
+     * @return
+     */
+    @Override
+    public List<CategoryDO> listCategoryByOrgAndProd(CategoryDTO categoryDTO) {
+        try {
+            return categoryDao.listCategoryByOrgAndProd(categoryDTO);
+        } catch (Exception e) {
+            log.error("根据所属机构和产品线ID查询出其下的所有产品分类信息失败~",e);
+            return null;
+        }
+    }
+
+    /***
+     * 根据所属机构和产品线ID查询出其下的所有产品分类信息(子公司、包括其子级分类信息)
+     * @param categoryDTO
+     * @return
+     */
+    @Override
+    public List<CategoryDO> listCategorySubByOrgAndProd(CategoryDTO categoryDTO) {
+        try {
+            return categoryDao.listCategorySubByOrgAndProd(categoryDTO);
+        } catch (Exception e) {
+            log.error("根据所属机构和产品线ID查询出其下的所有产品分类信息(子公司)~",e);
+            return null;
+        }
+    }
+
+
 }
