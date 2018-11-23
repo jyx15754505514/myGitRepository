@@ -20,10 +20,10 @@ import java.util.concurrent.TimeUnit;
 public class JedisUtil {
     private static Logger logger = LoggerFactory.getLogger(JedisUtil.class);
 
-    @Reference(timeout = 10000,url = "dubbo://127.0.0.1:20888")
+    @Reference
     StringTemplate stringTemplate;
 
-    @Reference(timeout = 10000,url = "dubbo://127.0.0.1:20888")
+    @Reference
     SetTemplate setTemplate;
 
 
