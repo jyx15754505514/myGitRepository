@@ -21,7 +21,9 @@
     created_name createdName,
     updated_time updatedTime,
     updated_name updatedName,
-    org_uuid orgUuid
+    org_uuid orgUuid,
+    updated_uuid updatedUuid,
+    app_sys_uuid appSysUuid
     from
     res_equip_test
 where
@@ -50,7 +52,9 @@ where
     created_name createdName,
     updated_time updatedTime,
     updated_name updatedName,
-    org_uuid orgUuid
+    org_uuid orgUuid,
+    updated_uuid updatedUuid,
+    app_sys_uuid appSysUuid
     from
     res_equip_test
 where
@@ -61,148 +65,152 @@ where
 -- [insertEquipTest]
   insert into res_equip_test
     -- trim prefix=( suffix=) suffixOverrides=,
-      --iff equipTestUuid != null
+      --iff equipTestUuid != null and equipTestUuid != ''
         equip_test_uuid,
-      --iff equipUuid != null
+      --iff equipUuid != null and equipUuid != ''
         equip_uuid,
-      --iff certNo != null
+      --iff certNo != null and certNo != ''
         cert_no,
       --iff testDate != null
         test_date,
-      --iff testCycle != null
+      --iff testCycle != null and testCycle != ''
         test_cycle,
-      --iff isLongTerm != null
+      --iff isLongTerm != null and isLongTerm != ''
         is_long_term,
-      --iff testValidDate != null
+      --iff testValidDate != null and testValidDate != ''
         test_valid_date,
-      --iff testResult != null
+      --iff testResult != null and testResult != ''
         test_result,
-      --iff testType != null
+      --iff testType != null and testType != ''
         test_type,
-      --iff testFee != null
+      --iff testFee != null and testFee != ''
         test_fee,
-      --iff feeDesc != null
+      --iff feeDesc != null and feeDesc != ''
         fee_desc,
-      --iff standardDesc != null
+      --iff standardDesc != null and standardDesc != ''
         standard_desc,
-      --iff onlineCertUrl != null
+      --iff onlineCertUrl != null and onlineCertUrl != ''
         online_cert_url,
-      --iff prodCatalogUuid != null
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
         prod_catalog_uuid,
-      --iff comments != null
+      --iff comments != null and comments != ''
         comments,
-      --iff isDeleted != null
+      --iff isDeleted != null and isDeleted != ''
         is_deleted,
       --iff createdTime != null
         created_time,
-      --iff createdUuid != null
+      --iff createdUuid != null and createdUuid != ''
         created_uuid,
-      --iff createdName != null
+      --iff createdName != null and createdName != ''
         created_name,
       --iff updatedTime != null
         updated_time,
-      --iff updatedName != null
+      --iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
+      --iff updatedName != null and updatedName != ''
         updated_name,
-      --iff orgUuid != null
+      --iff orgUuid != null and orgUuid != ''
         org_uuid,
-      --iff appSysUuid != null
+      --iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid
     --end
     -- trim prefix=values( suffix=) suffixOverrides=,
-      --iff equipTestUuid != null
+      --iff equipTestUuid != null and equipTestUuid != ''
         '#equipTestUuid#',
-      --iff equipUuid != null
+      --iff equipUuid != null and equipUuid != ''
         '#equipUuid#',
-      --iff certNo != null
+      --iff certNo != null and certNo != ''
         '#certNo#',
       --iff testDate != null
         '#testDate#',
-      --iff testCycle != null
+      --iff testCycle != null and testCycle != ''
         '#testCycle#',
-      --iff isLongTerm != null
+      --iff isLongTerm != null and isLongTerm != ''
         '#isLongTerm#',
       --iff testValidDate != null
         '#testValidDate#',
-      --iff testResult != null
+      --iff testResult != null and testResult != ''
         '#testResult#',
-      --iff testType != null
+      --iff testType != null and testType != ''
         '#testType#',
-      --iff testFee != null
+      --iff testFee != null and testFee != ''
         '#testFee#',
-      --iff feeDesc != null
+      --iff feeDesc != null and feeDesc != ''
         '#feeDesc#',
-      --iff standardDesc != null
+      --iff standardDesc != null and standardDesc != ''
         '#standardDesc#',
-      --iff onlineCertUrl != null
+      --iff onlineCertUrl != null and onlineCertUrl != ''
         '#onlineCertUrl#',
-      --iff prodCatalogUuid != null
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
         '#prodCatalogUuid#',
-      --iff comments != null
+      --iff comments != null and comments != ''
         '#comments#',
-      --iff isDeleted != null
+      --iff isDeleted != null and isDeleted != ''
         '#isDeleted#',
       --iff createdTime != null
         '#createdTime#',
-      --iff createdUuid != null
+      --iff createdUuid != null and createdUuid != ''
         '#createdUuid#',
-      --iff createdName != null
+      --iff createdName != null and createdName != ''
         '#createdName#',
       --iff updatedTime != null
         '#updatedTime#',
-      --iff updatedName != null
+      -iff updatedUuid != null and updatedUuid != ''
+          'updatedUuid#',
+      --iff updatedName != null and updatedName != ''
         '#updatedName#',
-      --iff orgUuid != null
+      --iff orgUuid != null and orgUuid != ''
         '#orgUuid#',
-      --iff appSysUuid != null
+      --iff appSysUuid != null and appSysUuid != ''
         '#appSysUuid#'
     --end
 
   -- [updateEquipTest]
     update res_equip_test
     -- trim prefix= set suffixOverrides=,
-      --iff equipUuid != null
+      --iff equipUuid != null and equipUuid != ''
         equip_uuid = '#equipUuid#',
-      --iff certNo != null
+      --iff certNo != null and certNo != ''
         cert_no = '#certNo#',
       --iff testDate != null
         test_date = '#testDate#',
-      --iff testCycle != null
+      --iff testCycle != null and testCycle != ''
         test_cycle = '#testCycle#',
-      --iff isLongTerm != null
+      --iff isLongTerm != null and isLongTerm != ''
         is_long_term = '#isLongTerm#',
       --iff testValidDate != null
         test_valid_date = '#testValidDate#',
-      --iff testResult != null
+      --iff testResult != null and testResult != ''
         test_result = '#testResult#',
-      --iff testType != null
+      --iff testType != null and testType != ''
         test_type = '#testType#',
-      --iff testFee != null
+      --iff testFee != null and testFee != ''
         test_fee = '#testFee#',
-      --iff feeDesc != null
+      --iff feeDesc != null and feeDesc != ''
         fee_desc = '#feeDesc#',
-      --iff standardDesc != null
+      --iff standardDesc != null and standardDesc != ''
         standard_desc = '#standardDesc#',
-      --iff onlineCertUrl != null
+      --iff onlineCertUrl != null and onlineCertUrl != ''
         online_cert_url = '#onlineCertUrl#',
-      --iff prodCatalogUuid != null
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
         prod_catalog_uuid = '#prodCatalogUuid#',
-      --iff comments != null
+      --iff comments != null and comments != ''
         comments = '#comments#',
-      --iff isDeleted != null
+      --iff isDeleted != null and isDeleted != ''
         is_deleted = '#isDeleted#',
       --iff createdTime != null
         created_time = '#createdTime#',
-      --iff createdUuid != null
+      --iff createdUuid != null and createdUuid != ''
         created_uuid = '#createdUuid#',
-      --iff createdName != null
+      --iff createdName != null and createdName != ''
         created_name = '#createdName#',
       --iff updatedTime != null
         updated_time = '#updatedTime#',
-      --iff updatedName != null
+      --iff updatedName != null and updatedName != ''
         updated_name = '#updatedName#',
-      --iff orgUuid != null
+      --iff orgUuid != null and orgUuid != ''
         org_uuid = '#orgUuid#',
-      --iff appSysUuid != null
+      --iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid = '#appSysUuid#'
     -- end
     where
