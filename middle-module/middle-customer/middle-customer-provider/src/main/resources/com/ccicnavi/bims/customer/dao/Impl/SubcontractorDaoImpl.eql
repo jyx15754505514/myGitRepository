@@ -88,7 +88,7 @@ INSERT INTO crm_subcontractor
      -- iff extend3 != null and extend3 != ''
         extend3,
    --end
-   -- trim prefix=values( suffix=) suffixOverrides=,
+   --trim prefix=values( suffix=) suffixOverrides=,
      -- iff subcontractorUuid != null and subcontractorUuid != ''
         '#subcontractorUuid#',
      -- iff subcCode != null and subcCode != ''

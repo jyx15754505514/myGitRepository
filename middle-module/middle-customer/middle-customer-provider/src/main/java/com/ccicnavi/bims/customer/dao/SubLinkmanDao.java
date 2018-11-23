@@ -20,7 +20,7 @@ public interface SubLinkmanDao {
      * @Param [linkmanDO]
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubLinkmanDO>
      */
-    List<SubLinkmanDO> listLinkman(SubLinkmanDO subLinkmanDO) throws Exception;
+    List<SubLinkmanDO> listSubLinkman(SubLinkmanDO subLinkmanDO) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description 保存分包方联系人信息
@@ -28,7 +28,7 @@ public interface SubLinkmanDao {
      * @Param [subLinkmanDO, tran]
      * @Return int
      */
-    Integer saveLinkman(SubLinkmanDO subLinkmanDO, EqlTran tran) throws Exception;
+    Integer saveSubLinkman(SubLinkmanDO subLinkmanDO, EqlTran tran) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description 删除分包方联系人
@@ -36,7 +36,7 @@ public interface SubLinkmanDao {
      * @Param [subLinkmanDO, tran]
      * @Return int
      */
-    Integer removeLinkman(SubLinkmanDO subLinkmanDO,EqlTran tran) throws Exception;
+    Integer removeSubLinkman(SubLinkmanDO subLinkmanDO,EqlTran tran) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description 更新联系人信息
@@ -44,7 +44,7 @@ public interface SubLinkmanDao {
      * @Param [subLinkmanDO, tran]
      * @Return int
      */
-    Integer updateLinkman(SubLinkmanDO subLinkmanDO,EqlTran tran) throws Exception;
+    Integer updateSubLinkman(SubLinkmanDO subLinkmanDO,EqlTran tran) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description //TODO 得到单条联系人信息
@@ -52,7 +52,7 @@ public interface SubLinkmanDao {
      * @Param [subLinkmanDO]
      * @Return com.ccicnavi.bims.customer.pojo.SubLinkmanDO
      */
-    SubLinkmanDO getLinkman(SubLinkmanDO subLinkmanDO) throws Exception;
+    SubLinkmanDO getSubLinkman(SubLinkmanDO subLinkmanDO) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description //TODO 分页查询分包方联系人信息
@@ -60,5 +60,5 @@ public interface SubLinkmanDao {
      * @Param [pageParameter]
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.customer.pojo.SubLinkmanDO>
      */
-    PageBean<SubLinkmanDO> listCustomerPage(PageParameter<SubLinkmanDO> pageParameter) throws Exception;
+    PageBean<SubLinkmanDO> listSubLinkmanPage(PageParameter<SubLinkmanDO> pageParameter) throws Exception;
 }
