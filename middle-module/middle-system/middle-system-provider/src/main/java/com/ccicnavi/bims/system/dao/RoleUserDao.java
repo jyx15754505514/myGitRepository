@@ -22,7 +22,7 @@ public interface RoleUserDao {
      *@date: 2018/11/21
      */
     Integer insertRoleUsers(UserDTO userDTO, EqlTran tran);
-    Integer insertRoleUser(RoleUserDO roleUserDO, EqlTran tran);
+    Integer insertRoleUser(RoleUserDTO roleUserDTO, EqlTran tran);
 
     /**
      * 更新用户角色信息
