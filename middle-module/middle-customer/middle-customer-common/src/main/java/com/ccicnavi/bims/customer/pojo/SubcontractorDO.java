@@ -35,6 +35,14 @@ public class SubcontractorDO implements Serializable {
      */
     private String enName;
     /**
+     * 法人
+     */
+    private String legalRep;
+    /**
+     * 注册资本
+     */
+    private String regCapital;
+    /**
      * 别名（简称）
      */
     private String subcShortName;

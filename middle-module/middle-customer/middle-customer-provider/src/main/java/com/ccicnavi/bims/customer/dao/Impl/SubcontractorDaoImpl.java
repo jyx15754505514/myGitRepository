@@ -34,7 +34,7 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
         //封装分页参数
         EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
         //执行查询
-        List<SubcontractorDO> subcontractorList = new Eql().select("listOrderInfo").params(pageParameter.getParameter()).returnType(SubcontractorDO.class).limit(page).execute();
+        List<SubcontractorDO> subcontractorList = new Eql().select("listSubcontractor").params(pageParameter.getParameter()).returnType(SubcontractorDO.class).limit(page).execute();
         if(subcontractorList != null) {
             return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),subcontractorList);
         }else {
@@ -50,7 +50,7 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
      */
     @Override
     public Integer insertSubcontractor(SubcontractorDO subcontractor) {
-        return new Eql().insert("saveSubcontractor").params(subcontractor).returnType(Integer.class).execute();
+        return new Eql().insert("insertSubcontractor").params(subcontractor).returnType(Integer.class).execute();
     }
 
     /** *
