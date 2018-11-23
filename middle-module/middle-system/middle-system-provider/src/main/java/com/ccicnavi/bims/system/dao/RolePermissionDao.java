@@ -31,7 +31,7 @@ public interface RolePermissionDao {
     *@date: 2018/11/22
     */
 
-    public Integer insertRolePermission(RolePermissionDO rolePermissionDO, EqlTran tran);
+    public Integer insertRolePermission(RolePermissionDTO rolePermissionDTO, EqlTran tran);
 
     /**
     *@Description: 删除角色按钮

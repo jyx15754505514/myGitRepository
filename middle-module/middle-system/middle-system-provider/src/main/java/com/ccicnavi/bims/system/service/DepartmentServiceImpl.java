@@ -148,7 +148,7 @@ public class DepartmentServiceImpl implements DepartmentService {
      */
     @Override
     public List<DepartmentDTO> listDeptByDeptType(DepartmentDTO departmentDTO) {
-        List<DepartmentDTO> deptList = null;
+        List<DepartmentDTO> deptList = new ArrayList<DepartmentDTO>();
         try {
             deptList = departmentDao.listDeptByDeptType(departmentDTO);
             return deptList;
@@ -192,12 +192,12 @@ public class DepartmentServiceImpl implements DepartmentService {
      *@date: 2018/11/21
      */
     private void listChildDept(DepartmentDTO departmentDTO, List<DepartmentDTO> deptList) throws Exception {
-        List<DepartmentDTO> childList = null;
+        List<DepartmentDTO> childList = new ArrayList<DepartmentDTO>();
         for (DepartmentDTO dept : deptList) {
             String deptUuid = dept.getDeptUuid();
             departmentDTO.setParentUuid(deptUuid);
             childList = departmentDao.listDept(departmentDTO);
-            if (childList != null || childList.size() > 0) {
+            if (childList != null && childList.size() > 0) {
                 dept.setDeptChildList(childList);
                 listChildDept(departmentDTO, childList);
             }

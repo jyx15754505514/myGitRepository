@@ -17,12 +17,16 @@ import java.io.Serializable;
 @ToString
 public class MinItemStdDO implements Serializable {
 
+    /**最小服务项ID*/
     private String minItemUuid;
 
+    /**标准ID*/
     private String stdUuid;
 
+    /**所属机构ID*/
     private String orgUuid;
 
+    /**所属平台ID*/
     private String appSysUuid;
 
 

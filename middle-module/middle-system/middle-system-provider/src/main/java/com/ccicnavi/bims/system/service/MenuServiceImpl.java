@@ -5,7 +5,10 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.system.dao.MenuButtonDao;
 import com.ccicnavi.bims.system.dao.MenuDao;
-import com.ccicnavi.bims.system.pojo.*;
+import com.ccicnavi.bims.system.pojo.MenuButtonDTO;
+import com.ccicnavi.bims.system.pojo.MenuDO;
+import com.ccicnavi.bims.system.pojo.MenuDTO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +82,7 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public Integer insertMenu(MenuDO menuDO) {
-        Integer menu = null;
+        Integer menu = 0;
         try {
             menu = menuDao.insertMenu(menuDO);
         } catch (Exception e) {
@@ -98,7 +101,7 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public Integer updateMenu(MenuDO menuDO) {
-        Integer menu = null;
+        Integer menu = 0;
         try {
             menu = menuDao.updateMenu(menuDO);
         } catch (Exception e) {
@@ -117,7 +120,7 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public Integer deleteMenu(MenuDO menuDO) {
-        Integer menu = null;
+        Integer menu = 0;
         try {
             menu = menuDao.deleteMenu(menuDO);
         } catch (Exception e) {
@@ -180,7 +183,7 @@ public class MenuServiceImpl implements MenuService {
                 if(menuDOList != null && menuDOList.size() >0){
                     for(MenuDTO menu :menuDOList){
                         menuDTO.setMenuUuid(menu.getMenuUuid());
-                        List<MenuButtonDO> menuButtonList = menuButtonDao.listMenuButtonByRole(menuDTO);
+                        List<MenuButtonDTO> menuButtonList = menuButtonDao.listMenuButtonByRole(menuDTO);
                         menu.setMenuButtonDOList(menuButtonList);
                     }
                 }
@@ -221,13 +224,13 @@ public class MenuServiceImpl implements MenuService {
                 listChildMenu(menuDTO, childList);
             }else{
                 menu.setMenuDTO(childList);
-                MenuButtonDO menuButtonDO = new MenuButtonDO();
-                menuButtonDO.setMenuUuid(menu.getMenuUuid());
+                MenuButtonDTO menuButtonDTO = new MenuButtonDTO();
+                menuButtonDTO.setMenuUuid(menu.getMenuUuid());
                 //菜单所对应的所有按钮
-                List<MenuButtonDO> menuButtonDOList=menuButtonDao.listMenuButton(menuButtonDO);
+                List<MenuButtonDTO> menuButtonDOList=menuButtonDao.listMenuButton(menuButtonDTO);
                 menu.setMenuButtonDOList(menuButtonDOList);
                 menuDTO.setMenuUuid(menu.getMenuUuid());
-                List<MenuButtonDO> selectmenuButtonDOList =  menuButtonDao.listMenuButtonByRole(menuDTO);
+                List<MenuButtonDTO> selectmenuButtonDOList =  menuButtonDao.listMenuButtonByRole(menuDTO);
                 menu.setSelectdMenuButtonDOList(selectmenuButtonDOList);
             }
         }

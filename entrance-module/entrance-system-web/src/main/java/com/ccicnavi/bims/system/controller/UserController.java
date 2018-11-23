@@ -33,16 +33,16 @@ import java.util.Date;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private UserService userService;
 
     @Autowired
     private UserManager userManager;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference
     private IdWorkerService idWorkerService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    @Reference
     private SSOService ssoService;
 
     /**
@@ -234,6 +234,25 @@ public class UserController {
         } catch (Exception e) {
             log.error("查询用户信息失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+    }
+
+    /**
+     *@Description: 根据用户分配角色
+     *@Param: [userDO]
+     *@return: com.ccicnavi.bims.common.ResultT
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    @RequestMapping(value = "/addUserRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT addUserRole(@RequestBody UserDTO userDTO) {
+        Integer integer = null;
+        try {
+            integer = userService.addUserRole(userDTO);
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("根据用户分配角色失败", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
         }
     }
 }

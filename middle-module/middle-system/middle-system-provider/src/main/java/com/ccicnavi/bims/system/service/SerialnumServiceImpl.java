@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,23 +25,17 @@ import java.util.List;
 /**
  * @Auther: CongZhiYuan
  * @Date: 2018/11/20 20:19
- * @Description:
+ * @Description: 业务规则编号管理
  */
 @Slf4j
 @Service
 public class SerialnumServiceImpl implements SerialnumService {
 
-    @Reference(timeout = 1000000,url = "dubbo://127.0.0.1:20880")
+    @Reference
     IdWorkerService idWorkerService;
 
     @Autowired
     SerialnumDao serialnumDao;
-    /*static SerialnumDaoImpl serialnumDaoImpl = null;
-
-    static{
-        serialnumDaoImpl = new SerialnumDaoImpl();
-        serialnumDao = serialnumDaoImpl;
-    }*/
 
     /**
      *
@@ -104,9 +99,10 @@ public class SerialnumServiceImpl implements SerialnumService {
         for(SerialnumCfgItemDO serialnumCfgItemDO:serialnumCfgDTO.getItems()){
             String sncdUuid = idWorkerService.getId(new Date());
             serialnumCfgItemDO.setSncdUuid(sncdUuid);
+            serialnumCfgItemDO.setSncUuid(sncUuid);
             serialnumDao.insertSerialnumCfgItem(serialnumCfgItemDO);
         }
-        log.error("创建业务编码规则失败");
+        log.info("创建业务编码规则完成");
     }
 
     /**
@@ -128,9 +124,10 @@ public class SerialnumServiceImpl implements SerialnumService {
         for(SerialnumCfgItemDO serialnumCfgItemDO:serialnumCfgDTO.getItems()){
             String sncdUuid = idWorkerService.getId(new Date());
             serialnumCfgItemDO.setSncdUuid(sncdUuid);
+            serialnumCfgItemDO.setSncUuid(serialnumCfgDTO.getSncUuid());
             serialnumDao.insertSerialnumCfgItem(serialnumCfgItemDO);//插入新表达式
         }
-        log.error("更新业务编码规则完成");
+        log.info("更新业务编码规则完成");
         return rtnval;
     }
 
