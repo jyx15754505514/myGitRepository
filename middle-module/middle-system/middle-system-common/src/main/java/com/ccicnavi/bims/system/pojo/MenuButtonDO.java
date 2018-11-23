@@ -17,36 +17,67 @@ import java.util.List;
 @Getter
 @ToString
 public class MenuButtonDO implements Serializable {
+    /**
+     * 主键uuid
+     */
+    private String btnUuid;
+    /**
+     * 菜单uuid
+     */
+    private String menuUuid;
+    /**
+     * 按钮名称
+     */
+    private String btnName;
+    /**
+     * 按钮路径
+     */
+    private String btnUrl;
+    /**
+     * 按钮图标
+     */
+    private String btnIcon;
+    /**
+     * 按钮颜色
+     */
+    private String btnFontcolor;
+    /**
+     * 是否显示(Y是N否)
+     */
+    private String isEnabled;
+    /**
+     * 排序号
+     */
+    private String sortNum;
+    /**
+     * 删除标识（N正常Y删除）
+     */
+    private String isDeleted;//
 
-    private java.lang.String btnUuid;//主键uuid
-
-    private java.lang.String menuUuid;//菜单uuid
-
-    private java.lang.String btnName;//按钮名称
-
-    private java.lang.String btnUrl;//按钮路径
-
-    private java.lang.String btnIcon;//按钮图标
-
-    private java.lang.String btnFontcolor;//按钮颜色
-
-    private java.lang.String isEnabled;//是否显示(Y是N否)
-
-    private java.lang.String sortNum;//排序号
-
-    private java.lang.String isDeleted;//删除标识（N正常Y删除）
-
-    private java.lang.String prodCatalogUuid;//产品线id
-
-    private java.lang.String orgUuid;//归属机构id
-
-    private java.lang.String appSysUuid;//应用系统id
-
-    private java.lang.String extend1;//预留字段1
-
-    private java.lang.String extend2;//预留字段2
-
-    private java.lang.String extend3;//预留字段3
+    /**
+     * 产品线id
+     */
+    private String prodCatalogUuid;
+    /**
+     * 归属机构id
+     */
+    private String orgUuid;
+    /**
+     * 应用系统id
+     */
+    private String appSysUuid;
+    /**
+     * 预留字段1
+     */
+    private String extend1;
+    /**
+     * 预留字段2
+     */
+    private String extend2;
+    /**
+     * 预留字段3
+     */
+    private String extend3;
 
     private List<String> uuids;
 }

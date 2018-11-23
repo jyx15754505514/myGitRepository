@@ -23,12 +23,12 @@ public class RolePermissionDaoImpl  implements RolePermissionDao {
     }
 
     @Override
-    public Integer insertRolePermission(RolePermissionDO rolePermissionDO, EqlTran tran) {
+    public Integer insertRolePermission(RolePermissionDTO rolePermissionDTO, EqlTran tran) {
         Eql eql = new Eql();
         if(tran !=null){
             eql.useTran(tran);
         }
-        return eql.insert("insertRolePermission").params(rolePermissionDO).returnType(Integer.class).execute();
+        return eql.insert("insertRolePermission").params(rolePermissionDTO).returnType(Integer.class).execute();
     }
 
     @Override
