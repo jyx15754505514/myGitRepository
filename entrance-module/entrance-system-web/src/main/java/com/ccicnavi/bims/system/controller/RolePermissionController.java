@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RolePermissionController {
     private final static Logger log = LoggerFactory.getLogger(RolePermissionController.class);
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20881")
+    @Reference
     private RolePermissionService rolePermissionService;
 
     @RequestMapping(value = "/insertRolePermission",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

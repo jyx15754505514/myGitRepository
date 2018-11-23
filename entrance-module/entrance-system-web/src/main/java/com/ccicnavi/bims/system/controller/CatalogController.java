@@ -28,9 +28,9 @@ import java.util.List;
 @RequestMapping(value = "/catalog")
 public class CatalogController {
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20884")
+    @Reference
     CatalogService catalogService;
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20884")
+    @Reference
     CatalogOrgService catalogOrgService;
 
 

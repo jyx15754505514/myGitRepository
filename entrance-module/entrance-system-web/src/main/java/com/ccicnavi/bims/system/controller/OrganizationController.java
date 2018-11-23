@@ -29,7 +29,7 @@ public class OrganizationController {
 
     private final static Logger log = LoggerFactory.getLogger(OrganizationController.class);
 
-    @Reference(timeout = 60000,url = "dubbo://127.0.0.1:20881")
+    @Reference
     OrganizationService organizationService;
 
     /**
