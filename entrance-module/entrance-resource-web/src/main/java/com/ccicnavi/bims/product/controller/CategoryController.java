@@ -44,7 +44,7 @@ public class CategoryController {
      * @return
      */
     @RequestMapping(value = "/listAllCategory", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listAllCategory(@RequestBody CategoryDO category) {
+    public ResultT listAllCategory( @RequestBody CategoryDO category) {
         try {
             List<CategoryDO> CustInvoiceList = categoryService.listCategory(category);
             return ResultT.success(CustInvoiceList);
