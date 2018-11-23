@@ -90,9 +90,10 @@ public class UserManagerImpl implements UserManager {
                 getUserBaseData(userDTO, ssoUser);
                 //调用SSO服务登录操作
                 ReturnT<String> login = ssoService.login(ssoUser);
+                ssoUser.setJsessionID(login.getData());
                 if(login.getCode() == 200) {
                     //SSO返回200 登录成功
-                    return ResultT.success(login.getData());
+                    return ResultT.success(ssoUser);
                 }else {
                     //SSO服务登录失败
                     return ResultT.failure(ResultCode.SSO_LOGIN_FAILURE);
