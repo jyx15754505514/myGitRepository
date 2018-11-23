@@ -40,7 +40,7 @@ public interface EquipDao {
      * @Param [equipUuid]
      * @Return com.ccicnavi.bims.ource.pojo.EquipDO
      */
-    EquipDO getEquip(String equipUuid);
+    EquipDTO getEquip(EquipDO equipDO);
 
     /**
      * @Author panyida
