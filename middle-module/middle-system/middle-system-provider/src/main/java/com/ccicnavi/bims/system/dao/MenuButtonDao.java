@@ -1,6 +1,5 @@
 package com.ccicnavi.bims.system.dao;
 
-import com.ccicnavi.bims.system.pojo.MenuButtonDO;
 import com.ccicnavi.bims.system.pojo.MenuButtonDTO;
 import com.ccicnavi.bims.system.pojo.MenuDTO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
@@ -80,4 +79,5 @@ public interface MenuButtonDao {
      * @return java.util.List<java.lang.String>
      **/
     List<String> listButtonUrlByRole(UserDTO userDTO) throws Exception;
+
 }

@@ -31,7 +31,7 @@ public class DepartmentController {
 
     private final static Logger log = LoggerFactory.getLogger(DepartmentController.class);
 
-    @Reference(timeout = 60000,url = "dubbo://127.0.0.1:20881")
+    @Reference
     DepartmentService departmentService;
 
 

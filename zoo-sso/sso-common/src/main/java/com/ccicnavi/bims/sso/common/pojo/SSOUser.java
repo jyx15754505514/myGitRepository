@@ -17,6 +17,8 @@ public class SSOUser implements Serializable {
 
     private List<DepartmentDTO> departmentList;//部门信息
 
+    private String jsessionID;    //jsessionID
+
     private String userUuid;    //用户ID
 
     private String nickName;    //用户昵称

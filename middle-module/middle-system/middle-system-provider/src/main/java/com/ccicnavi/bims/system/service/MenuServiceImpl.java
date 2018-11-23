@@ -5,7 +5,10 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.system.dao.MenuButtonDao;
 import com.ccicnavi.bims.system.dao.MenuDao;
-import com.ccicnavi.bims.system.pojo.*;
+import com.ccicnavi.bims.system.pojo.MenuButtonDTO;
+import com.ccicnavi.bims.system.pojo.MenuDO;
+import com.ccicnavi.bims.system.pojo.MenuDTO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +82,7 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public Integer insertMenu(MenuDO menuDO) {
-        Integer menu = null;
+        Integer menu = 0;
         try {
             menu = menuDao.insertMenu(menuDO);
         } catch (Exception e) {
@@ -98,7 +101,7 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public Integer updateMenu(MenuDO menuDO) {
-        Integer menu = null;
+        Integer menu = 0;
         try {
             menu = menuDao.updateMenu(menuDO);
         } catch (Exception e) {
@@ -117,7 +120,7 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public Integer deleteMenu(MenuDO menuDO) {
-        Integer menu = null;
+        Integer menu = 0;
         try {
             menu = menuDao.deleteMenu(menuDO);
         } catch (Exception e) {

@@ -28,7 +28,7 @@ public class DictController {
 
     private final static Logger log = LoggerFactory.getLogger(DictController.class);
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20881")
+    @Reference
     private DictService dictService;
 
     /**
