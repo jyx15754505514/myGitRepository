@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -135,15 +136,15 @@ public class DepartmentController {
     }
 
     /**
-    *@Description: 获取当前部门和所有子部门
-    *@Param: [departmentDO]
-    *@return: com.ccicnavi.bims.common.ResultT
-    *@Author: zhangpengwei
-    *@date: 2018/11/22
-    */
+     *@Description: 获取当前部门和所有子部门
+     *@Param: [departmentDO]
+     *@return: com.ccicnavi.bims.common.ResultT
+     *@Author: zhangpengwei
+     *@date: 2018/11/22
+     */
     @RequestMapping(value = "/getALLDepartment", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT getALLDepartment(@RequestBody DepartmentDTO departmentDTO) {
-        List<DepartmentDTO> departmentDTOList = null;
+        List<DepartmentDTO> departmentDTOList = new ArrayList<DepartmentDTO>();
         try {
             //判断接收到的对象中机构UUID不为空
             if (StringUtils.isNotEmpty(departmentDTO.getOrgUuid())) {

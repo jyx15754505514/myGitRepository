@@ -112,8 +112,6 @@ public class OrganizationServiceImpl implements OrganizationService {
         List<OrganizationDTO> orgList = new ArrayList<OrganizationDTO>();
         try {
             //通过OrganizationDO中orgUuid  获取当前用户所在的公司
-            //String parentUuid = organizationDO.getOrgUuid();
-            //organizationDO.setOrgParentUuid(parentUuid);
             orgList = organizationDao.listOrgByOrg(organizationDTO);
             if(orgList != null && orgList.size() > 0 ){
                 //递归调用，获取树形部门结构
@@ -141,7 +139,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             organizationDTO.setOrgParentUuid(organizationUuid);
             organizationDTO.setOrgUuid(null);
             childList = organizationDao.listOrgByOrg(organizationDTO);
-            if (childList != null || childList.size() > 0) {
+            if (childList != null && childList.size() > 0) {
                 org.setOrgChildList(childList);
                 listChildOrg(organizationDTO, childList);
             }
