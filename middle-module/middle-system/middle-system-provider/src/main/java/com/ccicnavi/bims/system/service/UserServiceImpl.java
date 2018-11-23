@@ -235,4 +235,39 @@ public class UserServiceImpl implements UserService{
 
         }
     }
+    /**
+    *@Description: 根据用户分配角色
+    *@Param: [userDTO]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/23
+    */
+
+    @Override
+    public Integer addUserRole(UserDTO userDTO) {
+        EqlTran tran = new Eql("DEFAULT").newTran();
+        Integer insertRole = null;
+        try {
+            tran.start();
+            List<String> roleList = userDTO.getAddRoleList();
+            //判断角色是否为空
+            if(roleList != null && roleList.size() > 0){
+                for(String roleUuid : roleList){
+                    userDTO.setRoleUuid(roleUuid);
+                    //新增用户角色中间表
+                    insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
+                }
+            }
+            if(insertRole !=null){
+                tran.commit();
+            }else {
+                new RuntimeException("分配角色失败");
+            }
+        } catch (Exception e) {
+            log.error("分配角色失败",e);
+            tran.rollback();
+            return null;
+        }
+        return insertRole;
+    }
 }

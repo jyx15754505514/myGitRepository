@@ -66,4 +66,13 @@ public interface UserService {
      *@date: 2018/11/22
      */
     Integer updateIsEnabled(UserDTO userDTO);
+
+    /**
+     *@Description: 根据用户id分配角色
+     *@Param: [userDO]
+     *@return: java.lang.Integer
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    Integer addUserRole(UserDTO userDTO);
 }
