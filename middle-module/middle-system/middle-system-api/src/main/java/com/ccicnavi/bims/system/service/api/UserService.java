@@ -2,7 +2,7 @@ package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 
 /**
@@ -75,4 +75,13 @@ public interface UserService {
      *@date: 2018/11/22
      */
     Integer addUserRole(UserDTO userDTO);
+
+    /**
+     *@Description: 用户登录
+     *@Param: [userDO]
+     *@return: java.lang.Integer
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    SSOUser login(UserDTO userDTO);
 }

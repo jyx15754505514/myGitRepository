@@ -6,6 +6,7 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.system.dao.RoleUserDao;
 import com.ccicnavi.bims.system.dao.UserDao;
 import com.ccicnavi.bims.system.pojo.RoleDO;
@@ -272,5 +273,17 @@ public class UserServiceImpl implements UserService{
             log.error("分配角色失败",e);
         }
         return insertRole;
+    }
+
+    @Override
+    public SSOUser login(UserDTO userDTO) {
+        try {
+            SSOUser user = new SSOUser();
+            user = userDao.login(userDTO);
+            return user;
+        } catch (Exception e) {
+            log.error("根据主键获取登录用户信息失败",e);
+            return null;
+        }
     }
 }

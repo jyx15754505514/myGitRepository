@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.dao;
 
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 import org.n3r.eql.EqlTran;
@@ -96,4 +97,13 @@ public interface UserDao {
      *@date: 2018/11/22
      */
     public Integer updateIsEnabled(UserDTO userDTO);
+
+    /*
+    * 用户登录查询用户信息
+    * @Author zhaotao
+    * @Date  2018/11/23 16:44
+    * @Param [userDTO]
+    * @return com.ccicnavi.bims.sso.common.pojo.SSOUser
+    **/
+    SSOUser login(UserDTO userDTO);
 }
