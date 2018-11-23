@@ -73,7 +73,7 @@ public class CategoryController {
 
 
     /**
-     * 根据所属公司机构和业务线查询出一级产业分类
+     * 根据所属公司机构和业务线查询出一级产品分类
      *
      * @return
      */
@@ -83,13 +83,13 @@ public class CategoryController {
             List<CategoryDO> CustInvoiceList = categoryService.listCategoryFirstByOrgAndProd(categoryDTO);
             return ResultT.success(CustInvoiceList);
         } catch (Exception e) {
-            log.error(" 根据所属公司机构和业务线查询出一级产业分类~", e);
+            log.error(" 根据所属公司机构和业务线查询出一级产品分类~", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
 
     /**
-     * 根据父级ID查询出子级产业分类
+     * 根据父级ID查询出子级产品分类
      *
      * @return
      */
@@ -99,14 +99,14 @@ public class CategoryController {
             List<CategoryDO> CustInvoiceList = categoryService.listCategoryByParentUuid(categoryDTO);
             return ResultT.success(CustInvoiceList);
         } catch (Exception e) {
-            log.error("根据父级ID查询出子级产业分类~", e);
+            log.error("根据父级ID查询出子级产品分类~", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
 
 
     /**
-     * 根据主键查询对应产业分类信息
+     * 根据主键查询对应产品分类信息
      *
      * @param categoryDO
      * @return
@@ -122,14 +122,14 @@ public class CategoryController {
                 return ResultT.success(customer);
             }
         } catch (Exception e) {
-            log.error("根据主键查询产业分类失败", e);
+            log.error("根据主键查询产品分类失败", e);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
 
     /**
-     * 保存产业分类信息
+     * 保存产品分类信息
      *
      * @param categoryDO
      * @return
@@ -139,12 +139,12 @@ public class CategoryController {
         try {
             Integer count = categoryService.saveCategory(categoryDO);
             if (count > 0) {
-                return ResultT.success("新增产业分类成功");
+                return ResultT.success("新增产品分类成功");
             } else {
                 return ResultT.failure(ResultCode.ADD_FAILURE);
             }
         } catch (Exception e) {
-            log.error("新增产业分类失败", e);
+            log.error("新增产品分类失败", e);
             return ResultT.failure(ResultCode.ADD_FAILURE);
         }
     }

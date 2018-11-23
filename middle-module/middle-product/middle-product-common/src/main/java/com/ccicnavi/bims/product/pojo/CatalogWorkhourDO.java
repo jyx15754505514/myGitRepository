@@ -24,8 +24,10 @@ public class CatalogWorkhourDO implements Serializable {
     /**产品线ID*/
     private String prodCatalogUuid;
 
+    /**工时工资*/
     private String salaryWorkhour;
 
+    /**备注*/
     private String comments;
 
     private String isDeleted;
