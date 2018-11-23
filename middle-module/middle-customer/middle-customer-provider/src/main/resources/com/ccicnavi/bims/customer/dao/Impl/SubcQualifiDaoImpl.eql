@@ -1,22 +1,24 @@
 -- [listSubcuQuali]
 SELECT
-    subc_qualifi_uuid,
-    subc_uuid,
-    qualifi_range,
-    qualifi_enm_uuid,
-    qualifi_describe,
-    is_file,
-    is_deleted,
-    created_time,
-    created_uuid,
-    updated_time,
-    updated_name,
-    business_line,
-    org_uuid,
-    app_sys_uuid,
-    extend1,
-    extend2,
-    extend3
+    subc_qualifi_uuid subcQualifiUuid,
+    subc_uuid subcUuid,
+    qualifi_range qualifiRange,
+    qualifi_enm_uuid qualifiEnmUuid,
+    qualifi_code qualifiCode,
+    qualifi_describe qualifiDescribe,
+    is_file isFile,
+    is_deleted isDeleted,
+    comments comments,
+    created_time createdTime,
+    created_uuid createdUuid,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
 FROM
     crm_subc_qualification
 WHERE
@@ -37,6 +39,9 @@ INSERT INTO crm_subc_qualification
      -- iff qualifiEnmUuid != null and qualifiEnmUuid != ''
         qualifi_enm_uuid,
 
+     -- iff qualifiCode != null and qualifiCode != ''
+        qualifi_code,
+
      -- iff qualifiDescribe != null and qualifiDescribe != ''
         qualifi_describe,
 
@@ -46,11 +51,17 @@ INSERT INTO crm_subc_qualification
      -- iff isDeleted != null and isDeleted != ''
         is_deleted,
 
+     -- iff comments != null and comments != ''
+        comments,
+
      -- iff createdTime != null and createdTime != ''
         created_time,
 
      -- iff createdUuid != null and createdUuid != ''
         created_uuid,
+
+     -- iff createdName != null and createdName != ''
+        created_name,
 
      -- iff updatedTime != null and updatedTime != ''
         updated_time,
@@ -58,8 +69,8 @@ INSERT INTO crm_subc_qualification
      -- iff updatedName != null and updatedName != ''
         updated_name,
 
-     -- iff businessLine != null and businessLine != ''
-        business_line,
+     -- iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
 
      -- iff orgUuid != null and orgUuid != ''
         org_uuid,
@@ -80,58 +91,45 @@ INSERT INTO crm_subc_qualification
     -- trim prefix=values( suffix=) suffixOverrides=,
      -- iff subcQualifiUuid != null and subcQualifiUuid != ''
         '#subcQualifiUuid#',
-
      -- iff subcUuid != null and subcUuid != ''
         '#subcUuid#',
-
      -- iff qualifiRange != null and qualifiRange != ''
         '#qualifiRange#',
-
      -- iff qualifiEnmUuid != null and qualifiEnmUuid != ''
         '#qualifiEnmUuid#',
-
+     -- iff qualifiCode != null and qualifiCode != ''
+        '#qualifiCode#',
      -- iff qualifiDescribe != null and qualifiDescribe != ''
         '#qualifiDescribe#',
-
      -- iff isFile != null and isFile != ''
         '#isFile#',
-
+     -- iff comments != null and comments != ''
+        '#comments#',
      -- iff isDeleted != null and isDeleted != ''
         '#isDeleted#',
-
      -- iff createdTime != null and createdTime != ''
         '#createdTime#',
-
+    -- iff createdName != null and createdName != ''
+        '#createdName#',
      -- iff createdUuid != null and createdUuid != ''
         '#createdUuid#',
-
      -- iff updatedTime != null and updatedTime != ''
         '#updatedTime#',
-
+     -- iff updatedUuid != null and updatedUuid != ''
+        '#updatedUuid#',
      -- iff updatedName != null and updatedName != ''
         '#updatedName#',
-
-     -- iff businessLine != null and businessLine != ''
-        '#businessLine#',
-
      -- iff orgUuid != null and orgUuid != ''
         '#orgUuid#',
-
      -- iff appSysUuid != null and appSysUuid != ''
         '#appSysUuid#',
-
      -- iff extend1 != null and extend1 != ''
         '#extend1#',
-
      -- iff extend2 != null and extend2 != ''
         '#extend2#',
-
      -- iff extend3 != null and extend3 != ''
         '#extend3#',
-
     --end
-
-
 -- [removeSubcuQuali]
 UPDATE crm_subc_qualification
 SET is_deleted='Y'
@@ -151,78 +149,73 @@ AND subc_qualifi_uuid='#subcQualifiUuid#'
 
       -- iff qualifiRange != null
         qualifi_range = '#qualifiRange#',
-
        -- iff qualifiEnmUuid != null
          qualifi_enm_uuid = '#qualifiEnmUuid#',
-
+       -- iff qualifiCode != null
+         qualifi_code = '#qualifiCode#',
       -- iff qualifiDescribe != null
         qualifi_describe = '#qualifiDescribe#',
-
       -- iff isFile != null
         is_file = '#isFile#',
-
+      -- iff comments != null
+        comments = '#comments#',
       -- iff isDeleted != null
         is_deleted = '#isDeleted#',
-
       -- iff createdTime != null
         created_time = '#createdTime#',
-
       -- iff createdUuid != null
         created_uuid = '#createdUuid#',
-
+     -- iff createdName != null
+        created_name = '#createdName#',
       -- iff updatedTime != null
         updated_time = '#updatedTime#',
-
       -- iff updatedName != null
         updated_name = '#updatedName#',
-
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
       -- iff businessLine != null
         business_line = '#businessLine#',
-
       -- iff orgUuid != null
         org_uuid = '#orgUuid#',
-
       -- iff appSysUuid != null
         app_sys_uuid = '#appSysUuid#',
-
       -- iff extend1 != null
         extend1 = '#extend1#',
-
       -- iff extend2 != null
         extend2 = '#extend2#',
-
       -- iff extend3 != null
         extend3 = '#extend3#',
-
     --end
   where subc_qualifi_uuid = '#subcQualifiUuid#'
 
 -- [getSubcQuali]
 SELECT
-    subc_qualifi_uuid,
-    subc_uuid,
-    qualifi_range,
-    qualifi_enm_uuid,
-    qualifi_describe,
-    is_file,
-    is_deleted,
-    created_time,
-    created_uuid,
-    updated_time,
-    updated_name,
-    business_line,
-    org_uuid,
-    app_sys_uuid,
-    extend1,
-    extend2,
-    extend3
+       subc_qualifi_uuid subcQualifiUuid,
+       subc_uuid subcUuid,
+       qualifi_range qualifiRange,
+       qualifi_enm_uuid qualifiEnmUuid,
+       qualifi_code qualifiCode,
+       qualifi_describe qualifiDescribe,
+       is_file isFile,
+       is_deleted isDeleted,
+       comments comments,
+       created_time createdTime,
+       created_uuid createdUuid,
+       updated_time updatedTime,
+       updated_uuid updatedUuid,
+       updated_name updatedName,
+       org_uuid orgUuid,
+       app_sys_uuid appSysUuid,
+       extend1 extend1,
+       extend2 extend2,
+       extend3 extend3
 FROM crm_subc_qualification
 WHERE
     is_deleted='N'
-        --if subcUuid !=null and subcUuid != ''
-            and subc_uuid = '#subcUuid:like#'
-        --end
-        --if subcQualifiUuid !=null and subcQualifiUuid != ''
-            and subc_qualifi_uuid = '#subcQualifiUuid#'
-        --end
+    --if subcUuid !=null and subcUuid != ''
+        and subc_uuid = '#subcUuid#'
+    --end
+    --if subcQualifiUuid !=null and subcQualifiUuid != ''
+        and subc_qualifi_uuid = '#subcQualifiUuid#'
+    --end
 
