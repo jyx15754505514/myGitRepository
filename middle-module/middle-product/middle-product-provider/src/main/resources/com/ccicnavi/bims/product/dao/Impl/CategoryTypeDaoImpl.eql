@@ -22,6 +22,21 @@ FROM
     product_category_type
 WHERE
     is_deleted='N'
+--if parentTypeUuid !=null and parentTypeUuid != ''
+            AND parent_type_uuid like '#parentTypeUuid#'
+--end
+--if typeName !=null and typeName != ''
+            AND type_name like '#typeName:like#'
+--end
+--if prodCatalogUuid !=null and prodCatalogUuid != ''
+            AND prod_catalog_uuid like '#prodCatalogUuid#'
+--end
+--if orgUuid !=null and orgUuid != ''
+            AND org_uuid like '#orgUuid#'
+--end
+--if appSysUuid !=null and appSysUuid != ''
+            AND app_sys_uuid like '#appSysUuid#'
+--end
 
 -- [saveCategoryTypeDO]
 INSERT INTO product_category_type
