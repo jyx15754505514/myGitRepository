@@ -2,7 +2,9 @@ package com.ccicnavi.bims.system.dao.impl;
 
 import com.ccicnavi.bims.system.dao.MenuButtonDao;
 import com.ccicnavi.bims.system.pojo.MenuButtonDO;
+import com.ccicnavi.bims.system.pojo.MenuButtonDTO;
 import com.ccicnavi.bims.system.pojo.MenuDTO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
@@ -18,44 +20,49 @@ import java.util.List;
 @Service
 public class MenuButtonDaoImpl implements MenuButtonDao {
     @Override
-    public List<MenuButtonDO> listMenuButton(MenuButtonDO menuButtonDO) {
-        return new Eql().select("listMenuButton").params(menuButtonDO).returnType(MenuButtonDO.class).execute();
+    public List<MenuButtonDTO> listMenuButton(MenuButtonDTO menuButtonDTO) {
+        return new Eql().select("listMenuButton").params(menuButtonDTO).returnType(MenuButtonDO.class).execute();
     }
 
     @Override
-    public Integer insertMenuButton(MenuButtonDO menuButtonDO, EqlTran tran) {
+    public Integer insertMenuButton(MenuButtonDTO menuButtonDTO, EqlTran tran) {
         Eql eql = new  Eql();
         if(tran != null){
             eql.useTran(tran);
         }
-        return eql.insert("insertMenuButton").params(menuButtonDO).returnType(Integer.class).execute();
+        return eql.insert("insertMenuButton").params(menuButtonDTO).returnType(Integer.class).execute();
     }
 
     @Override
-    public Integer updateMenuButton(MenuButtonDO menuButtonDO,EqlTran tran) {
+    public Integer updateMenuButton(MenuButtonDTO menuButtonDTO,EqlTran tran) {
         Eql eql = new  Eql();
         if(tran != null){
             eql.useTran(tran);
         }
-        return eql.update("updateMenuButton").params(menuButtonDO).returnType(Integer.class).execute();
+        return eql.update("updateMenuButton").params(menuButtonDTO).returnType(Integer.class).execute();
     }
 
     @Override
-    public Integer deleteMenuButton(MenuButtonDO menuButtonDO,EqlTran tran) {
+    public Integer deleteMenuButton(MenuButtonDTO menuButtonDTO,EqlTran tran) {
         Eql eql = new  Eql();
         if(tran != null){
             eql.useTran(tran);
         }
-        return eql.delete("deleteMenuButton").params(menuButtonDO).returnType(Integer.class).execute();
+        return eql.delete("deleteMenuButton").params(menuButtonDTO).returnType(Integer.class).execute();
     }
 
     @Override
-    public MenuButtonDO getMenuButton(MenuButtonDO menuButtonDO) {
-        return new Eql().selectFirst("getMenuButton").params(menuButtonDO).returnType(MenuButtonDO.class).execute();
+    public MenuButtonDTO getMenuButton(MenuButtonDTO menuButtonDTO) {
+        return new Eql().selectFirst("getMenuButton").params(menuButtonDTO).returnType(MenuButtonDO.class).execute();
     }
 
     @Override
-    public List<MenuButtonDO> listMenuButtonByRole(MenuDTO menuDTO) {
+    public List<MenuButtonDTO> listMenuButtonByRole(MenuDTO menuDTO) {
         return new Eql().selectFirst("listMenuButtonByRole").params(menuDTO).returnType(MenuButtonDO.class).execute();
+    }
+
+    @Override
+    public List<String> listButtonUrlByRole(UserDTO userDTO) throws Exception {
+        return new Eql().selectFirst("listButtonUrlByRole").params(userDTO).returnType(MenuButtonDO.class).execute();
     }
 }

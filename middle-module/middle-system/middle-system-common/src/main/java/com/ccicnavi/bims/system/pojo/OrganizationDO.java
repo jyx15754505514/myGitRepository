@@ -14,8 +14,6 @@ import java.util.List;
 @ToString
 public class OrganizationDO implements Serializable{
 
-    private List<String> uuids;
-
     private String organizationUuid;
 
     private String orgParentUuid;

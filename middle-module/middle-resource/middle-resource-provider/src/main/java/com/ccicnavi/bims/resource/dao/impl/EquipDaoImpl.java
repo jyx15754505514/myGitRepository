@@ -5,10 +5,10 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.EquipDao;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
+import com.ccicnavi.bims.resource.pojo.EquipDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -40,7 +40,7 @@ public class EquipDaoImpl implements EquipDao {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDO>
      */
     @Override
-    public PageBean<EquipDO> listEquip(PageParameter<EquipDO> pageParameter){
+    public PageBean<EquipDO> listEquip(PageParameter<EquipDTO> pageParameter){
         EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
         List<EquipDO> listEquip = new Eql("druid").select("listEquip").params(pageParameter.getParameter()).returnType(EquipDO.class).limit(eqlPage).execute();
         return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquip);

@@ -20,6 +20,8 @@ public enum ResultCode {
     USER_ACCOUNT_FORBIDDEN(20003, "账号已被禁用"),
     USER_NOT_EXIST(20004, "用户不存在"),
     USER_HAS_EXISTED(20005, "用户已存在"),
+    SSO_LOGIN_FAILURE(20006, "SSO服务登录失败"),
+    USER_LOGIN_FAILURE(20007, "用户登录失败"),
 
     /* 业务错误：30001-39999 */
     SPECIFIED_QUESTIONED_USER_NOT_EXIST(30001, "某业务出现问题"),
@@ -41,6 +43,11 @@ public enum ResultCode {
     CUST_CODE_REPEAT(30017,"客户代码重复"),
     CUST_USCC_REPEAT(30018,"客户统一社会信用代码重复"),
 
+    SERIAL_CFG_GET_FAILURE(30018, "查询业务规则信息出错"),
+    SERIAL_CFG_ADD_FAILURE(30019, "添加业务规则信息出错"),
+    SERIAL_CFG_MODIFY_FAILURE(30020, "修改业务规则信息出错"),
+    SERIAL_CFG_REMOVE_FAILURE(30021, "删除业务规则信息出错"),
+    RENEW_FAILURE(30022, "更新失败"),
 
     /* 系统错误：40001-49999 */
     SYSTEM_INNER_ERROR(40001, "系统繁忙，请稍后重试"),

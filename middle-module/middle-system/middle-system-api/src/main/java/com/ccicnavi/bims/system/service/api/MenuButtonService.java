@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.system.pojo.MenuButtonDO;
+import com.ccicnavi.bims.system.pojo.MenuButtonDTO;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface MenuButtonService {
     *@date: 2018/11/20
     */
 
-     public List<MenuButtonDO> listMenuButton(MenuButtonDO menuButtonDO);
+     public List<MenuButtonDTO> listMenuButton(MenuButtonDTO menuButtonDTO);
 
      /**
      *@Description: 新增菜单按钮
@@ -29,7 +30,7 @@ public interface MenuButtonService {
      *@date: 2018/11/20
      */
 
-     public Integer insertMenuButton(MenuButtonDO menuButtonDO);
+     public Integer insertMenuButton(MenuButtonDTO menuButtonDTO);
 
      /**
      *@Description: 修改菜单按钮
@@ -39,7 +40,7 @@ public interface MenuButtonService {
      *@date: 2018/11/20
      */
 
-     public Integer updateMenuButton(MenuButtonDO menuButtonDO);
+     public Integer updateMenuButton(MenuButtonDTO menuButtonDTO);
 
      /**
      *@Description: 删除菜单按钮
@@ -49,7 +50,7 @@ public interface MenuButtonService {
      *@date: 2018/11/20
      */
 
-     public Integer deleteMenuButton(MenuButtonDO menuButtonDO);
+     public Integer deleteMenuButton(MenuButtonDTO menuButtonDTO);
 
      /**
      *@Description: 根据主键获取菜单按钮
@@ -59,5 +60,5 @@ public interface MenuButtonService {
      *@date: 2018/11/20
      */
 
-     public MenuButtonDO getMenuButton(MenuButtonDO menuButtonDO);
+     public MenuButtonDTO getMenuButton(MenuButtonDTO menuButtonDTO);
 }

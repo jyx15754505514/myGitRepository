@@ -18,24 +18,34 @@ import java.util.Date;
 @ToString
 public class CategoryDTO implements Serializable {
 
+    /**产品分类主键*/
     private String productCategoryUuid;
 
+    /**产品类别ID*/
     private String productCategoryTypeUuid;
 
+    /**主父节点分类ID*/
     private String parentCategoryUuid;
 
+    /**所有父级产品分类的ID*/
     private String parentAllCategoryUuid;
 
+    /**产品分类名称*/
     private String categoryName;
 
+    /**产品分类编码*/
     private String categoryCode;
 
+    /**排序号*/
     private String seqNum;
 
+    /**描述*/
     private String longDescription;
 
+    /**是否可用(Y/N)*/
     private String isEnabled;
 
+    /**备注*/
     private String comments;
 
     private String isDeleted;

@@ -2,9 +2,9 @@ package com.ccicnavi.bims.system.dao;
 
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.system.pojo.DepartmentDO;
-import com.ccicnavi.bims.system.pojo.UserDO;
-import com.ccicnavi.bims.system.pojo.UserDeptDO;
+import com.ccicnavi.bims.system.pojo.DepartmentDTO;
+import com.ccicnavi.bims.system.pojo.DepartmentDTO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 
 import java.util.List;
 
@@ -16,50 +16,50 @@ import java.util.List;
  **/
 public interface DepartmentDao {
 
-   /**
-    *@Description: 查询部门信息(条件查询)
-    *@Param: [departmentDO]
-    *@return: List<DepartmentDO>
-    *@Author: zhangxingbiao
-    *@date: 2018/11/15
-    */
-   public PageBean<DepartmentDO> listDepartment(PageParameter<DepartmentDO> pageParameter);
+    /**
+     * @Description: 查询部门信息(条件查询)
+     * @Param: [departmentDTO]
+     * @return: List<DepartmentDTO>
+     * @Author: zhangxingbiao
+     * @date: 2018/11/15
+     */
+    public PageBean<DepartmentDTO> listDepartment(PageParameter<DepartmentDTO> pageParameter) throws Exception;
 
     /**
-    *@Description: 新增部门信息
-    *@Param: [departmentDO]
-    *@return: Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/15
-    */
-    public Integer insertDepartment(DepartmentDO departmentDO);
+     * @Description: 新增部门信息
+     * @Param: [departmentDTO]
+     * @return: Integer
+     * @Author: zhangxingbiao
+     * @date: 2018/11/15
+     */
+    public Integer insertDepartment(DepartmentDTO departmentDTO) throws Exception;
 
     /**
-    *@Description: 更新部门信息
-    *@Param: [departmentDO]
-    *@return: Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/15
-    */
-    public Integer updateDepartment(DepartmentDO departmentDO);
+     * @Description: 更新部门信息
+     * @Param: [departmentDTO]
+     * @return: Integer
+     * @Author: zhangxingbiao
+     * @date: 2018/11/15
+     */
+    public Integer updateDepartment(DepartmentDTO departmentDTO) throws Exception;
 
     /**
-    *@Description: 删除部门信息
-    *@Param: [departmentDO]
-    *@return: Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/15
-    */
-    public Integer deleteDepartment(DepartmentDO departmentDO);
+     * @Description: 删除部门信息
+     * @Param: [departmentDTO]
+     * @return: Integer
+     * @Author: zhangxingbiao
+     * @date: 2018/11/15
+     */
+    public Integer deleteDepartment(DepartmentDTO departmentDTO) throws Exception;
 
     /**
-    *@Description: 根据主键获取单个部门信息
-    *@Param: [departmentDO]
-    *@return: DepartmentDO
-    *@Author: zhangxingbiao
-    *@date: 2018/11/15
-    */
-    public DepartmentDO getDepartment(DepartmentDO departmentDO);
+     * @Description: 根据主键获取单个部门信息
+     * @Param: [departmentDTO]
+     * @return: DepartmentDTO
+     * @Author: zhangxingbiao
+     * @date: 2018/11/15
+     */
+    public DepartmentDTO getDepartment(DepartmentDTO departmentDTO) throws Exception;
 
     /**
     *@Description: 根据用户的UUID查询所有的部门信息
@@ -68,6 +68,24 @@ public interface DepartmentDao {
     *@Author: zhangpengwei
     *@date: 2018/11/19
     */
-    public List<DepartmentDO> listDeptByUser(UserDO userDO) throws Exception;
+    public List<DepartmentDTO> listDeptByUser(UserDTO userDTO) throws Exception;
+
+    /**
+     * @Description: 根据部门类型查询部门信息
+     * @Param: [departmentDTO]
+     * @return: java.util.List<com.ccicnavi.bims.system.pojo.DepartmentDTO>
+     * @Author: zhangpengwei
+     * @date: 2018/11/20
+     */
+    public List<DepartmentDTO> listDeptByDeptType(DepartmentDTO departmentDTO) throws Exception;
+
+    /**
+     *@Description: 根据公司查询部门信息(orgUuid和parentUuid）
+     *@Param: [departmentDTO]
+     *@return: java.util.List<com.ccicnavi.bims.system.pojo.DepartmentDTO>
+     *@Author: zhangpengwei
+     *@date: 2018/11/21
+     */
+    public List<DepartmentDTO> listDept(DepartmentDTO departmentDTO) throws Exception ;
 
 }

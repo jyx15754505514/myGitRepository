@@ -1,12 +1,9 @@
 package com.ccicnavi.bims.resource.api;
 
-
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
-
-import java.util.List;
-
+import com.ccicnavi.bims.resource.pojo.EquipDTO;
 /**
  * @program: bims-backend
  * @description: 设备信息api接口
@@ -22,7 +19,16 @@ public interface EquipService {
      * @Param [equipDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipDO>
      */
-    PageBean<EquipDO> listEquip(PageParameter<EquipDO> pageParameter);
+    PageBean<EquipDO> listEquip(PageParameter<EquipDTO> pageParameter);
+
+    /**
+     * @Author MengZiJie
+     * @Description 到期提醒查询
+     * @Data 2018/11/23 10:42
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.EquipDO>
+     */
+    PageBean<EquipDO> expireListEquip(PageParameter<EquipDTO> pageParameter);
 
     /**
      * @Author panyida

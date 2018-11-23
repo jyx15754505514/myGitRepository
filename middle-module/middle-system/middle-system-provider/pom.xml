@@ -108,13 +108,23 @@
         </dependency>
 
         <dependency>
-            <artifactId>zoo-shiba</artifactId>
+            <groupId>zoo-shiba</groupId>
+            <artifactId>shiba-api</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.ccicnavi.bims</groupId>
+            <artifactId>entrance-common</artifactId>
             <version>1.0</version>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>com.ccicnavi.bims</groupId>
+            <artifactId>breeder-api</artifactId>
+            <version>1.0</version>
+        </dependency>
 
     </dependencies>
     <dependencyManagement>
@@ -134,6 +144,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>exec</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

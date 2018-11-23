@@ -17,6 +17,13 @@ select
     rece_user_time receUserTime,
     use_std_uuid useStdUuid,
     use_std_name useStdName,
+    status_uuid statusUuid,
+    status_name statusName,
+    is_back isBack,
+    back_reason backReason,
+    is_cancel isCancel,
+    cancel_reason cancelReason,
+    is_urgent isUrgent,
     comments comments,
     is_deleted isDeleted,
     created_time createdTime,
@@ -52,6 +59,13 @@ select
     rece_user_time receUserTime,
     use_std_uuid useStdUuid,
     use_std_name useStdName,
+    status_uuid statusUuid,
+    status_name statusName,
+    is_back isBack,
+    back_reason backReason,
+    is_cancel isCancel,
+    cancel_reason cancelReason,
+    is_urgent isUrgent,
     comments comments,
     is_deleted isDeleted,
     created_time createdTime,
@@ -109,6 +123,21 @@ where
             use_std_uuid,
         --iff useStdName != null and useStdName != ''
             use_std_name,
+
+        --iff statusUuid != null and statusUuid != ''
+            status_uuid,
+        --iff statusName != null and statusName != ''
+            status_name,
+        --iff isBack != null and isBack != ''
+            is_back,
+        --iff backReason != null and backReason != ''
+            back_reason,
+        --iff isCancel != null and isCancel != ''
+            is_cancel,
+        --iff cancelReason != null and cancelReason != ''
+            cancel_reason,
+        --iff isUrgent != null and isUrgent != ''
+            is_urgent,
         --iff comments != null and comments != ''
             comments,
         --iff isDeleted != null and isDeleted != ''
@@ -146,9 +175,9 @@ where
         --iff refWorkhour != null and refWorkhour != ''
             '#refWorkhour#',
         --iff isSubpkg != null and isSubpkg != ''
-            '#isSubpkg#',
+            'N',
         --iff isSubpkgMgr != null and isSubpkgMgr != ''
-            '#isSubpkgMgr#',
+            'Y',
         --iff receOrgUuid != null and receOrgUuid != ''
             '#receOrgUuid#',
         --iff receOrgName != null and receOrgName != ''
@@ -161,10 +190,24 @@ where
             '#useStdUuid#',
         --iff useStdName != null and useStdName != ''
             '#useStdName#',
+        --iff statusUuid != null and statusUuid != ''
+            '#statusUuid#',
+        --iff statusName != null and statusName != ''
+            '#statusName#',
+        --iff isBack != null and isBack != ''
+            '#isBack#',
+        --iff backReason != null and backReason != ''
+            '#backReason#',
+        --iff isCancel != null and isCancel != ''
+            '#isCancel#',
+        --iff cancelReason != null and cancelReason != ''
+            '#cancelReason#',
+        --iff isUrgent != null and isUrgent != ''
+            '#isUrgent#',
         --iff comments != null and comments != ''
             '#comments#',
         --iff isDeleted != null and isDeleted != ''
-            '#isDeleted#',
+            'N',
         --iff createdTime != null
             '#createdTime#',
         --iff createdUuid != null and createdUuid != ''
@@ -214,6 +257,20 @@ where
             use_std_uuid = '#useStdUuid#',
         --iff useStdName != null and useStdName != ''
             use_std_name = '#useStdName#',
+        --iff statusUuid != null and statusUuid != ''
+            status_uuid = '#statusUuid#',
+        --iff statusName != null and statusName != ''
+            status_name = '#statusName#',
+        --iff isBack != null and isBack != ''
+            is_back = '#isBack#',
+        --iff backReason != null and backReason != ''
+            back_reason = '#backReason#',
+        --iff isCancel != null and isCancel != ''
+            is_cancel = '#isCancel#',
+        --iff cancelReason != null and cancelReason != ''
+            cancel_reason = '#cancelReason#',
+        --iff isUrgent != null and isUrgent != ''
+            is_urgent = '#isUrgent#',
         --iff comments != null and comments != ''
             comments = '#comments#',
         --iff isDeleted != null and isDeleted != ''
@@ -232,6 +289,9 @@ where
             updated_name = '#updatedName#',
     -- end
 where
+     --if flag ==1
+     order_item_uuid = '#orderItemUuid#'
+     --else
     is_deleted = 'N'
     and order_item_uuid = '#orderItemUuid#'
 -- end
@@ -240,12 +300,14 @@ where
 UPDATE
     order_item
 -- trim prefix= set suffixOverrides=,
-    is_deleted = 'Y'.
+    is_deleted = 'Y'
 -- end
 WHERE
   is_deleted = 'N'
 --iff orderItemUuid != null and orderItemUuid != ''
     and order_item_uuid = '#orderItemUuid#'
+    --iff orderUuid != null and orderUuid != ''
+        and order_uuid = '#orderUuid#'
 --iff orderItemUuidList != null
     and order_item_uuid in
     -- for item=item index=index collection=orderItemUuidList open=( separator=, close=)

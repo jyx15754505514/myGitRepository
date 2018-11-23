@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/* *
+/**
  * @Author heibin
  * @Description 委托单运输方式
  * @Date 17:52 2018/11/19
@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class OrderInspectionServiceImpl implements OrderInspectionService {
     @Autowired
     private OrderInspectionDao orderInspectionDao;
-    /* *
+    /**
      * @Author heibin
      * @Description 委托单运输方式添加
      * @Date 17:55 2018/11/19
@@ -28,16 +28,19 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
     @Override
     public Integer insertOrderInspection(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
-        Integer integer = null;
+        Integer inspection = null;
         try {
-            integer = orderInspectionDao.insertOrderInspection(orderInfoDTO, eqlTran);
+            inspection = orderInspectionDao.insertOrderInspection(orderInfoDTO, eqlTran);
+            if(inspection > 0){
+                return  inspection;
+            }
         } catch (Exception e) {
             log.error("添加委托单运输方式失败",e);
         }
-        return integer;
+        return -1;
     }
 
-    /* *
+    /**
      * @Author heibin
      * @Description 更新委托单运输方式
      * @Date 18:04 2018/11/19
@@ -47,12 +50,15 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
     @Override
     public Integer updateOrderInspection(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
-        Integer integer = null;
+        Integer inspection = null;
         try {
-            integer = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
+            inspection = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
+            if (inspection > 0) {
+                return inspection;
+            }
         } catch (Exception e) {
             log.error("更新委托单运输方式失败",e);
         }
-        return integer;
+        return -1;
     }
 }

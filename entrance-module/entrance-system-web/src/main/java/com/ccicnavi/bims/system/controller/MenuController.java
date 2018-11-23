@@ -27,10 +27,10 @@ import java.util.List;
 @Slf4j
 public class MenuController {
     //url 指定dubbo的地址
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private MenuService menuService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private MenuButtonService menuButtonService;
     /**
      * 功能描述: 根据条件查询菜单
@@ -51,21 +51,20 @@ public class MenuController {
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
-
+    /**
+     *@Description: 首页查询菜单
+     *@Param: menuDTO
+     *@return: MenuDTO
+     *@Author: zqq
+     *@date: 2018/11/22
+     */
     @RequestMapping(value = "/listMenuRoleUuid", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-        public ResultT listMenuRoleUuid(@RequestBody MenuDTO menuDTO) {
-
+    public ResultT listMenuRoleUuid(@RequestBody MenuDTO menuDTO) {
+        if(StringUtils.isEmpty(menuDTO.getRoleUuids())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
-            List<MenuDTO> list = menuService.listMenuRoleUuid(menuDTO);
-            if(list != null && list.size() >0){
-                for( int i=0;i<list.size();i++){
-                    MenuDTO dto=  list.get(i);
-                    MenuButtonDO menuButtonDO = new MenuButtonDO();
-                    menuButtonDO.setMenuUuid(dto.getMenuUuid());
-                    List<MenuButtonDO> menuButtonDOList=menuButtonService.listMenuButton(menuButtonDO);
-                    dto.setMenuButtonDOList(menuButtonDOList);
-                }
-            }
+            List<MenuDTO> list = menuService.listMenuWithBtn(menuDTO);
             return ResultT.success(list);
         }catch (Exception e) {
             log.error("根据用户角色查询菜单失败", e);
@@ -74,32 +73,27 @@ public class MenuController {
     }
 
     /**
-    *@Description: 根据大宗线查询菜单
-    *@Param: menuDTO
-    *@return: List<MenuDTO>
-    *@Author: zqq
-    *@date: 2018/11/20
-    */
+     *@Description: 根据大宗线查询菜单
+     *@Param: menuDTO
+     *@return: List<MenuDTO>
+     *@Author: zqq
+     *@date: 2018/11/20
+     */
 
     @RequestMapping(value = "/listMenuProdCatalogUuid", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listMenuProdCatalogUuid(@RequestBody MenuDTO menuDTO) {
-
+        if(StringUtils.isEmpty(menuDTO.getRoleUuids())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
+        if(StringUtils.isEmpty(menuDTO.getProdCatalogUuid())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
             List<MenuDTO> list = menuService.listMenuByProdCatalogUuid(menuDTO);
-            if(list != null && list.size() >0){
-                for( int i=0;i<list.size();i++){
-                    MenuDTO dto=  list.get(i);
-                    MenuButtonDO menuButtonDO = new MenuButtonDO();
-                    menuButtonDO.setMenuUuid(dto.getMenuUuid());
-                    List<MenuButtonDO> menuButtonDOList=menuButtonService.listMenuButton(menuButtonDO);
-                    dto.setMenuButtonDOList(menuButtonDOList);
-                }
-            }
             return ResultT.success(list);
         }catch (Exception e) {
             log.error("根据用户角色查询菜单失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
-
 }

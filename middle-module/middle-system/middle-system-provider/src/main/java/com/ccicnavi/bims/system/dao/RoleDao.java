@@ -3,10 +3,7 @@ package com.ccicnavi.bims.system.dao;
 
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.system.pojo.RoleDO;
-import com.ccicnavi.bims.system.pojo.RoleDTO;
-import com.ccicnavi.bims.system.pojo.RoleUserDO;
-import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.*;
 
 import java.util.List;
 
@@ -65,5 +62,5 @@ public interface RoleDao {
     *@Author: zhangpengwei
     *@date: 2018/11/19
     */
-    public List<RoleUserDO> listRoleByUser(UserDO userDO) throws  Exception;
+    public List<RoleDTO> listRoleByUser(UserDTO userDO) throws  Exception;
 }

@@ -26,9 +26,9 @@ public class CategoryTypeServiceImpl implements CategoryTypeService {
     CategoryTypeDao categoryTypeDao;
 
     @Override
-    public List<CategoryTypeDO> listCategoryTypeDO(CategoryTypeDO categoryTypeDO) {
+    public List<CategoryTypeDO> listCategoryType(CategoryTypeDO categoryTypeDO) {
         try {
-            return categoryTypeDao.lsitCategoryTypeDO();
+            return categoryTypeDao.lsitCategoryType();
         } catch (Exception e) {
             log.error("查询产品类别的分类信息失败",e);
             return null;
@@ -36,9 +36,9 @@ public class CategoryTypeServiceImpl implements CategoryTypeService {
     }
 
     @Override
-    public int saveCategoryTypeDO(CategoryTypeDO categoryTypeDO) {
+    public int saveCategoryType(CategoryTypeDO categoryTypeDO) {
         try {
-            return categoryTypeDao.saveCategoryTypeDO(categoryTypeDO);
+            return categoryTypeDao.saveCategoryType(categoryTypeDO);
         } catch (Exception e) {
             log.error("新增产品类别的分类信息失败",e);
             return 0;
@@ -46,9 +46,9 @@ public class CategoryTypeServiceImpl implements CategoryTypeService {
     }
 
     @Override
-    public int removeCategoryTypeDO(CategoryTypeDO categoryTypeDO) {
+    public int removeCategoryType(CategoryTypeDO categoryTypeDO) {
         try {
-            return categoryTypeDao.removeCategoryTypeDO(categoryTypeDO);
+            return categoryTypeDao.removeCategoryType(categoryTypeDO);
         } catch (Exception e) {
             log.error("删除产品类别的分类信息失败",e);
             return 0;
@@ -56,9 +56,9 @@ public class CategoryTypeServiceImpl implements CategoryTypeService {
     }
 
     @Override
-    public int updateCategoryTypeDO(CategoryTypeDO categoryTypeDO) {
+    public int updateCategoryType(CategoryTypeDO categoryTypeDO) {
         try {
-            return categoryTypeDao.updateCategoryTypeDO(categoryTypeDO);
+            return categoryTypeDao.updateCategoryType(categoryTypeDO);
         } catch (Exception e) {
             log.error("修改产品类别的分类信息失败",e);
             return 0;
@@ -66,9 +66,9 @@ public class CategoryTypeServiceImpl implements CategoryTypeService {
     }
 
     @Override
-    public CategoryTypeDO getCategoryTypeDO(CategoryTypeDO categoryTypeDO) {
+    public CategoryTypeDO getCategoryType(CategoryTypeDO categoryTypeDO) {
         try {
-            return categoryTypeDao.getCategoryTypeDO(categoryTypeDO);
+            return categoryTypeDao.getCategoryType(categoryTypeDO);
         } catch (Exception e) {
             log.error("获取产品类别的分类信息失败",e);
             return null;

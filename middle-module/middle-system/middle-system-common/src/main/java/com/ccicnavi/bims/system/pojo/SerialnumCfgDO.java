@@ -14,17 +14,30 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class SerialnumCfgDO {
+public class SerialnumCfgDO implements Serializable {
+    /**
+     * 规则uuid
+     */
     private String sncUuid;
-
+    /**
+     * 规则名称
+     */
     private String sncName;
-
+    /**
+     * 序号初始值
+     */
     private String sncInitValue;
-
+    /**
+     *序号长度
+     */
     private Integer sncLength;
-
+    /**
+     *序号长度
+     */
     private Integer sncStep;
-
+    /**
+     *周期
+     */
     private String sncPeriod;
 
     private String isHop;
@@ -34,22 +47,38 @@ public class SerialnumCfgDO {
     private String isDelimAfterFirst;
 
     private String isDelimBeforeLast;
-
+    /**
+     * 排序编号
+     */
     private String sortNum;
 
     private String comments;
-
+    /**
+     * 是否删除
+     */
     private String isDeleted;
-
+    /**
+     * 所属机构
+     */
     private String orgUuid;
-
+    /**
+     * 归属系统
+     */
     private String appSysUuid;
-
+    /**
+     * 所属产品线
+     */
     private String prodCatalogUuid;
-
+    /**
+     * 扩展字段1
+     */
     private String extend1;
-
+    /**
+     * 扩展字段2
+     */
     private String extend2;
-
+    /**
+     * 扩展字段3
+     */
     private String extend3;
 }

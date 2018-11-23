@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.service.api;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 
 /**
  *@program: bims-backend
@@ -16,33 +17,62 @@ public interface UserService {
      * @param pageParameter
      * @return List<UserDO>
      */
-    public ResultT listUser(PageParameter<UserDO> pageParameter);
+    public ResultT listUser(PageParameter<UserDTO> pageParameter);
 
     /**
      * 新增登录用户
      * @param UserDO
      * @return Integer
      */
-    public Integer insertUser(UserDO UserDO);
+    public Integer insertUser(UserDTO UserDO);
 
     /**
      * 更改登录用户
      * @param UserDO
      * @return Integer
      */
-    public Integer updateUser(UserDO UserDO);
+    public Integer updateUser(UserDTO UserDO);
 
     /**
      * 删除登录用户
      * @param UserDO
      * @return Integer
      */
-    public Integer deleteUser(UserDO UserDO);
+    public Integer deleteUser(UserDTO UserDO);
 
     /**
      * 根据主键获取单个登录用户信息
      * @param UserDO
      * @return UserDO
      */
-    public  UserDO getUser(UserDO UserDO);
+    public  UserDTO getUser(UserDTO UserDO);
+
+
+    /**
+     *@Description: 根据角色查询用户
+     *@Param: userDTO
+     *@return: UserDTO
+     *@Author: 本人姓名
+     *@date: 2018/11/22
+     */
+    public UserDTO selectByRoleUser(UserDTO userDTO);
+
+
+    /**
+     *@Description: 更改启用禁用状态
+     *@Param: [userDO]
+     *@return: java.lang.Integer
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    Integer updateIsEnabled(UserDTO userDTO);
+
+    /**
+     *@Description: 根据用户id分配角色
+     *@Param: [userDO]
+     *@return: java.lang.Integer
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    Integer addUserRole(UserDTO userDTO);
 }

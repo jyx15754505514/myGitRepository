@@ -1,30 +1,32 @@
 -- [listSubcontractor]
 SELECT
-    subcontractor_uuid,
-    subc_code,
-    name,
-    en_name,
-    subc_short_name,
-    subc_post_code,
-    subc_url,
-    fax,
-    tel,
-    subc_phone,
-    addr,
-    rank,
-    detection_field,
-    is_deleted,
-    created_time,
-    created_uuid,
-    created_name,
-    updated_time,
-    updated_name,
-    business_line,
-    org_uuid,
-    app_sys_uuid,
-    extend1,
-    extend2,
-    extend3
+    subcontractor_uuid as subcontractorUuid,
+    subc_code as subcCode,
+    name as name,
+    en_name as enName,
+    subc_short_name as subcShortName,
+    subc_post_code as subcPostCode,
+    subc_url as subcUrl,
+    fax as fax,
+    tel as tel,
+    subc_phone as subcPhone,
+    addr as addr,
+    rank as rank,
+    detection_field as detectionField,
+    comments as comments,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_uuid as updatedUuid,
+    updated_time as updatedTime,
+    updated_name as updateName,
+    prod_catalog_uuid as prodCatalogUuid,
+    org_uuid as orgUuid,
+    app_sys_uuid as appSysUuid,
+    extend1 as extend1,
+    extend2 as extend2,
+    extend3 as extend3
 FROM
     crm_subcontractor
 WHERE
@@ -35,156 +37,110 @@ INSERT INTO crm_subcontractor
    -- trim prefix=( suffix=) suffixOverrides=,
      -- iff subcontractorUuid != null and subcontractorUuid != ''
         subcontractor_uuid,
-
      -- iff subcCode != null and subcCode != ''
         subc_code,
-
      -- iff name != null and name != ''
         name,
-
      -- iff enName != null and enName != ''
         en_name,
-
      -- iff subcShortName != null and subcShortName != ''
         subc_short_name,
-
      -- iff subcPostCode != null and subcPostCode != ''
         subc_post_code,
-
      -- iff subcUrl != null and subcUrl != ''
         subc_url,
-
      -- iff fax != null and fax != ''
         fax,
-
      -- iff tel != null and tel != ''
         tel,
-
      -- iff subcPhone != null and subcPhone != ''
         subc_phone,
-
      -- iff addr != null and addr != ''
         addr,
-
      -- iff rank != null and rank != ''
         rank,
-
      -- iff detectionField != null and detectionField != ''
         detection_field,
-
      -- iff isDeleted != null and isDeleted != ''
         is_deleted,
-
+     -- iff comments != null and comments != ''
+          comments,
      -- iff createdTime != null and createdTime != ''
         created_time,
-
      -- iff createdUuid != null and createdUuid != ''
         created_uuid,
-
      -- iff createdName != null and createdName != ''
         created_name,
-
      -- iff updatedTime != null and updatedTime != ''
         updated_time,
-
      -- iff updatedName != null and updatedName != ''
         updated_name,
-
      -- iff businessLine != null and businessLine != ''
         business_line,
-
      -- iff orgUuid != null and orgUuid != ''
         org_uuid,
-
      -- iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid,
-
      -- iff extend1 != null and extend1 != ''
         extend1,
-
      -- iff extend2 != null and extend2 != ''
         extend2,
-
      -- iff extend3 != null and extend3 != ''
         extend3,
-
    --end
-   -- trim prefix=values( suffix=) suffixOverrides=,
+   --trim prefix=values( suffix=) suffixOverrides=,
      -- iff subcontractorUuid != null and subcontractorUuid != ''
         '#subcontractorUuid#',
-
      -- iff subcCode != null and subcCode != ''
         '#subcCode#',
-
      -- iff name != null and name != ''
         '#name#',
-
      -- iff enName != null and enName != ''
         '#enName#',
-
      -- iff subcShortName != null and subcShortName != ''
         '#subcShortName#',
-
      -- iff subcPostCode != null and subcPostCode != ''
         '#subcPostCode#',
-
      -- iff subcUrl != null and subcUrl != ''
         '#subcUrl#',
-
      -- iff fax != null and fax != ''
         '#fax#',
-
      -- iff tel != null and tel != ''
         '#tel#',
-
      -- iff subcPhone != null and subcPhone != ''
         '#subcPhone#',
-
      -- iff addr != null and addr != ''
         '#addr#',
-
      -- iff rank != null and rank != ''
         '#rank#',
-
      -- iff detectionField != null and detectionField != ''
         '#detectionField#',
-
+    -- iff comments != null and comments != ''
+          '#comments#',
      -- iff isDeleted != null and isDeleted != ''
         '#isDeleted#',
-
      -- iff createdTime != null and createdTime != ''
         '#createdTime#',
-
      -- iff createdUuid != null and createdUuid != ''
         '#createdUuid#',
-
      -- iff createdName != null and createdName != ''
         '#createdName#',
-
      -- iff updatedTime != null and updatedTime != ''
         '#updatedTime#',
-
      -- iff updatedName != null and updatedName != ''
         '#updatedName#',
-
      -- iff businessLine != null and businessLine != ''
-        '#businessLine#',
-
+        '#prodCatalogUuid#',
      -- iff orgUuid != null and orgUuid != ''
         '#orgUuid#',
-
      -- iff appSysUuid != null and appSysUuid != ''
         '#appSysUuid#',
-
      -- iff extend1 != null and extend1 != ''
         '#extend1#',
-
      -- iff extend2 != null and extend2 != ''
         '#extend2#',
-
      -- iff extend3 != null and extend3 != ''
         '#extend3#',
-
     --end
 
 
@@ -194,117 +150,95 @@ SET is_deleted='Y'
 WHERE is_deleted='N'
 AND subcontractor_uuid='#subcontractorUuid#'
 
-
-
-
 -- [updateSubcontractor]
  update crm_subcontractor
 	-- trim prefix=SET suffixOverrides=,
       -- iff subcontractorUuid != null
         subcontractor_uuid = '#subcontractorUuid#',
-
       -- iff subcCode != null
         subc_code = '#subcCode#',
-
       -- iff name != null
         name = '#name#',
-
       -- iff enName != null
          en_name = '#enName#',
-
       -- iff subcShortName != null
         subc_short_name = '#subcShortName#',
-
       -- iff subcPostCode != null
         subc_post_code = '#subcPostCode#',
-
       -- iff subcUrl != null
         subc_url = '#subcUrl#',
-
       -- iff fax != null
         fax = '#fax#',
-
       -- iff tel != null
         tel = '#tel#',
-
       -- iff subcPhone != null
         subc_phone = '#subcPhone#',
-
       -- iff addr != null
         addr = '#addr#',
-
       -- iff rank != null
         rank = '#rank#',
-
       -- iff detectionField != null
         detection_field = '#detectionField#',
-
+     -- iff comments != null
+            comments = '#comments#',
       -- iff isDeleted != null
         is_deleted = '#isDeleted#',
-
       -- iff createdTime != null
         created_time = '#createdTime#',
-
       -- iff createdUuid != null
         created_uuid = '#createdUuid#',
-
       -- iff createdName != null
         created_name = '#createdName#',
-
       -- iff updatedTime != null
         updated_time = '#updatedTime#',
-
+      -- iff updatedUuid != null
+         updated_uuid = '#updatedUuid#',
       -- iff updatedName != null
         updated_name = '#updatedName#',
-
-      -- iff businessLine != null
-        business_line = '#businessLine#',
-
+      -- iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
       -- iff orgUuid != null
         org_uuid = '#orgUuid#',
-
       -- iff appSysUuid != null
         app_sys_uuid = '#appSysUuid#',
-
       -- iff extend1 != null
         extend1 = '#extend1#',
-
       -- iff extend2 != null
         extend2 = '#extend2#',
-
       -- iff extend3 != null
         extend3 = '#extend3#',
-
     --end
   where subcontractor_uuid = '#subcontractorUuid#'
 
 -- [getSubcontractor]
   SELECT
-    subcontractor_uuid,
-    subc_code,
-    name,
-    en_name,
-    subc_short_name,
-    subc_post_code,
-    subc_url,
-    fax,
-    tel,
-    subc_phone,
-    addr,
-    rank,
-    detection_field,
-    is_deleted,
-    created_time,
-    created_uuid,
-    created_name,
-    updated_time,
-    updated_name,
-    business_line,
-    org_uuid,
-    app_sys_uuid,
-    extend1,
-    extend2,
-    extend3
+    subcontractor_uuid  prod_catalogUuid,
+    subc_code subcCode,
+    name name,
+    en_name enName,
+    subc_short_name subcShortName,
+    subc_post_code subcPostCode,
+    subc_url subcUrl,
+    fax fax,
+    tel tel,
+    subc_phone subcPhone,
+    addr addr,
+    rank rank,
+    detection_field detectionField,
+    is_deleted isDeleted,
+    comments comments,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_uuid updatedUuid,
+    updated_time updatedTime,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
 FROM crm_subcontractor
 WHERE
     is_deleted='N'

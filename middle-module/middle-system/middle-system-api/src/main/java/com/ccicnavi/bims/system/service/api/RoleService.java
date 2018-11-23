@@ -2,10 +2,7 @@ package com.ccicnavi.bims.system.service.api;
 
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.system.pojo.RoleDO;
-import com.ccicnavi.bims.system.pojo.RoleDTO;
-import com.ccicnavi.bims.system.pojo.RoleUserDO;
-import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.*;
 
 import java.util.List;
 
@@ -58,5 +55,5 @@ public interface RoleService {
     * @Param [userDO]
     * @return java.util.List<java.lang.String>
     **/
-    public List<RoleUserDO> listRoleByUser(UserDO userDO);
+    public List<RoleDTO> listRoleByUser(UserDTO userDO);
 }

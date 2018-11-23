@@ -73,8 +73,11 @@ where
 delete from
     order_sample_type
 where
+1=1
     --iff orderSplUuid != null and orderSplUuid != ''
-         order_spl_uuid = '#orderSplUuid#'
+        and  order_spl_uuid = '#orderSplUuid#'
+         --iff orderUuid != null and orderUuid != ''
+               and   order_uuid = '#orderUuid#'
     --iff orderSplUuids != null
         and order_spl_uuid in
         -- for item=item index=index collection=orderSplUuids open=( separator=, close=)

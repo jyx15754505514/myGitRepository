@@ -8,15 +8,13 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.LogDao;
 import com.ccicnavi.bims.system.dao.LogDetailDao;
-import com.ccicnavi.bims.system.pojo.LogDO;
 import com.ccicnavi.bims.system.pojo.LogDTO;
 import com.ccicnavi.bims.system.service.api.LogService;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.n3r.eql.util.Closes;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
-/* *
+/**
  * @Author MengZiJie
  * @Description 日志详情
  * @Date 17:54 2018/11/14
@@ -31,7 +29,7 @@ public class LogServiceImpl implements LogService {
     @Autowired
     private LogDetailDao logDetailDao;
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 查询日志详情
      * @Date 17:55 2018/11/14
@@ -52,7 +50,7 @@ public class LogServiceImpl implements LogService {
         return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 获取指定日志
      * @Date 17:55 2018/11/14
@@ -102,7 +100,7 @@ public class LogServiceImpl implements LogService {
         return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 更新日志
      * @Date 17:55 2018/11/14
@@ -131,7 +129,7 @@ public class LogServiceImpl implements LogService {
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 删除日志
      * @Date 17:56 2018/11/14

@@ -6,7 +6,6 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CategoryTypeService;
-import com.ccicnavi.bims.product.pojo.CategoryDO;
 import com.ccicnavi.bims.product.pojo.CategoryTypeDO;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +27,10 @@ public class CategoryTypeController {
     @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20884")
     CategoryTypeService categoryTypeService;
 
-    @RequestMapping(value = "/list",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listCategoryTypeDO(@RequestBody CategoryTypeDO categoryTypeDO){
+    @RequestMapping(value = "/listCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT listCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
-            List<CategoryTypeDO> categoryTypeDOList=categoryTypeService.listCategoryTypeDO(categoryTypeDO);
+            List<CategoryTypeDO> categoryTypeDOList=categoryTypeService.listCategoryType(categoryTypeDO);
             return ResultT.success(categoryTypeDOList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,10 +38,10 @@ public class CategoryTypeController {
         }
     }
 
-    @RequestMapping(value = "/save",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT saveCategoryTypeDO(@RequestBody CategoryTypeDO categoryTypeDO){
+    @RequestMapping(value = "/saveCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT saveCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
-            Integer num=categoryTypeService.saveCategoryTypeDO(categoryTypeDO);
+            Integer num=categoryTypeService.saveCategoryType(categoryTypeDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,10 +49,10 @@ public class CategoryTypeController {
         }
     }
 
-    @RequestMapping(value = "/remove",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeCategoryTypeDO(@RequestBody CategoryTypeDO categoryTypeDO){
+    @RequestMapping(value = "/removeCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT removeCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
-            Integer num=categoryTypeService.removeCategoryTypeDO(categoryTypeDO);
+            Integer num=categoryTypeService.removeCategoryType(categoryTypeDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,10 +60,10 @@ public class CategoryTypeController {
         }
     }
 
-    @RequestMapping(value = "/update",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT updateCategoryTypeDO(@RequestBody CategoryTypeDO categoryTypeDO){
+    @RequestMapping(value = "/updateCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT updateCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
-            Integer num=categoryTypeService.updateCategoryTypeDO(categoryTypeDO);
+            Integer num=categoryTypeService.updateCategoryType(categoryTypeDO);
             return ResultT.success(num);
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,10 +71,10 @@ public class CategoryTypeController {
         }
     }
 
-    @RequestMapping(value = "/get",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT getCategoryTypeDO(@RequestBody CategoryTypeDO categoryTypeDO){
+    @RequestMapping(value = "/getCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT getCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
-            CategoryTypeDO categoryTypeDOResult=categoryTypeService.getCategoryTypeDO(categoryTypeDO);
+            CategoryTypeDO categoryTypeDOResult=categoryTypeService.getCategoryType(categoryTypeDO);
             return ResultT.success(categoryTypeDOResult);
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,11 +82,11 @@ public class CategoryTypeController {
         }
     }
 
-    @RequestMapping(value = "/listPage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/listCategoryTypePage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listCategoryTypePage(@RequestBody PageParameter<CategoryTypeDO> pageParameter){
         try {
-            PageBean<CategoryTypeDO> pageBean=categoryTypeService.listCategoryTypePage(pageParameter);
-            return ResultT.success(pageBean);
+            PageBean<CategoryTypeDO> categoryTypeDOPageBean=categoryTypeService.listCategoryTypePage(pageParameter);
+            return ResultT.success(categoryTypeDOPageBean);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.LIST_FAILURE);

@@ -1,4 +1,5 @@
 package com.ccicnavi.bims.order.service;
+
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
@@ -13,12 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单
  * @Date 17:06 2018/11/19
@@ -45,7 +44,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
     IdWorkerService idWorkerService;
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 新增委托单
      * @Date 17:31 2018/11/19
@@ -55,16 +54,19 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Override
     public Integer insertOrderInfo(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
-        Integer integer = null;
+        Integer orderInfo = null;
         try {
-            integer = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
+            orderInfo = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
+            if(orderInfo > 0){
+                return orderInfo;
+            }
         } catch (Exception e) {
             log.error("新增委托单失败",e);
         }
-        return integer;
+        return -1;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 更新委托单
      * @Date 17:31 2018/11/19
@@ -74,15 +76,25 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     @Override
     public Integer updateOrderInfo(OrderInfoDTO orderInfoDTO) {
         EqlTran eqlTran = null;
-        Integer integer = null;
+        Integer orderInfo = null;
         try {
-            integer = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
+            orderInfo = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
+            if(orderInfo > 0){
+                return orderInfo;
+            }
         } catch (Exception e) {
             log.error("更新委托单信息",e);
         }
-        return integer;
+        return -1;
     }
 
+    /**
+     * @Author MengZiJie
+     * @Description 分页查看委托单
+     * @Date 17:31 2018/11/19
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderInfoDO>
+     */
     @Override
     public PageBean<OrderInfoDO> listOrderInfo(PageParameter<OrderInfoDO> pageParameter) {
         try {
@@ -93,7 +105,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         }
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 保存委托单
      * @Date 9:55 2018/11/20
@@ -107,46 +119,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         Integer orderItem = null;
         Integer itemSub = null;
         Integer orderInfo = null;
+        Integer orderSampleTypeResult =null;
         boolean result=true;
         try {
             eqlTran.start();
-            if(orderInfoDTO.getOrderUuid() != null && !orderInfoDTO.getOrderUuid().equals("")){
-                //更新委托单运输信息
-                shipment = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
-                if(shipment!=1){
-                    result=false;
-                }
-                List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
-                if(orderItemDTO.size() > 0){
-                    for (int i = 0; i < orderItemDTO.size(); i++) {
-                        //更新服务项信息
-                        orderItem =orderItemDao.updateOrderItem(orderItemDTO.get(i),eqlTran);
-                        if(orderItem!=1){
-                            result=false;
-                        }
-                        if(orderItemDTO.get(i).getOrderItemSubDO() != null){
-                            List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
-                            for (int j = 0; j < orderItemSubDO.size(); j++) {
-                                //更新服务子项信息
-                                itemSub = orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
-                                if(itemSub!=1){
-                                    result=false;
-                                }
-                            }
-                        }
-                    }
-                }
-                //更新委托单详情*/
-                orderInfo = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
-                if(orderInfo!=1){
-                    result=false;
-                }
-                if(result){
-                    eqlTran.commit();
-                    return ResultT.success();
-                }
-                return ResultT.failure(ResultCode.ADD_FAILURE);
-            }
             String orderUuid = idWorkerService.getId(new Date());
             orderInfoDTO.setOrderUuid(orderUuid); //生成委托单id
             //添加委托单运输信息
@@ -155,13 +131,11 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                 result=false;
             }
             List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
-            if(orderItemDTO.size() > 0){
+            if(orderItemDTO!=null){
                 for (int i = 0; i < orderItemDTO.size(); i++) {
                     String orderItemUuid = idWorkerService.getId(new Date());
                     orderItemDTO.get(i).setOrderItemUuid(orderItemUuid);//生成服务项主键
                     orderItemDTO.get(i).setOrderUuid(orderUuid);//委托单id
-
-                    orderItemDTO.get(i).setOrderItemNo("");//生成服务单编号
                     //添加委托单服务项
                     orderItem = orderItemDao.insertOrderItem(orderItemDTO.get(i),eqlTran);
                     if(orderItem!=1){
@@ -173,8 +147,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                             String orderItemSubUuid = idWorkerService.getId(new Date());
                             orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);//生成子项主键id
                             orderItemSubDO.get(j).setItemUuid(orderItemUuid);//生成服务项id
-
-                            orderItemSubDO.get(j).setSubItemNo("");//生成子项编号
                             //添加子项信息
                             itemSub = orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
                             if(itemSub!=1){
@@ -184,8 +156,22 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                     }
                 }
             }
-
-            orderInfoDTO.setOrderNo("");//生成委托单号
+            //添加委托样品类型
+            List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
+            if(orderSampleTypeDO!=null){
+                for(OrderSampleTypeDO o :orderSampleTypeDO){
+                    OrderSampleTypeDO orderSampleType=new  OrderSampleTypeDO();
+                    String orderSplUuid = idWorkerService.getId(new Date());
+                    orderSampleType.setOrderSplUuid(orderSplUuid);
+                    orderSampleType.setOrderUuid(orderUuid);
+                    orderSampleType.setSplPurposeType(o.getSplPurposeType());
+                    orderSampleType.setSplPurposeQty(o.getSplPurposeQty());
+                    orderSampleTypeResult= orderSampleTypeDao.insertOrderSampleType(orderSampleType,eqlTran);
+                    if(orderSampleTypeResult!=1){
+                        result=false;
+                    }
+                }
+            }
             //添加委托单详情
             orderInfo = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
             if(orderInfo!=1){
@@ -203,6 +189,133 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         }
         return ResultT.failure(ResultCode.ADD_FAILURE);
     }
+    /**
+     * @Author heibin
+     * @Description 修改委托单
+     * @Date 10:43 2018/11/20
+     * @Param [orderInfoDTO]
+     * @Return jResultT
+     */
+    @Override
+    public ResultT reNewOrderInfo(OrderInfoDTO orderInfoDTO) {
+        EqlTran eqlTran = new Eql("DEFAULT").newTran();
+        Integer shipment = null;
+        Integer orderItem = null;
+        Integer itemSub = null;
+        Integer orderInfo = null;
+        boolean result=true;
+        Integer orderSampleTypeResult =null;
+        try {
+            //更新委托单运输信息
+            shipment = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
+            if(shipment!=1){
+                result=false;
+            }
+            OrderItemDTO item=new OrderItemDTO();
+            item.setOrderUuid(orderInfoDTO.getOrderUuid());
+            //逻辑删除数据库中存的最小服务项
+            Integer orderItemResult=orderItemDao.deleteOrderItem(item,eqlTran);
+            if(orderItemResult<0){
+                result=false;
+            }
+            //页面传过来的最小服务项
+            List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
+            if(orderItemDTO!=null){
+                for (int i = 0; i < orderItemDTO.size(); i++) {
+                    if(orderItemDTO.get(i).getOrderItemUuid()!=null){
+                        orderItemDTO.get(i).setIsDeleted("N");
+                        //判断标识
+                        orderItemDTO.get(i).setFlag("1");
+                        //更新服务项信息
+                        orderItem =orderItemDao.updateOrderItem(orderItemDTO.get(i),eqlTran);
+                        if(orderItem!=1){
+                            result=false;
+                        }
+                        if(orderItemDTO.get(i).getOrderItemSubDO() != null){
+                            OrderItemSubDO orderItemSub =new OrderItemSubDO ();
+                            orderItemSub.setItemUuid(orderItemDTO.get(i).getOrderItemUuid());
+                            //物理删除服务子项信息
+                            Integer orderItemSubResult=orderItemSubDao.deleteOrderItemSub(orderItemSub,eqlTran);
+                            if(orderItemSubResult<0){
+                                result=false;
+                            }
+                            List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
+                            for (int j = 0; j < orderItemSubDO.size(); j++) {
+                                String orderItemSubUuid = idWorkerService.getId(new Date());
+                                orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);
+                                //更新服务子项信息
+                                itemSub = orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
+                                if(itemSub!=1){
+                                    result=false;
+                                }
+                            }
+                        }
+                    }
+                   //新增操作(之前没有选择的最小服务项和最小颗粒度)
+                    if(orderItemDTO.get(i).getOrderItemUuid()==null){
+                        String orderItemUuid = idWorkerService.getId(new Date());
+                        orderItemDTO.get(i).setOrderItemUuid(orderItemUuid);//生成服务项主键
+                        //添加委托单服务项
+                        orderItem = orderItemDao.insertOrderItem(orderItemDTO.get(i),eqlTran);
+                        if(orderItem!=1){
+                            result=false;
+                        }
+                        if(orderItemDTO.get(i).getOrderItemSubDO() != null){
+                            List<OrderItemSubDO> orderItemSubDO = orderItemDTO.get(i).getOrderItemSubDO();
+                            for (int j = 0; j < orderItemSubDO.size(); j++) {
+                                String orderItemSubUuid = idWorkerService.getId(new Date());
+                                orderItemSubDO.get(j).setSubItemUuid(orderItemSubUuid);//生成子项主键id
+                                orderItemSubDO.get(j).setItemUuid(orderItemUuid);//生成服务项id
+                                //添加子项信息
+                                itemSub = orderItemSubDao.insertOrderItemSub(orderItemSubDO.get(j),eqlTran);
+                                if(itemSub!=1){
+                                    result=false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            //物理删除委托样品类型
+            OrderSampleTypeDO sampleType=new OrderSampleTypeDO ();
+            sampleType.setOrderUuid(orderInfoDTO.getOrderUuid());
+            orderSampleTypeResult=orderSampleTypeDao.deleteOrderSampleType(sampleType,eqlTran);
+            if(orderSampleTypeResult<0){
+                result=false;
+            }
+            //添加委托样品类型
+            List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
+            if(orderSampleTypeDO!=null){
+                for(OrderSampleTypeDO o :orderSampleTypeDO){
+                    OrderSampleTypeDO orderSampleType=new  OrderSampleTypeDO();
+                    String orderSplUuid = idWorkerService.getId(new Date());
+                    orderSampleType.setOrderSplUuid(orderSplUuid);
+                    orderSampleType.setOrderUuid(orderInfoDTO.getOrderUuid());
+                    orderSampleType.setSplPurposeType(o.getSplPurposeType());
+                    orderSampleType.setSplPurposeQty(o.getSplPurposeQty());
+                    orderSampleTypeResult= orderSampleTypeDao.insertOrderSampleType(orderSampleType,eqlTran);
+                    if(orderSampleTypeResult!=1){
+                        result=false;
+                    }
+                }
+            }
+            //更新委托单详情*/
+            orderInfo = orderInfoDao.updateOrderInfo(orderInfoDTO,eqlTran);
+            if(orderInfo!=1){
+                result=false;
+            }
+            if(result){
+                eqlTran.commit();
+                return ResultT.success();
+            }
+        } catch (Exception e) {
+                log.error("修改失败",e);
+                eqlTran.rollback();
+            } finally {
+                eqlTran.close();
+            }
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
+        }
     /**
      * 功能描述: 根据委托单主键回显委托单相应信息
      * @param: orderInfoDO

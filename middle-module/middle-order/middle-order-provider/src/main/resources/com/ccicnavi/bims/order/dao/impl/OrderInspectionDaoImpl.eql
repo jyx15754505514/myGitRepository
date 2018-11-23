@@ -197,8 +197,8 @@ and order_uuid in
             comments = '#comments#',
     -- end
 where
-    is_deleted = 'N'
-    and order_uuid = '#orderUuid#'
+
+    order_uuid = '#orderUuid#'
 -- end
 
 -- [deleteOrderInspection]

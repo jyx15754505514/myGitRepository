@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
-/* *
+/**
  * @Author MengZiJie
  * @Description 地区管理
  * @Date 9:16 2018/11/16
@@ -23,10 +23,10 @@ public class AreaController {
 
     private final static Logger log = LoggerFactory.getLogger(AreaController.class);
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20881")
+    @Reference
     AreaService areaService;
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 查询地区
      * @Date 21:46 2018/11/15
@@ -35,18 +35,17 @@ public class AreaController {
      */
     @RequestMapping(value = "/listArea",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listArea(@RequestBody AreaDO areaDO){
-        ResultT resultT = new ResultT();
         List<AreaDO> areaDOS = null;
         try {
             areaDOS = areaService.listArea(areaDO);
-            return resultT.success(areaDOS);
+            return ResultT.success(areaDOS);
         } catch (Exception e) {
             log.error("查询地区失败",e);
-            return resultT.failure(ResultCode.LIST_FAILURE);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 获取地区
      * @Date 10:12 2018/11/16
@@ -65,7 +64,7 @@ public class AreaController {
         }
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 添加地区
      * @Date 10:25 2018/11/16
@@ -83,7 +82,7 @@ public class AreaController {
         }
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 更新地区
      * @Date 10:27 2018/11/16
@@ -101,7 +100,7 @@ public class AreaController {
         }
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 删除地区
      * @Date 10:28 2018/11/16

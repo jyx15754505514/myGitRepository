@@ -19,35 +19,35 @@ public interface TestItemService {
      * @param testItemDO
      * @return List<TestItemDO>
      */
-    List<TestItemDO> listTestItemDo(TestItemDO testItemDO);
+    List<TestItemDO> listTestItem(TestItemDO testItemDO);
 
     /**
      * @description 新增检测指标信息
      * @param testItemDO
      * @return int
      */
-    int saveTestItemDo(TestItemDO testItemDO);
+    int saveTestItem(TestItemDO testItemDO);
 
     /**
      * @description 删除检测指标信息
      * @param testItemDO
      * @return int
      */
-    int removeTestItemDo(TestItemDO testItemDO);
+    int removeTestItem(TestItemDO testItemDO);
 
     /**
      * @description 修改检测指标信息
      * @param testItemDO
      * @return int
      */
-    int updateTestItemDo(TestItemDO testItemDO);
+    int updateTestItem(TestItemDO testItemDO);
 
     /**
      * @description 根据主键获取检测指标信息
      * @param testItemDO
      * @return TestItemDO
      */
-    TestItemDO getTestItemDo(TestItemDO testItemDO);
+    TestItemDO getTestItem(TestItemDO testItemDO);
 
     /**
      * @description 分页查询检测指标信息

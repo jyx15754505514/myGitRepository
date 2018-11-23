@@ -31,7 +31,7 @@ import static com.ccicnavi.bims.common.ResultCode.*;
 public class RemindController {
 
     private final static Logger log = LoggerFactory.getLogger(RemindController.class);
-    @Reference(timeout = 3000,url = "dubbo://127.0.0.1:20881")
+    @Reference
     private RemindService remindServic;
 
     /**
@@ -43,10 +43,10 @@ public class RemindController {
     */
 
     @RequestMapping(value = "/listRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listRemind(@RequestBody PageParameter<RemindDO>  PageParameter){
+    public ResultT listRemind(@RequestBody PageParameter<RemindDTO>  PageParameter){
 
         try {
-            PageBean<RemindDO> pageBean = remindServic.listRemind(PageParameter);
+            PageBean<RemindDTO> pageBean = remindServic.listRemind(PageParameter);
             return ResultT.success(pageBean);
         } catch (Exception e) {
             log.error("根据条件查询提醒设置失败", e);
@@ -63,7 +63,7 @@ public class RemindController {
     */
 
     @RequestMapping(value = "/insertRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT insertRemind(@RequestBody RemindDO Remind){
+    public ResultT insertRemind(@RequestBody RemindDTO Remind){
 
         try {
             Integer num = remindServic.insertRemind(Remind);
@@ -82,7 +82,7 @@ public class RemindController {
     */
 
     @RequestMapping(value = "/updateRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT updateRemind(@RequestBody RemindDO Remind){
+    public ResultT updateRemind(@RequestBody RemindDTO Remind){
         try {
             Integer num = remindServic.updateRemind(Remind);
             return ResultT.success();
@@ -100,7 +100,7 @@ public class RemindController {
     */
 
     @RequestMapping(value = "/deleteRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT deleteRemind(@RequestBody RemindDO Remind){
+    public ResultT deleteRemind(@RequestBody RemindDTO Remind){
         try {
             Integer num = remindServic.deleteRemind(Remind);
             return ResultT.success();
@@ -118,10 +118,10 @@ public class RemindController {
     */
 
     @RequestMapping(value = "/getRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT getRemind(@RequestBody RemindDO remind){
+    public ResultT getRemind(@RequestBody RemindDTO remind){
         try {
-            RemindDO remindDO= remindServic.getRemind(remind);
-            return ResultT.success(remindDO);
+            RemindDTO remindDTO= remindServic.getRemind(remind);
+            return ResultT.success(remindDTO);
         } catch (Exception e) {
             log.error("根据主键查询提醒设置失败", e);
             return ResultT.failure(ResultCode.GET_FAILURE);
@@ -136,7 +136,7 @@ public class RemindController {
     */
 
     @RequestMapping(value = "/lisrRemindOrg", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT lisrRemindOrg(@RequestBody PageParameter<RemindDO>  PageParameter){
+    public ResultT lisrRemindOrg(@RequestBody PageParameter<RemindDTO>  PageParameter){
         try {
             PageBean<RemindDTO> pageBean = remindServic.listRemindOrg(PageParameter);
             return ResultT.success(pageBean);

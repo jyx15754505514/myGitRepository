@@ -20,27 +20,27 @@ import java.util.List;
 public class TestItemDaoImpl implements TestItemDao {
 
     @Override
-    public List<TestItemDO> listTestItemDO(){
+    public List<TestItemDO> listTestItem(){
         return new Eql().select("listTestItemDO").returnType(TestItemDO.class).execute();
     }
 
     @Override
-    public int saveTestItemDO(TestItemDO testItemDO){
+    public int saveTestItem(TestItemDO testItemDO){
         return new Eql().insert("saveTestItemDO").params(testItemDO).returnType(int.class).execute();
     }
 
     @Override
-    public int removeTestItemDO(TestItemDO testItemDO){
+    public int removeTestItem(TestItemDO testItemDO){
         return new Eql().update("removeTestItemDO").params(testItemDO).returnType(int.class).execute();
     }
 
     @Override
-    public int updateTestItemDO(TestItemDO testItemDO){
+    public int updateTestItem(TestItemDO testItemDO){
         return new Eql().update("updateTestItemDO").params(testItemDO).returnType(int.class).execute();
     }
 
     @Override
-    public TestItemDO getTestItemDO(TestItemDO testItemDO){
+    public TestItemDO getTestItem(TestItemDO testItemDO){
         return new Eql().selectFirst("getTestItemDO").params(testItemDO).returnType(TestItemDO.class).execute();
     }
 

@@ -6,7 +6,7 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-/* *
+/**
  * @Author MengZiJie
  * @Description 委托单DTO
  * @Date 9:23 2018/11/20
@@ -16,7 +16,7 @@ import java.util.List;
 @ToString
 public class OrderInfoDTO implements Serializable {
 
-    private String orderUuid;//委托单
+    private String orderUuid;//委托单id
 
     private String productCategoryUuid;
 
@@ -43,6 +43,8 @@ public class OrderInfoDTO implements Serializable {
     private String crmContractNo;
 
     private String crmEmerName;
+
+    private String crmEmerTelphone;
 
     private String orderItemName;
 
@@ -82,6 +84,10 @@ public class OrderInfoDTO implements Serializable {
 
     private String certLangUuid;
 
+    private Integer certQty;
+
+    private Integer certCopyQty;
+
     private Date acceptDate;
 
     private String acceptOrgUuid;
@@ -91,6 +97,14 @@ public class OrderInfoDTO implements Serializable {
     private String statusUuid;
 
     private String statusName;
+
+    private String lblSubpkg;
+
+    private String lblExec;
+
+    private String lblCrmCapc;
+
+    private String isReview;
 
     private String isDeleted;
 
@@ -156,7 +170,7 @@ public class OrderInfoDTO implements Serializable {
 
     private String isOpenCert;
 
-    List<OrderItemDTO> orderItemDTO;//服务项
+    private List<OrderItemDTO> orderItemDTO;//服务项
 
-    List<OrderSampleTypeDO> orderSampleTypeDO;//委托样品类型
+    private List<OrderSampleTypeDO> orderSampleTypeDO;//委托样品类型
 }

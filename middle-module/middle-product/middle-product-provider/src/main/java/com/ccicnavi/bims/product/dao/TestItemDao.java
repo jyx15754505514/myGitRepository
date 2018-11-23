@@ -8,15 +8,15 @@ import java.util.List;
 
 public interface TestItemDao {
 
-    List<TestItemDO> listTestItemDO() throws Exception;
+    List<TestItemDO> listTestItem() throws Exception;
 
-    int saveTestItemDO(TestItemDO testItemDO) throws Exception;
+    int saveTestItem(TestItemDO testItemDO) throws Exception;
 
-    int removeTestItemDO(TestItemDO testItemDO) throws Exception;
+    int removeTestItem(TestItemDO testItemDO) throws Exception;
 
-    int updateTestItemDO(TestItemDO testItemDO) throws Exception;
+    int updateTestItem(TestItemDO testItemDO) throws Exception;
 
-    TestItemDO getTestItemDO(TestItemDO testItemDO) throws Exception;
+    TestItemDO getTestItem(TestItemDO testItemDO) throws Exception;
 
     PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDO> pageParameter);
 

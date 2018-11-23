@@ -51,7 +51,7 @@ public class OrderReviewServiceImpl implements OrderReviewService {
         return null;
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 通过评审
      * @Date 22:07 2018/11/21
@@ -79,7 +79,7 @@ public class OrderReviewServiceImpl implements OrderReviewService {
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
-    /* *
+    /**
      * @Author MengZiJie
      * @Description 驳回
      * @Date 22:11 2018/11/21
@@ -106,5 +106,4 @@ public class OrderReviewServiceImpl implements OrderReviewService {
         }
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
-
 }

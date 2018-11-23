@@ -6,6 +6,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.system.constant.SerialnumCfgType;
 import com.ccicnavi.bims.system.dao.SerialnumDao;
 import com.ccicnavi.bims.system.dao.impl.SerialnumDaoImpl;
 import com.ccicnavi.bims.system.pojo.*;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,23 +25,17 @@ import java.util.List;
 /**
  * @Auther: CongZhiYuan
  * @Date: 2018/11/20 20:19
- * @Description:
+ * @Description: 业务规则编号管理
  */
 @Slf4j
 @Service
 public class SerialnumServiceImpl implements SerialnumService {
 
-    @Reference(timeout = 1000000,url = "dubbo://127.0.0.1:20880")
+    @Reference
     IdWorkerService idWorkerService;
 
     @Autowired
     SerialnumDao serialnumDao;
-    /*static SerialnumDaoImpl serialnumDaoImpl = null;
-
-    static{
-        serialnumDaoImpl = new SerialnumDaoImpl();
-        serialnumDao = serialnumDaoImpl;
-    }*/
 
     /**
      *
@@ -97,11 +93,16 @@ public class SerialnumServiceImpl implements SerialnumService {
         log.info("更新业务编码规则,serialnumCfgDTO={}", serialnumCfgDTO);
         SerialnumCfgDO cfgDO = new SerialnumCfgDO();
         BeanUtils.copyProperties(serialnumCfgDTO, cfgDO);
+        String sncUuid = idWorkerService.getId(new Date());
+        cfgDO.setSncUuid(sncUuid);
         serialnumDao.insertSerialnumCfg(cfgDO);
         for(SerialnumCfgItemDO serialnumCfgItemDO:serialnumCfgDTO.getItems()){
+            String sncdUuid = idWorkerService.getId(new Date());
+            serialnumCfgItemDO.setSncdUuid(sncdUuid);
+            serialnumCfgItemDO.setSncUuid(sncUuid);
             serialnumDao.insertSerialnumCfgItem(serialnumCfgItemDO);
         }
-        log.error("创建业务编码规则失败");
+        log.info("创建业务编码规则完成");
     }
 
     /**
@@ -121,9 +122,12 @@ public class SerialnumServiceImpl implements SerialnumService {
         int rtnval = serialnumDao.updateSerialnumCfg(cfgDO);//更新cfg数据
         serialnumDao.deleteSerialnumCfgItem(serialnumCfgDTO.getSncUuid());//先删除原有表达式
         for(SerialnumCfgItemDO serialnumCfgItemDO:serialnumCfgDTO.getItems()){
+            String sncdUuid = idWorkerService.getId(new Date());
+            serialnumCfgItemDO.setSncdUuid(sncdUuid);
+            serialnumCfgItemDO.setSncUuid(serialnumCfgDTO.getSncUuid());
             serialnumDao.insertSerialnumCfgItem(serialnumCfgItemDO);//插入新表达式
         }
-        log.error("更新业务编码规则完成");
+        log.info("更新业务编码规则完成");
         return rtnval;
     }
 
@@ -208,16 +212,16 @@ public class SerialnumServiceImpl implements SerialnumService {
         StringBuffer busiSerialNo = new StringBuffer("");
         StringBuffer serialStr = new StringBuffer("");
         for(SerialnumCfgItemDO item:itemList){
-            if(item.getSncdType().equals("DATE")){//日期类型格式化处理
+            if(item.getSncdType().equals(SerialnumCfgType.DATE)){//日期类型格式化处理
                 DateFormat df = new SimpleDateFormat(item.getSncdValue());
                 busiSerialNo.append(df.format(new Date()));
-            }else if(item.getSncdType().equals("TEXT")){//自定义文本直接拼接
+            }else if(item.getSncdType().equals(SerialnumCfgType.TEXT)){//自定义文本直接拼接
                 busiSerialNo.append(item.getSncdValue());
-            }else if(item.getSncdType().equals("SYS")){//待用户信息完善再实现
+            }else if(item.getSncdType().equals(SerialnumCfgType.SYS)){//待用户信息完善再实现
                 busiSerialNo.append(this.getSysCfgValue(item.getSncdValue()));
-            }else if(item.getSncdType().equals("OLD")){//原业务编号
+            }else if(item.getSncdType().equals(SerialnumCfgType.OLD)){//原业务编号
                 busiSerialNo.append(busUuid);
-            }else if(item.getSncdType().equals("N")){//解析当前序号
+            }else if(item.getSncdType().equals(SerialnumCfgType.N)){//解析当前序号
                 int sncLength = cfgDO.getSncLength();
                 int sncStep = cfgDO.getSncStep();
                 String sncPeriod = cfgDO.getSncPeriod();
@@ -269,15 +273,15 @@ public class SerialnumServiceImpl implements SerialnumService {
     public String getSysCfgValue(String type){
         String sysVal = "";
         switch (type){
-            case "JG1":
+            case SerialnumCfgType.JG1:
                 break;
-            case "JG2":
+            case SerialnumCfgType.JG2:
                 break;
-            case "BMBH":
+            case SerialnumCfgType.BMBH:
                 break;
-            case "UN":
+            case SerialnumCfgType.UN:
                 break;
-            case "GH":
+            case SerialnumCfgType.GH:
                 break;
         }
         return sysVal;

@@ -19,35 +19,35 @@ public interface CatalogService {
      * @description查询全部产品线信息
      * @return List<CatalogDO>
      */
-    List<CatalogDO> listCatalogDO(CatalogDO catalogDO);
+    List<CatalogDO> listCatalog(CatalogDO catalogDO);
 
     /**
      * @description 新增产品线信息
      * @param catalogDO
      * @return int
      */
-    int saveCatalogDO(CatalogDO catalogDO);
+    int saveCatalog(CatalogDO catalogDO);
 
     /**
      * @description 删除产品线信息
      * @param catalogDO
      * @return int
      */
-    int removeCatalogDO(CatalogDO catalogDO);
+    int removeCatalog(CatalogDO catalogDO);
 
     /**
      * @description 修改产品线信息
      * @param catalogDO
      * @return int
      */
-    int updateCatalogDO(CatalogDO catalogDO);
+    int updateCatalog(CatalogDO catalogDO);
 
     /**
      * @description 根据主键获取产品线信息
      * @param catalogDO
      * @return CatalogDO
      */
-    CatalogDO getCatalogDO(CatalogDO catalogDO);
+    CatalogDO getCatalog(CatalogDO catalogDO);
 
     /**
      * @description 分页查询产品线信息
@@ -57,6 +57,6 @@ public interface CatalogService {
     PageBean<CatalogDO> listCatalogPage(PageParameter<CatalogDO> pageParameter);
 
     //根据省级公司id获取产品线id
-    List<CatalogDO> getCatalogThroughOrgUUid(CatalogOrgDO catalogOrgDO);
+    List<CatalogDO> getCatalogByOrgUUid(CatalogOrgDO catalogOrgDO);
 
 }

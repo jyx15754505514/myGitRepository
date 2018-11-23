@@ -1,7 +1,8 @@
 package com.ccicnavi.bims.system.dao;
 
-import com.ccicnavi.bims.system.pojo.MenuButtonDO;
+import com.ccicnavi.bims.system.pojo.MenuButtonDTO;
 import com.ccicnavi.bims.system.pojo.MenuDTO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import org.n3r.eql.EqlTran;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface MenuButtonDao {
     *@Author: zqq
     *@date: 2018/11/20
     */
-    public List<MenuButtonDO> listMenuButton(MenuButtonDO menuButtonDO);
+    public List<MenuButtonDTO> listMenuButton(MenuButtonDTO menuButtonDO);
 
     /**
     *@Description: 新增菜单按钮
@@ -30,7 +31,7 @@ public interface MenuButtonDao {
     *@Author: zqq
     *@date: 2018/11/20
     */
-    public Integer insertMenuButton(MenuButtonDO menuButtonDO, EqlTran tran);
+    public Integer insertMenuButton(MenuButtonDTO menuButtonDTO, EqlTran tran);
 
     /**
     *@Description: 修改菜单按钮
@@ -40,7 +41,7 @@ public interface MenuButtonDao {
     *@date: 2018/11/20
     */
 
-    public Integer updateMenuButton(MenuButtonDO menuButtonDO,EqlTran tran);
+    public Integer updateMenuButton(MenuButtonDTO menuButtonDTO,EqlTran tran);
 
     /**
     *@Description: 删除菜单按钮
@@ -50,7 +51,7 @@ public interface MenuButtonDao {
     *@date: 2018/11/20
     */
 
-    public Integer deleteMenuButton(MenuButtonDO menuButtonDO,EqlTran tran);
+    public Integer deleteMenuButton(MenuButtonDTO menuButtonDTO,EqlTran tran);
 
     /**
     *@Description: 根据主键获取菜单按钮
@@ -59,7 +60,7 @@ public interface MenuButtonDao {
     *@Author: zqq
     *@date: 2018/11/20
     */
-    public MenuButtonDO getMenuButton(MenuButtonDO menuButtonDO);
+    public MenuButtonDTO getMenuButton(MenuButtonDTO menuButtonDO);
 
     /*
     * 根据菜单和角色查询所有按钮
@@ -68,5 +69,15 @@ public interface MenuButtonDao {
     * @Param [menuDTO]
     * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuButtonDO>
     **/
-    List<MenuButtonDO> listMenuButtonByRole(MenuDTO menuDTO);
+    List<MenuButtonDTO> listMenuButtonByRole(MenuDTO menuDTO);
+
+    /*
+     * 根据角色查询按钮的url
+     * @Author zhaotao
+     * @Date  2018/11/22 23:00
+     * @Param [userDTO]
+     * @return java.util.List<java.lang.String>
+     **/
+    List<String> listButtonUrlByRole(UserDTO userDTO) throws Exception;
+
 }

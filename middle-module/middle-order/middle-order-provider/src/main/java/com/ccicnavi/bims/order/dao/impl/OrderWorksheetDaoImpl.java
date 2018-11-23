@@ -7,10 +7,8 @@ import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 /**
  * @Author songyateng
- * @Description
+ * @Description 工作单
  * @Date 15:56 2018/11/21
- * @Param
- * @Return
  */
 @Service
 public class OrderWorksheetDaoImpl implements OrderWorksheetDao {

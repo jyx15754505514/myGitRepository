@@ -3,10 +3,7 @@ package com.ccicnavi.bims.system.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.system.pojo.RoleDO;
-import com.ccicnavi.bims.system.pojo.RoleDTO;
-import com.ccicnavi.bims.system.pojo.RoleUserDO;
-import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.*;
 import com.ccicnavi.bims.system.service.api.RoleService;
 import com.ccicnavi.bims.system.dao.RoleDao;
 import lombok.extern.slf4j.Slf4j;
@@ -79,6 +76,7 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
+
     /**
     *@Description: 根据用户UUID获取所有角色UUID
     *@Param: [userDO]
@@ -87,8 +85,8 @@ public class RoleServiceImpl implements RoleService {
     *@date: 2018/11/19
     */
     @Override
-    public List<RoleUserDO> listRoleByUser(UserDO userDO){
-        List<RoleUserDO> roleDOList = null;
+    public List<RoleDTO> listRoleByUser(UserDTO userDO){
+        List<RoleDTO> roleDOList = null;
         try {
             roleDOList = roleDao.listRoleByUser(userDO);
             return roleDOList;

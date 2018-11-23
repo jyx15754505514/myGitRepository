@@ -29,7 +29,7 @@ public class RemindServiceImpl implements RemindService {
     @Autowired
     private RemindDao sysRemindDao;
     @Override
-    public PageBean<RemindDO> listRemind(PageParameter<RemindDO> PageParameter){
+    public PageBean<RemindDTO> listRemind(PageParameter<RemindDTO> PageParameter){
         try {
             return sysRemindDao.listRemind(PageParameter);
         }catch (Exception e) {
@@ -40,7 +40,7 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public Integer insertRemind(RemindDO remind){
+    public Integer insertRemind(RemindDTO remind){
         try {
            Integer num =  sysRemindDao.insertRemind(remind,null);
             return num;
@@ -51,7 +51,7 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public Integer updateRemind(RemindDO remind){
+    public Integer updateRemind(RemindDTO remind){
         try {
             Integer num = sysRemindDao.updateRemind(remind,null);
             return num;
@@ -62,7 +62,7 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public Integer deleteRemind(RemindDO remind){
+    public Integer deleteRemind(RemindDTO remind){
         try {
             Integer num = sysRemindDao.deleteRemind(remind,null);
              return num;
@@ -73,10 +73,10 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public RemindDO getRemind(RemindDO remind){
+    public RemindDTO getRemind(RemindDTO remind){
         try {
-            RemindDO remindDO = sysRemindDao.getRemind(remind);
-            return remindDO;
+            RemindDTO remindDTO = sysRemindDao.getRemind(remind);
+            return remindDTO;
         }catch (Exception e) {
             log.error("根据主键获取提醒设置失败", e);
             return null;
@@ -84,7 +84,7 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public PageBean<RemindDTO> listRemindOrg(PageParameter<RemindDO> pageParameter){
+    public PageBean<RemindDTO> listRemindOrg(PageParameter<RemindDTO> pageParameter){
         try {
             return sysRemindDao.listRemindOrg(pageParameter);
         } catch (Exception e) {
@@ -94,7 +94,7 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public List<RemindDO> listRemindList(RemindDO remind) {
+    public List<RemindDTO> listRemindList(RemindDTO remind) {
 
         try {
             return sysRemindDao.listRemindList(remind);

@@ -16,20 +16,37 @@ import java.util.Date;
 @Setter
 @ToString
 public class OrderReviewDO implements Serializable {
-    private String orderUuid;//委托单uuid
-
-    private String reviewUserUuid; //评审人uuid
-
-    private String reviewSuggest;//评审人意见
-
-    private Date reviewDate;//评审日期
-
-    private String isPass;//评审通过
-
+    /**
+     * 委托单主键
+     */
+    private String orderUuid;
+    /**
+     * 评审人主键
+     */
+    private String reviewUserUuid;
+    /**
+     * 评审意见
+     */
+    private String reviewSuggest;
+    /**
+     * 评审日期
+     */
+    private Date reviewDate;
+    /**
+     * 评审通过
+     */
+    private String isPass;
+    /**
+     * 扩展字段1
+     */
     private String extend1;
-
+    /**
+     * 扩展字段2
+     */
     private String extend2;
-
+    /**
+     * 扩展字段3
+     */
     private String extend3;
 
 }

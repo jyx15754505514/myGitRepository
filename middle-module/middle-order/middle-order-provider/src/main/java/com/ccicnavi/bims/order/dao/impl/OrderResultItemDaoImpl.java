@@ -5,17 +5,16 @@ import com.ccicnavi.bims.order.pojo.OrderResultItemDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-/* *
+/**
  * @Author heibin
  * @Description 委托服务项-证书关系
  * @Date 20:40 2018/11/20
  */
 @Service
 public class OrderResultItemDaoImpl implements OrderResultItemDao {
-    /* *
+    /**
      * @Author heibin
      * @Description 根据主键id查询单个委托服务项-证书关系对象
      * @Date 20:41 2018/11/20
@@ -26,7 +25,8 @@ public class OrderResultItemDaoImpl implements OrderResultItemDao {
     public OrderResultItemDO getOrderResultItem(OrderResultItemDO orderResultItemDO) throws Exception {
         return new Eql().select("getOrderResultItem").params(orderResultItemDO).returnType(OrderResultItemDO.class).execute();
     }
-    /* *
+
+    /**
      * @Author heibin
      * @Description 查询所有委托服务项-证书关系
      * @Date 20:43 2018/11/20
@@ -37,7 +37,8 @@ public class OrderResultItemDaoImpl implements OrderResultItemDao {
     public List<OrderResultItemDO> listOrderResultItem(OrderResultItemDO orderResultItemDO) throws Exception {
         return new Eql().select("listOrderResultItem").params(orderResultItemDO).returnType(OrderResultItemDO.class).execute();
     }
-    /* *
+
+    /**
      * @Author heibin
      * @Description 新增委托服务项-证书关系
      * @Date 20:46 2018/11/20
@@ -52,7 +53,8 @@ public class OrderResultItemDaoImpl implements OrderResultItemDao {
         }
         return eql.update("insertOrderResultItem").params(orderResultItemDO).returnType(Integer.class).execute();
     }
-    /* *
+
+    /**
      * @Author heibin
      * @Description 更新委托服务项-证书关系
      * @Date 20:48 2018/11/20
@@ -67,7 +69,8 @@ public class OrderResultItemDaoImpl implements OrderResultItemDao {
         }
         return eql.update("updateOrderResultItem").params(orderResultItemDO).returnType(Integer.class).execute();
     }
-    /* *
+
+    /**
      * @Author heibin
      * @Description 删除委托服务项-证书关系
      * @Date 20:49 2018/11/20
