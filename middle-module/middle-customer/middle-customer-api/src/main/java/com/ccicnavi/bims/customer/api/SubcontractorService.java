@@ -24,7 +24,7 @@ public interface SubcontractorService {
      * @Param [pageParameter]
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.customer.pojo.SubcontractorDO>
      */
-    PageBean<SubcontractorDO> listSubcontractor(PageParameter<SubcontractorDO> pageParameter);
+    PageBean<SubcontractorDO> listSubcontractorPage(PageParameter<SubcontractorDO> pageParameter);
 
     /**
      * @Author FanDongSheng

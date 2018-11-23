@@ -2,6 +2,7 @@ package com.ccicnavi.bims.customer.dao.Impl;
 
 import com.ccicnavi.bims.customer.dao.SubcQualifiDao;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
+import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import org.n3r.eql.Eql;
 import org.springframework.stereotype.Service;
@@ -51,10 +52,10 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer removeSubcuQuali(SubcQualifiDO subcuQuali) {
+    public Integer deleteSubcuQuali(SubcQualifiDTO subcQualifiDTO) {
 //        Map<String,Object> data=new HashMap<>();
 //        data.put("ids",subcQualifiUuid.split(","));
-        return new Eql().update("removeSubcuQuali").params(subcuQuali).returnType(Integer.class).execute();
+        return new Eql().update("deleteSubcuQuali").params(subcQualifiDTO).returnType(Integer.class).execute();
     }
 
     /** *

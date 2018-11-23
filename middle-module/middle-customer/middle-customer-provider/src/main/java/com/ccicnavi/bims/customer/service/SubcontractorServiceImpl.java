@@ -41,7 +41,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.customer.pojo.SubcontractorDO>
      */
     @Override
-    public PageBean<SubcontractorDO> listSubcontractor(PageParameter<SubcontractorDO> pageParameter) {
+    public PageBean<SubcontractorDO> listSubcontractorPage(PageParameter<SubcontractorDO> pageParameter) {
         try {
             return subcontractorDao.listSubcontractor(pageParameter);
         } catch (Exception e) {

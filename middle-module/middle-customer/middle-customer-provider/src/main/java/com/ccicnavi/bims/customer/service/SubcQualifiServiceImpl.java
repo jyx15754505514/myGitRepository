@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.customer.api.SubcQualifiService;
 import com.ccicnavi.bims.customer.dao.SubcQualifiDao;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
+import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
      * @return java.lang.Integer
      */
     @Override
-    public int saveSubcQuali(SubcQualifiDO subcQuali) {
+    public Integer insertSubcQuali(SubcQualifiDO subcQuali) {
         Integer count=0;
         try {
             count=subcQualifiDao.insertSubcuQuali(subcQuali);
@@ -66,10 +67,10 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
      * @return java.lang.Integer
      */
     @Override
-    public int removeSubcQuali(SubcQualifiDO subcQuali) {
+    public Integer deleteSubcQuali(SubcQualifiDTO subcQualifiDTO) {
         Integer count=0;
         try {
-            count=subcQualifiDao.removeSubcuQuali(subcQuali);
+            count=subcQualifiDao.deleteSubcuQuali(subcQualifiDTO);
         } catch (Exception e) {
             log.error("删除分包方资质信息失败",e);
         }
@@ -84,7 +85,7 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
      * @return java.lang.Integer
      */
     @Override
-    public int updateSubcQuali(SubcQualifiDO subcQuali) {
+    public Integer updateSubcQuali(SubcQualifiDO subcQuali) {
         Integer count=0;
         try {
             count=subcQualifiDao.updateSubcuQuali(subcQuali);
