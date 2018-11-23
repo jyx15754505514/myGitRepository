@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Auther: fandongsheng
@@ -15,11 +16,13 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class SubBankDO implements Serializable {
+public class SubBankDTO implements Serializable {
     /**
      * 分包方银行主键
      */
     private String subcBankUuid;
+
+    private List<String> subcBankUuids;
     /**
      * 分包方主键
      */

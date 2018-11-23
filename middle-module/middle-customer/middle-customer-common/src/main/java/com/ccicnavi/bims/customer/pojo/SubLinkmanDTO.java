@@ -16,11 +16,15 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
-public class SubLinkmanDO implements Serializable {
+public class SubLinkmanDTO implements Serializable {
     /**
      * 联系人主键
      */
     private String linkmanUuid;
+    /**
+     * 主键list
+     */
+    private List<String> linkmanUuids;
     /**
      *分包方主键
      */

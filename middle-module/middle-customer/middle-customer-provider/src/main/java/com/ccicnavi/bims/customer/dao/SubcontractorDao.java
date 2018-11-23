@@ -3,6 +3,7 @@ package com.ccicnavi.bims.customer.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 
 import java.util.List;
 
@@ -58,6 +59,6 @@ public interface SubcontractorDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    SubcontractorDO getSubcontractor(SubcontractorDO subcontractor) throws Exception;
+    SubcontractorDTO getSubcontractor(SubcontractorDTO subcontractorDTO) throws Exception;
 
 }

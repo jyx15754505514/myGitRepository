@@ -1,9 +1,11 @@
 package com.ccicnavi.bims.customer.api;
 
 
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 
 import java.util.List;
 
@@ -32,6 +34,17 @@ public interface SubcontractorService {
      * @Return int
      */
     Integer insertSubcontractor(SubcontractorDO subcontractor) throws Exception;
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 根据分包方信息查询分包方包含的所有的信息（资质、联系人、银行信息）
+     * @Date 18:21 2018/11/23
+     * @Param [subcontractorDTO]
+     * @Return com.ccicnavi.bims.customer.pojo.SubcontractorDTO
+     */
+    SubcontractorDTO getSubcontractorList(SubcontractorDTO subcontractorDTO) throws  Exception;
+
+
+
 
     /**删除分包方信息*/
     Integer removeSubcontractor(SubcontractorDO subcontractor) throws Exception;
@@ -40,6 +53,6 @@ public interface SubcontractorService {
     Integer updateSubcontractor(SubcontractorDO subcontractor) throws Exception;
 
     /**根据主键返回对应的分包方信息*/
-    SubcontractorDO getSubcontractor(SubcontractorDO subcontractor) throws Exception;
+   SubcontractorDTO getSubcontractorOne(SubcontractorDTO subcontractorDTO) throws Exception;
 
 }

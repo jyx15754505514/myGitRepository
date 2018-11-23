@@ -2,6 +2,7 @@ package com.ccicnavi.bims.customer.dao.Impl;
 
 import com.ccicnavi.bims.customer.dao.SubcQualifiDao;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import org.n3r.eql.Eql;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,8 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubcQualifiDO>
      */
     @Override
-    public List<SubcQualifiDO> listSubcuQuali() {
-        return new Eql().select("listSubcuQuali").execute();
+    public List<SubcQualifiDO> listSubcuQuali(SubcontractorDTO subcontractorDTO) {
+        return new Eql().select("listSubcuQuali").params(subcontractorDTO).returnType(SubcontractorDTO.class).execute();
     }
 
     /** *
@@ -38,8 +39,8 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
      * @Return java.lang.Integer
      */
     @Override
-    public int saveSubcuQuali(SubcQualifiDO subcuQuali) {
-        return new Eql().insert("saveSubcuQuali").params(subcuQuali).returnType(int.class).execute();
+    public Integer insertSubcuQuali(SubcQualifiDO subcuQuali) {
+        return new Eql().insert("insertSubcuQuali").params(subcuQuali).returnType(Integer.class).execute();
     }
 
     /** *
@@ -50,10 +51,10 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
      * @Return java.lang.Integer
      */
     @Override
-    public int removeSubcuQuali(SubcQualifiDO subcuQuali) {
+    public Integer removeSubcuQuali(SubcQualifiDO subcuQuali) {
 //        Map<String,Object> data=new HashMap<>();
 //        data.put("ids",subcQualifiUuid.split(","));
-        return new Eql().update("removeSubcuQuali").params(subcuQuali).execute();
+        return new Eql().update("removeSubcuQuali").params(subcuQuali).returnType(Integer.class).execute();
     }
 
     /** *
@@ -64,7 +65,7 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
      * @Return java.lang.Integer
      */
     @Override
-    public int updateSubcuQuali(SubcQualifiDO subcuQuali) {
+    public Integer updateSubcuQuali(SubcQualifiDO subcuQuali) {
         return new Eql().update("updateSubcuQuali").params(subcuQuali).execute();
     }
 

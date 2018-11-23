@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.SubcontractorDao;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
@@ -85,8 +86,8 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
      * @Return com.ccicnavi.bims.customer.pojo.SubcontractorDO
      */
     @Override
-    public SubcontractorDO getSubcontractor(SubcontractorDO subcontractor) {
-        return new Eql().selectFirst("getSubcontractor").params(subcontractor).returnType(SubcontractorDO.class).execute();
+    public SubcontractorDTO getSubcontractor(SubcontractorDTO subcontractorDTO) {
+        return new Eql().selectFirst("getSubcontractor").params(subcontractorDTO).returnType(SubcontractorDTO.class).execute();
 
     }
 

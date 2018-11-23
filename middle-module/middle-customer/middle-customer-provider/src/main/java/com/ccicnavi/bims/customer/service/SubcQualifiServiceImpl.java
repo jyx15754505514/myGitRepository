@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.customer.api.SubcQualifiService;
 import com.ccicnavi.bims.customer.dao.SubcQualifiDao;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,22 +24,20 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
     SubcQualifiDao subcQualifiDao;
 
     /**
-     * @Author WangYingling
-     * @Description 查询所有分包方资质信息
-     * @Date 20:00 2018/11/14
-     * @param subcQuali
-     * @return java.util.List<com.ccicnavi.bims.customer.pojo.SubcQualifiDO>
+     * @Author FanDongSheng
+     * @Description //TODO 查询指定分包方下的资质信息
+     * @Date 17:58 2018/11/23
+     * @Param [subcontractorDTO]
+     * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubcQualifiDO>
      */
     @Override
-    public List<SubcQualifiDO> listSubcQuali(SubcQualifiDO subcQuali) {
-        List<SubcQualifiDO> subcQualifiList=null;
+    public List<SubcQualifiDO> listSubcQuali(SubcontractorDTO subcontractorDTO) {
         try {
-            subcQualifiList=subcQualifiDao.listSubcuQuali();
+           return subcQualifiDao.listSubcuQuali(subcontractorDTO);
         } catch (Exception e) {
-            e.printStackTrace();
             log.error("查询分包方资质信息失败",e);
         }
-        return subcQualifiList;
+        return null;
     }
 
     /**
@@ -52,10 +51,9 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
     public int saveSubcQuali(SubcQualifiDO subcQuali) {
         Integer count=0;
         try {
-            count=subcQualifiDao.saveSubcuQuali(subcQuali);
+            count=subcQualifiDao.insertSubcuQuali(subcQuali);
         } catch (Exception e) {
             log.error("新增分包方资质信息失败",e);
-            e.printStackTrace();
         }
         return count;
     }
@@ -73,7 +71,6 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
         try {
             count=subcQualifiDao.removeSubcuQuali(subcQuali);
         } catch (Exception e) {
-            e.printStackTrace();
             log.error("删除分包方资质信息失败",e);
         }
         return count;
@@ -92,7 +89,6 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
         try {
             count=subcQualifiDao.updateSubcuQuali(subcQuali);
         } catch (Exception e) {
-            e.printStackTrace();
             log.error("修改分包方资质信息失败",e);
         }
         return count;
@@ -111,7 +107,6 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
         try {
             subcQualifiBean=subcQualifiDao.getSubcQuali(subcQuali);
         } catch (Exception e) {
-            e.printStackTrace();
             log.error("查询分包方资质信息失败",e);
         }
         return subcQualifiBean;

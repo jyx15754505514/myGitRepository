@@ -14,8 +14,6 @@ SELECT
     updated_time updatedTime,
     updated_uuid updatedUuid,
     updated_name updatedName,
-    org_uuid orgUuid,
-    app_sys_uuid appSysUuid,
     extend1 extend1,
     extend2 extend2,
     extend3 extend3
@@ -24,7 +22,7 @@ FROM
 WHERE
     is_deleted='N'
 
--- [saveSubcuQuali]
+-- [insertSubcuQuali]
 INSERT INTO crm_subc_qualification
     -- trim prefix=( suffix=) suffixOverrides=,
      -- iff subcQualifiUuid != null and subcQualifiUuid != ''
@@ -71,13 +69,6 @@ INSERT INTO crm_subc_qualification
 
      -- iff updatedUuid != null and updatedUuid != ''
         updated_uuid,
-
-     -- iff orgUuid != null and orgUuid != ''
-        org_uuid,
-
-     -- iff appSysUuid != null and appSysUuid != ''
-        app_sys_uuid,
-
      -- iff extend1 != null and extend1 != ''
         extend1,
 
@@ -119,10 +110,6 @@ INSERT INTO crm_subc_qualification
         '#updatedUuid#',
      -- iff updatedName != null and updatedName != ''
         '#updatedName#',
-     -- iff orgUuid != null and orgUuid != ''
-        '#orgUuid#',
-     -- iff appSysUuid != null and appSysUuid != ''
-        '#appSysUuid#',
      -- iff extend1 != null and extend1 != ''
         '#extend1#',
      -- iff extend2 != null and extend2 != ''
@@ -175,10 +162,6 @@ AND subc_qualifi_uuid='#subcQualifiUuid#'
         updated_uuid = '#updatedUuid#',
       -- iff businessLine != null
         business_line = '#businessLine#',
-      -- iff orgUuid != null
-        org_uuid = '#orgUuid#',
-      -- iff appSysUuid != null
-        app_sys_uuid = '#appSysUuid#',
       -- iff extend1 != null
         extend1 = '#extend1#',
       -- iff extend2 != null
@@ -204,8 +187,6 @@ SELECT
        updated_time updatedTime,
        updated_uuid updatedUuid,
        updated_name updatedName,
-       org_uuid orgUuid,
-       app_sys_uuid appSysUuid,
        extend1 extend1,
        extend2 extend2,
        extend3 extend3
