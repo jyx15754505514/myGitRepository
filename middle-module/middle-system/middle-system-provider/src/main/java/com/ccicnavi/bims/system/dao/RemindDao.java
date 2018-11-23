@@ -24,7 +24,7 @@ public interface RemindDao {
    *@date: 2018/11/15
    */
 
-    public PageBean<RemindDO> listRemind(PageParameter<RemindDO> PageParameter);
+    public PageBean<RemindDTO> listRemind(PageParameter<RemindDTO> PageParameter);
 
    /**
    *@Description: 新增提醒设置
@@ -34,7 +34,7 @@ public interface RemindDao {
    *@date: 2018/11/15
    */
 
-    public Integer insertRemind(RemindDO remind,EqlTran tran);
+    public Integer insertRemind(RemindDTO remind,EqlTran tran);
 
     /**
     *@Description: 修改提醒设置
@@ -44,7 +44,7 @@ public interface RemindDao {
     *@date: 2018/11/15
     */
 
-    public Integer updateRemind(RemindDO remind,EqlTran tran);
+    public Integer updateRemind(RemindDTO remind,EqlTran tran);
 
     /**
     *@Description: 删除提醒设置
@@ -54,7 +54,7 @@ public interface RemindDao {
     *@date: 2018/11/15
     */
 
-    public Integer deleteRemind(RemindDO remind,EqlTran tran);
+    public Integer deleteRemind(RemindDTO remind,EqlTran tran);
 
    /**
    *@Description: 根据主键查询描述设置
@@ -64,7 +64,7 @@ public interface RemindDao {
    *@date: 2018/11/15
    */
 
-    public RemindDO getRemind(RemindDO remind);
+    public RemindDTO getRemind(RemindDTO remind);
 
     /**
     *@Description: 连表查询提醒设置
@@ -74,7 +74,7 @@ public interface RemindDao {
     *@date: 2018/11/15
     */
 
-   public PageBean<RemindDTO> listRemindOrg(PageParameter<RemindDO> pageParameter);
+   public PageBean<RemindDTO> listRemindOrg(PageParameter<RemindDTO> pageParameter);
     /**
     *@Description: 查询提醒设置(不分页)
     *@Param: remind
@@ -83,6 +83,6 @@ public interface RemindDao {
     *@date: 2018/11/19
     */
 
-   public List<RemindDO>  listRemindList(RemindDO remind);
+   public List<RemindDTO>  listRemindList(RemindDTO remind);
 
 }
