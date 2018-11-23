@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.resource.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
@@ -25,6 +26,8 @@ import java.util.List;
 public class CertPaperServiceImpl implements CertPaperService {
     @Autowired
     CertPaperDao certPaperDao;
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
     /*
      * 查询证书纸
      * @param certPaper
@@ -65,6 +68,7 @@ public class CertPaperServiceImpl implements CertPaperService {
     @Override
     public Integer insertCertPaper(CertPaperDO certPaper) {
         try {
+            certPaper.setPaperUuid(idWorkerService.getId(new Date()));
             //流水起始号
             String paperStartNum =certPaper.getPaperStartNum();
             //流水截止号
