@@ -3,9 +3,9 @@ package com.ccicnavi.bims.resource.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: bims-backend
@@ -17,6 +17,7 @@ import java.util.Date;
 @Setter
 @ToString
 public class EquipTestDTO implements Serializable {
+
     private String equipTestUuid;
 
     private String equipUuid;
@@ -43,8 +44,6 @@ public class EquipTestDTO implements Serializable {
 
     private String onlineCertUrl;
 
-    private String prodCatalogPuid;
-
     private String comments;
 
     private String isDeleted;
@@ -57,7 +56,11 @@ public class EquipTestDTO implements Serializable {
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
+
+    private String prodCatalogUuid;
 
     private String orgUuid;
 
@@ -74,4 +77,6 @@ public class EquipTestDTO implements Serializable {
     private String manufacture;
 
     private String useDeptUuid;
+
+    private List<String> equipTestUuids;//uuids集合
 }
