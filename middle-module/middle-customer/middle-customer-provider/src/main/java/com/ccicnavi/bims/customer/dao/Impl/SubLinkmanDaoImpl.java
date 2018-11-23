@@ -14,52 +14,88 @@ import java.util.List;
 
 /**
  * @program: bims-backend
- * @description: 客户联系人数据库交互
- * @author: LiJie
- * @create: 2018-11-15 09:19
+ * @description: 分包方联系人
+ * @author: fandongsheng
+ * @create: 2018-11-23 15:29
  */
 @Service
 public class SubLinkmanDaoImpl implements SubLinkmanDao {
-
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 分包方联系人信息
+     * @Date 15:29 2018/11/23
+     * @Param [subLinkmanDO]
+     * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubLinkmanDO>
+     */
     @Override
-    public List<SubLinkmanDO> listLinkman(SubLinkmanDO subLinkmanDO) {
+    public List<SubLinkmanDO> listSubLinkman(SubLinkmanDO subLinkmanDO) {
         return new Eql().select("listSubLinkman").params(subLinkmanDO).execute();
     }
-
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 保存分包方联系人信息
+     * @Date 15:31 2018/11/23
+     * @Param [subLinkmanDO, tran]
+     * @Return java.lang.Integer
+     */
     @Override
-    public Integer saveLinkman(SubLinkmanDO subLinkmanDO, EqlTran tran) {
+    public Integer saveSubLinkman(SubLinkmanDO subLinkmanDO, EqlTran tran) {
         Eql eql = new Eql();
         if(tran != null){
             eql.useTran(tran);
         }
         return eql.insert("insertSubLinkman").params(subLinkmanDO).returnType(Integer.class).execute();
     }
-
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 删除分包方联系人信息
+     * @Date 15:31 2018/11/23
+     * @Param [subLinkmanDO, tran]
+     * @Return java.lang.Integer
+     */
     @Override
-    public Integer removeLinkman(SubLinkmanDO subLinkmanDO,EqlTran tran) {
+    public Integer removeSubLinkman(SubLinkmanDO subLinkmanDO,EqlTran tran) {
         Eql eql = new Eql();
         if(tran != null){
             eql.useTran(tran);
         }
         return eql.update("deleteSubLinkman").params(subLinkmanDO).returnType(Integer.class).execute();
     }
-
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 更新分包方联系人信息
+     * @Date 15:32 2018/11/23
+     * @Param [subLinkmanDO, tran]
+     * @Return java.lang.Integer
+     */
     @Override
-    public Integer updateLinkman(SubLinkmanDO subLinkmanDO,EqlTran tran) {
+    public Integer updateSubLinkman(SubLinkmanDO subLinkmanDO,EqlTran tran) {
         Eql eql = new Eql();
         if(tran != null){
             eql.useTran(tran);
         }
         return eql.update("updateSubLinkman").params(subLinkmanDO).returnType(Integer.class).execute();
     }
-
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 得到指定分包方联系人详细信息
+     * @Date 15:32 2018/11/23
+     * @Param [subLinkmanDO]
+     * @Return com.ccicnavi.bims.customer.pojo.SubLinkmanDO
+     */
     @Override
-    public SubLinkmanDO getLinkman(SubLinkmanDO subLinkmanDO) {
+    public SubLinkmanDO getSubLinkman(SubLinkmanDO subLinkmanDO) {
         return new Eql().selectFirst("getSubLinkman").params(subLinkmanDO).returnType(SubLinkmanDO.class).execute();
     }
-
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 分包方联系人分页查询
+     * @Date 15:33 2018/11/23
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.customer.pojo.SubLinkmanDO>
+     */
     @Override
-    public PageBean<SubLinkmanDO> listCustomerPage(PageParameter<SubLinkmanDO> pageParameter) throws Exception {
+    public PageBean<SubLinkmanDO> listSubLinkmanPage(PageParameter<SubLinkmanDO> pageParameter) throws Exception {
         //封装分页参数
         EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
         //执行查询
