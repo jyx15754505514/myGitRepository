@@ -3,19 +3,24 @@ package com.ccicnavi.bims.system.controller;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.sso.api.SSOService;
 import com.ccicnavi.bims.system.manager.UserManager;
 import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
 
 /**
  * @program: bims-backend
@@ -33,6 +38,12 @@ public class UserController {
 
     @Autowired
     private UserManager userManager;
+
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    private IdWorkerService idWorkerService;
+
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    private SSOService ssoService;
 
     /**
     *@Description: 查询登录用户信息(条件查询)
@@ -153,11 +164,56 @@ public class UserController {
     @RequestMapping(value = "/userLogout", method = RequestMethod.POST)
     public ResultT userLogout(@RequestBody String jsessionId) {
         try {
-            //return userManager.userLogin(UserDO);
+            ssoService.logout(jsessionId);
         } catch (Exception e) {
             log.error("用户登出失败", e);
         }
         return ResultT.failure(ResultCode.USER_NOT_EXIST);
+    }
+    /**
+    *@Description: 保存登录用户信息
+    *@Param: [userDTO]
+    *@return: com.ccicnavi.bims.common.ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/21
+    */
+    @RequestMapping(value = "/saveUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT saveUser(@RequestBody UserDTO userDTO) {
+        Integer integer = null;
+        try {
+            if (StringUtils.isEmpty(userDTO.getUserUuid())) {
+                String userUuid = idWorkerService.getId(new Date());
+                userDTO.setUserUuid(userUuid);
+                integer = userService.insertUser(userDTO);
+            } else {
+                integer = userService.updateUser(userDTO);
+            }
+            if (integer != null) {
+                return ResultT.success(integer);
+            }
+        } catch (Exception e) {
+            log.error("新建用户失败", e);
+        }
+        return ResultT.failure(ResultCode.ADD_FAILURE);
+    }
+
+    /**
+    *@Description: 更改启用禁用状态
+    *@Param: [userDO]
+    *@return: com.ccicnavi.bims.common.ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/22
+    */
+    @RequestMapping(value = "/updateIsEnabled", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT updateIsEnabled(@RequestBody UserDTO userDTO) {
+        Integer integer = null;
+        try {
+            integer = userService.updateIsEnabled(userDTO);
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("更改启用禁用状态失败", e);
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
+        }
     }
 
     /**
@@ -178,6 +234,25 @@ public class UserController {
         } catch (Exception e) {
             log.error("查询用户信息失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+    }
+
+    /**
+     *@Description: 根据用户分配角色
+     *@Param: [userDO]
+     *@return: com.ccicnavi.bims.common.ResultT
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    @RequestMapping(value = "/addUserRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT addUserRole(@RequestBody UserDTO userDTO) {
+        Integer integer = null;
+        try {
+            integer = userService.addUserRole(userDTO);
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("根据用户分配角色失败", e);
+            return ResultT.failure(ResultCode.ADD_FAILURE);
         }
     }
 }

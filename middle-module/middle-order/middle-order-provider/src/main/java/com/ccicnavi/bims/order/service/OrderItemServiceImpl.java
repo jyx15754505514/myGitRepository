@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.order.api.OrderItemService;
 import com.ccicnavi.bims.order.dao.OrderItemCostDao;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
-import com.ccicnavi.bims.order.pojo.OrderItemCostDo;
+import com.ccicnavi.bims.order.pojo.OrderItemCostDO;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
@@ -30,8 +30,8 @@ public class OrderItemServiceImpl implements OrderItemService {
     /**
      * @Author MengZiJie
      * @Description 添加服务项
-     * @Date 17:30 2018/11/19
-     * @Param [orderItemDO]
+     * @Data 2018/11/19 17:30
+     * @Param [orderItemDTO]
      * @Return java.lang.Integer
      */
     @Override
@@ -106,16 +106,16 @@ public class OrderItemServiceImpl implements OrderItemService {
             if(integer <= 0){
                 statu = false;
             }
-            if (orderItemDTO.getOrderItemCostDo().size() > 0) {
-                List<OrderItemCostDo> orderItemCostDo = orderItemDTO.getOrderItemCostDo();
-                for (int i = 0;i < orderItemCostDo.size();i++) {
-                    Integer itemCost = orderItemCostDao.updateOrderItemCost(orderItemCostDo.get(i), eqlTran);
+            if (orderItemDTO.getOrderItemCostDO().size() > 0) {
+                List<OrderItemCostDO> orderItemCostDO = orderItemDTO.getOrderItemCostDO();
+                for (int i = 0;i < orderItemCostDO.size();i++) {
+                    Integer itemCost = orderItemCostDao.updateOrderItemCost(orderItemCostDO.get(i), eqlTran);
                     if (itemCost <= 0) {
                         statu = false;
                     }
                 }
             }
-            if (statu = true) {
+            if (statu) {
                 eqlTran.commit();
                 return 1;
             }

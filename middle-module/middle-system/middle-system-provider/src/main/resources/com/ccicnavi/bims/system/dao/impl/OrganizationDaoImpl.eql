@@ -1,11 +1,12 @@
 -- [listOrganization]
-  SELECT
+SELECT
     organization_uuid organizationUuid,
     org_parent_uuid orgParentUuid,
+    org_all_parent_uuid orgAllParentUuid,
     org_name orgName,
     org_short_name orgShortName,
     org_code orgCode,
-    org_type orgType,
+    top_org_uuid topOrgUuid,
     org_tel orgTel,
     org_tel_ext orgTelExt,
     org_fax orgFax,
@@ -13,32 +14,36 @@
     org_addr orgAddr,
     is_enabled isEnabled,
     sort_num sortNum,
+    is_virtual isVirtual,
     comments comments,
     is_deleted isDeleted,
     created_time createdTime,
     created_uuid createdUuid,
     created_name createdName,
     updated_time updatedTime,
+    updated_uuid updatedUuid,
     updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
     org_uuid orgUuid,
     app_sys_uuid appSysUuid,
-    business_line businessLine,
     extend1 extend1,
     extend2 extend2,
     extend3	extend3
-    from
+from
     sys_organization
 where
     is_deleted = 'N'
 
+
 -- [getOrganization]
-  SELECT
+SELECT
     organization_uuid organizationUuid,
     org_parent_uuid orgParentUuid,
+    org_all_parent_uuid orgAllParentUuid,
     org_name orgName,
     org_short_name orgShortName,
     org_code orgCode,
-    org_type orgType,
+    top_org_uuid topOrgUuid,
     org_tel orgTel,
     org_tel_ext orgTelExt,
     org_fax orgFax,
@@ -46,20 +51,22 @@ where
     org_addr orgAddr,
     is_enabled isEnabled,
     sort_num sortNum,
+    is_virtual isVirtual,
     comments comments,
     is_deleted isDeleted,
     created_time createdTime,
     created_uuid createdUuid,
     created_name createdName,
     updated_time updatedTime,
+    updated_uuid updatedUuid,
     updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
     org_uuid orgUuid,
     app_sys_uuid appSysUuid,
-    business_line businessLine,
     extend1 extend1,
     extend2 extend2,
     extend3	extend3
-    from
+from
     sys_organization
 where
     is_deleted = 'N'
@@ -73,14 +80,16 @@ where
         organization_uuid,
       --iff orgParentUuid != null
         org_parent_uuid,
+      --iff orgAllParentUuid != null
+        org_all_parent_uuid,
       --iff orgName != null
         org_name,
       --iff orgShortName != null
         org_short_name,
       --iff orgCode != null
         org_code,
-      --iff orgType != null
-        org_type,
+      --iff topOrgUuid != null
+        top_org_uuid,
       --iff orgTel != null
         org_tel,
       --iff orgTelExt != null
@@ -95,6 +104,8 @@ where
         is_enabled,
       --iff sortNum != null
         sort_num,
+      --iff isVirtual != null
+        is_virtual,
       --iff comments != null
         comments,
       --iff isDeleted != null
@@ -107,14 +118,16 @@ where
         created_name,
       --iff updatedTime != null
         updated_time,
+      --iff updatedUuid != null
+        updated_uuid,
       --iff updatedName != null
-      updated_name,
+        updated_name,
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid,
       --iff orgUuid != null
-      org_uuid,
+        org_uuid,
       --iff appSysUuid != null
-      app_sys_uuid,
-      --iff businessLine != null
-      business_line,
+        app_sys_uuid,
       --iff extend1 != null
         extend1,
       --iff extend2 != null
@@ -127,14 +140,16 @@ where
         '#organizationUuid#',
       --iff orgParentUuid != null
         '#orgParentUuid#',
+      --iff orgAllParentUuid != null
+        '#orgAllParentUuid#',
       --iff orgName != null
         '#orgName#',
       --iff orgShortName != null
         '#orgShortName#',
       --iff orgCode != null
         '#orgCode#',
-      --iff orgType != null
-        '#orgType#',
+      --iff topOrgUuid != null
+        '#topOrgUuid#',
       --iff orgTel != null
         '#orgTel#',
       --iff orgTelExt != null
@@ -149,6 +164,8 @@ where
         '#isEnabled#',
       --iff sortNum != null
         '#sortNum#',
+      --iff isVirtual != null
+        '#isVirtual#',
       --iff comments != null
         '#comments#',
       --iff isDeleted != null
@@ -161,14 +178,17 @@ where
         '#createdName#',
       --iff updatedTime != null
         '#updatedTime#',
+      --iff updatedUuid != null
+        '#updatedUuid#',
       --iff updatedName != null
         '#updatedName#',
+      --iff prod_catalog_uuid != null
+              '#prod_catalog_uuid#',
       --iff orgUuid != null
         '#orgUuid#',
       --iff appSysUuid != null
         '#appSysUuid#',
-      --iff businessLine != null
-        '#businessLine#',
+
       --iff extend1 != null
         '#extend1#',
       --iff extend2 != null
@@ -258,3 +278,84 @@ WHERE
         -- for item=item index=index collection=uuids open=( separator=, close=)
             '#item#'
     -- end
+
+--根据用户查询省公司
+ -- [getOrgByUser]
+SELECT
+    organization_uuid organizationUuid,
+    org_parent_uuid orgParentUuid,
+    org_all_parent_uuid orgAllParentUuid,
+    org_name orgName,
+    org_short_name orgShortName,
+    org_code orgCode,
+    top_org_uuid topOrgUuid,
+    org_tel orgTel,
+    org_tel_ext orgTelExt,
+    org_fax orgFax,
+    org_url orgUrl,
+    org_addr orgAddr,
+    is_enabled isEnabled,
+    sort_num sortNum,
+    is_virtual isVirtual,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3	extend3
+from
+    sys_organization
+where
+    is_deleted = 'N'
+    --iff orgUuid != null and orgUuid != ''
+        and org_uuid = '#orgUuid#'
+
+--根据当前用户的orgUuid获取所有的当前机构和子机构
+-- [listOrgByOrg]
+SELECT
+    organization_uuid organizationUuid,
+    org_parent_uuid orgParentUuid,
+    org_all_parent_uuid orgAllParentUuid,
+    org_name orgName,
+    org_short_name orgShortName,
+    org_code orgCode,
+    top_org_uuid topOrgUuid,
+    org_tel orgTel,
+    org_tel_ext orgTelExt,
+    org_fax orgFax,
+    org_url orgUrl,
+    org_addr orgAddr,
+    is_enabled isEnabled,
+    sort_num sortNum,
+    is_virtual isVirtual,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3	extend3
+from
+    sys_organization
+where
+    is_deleted = 'N'
+    --iff orgUuid != null
+        and org_uuid = '#orgUuid#'
+    --iff orgParentUuid != null
+        and org_parent_uuid = '#orgParentUuid#'
+

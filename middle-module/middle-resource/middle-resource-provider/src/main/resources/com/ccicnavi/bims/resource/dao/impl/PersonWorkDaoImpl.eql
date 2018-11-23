@@ -22,11 +22,11 @@ select
     created_uuid createdUuid,
     created_name createdName,
     updated_time updatedTime,
+    updated_uuid updatedUuid,
     updated_name updatedName,
-    org_uuid orgUuid,
-    org_name orgName,
-    app_sys_uuid appSysUuid,
     prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
     extend1 extend1,
     extend2 extend2,
     extend3 extend3
@@ -111,20 +111,20 @@ where
         -- if  updatedTime !=  null and updatedTime != ''
             updated_time,
         -- end
+        -- if  updatedUuid !=  null and updatedUuid != ''
+            updated_uuid,
+        -- end
         -- if  updatedName !=  null and updatedName != ''
             updated_name,
+        -- end
+        -- if  prodCatalogUuid !=  null and prodCatalogUuid != ''
+            prod_catalog_uuid,
         -- end
         -- if  orgUuid !=  null and orgUuid != ''
             org_uuid,
         -- end
-        -- if  orgName !=  null and orgName != ''
-            org_name,
-        -- end
         -- if  appSysUuid !=  null and appSysUuid != ''
             app_sys_uuid,
-        -- end
-        -- if  prodCatalogUuid !=  null and prodCatalogUuid != ''
-            prod_catalog_uuid,
         -- end
         -- if  extend1 !=  null and extend1 != ''
             extend1,
@@ -204,20 +204,20 @@ where
         -- if  updatedTime != null and updatedTime != ''
            '#updatedTime#',
         -- end
+        -- if  updatedUuid != null and updatedUuid != ''
+           '#updatedUuid#',
+        -- end
         -- if  updatedName != null and updatedName != ''
            '#updatedName#',
+        -- end
+        -- if  prodCatalogUuid !=  null and prodCatalogUuid != ''
+           '#prodCatalogUuid#',
         -- end
         -- if  orgUuid != null and orgUuid != ''
            '#orgUuid#',
         -- end
-        -- if  orgName != null and orgName != ''
-           '#orgName#',
-        -- end
         -- if  appSysUuid != null and appSysUuid != ''
            '#appSysUuid#',
-        -- end
-        -- if  prodCatalogUuid !=  null and prodCatalogUuid != ''
-           '#prodCatalogUuid#',
         -- end
         -- if  extend1 != null and extend1 != ''
            '#extend1#',
@@ -235,6 +235,9 @@ where
    -- trim prefix=set suffixOverrides=,
      -- if workUuid != null and workUuid !=  ''
             work_uuid ='#workUuid#',
+    -- end
+    -- if personUuid != null and personUuid !=  ''
+            person_uuid ='#personUuid#',
     -- end
      -- if personType != null and personType !=  ''
             person_type ='#personType#',
@@ -296,20 +299,20 @@ where
      -- if updatedTime != null and updatedTime !=  ''
             updated_time ='#updatedTime#',
     -- end
+     -- if updatedUuid != null and updatedUuid !=  ''
+            updated_uuid ='#updatedUuid#',
+    -- end
      -- if updatedName != null and updatedName !=  ''
             updated_name ='#updatedName#',
+    -- end
+    -- if prodCatalogUuid != null and prodCatalogUuid !=  ''
+            prod_catalog_uuid ='#prodCatalogUuid#',
     -- end
      -- if orgUuid != null and orgUuid !=  ''
             org_uuid ='#orgUuid#',
     -- end
-     -- if orgName != null and orgName !=  ''
-            org_name ='#orgName#',
-    -- end
      -- if appSysUuid != null and appSysUuid !=  ''
             app_sys_uuid ='#appSysUuid#',
-    -- end
-     -- if prodCatalogUuid != null and prodCatalogUuid !=  ''
-            prod_catalog_uuid ='#prodCatalogUuid#',
     -- end
      -- if extend1 != null and extend1 !=  ''
             extend1 ='#extend1#',
@@ -352,36 +355,36 @@ where
 
  --[getPersonWorkDO]
 select
-     work_uuid workUuid,
-     person_uuid personUuid,
-     person_type personType,
-     dept_uuid deptUuid,
-     position position,
-     join_job_time joinJobTime,
-     regular_time regularTime,
-     join_app_time joinAppTime,
-     join_org_time joinOrgTime,
-     post_time postTime,
-     post_name postName,
-     email email,
-     fax fax,
-     office_phone officePhone,
-     work_addr workAddr,
-     is_upload_file isUploadFile,
-     comments comments,
-     is_deleted isDeleted,
-     created_time createdTime,
-     created_uuid createdUuid,
-     created_name createdName,
-     updated_time updatedTime,
-     updated_name updatedName,
-     org_uuid orgUuid,
-     org_name orgName,
-     app_sys_uuid appSysUuid,
-     prod_catalog_uuid prodCatalogUuid,
-     extend1 extend1,
-     extend2 extend2,
-     extend3 extend3
+    work_uuid workUuid,
+    person_uuid personUuid,
+    person_type personType,
+    dept_uuid deptUuid,
+    position position,
+    join_job_time joinJobTime,
+    regular_time regularTime,
+    join_app_time joinAppTime,
+    join_org_time joinOrgTime,
+    post_time postTime,
+    post_name postName,
+    email email,
+    fax fax,
+    office_phone officePhone,
+    work_addr workAddr,
+    is_upload_file isUploadFile,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
  from
      res_person_work
  where
@@ -392,36 +395,36 @@ select
 
 --[getPersonWorkPage]
 SELECT
-     work_uuid workUuid,
-     person_uuid personUuid,
-     person_type personType,
-     dept_uuid deptUuid,
-     position position,
-     join_job_time joinJobTime,
-     regular_time regularTime,
-     join_app_time joinAppTime,
-     join_org_time joinOrgTime,
-     post_time postTime,
-     post_name postName,
-     email email,
-     fax fax,
-     office_phone officePhone,
-     work_addr workAddr,
-     is_upload_file isUploadFile,
-     comments comments,
-     is_deleted isDeleted,
-     created_time createdTime,
-     created_uuid createdUuid,
-     created_name createdName,
-     updated_time updatedTime,
-     updated_name updatedName,
-     org_uuid orgUuid,
-     org_name orgName,
-     app_sys_uuid appSysUuid,
-     prod_catalog_uuid prodCatalogUuid,
-     extend1 extend1,
-     extend2 extend2,
-     extend3 extend3
+    work_uuid workUuid,
+    person_uuid personUuid,
+    person_type personType,
+    dept_uuid deptUuid,
+    position position,
+    join_job_time joinJobTime,
+    regular_time regularTime,
+    join_app_time joinAppTime,
+    join_org_time joinOrgTime,
+    post_time postTime,
+    post_name postName,
+    email email,
+    fax fax,
+    office_phone officePhone,
+    work_addr workAddr,
+    is_upload_file isUploadFile,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
 from
      res_person_work
     -- iff workUuid != null and workUuid != ""

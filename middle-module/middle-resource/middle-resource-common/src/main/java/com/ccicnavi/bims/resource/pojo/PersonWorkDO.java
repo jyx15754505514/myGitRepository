@@ -52,11 +52,11 @@ public class PersonWorkDO  implements  Serializable {
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
 
     private String orgUuid;
-
-    private String orgName;
 
     private String appSysUuid;
 

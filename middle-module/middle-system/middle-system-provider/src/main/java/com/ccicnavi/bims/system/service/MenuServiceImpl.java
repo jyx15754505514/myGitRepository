@@ -5,10 +5,7 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.system.dao.MenuButtonDao;
 import com.ccicnavi.bims.system.dao.MenuDao;
-import com.ccicnavi.bims.system.pojo.MenuButtonDO;
-import com.ccicnavi.bims.system.pojo.MenuButtonDTO;
-import com.ccicnavi.bims.system.pojo.MenuDO;
-import com.ccicnavi.bims.system.pojo.MenuDTO;
+import com.ccicnavi.bims.system.pojo.*;
 import com.ccicnavi.bims.system.service.api.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -194,6 +191,24 @@ public class MenuServiceImpl implements MenuService {
             return null;
         }
     }
+
+    /*
+     * 根据角色查询按钮的url
+     * @Author zhaotao
+     * @Date  2018/11/22 23:00
+     * @Param [userDTO]
+     * @return java.util.List<java.lang.String>
+     **/
+    @Override
+    public List<String> listButtonUrlByRole(UserDTO userDTO) {
+        try {
+            return menuButtonDao.listButtonUrlByRole(userDTO);
+        } catch (Exception e) {
+            log.error("根据角色查询按钮的url集合失败", e);
+            return null;
+        }
+    }
+
     //递归查询菜单
     private void listChildMenu(MenuDTO menuDTO, List<MenuDTO> menuDTOList) throws Exception {
         List<MenuDTO> childList = new  ArrayList<MenuDTO>();

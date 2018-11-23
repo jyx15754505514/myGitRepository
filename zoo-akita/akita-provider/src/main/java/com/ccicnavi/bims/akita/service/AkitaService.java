@@ -2,6 +2,7 @@ package com.ccicnavi.bims.akita.service;
 
 import com.ccicnavi.bims.akita.domain.ReturnCode;
 import com.ccicnavi.bims.akita.domain.ReturnMessageTest;
+import com.ccicnavi.bims.akita.pojo.FastDFSFile;
 
 /**
  * @Auther: husky
@@ -20,7 +21,7 @@ public interface AkitaService {
     /**
      * 测试上传缩略图
      */
-     ReturnMessageTest Thumbnail(FastDFSFile fastDFSFile);
+    ReturnCode Thumbnail(FastDFSFile fastDFSFile);
     /**
      * 测试文件下载
      */

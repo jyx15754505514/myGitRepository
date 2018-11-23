@@ -1,9 +1,10 @@
 package com.ccicnavi.bims.system.service.api;
 
-import com.ccicnavi.bims.system.pojo.MenuDO;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.system.pojo.MenuDO;
+
 import com.ccicnavi.bims.system.pojo.MenuDTO;
-import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 
 import java.util.List;
 /* *
@@ -81,6 +82,8 @@ public interface MenuService {
     */
 
     List<MenuDTO> listMenuByProdCatalogUuid(MenuDTO menuDTO);
+
+
     /**
     *@Description: 根据主键查询菜单
     *@Param: menuDTO
@@ -88,7 +91,14 @@ public interface MenuService {
     *@Author: zqq
     *@date: 2018/11/22
     */
-
-
     public List<MenuDTO> listMenuWithBtn(MenuDTO menuDTO);
+
+    /*
+    * 根据角色查询按钮的url
+    * @Author zhaotao
+    * @Date  2018/11/22 23:00
+    * @Param [userDTO]
+    * @return java.util.List<java.lang.String>
+    **/
+    List<String> listButtonUrlByRole(UserDTO userDTO);
 }

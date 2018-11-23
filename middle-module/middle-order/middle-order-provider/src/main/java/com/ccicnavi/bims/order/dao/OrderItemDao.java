@@ -12,13 +12,37 @@ import java.util.List;
  */
 public interface OrderItemDao {
 
-    /**新增服务项信息*/
+    /**
+     * @Author MengZiJie
+     * @Description 新增服务项信息
+     * @Date 20:36 2018/11/19
+     * @Param [orderItemDTO, tran]
+     * @Return java.lang.Integer
+     */
     Integer insertOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception;
-    /**更新服务项信息*/
+    /**
+     * @Author MengZiJie
+     * @Description 更新服务项信息
+     * @Date 20:36 2018/11/19
+     * @Param [orderItemDTO, tran]
+     * @Return java.lang.Integer
+     */
     Integer updateOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception;
-    /**查询所有的服务项信息*/
+    /**
+     * @Author MengZiJie
+     * @Description 查询所有的服务项信息
+     * @Date 20:36 2018/11/22
+     * @Param [orderInfoDO]
+     * @Return java.util.List<com.ccicnavi.bims.order.pojo.OrderItemDTO>
+     */
     List<OrderItemDTO> listOrderItemDTO (OrderInfoDO orderInfoDO)throws  Exception;
-    /**删除服务项信息*/
+    /**
+     * @Author MengZiJie
+     * @Description 删除服务项信息
+     * @Date 20:36 2018/11/22
+     * @Param [orderItemDTO, tran]
+     * @Return java.lang.Integer
+     */
     Integer deleteOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception;
 
 }

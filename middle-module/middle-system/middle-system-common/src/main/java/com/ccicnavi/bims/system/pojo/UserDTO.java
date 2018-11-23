@@ -20,6 +20,12 @@ import java.util.List;
 @ToString
 public class UserDTO implements Serializable {
 
+    /**添加角色的主键集合*/
+    private List<String> addRoleList;
+
+    /**删除角色的主键集合*/
+    private List<String> deleteRoleList;
+
     /**已授权用户集合*/
     private List<UserDO> authUserList;
 
@@ -28,6 +34,9 @@ public class UserDTO implements Serializable {
 
     /**用户拥有的角色集合*/
     private List<RoleDO> roleDOList;
+
+    /**用户拥有的角色集合,多公司名称*/
+    private List<RoleDTO> roleDTOList;
 
     /**用户拥有的权限集合*/
     private List<MenuDTO> menuList;
@@ -133,5 +142,8 @@ public class UserDTO implements Serializable {
 
     /**角色主键*/
     private String roleUuid;
+
+    /**批量操作uuids*/
+    private List<String> uuids;
 
 }

@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.dao;
 
 import com.ccicnavi.bims.system.pojo.MenuButtonDO;
 import com.ccicnavi.bims.system.pojo.MenuDTO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import org.n3r.eql.EqlTran;
 
 import java.util.List;
@@ -69,4 +70,13 @@ public interface MenuButtonDao {
     * @return java.util.List<com.ccicnavi.bims.system.pojo.MenuButtonDO>
     **/
     List<MenuButtonDO> listMenuButtonByRole(MenuDTO menuDTO);
+
+    /*
+     * 根据角色查询按钮的url
+     * @Author zhaotao
+     * @Date  2018/11/22 23:00
+     * @Param [userDTO]
+     * @return java.util.List<java.lang.String>
+     **/
+    List<String> listButtonUrlByRole(UserDTO userDTO) throws Exception;
 }

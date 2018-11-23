@@ -5,6 +5,7 @@ import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.RoleUserDao;
 import com.ccicnavi.bims.system.pojo.RoleUserDO;
 import com.ccicnavi.bims.system.pojo.RoleUserDTO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.RoleUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
@@ -33,15 +34,25 @@ public class RoleUserServiceImpl implements RoleUserService {
     *@Author: zqq
     *@date: 2018/11/22
     */
-
     @Override
     public Integer insertRoleUser(RoleUserDTO roleUserDTO) {
         EqlTran tran = EqlUtils.getInstance("DEFAULT").newTran();
-        Integer deletenum =0;
+        Integer deletenum = 0;
         Integer savenum = 0;
         try {
             if(!StringUtils.isEmpty(roleUserDTO.getDeleteUserUuid())){
-                deletenum = roleUserDao.deleteRoleUser(roleUserDTO,tran);
+                List<String> list = roleUserDTO.getDeleteUserUuid();
+                for(String str :list){
+                    UserDTO userDTO =new UserDTO();
+                    userDTO.setUserUuid(str);
+                    userDTO.setRoleUuid(roleUserDTO.getRoleUuid());
+                    List<RoleUserDO> roleUserList = roleUserDao.listRoleUser(userDTO,tran);
+                    if(roleUserList != null && roleUserList.size() > 0){
+                        deletenum = roleUserDao.deleteRoleUsers(userDTO, tran);
+                    }else{
+                        deletenum = 1;
+                    }
+                }
             }else{
                 deletenum =1;
             }
@@ -52,7 +63,7 @@ public class RoleUserServiceImpl implements RoleUserService {
                     roleUserDO.setRoleUuid(roleUserDTO.getRoleUuid());
                     roleUserDO.setUserUuid(useruuid);
                     roleUserDO.setOrgUuid(roleUserDTO.getOrgUuid());
-                    savenum = roleUserDao.insertRoleUser(roleUserDO,tran);
+                    savenum = roleUserDao.insertRoleUser(roleUserDO, tran);
                 }
             }else{
                 savenum=1;
