@@ -123,13 +123,23 @@ public class EquipDO implements Serializable {
 
     private String createdUuid;
 
+    private String createdName;
+
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
+
+    private String prodCatalogUuid;
 
     private String orgUuid;
 
     private String appSysUuid;
 
-    private String prodCatalogPuid;
+    private String extend1;
+
+    private String extend2;
+
+    private String extend3;
 }
