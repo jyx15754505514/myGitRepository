@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.customer.api.SubcLinkmanService;
 import com.ccicnavi.bims.customer.dao.SubLinkmanDao;
 import com.ccicnavi.bims.customer.pojo.SubLinkmanDO;
@@ -8,6 +10,7 @@ import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +20,9 @@ import java.util.List;
  */
 @Slf4j
 public class SubcLinkmanServiceImpl implements SubcLinkmanService {
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
+
     @Autowired
     SubLinkmanDao subLinkmanDao ;
     /**
@@ -45,6 +51,8 @@ public class SubcLinkmanServiceImpl implements SubcLinkmanService {
     @Override
     public Integer insertSubcLinkman(SubLinkmanDO subLinkmanDO) {
         try {
+            String linkmanUuid = idWorkerService.getId(new Date());
+            subLinkmanDO.setLinkmanUuid(linkmanUuid);
             return subLinkmanDao.insertSubLinkman(subLinkmanDO,null);
         } catch (Exception e) {
             log.error("查询分包联系人添加失败",e);
