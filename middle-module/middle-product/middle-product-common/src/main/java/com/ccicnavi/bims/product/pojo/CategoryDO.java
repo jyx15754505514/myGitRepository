@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.product.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,9 +15,8 @@ import java.util.Date;
  * @author: LiJie
  * @create: 2018-11-19 17:24
  */
-@Setter
-@Getter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryDO implements Serializable {
 
     /**产品分类主键*/
