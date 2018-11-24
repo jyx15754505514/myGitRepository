@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
  * @Description: 业务编码规则管理
  */
 @RestController
-@RequestMapping("system")
+@RequestMapping("/serialnum")
 @Slf4j
 public class SerialnumController {
     @Reference
