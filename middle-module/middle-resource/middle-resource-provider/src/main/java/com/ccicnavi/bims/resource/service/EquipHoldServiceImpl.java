@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.EquipHoldService;
@@ -8,6 +10,8 @@ import com.ccicnavi.bims.resource.dao.EquipHoldDao;
 import com.ccicnavi.bims.resource.pojo.EquipHoldDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Date;
 
 
 /**
@@ -22,6 +26,9 @@ public class EquipHoldServiceImpl implements EquipHoldService {
     
     @Autowired
     EquipHoldDao equipHoldDao;
+
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
 
     /**
      * @Author panyida
@@ -70,6 +77,8 @@ public class EquipHoldServiceImpl implements EquipHoldService {
     public Integer insertEquipHold(EquipHoldDO equipHoldDO){
         Integer count = null;
         try {
+            String equipHoldUuid = idWorkerService.getId(new Date());
+            equipHoldDO.setEquipHoldUuid(equipHoldUuid);
             count = equipHoldDao.insertEquipHold(equipHoldDO);
         } catch (Exception e) {
             log.error("新增设备保管信息错误",e);
