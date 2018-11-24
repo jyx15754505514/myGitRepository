@@ -3,6 +3,7 @@ package com.ccicnavi.bims.sso.common.pojo;
 import com.ccicnavi.bims.system.pojo.DepartmentDTO;
 import com.ccicnavi.bims.system.pojo.MenuDTO;
 import com.ccicnavi.bims.system.pojo.RoleDTO;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.io.Serializable;

@@ -56,12 +56,12 @@ public class MenuButtonDaoImpl implements MenuButtonDao {
 
     @Override
     public List<MenuButtonDTO> listMenuButtonByRole(MenuDTO menuDTO) {
-        return new Eql().select("listMenuButtonByRole").params(menuDTO).returnType(MenuButtonDO.class).execute();
+        return new Eql().select("listMenuButtonByRole").params(menuDTO).returnType(MenuButtonDTO.class).execute();
     }
 
     @Override
     public List<String> listButtonUrlByRole(UserDTO userDTO) throws Exception {
-        return new Eql().select("listButtonUrlByRole").params(userDTO).returnType(MenuButtonDO.class).execute();
+        return new Eql().select("listButtonUrlByRole").params(userDTO).returnType(String.class).execute();
     }
 
 }

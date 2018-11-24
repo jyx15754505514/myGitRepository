@@ -5,6 +5,8 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.system.dao.MenuButtonDao;
 import com.ccicnavi.bims.system.dao.MenuDao;
+import com.ccicnavi.bims.system.dao.impl.MenuButtonDaoImpl;
+import com.ccicnavi.bims.system.dao.impl.MenuDaoImpl;
 import com.ccicnavi.bims.system.pojo.MenuButtonDTO;
 import com.ccicnavi.bims.system.pojo.MenuDO;
 import com.ccicnavi.bims.system.pojo.MenuDTO;
@@ -15,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author MengZiJie
@@ -145,14 +149,14 @@ public class MenuServiceImpl implements MenuService {
     public List<MenuDTO> listMenuByProdCatalogUuid(MenuDTO menuDTO) {
         try {
             //查询所有一级菜单
-            List<MenuDTO> list =menuDao.listMenuByProdCatalogUuid(menuDTO);
+            List<MenuDTO> list = menuDao.listMenuByProdCatalogUuid(menuDTO);
             //递归调用
-            if(list != null && list.size() >0){
-                listChildMenu(menuDTO,list);
+            if(list != null && list.size() > 0){
+                listChildMenu(menuDTO, list);
             }
             return list;
         } catch (Exception e) {
-            log.error("查询菜单失败",e);
+            log.error("查询菜单失败", e);
             return null;
         }
     }
@@ -226,8 +230,98 @@ public class MenuServiceImpl implements MenuService {
                 menu.setMenuDTO(childList);
                 MenuButtonDTO menuButtonDTO = new MenuButtonDTO();
                 menuButtonDTO.setMenuUuid(menu.getMenuUuid());
+                menuButtonDTO.setProdCatalogList(menu.getProdCatalogList());
                 //菜单所对应的所有按钮
                 List<MenuButtonDTO> menuButtonDOList=menuButtonDao.listMenuButton(menuButtonDTO);
+                menu.setMenuButtonDOList(menuButtonDOList);
+                menuDTO.setMenuUuid(menu.getMenuUuid());
+                List<MenuButtonDTO> selectmenuButtonDOList =  menuButtonDao.listMenuButtonByRole(menuDTO);
+                menu.setSelectdMenuButtonDOList(selectmenuButtonDOList);
+            }
+        }
+    }
+
+
+
+    public MenuDTO listMenuWithButton() {
+        //根据角色和产品线查询所有的底层菜单集合
+        List<List<String>> menuUuidList = new ArrayList<>();
+        Map<String, Object> menuMap = new HashMap<>();
+        for (List<String> menuList : menuUuidList) {
+            for (String menuUuid : menuList) {
+                boolean b = menuMap.containsKey(menuUuid);
+                if(!b) {
+                    menuMap.put(menuUuid, new HashMap<String, Object>());
+                }else {
+                    Map<String, Object> menu = (Map<String, Object>) menuMap.get(menuUuid);
+
+                }
+            }
+
+        }
+
+        return null;
+    }
+
+    public static void main (String[] age) {
+        MenuDTO menuDTO = new MenuDTO();
+        menuDTO.setProdCatalogUuid("AGM");
+        menuDTO.setRoleUuid("orgAdmin");
+        List<String> roleUuids = new ArrayList<>();
+        roleUuids.add("orgAdmin");
+        menuDTO.setRoleUuids(roleUuids);
+        MenuDao menuDao = new MenuDaoImpl();
+        MenuButtonDao menuButtonDao = new MenuButtonDaoImpl();
+        //查询所有一级菜单
+        List<MenuDTO> list = menuDao.listMenuByProdCatalogUuid(menuDTO);
+        //递归调用
+       if(list != null && list.size() >0){
+            listChildMenu(menuDTO,list, menuDao, menuButtonDao);
+        }
+        deleteMenu(list);
+       System.out.println(list);
+    }
+
+    //递归删除没有下级菜单且没有按钮的MenuDTO对象
+    private static void deleteMenu(List<MenuDTO> menuList) {
+        if(menuList != null && menuList.size() > 0) {
+            for (int i = 0; i < menuList.size(); i++) {
+                MenuDTO me = menuList.get(i);
+                List<MenuDTO> menuDTOList = me.getMenuDTO();
+                List<MenuButtonDTO> buttonList = me.getSelectdMenuButtonDOList();
+                //有下级菜单时继续递归
+                if(menuDTOList != null && menuDTOList.size() > 0) {
+                    deleteMenu(menuDTOList);
+                }
+                //没有下级 菜单，且没有按钮时删除菜单
+                if(buttonList == null || buttonList.size() ==0) {
+                    menuList.remove(me);
+                    i--;
+                    continue;
+                }
+            }
+        }
+    }
+
+
+
+
+    //递归查询菜单
+    private static void listChildMenu(MenuDTO menuDTO, List<MenuDTO> menuDTOList, MenuDao menuDao, MenuButtonDao menuButtonDao){
+        List<MenuDTO> childList = new  ArrayList<MenuDTO>();
+        for (MenuDTO menu : menuDTOList) {
+            String parentUuid = menu.getMenuUuid();
+            menuDTO.setParentUuid(parentUuid);
+            childList  = menuDao.listMenuByParent(menuDTO);
+            if (childList != null && childList.size() > 0) {
+                menu.setMenuDTO(childList);
+                listChildMenu(menuDTO, childList, menuDao, menuButtonDao);
+            }else{
+                menu.setMenuDTO(childList);
+                MenuButtonDTO menuButtonDTO = new MenuButtonDTO();
+                menuButtonDTO.setMenuUuid(menu.getMenuUuid());
+                //菜单所对应的所有按钮
+                List<MenuButtonDTO> menuButtonDOList= menuButtonDao.listMenuButton(menuButtonDTO);
                 menu.setMenuButtonDOList(menuButtonDOList);
                 menuDTO.setMenuUuid(menu.getMenuUuid());
                 List<MenuButtonDTO> selectmenuButtonDOList =  menuButtonDao.listMenuButtonByRole(menuDTO);

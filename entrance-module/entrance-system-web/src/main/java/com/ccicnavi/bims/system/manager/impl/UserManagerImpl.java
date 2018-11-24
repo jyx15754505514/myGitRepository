@@ -91,7 +91,7 @@ public class UserManagerImpl implements UserManager {
                 //调用SSO服务登录操作
                 ReturnT<String> login = ssoService.login(ssoUser);
                 ssoUser.setJsessionID(login.getData());
-                if(login.getCode() == 200) {
+                if(login.getCode() == 1) {
                     //SSO返回1 登录成功
                     return ResultT.success(ssoUser);
                 }else {
@@ -121,7 +121,7 @@ public class UserManagerImpl implements UserManager {
         //查角色
         List<RoleDTO> roleDTOList = roleService.listRoleByUser(userDTO);
         //查部门
-        //List<DepartmentDTO> deptList = deptService.listDeptByUser(userDTO);
+        List<DepartmentDTO> deptList = deptService.listDeptByUser(userDTO);
         //查产品线
         CatalogOrgDO catalogOrgDO = new CatalogOrgDO();
         catalogOrgDO.setOrganizationUuid(ssoUser.getOrgUuid());
@@ -142,7 +142,7 @@ public class UserManagerImpl implements UserManager {
         //获取当前用户所拥有的权限url
         List<String> buttonUrlList = menuService.listButtonUrlByRole(userDTO);
         ssoUser.setRoleList(roleDTOList);
-        //ssoUser.setDepartmentList(deptList);
+        ssoUser.setDepartmentList(deptList);
         ssoUser.setBtnUrlList(buttonUrlList);
         ssoUser.setProdCatalogList(prodCatalogList);
         ssoUser.setMenuList(menuList);
