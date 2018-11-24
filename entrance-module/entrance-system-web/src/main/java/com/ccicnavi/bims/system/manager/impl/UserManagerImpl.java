@@ -4,7 +4,6 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.breeder.api.PasswdService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
-import com.ccicnavi.bims.shiba.api.HashTemplate;
 import com.ccicnavi.bims.sso.api.SSOService;
 import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.sso.common.result.ReturnT;
@@ -59,10 +58,26 @@ public class UserManagerImpl implements UserManager {
         SSOUser ssoUser = new SSOUser();
         try {
             ssoUser = userService.login(userDTO);
-            //对用户depteUuid和orgUuid进行判断，如果被禁用，返回被禁用
             if(ssoUser != null) {
                 //判断账号是否被禁用
-                if("N".equals(ssoUser.getIsEnabled()) || "Y".equals(ssoUser.getIsDeleted())) {
+                if("N".equals(ssoUser.getIsEnabled()) || "Y".equals(ssoUser.getIsDeleted()) ||
+                        "N".equals(ssoUser.getOrgIsEnabled()) || "Y".equals(ssoUser.getOrgIsDeleted())) {
+                    return ResultT.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
+                }
+                //对用户depteUuid和orgUuid进行判断，如果被禁用，返回被禁用
+                userDTO.setUserUuid(ssoUser.getUserUuid());
+                userDTO.setOrgUuid(ssoUser.getOrgUuid());
+                //查部门
+                List<DepartmentDTO> deptList = deptService.listDeptByUser(userDTO);
+                boolean deptStatus = false;
+                for(DepartmentDTO departmentDTO : deptList) {
+                    //用户所在部门有一个部门未被禁用并且为被删除，则可以登录
+                    if("Y".equals(departmentDTO.getIsEnabled()) && "N".equals(departmentDTO.getIsDeleted())) {
+                        deptStatus = true;
+                        break;
+                    }
+                }
+                if(deptStatus == false) {
                     return ResultT.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
                 }
                 //获取登录密码
@@ -88,10 +103,13 @@ public class UserManagerImpl implements UserManager {
                     return ResultT.failure(ResultCode.USER_LOGIN_ERROR);
                 }
                 getUserBaseData(userDTO, ssoUser);
+                ssoUser.setDepartmentList(deptList);
                 //调用SSO服务登录操作
                 ReturnT<String> login = ssoService.login(ssoUser);
                 ssoUser.setJsessionID(login.getData());
                 if(login.getCode() == 1) {
+                    ssoUser.setCurrentPassword("");
+                    ssoUser.setSalt("");
                     //SSO返回1 登录成功
                     return ResultT.success(ssoUser);
                 }else {
@@ -116,12 +134,8 @@ public class UserManagerImpl implements UserManager {
     * @return void
     **/
     private void getUserBaseData(UserDTO userDTO, SSOUser ssoUser) {
-        userDTO.setUserUuid(ssoUser.getUserUuid());
-        userDTO.setOrgUuid(ssoUser.getOrgUuid());
         //查角色
         List<RoleDTO> roleDTOList = roleService.listRoleByUser(userDTO);
-        //查部门
-        List<DepartmentDTO> deptList = deptService.listDeptByUser(userDTO);
         //查产品线
         CatalogOrgDO catalogOrgDO = new CatalogOrgDO();
         catalogOrgDO.setOrganizationUuid(ssoUser.getOrgUuid());
@@ -142,12 +156,10 @@ public class UserManagerImpl implements UserManager {
         //获取当前用户所拥有的权限url
         List<String> buttonUrlList = menuService.listButtonUrlByRole(userDTO);
         ssoUser.setRoleList(roleDTOList);
-        ssoUser.setDepartmentList(deptList);
         ssoUser.setBtnUrlList(buttonUrlList);
         ssoUser.setProdCatalogList(prodCatalogList);
         ssoUser.setMenuList(menuList);
     }
-
 
     //递归删除没有下级菜单且没有按钮的MenuDTO对象
     private void deleteMenu(List<MenuDTO> menuList) {

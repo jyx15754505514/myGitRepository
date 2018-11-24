@@ -92,6 +92,10 @@ public class SSOUser implements Serializable {
 
     private String orgName;
 
+    private String orgIsEnabled;
+
+    private String orgIsDeleted;
+
     private String orgCode;
 
     private String appSysUuid;
