@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.SubcontractorService;
@@ -12,6 +14,7 @@ import com.ccicnavi.bims.customer.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +26,8 @@ import java.util.List;
 @Service
 @Slf4j
 public class SubcontractorServiceImpl implements SubcontractorService{
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
 
     @Autowired
     SubcontractorDao subcontractorDao;
@@ -60,6 +65,8 @@ public class SubcontractorServiceImpl implements SubcontractorService{
     @Override
     public Integer insertSubcontractor(SubcontractorDO subcontractor) {
         try {
+            String subcontractorUuid = idWorkerService.getId(new Date());
+            subcontractor.setSubcontractorUuid(subcontractorUuid);
            return subcontractorDao.insertSubcontractor(subcontractor);
         } catch (Exception e) {
             log.error("Service层新增分包方信息失败",e);

@@ -30,6 +30,8 @@ public class SSOTest {
         userInfo.setNickName("张三");
         List<String> btnUrlList = new ArrayList<>();
         btnUrlList.add("/application/hello.do");
+        btnUrlList.add("/entrance-fin-web/area/getArea");
+        btnUrlList.add("/entrance-fin-web/fin/sayHello");
         userInfo.setBtnUrlList(btnUrlList);
         ReturnT<String> returnT = ssoService.login(userInfo);
 
@@ -54,7 +56,7 @@ public class SSOTest {
 
     @Test
     public void checkAccess(){
-        ReturnT<SSOUser> returnT = ssoService.checkAccess("75933b02-fc1d-4253-a4fc-d236c4fe3e9f_efe865c063fc4715b0e86e1cc97ff333","/application/helloo.do");
+        ReturnT<SSOUser> returnT = ssoService.checkAccess("748ab224-2c21-4b0a-a114-1618a81bb9871_4709a35dd187497292c7351067f77671","/application/hello.do");
         System.out.println(returnT.getMsg());
         System.out.println(returnT.getData());
         Assert.assertEquals(1,returnT.getCode());
