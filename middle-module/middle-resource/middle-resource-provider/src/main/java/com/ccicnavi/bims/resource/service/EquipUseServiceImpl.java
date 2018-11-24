@@ -94,7 +94,7 @@ public class EquipUseServiceImpl implements EquipUseService {
      */
     @Override
     public Integer insertEquipUse(EquipUseDO equipUseDO){
-        Integer count = null;
+        Integer count = 0;
         try {
             String equipUseUuid = idWorkerService.getId(new Date());
             equipUseDO.setEquipUseUuid(equipUseUuid);
@@ -114,7 +114,7 @@ public class EquipUseServiceImpl implements EquipUseService {
      */
     @Override
     public Integer updateEquipUse(EquipUseDO equipUseDO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipUseDao.updateEquipUse(equipUseDO,null);
         } catch (Exception e) {
@@ -132,7 +132,7 @@ public class EquipUseServiceImpl implements EquipUseService {
      */
     @Override
     public Integer deleteEquipUse(EquipUseDTO equipUseDTO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipUseDao.deleteEquipUse(equipUseDTO,null);
         } catch (Exception e) {
