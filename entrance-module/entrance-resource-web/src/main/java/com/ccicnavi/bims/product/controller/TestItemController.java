@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping(value = "/testItem")
 public class TestItemController {
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20884")
+    @Reference(timeout = 30000)
     TestItemService testItemService;
 
     @RequestMapping(value = "/listTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")

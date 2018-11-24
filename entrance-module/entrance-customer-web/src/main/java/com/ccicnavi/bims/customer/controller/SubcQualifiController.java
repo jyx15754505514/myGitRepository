@@ -29,7 +29,7 @@ public class SubcQualifiController {
 
     private final static Logger log= LoggerFactory.getLogger(SubcQualifiController.class);
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20883")
+    @Reference(timeout = 30000)
     SubcQualifiService subcQualifiService;
 
     /**

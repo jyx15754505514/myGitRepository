@@ -39,10 +39,10 @@ public class UserController {
     @Autowired
     private UserManager userManager;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference(timeout = 30000 )
     private IdWorkerService idWorkerService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    @Reference(timeout = 30000)
     private SSOService ssoService;
 
     /**

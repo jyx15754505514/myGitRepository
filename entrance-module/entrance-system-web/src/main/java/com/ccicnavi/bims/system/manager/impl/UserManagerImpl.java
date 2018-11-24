@@ -27,42 +27,43 @@ import java.util.List;
 @Slf4j
 public class UserManagerImpl implements UserManager {
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference(timeout = 30000)
     private UserService userService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference(timeout = 30000)
     private RoleService roleService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference(timeout = 30000)
     private DepartmentService deptService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference(timeout = 30000)
     private MenuService menuService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference(timeout = 30000)
     private CatalogOrgService catalogOrgService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference(timeout = 30000)
     private PasswdService passwdService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    @Reference(timeout = 30000)
     private SSOService ssoService;
+
     /*
-    * 用户登录
-    * @Author zhaotao
-    * @Date  2018/11/19 10:55
-    * @Param [UserDO]
-    * @return com.ccicnavi.bims.common.ResultT
-    **/
+     * 用户登录
+     * @Author zhaotao
+     * @Date  2018/11/19 10:55
+     * @Param [UserDO]
+     * @return com.ccicnavi.bims.common.ResultT
+     **/
     @Override
     public ResultT userLogin(UserDTO userDTO) {
         SSOUser ssoUser = new SSOUser();
         try {
             ssoUser = userService.login(userDTO);
             //对用户depteUuid和orgUuid进行判断，如果被禁用，返回被禁用
-            if(ssoUser != null) {
+            if (ssoUser != null) {
                 //判断账号是否被禁用
-                if("N".equals(ssoUser.getIsEnabled()) || "Y".equals(ssoUser.getIsDeleted())) {
+                if ("N".equals(ssoUser.getIsEnabled()) || "Y".equals(ssoUser.getIsDeleted())) {
                     return ResultT.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
                 }
                 //获取登录密码
@@ -72,7 +73,7 @@ public class UserManagerImpl implements UserManager {
                 //根据用户的盐值，验证密码是否正确
                 boolean verify = passwdService.verify(ssoUser.getCurrentPassword(), password, salt);
                 //密码错误
-                if(!verify) {
+                if (!verify) {
                     //记录登录失败次数
                     Integer failedLogins = userDTO.getFailedLogins();
                     failedLogins += 1;
@@ -81,7 +82,7 @@ public class UserManagerImpl implements UserManager {
                     userDTO.setOrgUuid(ssoUser.getOrgUuid());
                     userDTO.setAppSysUuid(ssoUser.getAppSysUuid());
                     //失败5次处理逻辑
-                    if(failedLogins >= 5) {
+                    if (failedLogins >= 5) {
 
                     }
                     userService.updateUser(userDTO);
@@ -91,30 +92,30 @@ public class UserManagerImpl implements UserManager {
                 //调用SSO服务登录操作
                 ReturnT<String> login = ssoService.login(ssoUser);
                 ssoUser.setJsessionID(login.getData());
-                if(login.getCode() == 1) {
+                if (login.getCode() == 1) {
                     //SSO返回1 登录成功
                     return ResultT.success(ssoUser);
-                }else {
+                } else {
                     //SSO服务登录失败
                     return ResultT.failure(ResultCode.SSO_LOGIN_FAILURE);
                 }
-            }else {
+            } else {
                 //账号不存在
                 return ResultT.failure(ResultCode.USER_LOGIN_ERROR);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             log.error("用户登录失败", e);
             return ResultT.failure(ResultCode.USER_LOGIN_FAILURE);
         }
     }
 
     /*
-    * 获取用户的基础信息，角色，部门，权限菜单
-    * @Author zhaotao
-    * @Date  2018/11/19 15:11
-    * @Param [userDO, user]
-    * @return void
-    **/
+     * 获取用户的基础信息，角色，部门，权限菜单
+     * @Author zhaotao
+     * @Date  2018/11/19 15:11
+     * @Param [userDO, user]
+     * @return void
+     **/
     private void getUserBaseData(UserDTO userDTO, SSOUser ssoUser) {
         userDTO.setUserUuid(ssoUser.getUserUuid());
         userDTO.setOrgUuid(ssoUser.getOrgUuid());
@@ -151,17 +152,17 @@ public class UserManagerImpl implements UserManager {
 
     //递归删除没有下级菜单且没有按钮的MenuDTO对象
     private void deleteMenu(List<MenuDTO> menuList) {
-        if(menuList != null && menuList.size() > 0) {
+        if (menuList != null && menuList.size() > 0) {
             for (int i = 0; i < menuList.size(); i++) {
                 MenuDTO me = menuList.get(i);
                 List<MenuDTO> menuDTOList = me.getMenuDTO();
                 List<MenuButtonDTO> buttonList = me.getSelectdMenuButtonDOList();
                 //有下级菜单时继续递归
-                if(menuDTOList != null && menuDTOList.size() > 0) {
+                if (menuDTOList != null && menuDTOList.size() > 0) {
                     deleteMenu(menuDTOList);
                 }
                 //没有下级 菜单，且没有按钮时删除菜单
-                if((menuDTOList == null || menuDTOList.size() == 0) && (buttonList == null || buttonList.size() ==0)) {
+                if ((menuDTOList == null || menuDTOList.size() == 0) && (buttonList == null || buttonList.size() == 0)) {
                     menuList.remove(me);
                     i--;
                     continue;
