@@ -25,6 +25,9 @@ public enum ResultCode {
     USER_LOGIN_OUT(20008, "用户登录超时"),
     USER_NOT_LOGIN(20009, "用户未登录"),
     USER_CANT_ACCESS(20010, "无权限访问"),
+    USER_NOT_INITIALPASSWORD(20011, "恢复初始密码失败"),
+    USER_ALLOT_ROLE(20012, "分配角色失败"),
+    USER_SAVE_USER(20013, "新建用户失败"),
 
 
 

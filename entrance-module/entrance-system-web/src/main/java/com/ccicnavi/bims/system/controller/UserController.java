@@ -194,7 +194,7 @@ public class UserController {
         } catch (Exception e) {
             log.error("新建用户失败", e);
         }
-        return ResultT.failure(ResultCode.ADD_FAILURE);
+        return ResultT.failure(ResultCode.USER_SAVE_USER);
     }
 
     /**
@@ -252,7 +252,7 @@ public class UserController {
             return ResultT.success();
         } catch (Exception e) {
             log.error("根据用户分配角色失败", e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            return ResultT.failure(ResultCode.USER_ALLOT_ROLE);
         }
     }
 
@@ -265,13 +265,12 @@ public class UserController {
      */
     @RequestMapping(value = "/initialPassword", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT initialPassword(@RequestBody UserDTO userDTO) {
-
         try {
             userService.initialPassword(userDTO);
             return ResultT.success();
         } catch (Exception e) {
             log.error("恢复初始密码失败", e);
-            return ResultT.failure(ResultCode.UPDATE_FAILURE);
+            return ResultT.failure(ResultCode.USER_NOT_INITIALPASSWORD);
         }
     }
 }
