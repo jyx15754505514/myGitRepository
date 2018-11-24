@@ -129,7 +129,7 @@ public class EquipDTO implements Serializable {
 
     private String appSysUuid;
 
-    private String prodCatalogPuid;
+    private String prodCatalogUuid;
 
     private Integer expireDay;//到期提醒天数
 
