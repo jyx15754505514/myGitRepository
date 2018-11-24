@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.SubcontractorService;
@@ -12,6 +14,7 @@ import com.ccicnavi.bims.customer.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +26,8 @@ import java.util.List;
 @Service
 @Slf4j
 public class SubcontractorServiceImpl implements SubcontractorService{
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
 
     @Autowired
     SubcontractorDao subcontractorDao;
@@ -35,7 +40,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
 
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分页查询分包方信息
+     * @Description 分页查询分包方信息
      * @Date 16:16 2018/11/23
      * @Param [pageParameter]
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.customer.pojo.SubcontractorDO>
@@ -52,7 +57,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
 
     /**
      * @Author FanDongSheng
-     * @Description //TODO 新增分包方信息
+     * @Description 新增分包方信息
      * @Date 16:16 2018/11/23
      * @Param [subcontractor]
      * @Return java.lang.Integer
@@ -60,6 +65,8 @@ public class SubcontractorServiceImpl implements SubcontractorService{
     @Override
     public Integer insertSubcontractor(SubcontractorDO subcontractor) {
         try {
+            String subcontractorUuid = idWorkerService.getId(new Date());
+            subcontractor.setSubcontractorUuid(subcontractorUuid);
            return subcontractorDao.insertSubcontractor(subcontractor);
         } catch (Exception e) {
             log.error("Service层新增分包方信息失败",e);
@@ -68,13 +75,13 @@ public class SubcontractorServiceImpl implements SubcontractorService{
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 根据分包方信息查询分包方包含的所有的信息（资质、联系人、银行信息）
+     * @Description 根据分包方信息查询分包方包含的所有的信息（资质、联系人、银行信息）
      * @Date 18:22 2018/11/23
      * @Param [subcontractorDTO]
      * @Return com.ccicnavi.bims.customer.pojo.SubcontractorDTO
      */
     @Override
-    public SubcontractorDTO getSubcontractorList(SubcontractorDTO subcontractorDTO) throws Exception {
+    public SubcontractorDTO getSubcontractorList(SubcontractorDTO subcontractorDTO){
         try {
             //得到分包方信息
             subcontractorDTO = subcontractorDao.getSubcontractor(subcontractorDTO);
@@ -108,7 +115,6 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             count=subcontractorDao.removeSubcontractor(subcontractor);
         } catch (Exception e) {
             log.error("Service层删除分包方信息失败",e);
-            e.printStackTrace();
         }
         return count;
     }
@@ -127,14 +133,13 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             count=subcontractorDao.updateSubcontractor(subcontractor);
         } catch (Exception e) {
             log.error("Service层修改分包方信息失败",e);
-            e.printStackTrace();
         }
         return count;
     }
 
     /**
      * @Author FanDongSheng
-     * @Description //TODO 查询单个分包方信息不包含其余的信息
+     * @Description //查询单个分包方信息不包含其余的信息
      * @Date 18:39 2018/11/23
      * @Param [subcontractorDTO]
      * @Return com.ccicnavi.bims.customer.pojo.SubcontractorDTO
@@ -146,7 +151,6 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             subcontractorBean=subcontractorDao.getSubcontractor(subcontractorDTO);
         } catch (Exception e) {
             log.error("Service层查询分包方信息失败",e);
-            e.printStackTrace();
         }
         return subcontractorBean;
     }

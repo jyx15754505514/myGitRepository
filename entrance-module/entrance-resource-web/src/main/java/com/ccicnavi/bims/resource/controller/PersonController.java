@@ -17,7 +17,7 @@ public class PersonController {
 
 //    private final static Logger log = LoggerFactory.getLogger(PersonDO.class);
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
+    @Reference(timeout = 30000)
     PersonService personService;
 
     /*

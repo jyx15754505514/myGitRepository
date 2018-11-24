@@ -32,13 +32,13 @@ public class MinItemController {
 
     private final static Logger log = LoggerFactory.getLogger(MinItemController.class);
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    @Reference(timeout = 30000)
     MinItemService minItemService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    @Reference(timeout = 30000)
     MinItemStdService minItemStdService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    @Reference(timeout = 30000)
     MinItemTestService minItemTestService;
 
     /**

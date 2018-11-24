@@ -1,15 +1,11 @@
 --[listCatalogOrgDO]
 SELECT
-    prod_catalog_uuid,
-    organization_uuid,
-    app_sys_uuid
+    prod_catalog_uuid as prodCatalogUuid
 FROM
     sys_catalog_org
-WHERE 1=1
-    --iff organizationUuid != null and organizationUuid != ''
-        and organization_uuid = '#organizationUuid#'
-    --iff prodCatalogUuid != null and prodCatalogUuid != ''
-        and prod_catalog_uuid = '#prodCatalogUuid#'
+WHERE
+    organization_uuid = '#organization_uuid#'
+
 
 --[saveCatalogOrgDO]
 INSERT INTO sys_catalog_org

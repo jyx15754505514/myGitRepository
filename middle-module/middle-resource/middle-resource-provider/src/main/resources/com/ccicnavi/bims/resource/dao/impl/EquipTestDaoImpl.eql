@@ -104,6 +104,8 @@ where
     res_equip_test
 where
     is_deleted = 'N'
+-- iff equipUuid != null and equipUuid != ''
+        equip_uuid = '#equipUuid#'
 --iff orgUuid != null and orgUuid != ''
     and org_uuid = '#orgUuid#'
 --iff appSysUuid != null and appSysUuid !=''
@@ -115,8 +117,7 @@ where
     -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
        '#item#'
     -- end
--- iff equipUuid != null and equipUuid != ''
-    equip_uuid = '#equipUuid#'
+
 
 
 -- [insertEquipTest]
@@ -225,6 +226,8 @@ where
   -- [updateEquipTest]
     update res_equip_test
     -- trim prefix= set suffixOverrides=,
+      --iff equipTestUuid != null and equipTestUuid != ''
+        equip_test_uuid = '#equipTestUuid#',
       --iff equipUuid != null and equipUuid != ''
         equip_uuid = '#equipUuid#',
       --iff certNo != null and certNo != ''
@@ -263,6 +266,8 @@ where
         created_name = '#createdName#',
       --iff updatedTime != null
         updated_time = '#updatedTime#',
+      --iff createdUuid != null and createdUuid != ''
+        updated_uuid = '#createdUuid#',
       --iff updatedName != null and updatedName != ''
         updated_name = '#updatedName#',
       --iff orgUuid != null and orgUuid != ''

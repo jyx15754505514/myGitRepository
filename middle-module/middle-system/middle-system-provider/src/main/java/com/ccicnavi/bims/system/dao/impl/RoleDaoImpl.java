@@ -64,7 +64,7 @@ public class RoleDaoImpl implements RoleDao {
     public List<RoleDTO> listRoleByUser(UserDTO userDO){
         List<RoleDTO> roleDTOList = null;
         try {
-            roleDTOList =  new Eql("DEFAULT").selectFirst("listRoleByUser").params(userDO).returnType(RoleDTO.class).execute();
+            roleDTOList =  new Eql("DEFAULT").select("listRoleByUser").params(userDO).returnType(RoleDTO.class).execute();
             return roleDTOList;
         } catch (Exception e) {
             return roleDTOList;

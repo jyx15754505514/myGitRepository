@@ -1,23 +1,19 @@
 -- [listMenu]
 SELECT
     menu_uuid menuUuid,
-    app_sys_uuid appSysUuid,
     parent_uuid parentUuid,
     menu_name menuName,
     menu_url menuUrl,
     menu_icon menuIcon,
     menu_fontcolor menuFontcolor,
     menu_level menuLevel,
-    parent_all_uuid parentAllUuid,
-    is_enabled isEnabled,
     sort_num sortNum,
-    is_deleted isDeleted,
-    prod_catalog_uuid prodCatalogUuid,
     org_uuid orgUuid
 from
     sys_menu
 where
     is_deleted = 'N'
+    and is_enabled = 'Y'
 --iff appSysUuid != null and appSysUuid != ''
     and app_sys_uuid = '#appSysUuid#'
 --iff menuName != null and menuName != ''
@@ -28,6 +24,12 @@ where
     and parent_uuid = '#parentUuid#'
 --iff prodCatalogUuid != null and prodCatalogUuid != ''
     and prod_catalog_uuid = '#prodCatalogUuid#'
+--iff prodCatalogList != null
+      and prod_catalog_uuid in
+      -- for item=item index=index collection=prodCatalogList open=( separator=, close=)
+          '#item#'
+      -- end
+  -- end
 
 
 -- [listMenuWithSort]
@@ -230,27 +232,25 @@ WHERE
             '#item#'
         -- end
 
---查询菜单一级
+-- 查询菜单一级
 -- [listMenuRoleUuid]
 SELECT
     menu_uuid menuUuid,
-    app_sys_uuid appSysUuid,
-    parent_uuid parentUuid,
     menu_name menuName,
     menu_url menuUrl,
     menu_icon menuIcon,
     menu_fontcolor menuFontcolor,
     menu_level menuLevel,
-    parent_all_uuid parentAllUuid,
-    is_enabled isEnabled,
     sort_num sortNum,
-    is_deleted isDeleted,
     prod_catalog_uuid prodCatalogUuid,
+    app_sys_uuid appSysUuid,
     org_uuid orgUuid
 from
     sys_menu
 where
-    is_deleted = 'N'   and parent_uuid  =''
+    is_deleted = 'N'
+    and is_enabled = 'Y'
+    and parent_uuid  is null
 --iff appSysUuid != null and appSysUuid != ''
     and app_sys_uuid = '#appSysUuid#'
 --iff menuName != null and menuName != ''
@@ -259,7 +259,11 @@ where
     and org_uuid = '#orgUuid#'
 --iff menuUuid != null and menuUuid != ''
     and menu_uuid = '#menuUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
+ --iff prodCatalogList != null
+      and prod_catalog_uuid in
+      -- for item=item index=index collection=prodCatalogList open=( separator=, close=)
+          '#item#'
+      -- end
+  -- end
 
 

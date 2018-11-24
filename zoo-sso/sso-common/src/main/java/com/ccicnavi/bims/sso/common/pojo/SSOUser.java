@@ -1,7 +1,9 @@
 package com.ccicnavi.bims.sso.common.pojo;
 
 import com.ccicnavi.bims.system.pojo.DepartmentDTO;
+import com.ccicnavi.bims.system.pojo.MenuDTO;
 import com.ccicnavi.bims.system.pojo.RoleDTO;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,6 +12,13 @@ import java.util.List;
 
 @Data
 public class SSOUser implements Serializable {
+
+    /**
+    * 当前登录人所在公司对应的产品线
+    **/
+    private List<String> prodCatalogList;
+
+    private List<MenuDTO> menuList;
 
     private List<RoleDTO> roleList;    //角色列表
 
@@ -23,7 +32,7 @@ public class SSOUser implements Serializable {
 
     private String nickName;    //用户昵称
 
-    private String version;     //设置登录标识
+    private String version;     //设置e登录标识
 
     private int expireMinite;   //设置登录有效时间
 
@@ -82,6 +91,10 @@ public class SSOUser implements Serializable {
     private String orgUuid;
 
     private String orgName;
+
+    private String orgIsEnabled;
+
+    private String orgIsDeleted;
 
     private String orgCode;
 

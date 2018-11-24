@@ -1,14 +1,16 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.customer.api.SubcBankService;
 import com.ccicnavi.bims.customer.dao.SubBankDao;
 import com.ccicnavi.bims.customer.pojo.SubBankDO;
 import com.ccicnavi.bims.customer.pojo.SubBankDTO;
-import com.ccicnavi.bims.customer.pojo.SubLinkmanDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,27 +20,33 @@ import java.util.List;
  */
 @Slf4j
 public class SubcBankServiceImpl implements SubcBankService {
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
+
     @Autowired
     SubBankDao subBankDao;
+
+
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方下银行信息
+     * @Description 分包方下银行信息
      * @Date 22:39 2018/11/23
      * @Param [subBankDTO]
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubBankDO>
      */
     @Override
     public List<SubBankDO> listSubcBank(SubcontractorDTO subcontractorDTO) {
+        List<SubBankDO> subBankDOList = null;
         try {
-            return subBankDao.listSubBank(subcontractorDTO);
+            subBankDOList =  subBankDao.listSubBank(subcontractorDTO);
         } catch (Exception e) {
             log.error("查询分包方得银行信息",e);
-            return null;
         }
+        return subBankDOList;
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方添加银行信息
+     * @Description 分包方添加银行信息
      * @Date 22:39 2018/11/23
      * @Param [subBank]
      * @Return java.lang.Integer
@@ -46,6 +54,8 @@ public class SubcBankServiceImpl implements SubcBankService {
     @Override
     public Integer insertSubcBank(SubBankDO subBank) {
         try {
+            String subcBankUuid = idWorkerService.getId(new Date());
+            subBank.setSubcBankUuid(subcBankUuid);
             return subBankDao.insertSubBank(subBank,null);
         } catch (Exception e) {
             log.error("插入分包方得银行信息",e);
@@ -54,7 +64,7 @@ public class SubcBankServiceImpl implements SubcBankService {
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方下删除指定得银行信息  支持批量删除
+     * @Description 分包方下删除指定得银行信息  支持批量删除
      * @Date 22:39 2018/11/23
      * @Param [subBankDTO]
      * @Return java.lang.Integer
@@ -70,7 +80,7 @@ public class SubcBankServiceImpl implements SubcBankService {
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方下指定得银行信息修改
+     * @Description 分包方下指定得银行信息修改
      * @Date 22:40 2018/11/23
      * @Param [subBank]
      * @Return java.lang.Integer
@@ -86,7 +96,7 @@ public class SubcBankServiceImpl implements SubcBankService {
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 得到指定得银行信息
+     * @Description 得到指定得银行信息
      * @Date 22:40 2018/11/23
      * @Param [subBank]
      * @Return com.ccicnavi.bims.customer.pojo.SubBankDO

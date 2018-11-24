@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping(value = "/categoryType")
 public class CategoryTypeController {
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20884")
+    @Reference(timeout = 30000)
     CategoryTypeService categoryTypeService;
 
     @RequestMapping(value = "/listCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")

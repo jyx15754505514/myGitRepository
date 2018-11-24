@@ -1,18 +1,18 @@
 package com.ccicnavi.bims.system.service;
 
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.PasswdService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.system.dao.RoleUserDao;
+import com.ccicnavi.bims.system.dao.SettingDao;
 import com.ccicnavi.bims.system.dao.UserDao;
-import com.ccicnavi.bims.system.pojo.RoleDO;
-import com.ccicnavi.bims.system.pojo.RoleDTO;
-import com.ccicnavi.bims.system.pojo.UserDO;
-import com.ccicnavi.bims.system.pojo.UserDTO;
+import com.ccicnavi.bims.system.pojo.*;
 import com.ccicnavi.bims.system.service.api.RoleService;
 import com.ccicnavi.bims.system.service.api.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +42,12 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private RoleUserDao roleUserDao;
+
+    @Autowired
+    private SettingDao settingDao;
+
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    private PasswdService passwdService;
 
     /**
     *@Description: 查询登录用户信息
@@ -178,6 +184,8 @@ public class UserServiceImpl implements UserService{
             log.error("删除登录用户信息失败",e);
             tran.rollback();
             return null;
+        }finally {
+            Closes.closeQuietly(tran);
         }
         return deleteUser;
     }
@@ -271,6 +279,8 @@ public class UserServiceImpl implements UserService{
             tran.commit();
         } catch (Exception e) {
             log.error("分配角色失败",e);
+        }finally {
+            Closes.closeQuietly(tran);
         }
         return insertRole;
     }
@@ -285,5 +295,51 @@ public class UserServiceImpl implements UserService{
             log.error("根据主键获取登录用户信息失败",e);
             return null;
         }
+    }
+
+    /**
+     *@Description: 恢复初始密码
+     *@Param: [userDTO]
+     *@return: java.lang.Integer
+     *@Author: zhangxingbiao
+     *@date: 2018/11/23
+     */
+    @Override
+    public UserDTO initialPassword(UserDTO userDTO) {
+        EqlTran tran = new Eql("DEFAULT").newTran();
+        SettingDO settingDO = null;
+        Integer updateUser = 0;
+        try{
+            tran.start();
+            List<String> userList = userDTO.getUserList();
+            for(String uuid : userList){
+                userDTO.setUserUuid(uuid);
+                UserDTO user = userDao.getUser(userDTO);
+                String orguuid = user.getOrgUuid();
+                userDTO.setOrgUuid(orguuid);
+                settingDO = settingDao.getSetting(userDTO);
+                //获取初始密码
+                String initialpassword = settingDO.getInitialPassword();
+                //获取盐值
+                String salt = passwdService.getSalt();
+                //密码加密
+                String password = passwdService.getHash(initialpassword, salt);
+                //将密码返回
+                userDTO.setCurrentPassword(password);
+                userDTO.setSalt(salt);
+                //更改用户密码
+                updateUser = userDao.updateUser(userDTO, tran);
+            }
+            if(userList != null && userList.size() > 0){
+                tran.commit();
+            }
+        }catch (Exception e){
+            log.error("恢复初始密码失败");
+            tran.rollback();
+            return null;
+        }finally {
+            Closes.closeQuietly(tran);
+        }
+        return userDTO;
     }
 }

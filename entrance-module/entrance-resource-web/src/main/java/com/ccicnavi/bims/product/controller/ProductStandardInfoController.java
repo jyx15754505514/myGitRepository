@@ -29,7 +29,7 @@ import java.util.List;
 @Slf4j
 public class ProductStandardInfoController {
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    @Reference(timeout = 30000)
     private StandardInfoService standardInfoService;
 
     /**

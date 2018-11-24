@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class SealController {
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20882")
+    @Reference(timeout = 30000)
     private SealService sealService;
 
 

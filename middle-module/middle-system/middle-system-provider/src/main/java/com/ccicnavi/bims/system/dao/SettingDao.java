@@ -1,11 +1,9 @@
 package com.ccicnavi.bims.system.dao;
 
-import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.SettingDO;
-
-import java.util.List;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 
 /**
  * @program: bims-backend
@@ -59,5 +57,5 @@ public interface SettingDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/15
     */
-    public  SettingDO getSetting(SettingDO settingDO);
+    public  SettingDO getSetting(UserDTO userDTO);
 }

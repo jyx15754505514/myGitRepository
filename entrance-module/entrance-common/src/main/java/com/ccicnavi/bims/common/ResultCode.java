@@ -25,6 +25,9 @@ public enum ResultCode {
     USER_LOGIN_OUT(20008, "用户登录超时"),
     USER_NOT_LOGIN(20009, "用户未登录"),
     USER_CANT_ACCESS(20010, "无权限访问"),
+    USER_NOT_INITIALPASSWORD(20011, "恢复初始密码失败"),
+    USER_ALLOT_ROLE(20012, "分配角色失败"),
+    USER_SAVE_USER(20013, "新建用户失败"),
 
 
 
@@ -47,6 +50,7 @@ public enum ResultCode {
     CUST_NAME_REPEAT(30016,"客户名称重复"),
     CUST_CODE_REPEAT(30017,"客户代码重复"),
     CUST_USCC_REPEAT(30018,"客户统一社会信用代码重复"),
+    REQUIRED_FIELDS_IS_NULL(30019,"必填字段未填"),
 
     SERIAL_CFG_GET_FAILURE(30018, "查询业务规则信息出错"),
     SERIAL_CFG_ADD_FAILURE(30019, "添加业务规则信息出错"),

@@ -23,7 +23,7 @@ public class PersonWorkExpeController {
 
     private final static Logger log = LoggerFactory.getLogger(PersonWorkExpeController.class);
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
+    @Reference(timeout = 30000)
     PersonWorkExpeService personWorkExpeService;
 
     /**

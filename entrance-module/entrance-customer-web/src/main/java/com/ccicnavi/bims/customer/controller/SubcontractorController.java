@@ -3,8 +3,11 @@ package com.ccicnavi.bims.customer.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
 import com.ccicnavi.bims.customer.api.SubcontractorService;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +30,7 @@ public class SubcontractorController {
 
     private final static Logger log= LoggerFactory.getLogger(SubcontractorController.class);
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20883")
+    @Reference(timeout = 30000)
     SubcontractorService subcontractorService;
 
     /**
@@ -37,11 +40,14 @@ public class SubcontractorController {
      * @return: com.ccicnavi.bims.common.ResultT
      */
     @RequestMapping(value = "/listSubcontractor",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listSubcontractor(@RequestBody SubcontractorDO subcontractorDO){
-        List<SubcontractorDO> subcontractorDOS=null;
+    public ResultT listSubcontractorPage(@RequestBody PageParameter<SubcontractorDO> pageParameter){
         try {
-            subcontractorDOS=subcontractorService.listSubcontractor(subcontractorDO);
-            return ResultT.success(subcontractorDOS);
+            PageBean<SubcontractorDO> pageBean = null;
+            pageBean = subcontractorService.listSubcontractorPage(pageParameter);
+            if(pageBean != null){
+                return  ResultT.success(pageBean);
+            }
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         } catch (Exception e) {
             log.error("查询分包方信息失败",e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
@@ -58,7 +64,7 @@ public class SubcontractorController {
     public ResultT saveSubcontractor(@RequestBody SubcontractorDO subcontractorDO){
         int count=0;
         try {
-            count=subcontractorService.saveSubcontractor(subcontractorDO);
+            count=subcontractorService.insertSubcontractor(subcontractorDO);
             if(count>0){
                 return ResultT.success(count);
             }
@@ -110,12 +116,11 @@ public class SubcontractorController {
      * @param: subcontractorDORequstBody
      * @return: com.ccicnavi.bims.common.ResultT
      */
-    @RequestMapping(value = "/getSubcontractor",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT getSubcontractor(@RequestBody SubcontractorDO subcontractorDORequstBody){
-        SubcontractorDO subcontractorDO=null;
+    @RequestMapping(value = "/getSubcontractorList",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT getSubcontractor(@RequestBody SubcontractorDTO subcontractorDTO){
         try {
-            subcontractorDO=subcontractorService.getSubcontractor(subcontractorDORequstBody);
-            return ResultT.success(subcontractorDO);
+            subcontractorDTO = subcontractorService.getSubcontractorList(subcontractorDTO);
+            return ResultT.success(subcontractorDTO);
         } catch (Exception e) {
             log.error("查询分包方信息失败",e);
             return ResultT.failure(ResultCode.GET_FAILURE);

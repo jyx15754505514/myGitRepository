@@ -129,7 +129,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     */
     @Override
     public List<DepartmentDTO> listDeptByUser(UserDTO userDTO) {
-        List<DepartmentDTO> deptList = new ArrayList<DepartmentDTO>();
+        List<DepartmentDTO> deptList = null;
         try {
             deptList = departmentDao.listDeptByUser(userDTO);
             return deptList;

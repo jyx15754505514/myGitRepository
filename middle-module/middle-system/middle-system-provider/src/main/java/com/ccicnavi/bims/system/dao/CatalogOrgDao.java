@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface CatalogOrgDao {
 
-    List<CatalogOrgDO> listCatalogOrgDO(CatalogOrgDO catalogOrgDO)throws Exception;
+    List<String> listCatalogOrgDO(CatalogOrgDO catalogOrgDO)throws Exception;
 
     int saveCatalogOrgDO(CatalogOrgDO catalogOrgDO, EqlTran eqlTran)throws Exception;
 

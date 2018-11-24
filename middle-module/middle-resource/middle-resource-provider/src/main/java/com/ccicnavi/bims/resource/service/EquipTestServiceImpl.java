@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.EquipTestService;
@@ -9,6 +11,8 @@ import com.ccicnavi.bims.resource.pojo.EquipTestDO;
 import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +27,8 @@ public class EquipTestServiceImpl implements EquipTestService {
 
     @Autowired
     EquipTestDao equipTestDao;
-
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
     /**
      * @Author panyida
      * @Description 根据设备检定信息主键获取设备检定信息
@@ -88,8 +93,10 @@ public class EquipTestServiceImpl implements EquipTestService {
      */
     @Override
     public Integer insertEquipTest(EquipTestDO equipTestDO){
-        Integer count = null;
+        Integer count = 0;
         try {
+            String equipTestUuid  = idWorkerService.getId(new Date());
+            equipTestDO.setEquipTestUuid(equipTestUuid);
             count = equipTestDao.insertEquipTest(equipTestDO,null);
         } catch (Exception e) {
             log.error("新增设备检定信息错误",e);
@@ -106,7 +113,7 @@ public class EquipTestServiceImpl implements EquipTestService {
      */
     @Override
     public Integer updateEquipTest(EquipTestDO equipTestDO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipTestDao.updateEquipTest(equipTestDO,null);
         } catch (Exception e) {
@@ -124,7 +131,7 @@ public class EquipTestServiceImpl implements EquipTestService {
      */
     @Override
     public Integer deleteEquipTest(EquipTestDTO equipTestDTO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipTestDao.deleteEquipTest(equipTestDTO,null);
         } catch (Exception e) {

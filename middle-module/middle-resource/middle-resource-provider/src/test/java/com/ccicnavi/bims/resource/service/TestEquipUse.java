@@ -15,6 +15,7 @@ import java.util.List;
  * @Return $return$
  */
 public class TestEquipUse {
+    EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
     /**
       * @author songyateng
       * @description 主键获取设备领用归还信息
@@ -23,7 +24,6 @@ public class TestEquipUse {
     @Test
     public void getEquipUseTest(){
         try {
-        EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
         EquipUseDO equipUseDO = equipUseDaoImpl.getEquipUse("zhujian");
             System.out.println(equipUseDO);
         } catch (Exception e){
@@ -39,7 +39,6 @@ public class TestEquipUse {
     @Test
     public void getEquipUseList(){
         try {
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             EquipUseDTO equipUseDTO = new EquipUseDTO();
             equipUseDTO.setAppSysUuid("zhujian");
             List<EquipUseDO> aaa = equipUseDaoImpl.getEquipUseList(equipUseDTO);
@@ -62,7 +61,6 @@ public class TestEquipUse {
             pageParameter.setStartIndex(1);
             pageParameter.setPageRows(1);
             pageParameter.setStartPage(1);
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             PageBean<EquipUseDO> equipUseDOPageBean = equipUseDaoImpl.listEquipUse(pageParameter);
             System.out.println(equipUseDOPageBean);
         }catch (Exception e){
@@ -78,7 +76,6 @@ public class TestEquipUse {
     @Test
     public void insertEquipUse(){
         try {
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             EquipUseDO equipUseDO = new EquipUseDO();
             equipUseDO.setEquipUseUuid("zhujian1");
             equipUseDO.setEquipUuid("qiju");
@@ -100,7 +97,6 @@ public class TestEquipUse {
     @Test
     public void updateEquipUse(){
         try {
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             EquipUseDO equipUseDO = new EquipUseDO();
             equipUseDO.setEquipUseUuid("zhujian1");
             equipUseDO.setEquipUuid("t");
@@ -121,7 +117,6 @@ public class TestEquipUse {
     @Test
     public void deleteEquipUse(){
         try{
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             EquipUseDTO equipUseDTO = new EquipUseDTO();
             equipUseDTO.setEquipUseUuid("zhujian1");
             System.err.print(equipUseDaoImpl.deleteEquipUse(equipUseDTO, null));
@@ -142,7 +137,6 @@ public class TestEquipUse {
             pageParameter.setStartIndex(1);
             pageParameter.setPageRows(1);
             pageParameter.setStartPage(1);
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             PageBean<EquipUseDTO> equipUseDTOPageBean = equipUseDaoImpl.listEquipUseDTO(pageParameter);
             System.out.println(equipUseDTOPageBean);
         } catch (Exception e) {

@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.EquipUseService;
@@ -11,6 +13,7 @@ import com.ccicnavi.bims.resource.pojo.EquipUseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +29,8 @@ public class EquipUseServiceImpl implements EquipUseService {
     @Autowired
     EquipUseDao equipUseDao;
 
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
     /**
      * @Author panyida
      * @Description 根据设备领用归还信息主键获取设备领用归还信息
@@ -89,8 +94,10 @@ public class EquipUseServiceImpl implements EquipUseService {
      */
     @Override
     public Integer insertEquipUse(EquipUseDO equipUseDO){
-        Integer count = null;
+        Integer count = 0;
         try {
+            String equipUseUuid = idWorkerService.getId(new Date());
+            equipUseDO.setEquipUseUuid(equipUseUuid);
             count = equipUseDao.insertEquipUse(equipUseDO,null);
         } catch (Exception e) {
             log.error("新增设备领用归还信息错误",e);
@@ -107,7 +114,7 @@ public class EquipUseServiceImpl implements EquipUseService {
      */
     @Override
     public Integer updateEquipUse(EquipUseDO equipUseDO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipUseDao.updateEquipUse(equipUseDO,null);
         } catch (Exception e) {
@@ -118,14 +125,14 @@ public class EquipUseServiceImpl implements EquipUseService {
 
     /**
      * @Author panyida
-     * @Description 根据设备领用归还信息主键删除设备领用归还信息
-     * @Date 16:30 2018/11/14
+     * @Description
+     * @Date 16:30 2018/11/14根据设备领用归还信息主键删除设备领用归还信息
      * @Param [equipUseUuid]
      * @Return java.lang.Integer
      */
     @Override
     public Integer deleteEquipUse(EquipUseDTO equipUseDTO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipUseDao.deleteEquipUse(equipUseDTO,null);
         } catch (Exception e) {

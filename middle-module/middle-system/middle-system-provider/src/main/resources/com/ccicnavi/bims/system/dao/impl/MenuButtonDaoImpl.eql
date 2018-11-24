@@ -7,19 +7,12 @@ select
     btn_url,
     btn_icon,
     btn_fontcolor,
-    is_enabled,
-    sort_num,
-    is_deleted,
-    prod_catalog_uuid,
-    org_uuid,
-    app_sys_uuid,
-    extend1,
-    extend2,
-    extend3
+    sort_num
 from
     sys_menu_button
 where
     is_deleted = 'N'
+    and is_enabled = 'Y'
 --iff btnUuid != null and btnUuid != ''
     and btn_uuid = '#btnUuid#'
 --iff menuUuid != null and menuUuid != ''
@@ -28,8 +21,15 @@ where
     and org_uuid = '#orgUuid#'
 --iff appSysUuid != null and appSysUuid != ''
     and app_sys_uuid = '#appSysUuid#'
-   	--iff prodCatalogUuid != null and prodCatalogUuid != ''
-       and md.prod_catalog_uuid = '#prodCatalogUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+   and md.prod_catalog_uuid = '#prodCatalogUuid#'
+--iff prodCatalogList != null
+     and prod_catalog_uuid in
+     -- for item=item index=index collection=prodCatalogList open=( separator=, close=)
+         '#item#'
+     -- end
+ -- end
+
 
 -- 根据主键获取菜单按钮
 -- [getMenuButton]
@@ -181,36 +181,35 @@ WHERE
 -- 根据角色和产品线查询按钮
 -- [getByRoleUuid]
 select
-    a.btn_uuid,
-    a.menu_uuid,
-    a.btn_name,
-    a.btn_url,
-    a.btn_icon,
-    a.btn_fontcolor,
-    a.is_enabled,
-    a.sort_num,
-    a.is_deleted,
-    a.prod_catalog_uuid,
-    a.org_uuid,
-    a.app_sys_uuid,
-    a.extend1,
-    a.extend2,
-    a.extend3
+    a.btn_uuid as btnUuid,
+    a.menu_uuid as menuUuid,
+    a.btn_name as btnName,
+    a.btn_url as btnUrl,
+    a.btn_icon as btnIcon,
+    a.btn_fontcolor as btnFontcolor,
+    a.sort_num as sortNum
 from
     sys_menu_button a
  LEFT JOIN sys_role_permission b on a.btn_uuid = b.btn_uuid
- where  1=1
+ where
+    a.is_deleted = 'N'
+    AND a.is_enabled = 'Y',
  --iff roleUuid != null and roleUuid != ''
   and b.role_uuid = '#roleUuid#'
   --iff prodCatalogUuid != null and prodCatalogUuid != ''
  and b.prod_catalog_uuid ='#prodCatalogUuid#'
   --iff menuUuid != null and menuUuid != ''
    and a.menu_uuid ='#menuUuid#'
+    -- end
 
+
+-- 根据角色查询所有按钮信息
 -- [listMenuButtonByRole]
 SELECT
     md.btn_uuid as btnUuid,
-    md.btn_name as btnName
+    md.btn_name as btnName,
+    md.btn_url as btnUrl,
+    md.btn_icon as btnIcon
 from
     sys_menu_button md
     LEFT JOIN sys_role_permission rp ON rp.btn_uuid = md.btn_uuid
@@ -223,8 +222,16 @@ where
            '#item#'
        -- end
    -- end
+   --iff prodCatalogList != null
+      and rp.prod_catalog_uuid in
+      -- for item=item index=index collection=prodCatalogList open=( separator=, close=)
+          '#item#'
+      -- end
+  -- end
    	--iff prodCatalogUuid != null and prodCatalogUuid != ''
        and rp.prod_catalog_uuid = '#prodCatalogUuid#'
+    -- end
+
 
 -- 登录接口中，根据用户的角色和产品线，查询所有的按钮URL集合
 -- [listButtonUrlByRole]
@@ -247,3 +254,16 @@ where
               '#item#'
           -- end
       -- end
+
+
+-- [listMenuByLogin]
+select
+	DISTINCT m.parent_all_uuid as parentAllUuid
+from
+    sys_menu_button md
+    LEFT JOIN sys_role_permission rp ON rp.btn_uuid = md.btn_uuid
+		LEFT JOIN sys_menu m ON m.menu_uuid = md.menu_uuid
+where
+   md.is_deleted = 'N'
+   and rp.role_uuid in('orgAdmin')
+   and rp.prod_catalog_uuid in ('AGM')

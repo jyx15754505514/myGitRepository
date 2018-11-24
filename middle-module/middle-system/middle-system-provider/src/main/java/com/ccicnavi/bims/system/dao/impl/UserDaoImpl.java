@@ -155,7 +155,7 @@ public class UserDaoImpl implements UserDao {
     **/
     @Override
     public SSOUser login(UserDTO userDTO) {
-        return new Eql("DEFAULT").update("login").params(userDTO).returnType(SSOUser.class).execute();
+        return new Eql("DEFAULT").selectFirst("login").params(userDTO).returnType(SSOUser.class).execute();
     }
 
 

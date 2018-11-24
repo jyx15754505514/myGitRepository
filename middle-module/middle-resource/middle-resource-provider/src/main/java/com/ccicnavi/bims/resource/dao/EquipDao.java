@@ -31,7 +31,7 @@ public interface EquipDao {
      * @Param [equipDTO]
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDTO>
      */
-    List<EquipDO> getEquipList(EquipDTO equipDTO);
+    List<EquipDTO> getEquipList(EquipDTO equipDTO);
 
     /**
      * @Author panyida
@@ -40,7 +40,7 @@ public interface EquipDao {
      * @Param [equipUuid]
      * @Return com.ccicnavi.bims.ource.pojo.EquipDO
      */
-    EquipDTO getEquip(EquipDO equipDO);
+    EquipDTO getEquip(EquipDTO equipDTO);
 
     /**
      * @Author panyida

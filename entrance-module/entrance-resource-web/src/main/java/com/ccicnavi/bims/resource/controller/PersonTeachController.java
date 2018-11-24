@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/personTeach")
 public class PersonTeachController {
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
+    @Reference(timeout = 30000)
     PersonTeachService personTeachService;
 
     /*

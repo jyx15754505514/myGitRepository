@@ -5,6 +5,8 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.customer.api.SubcQualifiService;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
+import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,20 +29,20 @@ public class SubcQualifiController {
 
     private final static Logger log= LoggerFactory.getLogger(SubcQualifiController.class);
 
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20883")
+    @Reference(timeout = 30000)
     SubcQualifiService subcQualifiService;
 
     /**
      * @author WangYingLing
      * @description 查询分包方资质信息
-     * @param subcQualifiDO
+     * @param subcontractorDTO
      * @return com.ccicnavi.bims.common.ResultT
      */
     @RequestMapping(value = "/listSubcQuali",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listSubcQuali(@RequestBody SubcQualifiDO subcQualifiDO){
+    public ResultT listSubcQuali(@RequestBody SubcontractorDTO subcontractorDTO){
         List<SubcQualifiDO> subcQualifiDOList=null;
         try {
-            subcQualifiDOList=subcQualifiService.listSubcQuali(subcQualifiDO);
+            subcQualifiDOList=subcQualifiService.listSubcQuali(subcontractorDTO);
             return ResultT.success(subcQualifiDOList);
         } catch (Exception e) {
             log.error("查询分包方资质信息失败",e);
@@ -58,7 +60,7 @@ public class SubcQualifiController {
     public ResultT saveSubcQuali(@RequestBody SubcQualifiDO subcQualifiDO){
         int count=0;
         try {
-            count=subcQualifiService.saveSubcQuali(subcQualifiDO);
+            count=subcQualifiService.insertSubcQuali(subcQualifiDO);
             if(count>0){
                 return ResultT.success("新增分包方资质");
              }
@@ -71,14 +73,14 @@ public class SubcQualifiController {
     /**
      * @author WangYingLing
      * @description 删除分包方资质信息
-     * @param subcQualifiDO
+     * @param subcQualifiDTO
      * @return com.ccicnavi.bims.common.ResultT
      */
     @RequestMapping(value = "/removeSubcQuali",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeSubcQuali(@RequestBody SubcQualifiDO subcQualifiDO){
+    public ResultT removeSubcQuali(@RequestBody SubcQualifiDTO subcQualifiDTO){
         int count=0;
         try {
-            count=subcQualifiService.removeSubcQuali(subcQualifiDO);
+            count=subcQualifiService.deleteSubcQuali(subcQualifiDTO);
             return ResultT.success(count);
         } catch (Exception e) {
             log.error("删除分包方资质信息失败",e);

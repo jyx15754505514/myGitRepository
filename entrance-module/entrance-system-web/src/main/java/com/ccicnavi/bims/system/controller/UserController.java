@@ -33,16 +33,16 @@ import java.util.Date;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private UserService userService;
 
     @Autowired
     private UserManager userManager;
 
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
     private IdWorkerService idWorkerService;
 
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
     private SSOService ssoService;
 
     /**
@@ -106,7 +106,7 @@ public class UserController {
     *@Author: zhaotao
     *@date: 2018/11/16
     */
-    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT updateUser(@RequestBody UserDTO userDTO) {
         Integer integer = null;
         try {
@@ -125,7 +125,7 @@ public class UserController {
     *@Author: zhaotao
     *@date: 2018/11/16
     */
-    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT deleteUser(@RequestBody UserDTO userDTO) {
         Integer integer = null;
         try {
@@ -144,7 +144,7 @@ public class UserController {
     *@Author: zhaotao
     *@date: 2018/11/16
     */
-    @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/userLogin", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT userLogin(@RequestBody UserDTO userDTO) {
         try {
             return userManager.userLogin(userDTO);
@@ -161,7 +161,7 @@ public class UserController {
      *@Author: zhaotao
      *@date: 2018/11/16
      */
-    @RequestMapping(value = "/userLogout", method = RequestMethod.POST)
+    @RequestMapping(value = "/userLogout", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT userLogout(@RequestBody String jsessionId) {
         try {
             ssoService.logout(jsessionId);
@@ -194,7 +194,7 @@ public class UserController {
         } catch (Exception e) {
             log.error("新建用户失败", e);
         }
-        return ResultT.failure(ResultCode.ADD_FAILURE);
+        return ResultT.failure(ResultCode.USER_SAVE_USER);
     }
 
     /**
@@ -223,7 +223,7 @@ public class UserController {
      *@Author: zqq
      *@date: 2018/11/22
      */
-    @RequestMapping(value = "/selectByRoleUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/selectByRoleUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT selectByRoleUser(@RequestBody UserDTO userDTO) {
         if(StringUtils.isEmpty(userDTO.getRoleUuid())){
             return ResultT.failure(ResultCode.PARAM_IS_BLANK);
@@ -252,7 +252,25 @@ public class UserController {
             return ResultT.success();
         } catch (Exception e) {
             log.error("根据用户分配角色失败", e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            return ResultT.failure(ResultCode.USER_ALLOT_ROLE);
+        }
+    }
+
+    /**
+     *@Description: 恢复初始密码
+     *@Param: [userDO]
+     *@return: com.ccicnavi.bims.common.ResultT
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    @RequestMapping(value = "/initialPassword", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT initialPassword(@RequestBody UserDTO userDTO) {
+        try {
+            userService.initialPassword(userDTO);
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("恢复初始密码失败", e);
+            return ResultT.failure(ResultCode.USER_NOT_INITIALPASSWORD);
         }
     }
 }

@@ -23,7 +23,7 @@ public interface SubcQualifiService {
      * @Param [subcQuali]
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubcQualifiDO>
      */
-    List<SubcQualifiDO> listSubcQuali(SubcontractorDTO subcontractorDTO) throws Exception;
+    List<SubcQualifiDO> listSubcQuali(SubcontractorDTO subcontractorDTO) ;
 
     /**
      * @Author FanDongSheng
@@ -32,7 +32,7 @@ public interface SubcQualifiService {
      * @Param [subcQuali]
      * @Return java.lang.Integer
      */
-    Integer insertSubcQuali(SubcQualifiDO subcQuali) throws Exception;
+    Integer insertSubcQuali(SubcQualifiDO subcQuali) ;
 
     /**
      * @Author FanDongSheng
@@ -41,12 +41,12 @@ public interface SubcQualifiService {
      * @Param [subcQuali]
      * @Return java.lang.Integer
      */
-    Integer deleteSubcQuali(SubcQualifiDTO subcQualifiDTO) throws Exception;
+    Integer deleteSubcQuali(SubcQualifiDTO subcQualifiDTO) ;
 
     /**修改分包方资质信息*/
-    Integer updateSubcQuali(SubcQualifiDO subcQuali) throws Exception;
+    Integer updateSubcQuali(SubcQualifiDO subcQuali) ;
 
     /**根据主键返回对应的分包方资质信息*/
-    SubcQualifiDO getSubcQuali(SubcQualifiDO subcQuali) throws Exception;
+    SubcQualifiDO getSubcQuali(SubcQualifiDO subcQuali) ;
 
 }

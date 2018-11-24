@@ -70,6 +70,11 @@
             <artifactId>apollo-core</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>zoo-sso</groupId>
+            <artifactId>sso-web</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
