@@ -7,6 +7,7 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.impl.SettingDaoImpl;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.SettingService;
 import com.ccicnavi.bims.system.dao.SettingDao;
 import com.ccicnavi.bims.system.pojo.SettingDO;
@@ -14,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 /**
  *@program: bims-backend
  *@description: 系统设置api实现类
@@ -113,9 +113,9 @@ public class SettingServiceImpl implements SettingService{
     */
 
     @Override
-    public SettingDO getSetting(SettingDO settingDO){
+    public SettingDO getSetting(UserDTO userDTO){
         try {
-            return settingDao.getSetting(settingDO);
+            return settingDao.getSetting(userDTO);
         } catch (Exception e) {
             log.error("根据主键获取系统设置信息失败",e);
             return null;

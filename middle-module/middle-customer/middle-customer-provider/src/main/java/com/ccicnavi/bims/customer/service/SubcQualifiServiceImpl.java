@@ -63,7 +63,7 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
      * @Author WangYingling
      * @Description 删除分包方资质信息
      * @Date 20:00 2018/11/14
-     * @param subcQuali
+     * @param subcQualifiDTO
      * @return java.lang.Integer
      */
     @Override
