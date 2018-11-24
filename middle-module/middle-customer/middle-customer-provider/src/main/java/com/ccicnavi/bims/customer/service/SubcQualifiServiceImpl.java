@@ -31,19 +31,20 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
     IdWorkerService idWorkerService;
     /**
      * @Author FanDongSheng
-     * @Description //TODO 查询指定分包方下的资质信息
+     * @Description 查询指定分包方下的资质信息
      * @Date 17:58 2018/11/23
      * @Param [subcontractorDTO]
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubcQualifiDO>
      */
     @Override
     public List<SubcQualifiDO> listSubcQuali(SubcontractorDTO subcontractorDTO) {
+        List<SubcQualifiDO> subcQualifiDOList = null;
         try {
-           return subcQualifiDao.listSubcuQuali(subcontractorDTO);
+            subcQualifiDOList =  subcQualifiDao.listSubcuQuali(subcontractorDTO);
         } catch (Exception e) {
             log.error("查询分包方资质信息失败",e);
         }
-        return null;
+        return subcQualifiDOList;
     }
 
     /**

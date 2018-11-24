@@ -40,7 +40,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
 
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分页查询分包方信息
+     * @Description 分页查询分包方信息
      * @Date 16:16 2018/11/23
      * @Param [pageParameter]
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.customer.pojo.SubcontractorDO>
@@ -57,7 +57,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
 
     /**
      * @Author FanDongSheng
-     * @Description //TODO 新增分包方信息
+     * @Description 新增分包方信息
      * @Date 16:16 2018/11/23
      * @Param [subcontractor]
      * @Return java.lang.Integer
@@ -75,7 +75,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 根据分包方信息查询分包方包含的所有的信息（资质、联系人、银行信息）
+     * @Description 根据分包方信息查询分包方包含的所有的信息（资质、联系人、银行信息）
      * @Date 18:22 2018/11/23
      * @Param [subcontractorDTO]
      * @Return com.ccicnavi.bims.customer.pojo.SubcontractorDTO
@@ -115,7 +115,6 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             count=subcontractorDao.removeSubcontractor(subcontractor);
         } catch (Exception e) {
             log.error("Service层删除分包方信息失败",e);
-            e.printStackTrace();
         }
         return count;
     }
@@ -134,14 +133,13 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             count=subcontractorDao.updateSubcontractor(subcontractor);
         } catch (Exception e) {
             log.error("Service层修改分包方信息失败",e);
-            e.printStackTrace();
         }
         return count;
     }
 
     /**
      * @Author FanDongSheng
-     * @Description //TODO 查询单个分包方信息不包含其余的信息
+     * @Description //查询单个分包方信息不包含其余的信息
      * @Date 18:39 2018/11/23
      * @Param [subcontractorDTO]
      * @Return com.ccicnavi.bims.customer.pojo.SubcontractorDTO
@@ -153,7 +151,6 @@ public class SubcontractorServiceImpl implements SubcontractorService{
             subcontractorBean=subcontractorDao.getSubcontractor(subcontractorDTO);
         } catch (Exception e) {
             log.error("Service层查询分包方信息失败",e);
-            e.printStackTrace();
         }
         return subcontractorBean;
     }
