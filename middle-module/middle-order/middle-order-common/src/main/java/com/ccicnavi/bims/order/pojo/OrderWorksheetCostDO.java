@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class OrderWorksheetCostDo implements Serializable {
+public class OrderWorksheetCostDO implements Serializable {
 
     private String worksheetCostUuid;
 
