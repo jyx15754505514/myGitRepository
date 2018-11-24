@@ -125,8 +125,8 @@ public class EquipUseServiceImpl implements EquipUseService {
 
     /**
      * @Author panyida
-     * @Description 根据设备领用归还信息主键删除设备领用归还信息
-     * @Date 16:30 2018/11/14
+     * @Description
+     * @Date 16:30 2018/11/14根据设备领用归还信息主键删除设备领用归还信息
      * @Param [equipUseUuid]
      * @Return java.lang.Integer
      */
