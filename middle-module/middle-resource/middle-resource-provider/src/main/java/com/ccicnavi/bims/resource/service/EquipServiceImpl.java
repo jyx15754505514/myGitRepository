@@ -211,7 +211,7 @@ public class EquipServiceImpl implements EquipService {
      */
     @Override
     public Integer deleteEquip(EquipDTO equipDTO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipDao.deleteEquip(equipDTO,null);
         } catch (Exception e) {
