@@ -2,6 +2,7 @@ package com.ccicnavi.bims.subContractor.service;
 
 import com.ccicnavi.bims.customer.dao.Impl.SubcQualifiDaoImpl;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
+import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
 import org.junit.jupiter.api.Test;
@@ -53,9 +54,9 @@ public class SubcQualifiTest {
      */
     @Test
     public void removeSubcuQuali(){
-        SubcQualifiDO subcQualifiDO=new SubcQualifiDO();
+        SubcQualifiDTO subcQualifiDO=new SubcQualifiDTO();
         subcQualifiDO.setSubcQualifiUuid("0001");
-        int count=subcQualifiDaoTest.removeSubcuQuali(subcQualifiDO);
+        int count=subcQualifiDaoTest.deleteSubcuQuali(subcQualifiDO);
         System.out.println(count);
     }
     /**
