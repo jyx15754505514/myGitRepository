@@ -39,7 +39,6 @@ public class CertPaperServiceImpl implements CertPaperService {
             return certPaperDao.listCertPaper(certPaper);
         } catch (Exception e) {
             log.debug("查询证书纸失败",e);
-            e.printStackTrace();
         }
         return null;
     }
@@ -55,7 +54,6 @@ public class CertPaperServiceImpl implements CertPaperService {
             return certPaperDao.getCertPaper(certPaper);
         } catch (Exception e) {
             log.debug("查询单条证书纸失败",e);
-            e.printStackTrace();
         }
         return null;
     }
@@ -91,7 +89,6 @@ public class CertPaperServiceImpl implements CertPaperService {
             return certPaperDao.insertCertPaper(certPaper);
         } catch (Exception e) {
             log.debug("新增证书纸失败",e);
-            e.printStackTrace();
         }
         return 0;
     }
@@ -142,7 +139,6 @@ public class CertPaperServiceImpl implements CertPaperService {
             return certPaperDao.deleteCertPaper(certPaper);
         } catch (Exception e) {
             log.debug("删除证书纸失败",e);
-            e.printStackTrace();
         }
         return 0;
     }
