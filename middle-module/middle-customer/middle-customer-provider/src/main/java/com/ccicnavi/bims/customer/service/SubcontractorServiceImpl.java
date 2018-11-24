@@ -74,7 +74,7 @@ public class SubcontractorServiceImpl implements SubcontractorService{
      * @Return com.ccicnavi.bims.customer.pojo.SubcontractorDTO
      */
     @Override
-    public SubcontractorDTO getSubcontractorList(SubcontractorDTO subcontractorDTO) throws Exception {
+    public SubcontractorDTO getSubcontractorList(SubcontractorDTO subcontractorDTO){
         try {
             //得到分包方信息
             subcontractorDTO = subcontractorDao.getSubcontractor(subcontractorDTO);
