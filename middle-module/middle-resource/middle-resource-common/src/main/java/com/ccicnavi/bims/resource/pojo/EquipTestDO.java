@@ -43,8 +43,6 @@ public class EquipTestDO implements Serializable {
 
     private String onlineCertUrl;
 
-    private String prodCatalogPuid;
-
     private String comments;
 
     private String isDeleted;
@@ -57,9 +55,19 @@ public class EquipTestDO implements Serializable {
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
+
+    private String prodCatalogUuid;
 
     private String orgUuid;
 
     private String appSysUuid;
+
+    private String extend1;
+
+    private String extend2;
+
+    private String extend3;
 }

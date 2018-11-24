@@ -4,7 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.EquipTestDO;
 import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
-
+import java.util.List;
 
 /**
  * @program: bims-backend
@@ -39,7 +39,16 @@ public interface EquipTestService {
      * @Param [equipTestUuid]
      * @Return com.ccicnavi.bims.ource.pojo.EquipTestDO
      */
-    EquipTestDO getEquipTest(String equipTestUuid);
+    EquipTestDO getEquipTest(EquipTestDO equipTestDO);
+
+    /**
+     * @Author MengZiJie
+     * @Description 根据uuids获取设备信息
+     * @Data 2018/11/23 18:18
+     * @Param [equipTestDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDO>
+     */
+    List<EquipTestDO> getEquipTestList(EquipTestDTO equipTestDTO);
 
     /**
      * @Author panyida
@@ -66,5 +75,5 @@ public interface EquipTestService {
      * @Param [equipTestDO]
      * @Return java.lang.Integer
      */
-    Integer deleteEquipTest(String equipTestUuid);
+    Integer deleteEquipTest(EquipTestDTO equipTestDTO);
 }

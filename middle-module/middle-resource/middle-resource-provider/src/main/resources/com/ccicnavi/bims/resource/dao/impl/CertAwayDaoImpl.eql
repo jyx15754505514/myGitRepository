@@ -1,0 +1,184 @@
+-- [listCertAway]
+select
+    away_uuid awayUuid,
+    paper_uuid paperUuid,
+    start_num startNum,
+    end_num endNum,
+    target_type targetType,
+    target_name targetName,
+    away_num awayNum,
+    away_date awayDate,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+from
+    res_cert_away
+where
+    is_deleted = 'N'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    prod_catalog_uuid = '#prodCatalogUuid#'
+--iff orgUuid != null and orgUuid != ''
+    org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid != ''
+    app_sys_uuid = '#appSysUuid#'
+
+
+-- [getCertAway]
+select
+    away_uuid awayUuid,
+    paper_uuid paperUuid,
+    start_num startNum,
+    end_num endNum,
+    target_type targetType,
+    target_name targetName,
+    away_num awayNum,
+    away_date awayDate,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+from
+    res_cert_away
+where
+    is_deleted = 'N'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    prod_catalog_uuid = '#prodCatalogUuid#'
+--iff orgUuid != null and orgUuid != ''
+    org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid != ''
+    app_sys_uuid = '#appSysUuid#'
+--iff awayUuid != null and awayUuid != ''
+    away_uuid = '#awayUuid#'
+
+
+-- [insertCertAway]
+insert into res_cert_away
+    --trim prefix=( suffix=) suffixOverrides=,
+        --iff awayUuid != null and awayUuid != ''
+            away_uuid,
+        --iff paperUuid != null and paperUuid != ''
+            paper_uuid,
+        --iff startNum != null and startNum != ''
+            start_num,
+        --iff endNum != null and endNum != ''
+            end_num,
+        --iff targetType != null and targetType != ''
+            target_type,
+        --iff targetName != null and targetName != ''
+            target_name,
+        --iff awayNum != null and awayNum != ''
+            away_num,
+        --iff awayDate != null
+            away_date,
+        --iff comments != null and comments != ''
+            comments,
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted,
+        --iff createdTime != null
+            created_time,
+        --iff createdUuid != null and createdUuid != ''
+            created_uuid,
+        --iff createdName != null and createdName != ''
+            created_name,
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            prod_catalog_uuid,
+        --iff orgUuid != null and orgUuid != ''
+            org_uuid,
+        --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
+    --end
+    --trim prefix=values( suffix=) suffixOverrides=,
+        --iff awayUuid != null and awayUuid != ''
+            '#awayUuid#',
+        --iff paperUuid != null and paperUuid != ''
+            '#paperUuid#',
+        --iff startNum != null and startNum != ''
+            '#startNum#',
+        --iff endNum != null and endNum != ''
+            '#endNum#',
+        --iff targetType != null and targetType != ''
+            '#targetType#',
+        --iff targetName != null and targetName != ''
+            '#targetName#',
+        --iff awayNum != null and awayNum != ''
+            '#awayNum#',
+        --iff awayDate != null
+            '#awayDate#',
+        --iff comments != null and comments != ''
+            '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+        --iff createdTime != null
+            '#createdTime#',
+        --iff createdUuid != null and createdUuid != ''
+            '#createdUuid#',
+        --iff createdName != null and createdName != ''
+            '#createdName#',
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
+        --iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+    --end
+
+
+-- [updateCertAway]
+update res_cert_away
+    -- trim prefix= set suffixOverrides=,
+        --iff paperUuid != null and paperUuid != ''
+            paper_uuid = '#paperUuid#',
+        --iff startNum != null and startNum != ''
+            start_num = '#startNum#',
+        --iff endNum != null and endNum != ''
+            end_num = '#endNum#',
+        --iff targetType != null and targetType != ''
+            target_type = '#targetType#',
+        --iff targetName != null and targetName != ''
+            target_name = '#targetName#',
+        --iff awayNum != null and awayNum != ''
+            away_num = '#awayNum#',
+        --iff awayDate != null
+            away_date = '#awayDate#',
+        --iff comments != null and comments != ''
+            comments = '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted = '#isDeleted#',
+        --iff createdTime != null
+            created_time = '#createdTime#',
+        --iff createdUuid != null and createdUuid != ''
+            created_uuid = '#createdUuid#',
+        --iff createdName != null and createdName != ''
+            created_name = '#createdName#',
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            prod_catalog_uuid = '#prodCatalogUuid#',
+        --iff orgUuid != null and orgUuid != ''
+            org_uuid = '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid = '#appSysUuid#',
+    -- end
+where
+    is_deleted = 'N'
+--iff awayUuid != null and awayUuid != ''
+    and away_uuid = '#awayUuid#'
+
+
+-- [deleteCertAway]
+UPDATE res_cert_away
+    -- trim prefix= set suffixOverrides=,
+        is_deleted = 'Y'
+    -- end
+where
+    is_deleted = 'N'
+--iff awayUuid != null and awayUuid != ''
+    and away_uuid = '#awayUuid#'
+

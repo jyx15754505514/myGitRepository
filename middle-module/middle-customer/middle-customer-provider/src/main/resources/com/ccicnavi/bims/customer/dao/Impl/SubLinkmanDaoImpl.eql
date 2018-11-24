@@ -29,59 +29,59 @@ SELECT
 	extend2,
 	extend3
 FROM
-	crm_customer_linkman
+	crm_subc_linkman
 WHERE
 	is_deleted = 'N'
-        --if linkmanName !=null and linkmanName != ''
-            and linkman_name = '#linkmanName:like#'
-        --end
-        --if linkmanUuid !=null and linkmanUuid != ''
-            and linkman_uuid = '#linkmanUuid#'
-        --end
-        --if custUuid !=null and custUuid != ''
-            and subc_uuid = '#custUuid#'
-        --end
+    --if linkmanName !=null and linkmanName != ''
+        and linkman_name = '#linkmanName:like#'
+    --end
+    --if linkmanUuid !=null and linkmanUuid != ''
+        and linkman_uuid = '#linkmanUuid#'
+    --end
+    --if subcUuid !=null and subcUuid != ''
+        and subc_uuid = '#subcUuid#'
+    --end
 
 
 -- [getSubLinkman]
 SELECT
     linkman_uuid linkmanUuid,
-    subc_uuid subcUuid,
-    linkman_name linkmanName,
-    gender gender,
-    phone phone,
-    email email,
-    fax fax,
-    office_phone officePhone,
-    addr addr,
-    is_default isDefault,
-    status_uuid statusUuid,
-    dept dept,
-    position position,
-    role role,
-    qq qq,
-    we_chat weChat,
-    type_of_service typeOfService,
-    comments comments,
-    is_deleted isDeleted,
-    created_time createdTime,
-    created_uuid createdUuid,
-    created_name createdName,
-    updated_time updatedTime,
-    updated_name updatedName,
-    updated_uuid updatedUuid,
-    extend1,
-    extend2,
-    extend3
+    	subc_uuid subcUuid,
+    	linkman_name linkmanName,
+    	gender gender,
+    	phone phone,
+    	email email,
+    	fax fax,
+    	office_phone officePhone,
+    	addr addr,
+    	is_default isDefault,
+    	status_uuid statusUuid,
+    	dept dept,
+    	position position,
+    	role role,
+    	qq qq,
+    	we_chat weChat,
+    	type_of_service typeOfService,
+    	comments comments,
+    	is_deleted isDeleted,
+    	created_time createdTime,
+    	created_uuid createdUuid,
+    	created_name createdName,
+    	updated_time updatedTime,
+    	updated_name updatedName,
+    	updated_uuid updatedUuid,
+    	extend1,
+    	extend2,
+    	extend3
 FROM
-	crm_customer_linkman
+	crm_subc_linkman
 WHERE
 	is_deleted = 'N'
 and linkman_uuid = '#linkmanUuid#'
 
 
 -- [insertSubLinkman]
-insert into crm_customer_linkman
+insert into crm_subc_linkman
     -- trim prefix=( suffix=) suffixOverrides=,
      -- iff linkmanUuid != null and  linkmanUuid != ''
         linkman_uuid,
@@ -250,19 +250,19 @@ insert into crm_customer_linkman
     -- end
 
 -- [deleteSubLinkman]
-UPDATE crm_customer_linkman
+UPDATE crm_subc_linkman
 SET is_deleted = 'Y'
 WHERE
 	is_deleted = 'N'
-     -- if uuids != null
-           AND linkman_uuid IN
-            -- for item=item index=index collection=uuids open=( separator=, close=)
-                #item#
-            -- end
+     -- if linkmanUuids != null
+       AND linkman_uuid IN
+        -- for item=item index=index collection=linkmanUuids open=( separator=, close=)
+            #item#
         -- end
+    -- end
 
 -- [updateSubLinkman]
- update crm_customer_linkman
+ update crm_subc_linkman
     -- trim prefix=SET suffixOverrides=,
       -- iff subcUuid != null
         subc_uuid = '#subcUuid#',

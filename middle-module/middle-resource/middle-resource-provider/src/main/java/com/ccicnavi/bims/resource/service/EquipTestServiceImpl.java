@@ -9,7 +9,7 @@ import com.ccicnavi.bims.resource.pojo.EquipTestDO;
 import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import java.util.List;
 
 /**
  * @program: bims-backend
@@ -32,14 +32,33 @@ public class EquipTestServiceImpl implements EquipTestService {
      * @Return com.ccicnavi.bims.resource.pojo.EquipTestDO
      */
     @Override
-    public EquipTestDO getEquipTest(String equipTestUuid){
-        EquipTestDO equipTestDO = null;
+    public EquipTestDO getEquipTest(EquipTestDO equipTestDO){
+        EquipTestDO equipTest = null;
         try {
-            equipTestDO = equipTestDao.getEquipTest(equipTestUuid);
+            equipTest = equipTestDao.getEquipTest(equipTestDO);
         } catch (Exception e) {
             log.error("根据设备检定信息主键获取设备检定信息错误",e);
         }
-        return equipTestDO;
+        return equipTest;
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 根据uuids查询设备信息
+     * @Data 2018/11/23 18:23
+     * @Param [equipTestDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDO>
+     */
+    @Override
+    public List<EquipTestDO> getEquipTestList(EquipTestDTO equipTestDTO) {
+        List<EquipTestDO> equipTest = null;
+        try {
+            equipTest = equipTestDao.getEquipTestList(equipTestDTO);
+            return null;
+        } catch (Exception e) {
+            log.error("获取设备检定信息失败",e);
+        }
+        return equipTest;
     }
 
     /**
@@ -71,7 +90,7 @@ public class EquipTestServiceImpl implements EquipTestService {
     public Integer insertEquipTest(EquipTestDO equipTestDO){
         Integer count = null;
         try {
-            count = equipTestDao.insertEquipTest(equipTestDO);
+            count = equipTestDao.insertEquipTest(equipTestDO,null);
         } catch (Exception e) {
             log.error("新增设备检定信息错误",e);
         }
@@ -89,7 +108,7 @@ public class EquipTestServiceImpl implements EquipTestService {
     public Integer updateEquipTest(EquipTestDO equipTestDO){
         Integer count = null;
         try {
-            count = equipTestDao.updateEquipTest(equipTestDO);
+            count = equipTestDao.updateEquipTest(equipTestDO,null);
         } catch (Exception e) {
             log.error("更新设备检定信息错误",e);
         }
@@ -104,10 +123,10 @@ public class EquipTestServiceImpl implements EquipTestService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquipTest(String equipTestUuid){
+    public Integer deleteEquipTest(EquipTestDTO equipTestDTO){
         Integer count = null;
         try {
-            count = equipTestDao.deleteEquipTest(equipTestUuid);
+            count = equipTestDao.deleteEquipTest(equipTestDTO,null);
         } catch (Exception e) {
             log.error("根据设备检定信息主键删除设备检定信息错误",e);
         }

@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.customer.dao;
 
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
+import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    List<SubcQualifiDO> listSubcuQuali() throws Exception;
+    List<SubcQualifiDO> listSubcuQuali(SubcontractorDTO subcontractorDTO) throws Exception;
 
     /**
      *@Description: 新增分包方资质信息
@@ -29,7 +31,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    int saveSubcuQuali(SubcQualifiDO subcuQuali) throws Exception;
+    Integer insertSubcuQuali(SubcQualifiDO subcuQuali) throws Exception;
 
     /**
      *@Description: 删除分包方资质信息
@@ -38,7 +40,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    int removeSubcuQuali(SubcQualifiDO subcuQuali) throws Exception;
+    Integer deleteSubcuQuali(SubcQualifiDTO subcQualifiDTO) throws Exception;
 
     /**
      *@Description: 修改分包方资质信息
@@ -47,7 +49,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    int updateSubcuQuali(SubcQualifiDO subcuQuali) throws Exception;
+    Integer updateSubcuQuali(SubcQualifiDO subcuQuali) throws Exception;
 
     /**
      *@Description: 查询分包方资质信息（根据主键获取）

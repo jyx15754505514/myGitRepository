@@ -1,5 +1,12 @@
 package com.ccicnavi.bims.breeder.manager;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.support.atomic.RedisAtomicLong;
+import org.springframework.stereotype.Component;
+
+import java.util.concurrent.TimeUnit;
+
 /**
  * @Auther: husky
  * @Date: 2018/11/15 10:37
@@ -8,6 +15,8 @@ package com.ccicnavi.bims.breeder.manager;
  */
 public class IdWorkerManager {
 
+    @Autowired
+    RedisTemplate redisTemplate;
     // ==============================Fields===========================================
     /**
      * 开始时间截 (2015-01-01)
@@ -162,6 +171,7 @@ public class IdWorkerManager {
     }
 
     //==============================Test=============================================
+
 
     /**
      * 测试

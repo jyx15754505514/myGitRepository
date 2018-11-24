@@ -17,6 +17,7 @@ import java.util.Date;
 @Setter
 @ToString
 public class EquipUseDO implements Serializable {
+
     private String equipUseUuid;
 
     private String equipUuid;
@@ -28,8 +29,6 @@ public class EquipUseDO implements Serializable {
     private String useDept;
 
     private Date backDate;
-
-    private String prodCatalogPuid;
 
     private String comments;
 
@@ -43,9 +42,19 @@ public class EquipUseDO implements Serializable {
 
     private Date updatedTime;
 
+    private String updatedUuid;
+
     private String updatedName;
+
+    private String prodCatalogUuid;
 
     private String orgUuid;
 
     private String appSysUuid;
+
+    private String extend1;
+
+    private String extend2;
+
+    private String extend3;
 }
