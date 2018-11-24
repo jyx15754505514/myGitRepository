@@ -33,7 +33,7 @@ public interface SubcontractorService {
      * @Param [subcontractor]
      * @Return int
      */
-    Integer insertSubcontractor(SubcontractorDO subcontractor) throws Exception;
+    Integer insertSubcontractor(SubcontractorDO subcontractor) ;
     /**
      * @Author FanDongSheng
      * @Description //TODO 根据分包方信息查询分包方包含的所有的信息（资质、联系人、银行信息）
@@ -41,18 +41,18 @@ public interface SubcontractorService {
      * @Param [subcontractorDTO]
      * @Return com.ccicnavi.bims.customer.pojo.SubcontractorDTO
      */
-    SubcontractorDTO getSubcontractorList(SubcontractorDTO subcontractorDTO) throws  Exception;
+    SubcontractorDTO getSubcontractorList(SubcontractorDTO subcontractorDTO);
 
 
 
 
     /**删除分包方信息*/
-    Integer removeSubcontractor(SubcontractorDO subcontractor) throws Exception;
+    Integer removeSubcontractor(SubcontractorDO subcontractor) ;
 
     /**修改分包方信息*/
-    Integer updateSubcontractor(SubcontractorDO subcontractor) throws Exception;
+    Integer updateSubcontractor(SubcontractorDO subcontractor) ;
 
     /**根据主键返回对应的分包方信息*/
-   SubcontractorDTO getSubcontractorOne(SubcontractorDTO subcontractorDTO) throws Exception;
+   SubcontractorDTO getSubcontractorOne(SubcontractorDTO subcontractorDTO) ;
 
 }
