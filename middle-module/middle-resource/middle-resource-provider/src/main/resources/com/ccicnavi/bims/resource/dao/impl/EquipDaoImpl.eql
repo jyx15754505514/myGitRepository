@@ -56,6 +56,8 @@
      updated_name updatedName,
      org_uuid orgUuid,
      app_sys_uuid appSysUuid,
+     created_name createdName,
+     updated_uuid updatednuid,
      prod_catalog_uuid prodCatalogUuid
 from
     res_equip
@@ -128,6 +130,8 @@ where
      updated_name updatedName,
      org_uuid orgUuid,
      app_sys_uuid appSysUuid,
+     created_name createdName,
+     updated_uuid updatednuid,
      prod_catalog_uuid prodCatalogUuid
 from
     res_equip
@@ -203,6 +207,8 @@ where
      updated_name updatedName,
      org_uuid orgUuid,
      app_sys_uuid appSysUuid,
+     created_name createdName,
+     updated_uuid updatednuid,
      prod_catalog_uuid prodCatalogUuid
 from
     res_equip
@@ -220,353 +226,367 @@ where
 -- [insertEquip]
     insert into res_equip
     -- trim prefix=( suffix=) suffixOverrides=,
-      --iff equipUuid != null
+      --iff equipUuid != null and equipUuid != ''
         equip_uuid,
-      --iff equipName != null
+      --iff equipName != null and equipName != ''
         equip_name,
-      --iff equipNameEn != null
+      --iff equipNameEn != null and equipNameEn != ''
         equip_name_en,
-      --iff controlCode != null
+      --iff controlCode != null and controlCode != ''
         control_code,
-      --iff equipModel != null
+      --iff equipModel != null and equipModel != ''
         equip_model,
-      --iff equipSpec != null
+      --iff equipSpec != null and equipSpec != ''
         equip_spec,
-      --iff factoryNo != null
+      --iff factoryNo != null and factoryNo != ''
         factory_no,
-      --iff manufacture != null
+      --iff manufacture != null and manufacture != ''
         manufacture,
-      --iff factoryLevel != null
+      --iff factoryLevel != null and factoryLevel != ''
         factory_level,
-      --iff measureRange != null
+      --iff measureRange != null and measureRange != ''
         measure_range,
-      --iff accuracyLevel != null
+      --iff accuracyLevel != null and accuracyLevel != ''
         accuracy_level,
-      --iff equipAbc != null
+      --iff equipAbc != null and equipAbc != ''
         equip_abc,
-      --iff statusUuid != null
+      --iff statusUuid != null and statusUuid != ''
         status_uuid,
-      --iff equipPlanUuid != null
+      --iff equipPlanUuid != null and equipPlanUuid != ''
         equip_plan_uuid,
-      --iff equipOrderUuid != null
+      --iff equipOrderUuid != null and equipOrderUuid != ''
         equip_order_uuid,
-      --iff appointUuid != null
+      --iff appointUuid != null and appointUuid != ''
         appoint_uuid,
-      --iff certNo != null
+      --iff certNo != null and certNo != ''
         cert_no,
       --iff testDate != null
         test_date,
       --iff useDate != null
         use_date,
-      --iff useDeptUuid != null
+      --iff useDeptUuid != null and useDeptUuid != ''
         use_dept_uuid,
-      --iff isVerify != null
+      --iff isVerify != null and isVerify != ''
         is_verify,
-      --iff testCycle != null
+      --iff testCycle != null and testCycle != ''
         test_cycle,
-      --iff isLongTerm != null
+      --iff isLongTerm != null and isLongTerm != ''
         is_long_term,
       --iff testValidDate != null
         test_valid_date,
-      --iff testResult != null
+      --iff testResult != null and testResult != ''
         test_result,
       --iff purchaseDate != null
         purchase_date,
-      --iff purchasePrice != null
+      --iff purchasePrice != null and purchasePrice != ''
         purchase_price,
-      --iff purchaseCount != null
+      --iff purchaseCount != null and purchaseCount != ''
         purchase_count,
-      --iff isRent != null
+      --iff isRent != null and isRent != ''
         is_rent,
-      --iff isLocalTest != null
+      --iff isLocalTest != null and isLocalTest != ''
         is_local_test,
-      --iff isSelfTest != null
+      --iff isSelfTest != null and isSelfTest != ''
         is_self_test,
-      --iff agencyUuid != null
+      --iff agencyUuid != null and agencyUuid != ''
         agency_uuid,
-      --iff agencyName != null
+      --iff agencyName != null and agencyName != ''
         agency_name,
-      --iff testType != null
+      --iff testType != null and testType != ''
         test_type,
-      --iff testFee != null
+      --iff testFee != null and testFee != ''
         test_fee,
-      --iff repairFee != null
+      --iff repairFee != null and repairFee != ''
         repair_fee,
-      --iff feeDesc != null
+      --iff feeDesc != null and feeDesc != ''
         fee_desc,
-      --iff locationAddr != null
+      --iff locationAddr != null and locationAddr != ''
         location_addr,
-      --iff deptUuid != null
+      --iff deptUuid != null and deptUuid != ''
         dept_uuid,
-      --iff mgrUuid != null
+      --iff mgrUuid != null and mgrUuid != ''
         mgr_uuid,
-      --iff partsDesc != null
+      --iff partsDesc != null and partsDesc != ''
         parts_desc,
-      --iff standardDesc != null
+      --iff standardDesc != null and standardDesc != ''
         standard_desc,
-      --iff rowType != null
+      --iff rowType != null and rowType != ''
         row_type,
-      --iff isFile != null
+      --iff isFile != null and isFile != ''
         is_file,
-      --iff isCertFile != null
+      --iff isCertFile != null and isCertFile != ''
         is_cert_file,
-      --iff onlineCertUrl != null
+      --iff onlineCertUrl != null and onlineCertUrl != ''
         online_cert_url,
-      --iff sourceCfmName != null
+      --iff sourceCfmName != null and sourceCfmName != ''
         source_cfm_name,
       --iff sourceCfmDate != null
         source_cfm_date,
-      --iff comments != null
+      --iff comments != null and comments != ''
         comments,
-      --iff isDeleted != null
+      --iff isDeleted != null and isDeleted != ''
         is_deleted,
       --iff createdTime != null
         created_time,
-      --iff createdUuid != null
+      --iff createdUuid != null and createdUuid != ''
         created_uuid,
       --iff updatedTime != null
         updated_time,
-      --iff updatedName != null
+      --iff updatedName != null and updatedName != ''
         updated_name,
-      --iff orgUuid != null
+      --iff orgUuid != null and orgUuid != ''
         org_uuid,
-      --iff appSysUuid != null
+      --iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid,
-      --iff prodCatalogUuid != null
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
         prod_catalog_uuid,
+      --iff createdName != null and createdName != ''
+        created_name,
+      --iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
     --end
     -- trim prefix=values( suffix=) suffixOverrides=,
-      --iff equipUuid != null
+      --iff equipUuid != null and equipUuid != ''
         '#equipUuid#',
-      --iff equipName != null
+      --iff equipName != null and equipName != ''
         '#equipName#',
-      --iff equipNameEn != null
+      --iff equipNameEn != null and equipNameEn != ''
         '#equipNameEn#',
-      --iff controlCode != null
+      --iff controlCode != null and controlCode != ''
         '#controlCode#',
-      --iff equipModel != null
+      --iff equipModel != null and equipModel != ''
         '#equipModel#',
-      --iff equipSpec != null
+      --iff equipSpec != null and equipSpec != ''
         '#equipSpec#',
-      --iff factoryNo != null
+      --iff factoryNo != null and factoryNo != ''
         '#factoryNo#',
-      --iff manufacture != null
+      --iff manufacture != null and manufacture != ''
         '#manufacture#',
-      --iff factoryLevel != null
+      --iff factoryLevel != null and factoryLevel != ''
         '#factoryLevel#',
-      --iff measureRange != null
+      --iff measureRange != null and measureRange != ''
         '#measureRange#',
-      --iff accuracyLevel != null
+      --iff accuracyLevel != null and accuracyLevel != ''
         '#accuracyLevel#',
-      --iff equipAbc != null
+      --iff equipAbc != null and equipAbc != ''
         '#equipAbc#',
-      --iff statusUuid != null
+      --iff statusUuid != null and statusUuid != ''
         '#statusUuid#',
-      --iff equipPlanUuid != null
+      --iff equipPlanUuid != null and equipPlanUuid != ''
         '#equipPlanUuid#',
-      --iff equipOrderUuid != null
+      --iff equipOrderUuid != null and equipOrderUuid != ''
         '#equipOrderUuid#',
-      --iff appointUuid != null
+      --iff appointUuid != null and appointUuid != ''
         '#appointUuid#',
-      --iff certNo != null
+      --iff certNo != null and certNo != ''
         '#certNo#',
       --iff testDate != null
         '#testDate#',
       --iff useDate != null
         '#useDate#',
-      --iff useDeptUuid != null
+      --iff useDeptUuid != null and useDeptUuid != ''
         '#useDeptUuid#',
-      --iff isVerify != null
+      --iff isVerify != null and isVerify != ''
         '#isVerify#',
-      --iff testCycle != null
+      --iff testCycle != null and testCycle != ''
         '#testCycle#',
-      --iff isLongTerm != null
+      --iff isLongTerm != null and isLongTerm != ''
         '#isLongTerm#',
       --iff testValidDate != null
         '#testValidDate#',
-      --iff testResult != null
+      --iff testResult != null and testResult != ''
         '#testResult#',
       --iff purchaseDate != null
         '#purchaseDate#',
-      --iff purchasePrice != null
+      --iff purchasePrice != null and purchasePrice != ''
         '#purchasePrice#',
-      --iff purchaseCount != null
+      --iff purchaseCount != null and purchaseCount != ''
         '#purchaseCount#',
-      --iff isRent != null
+      --iff isRent != null and isRent != ''
         '#isRent#',
-      --iff isLocalTest != null
+      --iff isLocalTest != null and isLocalTest != ''
         '#isLocalTest#',
-      --iff isSelfTest != null
+      --iff isSelfTest != null and isSelfTest != ''
         '#isSelfTest#',
-      --iff agencyUuid != null
+      --iff agencyUuid != null and agencyUuid != ''
         '#agencyUuid#',
-      --iff agencyName != null
+      --iff agencyName != null and agencyName != ''
         '#agencyName#',
-      --iff testType != null
+      --iff testType != null and testType != ''
         '#testType#',
-      --iff testFee != null
+      --iff testFee != null and testFee != ''
         '#testFee#',
-      --iff repairFee != null
+      --iff repairFee != null and repairFee != ''
         '#repairFee#',
-      --iff feeDesc != null
+      --iff feeDesc != null and feeDesc != ''
         '#feeDesc#',
-      --iff locationAddr != null
+      --iff locationAddr != null and locationAddr != ''
         '#locationAddr#',
-      --iff deptUuid != null
+      --iff deptUuid != null and deptUuid != ''
         '#deptUuid#',
-      --iff mgrUuid != null
+      --iff mgrUuid != null and mgrUuid != ''
         '#mgrUuid#',
-      --iff partsDesc != null
+      --iff partsDesc != null and partsDesc != ''
         '#partsDesc#',
-      --iff standardDesc != null
+      --iff standardDesc != null and standardDesc != ''
         '#standardDesc#',
-      --iff rowType != null
+      --iff rowType != null and rowType != ''
         '#rowType#',
-      --iff isFile != null
+      --iff isFile != null and isFile != ''
         '#isFile#',
-      --iff isCertFile != null
+      --iff isCertFile != null and isCertFile != ''
         '#isCertFile#',
-      --iff onlineCertUrl != null
+      --iff onlineCertUrl != null and onlineCertUrl != ''
         '#onlineCertUrl#',
-      --iff sourceCfmName != null
+      --iff sourceCfmName != null and sourceCfmName != ''
         '#sourceCfmName#',
       --iff sourceCfmDate != null
         '#sourceCfmDate#',
-      --iff comments != null
+      --iff comments != null and comments != ''
         '#comments#',
-      --iff isDeleted != null
+      --iff isDeleted != null and isDeleted != ''
         '#isDeleted#',
       --iff createdTime != null
         '#createdTime#',
-      --iff createdUuid != null
+      --iff createdUuid != null and createdUuid != ''
         '#createdUuid#',
       --iff updatedTime != null
         '#updatedTime#',
-      --iff updatedName != null
+      --iff updatedName != null and updatedName != ''
         '#updatedName#',
-      --iff orgUuid != null
+      --iff orgUuid != null and orgUuid != ''
         '#orgUuid#',
-      --iff appSysUuid != null
+      --iff appSysUuid != null and appSysUuid != ''
         '#appSysUuid#',
-      --iff prodCatalogUuid != null
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
         '#prodCatalogUuid#'
+      --iff createdName != null and createdName != ''
+        '#createdName#'
+      --iff updatedUuid != null and updatedUuid != ''
+        '#updatedUuid#'
+
     --end
 
 -- [updateEquip]
     update res_equip
     -- trim prefix= set suffixOverrides=,
-      --iff equipName != null
+      --iff equipName != null and equipName != ''
         equip_name = '#equipName#',
-      --iff equipNameEn != null
+      --iff equipNameEn != null and equipNameEn != ''
         equip_name_en = '#equipNameEn#',
-      --iff controlCode != null
+      --iff controlCode != null and controlCode != ''
         control_code = '#controlCode#',
-      --iff equipModel != null
+      --iff equipModel != null and equipModel != ''
         equip_model = '#equipModel#',
-      --iff equipSpec != null
+      --iff equipSpec != null and equipSpec != ''
         equip_spec = '#equipSpec#',
-      --iff factoryNo != null
+      --iff factoryNo != null and factoryNo != ''
         factory_no = '#factoryNo#',
-      --iff manufacture != null
+      --iff manufacture != null and manufacture != ''
         manufacture = '#manufacture#',
-      --iff factoryLevel != null
+      --iff factoryLevel != null and factoryLevel != ''
         factory_level = '#factoryLevel#',
-      --iff measureRange != null
+      --iff measureRange != null and measureRange != ''
         measure_range = '#measureRange#',
-      --iff accuracyLevel != null
+      --iff accuracyLevel != null and accuracyLevel != ''
         accuracy_level = '#accuracyLevel#',
-      --iff equipAbc != null
+      --iff equipAbc != null and equipAbc != ''
         equip_abc = '#equipAbc#',
-      --iff statusUuid != null
+      --iff statusUuid != null and statusUuid != ''
         status_uuid = '#statusUuid#',
-      --iff equipPlanUuid != null
+      --iff equipPlanUuid != null and equipPlanUuid != ''
         equip_plan_uuid = '#equipPlanUuid#',
-      --iff equipOrderUuid != null
+      --iff equipOrderUuid != null and equipOrderUuid != ''
         equip_order_uuid = '#equipOrderUuid#',
-      --iff appointUuid != null
+      --iff appointUuid != null and appointUuid != ''
         appoint_uuid = '#appointUuid#',
-      --iff certNo != null
+      --iff certNo != null and certNo != ''
         cert_no = '#certNo#',
       --iff testDate != null
         test_date = '#testDate',
       --iff useDate != null
         use_date = '#useDate' ,
-      --iff useDeptUuid != null
+      --iff useDeptUuid != null and useDeptUuid != ''
         use_dept_uuid = '#useDeptUuid#',
-      --iff isVerify != null
+      --iff isVerify != null and isVerify != ''
         is_verify = '#isVerify#',
-      --iff testCycle != null
+      --iff testCycle != null and testCycle != ''
         test_cycle = '#testCycle#',
-      --iff isLongTerm != null
+      --iff isLongTerm != null and isLongTerm != ''
         is_long_term = '#isLongTerm#',
       --iff testValidDate != null
         test_valid_date = '#testValidDate#',
-      --iff testResult != null
+      --iff testResult != null and testResult != ''
         test_result = '#testResult#',
       --iff purchaseDate != null
         purchase_date = '#purchaseDate#',
-      --iff purchasePrice != null
+      --iff purchasePrice != null and purchasePrice != ''
         purchase_price = '#purchasePrice#',
-      --iff purchaseCount != null
+      --iff purchaseCount != null and purchaseCount != ''
         purchase_count = '#purchaseCount#',
-      --iff isRent != null
+      --iff isRent != null and isRent != ''
         is_rent = '#isRent#',
-      --iff isLocalTest != null
+      --iff isLocalTest != null and isLocalTest != ''
         is_local_test = '#isLocalTest#',
-      --iff isSelfTest != null
+      --iff isSelfTest != null and isSelfTest != ''
         is_self_test = '#isSelfTest#',
-      --iff agencyUuid != null
+      --iff agencyUuid != null and agencyUuid != ''
         agency_uuid = '#agencyUuid#',
-      --iff agencyName != null
+      --iff agencyName != null and agencyName != ''
         agency_name = '#agencyName#',
-      --iff testType != null
+      --iff testType != null and testType != ''
         test_type = '#testType#',
-      --iff testFee != null
+      --iff testFee != null and testFee != ''
         test_fee = '#testFee#',
-      --iff repairFee != null
+      --iff repairFee != null and repairFee != ''
         repair_fee = '#repairFee#',
-      --iff feeDesc != null
+      --iff feeDesc != null and feeDesc != ''
         fee_desc = '#feeDesc#',
-      --iff locationAddr != null
+      --iff locationAddr != null and locationAddr != ''
         location_addr = '#locationAddr#',
-      --iff deptUuid != null
+      --iff deptUuid != null and deptUuid != ''
         dept_uuid = '#deptUuid#',
-      --iff mgrUuid != null
+      --iff mgrUuid != null and mgrUuid != ''
         mgr_uuid = '#mgrUuid#',
-      --iff partsDesc != null
+      --iff partsDesc != null and partsDesc != ''
         parts_desc = '#partsDesc#',
-      --iff standardDesc != null
+      --iff standardDesc != null and standardDesc != ''
         standard_desc = '#standardDesc#',
-      --iff rowType != null
+      --iff rowType != null and rowType != ''
         row_type = '#rowType#',
-      --iff isFile != null
+      --iff isFile != null and isFile != ''
         is_file = '#isFile#',
-      --iff isCertFile != null
+      --iff isCertFile != null and isCertFile != ''
         is_cert_file = '#isCertFile#',
-      --iff onlineCertUrl != null
+      --iff onlineCertUrl != null and onlineCertUrl != ''
         online_cert_url = '#onlineCertUrl#',
-      --iff sourceCfmName != null
+      --iff sourceCfmName != null and sourceCfmName != ''
         source_cfm_name = '#sourceCfmName#',
       --iff sourceCfmDate != null
         source_cfm_date = '#sourceCfmDate#',
-      --iff comments != null
+      --iff comments != null and comments != ''
         comments = '#comments#',
-      --iff isDeleted != null
+      --iff isDeleted != null and isDeleted != ''
         is_deleted = '#isDeleted#',
       --iff createdTime != null
         created_time = '#createdTime#',
-      --iff createdUuid != null
+      --iff createdUuid != null and createdUuid != ''
         created_uuid = '#createdUuid#',
       --iff updatedTime != null
         updated_time = '#updatedTime#',
-      --iff updatedName != null
+      --iff updatedName != null and updatedName != ''
         updated_name = '#updatedName#',
-      --iff orgUuid != null
+      --iff orgUuid != null and orgUuid != ''
         org_uuid = '#orgUuid#',
-      --iff appSysUuid != null
+      --iff appSysUuid != null and appSysUuid != ''
         app_sys_uuid = '#appSysUuid#',
-      --iff prodCatalogUuid != null
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
         prod_catalog_uuid = '#prodCatalogUuid#',
+      --iff createdName != null and createdName != ''
+        created_name = '#createdName#',
+      --iff updatedUuid != null and updatedUuid != ''
+        updated_uuid = '#updatedUuid#',
+
     -- end
   where
     is_deleted = 'N'
