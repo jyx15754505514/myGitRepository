@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.EquipService;
@@ -33,6 +35,8 @@ public class EquipServiceImpl implements EquipService {
     @Autowired
     private EquipUseDao equipUseDao;
 
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
     /**
      * @Author panyida
      * @Description 设备信息查询
@@ -188,6 +192,9 @@ public class EquipServiceImpl implements EquipService {
     public Integer insertEquip(EquipDO equipDO){
         Integer count = null;
         try {
+            //获取主键
+            String equipUuid = idWorkerService.getId(new Date());
+            equipDO.setEquipUuid(equipUuid);
             count = equipDao.insertEquip(equipDO,null);
         } catch (Exception e) {
             log.error("新增设备信息错误",e);
