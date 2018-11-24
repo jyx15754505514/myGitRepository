@@ -28,6 +28,37 @@ FROM
     product_test_item
 WHERE
     is_deleted='N'
+--if itemName !=null and itemName != ''
+            AND item_name like '#itemName:like#'
+--end
+--if itemNameEn !=null and itemNameEn != ''
+            AND item_name_en like '#itemNameEn:like#'
+--end
+--if itemUomUuid !=null and itemUomUuid != ''
+            AND item_uom_uuid like '#itemUomUuid#'
+--end
+--if itemCode !=null and itemCode != ''
+            AND item_code like '#itemCode:like#'
+--end
+--if useStdUuid !=null and useStdUuid != ''
+            AND use_std_uuid like '#useStdUuid#'
+--end
+--if useStdName !=null and useStdName != ''
+            AND use_std_name like '#useStdName:like#'
+--end
+--if itemNameAlias !=null and itemNameAlias != ''
+            AND item_name_alias like '#itemNameAlias:like#'
+--end
+--if prodCatalogUuid !=null and prodCatalogUuid != ''
+            AND prod_catalog_uuid like '#prodCatalogUuid#'
+--end
+--if orgUuid !=null and orgUuid != ''
+            AND org_uuid like '#orgUuid#'
+--end
+--if appSysUuid !=null and appSysUuid != ''
+            AND app_sys_uuid like '#appSysUuid#'
+--end
+
 
 -- [saveTestItemDO]
 INSERT INTO product_test_item

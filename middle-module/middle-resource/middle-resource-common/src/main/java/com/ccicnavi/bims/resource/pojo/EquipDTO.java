@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author MengZiJie
@@ -131,4 +132,10 @@ public class EquipDTO implements Serializable {
     private String prodCatalogPuid;
 
     private Integer expireDay;//到期提醒天数
+
+    private List<String> equipUuids;//设备uuids
+
+    private List<EquipTestDO> equipTestDTO;//检定记录
+
+    private List<EquipUseDO> equipUseDO;//领用记录
 }

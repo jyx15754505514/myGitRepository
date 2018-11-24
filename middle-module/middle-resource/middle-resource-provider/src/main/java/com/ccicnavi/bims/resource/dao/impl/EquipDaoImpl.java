@@ -1,6 +1,5 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.EquipDao;
@@ -8,6 +7,7 @@ import com.ccicnavi.bims.resource.pojo.EquipDO;
 import com.ccicnavi.bims.resource.pojo.EquipDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -28,9 +28,22 @@ public class EquipDaoImpl implements EquipDao {
      * @Return com.ccicnavi.bims.resource.pojo.EquipDO
      */
     @Override
-    public EquipDO getEquip(String equipUuid){
-        return EqlUtils.getInstance("druid").selectFirst("getEquip").params(equipUuid).returnType(EquipDO.class).execute();
+    public EquipDTO getEquip(EquipDO equipDO){
+        return new Eql().selectFirst("getEquip").params(equipDO).returnType(EquipDO.class).execute();
     }
+
+    /**
+     * @Author MengZiJie
+     * @Description 根据uuids 查询设备信息
+     * @Data 2018/11/23 15:57
+     * @Param [equipDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDO>
+     */
+    @Override
+    public List<EquipDO> getEquipList(EquipDTO equipDTO) {
+        return new Eql().select("getEquipList").params(equipDTO).returnType(EquipDO.class).execute();
+    }
+
 
     /**
      * @Author panyida
@@ -42,7 +55,7 @@ public class EquipDaoImpl implements EquipDao {
     @Override
     public PageBean<EquipDO> listEquip(PageParameter<EquipDTO> pageParameter){
         EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
-        List<EquipDO> listEquip = new Eql("druid").select("listEquip").params(pageParameter.getParameter()).returnType(EquipDO.class).limit(eqlPage).execute();
+        List<EquipDO> listEquip = new Eql().select("listEquip").params(pageParameter.getParameter()).returnType(EquipDO.class).limit(eqlPage).execute();
         return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquip);
     }
 
@@ -54,8 +67,12 @@ public class EquipDaoImpl implements EquipDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertEquip(EquipDO equipDO){
-        return EqlUtils.getInstance("druid").insert("insertEquip").params(equipDO).returnType(Integer.class).execute();
+    public Integer insertEquip(EquipDO equipDO,EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).insert("insertEquip").params(equipDO).returnType(Integer.class).execute();
+        }
+        return eql.insert("insertEquip").params(equipDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -66,8 +83,12 @@ public class EquipDaoImpl implements EquipDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer updateEquip(EquipDO equipDO){
-        return EqlUtils.getInstance("druid").update("updateEquip").params(equipDO).returnType(Integer.class).execute();
+    public Integer updateEquip(EquipDO equipDO,EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).update("updateEquip").params(equipDO).returnType(Integer.class).execute();
+        }
+        return eql.update("updateEquip").params(equipDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -78,8 +99,12 @@ public class EquipDaoImpl implements EquipDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquip(String equipUuid){
-        return EqlUtils.getInstance("druid").delete("deleteEquip").params(equipUuid).returnType(Integer.class).execute();
+    public Integer deleteEquip(EquipDTO equipDTO, EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).delete("deleteEquip").params(equipDTO).returnType(Integer.class).execute();
+        }
+        return eql.delete("deleteEquip").params(equipDTO).returnType(Integer.class).execute();
     }
 
 }

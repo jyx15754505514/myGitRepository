@@ -1,0 +1,341 @@
+-- [listEquipTest]
+ SELECT
+    equip_test_uuid equipTestUuid,
+    equip_uuid equipUuid,
+    cert_no certNo,
+    test_date testDate,
+    test_cycle testCycle,
+    is_long_term isLongTerm,
+    test_valid_date testValidDate,
+    test_result testResult,
+    test_type testType,
+    test_fee testFee,
+    fee_desc feeDesc,
+    standard_desc standardDesc,
+    online_cert_url onlineCertUrl,
+    prod_catalog_uuid prodCatalogUuid,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    updated_uuid updatedUuid,
+    app_sys_uuid appSysUuid
+ from
+    res_equip_test
+ where
+    is_deleted = 'N'
+ --iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+ --iff appSysUuid != null and appSysUuid !=''
+    and app_sys_uuid = '#appSysUuid#'
+ --iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+
+-- [getEquipTest]
+SELECT
+    equip_test_uuid equipTestUuid,
+    equip_uuid equipUuid,
+    cert_no certNo,
+    test_date testDate,
+    test_cycle testCycle,
+    is_long_term isLongTerm,
+    test_valid_date testValidDate,
+    test_result testResult,
+    test_type testType,
+    test_fee testFee,
+    fee_desc feeDesc,
+    standard_desc standardDesc,
+    online_cert_url onlineCertUrl,
+    prod_catalog_uuid prodCatalogUuid,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    updated_uuid updatedUuid,
+    app_sys_uuid appSysUuid
+from
+    res_equip_test
+where
+    is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid !=''
+    and app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+--iff equipTestUuid != null and equipTestUuid != ''
+    and equip_test_uuid = '#equipTestUuid#'
+
+-- [getEquipTestList]
+  SELECT
+    equip_test_uuid equipTestUuid,
+    equip_uuid equipUuid,
+    cert_no certNo,
+    test_date testDate,
+    test_cycle testCycle,
+    is_long_term isLongTerm,
+    test_valid_date testValidDate,
+    test_result testResult,
+    test_type testType,
+    test_fee testFee,
+    fee_desc feeDesc,
+    standard_desc standardDesc,
+    online_cert_url onlineCertUrl,
+    prod_catalog_uuid prodCatalogUuid,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    updated_uuid updatedUuid,
+    app_sys_uuid appSysUuid
+    from
+    res_equip_test
+where
+    is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid !=''
+    and app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+--iff equipTestUuids != null
+    and equip_test_uuid in
+    -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
+       '#item#'
+    -- end
+-- iff equipUuid != null and equipUuid != ''
+    equip_uuid = '#equipUuid#'
+
+
+-- [insertEquipTest]
+  insert into res_equip_test
+    -- trim prefix=( suffix=) suffixOverrides=,
+      --iff equipTestUuid != null and equipTestUuid != ''
+        equip_test_uuid,
+      --iff equipUuid != null and equipUuid != ''
+        equip_uuid,
+      --iff certNo != null and certNo != ''
+        cert_no,
+      --iff testDate != null
+        test_date,
+      --iff testCycle != null and testCycle != ''
+        test_cycle,
+      --iff isLongTerm != null and isLongTerm != ''
+        is_long_term,
+      --iff testValidDate != null and testValidDate != ''
+        test_valid_date,
+      --iff testResult != null and testResult != ''
+        test_result,
+      --iff testType != null and testType != ''
+        test_type,
+      --iff testFee != null and testFee != ''
+        test_fee,
+      --iff feeDesc != null and feeDesc != ''
+        fee_desc,
+      --iff standardDesc != null and standardDesc != ''
+        standard_desc,
+      --iff onlineCertUrl != null and onlineCertUrl != ''
+        online_cert_url,
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+      --iff comments != null and comments != ''
+        comments,
+      --iff isDeleted != null and isDeleted != ''
+        is_deleted,
+      --iff createdTime != null
+        created_time,
+      --iff createdUuid != null and createdUuid != ''
+        created_uuid,
+      --iff createdName != null and createdName != ''
+        created_name,
+      --iff updatedTime != null
+        updated_time,
+      --iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
+      --iff updatedName != null and updatedName != ''
+        updated_name,
+      --iff orgUuid != null and orgUuid != ''
+        org_uuid,
+      --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid
+    --end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      --iff equipTestUuid != null and equipTestUuid != ''
+        '#equipTestUuid#',
+      --iff equipUuid != null and equipUuid != ''
+        '#equipUuid#',
+      --iff certNo != null and certNo != ''
+        '#certNo#',
+      --iff testDate != null
+        '#testDate#',
+      --iff testCycle != null and testCycle != ''
+        '#testCycle#',
+      --iff isLongTerm != null and isLongTerm != ''
+        '#isLongTerm#',
+      --iff testValidDate != null
+        '#testValidDate#',
+      --iff testResult != null and testResult != ''
+        '#testResult#',
+      --iff testType != null and testType != ''
+        '#testType#',
+      --iff testFee != null and testFee != ''
+        '#testFee#',
+      --iff feeDesc != null and feeDesc != ''
+        '#feeDesc#',
+      --iff standardDesc != null and standardDesc != ''
+        '#standardDesc#',
+      --iff onlineCertUrl != null and onlineCertUrl != ''
+        '#onlineCertUrl#',
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+      --iff comments != null and comments != ''
+        '#comments#',
+      --iff isDeleted != null and isDeleted != ''
+        '#isDeleted#',
+      --iff createdTime != null
+        '#createdTime#',
+      --iff createdUuid != null and createdUuid != ''
+        '#createdUuid#',
+      --iff createdName != null and createdName != ''
+        '#createdName#',
+      --iff updatedTime != null
+        '#updatedTime#',
+      -iff updatedUuid != null and updatedUuid != ''
+          'updatedUuid#',
+      --iff updatedName != null and updatedName != ''
+        '#updatedName#',
+      --iff orgUuid != null and orgUuid != ''
+        '#orgUuid#',
+      --iff appSysUuid != null and appSysUuid != ''
+        '#appSysUuid#'
+    --end
+
+  -- [updateEquipTest]
+    update res_equip_test
+    -- trim prefix= set suffixOverrides=,
+      --iff equipTestUuid != null and equipTestUuid != ''
+        equip_test_uuid = '#equipTestUuid#',
+      --iff equipUuid != null and equipUuid != ''
+        equip_uuid = '#equipUuid#',
+      --iff certNo != null and certNo != ''
+        cert_no = '#certNo#',
+      --iff testDate != null
+        test_date = '#testDate#',
+      --iff testCycle != null and testCycle != ''
+        test_cycle = '#testCycle#',
+      --iff isLongTerm != null and isLongTerm != ''
+        is_long_term = '#isLongTerm#',
+      --iff testValidDate != null
+        test_valid_date = '#testValidDate#',
+      --iff testResult != null and testResult != ''
+        test_result = '#testResult#',
+      --iff testType != null and testType != ''
+        test_type = '#testType#',
+      --iff testFee != null and testFee != ''
+        test_fee = '#testFee#',
+      --iff feeDesc != null and feeDesc != ''
+        fee_desc = '#feeDesc#',
+      --iff standardDesc != null and standardDesc != ''
+        standard_desc = '#standardDesc#',
+      --iff onlineCertUrl != null and onlineCertUrl != ''
+        online_cert_url = '#onlineCertUrl#',
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
+      --iff comments != null and comments != ''
+        comments = '#comments#',
+      --iff isDeleted != null and isDeleted != ''
+        is_deleted = '#isDeleted#',
+      --iff createdTime != null
+        created_time = '#createdTime#',
+      --iff createdUuid != null and createdUuid != ''
+        created_uuid = '#createdUuid#',
+      --iff createdName != null and createdName != ''
+        created_name = '#createdName#',
+      --iff updatedTime != null
+        updated_time = '#updatedTime#',
+      --iff createdUuid != null and createdUuid != ''
+        updated_uuid = '#createdUuid#',
+      --iff updatedName != null and updatedName != ''
+        updated_name = '#updatedName#',
+      --iff orgUuid != null and orgUuid != ''
+        org_uuid = '#orgUuid#',
+      --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#'
+    -- end
+    where
+    is_deleted = 'N'
+--iff equipTestUuid != null and equipTestUuid != ''
+    and equip_test_uuid = '#equipTestUuid#'
+
+
+
+-- [deleteEquipTest]
+UPDATE
+    res_equip_test
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'
+-- end
+WHERE
+    is_deleted = 'N'
+--iff equipTestUuid != null and equipTestUuid !=''
+    and equip_test_uuid = '#equipTestUuid#'
+--iff equipTestUuids != null
+    and equip_test_uuid in
+    -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
+
+-- [listEquipTestDTO]
+  SELECT
+    et.equip_test_uuid equipTestUuid,
+    et.equip_uuid equipUuid,
+    et.cert_no certNo,
+    et.test_date testDate,
+    et.test_cycle testCycle,
+    et.is_long_term isLongTerm,
+    et.test_valid_date testValidDate,
+    et.test_result testResult,
+    et.test_type testType,
+    et.test_fee testFee,
+    et.fee_desc feeDesc,
+    et.standard_desc standardDesc,
+    et.online_cert_url onlineCertUrl,
+    et.prod_catalog_uuid prodCatalogUuid,
+    et.comments comments,
+    et.is_deleted isDeleted,
+    et.created_time createdTime,
+    et.created_uuid createdUuid,
+    et.created_name createdName,
+    et.updated_time updatedTime,
+    et.updated_name updatedName,
+    et.org_uuid orgUuid,
+    e.equip_name equipName,
+    e.equip_name_en equipNameEn,
+    e.equip_spec equipSpec,
+    e.factory_no factoryNo,
+    e.manufacture manufacture,
+    e.dept_uuid deptUuid
+    from
+    res_equip_test et
+    LEFT JOIN res_equip e ON e.equip_uuid = et.equip_uuid
+where
+    et.is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and et.org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid !=''
+    and et.app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and et.prod_catalog_uuid = '#prodCatalogUuid#'

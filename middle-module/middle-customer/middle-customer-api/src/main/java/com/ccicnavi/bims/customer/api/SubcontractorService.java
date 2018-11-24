@@ -1,7 +1,11 @@
 package com.ccicnavi.bims.customer.api;
 
 
+import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 
 import java.util.List;
 
@@ -13,20 +17,42 @@ import java.util.List;
  */
 
 public interface SubcontractorService {
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 分页查询分包方信息
+     * @Date 15:59 2018/11/23
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.customer.pojo.SubcontractorDO>
+     */
+    PageBean<SubcontractorDO> listSubcontractorPage(PageParameter<SubcontractorDO> pageParameter);
 
-    /**查询全部分包方信息*/
-    List<SubcontractorDO> listSubcontractor(SubcontractorDO subcontractor) throws Exception;
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 新增分包方信息
+     * @Date 16:15 2018/11/23
+     * @Param [subcontractor]
+     * @Return int
+     */
+    Integer insertSubcontractor(SubcontractorDO subcontractor) ;
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 根据分包方信息查询分包方包含的所有的信息（资质、联系人、银行信息）
+     * @Date 18:21 2018/11/23
+     * @Param [subcontractorDTO]
+     * @Return com.ccicnavi.bims.customer.pojo.SubcontractorDTO
+     */
+    SubcontractorDTO getSubcontractorList(SubcontractorDTO subcontractorDTO);
 
-    /**新增分包方信息*/
-    int saveSubcontractor(SubcontractorDO subcontractor) throws Exception;
+
+
 
     /**删除分包方信息*/
-    int removeSubcontractor(SubcontractorDO subcontractor) throws Exception;
+    Integer removeSubcontractor(SubcontractorDO subcontractor) ;
 
     /**修改分包方信息*/
-    int updateSubcontractor(SubcontractorDO subcontractor) throws Exception;
+    Integer updateSubcontractor(SubcontractorDO subcontractor) ;
 
     /**根据主键返回对应的分包方信息*/
-    SubcontractorDO getSubcontractor(SubcontractorDO subcontractor) throws Exception;
+   SubcontractorDTO getSubcontractorOne(SubcontractorDTO subcontractorDTO) ;
 
 }

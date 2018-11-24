@@ -2,10 +2,10 @@ package com.ccicnavi.bims.resource.dao;
 
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 import com.ccicnavi.bims.resource.pojo.EquipUseDO;
 import com.ccicnavi.bims.resource.pojo.EquipUseDTO;
-
+import org.n3r.eql.EqlTran;
+import java.util.List;
 
 /**
  * @program: bims-backend
@@ -33,13 +33,22 @@ public interface EquipUseDao {
     EquipUseDO getEquipUse(String equipUuid);
 
     /**
+     * @Author MengZiJie
+     * @Description 根据uuids查询设备领用信息
+     * @Data 2018/11/23 17:32
+     * @Param [equipUseDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipUseDTO>
+     */
+    List<EquipUseDO> getEquipUseList(EquipUseDTO equipUseDTO);
+
+    /**
      * @Author panyida
      * @Description 新增设备领用归还信息
      * @Date 11:45 2018/11/14
      * @Param [equipUseDO]
      * @Return java.lang.Integer
      */
-    Integer insertEquipUse(EquipUseDO equipUseDO);
+    Integer insertEquipUse(EquipUseDO equipUseDO,EqlTran tran);
 
     /**
      * @Author panyida
@@ -48,7 +57,7 @@ public interface EquipUseDao {
      * @Param [equipUseDO]
      * @Return java.lang.Integer
      */
-    Integer updateEquipUse(EquipUseDO equipUseDO);
+    Integer updateEquipUse(EquipUseDO equipUseDO,EqlTran tran);
 
     /**
      * @Author panyida
@@ -57,7 +66,7 @@ public interface EquipUseDao {
      * @Param [equipUseUuid]
      * @Return java.lang.Integer
      */
-    Integer deleteEquipUse(String equipUseUuid);
+    Integer deleteEquipUse(EquipUseDTO equipUseDTO,EqlTran tran);
 
     /**
      * @Author panyida

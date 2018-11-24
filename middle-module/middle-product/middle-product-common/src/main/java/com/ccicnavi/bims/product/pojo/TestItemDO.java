@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.product.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,9 +15,8 @@ import java.util.Date;
  * @author: wangynigling
  * @create: 2018-11-19 17:02
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TestItemDO implements Serializable {
 
     /**

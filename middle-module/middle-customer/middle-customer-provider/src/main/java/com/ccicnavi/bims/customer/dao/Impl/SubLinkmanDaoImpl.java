@@ -5,6 +5,8 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.LinkmanDao;
 import com.ccicnavi.bims.customer.dao.SubLinkmanDao;
 import com.ccicnavi.bims.customer.pojo.SubLinkmanDO;
+import com.ccicnavi.bims.customer.pojo.SubLinkmanDTO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.n3r.eql.EqlTran;
@@ -28,8 +30,8 @@ public class SubLinkmanDaoImpl implements SubLinkmanDao {
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubLinkmanDO>
      */
     @Override
-    public List<SubLinkmanDO> listSubLinkman(SubLinkmanDO subLinkmanDO) {
-        return new Eql().select("listSubLinkman").params(subLinkmanDO).execute();
+    public List<SubLinkmanDO> listSubLinkman(SubcontractorDTO subcontractorDTO) {
+        return new Eql().select("listSubLinkman").params(subcontractorDTO).returnType(SubLinkmanDO.class).execute();
     }
     /**
      * @Author FanDongSheng
@@ -39,7 +41,7 @@ public class SubLinkmanDaoImpl implements SubLinkmanDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer saveSubLinkman(SubLinkmanDO subLinkmanDO, EqlTran tran) {
+    public Integer insertSubLinkman(SubLinkmanDO subLinkmanDO, EqlTran tran) {
         Eql eql = new Eql();
         if(tran != null){
             eql.useTran(tran);
@@ -54,12 +56,12 @@ public class SubLinkmanDaoImpl implements SubLinkmanDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer removeSubLinkman(SubLinkmanDO subLinkmanDO,EqlTran tran) {
+    public Integer deleteSubLinkman(SubLinkmanDTO subLinkmanDTO, EqlTran tran) {
         Eql eql = new Eql();
         if(tran != null){
             eql.useTran(tran);
         }
-        return eql.update("deleteSubLinkman").params(subLinkmanDO).returnType(Integer.class).execute();
+        return eql.update("deleteSubLinkman").params(subLinkmanDTO).returnType(Integer.class).execute();
     }
     /**
      * @Author FanDongSheng

@@ -1,9 +1,13 @@
 package com.ccicnavi.bims.customer.dao.Impl;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.SubcontractorDao;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -19,19 +23,25 @@ import java.util.Map;
 @Service
 public class SubcontractorDaoImpl implements SubcontractorDao {
 
-    /** *
-     * @Author WangYingLing
-     * @Description 查询所有分包方信息
-     * @Date 16:48 2018/11/14
-     * @Param [subcontractor]
-     * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubcontractorDO>
+    /**
+     * @Author FanDongSheng
+     * @Description //TODO 分包方分页查询添加
+     * @Date 16:21 2018/11/23
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.customer.pojo.SubcontractorDO>
      */
     @Override
-    public List<SubcontractorDO> listSubcontractor() {
-        
-        return new Eql().select("listSubcontractor").execute();
+    public PageBean<SubcontractorDO> listSubcontractor(PageParameter<SubcontractorDO> pageParameter) throws Exception {
+        //封装分页参数
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        //执行查询
+        List<SubcontractorDO> subcontractorList = new Eql().select("listSubcontractor").params(pageParameter.getParameter()).returnType(SubcontractorDO.class).limit(page).execute();
+        if(subcontractorList != null) {
+            return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),subcontractorList);
+        }else {
+            return null;
+        }
     }
-
     /** *
      * @Author WangYingLing
      * @Description 新增分包方信息
@@ -40,8 +50,8 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
      * @Return java.lang.Integer
      */
     @Override
-    public int saveSubcontractor(SubcontractorDO subcontractor) {
-        return new Eql().insert("saveSubcontractor").params(subcontractor).execute();
+    public Integer insertSubcontractor(SubcontractorDO subcontractor) {
+        return new Eql().insert("insertSubcontractor").params(subcontractor).returnType(Integer.class).execute();
     }
 
     /** *
@@ -52,8 +62,8 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
      * @Return java.lang.Integer
      */
     @Override
-    public int removeSubcontractor(SubcontractorDO subcontractor) {
-        return new Eql().update("removeSubcontractor").params(subcontractor).execute();
+    public Integer removeSubcontractor(SubcontractorDO subcontractor) {
+        return new Eql().update("removeSubcontractor").params(subcontractor).returnType(Integer.class).execute();
     }
 
     /** *
@@ -64,7 +74,7 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
      * @Return java.lang.Integer
      */
     @Override
-    public int updateSubcontractor(SubcontractorDO subcontractor) {
+    public Integer updateSubcontractor(SubcontractorDO subcontractor) {
         return new Eql().update("updateSubcontractor").params(subcontractor).execute();
     }
 
@@ -76,8 +86,8 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
      * @Return com.ccicnavi.bims.customer.pojo.SubcontractorDO
      */
     @Override
-    public SubcontractorDO getSubcontractor(SubcontractorDO subcontractor) {
-        return new Eql().selectFirst("getSubcontractor").params(subcontractor).returnType(SubcontractorDO.class).execute();
+    public SubcontractorDTO getSubcontractor(SubcontractorDTO subcontractorDTO) {
+        return new Eql().selectFirst("getSubcontractor").params(subcontractorDTO).returnType(SubcontractorDTO.class).execute();
 
     }
 

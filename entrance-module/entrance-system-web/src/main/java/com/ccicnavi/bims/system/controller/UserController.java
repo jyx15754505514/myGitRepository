@@ -33,13 +33,13 @@ import java.util.Date;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private UserService userService;
 
     @Autowired
     private UserManager userManager;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
     private IdWorkerService idWorkerService;
 
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
@@ -253,6 +253,25 @@ public class UserController {
         } catch (Exception e) {
             log.error("根据用户分配角色失败", e);
             return ResultT.failure(ResultCode.ADD_FAILURE);
+        }
+    }
+
+    /**
+     *@Description: 恢复初始密码
+     *@Param: [userDO]
+     *@return: com.ccicnavi.bims.common.ResultT
+     *@Author: zhangxingbiao
+     *@date: 2018/11/22
+     */
+    @RequestMapping(value = "/initialPassword", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT initialPassword(@RequestBody UserDTO userDTO) {
+
+        try {
+            userService.initialPassword(userDTO);
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("恢复初始密码失败", e);
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
     }
 }

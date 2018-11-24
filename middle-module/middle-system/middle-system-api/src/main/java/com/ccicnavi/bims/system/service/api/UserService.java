@@ -77,6 +77,15 @@ public interface UserService {
     Integer addUserRole(UserDTO userDTO);
 
     /**
+    *@Description: 恢复初始密码
+    *@Param: [userDTO]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/23
+    */
+    public UserDTO initialPassword(UserDTO userDTO);
+
+    /**
      *@Description: 用户登录
      *@Param: [userDO]
      *@return: java.lang.Integer

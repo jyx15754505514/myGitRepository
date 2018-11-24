@@ -1,11 +1,11 @@
 package com.ccicnavi.bims.system.dao.impl;
 
 
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.SettingDao;
 import com.ccicnavi.bims.system.pojo.SettingDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
@@ -88,7 +88,7 @@ public class SettingDaoImpl implements SettingDao {
     *@date: 2018/11/15
     */
     @Override
-    public SettingDO getSetting(SettingDO settingDO){
-        return new Eql().selectFirst("getSetting").params(settingDO).returnType(SettingDO.class).execute();
+    public SettingDO getSetting(UserDTO userDTO){
+        return new Eql().selectFirst("getSetting").params(userDTO).returnType(SettingDO.class).execute();
     }
 }

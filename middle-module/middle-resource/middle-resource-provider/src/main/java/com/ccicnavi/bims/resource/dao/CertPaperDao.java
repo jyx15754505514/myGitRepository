@@ -1,4 +1,6 @@
 package com.ccicnavi.bims.resource.dao;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
 import java.util.List;
 
@@ -47,4 +49,12 @@ public interface CertPaperDao {
      * @throws Exception
      */
     public CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception;
+    /*
+     * @Author heibin
+     * @Description  证书纸分页列表
+     * @Date 17:02 2018/11/23
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.CertPaperDO>
+     */
+    PageBean<CertPaperDO> listCertPaperPage(PageParameter<CertPaperDO> orderInfoDO) throws Exception;
 }

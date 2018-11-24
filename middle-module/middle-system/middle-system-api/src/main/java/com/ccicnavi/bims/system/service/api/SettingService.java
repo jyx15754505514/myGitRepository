@@ -1,10 +1,9 @@
 package com.ccicnavi.bims.system.service.api;
 
-import java.util.List;
-
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.SettingDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 
 /**
  *@program: bims-backend
@@ -43,8 +42,8 @@ public interface SettingService {
 
     /**
      * 根据主键获取单个系统设置信息
-     * @param settingDO
+     * @param userDTO
      * @return SettingDO
      */
-    public  SettingDO getSetting(SettingDO settingDO);
+    public  SettingDO getSetting(UserDTO userDTO);
 }

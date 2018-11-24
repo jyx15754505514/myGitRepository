@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.product.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,9 +14,8 @@ import java.io.Serializable;
  * @author: LiJie
  * @create: 2018-11-22 14:42
  */
-@Setter
-@Getter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MinItemTestDO implements Serializable {
 
     /**最小服务项ID*/

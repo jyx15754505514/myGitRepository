@@ -1,19 +1,15 @@
 package com.ccicnavi.bims.resource.dao.impl;
 
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.EquipUseDao;
-import com.ccicnavi.bims.resource.pojo.EquipTestDO;
-import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
 import com.ccicnavi.bims.resource.pojo.EquipUseDO;
 import com.ccicnavi.bims.resource.pojo.EquipUseDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 /**
  * @program: bims-backend
  * @description: 设备领用归还信息持久层接口实现类
@@ -31,7 +27,19 @@ public class EquipUseDaoImpl implements EquipUseDao {
      */
     @Override
     public EquipUseDO getEquipUse(String equipUseUuid){
-        return EqlUtils.getInstance("druid").selectFirst("getEquipUse").params(equipUseUuid).returnType(EquipUseDO.class).execute();
+        return new Eql().selectFirst("getEquipUse").params(equipUseUuid).returnType(EquipUseDO.class).execute();
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 根据uuids查询设备领用信息
+     * @Data 2018/11/23 17:33
+     * @Param [equipUseDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipUseDTO>
+     */
+    @Override
+    public List<EquipUseDO> getEquipUseList(EquipUseDTO equipUseDTO) {
+        return new Eql().select("getEquipUseList").params(equipUseDTO).returnType(EquipUseDO.class).execute();
     }
 
     /**
@@ -44,7 +52,7 @@ public class EquipUseDaoImpl implements EquipUseDao {
     @Override
     public PageBean<EquipUseDO> listEquipUse(PageParameter<EquipUseDO> pageParameter){
         EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
-        List<EquipUseDO> listEquipUse = new Eql("druid").select("listEquipUse").params(pageParameter.getParameter()).returnType(EquipUseDO.class).limit(eqlPage).execute();
+        List<EquipUseDO> listEquipUse = new Eql().select("listEquipUse").params(pageParameter.getParameter()).returnType(EquipUseDO.class).limit(eqlPage).execute();
         return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquipUse);
     }
 
@@ -56,8 +64,12 @@ public class EquipUseDaoImpl implements EquipUseDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertEquipUse(EquipUseDO equipUseDO){
-        return EqlUtils.getInstance("druid").insert("insertEquipUse").params(equipUseDO).returnType(Integer.class).execute();
+    public Integer insertEquipUse(EquipUseDO equipUseDO, EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).insert("insertEquipUse").params(equipUseDO).returnType(Integer.class).execute();
+        }
+        return eql.insert("insertEquipUse").params(equipUseDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -68,8 +80,12 @@ public class EquipUseDaoImpl implements EquipUseDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer updateEquipUse(EquipUseDO equipUseDO){
-        return EqlUtils.getInstance("druid").update("updateEquipUse").params(equipUseDO).returnType(Integer.class).execute();
+    public Integer updateEquipUse(EquipUseDO equipUseDO, EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).update("updateEquipUse").params(equipUseDO).returnType(Integer.class).execute();
+        }
+        return eql.update("updateEquipUse").params(equipUseDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -80,8 +96,12 @@ public class EquipUseDaoImpl implements EquipUseDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer deleteEquipUse(String equipUseUuid){
-        return EqlUtils.getInstance("druid").delete("deleteEquipUse").params(equipUseUuid).returnType(Integer.class).execute();
+    public Integer deleteEquipUse(EquipUseDTO equipUseDTO, EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).delete("deleteEquipUse").params(equipUseDTO).returnType(Integer.class).execute();
+        }
+        return eql.delete("deleteEquipUse").params(equipUseDTO).returnType(Integer.class).execute();
     }
 
     /**
@@ -94,7 +114,7 @@ public class EquipUseDaoImpl implements EquipUseDao {
     @Override
     public PageBean<EquipUseDTO> listEquipUseDTO(PageParameter<EquipUseDTO> pageParameter){
         EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
-        List<EquipUseDTO> listEquipUseDTO = new Eql("druid").select("listEquipUseDTO").params(pageParameter.getParameter()).returnType(EquipUseDTO.class).limit(eqlPage).execute();
+        List<EquipUseDTO> listEquipUseDTO = new Eql().select("listEquipUseDTO").params(pageParameter.getParameter()).returnType(EquipUseDTO.class).limit(eqlPage).execute();
         return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquipUseDTO);
     }
 }

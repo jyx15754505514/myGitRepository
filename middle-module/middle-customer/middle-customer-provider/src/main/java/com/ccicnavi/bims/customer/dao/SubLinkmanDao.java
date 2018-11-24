@@ -3,6 +3,8 @@ package com.ccicnavi.bims.customer.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.SubLinkmanDO;
+import com.ccicnavi.bims.customer.pojo.SubLinkmanDTO;
+import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import org.n3r.eql.EqlTran;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public interface SubLinkmanDao {
      * @Param [linkmanDO]
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubLinkmanDO>
      */
-    List<SubLinkmanDO> listSubLinkman(SubLinkmanDO subLinkmanDO) throws Exception;
+    List<SubLinkmanDO> listSubLinkman(SubcontractorDTO subcontractorDTO) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description 保存分包方联系人信息
@@ -28,7 +30,7 @@ public interface SubLinkmanDao {
      * @Param [subLinkmanDO, tran]
      * @Return int
      */
-    Integer saveSubLinkman(SubLinkmanDO subLinkmanDO, EqlTran tran) throws Exception;
+    Integer insertSubLinkman(SubLinkmanDO subLinkmanDO, EqlTran tran) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description 删除分包方联系人
@@ -36,7 +38,7 @@ public interface SubLinkmanDao {
      * @Param [subLinkmanDO, tran]
      * @Return int
      */
-    Integer removeSubLinkman(SubLinkmanDO subLinkmanDO,EqlTran tran) throws Exception;
+    Integer deleteSubLinkman(SubLinkmanDTO subLinkmanDTO, EqlTran tran) throws Exception;
     /**
      * @Author FanDongSheng
      * @Description 更新联系人信息

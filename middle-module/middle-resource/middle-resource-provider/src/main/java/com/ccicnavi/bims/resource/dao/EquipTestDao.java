@@ -4,7 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.EquipTestDO;
 import com.ccicnavi.bims.resource.pojo.EquipTestDTO;
-
+import org.n3r.eql.EqlTran;
 import java.util.List;
 
 /**
@@ -30,7 +30,16 @@ public interface EquipTestDao {
      * @Param [equipUuid]
      * @Return com.ccicnavi.bims.ource.pojo.EquipTestDO
      */
-    EquipTestDO getEquipTest(String equipUuid);
+    EquipTestDO getEquipTest(EquipTestDO equipTestDO);
+
+    /**
+     * @Author MengZiJie
+     * @Description 根据uuids获取设备信息
+     * @Data 2018/11/23 18:18
+     * @Param [equipTestDTO]
+     * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipTestDO>
+     */
+    List<EquipTestDO> getEquipTestList(EquipTestDTO equipTestDTO);
 
     /**
      * @Author panyida
@@ -39,7 +48,7 @@ public interface EquipTestDao {
      * @Param [equipTestDO]
      * @Return java.lang.Integer
      */
-    Integer insertEquipTest(EquipTestDO equipTestDO);
+    Integer insertEquipTest(EquipTestDO equipTestDO, EqlTran tran);
 
     /**
      * @Author panyida
@@ -48,7 +57,7 @@ public interface EquipTestDao {
      * @Param [equipTestDO]
      * @Return java.lang.Integer
      */
-    Integer updateEquipTest(EquipTestDO equipTestDO);
+    Integer updateEquipTest(EquipTestDO equipTestDO,EqlTran tran);
 
     /**
      * @Author panyida
@@ -57,7 +66,7 @@ public interface EquipTestDao {
      * @Param [equipTestUuid]
      * @Return java.lang.Integer
      */
-    Integer deleteEquipTest(String equipTestUuid);
+    Integer deleteEquipTest(EquipTestDTO equipTestDTO,EqlTran tran);
 
     /**
      * @Author panyida

@@ -1,5 +1,9 @@
 package com.ccicnavi.bims.customer.pojo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,6 +12,9 @@ import java.util.Date;
  * @Date: 2018/11/23 15:20
  * @Description: 分包方银行信息
  */
+@Getter
+@Setter
+@ToString
 public class SubBankDO implements Serializable {
     /**
      * 分包方银行主键

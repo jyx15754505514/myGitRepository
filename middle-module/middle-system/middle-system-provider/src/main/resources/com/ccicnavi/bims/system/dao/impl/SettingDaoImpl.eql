@@ -280,5 +280,8 @@
      WHERE
         is_deleted = 'N'
         --if settingUuid != null and  settingUuid != ''
-                 and  setting_uuid = '#settingUuid#'
+                      and  setting_uuid = '#settingUuid#'
+                --end
+        --if orgUuid != null and  orgUuid != ''
+              and  org_uuid = '#orgUuid#'
         --end

@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.product.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,6 +17,7 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MinItemDO implements Serializable {
 
     /**最小服务项ID*/
