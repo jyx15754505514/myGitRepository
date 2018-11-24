@@ -1,7 +1,7 @@
 package com.ccicnavi.bims.order.dao.impl;
 
 import com.ccicnavi.bims.order.dao.OrderWorksheetCostDao;
-import com.ccicnavi.bims.order.pojo.OrderWorksheetCostDo;
+import com.ccicnavi.bims.order.pojo.OrderWorksheetCostDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class OrderWorksheetCostDaoImpl implements OrderWorksheetCostDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertOrderWorksheetCost(OrderWorksheetCostDo orderWorksheetCostDo, EqlTran tran) throws Exception {
+    public Integer insertOrderWorksheetCost(OrderWorksheetCostDO orderWorksheetCostDo, EqlTran tran) throws Exception {
         Eql eql = new Eql("DEFAULT");
         if(tran != null){
             return eql.useTran(tran).insert("insertOrderWorksheetCost").params(orderWorksheetCostDo).returnType(Integer.class).execute();
@@ -35,7 +35,7 @@ public class OrderWorksheetCostDaoImpl implements OrderWorksheetCostDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer updateOrderWorksheetCost(OrderWorksheetCostDo orderWorksheetCostDo, EqlTran tran) throws Exception {
+    public Integer updateOrderWorksheetCost(OrderWorksheetCostDO orderWorksheetCostDo, EqlTran tran) throws Exception {
         Eql eql = new Eql("DEFAULT");
         if(tran != null){
             return eql.useTran(tran).update("updateOrderWorksheetCost").params(orderWorksheetCostDo).returnType(Integer.class).execute();
