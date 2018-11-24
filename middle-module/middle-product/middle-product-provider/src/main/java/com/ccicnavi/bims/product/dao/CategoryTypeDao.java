@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CategoryTypeDao {
 
-    List<CategoryTypeDO> lsitCategoryType();
+    List<CategoryTypeDO> lsitCategoryType(CategoryTypeDO categoryTypeDO);
 
     int saveCategoryType(CategoryTypeDO categoryTypeDO);
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CatalogDao {
 
-    List<CatalogDO> listCatalog() throws Exception;
+    List<CatalogDO> listCatalog(CatalogDO catalogDO) throws Exception;
 
     int saveCatalog(CatalogDO catalogDO) throws Exception;
 

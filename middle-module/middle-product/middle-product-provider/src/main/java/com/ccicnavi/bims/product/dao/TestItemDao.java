@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TestItemDao {
 
-    List<TestItemDO> listTestItem() throws Exception;
+    List<TestItemDO> listTestItem(TestItemDO testItemDO) throws Exception;
 
     int saveTestItem(TestItemDO testItemDO) throws Exception;
 

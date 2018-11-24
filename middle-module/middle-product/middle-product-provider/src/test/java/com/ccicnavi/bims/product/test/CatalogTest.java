@@ -21,7 +21,9 @@ public class CatalogTest {
 
     @Test
     public void listCatalogDOTest(){
-        List<CatalogDO> catalogDOList=catalogDaoTest.listCatalog();
+        CatalogDO catalogDO=new CatalogDO();
+        catalogDO.setCatalogCode("AGM");
+        List<CatalogDO> catalogDOList=catalogDaoTest.listCatalog(catalogDO);
         System.out.println(catalogDOList);
     }
 
