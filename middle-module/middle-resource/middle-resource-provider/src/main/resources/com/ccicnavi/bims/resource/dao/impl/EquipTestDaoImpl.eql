@@ -104,6 +104,8 @@ where
     res_equip_test
 where
     is_deleted = 'N'
+-- iff equipUuid != null and equipUuid != ''
+        equip_uuid = '#equipUuid#'
 --iff orgUuid != null and orgUuid != ''
     and org_uuid = '#orgUuid#'
 --iff appSysUuid != null and appSysUuid !=''
@@ -115,8 +117,7 @@ where
     -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
        '#item#'
     -- end
--- iff equipUuid != null and equipUuid != ''
-    equip_uuid = '#equipUuid#'
+
 
 
 -- [insertEquipTest]
