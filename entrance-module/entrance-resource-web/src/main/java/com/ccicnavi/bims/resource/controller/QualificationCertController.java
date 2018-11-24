@@ -27,7 +27,7 @@ public class QualificationCertController {
 
     private final static Logger log = LoggerFactory.getLogger(QualificationCertController.class);
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
+    @Reference(timeout = 30000)
     QualificationCertService qualificationCertService;
 
     /**@description: 查询人员资格证书

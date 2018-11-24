@@ -30,7 +30,7 @@ public class CatalogWorkhourController {
 
     private final static Logger log = LoggerFactory.getLogger(CategoryController.class);
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    @Reference(timeout = 30000)
     CatalogWorkhourService catalogWorkhourService;
 
 

@@ -19,11 +19,11 @@ import java.util.List;
 @RequestMapping("/NewEntrust")
 public class NewEntrustOrderController {
 
-    @Reference(timeout = 1000, url = "dubbo://127.0.0.1:20883")
+    @Reference(timeout = 1000)
     CustomerService customerService;
 
 
-    @Reference(url = "dubbo://127.0.0.1:20886",timeout = 1000000)
+    @Reference(timeout = 1000000)
     OrderInfoService orderInfoService;
 
     /*

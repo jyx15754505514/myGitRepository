@@ -39,7 +39,7 @@ public interface EquipService {
      * @Param [equipDTO]
      * @Return com.ccicnavi.bims.resource.pojo.EquipDTO
      */
-    EquipDTO getEquipInfolist(EquipDO equipDO);
+    EquipDTO getEquipInfolist(EquipDTO equipDTO);
 
     /**
      * @Author MengZiJie
@@ -48,7 +48,7 @@ public interface EquipService {
      * @Param [equipDTO]
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDTO>
      */
-    List<EquipDO> getEquipList(EquipDTO equipDTO);
+    List<EquipDTO> getEquipList(EquipDTO equipDTO);
 
     /**
      * @Author panyida
@@ -57,7 +57,7 @@ public interface EquipService {
      * @Param [equipUuid]
      * @Return com.ccicnavi.bims.ource.pojo.EquipDO
      */
-    EquipDTO getEquip(EquipDO equipDO);
+    EquipDTO getEquip(EquipDTO equipDTO);
 
     /**
      * @Author panyida
