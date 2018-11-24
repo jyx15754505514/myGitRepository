@@ -101,7 +101,7 @@ public class EquipServiceImpl implements EquipService {
             /**设置相关参数*/
             equipTestDTO.setAppSysUuid(equipDO.getAppSysUuid());
             equipTestDTO.setOrgUuid(equipDO.getOrgUuid());
-            equipTestDTO.setProdCatalogUuid(equipDO.getProdCatalogPuid());
+            equipTestDTO.setProdCatalogUuid(equipDO.getProdCatalogUuid());
             equipTestDTO.setEquipUuid(equipDO.getEquipUuid());
             /**获取设备相关检定记录*/
             List<EquipTestDO> equipTestDO = equipTestDao.getEquipTestList(equipTestDTO);
@@ -111,7 +111,7 @@ public class EquipServiceImpl implements EquipService {
             /**设置相关参数*/
             equipUseDTO.setAppSysUuid(equipDO.getAppSysUuid());
             equipUseDTO.setOrgUuid(equipDO.getOrgUuid());
-            equipUseDTO.setProdCatalogPuid(equipDO.getProdCatalogPuid());
+            equipUseDTO.setProdCatalogPuid(equipDO.getProdCatalogUuid());
             equipUseDTO.setEquipUuid(equipDO.getEquipUuid());
             /**获取设备相关*/
             List<EquipUseDO> equipUses = equipUseDao.getEquipUseList(equipUseDTO);
