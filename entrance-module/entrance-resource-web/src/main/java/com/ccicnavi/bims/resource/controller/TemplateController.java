@@ -27,7 +27,7 @@ public class TemplateController {
     private final static Logger log = LoggerFactory.getLogger(TemplateController.class);
 
     //url指定dubbo的地址
-    @Reference(timeout = 30000")
+    @Reference(timeout = 30000)
     private TemplateService templateService;
 
     /*
