@@ -6,6 +6,7 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.SettingDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.SettingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,10 +59,10 @@ public class SettingController {
     */
 
     @RequestMapping(value = "/getSetting", method = RequestMethod.POST)
-    public ResultT getSetting(@RequestBody SettingDO settingDO) {
+    public ResultT getSetting(@RequestBody UserDTO userDTO) {
         SettingDO setting = null;
         try {
-            setting = settingService.getSetting(settingDO);
+            setting = settingService.getSetting(userDTO);
             return ResultT.success(setting);
         } catch (Exception e) {
             log.error("根据主键查询系统设置信息失败", e);
