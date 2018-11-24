@@ -95,28 +95,28 @@ public class EquipServiceImpl implements EquipService {
      * @Return com.ccicnavi.bims.resource.pojo.EquipDTO
      */
     @Override
-    public EquipDTO getEquipInfolist(EquipDO equipDO) {
+    public EquipDTO getEquipInfolist(EquipDTO equipDTO) {
         //创建检定记录对象
         EquipTestDTO equipTestDTO = new EquipTestDTO();
         //创建领用记录对象
         EquipUseDTO equipUseDTO = new EquipUseDTO();
-        EquipDTO equipDTO = equipDao.getEquip(equipDO);
+        equipDTO = equipDao.getEquip(equipDTO);
         if(equipDTO != null){
             /**设置相关参数*/
-            equipTestDTO.setAppSysUuid(equipDO.getAppSysUuid());
-            equipTestDTO.setOrgUuid(equipDO.getOrgUuid());
-            equipTestDTO.setProdCatalogUuid(equipDO.getProdCatalogUuid());
-            equipTestDTO.setEquipUuid(equipDO.getEquipUuid());
+            equipTestDTO.setAppSysUuid(equipDTO.getAppSysUuid());
+            equipTestDTO.setOrgUuid(equipDTO.getOrgUuid());
+            equipTestDTO.setProdCatalogUuid(equipDTO.getProdCatalogUuid());
+            equipTestDTO.setEquipUuid(equipDTO.getEquipUuid());
             /**获取设备相关检定记录*/
             List<EquipTestDO> equipTestDO = equipTestDao.getEquipTestList(equipTestDTO);
             if(equipTestDO.size() > 0){
                 equipDTO.setEquipTestDTO(equipTestDO);
             }
             /**设置相关参数*/
-            equipUseDTO.setAppSysUuid(equipDO.getAppSysUuid());
-            equipUseDTO.setOrgUuid(equipDO.getOrgUuid());
-            equipUseDTO.setProdCatalogPuid(equipDO.getProdCatalogUuid());
-            equipUseDTO.setEquipUuid(equipDO.getEquipUuid());
+            equipUseDTO.setAppSysUuid(equipDTO.getAppSysUuid());
+            equipUseDTO.setOrgUuid(equipDTO.getOrgUuid());
+            equipUseDTO.setProdCatalogPuid(equipDTO.getProdCatalogUuid());
+            equipUseDTO.setEquipUuid(equipDTO.getEquipUuid());
             /**获取设备相关*/
             List<EquipUseDO> equipUses = equipUseDao.getEquipUseList(equipUseDTO);
             if(equipUses.size() > 0){
@@ -135,10 +135,10 @@ public class EquipServiceImpl implements EquipService {
      * @Return com.ccicnavi.bims.resource.pojo.EquipDO
      */
     @Override
-    public EquipDTO getEquip(EquipDO equipDO){
+    public EquipDTO getEquip(EquipDTO equipDTO){
         EquipDTO equip = null;
         try {
-            equip = equipDao.getEquip(equipDO);
+            equip = equipDao.getEquip(equipDTO);
         } catch (Exception e) {
             log.error("根据设备信息主键获取设备信息错误",e);
         }
@@ -153,14 +153,14 @@ public class EquipServiceImpl implements EquipService {
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDTO>
      */
     @Override
-    public List<EquipDO> getEquipList(EquipDTO equipDTO) {
-        List<EquipDO> equipDO = null;
+    public List<EquipDTO> getEquipList(EquipDTO equipDTO) {
+        List<EquipDTO> equipDTOList = null;
         try {
-            equipDO = equipDao.getEquipList(equipDTO);
+            equipDTOList = equipDao.getEquipList(equipDTO);
         } catch (Exception e) {
             log.error("获取信息失败",e);
         }
-        return equipDO;
+        return equipDTOList;
     }
 
     /**
