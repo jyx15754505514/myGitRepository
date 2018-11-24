@@ -29,23 +29,24 @@ public class SubcBankServiceImpl implements SubcBankService {
 
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方下银行信息
+     * @Description 分包方下银行信息
      * @Date 22:39 2018/11/23
      * @Param [subBankDTO]
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubBankDO>
      */
     @Override
     public List<SubBankDO> listSubcBank(SubcontractorDTO subcontractorDTO) {
+        List<SubBankDO> subBankDOList = null;
         try {
-            return subBankDao.listSubBank(subcontractorDTO);
+            subBankDOList =  subBankDao.listSubBank(subcontractorDTO);
         } catch (Exception e) {
             log.error("查询分包方得银行信息",e);
-            return null;
         }
+        return subBankDOList;
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方添加银行信息
+     * @Description 分包方添加银行信息
      * @Date 22:39 2018/11/23
      * @Param [subBank]
      * @Return java.lang.Integer
@@ -63,7 +64,7 @@ public class SubcBankServiceImpl implements SubcBankService {
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方下删除指定得银行信息  支持批量删除
+     * @Description 分包方下删除指定得银行信息  支持批量删除
      * @Date 22:39 2018/11/23
      * @Param [subBankDTO]
      * @Return java.lang.Integer
@@ -79,7 +80,7 @@ public class SubcBankServiceImpl implements SubcBankService {
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方下指定得银行信息修改
+     * @Description 分包方下指定得银行信息修改
      * @Date 22:40 2018/11/23
      * @Param [subBank]
      * @Return java.lang.Integer
@@ -95,7 +96,7 @@ public class SubcBankServiceImpl implements SubcBankService {
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 得到指定得银行信息
+     * @Description 得到指定得银行信息
      * @Date 22:40 2018/11/23
      * @Param [subBank]
      * @Return com.ccicnavi.bims.customer.pojo.SubBankDO

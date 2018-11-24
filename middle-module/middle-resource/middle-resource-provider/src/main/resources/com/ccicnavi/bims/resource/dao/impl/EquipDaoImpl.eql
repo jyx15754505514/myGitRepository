@@ -503,9 +503,9 @@ where
       --iff certNo != null and certNo != ''
         cert_no = '#certNo#',
       --iff testDate != null
-        test_date = '#testDate',
+        test_date = '#testDate#',
       --iff useDate != null
-        use_date = '#useDate' ,
+        use_date = '#useDate#' ,
       --iff useDeptUuid != null and useDeptUuid != ''
         use_dept_uuid = '#useDeptUuid#',
       --iff isVerify != null and isVerify != ''
@@ -590,8 +590,8 @@ where
     -- end
   where
     is_deleted = 'N'
-  --iff equipUseUuid != null and equipUseUuid != ''
-    and equip_use_uuid = '#equipUseUuid#'
+  --iff equipUuid != null and equipUuid != ''
+    and equip_uuid = '#equipUuid#'
 
 
 

@@ -27,23 +27,24 @@ public class SubcLinkmanServiceImpl implements SubcLinkmanService {
     SubLinkmanDao subLinkmanDao ;
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包联系人查询失败
+     * @Description 分包联系人查询失败
      * @Date 22:11 2018/11/23
      * @Param [subcontractorDTO]
      * @Return java.util.List<com.ccicnavi.bims.customer.pojo.SubLinkmanDO>
      */
     @Override
     public List<SubLinkmanDO> listSubcLinkman(SubcontractorDTO subcontractorDTO)  {
+        List<SubLinkmanDO> listSubcLinkman = null;
         try {
-            return subLinkmanDao.listSubLinkman(subcontractorDTO);
+            listSubcLinkman = subLinkmanDao.listSubLinkman(subcontractorDTO);
         } catch (Exception e) {
             log.error("查询分包联系人失败",e);
         }
-        return null;
+        return listSubcLinkman;
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方添加联系人
+     * @Description 分包方添加联系人
      * @Date 22:12 2018/11/23
      * @Param [subLinkman]
      * @Return java.lang.Integer
@@ -61,7 +62,7 @@ public class SubcLinkmanServiceImpl implements SubcLinkmanService {
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方联系人删除 支持批量删除功能
+     * @Description 分包方联系人删除 支持批量删除功能
      * @Date 22:15 2018/11/23
      * @Param [subLinkmanDTO]
      * @Return java.lang.Integer
@@ -77,7 +78,7 @@ public class SubcLinkmanServiceImpl implements SubcLinkmanService {
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 更新分包方联系人信息
+     * @Description 更新分包方联系人信息
      * @Date 22:15 2018/11/23
      * @Param [subLinkman]
      * @Return java.lang.Integer
@@ -93,7 +94,7 @@ public class SubcLinkmanServiceImpl implements SubcLinkmanService {
     }
     /**
      * @Author FanDongSheng
-     * @Description //TODO 分包方指定联系人信息查看
+     * @Description 分包方指定联系人信息查看
      * @Date 22:18 2018/11/23
      * @Param [subLinkman]
      * @Return com.ccicnavi.bims.customer.pojo.SubLinkmanDO

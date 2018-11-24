@@ -15,12 +15,20 @@ import java.io.Serializable;
 @Setter
 @ToString
 public class OrderTypeDO implements Serializable {
-
+    /**
+     * 主键
+     */
     private String orderTypeId;
-
+    /**
+     *订单类型ID
+     */
     private String parentTypeId;
-
+    /**
+     *是Y否N有子表，默认N
+     */
     private String hasTable;
-
+    /**
+     * 类型名称
+     */
     private String typeName;
 }

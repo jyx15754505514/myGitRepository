@@ -32,5 +32,5 @@ public class OrderItemSubDO implements Serializable {
     /**
      * 子项名称id
      */
-    private String productTestItemUuid; //产品主键
+    private String productTestItemUuid;
 }

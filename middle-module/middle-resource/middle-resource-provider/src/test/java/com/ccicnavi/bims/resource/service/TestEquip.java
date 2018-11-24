@@ -25,9 +25,9 @@ public class TestEquip {
     @Test
     public void getEquip() {
         try {
-            EquipDO equipDO = new EquipDO();
-            equipDO.setEquipUuid("nihaoa");
-            EquipDO equip = equipDaoImpl.getEquip(equipDO);
+            EquipDTO equipDTO = new EquipDTO();
+            equipDTO.setEquipUuid("nihaoa");
+            EquipDTO equip = equipDaoImpl.getEquip(equipDTO);
             System.err.println(equip);
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,7 +44,7 @@ public class TestEquip {
         try {
             EquipDTO equipUseDTO = new EquipDTO();
             equipUseDTO.setAppSysUuid("yingyongxitongid");
-            List<EquipDO> equipList = equipDaoImpl.getEquipList(equipUseDTO);
+            List<EquipDTO> equipList = equipDaoImpl.getEquipList(equipUseDTO);
             System.err.println(equipList);
         } catch (Exception e) {
             e.printStackTrace();
