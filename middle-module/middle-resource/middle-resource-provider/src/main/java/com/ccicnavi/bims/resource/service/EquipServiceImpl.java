@@ -172,7 +172,7 @@ public class EquipServiceImpl implements EquipService {
      */
     @Override
     public Integer updateEquip(EquipDO equipDO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipDao.updateEquip(equipDO,null);
         } catch (Exception e) {
