@@ -1,3 +1,4 @@
+package com.ccicnavi.bims.resource.certPaper.service;
 import com.ccicnavi.bims.resource.dao.impl.CertPaperDaoImpl;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
 import org.junit.Test;
