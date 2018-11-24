@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @create: 2018-11-15 21:04
  */
 @RestController
-@RequestMapping("system")
+@RequestMapping("/role")
 @Slf4j
 public class RoleController {
 
@@ -35,7 +35,7 @@ public class RoleController {
      * @Date 2018/11/16 10:49
      * @Param [pageParameter]
      **/
-    @PostMapping(value = "listRole")
+    @PostMapping(value = "/listRole")
     public ResultT listRole(@RequestBody PageParameter<RoleDO> pageParameter) {
         try {
             PageBean<RoleDO> roleDOList = roleService.listRole(pageParameter);
@@ -57,7 +57,7 @@ public class RoleController {
      * @Date 2018/11/16 15:21
      * @Param [role]
      **/
-    @PostMapping(value = "insertRole")
+    @PostMapping(value = "/insertRole")
     public ResultT insertRole(@RequestBody RoleDO role) {
         try {
             Integer integer = roleService.insertRole(role);
