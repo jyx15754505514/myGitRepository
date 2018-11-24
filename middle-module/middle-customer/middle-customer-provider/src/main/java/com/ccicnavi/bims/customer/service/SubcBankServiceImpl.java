@@ -1,14 +1,16 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.customer.api.SubcBankService;
 import com.ccicnavi.bims.customer.dao.SubBankDao;
 import com.ccicnavi.bims.customer.pojo.SubBankDO;
 import com.ccicnavi.bims.customer.pojo.SubBankDTO;
-import com.ccicnavi.bims.customer.pojo.SubLinkmanDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,8 +20,13 @@ import java.util.List;
  */
 @Slf4j
 public class SubcBankServiceImpl implements SubcBankService {
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
+
     @Autowired
     SubBankDao subBankDao;
+
+
     /**
      * @Author FanDongSheng
      * @Description //TODO 分包方下银行信息
@@ -46,6 +53,8 @@ public class SubcBankServiceImpl implements SubcBankService {
     @Override
     public Integer insertSubcBank(SubBankDO subBank) {
         try {
+            String subcBankUuid = idWorkerService.getId(new Date());
+            subBank.setSubcBankUuid(subcBankUuid);
             return subBankDao.insertSubBank(subBank,null);
         } catch (Exception e) {
             log.error("插入分包方得银行信息",e);

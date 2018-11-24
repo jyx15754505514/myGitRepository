@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.customer.api.SubcQualifiService;
 import com.ccicnavi.bims.customer.dao.SubcQualifiDao;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
@@ -9,6 +11,7 @@ import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +27,8 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
     @Autowired
     SubcQualifiDao subcQualifiDao;
 
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
     /**
      * @Author FanDongSheng
      * @Description //TODO 查询指定分包方下的资质信息
@@ -52,6 +57,8 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
     public Integer insertSubcQuali(SubcQualifiDO subcQuali) {
         Integer count=0;
         try {
+            String subcQualifiUuid = idWorkerService.getId(new Date());
+            subcQuali.setSubcQualifiUuid(subcQualifiUuid);
             count=subcQualifiDao.insertSubcuQuali(subcQuali);
         } catch (Exception e) {
             log.error("新增分包方资质信息失败",e);
