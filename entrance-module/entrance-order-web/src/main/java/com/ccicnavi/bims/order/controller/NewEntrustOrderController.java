@@ -23,7 +23,7 @@ public class NewEntrustOrderController {
     CustomerService customerService;
 
 
-    @Reference(,timeout = 1000000)
+    @Reference(timeout = 1000000)
     OrderInfoService orderInfoService;
 
     /*
