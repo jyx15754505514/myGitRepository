@@ -210,7 +210,9 @@ from
 -- [listMenuButtonByRole]
 SELECT
     md.btn_uuid as btnUuid,
-    md.btn_name as btnName
+    md.btn_name as btnName,
+    md.btn_url as btnUrl,
+    md.btn_icon as btnIcon
 from
     sys_menu_button md
     LEFT JOIN sys_role_permission rp ON rp.btn_uuid = md.btn_uuid
@@ -223,8 +225,16 @@ where
            '#item#'
        -- end
    -- end
+   --iff prodCatalogList != null
+      and rp.prod_catalog_uuid in
+      -- for item=item index=index collection=prodCatalogList open=( separator=, close=)
+          '#item#'
+      -- end
+  -- end
    	--iff prodCatalogUuid != null and prodCatalogUuid != ''
        and rp.prod_catalog_uuid = '#prodCatalogUuid#'
+    -- end
+
 
 -- 登录接口中，根据用户的角色和产品线，查询所有的按钮URL集合
 -- [listButtonUrlByRole]

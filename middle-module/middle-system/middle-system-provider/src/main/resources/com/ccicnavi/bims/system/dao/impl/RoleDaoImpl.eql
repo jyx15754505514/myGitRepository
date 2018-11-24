@@ -194,29 +194,17 @@
    SELECT
         ru.role_uuid as roleUuid,
         r.role_name as roleName,
-        r.parent_role_uuid as parentRoleUuid,
         r.role_code as roleCode,
         r.is_system as isSystem,
         r.is_enabled as isEnabled,
-        r.comments as comments,
-        r.is_deleted as isDeleted,
-        r.created_time as createdTime,
-        r.created_uuid as createdUuid,
-        r.created_name as createdName,
-        r.updated_time as updatedTime,
-        r.updated_name as updatedName,
-        r.app_sys_uuid as appSysUuid,
-        r.prod_catalog_uuid as prodCatalogUuid,
-        r.extend1 as extend1,
-        r.extend2 as extend2,
-        r.extend3 as extend3,
         o.org_name as orgName
    FROM
         sys_role_user ru
         LEFT JOIN sys_role r ON ru.role_uuid = r.role_uuid
         LEFT JOIN sys_organization o ON o.organization_uuid = r.org_uuid
    WHERE
-        ru.user_uuid = '#userUuid#'
+        r.is_enabled = 'Y'
+        AND ru.user_uuid = '#userUuid#'
 
 
 

@@ -250,7 +250,7 @@ SELECT
 from
     sys_menu
 where
-    is_deleted = 'N'   and parent_uuid  =''
+    is_deleted = 'N'   and parent_uuid  is null
 --iff appSysUuid != null and appSysUuid != ''
     and app_sys_uuid = '#appSysUuid#'
 --iff menuName != null and menuName != ''
@@ -259,7 +259,11 @@ where
     and org_uuid = '#orgUuid#'
 --iff menuUuid != null and menuUuid != ''
     and menu_uuid = '#menuUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
+ --iff prodCatalogList != null
+      and prod_catalog_uuid in
+      -- for item=item index=index collection=prodCatalogList open=( separator=, close=)
+          '#item#'
+      -- end
+  -- end
 
 

@@ -10,10 +10,7 @@ import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.sso.common.result.ReturnT;
 import com.ccicnavi.bims.system.manager.UserManager;
 import com.ccicnavi.bims.system.pojo.*;
-import com.ccicnavi.bims.system.service.api.DepartmentService;
-import com.ccicnavi.bims.system.service.api.MenuService;
-import com.ccicnavi.bims.system.service.api.RoleService;
-import com.ccicnavi.bims.system.service.api.UserService;
+import com.ccicnavi.bims.system.service.api.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -30,27 +27,26 @@ import java.util.List;
 @Slf4j
 public class UserManagerImpl implements UserManager {
 
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private UserService userService;
 
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private RoleService roleService;
 
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private DepartmentService deptService;
 
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private MenuService menuService;
 
-    @Reference
-    private HashTemplate hashTemplate;
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    private CatalogOrgService catalogOrgService;
 
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
     private PasswdService passwdService;
 
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
     private SSOService ssoService;
-    
     /*
     * 用户登录
     * @Author zhaotao
@@ -69,7 +65,8 @@ public class UserManagerImpl implements UserManager {
                 if("N".equals(ssoUser.getIsEnabled()) || "Y".equals(ssoUser.getIsDeleted())) {
                     return ResultT.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
                 }
-                String password = ssoUser.getCurrentPassword();
+                //获取登录密码
+                String password = userDTO.getCurrentPassword();
                 //获取盐值
                 String salt = ssoUser.getSalt();
                 //根据用户的盐值，验证密码是否正确
@@ -95,7 +92,7 @@ public class UserManagerImpl implements UserManager {
                 ReturnT<String> login = ssoService.login(ssoUser);
                 ssoUser.setJsessionID(login.getData());
                 if(login.getCode() == 200) {
-                    //SSO返回200 登录成功
+                    //SSO返回1 登录成功
                     return ResultT.success(ssoUser);
                 }else {
                     //SSO服务登录失败
@@ -119,10 +116,16 @@ public class UserManagerImpl implements UserManager {
     * @return void
     **/
     private void getUserBaseData(UserDTO userDTO, SSOUser ssoUser) {
+        userDTO.setUserUuid(ssoUser.getUserUuid());
+        userDTO.setOrgUuid(ssoUser.getOrgUuid());
         //查角色
         List<RoleDTO> roleDTOList = roleService.listRoleByUser(userDTO);
         //查部门
-        List<DepartmentDTO> deptList = deptService.listDeptByUser(userDTO);
+        //List<DepartmentDTO> deptList = deptService.listDeptByUser(userDTO);
+        //查产品线
+        CatalogOrgDO catalogOrgDO = new CatalogOrgDO();
+        catalogOrgDO.setOrganizationUuid(ssoUser.getOrgUuid());
+        List<String> prodCatalogList = catalogOrgService.listCatalogOrgDO(catalogOrgDO);
         //查权限
         MenuDTO menuDTO = new MenuDTO();
         List<String> roleUuids = new ArrayList<>();
@@ -130,9 +133,40 @@ public class UserManagerImpl implements UserManager {
             roleUuids.add(roleDTO.getRoleUuid());
         }
         menuDTO.setRoleUuids(roleUuids);
+        menuDTO.setProdCatalogList(prodCatalogList);
+        menuDTO.setOrgUuid(ssoUser.getOrgUuid());
+        //根据产品线和角色查询所有的菜单和按钮，selectdMenuButtonDOList为角色所拥有的按钮
+        List<MenuDTO> menuList = menuService.listMenuByProdCatalogUuid(menuDTO);
+        //递归查询，删除所有按钮集合为空的菜单
+        deleteMenu(menuList);
+        //获取当前用户所拥有的权限url
         List<String> buttonUrlList = menuService.listButtonUrlByRole(userDTO);
         ssoUser.setRoleList(roleDTOList);
-        ssoUser.setDepartmentList(deptList);
+        //ssoUser.setDepartmentList(deptList);
         ssoUser.setBtnUrlList(buttonUrlList);
+        ssoUser.setProdCatalogList(prodCatalogList);
+        ssoUser.setMenuList(menuList);
+    }
+
+
+    //递归删除没有下级菜单且没有按钮的MenuDTO对象
+    private void deleteMenu(List<MenuDTO> menuList) {
+        if(menuList != null && menuList.size() > 0) {
+            for (int i = 0; i < menuList.size(); i++) {
+                MenuDTO me = menuList.get(i);
+                List<MenuDTO> menuDTOList = me.getMenuDTO();
+                List<MenuButtonDTO> buttonList = me.getSelectdMenuButtonDOList();
+                //有下级菜单时继续递归
+                if(menuDTOList != null && menuDTOList.size() > 0) {
+                    deleteMenu(menuDTOList);
+                }
+                //没有下级 菜单，且没有按钮时删除菜单
+                if((menuDTOList == null || menuDTOList.size() == 0) && (buttonList == null || buttonList.size() ==0)) {
+                    menuList.remove(me);
+                    i--;
+                    continue;
+                }
+            }
+        }
     }
 }
