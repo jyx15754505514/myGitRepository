@@ -1,19 +1,54 @@
 package com.ccicnavi.bims;
 
+import org.n3r.eql.Eql;
+
+import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Auther: CongZhiYuan
  * @Date: 2018/11/22 15:54
  * @Description: Eql格式文本生成器
  */
 public class EqlPrint {
-    static String table = "t_user_info";
-    static String dbColumns = "user_id,user_name,password,branch_no,tel,address,email,user_login_id";
+    static String table = "";
+    static String dbColumns = "";
     static String[] dbcols=null,beans=null;
     public static void main(String[] args){
+        initDB("sys_serialnum");
         getEntifyCols();
         insertEqlPrint();
 //        updateEqlPrint();
 //        selectEqlPrint();
+    }
+    public static void initDB(String tableName){
+        table = tableName;
+        Connection conn = null;
+        DatabaseMetaData dbmd = null;
+        ResultSet columnrs = null;
+        try {
+            conn = new Eql().getConnection();
+            dbmd = conn.getMetaData();
+            columnrs = dbmd.getColumns(null, null, table, null);
+            while(columnrs.next()){
+                dbColumns+=columnrs.getString(4)+",";
+            }
+            dbColumns = dbColumns.substring(0, dbColumns.length()-1);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally {
+            try {
+                columnrs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
     public static void getEntifyCols(){
         dbcols = dbColumns.split(",");
