@@ -1,12 +1,16 @@
 package com.ccicnavi.bims.order.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.order.api.OrderResultInfoService;
 import com.ccicnavi.bims.order.dao.OrderResultInfoDao;
 import com.ccicnavi.bims.order.pojo.OrderResultInfoDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,8 +21,13 @@ import java.util.List;
 @Slf4j
 @Service
 public class OrderResultInfoServiceImpl implements OrderResultInfoService {
+
     @Autowired
     private OrderResultInfoDao orderResultInfoDao;
+
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
+
     /**
      * @Author heibin
      * @Description 根据主键id查询证书结果
@@ -65,6 +74,9 @@ public class OrderResultInfoServiceImpl implements OrderResultInfoService {
         EqlTran eqlTran = null;
         Integer integer = null;
         try {
+            /**生成uuid*/
+            String resultUuid = idWorkerService.getId(new Date());
+            orderResultInfoDO.setResultUuid(resultUuid);
             integer = orderResultInfoDao.insertOrderResultInfo(orderResultInfoDO, eqlTran);
         } catch (Exception e) {
             log.error("添加证书结果失败",e);

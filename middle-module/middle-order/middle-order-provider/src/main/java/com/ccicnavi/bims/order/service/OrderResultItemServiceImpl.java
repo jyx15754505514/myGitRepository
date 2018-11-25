@@ -1,12 +1,16 @@
 package com.ccicnavi.bims.order.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.order.api.OrderResultItemService;
 import com.ccicnavi.bims.order.dao.OrderResultItemDao;
 import com.ccicnavi.bims.order.pojo.OrderResultItemDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Date;
 import java.util.List;
 /**
  * @Author heibin
@@ -16,8 +20,13 @@ import java.util.List;
 @Slf4j
 @Service
 public class OrderResultItemServiceImpl implements OrderResultItemService {
+
     @Autowired
     private OrderResultItemDao orderResultItemDao;
+
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
+
     /**
      * @Author heibin
      * @Description 根据主键id查询委托服务项-证书关系
@@ -64,6 +73,9 @@ public class OrderResultItemServiceImpl implements OrderResultItemService {
         EqlTran eqlTran = null;
         Integer integer = null;
         try {
+            /**生成uuid*/
+            String resultItemUuid = idWorkerService.getId(new Date());
+            orderResultItemDO.setResultItemUuid(resultItemUuid);
             integer = orderResultItemDao.insertOrderResultItem(orderResultItemDO, eqlTran);
         } catch (Exception e) {
             log.error("添加委托服务项-证书关系失败",e);

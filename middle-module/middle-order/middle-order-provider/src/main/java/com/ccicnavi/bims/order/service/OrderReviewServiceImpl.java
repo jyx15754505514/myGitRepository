@@ -46,7 +46,7 @@ public class OrderReviewServiceImpl implements OrderReviewService {
         try {
             return orderReviewDao.insertOrderReview(orderReviewDO,null);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("新增评审失败",e);
         }
         return null;
     }
