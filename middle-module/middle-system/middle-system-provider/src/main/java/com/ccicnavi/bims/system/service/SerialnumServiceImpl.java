@@ -294,10 +294,10 @@ public class SerialnumServiceImpl implements SerialnumService {
                 busiSerialDO.setSeqYmd(df.format(new Date()));
             }
             serialnumDao.insertSerialnum(busiSerialDO);
-        }else{//翻牌更新
+        }/*else{//翻牌更新(采用redis生成序号后，不需要更新serialnum)
             busiSerialDO.setSeqId(serialStr.toString());
             serialnumDao.updateSerialnum(busiSerialDO);
-        }
+        }*/
         return busiSerialNo.toString();
     }
 
