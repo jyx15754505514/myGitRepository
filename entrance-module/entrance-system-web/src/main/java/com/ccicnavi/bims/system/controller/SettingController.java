@@ -4,6 +4,7 @@ package com.ccicnavi.bims.system.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -29,7 +31,8 @@ public class SettingController {
 
     private final static Logger log = LoggerFactory.getLogger(SettingController.class);
 
-    @Reference
+//    @Reference(url = "dubbo://127.0.0.1:20881", timeout = 10000)
+    @Resource
     SettingService settingService;
 
     /**
@@ -43,7 +46,8 @@ public class SettingController {
     @RequestMapping(value = "/listSetting", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listSetting(@RequestBody PageParameter<SettingDO> pageParameter) {
         try {
-            return settingService.listSetting(pageParameter);
+            PageBean<SettingDO> pageBean = settingService.listSetting(pageParameter);
+            return ResultT.success(pageBean);
         } catch (Exception e) {
             log.error("根据条件查询系统信息失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);

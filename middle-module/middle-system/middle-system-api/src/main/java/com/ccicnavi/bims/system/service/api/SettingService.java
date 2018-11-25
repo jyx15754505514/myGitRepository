@@ -1,6 +1,6 @@
 package com.ccicnavi.bims.system.service.api;
 
-import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.SettingDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
@@ -17,7 +17,7 @@ public interface SettingService {
      * @param pageParameter
      * @return List<SettingDO>
      */
-    public ResultT listSetting(PageParameter<SettingDO> pageParameter);
+    public PageBean<SettingDO> listSetting(PageParameter<SettingDO> pageParameter);
 
     /**
      * 新增系统设置

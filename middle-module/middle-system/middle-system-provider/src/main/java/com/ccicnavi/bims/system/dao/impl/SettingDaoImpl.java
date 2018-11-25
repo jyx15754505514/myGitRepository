@@ -76,7 +76,7 @@ public class SettingDaoImpl implements SettingDao {
     */
     @Override
     public Integer deleteSetting(SettingDO settingDO){
-        return new Eql().delete("deleteSetting").params(settingDO).returnType(Integer.class).execute();
+        return new Eql().update("deleteSetting").params(settingDO).returnType(Integer.class).execute();
     }
 
 
