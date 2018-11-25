@@ -29,7 +29,7 @@ public class EquipUseDTO implements Serializable {
 
     private Date backDate;
 
-    private String prodCatalogPuid;
+    private String prodCatalogUuid;
 
     private String comments;
 
