@@ -131,9 +131,13 @@ public class TestEquip {
         equipDTO.setNowDate(vardate);
         pageParameter.setParameter(equipDTO);
         PageBean<EquipDTO> equipDOPageBean = equipDaoImpl.listEquipByTest(pageParameter);
-        System.out.println(equipDOPageBean);
         System.out.println(equipDOPageBean.getProducts().size()+"条");
-        System.out.println(equipDOPageBean.getProducts().get(0).getEquipTestUuid());
+        for (int i = 0;i < equipDOPageBean.getProducts().size(); i++) {
+            System.out.println("第"+(i+1)+"条"+equipDOPageBean.getProducts().get(i).getEquipUuid());
+            System.out.println(equipDOPageBean.getProducts().get(i).getEquipTestUuid());
+        }
+
+
     }
 
     /**
