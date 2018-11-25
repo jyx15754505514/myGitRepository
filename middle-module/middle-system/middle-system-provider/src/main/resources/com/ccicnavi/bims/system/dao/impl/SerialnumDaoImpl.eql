@@ -6,10 +6,6 @@ snc_init_value sncInitValue,
 snc_length sncLength,
 snc_step sncStep,
 snc_period sncPeriod,
-is_hop isHop,
-delimiter delimiter,
-is_delim_after_first isDelimAfterFirst,
-is_delim_before_last isDelimBeforeLast,
 sort_num sortNum,
 comments comments,
 is_deleted isDeleted,
@@ -33,10 +29,6 @@ snc_init_value sncInitValue,
 snc_length sncLength,
 snc_step sncStep,
 snc_period sncPeriod,
-is_hop isHop,
-delimiter delimiter,
-is_delim_after_first isDelimAfterFirst,
-is_delim_before_last isDelimBeforeLast,
 sort_num sortNum,
 comments comments,
 is_deleted isDeleted,
@@ -76,18 +68,6 @@ order by sort_num
     -- end
     -- if sncPeriod != null
       snc_period,
-    -- end
-    -- if isHop != null
-      is_hop,
-    -- end
-    -- if delimiter != null
-      delimiter,
-    -- end
-    -- if isDelimAfterFirst != null
-      is_delim_after_first,
-    -- end
-    -- if isDelimBeforeLast != null
-      is_delim_before_last,
     -- end
     -- if sortNum != null
       sort_num,
@@ -136,18 +116,6 @@ order by sort_num
     -- if sncPeriod != null
       '#sncPeriod#',
     -- end
-    -- if isHop != null
-      '#isHop#',
-    -- end
-    -- if delimiter != null
-      '#delimiter#',
-    -- end
-    -- if isDelimAfterFirst != null
-      '#isDelimAfterFirst#',
-    -- end
-    -- if isDelimBeforeLast != null
-      '#isDelimBeforeLast#',
-    -- end
     -- if sortNum != null
       '#sortNum#',
     -- end
@@ -194,18 +162,6 @@ order by sort_num
   -- end
   -- if sncPeriod != null
     snc_period = '#sncPeriod#',
-  -- end
-  -- if isHop != null
-    is_hop = '#isHop#',
-  -- end
-  -- if delimiter != null
-    delimiter = '#delimiter#',
-  -- end
-  -- if isDelimAfterFirst != null
-    is_delim_after_first = '#isDelimAfterFirst#',
-  -- end
-  -- if isDelimBeforeLast != null
-    is_delim_before_last = '#isDelimBeforeLast#',
   -- end
   -- if sortNum != null
     sort_num = '#sortNum#',

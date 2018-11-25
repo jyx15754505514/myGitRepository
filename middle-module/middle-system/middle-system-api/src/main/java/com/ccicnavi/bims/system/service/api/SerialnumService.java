@@ -25,10 +25,10 @@ public interface SerialnumService {
     /**
      * 根据业务规则uuid生成业务编号
      * */
-    String getBusSerialnumNo(String sncUuid) throws Exception;
+    String getBusSerialnumNo(String sncUuid, String token) throws Exception;
     /**
      * 特殊情况需原业务编号生成业务编号
      * 如证书修改、作废生成新证书编号等
      * */
-    String getBusSerialnumNo(String sncUuid, String busUuid) throws Exception;
+    String getBusSerialnumNo(String sncUuid, String busUuid, String token) throws Exception;
 }

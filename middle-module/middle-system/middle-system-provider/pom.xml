@@ -126,6 +126,12 @@
             <version>1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>zoo-sso</groupId>
+            <artifactId>sso-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
