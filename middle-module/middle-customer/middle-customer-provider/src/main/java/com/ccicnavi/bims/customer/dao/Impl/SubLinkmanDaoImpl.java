@@ -2,7 +2,6 @@ package com.ccicnavi.bims.customer.dao.Impl;
 
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.customer.dao.LinkmanDao;
 import com.ccicnavi.bims.customer.dao.SubLinkmanDao;
 import com.ccicnavi.bims.customer.pojo.SubLinkmanDO;
 import com.ccicnavi.bims.customer.pojo.SubLinkmanDTO;
@@ -11,7 +10,6 @@ import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
