@@ -1,12 +1,15 @@
 package com.ccicnavi.bims.order.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.order.api.OrderInspectionService;
 import com.ccicnavi.bims.order.dao.OrderInspectionDao;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Date;
 
 /**
  * @Author heibin
@@ -16,8 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Slf4j
 @Service
 public class OrderInspectionServiceImpl implements OrderInspectionService {
+
     @Autowired
     private OrderInspectionDao orderInspectionDao;
+
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
+
     /**
      * @Author heibin
      * @Description 委托单运输方式添加
@@ -27,10 +35,12 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
      */
     @Override
     public Integer insertOrderInspection(OrderInfoDTO orderInfoDTO) {
-        EqlTran eqlTran = null;
         Integer inspection = null;
         try {
-            inspection = orderInspectionDao.insertOrderInspection(orderInfoDTO, eqlTran);
+            /**生成uuid*/
+            String shippingTypeId = idWorkerService.getId(new Date());
+            orderInfoDTO.setShippingTypeId(shippingTypeId);
+            inspection = orderInspectionDao.insertOrderInspection(orderInfoDTO, null);
             if(inspection > 0){
                 return  inspection;
             }

@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.order.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.order.api.OrderItemService;
 import com.ccicnavi.bims.order.dao.OrderItemCostDao;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
@@ -10,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +31,9 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Autowired
     private OrderItemCostDao orderItemCostDao;
 
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
+
     /**
      * @Author MengZiJie
      * @Description 添加服务项
@@ -38,6 +45,9 @@ public class OrderItemServiceImpl implements OrderItemService {
     public Integer insertOrderItem(OrderItemDTO orderItemDTO) {
         Integer orderItem = null;
         try {
+            /**生成uuid*/
+            String orderItemUuid = idWorkerService.getId(new Date());
+            orderItemDTO.setOrderItemUuid(orderItemUuid);
             orderItem = orderItemDao.insertOrderItem(orderItemDTO, null);
         } catch (Exception e) {
             log.error("添加服务项失败",e);
