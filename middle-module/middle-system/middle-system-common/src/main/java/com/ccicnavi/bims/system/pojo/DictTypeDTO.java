@@ -105,5 +105,9 @@ public class DictTypeDTO implements Serializable {
      * 字典类型集合
      */
     private List<String> typeList;
+    /**
+     * 字典类型主键集合
+     */
+    private List<String> uuids;
 
 }
