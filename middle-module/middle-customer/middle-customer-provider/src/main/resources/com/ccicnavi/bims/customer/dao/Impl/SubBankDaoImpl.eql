@@ -1,37 +1,37 @@
 -- [listSubBank]
-    SELECT
-        subc_bank_uuid subcBankUuid,
-        subc_uuid subcUuid,
-        subc_customer subcCustomer,
-        subc_status subcStatus,
-        subc_bank_account subcBankAccount,
-        subc_bank_addr subcBankAddr,
-        subc_bank_code subcBankCode,
-        comments comments,
-        is_deleted isDeleted,
-        created_time createdTime,
-        created_uuid createdUuid,
-        created_name createdName,
-        updated_time updatedTime,
-        updated_uuid updatedUuid,
-        updated_name updatedName
-    from crm_subc_bank
-    where
-        is_deleted = 'N'
-    --if subcBankAccount !=null and subcBankAccount != ''
-       and subc_bank_account = '#subcBankAccount:like#'
-    --end
-    --if subcBankAddr !=null and subcBankAddr != ''
-       and subc_bank_addr = '#subcBankAddr#'
-    --end
+SELECT
+    subc_bank_uuid subcBankUuid,
+    subc_uuid subcUuid,
+    subc_customer subcCustomer,
+    subc_status subcStatus,
+    subc_bank_account subcBankAccount,
+    subc_bank_addr subcBankAddr,
+    subc_bank_code subcBankCode,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName
+from crm_subc_bank
+where
+    is_deleted = 'N'
+--if subcBankAccount !=null and subcBankAccount != ''
+    and subc_bank_account = '#subcBankAccount:like#'
+--end
+--if subcBankAddr !=null and subcBankAddr != ''
+    and subc_bank_addr = '#subcBankAddr#'
+--end
 
 
 -- [deleteSubBank]
-    update crm_subc_bank
-    set
-        is_deleted ='Y'
-    where
-        is_deleted = 'N'
+update crm_subc_bank
+set
+    is_deleted ='Y'
+where
+    is_deleted = 'N'
     -- if subcBankUuids != null
     AND subc_bank_uuid IN
       -- for item=item index=index collection=subcBankUuids open=( separator=, close=)
