@@ -22,7 +22,7 @@
   -- if test=comments != null and comments != ''
         comments,
   -- end
-  -- if test=createdTime != null
+  -- if test=createdTime == null
         created_time,
   -- end
   -- if test=createdUuid != null and createdUuid != ''
@@ -75,7 +75,7 @@
   -- if test=isDeleted != null and isDeleted != ''
         '#isDeleted#',
   -- end
-  -- if test=createdTime != null
+  -- if test=createdTime == null
         NOW(),
   -- end
   -- if test=createdUuid != null and createdUuid != ''
@@ -128,12 +128,15 @@
   -- if test=isDeleted != null
         is_deleted = '#isDeleted#',
   -- end
-  -- if test=updatedTime != null
-        updated_time = '#updatedTime#',
+  -- if test=updatedTime == null
+        updated_time =  NOW(),
   -- end
   -- if test=updatedName != null
         updated_name = '#updatedName#',
   -- end
+  -- if test=updatedUuid != null
+        updated_uuid = '#updatedUuid#',
+   -- end
   -- if test=extend1 != null
         extend1 = '#extend1#',
   -- end
@@ -150,14 +153,23 @@
 	SELECT
         role_uuid, parent_role_uuid, role_name, role_code, is_system, is_enabled, comments,
         is_deleted, created_time, created_uuid, created_name, updated_time, updated_name,
-        org_uuid, app_sys_uuid, business_line, extend1, extend2, extend3
+        org_uuid, app_sys_uuid, prod_catalog_uuid, extend1, extend2, extend3
 	FROM
 		sys_role
 	WHERE
 		is_deleted = 'N'
-		and org_uuid = '#orgUuid#'
-		and app_sys_uuid = '#appSysUuid#'
-		and prod_catalog_uuid = '#prodCatalogUuid#'
+		-- if test=orgUuid != null and orgUuid != ''
+               and org_uuid = '#orgUuid#',
+        -- end
+        -- if test=appSysUuid != null and appSysUuid != ''
+                and app_sys_uuid = '#appSysUuid#',
+        -- end
+        -- if test=prodCatalogUuid != null and prodCatalogUuid != ''
+                and prod_catalog_uuid = '#prodCatalogUuid#'
+        -- end
+
+
+
 
 -- [getRole]
 	SELECT
@@ -166,12 +178,19 @@
         org_uuid, app_sys_uuid, prod_catalog_uuid, extend1, extend2, extend3
 	FROM
 		sys_role
-	WHERE
-		role_uuid = '#roleUuid#'
-		and is_deleted = 'N'
-		and org_uuid = '#orgUuid#'
-		and app_sys_uuid = '#appSysUuid#'
-		and prod_catalog_uuid = '#prodCatalogUuid#'
+	WHERE  is_deleted = 'N'
+	-- if roleUuid != null and roleUuid != ''
+    	and	role_uuid = '#roleUuid#'
+    -- end
+    -- if test=orgUuid != null and orgUuid != ''
+       and org_uuid = '#orgUuid#',
+    -- end
+    -- if test=appSysUuid != null and appSysUuid != ''
+       and app_sys_uuid = '#appSysUuid#',
+    -- end
+    -- if test=prodCatalogUuid != null and prodCatalogUuid != ''
+       and prod_catalog_uuid = '#prodCatalogUuid#'
+    -- end
 
 -- [deleteRole]
     UPDATE
@@ -179,7 +198,7 @@
     SET
         is_deleted = 'Y'
     WHERE
-		-- if role_uuid != null and role_uuid != ''
+		-- if roleUuid != null and roleUuid != ''
 			role_uuid = '#roleUuid#'
 		-- end
 		-- if roleUuids != null

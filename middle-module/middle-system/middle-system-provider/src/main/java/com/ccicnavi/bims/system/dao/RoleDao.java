@@ -4,6 +4,7 @@ package com.ccicnavi.bims.system.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.*;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public interface RoleDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer insertRole(RoleDO role)throws  Exception;
+    public Integer insertRole(RoleDO role, EqlTran tran)throws  Exception;
 
     /**
      * 更新角色信息
@@ -35,7 +36,7 @@ public interface RoleDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer updateRole(RoleDO role)throws  Exception;
+    public Integer updateRole(RoleDO role,EqlTran tran)throws  Exception;
 
     /**
      * 删除角色信息
@@ -44,7 +45,7 @@ public interface RoleDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer deleteRole(RoleDTO role)throws  Exception;
+    public Integer deleteRole(RoleDTO role,EqlTran tran)throws  Exception;
 
     /**
      * 根据主键查询角色信息
@@ -53,7 +54,7 @@ public interface RoleDao {
      * @return role
      * @throws Exception
      */
-    public RoleDO getRole(RoleDO role)throws  Exception;
+    public RoleDTO getRole(RoleDTO role)throws  Exception;
 
     /**
     *@Description: 根据用户UUID获取所有角色UUID

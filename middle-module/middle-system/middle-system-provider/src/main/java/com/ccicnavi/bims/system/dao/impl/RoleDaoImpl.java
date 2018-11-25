@@ -34,23 +34,35 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public Integer insertRole(RoleDO role){
-        return new Eql("DEFAULT").insert("insertRole").params(role).returnType(Integer.class).execute();
+    public Integer insertRole(RoleDO role,EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.insert("insertRole").params(role).returnType(Integer.class).execute();
     }
 
     @Override
-    public Integer updateRole(RoleDO role){
-        return new Eql("DEFAULT").insert("updateRole").params(role).returnType(Integer.class).execute();
+    public Integer updateRole(RoleDO role,EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.update("updateRole").params(role).returnType(Integer.class).execute();
     }
 
     @Override
-    public Integer deleteRole(RoleDTO role){
-        return new Eql("DEFAULT").insert("deleteRole").params(role).returnType(Integer.class).execute();
+    public Integer deleteRole(RoleDTO role,EqlTran tran){
+        Eql eql = new Eql();
+        if(tran != null){
+            eql.useTran(tran);
+        }
+        return eql.delete("deleteRole").params(role).returnType(Integer.class).execute();
     }
 
     @Override
-    public RoleDO getRole(RoleDO role){
-        return new Eql("DEFAULT").selectFirst("getRole").params(role).returnType(RoleDO.class).execute();
+    public RoleDTO getRole(RoleDTO role){
+        return new Eql().selectFirst("getRole").params(role).returnType(RoleDTO.class).execute();
     }
 
     /**
