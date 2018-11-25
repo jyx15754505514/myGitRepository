@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.product.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,9 +14,8 @@ import java.util.Date;
  * @author: guojinxu
  * @create: 2018/11/22 15:43
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GoodsDO implements Serializable {
     /**主键*/
     private String goodsUuid;
