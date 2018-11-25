@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class TestEquipTest {
 
-    EquipTestDaoImpl equipUseDaoImpl = new EquipTestDaoImpl();
+    EquipTestDaoImpl equipTestDaoImpl = new EquipTestDaoImpl();
 
     /**
       * @author songyateng
@@ -33,7 +33,7 @@ public class TestEquipTest {
             equipUseDO.setAppSysUuid("yewu2.0");
             equipUseDO.setOrgUuid("yewu2.0");
             equipUseDO.setProdCatalogUuid("yewu2.0");
-            EquipTestDO equipTest = equipUseDaoImpl.getEquipTest(equipUseDO);
+            EquipTestDO equipTest = equipTestDaoImpl.getEquipTest(equipUseDO);
             System.err.println(equipTest);
         } catch (Exception e){
            log.error("获取设备检定记录失败",e);
@@ -58,7 +58,7 @@ public class TestEquipTest {
             equipUuids.add("equip_test_uuid_c");
             equipUseDTO.setEquipTestUuids(equipUuids);*/
             equipUseDTO.setEquipUuid("equip_uuid_a");
-            List<EquipTestDO> equipTestList = equipUseDaoImpl.getEquipTestList(equipUseDTO);
+            List<EquipTestDO> equipTestList = equipTestDaoImpl.getEquipTestList(equipUseDTO);
             System.err.println(equipTestList);
             System.out.println(equipTestList.size()+"条");
         }catch (Exception e){
@@ -79,7 +79,7 @@ public class TestEquipTest {
             pageParameter.setStartIndex(1);
             pageParameter.setPageRows(1);
             pageParameter.setStartPage(1);
-            PageBean<EquipTestDO> equipTestDOPageBean = equipUseDaoImpl.listEquipTest(pageParameter);
+            PageBean<EquipTestDO> equipTestDOPageBean = equipTestDaoImpl.listEquipTest(pageParameter);
             System.err.println(equipTestDOPageBean);
         }catch (Exception e){
             log.error("查询设备检定记录失败",e);
@@ -101,7 +101,7 @@ public class TestEquipTest {
             equipUseDO.setProdCatalogUuid("yewu2.0");
             equipUseDO.setOrgUuid("yewu2.0");
             equipUseDO.setAppSysUuid("yewu2.0");
-            System.err.print(equipUseDaoImpl.insertEquipTest(equipUseDO, null));
+            System.err.print(equipTestDaoImpl.insertEquipTest(equipUseDO, null));
         } catch (Exception e){
             log.error("新增设备失败",e);
         }
@@ -123,7 +123,7 @@ public class TestEquipTest {
             equipUseDO.setProdCatalogUuid("yewu2.0");
             equipUseDO.setOrgUuid("yewu2.0");
             equipUseDO.setAppSysUuid("yewu2.0");
-            System.err.print(equipUseDaoImpl.updateEquipTest(equipUseDO, null));
+            System.err.print(equipTestDaoImpl.updateEquipTest(equipUseDO, null));
         } catch (Exception e){
             log.error("更新设备信息失败",e);
         }
@@ -140,7 +140,7 @@ public class TestEquipTest {
             EquipTestDTO equipTestDTO = new EquipTestDTO();
             //equipTestDTO.setEquipTestUuid("equip_test_uuid_c");
             equipTestDTO.setEquipUuid("equip_uuid_a");
-            System.err.print(equipUseDaoImpl.deleteEquipTest(equipTestDTO, null));
+            System.err.print(equipTestDaoImpl.deleteEquipTest(equipTestDTO, null));
         } catch (Exception e){
             log.error("删除失败",e);
         }
@@ -162,7 +162,7 @@ public class TestEquipTest {
             equipTestDTO.setAppSysUuid("yewu2.0");
             equipTestDTO.setProdCatalogUuid("yewu2.0");
             equipTestDTO.setOrgUuid("yewu2.0");
-            PageBean<EquipTestDTO> equipTestDTOPageBean = equipUseDaoImpl.listEquipTestDTO(pageParameter);
+            PageBean<EquipTestDTO> equipTestDTOPageBean = equipTestDaoImpl.listEquipTestDTO(pageParameter);
             System.out.println(equipTestDTOPageBean);
         } catch (Exception e) {
             log.error("查询设备检定记录",e);

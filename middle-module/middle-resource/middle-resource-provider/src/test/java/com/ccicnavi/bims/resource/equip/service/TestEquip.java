@@ -3,8 +3,9 @@ package com.ccicnavi.bims.resource.equip.service;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.impl.EquipDaoImpl;
-import com.ccicnavi.bims.resource.pojo.EquipDO;
-import com.ccicnavi.bims.resource.pojo.EquipDTO;
+import com.ccicnavi.bims.resource.dao.impl.EquipTestDaoImpl;
+import com.ccicnavi.bims.resource.dao.impl.EquipUseDaoImpl;
+import com.ccicnavi.bims.resource.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import java.text.SimpleDateFormat;
@@ -21,7 +22,14 @@ import java.util.List;
 @Slf4j
 public class TestEquip {
 
+    //调用设备信息
     EquipDaoImpl equipDaoImpl = new EquipDaoImpl();
+
+    //调用设备领用记录
+    EquipTestDaoImpl equipTestDaoImpl = new EquipTestDaoImpl();
+
+    //调用设备检定记录
+    EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
 
     /**
      * @author songyateng
@@ -130,6 +138,54 @@ public class TestEquip {
         } catch (Exception e) {
             log.error("查询超期设备失败",e);
         }
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 获取设备信息及领用、检定记录
+     * @Data 2018/11/25 11:41
+     * @Param []
+     * @Return void
+     */
+    @Test
+    public void getEquipInfolist(){
+        //创建设备信息对象
+        EquipDTO equipDTO = new EquipDTO();
+        //创建检定记录对象
+        EquipTestDTO equipTestDTO = new EquipTestDTO();
+        //创建领用记录对象
+        EquipUseDTO equipUseDTO = new EquipUseDTO();
+        //查询设备信息
+        equipDTO.setEquipUuid("equip_uuid_a");
+        equipDTO.setAppSysUuid("yewu2.0");
+        equipDTO.setOrgUuid("yewu2.0");
+        equipDTO.setProdCatalogUuid("yewu2.0");
+        EquipDTO equip = equipDaoImpl.getEquip(equipDTO);
+        if(equipDTO != null){
+            /**设置相关参数*/
+            equipTestDTO.setAppSysUuid(equipDTO.getAppSysUuid());
+            equipTestDTO.setOrgUuid(equipDTO.getOrgUuid());
+            equipTestDTO.setProdCatalogUuid(equipDTO.getProdCatalogUuid());
+            equipTestDTO.setEquipUuid(equipDTO.getEquipUuid());
+            /**获取设备相关检定记录*/
+            List<EquipTestDO> equipTestDO = equipTestDaoImpl.getEquipTestList(equipTestDTO);
+            if(equipTestDO.size() > 0){
+                equipDTO.setEquipTestDTO(equipTestDO);
+            }
+            /**设置相关参数*/
+            equipUseDTO.setAppSysUuid(equipDTO.getAppSysUuid());
+            equipUseDTO.setOrgUuid(equipDTO.getOrgUuid());
+            equipUseDTO.setProdCatalogUuid(equipDTO.getProdCatalogUuid());
+            equipUseDTO.setEquipUuid(equipDTO.getEquipUuid());
+            /**获取设备相关*/
+            List<EquipUseDO> equipUses = equipUseDaoImpl.getEquipUseList(equipUseDTO);
+            if(equipUses.size() > 0){
+                equipDTO.setEquipUseDO(equipUses);
+            }
+        }
+        System.out.println(equipDTO);
+        System.out.println("设备领用记录："+equipDTO.getEquipUseDO().size());
+        System.out.println("设备检定记录："+equipDTO.getEquipTestDTO().size());
     }
 
     /**
