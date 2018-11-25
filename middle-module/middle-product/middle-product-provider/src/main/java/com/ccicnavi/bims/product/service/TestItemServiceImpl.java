@@ -27,7 +27,7 @@ public class TestItemServiceImpl implements TestItemService {
     @Override
     public List<TestItemDO> listTestItem(TestItemDO testItemDO){
         try {
-            return testItemDao.listTestItem();
+            return testItemDao.listTestItem(testItemDO);
         } catch (Exception e) {
             log.error("查询检测指标信息失败",e);
             return null;

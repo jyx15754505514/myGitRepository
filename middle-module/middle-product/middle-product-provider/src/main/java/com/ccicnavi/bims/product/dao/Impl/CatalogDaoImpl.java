@@ -22,8 +22,8 @@ import java.util.List;
 public class CatalogDaoImpl implements CatalogDao {
 
     @Override
-    public List<CatalogDO> listCatalog(){
-        return new Eql().select("listCatalogDO").returnType(CatalogDO.class).execute();
+    public List<CatalogDO> listCatalog(CatalogDO catalogDO){
+        return new Eql().select("listCatalogDO").params(catalogDO).returnType(CatalogDO.class).execute();
     }
 
     @Override

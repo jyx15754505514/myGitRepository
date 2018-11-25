@@ -302,6 +302,8 @@ SELECT
 	dp.dept_tel as deptTel,
 	dp.dept_sort as deptSort,
 	dp.manager,
+    dp.is_enabled as isEnabled,
+    dp.is_deleted as isDeleted,
 	dp.is_business,
 	dp.comments,
 	dp.prod_catalog_uuid as prodCatalogUuid,

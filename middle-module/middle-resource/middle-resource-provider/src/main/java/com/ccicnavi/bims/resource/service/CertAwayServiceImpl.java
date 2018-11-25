@@ -53,7 +53,7 @@ public class CertAwayServiceImpl implements CertAwayService {
             String awayNum=certAwayDO.getAwayNum();
             CertPaperDO certPaperDO =new CertPaperDO();
             certPaperDO.setPaperUuid(certAwayDO.getPaperUuid());
-            certPaperDO.setStromNum((Integer.parseInt(getCertPaper.getStromNum())-Integer.parseInt(awayNum))+"");
+            certPaperDO.setResidualNum((Integer.parseInt(getCertPaper.getResidualNum())-Integer.parseInt(awayNum))+"");
             certPaperDO.setCurrentCode(Integer.parseInt(getCertPaper.getCurrentCode())+(Integer.parseInt(awayNum))+"");
             certPaperResult=certPaperDao.updateCertPaper(certPaperDO);
             certAwayDO.setAwayUuid(idWorkerService.getId(new Date()));
@@ -93,7 +93,7 @@ public class CertAwayServiceImpl implements CertAwayService {
         }
     }
     /*
-     * 作废证书纸
+     * 作废分发记录
      * @param certPaper
      * @return
      */
@@ -102,8 +102,7 @@ public class CertAwayServiceImpl implements CertAwayService {
         try {
             return certAwayDao.deleteCertAway(certAwayDO);
         } catch (Exception e) {
-            log.debug("作废证书纸管理-分发记录失败",e);
-            e.printStackTrace();
+            log.error("作废证书纸管理-分发记录失败",e);
         }
         return 0;
     }

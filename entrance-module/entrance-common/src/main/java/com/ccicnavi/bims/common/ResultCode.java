@@ -50,6 +50,7 @@ public enum ResultCode {
     CUST_NAME_REPEAT(30016,"客户名称重复"),
     CUST_CODE_REPEAT(30017,"客户代码重复"),
     CUST_USCC_REPEAT(30018,"客户统一社会信用代码重复"),
+    REQUIRED_FIELDS_IS_NULL(30019,"必填字段未填"),
 
     SERIAL_CFG_GET_FAILURE(30018, "查询业务规则信息出错"),
     SERIAL_CFG_ADD_FAILURE(30019, "添加业务规则信息出错"),

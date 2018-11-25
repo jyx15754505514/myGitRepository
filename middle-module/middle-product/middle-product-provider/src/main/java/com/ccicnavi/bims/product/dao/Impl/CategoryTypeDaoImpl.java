@@ -20,8 +20,8 @@ import java.util.List;
 public class CategoryTypeDaoImpl implements CategoryTypeDao {
 
     @Override
-    public List<CategoryTypeDO> lsitCategoryType() {
-        return new Eql().select("lsitCategoryTypeDO").returnType(CategoryTypeDO.class).execute();
+    public List<CategoryTypeDO> lsitCategoryType(CategoryTypeDO categoryTypeDO) {
+        return new Eql().select("lsitCategoryTypeDO").params(categoryTypeDO).returnType(CategoryTypeDO.class).execute();
     }
 
     @Override

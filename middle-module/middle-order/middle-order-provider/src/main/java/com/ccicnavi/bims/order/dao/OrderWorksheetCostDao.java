@@ -1,6 +1,6 @@
 package com.ccicnavi.bims.order.dao;
 
-import com.ccicnavi.bims.order.pojo.OrderWorksheetCostDo;
+import com.ccicnavi.bims.order.pojo.OrderWorksheetCostDO;
 import org.n3r.eql.EqlTran;
 /**
  * @Author songyateng
@@ -16,7 +16,7 @@ public interface OrderWorksheetCostDao {
      * @Param [orderWorksheetCostDo, tran]
      * @Return java.lang.Integer
      */
-    Integer insertOrderWorksheetCost(OrderWorksheetCostDo orderWorksheetCostDo, EqlTran tran) throws Exception;
+    Integer insertOrderWorksheetCost(OrderWorksheetCostDO orderWorksheetCostDo, EqlTran tran) throws Exception;
 
     /**
      * @Author songyateng
@@ -25,5 +25,5 @@ public interface OrderWorksheetCostDao {
      * @Param [orderWorksheetCostDo, tran]
      * @Return java.lang.Integer
      */
-    Integer updateOrderWorksheetCost(OrderWorksheetCostDo orderWorksheetCostDo, EqlTran tran) throws Exception;
+    Integer updateOrderWorksheetCost(OrderWorksheetCostDO orderWorksheetCostDo, EqlTran tran) throws Exception;
 }

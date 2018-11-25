@@ -20,7 +20,9 @@ public class TestItemTest {
 
     @Test
     public void listTestItemTest(){
-        List<TestItemDO> testItemDOS=testItemDaoImpl.listTestItem();
+        TestItemDO testItemDO=new TestItemDO();
+        testItemDO.setItemName("检测指标");
+        List<TestItemDO> testItemDOS=testItemDaoImpl.listTestItem(testItemDO);
         System.out.println(testItemDOS);
     }
 
@@ -61,7 +63,8 @@ public class TestItemTest {
     @Test
     public void getTestItemTest(){
         TestItemDO testItemDO=new TestItemDO();
-        testItemDO.setItemUuid("item_9");
+//        testItemDO.setItemUuid("item_9");
+        testItemDO.setItemName("检测指标");
         TestItemDO testItemDOResult=testItemDaoImpl.getTestItem(testItemDO);
         System.out.println(testItemDOResult);
     }
@@ -69,9 +72,11 @@ public class TestItemTest {
     @Test
     public void pageTestItemTest(){
         PageParameter<TestItemDO> page=new PageParameter<>();
+        TestItemDO testItemDO=new TestItemDO();
         page.setStartIndex(1);
         page.setPageRows(4);
         page.setStartPage(1);
+        page.setParameter(testItemDO);
         PageBean<TestItemDO> testItemDOPageBean=testItemDaoImpl.listTestItemPage(page);
         System.out.println(testItemDOPageBean);
     }

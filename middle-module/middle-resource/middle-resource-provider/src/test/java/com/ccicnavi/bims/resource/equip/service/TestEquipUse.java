@@ -1,10 +1,13 @@
 package com.ccicnavi.bims.resource.equip.service;
+
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.impl.EquipUseDaoImpl;
 import com.ccicnavi.bims.resource.pojo.EquipUseDO;
 import com.ccicnavi.bims.resource.pojo.EquipUseDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +17,11 @@ import java.util.List;
  * @Param $param$
  * @Return $return$
  */
+@Slf4j
 public class TestEquipUse {
+
+    EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
+
     /**
       * @author songyateng
       * @description 主键获取设备领用归还信息
@@ -23,11 +30,15 @@ public class TestEquipUse {
     @Test
     public void getEquipUseTest(){
         try {
-        EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
-        EquipUseDO equipUseDO = equipUseDaoImpl.getEquipUse("zhujian");
-            System.out.println(equipUseDO);
+            EquipUseDO equipUseDO = new EquipUseDO();
+            equipUseDO.setAppSysUuid("yewu2.0");
+            equipUseDO.setOrgUuid("yewu2.0");
+            equipUseDO.setProdCatalogUuid("yewu2.0");
+            equipUseDO.setEquipUseUuid("equip_use_uuid_a");
+            EquipUseDO equipUse = equipUseDaoImpl.getEquipUse(equipUseDO);
+            System.out.println(equipUse);
         } catch (Exception e){
-            e.printStackTrace();
+            log.error("获取设备领用信息失败",e);
         }
     }
 
@@ -39,13 +50,21 @@ public class TestEquipUse {
     @Test
     public void getEquipUseList(){
         try {
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             EquipUseDTO equipUseDTO = new EquipUseDTO();
-            equipUseDTO.setAppSysUuid("zhujian");
-            List<EquipUseDO> aaa = equipUseDaoImpl.getEquipUseList(equipUseDTO);
-            System.out.println(aaa);
+            equipUseDTO.setAppSysUuid("yewu2.0");
+            equipUseDTO.setOrgUuid("yewu2.0");
+            equipUseDTO.setProdCatalogUuid("yewu2.0");
+            equipUseDTO.setEquipUuid("equip_uuid_a");
+            /*List<String> equipUse = new ArrayList<String>();
+            equipUse.add("equip_use_uuid_a");
+            equipUse.add("equip_use_uuid_b");
+            equipUse.add("equip_use_uuid_c");
+            equipUseDTO.setEquipUseUuids(equipUse);*/
+            List<EquipUseDO> equipUseList = equipUseDaoImpl.getEquipUseList(equipUseDTO);
+            System.out.println(equipUseList);
+            System.out.println(equipUseList.size()+"条");
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("批量获取设备领用记录失败",e);
         }
     }
 
@@ -62,55 +81,53 @@ public class TestEquipUse {
             pageParameter.setStartIndex(1);
             pageParameter.setPageRows(1);
             pageParameter.setStartPage(1);
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             PageBean<EquipUseDO> equipUseDOPageBean = equipUseDaoImpl.listEquipUse(pageParameter);
             System.out.println(equipUseDOPageBean);
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("查询设备领用记录失败",e);
         }
     }
 
     /**
       * @author songyateng
-      * @description 
+      * @description 添加设备领用信息
       * @date 2018/11/23 20:16
       */
     @Test
     public void insertEquipUse(){
         try {
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             EquipUseDO equipUseDO = new EquipUseDO();
-            equipUseDO.setEquipUseUuid("zhujian1");
-            equipUseDO.setEquipUuid("qiju");
+            equipUseDO.setEquipUseUuid("equip_use_uuid_d");
+            equipUseDO.setEquipUuid("equip_uuid_a");
             equipUseDO.setIsDeleted("N");
-            equipUseDO.setProdCatalogUuid("123");
-            equipUseDO.setOrgUuid("guishujigouid");
-            equipUseDO.setAppSysUuid("yingyongxitongid");
+            equipUseDO.setProdCatalogUuid("yewu2.0");
+            equipUseDO.setOrgUuid("yewu2.0");
+            equipUseDO.setAppSysUuid("yewu2.0");
             System.err.print(equipUseDaoImpl.insertEquipUse(equipUseDO, null));
         } catch (Exception e){
-            e.printStackTrace();
+            log.error("添加设备领用记录失败",e);
         }
     }
     
     /**
       * @author songyateng
-      * @description 
+      * @description 更新设备领用记录
       * @date 2018/11/23 20:25
       */
     @Test
     public void updateEquipUse(){
         try {
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             EquipUseDO equipUseDO = new EquipUseDO();
-            equipUseDO.setEquipUseUuid("zhujian1");
-            equipUseDO.setEquipUuid("t");
+            equipUseDO.setEquipUseUuid("equip_use_uuid_a");
+            //equipUseDO.setEquipUuid("equip_uuid_a");
             equipUseDO.setIsDeleted("N");
-            equipUseDO.setProdCatalogUuid("t");
-            equipUseDO.setOrgUuid("t");
-            equipUseDO.setAppSysUuid("t");
+            equipUseDO.setProdCatalogUuid("yewu2.0");
+            equipUseDO.setOrgUuid("yewu2.0");
+            equipUseDO.setAppSysUuid("yewu2.0");
+            equipUseDO.setUsePerson("admin");
             System.err.print(equipUseDaoImpl.updateEquipUse(equipUseDO, null));
         }  catch (Exception e){
-            e.printStackTrace();
+            log.error("更新设备领用记录失败",e);
         }
     }
     /**
@@ -121,17 +138,17 @@ public class TestEquipUse {
     @Test
     public void deleteEquipUse(){
         try{
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
             EquipUseDTO equipUseDTO = new EquipUseDTO();
-            equipUseDTO.setEquipUseUuid("zhujian1");
+            //equipUseDTO.setEquipUseUuid("equip_use_uuid_a");
+            equipUseDTO.setEquipUuid("equip_uuid_a");
             System.err.print(equipUseDaoImpl.deleteEquipUse(equipUseDTO, null));
         } catch (Exception e){
-            e.printStackTrace();
+            log.error("删除设备领用记录失败",e);
         }
     }
     /**
       * @author songyateng
-      * @description 
+      * @description 查询设备领用记录
       * @date 2018/11/23 22:33
       */
     @Test
@@ -142,11 +159,13 @@ public class TestEquipUse {
             pageParameter.setStartIndex(1);
             pageParameter.setPageRows(1);
             pageParameter.setStartPage(1);
-            EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
+            equipUseDTO.setAppSysUuid("yewu2.0");
+            equipUseDTO.setOrgUuid("yewu2.0");
+            equipUseDTO.setProdCatalogUuid("yewu2.0");
             PageBean<EquipUseDTO> equipUseDTOPageBean = equipUseDaoImpl.listEquipUseDTO(pageParameter);
             System.out.println(equipUseDTOPageBean);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("查询设备领用记录失败",e);
         }
     }
 }

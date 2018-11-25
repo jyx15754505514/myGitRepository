@@ -93,7 +93,7 @@ public class EquipTestServiceImpl implements EquipTestService {
      */
     @Override
     public Integer insertEquipTest(EquipTestDO equipTestDO){
-        Integer count = null;
+        Integer count = 0;
         try {
             String equipTestUuid  = idWorkerService.getId(new Date());
             equipTestDO.setEquipTestUuid(equipTestUuid);
@@ -113,7 +113,7 @@ public class EquipTestServiceImpl implements EquipTestService {
      */
     @Override
     public Integer updateEquipTest(EquipTestDO equipTestDO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipTestDao.updateEquipTest(equipTestDO,null);
         } catch (Exception e) {
@@ -131,7 +131,7 @@ public class EquipTestServiceImpl implements EquipTestService {
      */
     @Override
     public Integer deleteEquipTest(EquipTestDTO equipTestDTO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipTestDao.deleteEquipTest(equipTestDTO,null);
         } catch (Exception e) {

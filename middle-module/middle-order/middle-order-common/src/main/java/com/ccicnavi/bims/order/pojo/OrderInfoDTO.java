@@ -15,162 +15,320 @@ import java.util.List;
 @Setter
 @ToString
 public class OrderInfoDTO implements Serializable {
-
-    private String orderUuid;//委托单id
-
+    /**
+     * 委托单id
+     */
+    private String orderUuid;
+    /**
+     *产品分类id
+     */
     private String productCategoryUuid;
-
+    /**
+     * 委托编号
+     */
     private String orderNo;
-
+    /**
+     * 委托单名称
+     */
     private String orderName;
-
+    /**
+     * 委托日期
+     */
     private Date orderDate;
-
+    /**
+     * 客户号
+     */
     private String orderCrmNo;
-
+    /**
+     *区域id
+     */
     private String orderAreaId;
-
+    /**
+     * 客户id
+     */
     private String crmUuid;
-
+    /**
+     * 客户名称
+     */
     private String crmName;
-
+    /**
+     * 联系人
+     */
     private String crmLinkman;
-
+    /**
+     * 联系人电话
+     */
     private String crmTelphone;
-
+    /**
+     * 联系人邮箱
+     */
     private String crmEmail;
-
+    /**
+     * 合同编号
+     */
     private String crmContractNo;
-
+    /**
+     * 紧急联系人
+     */
     private String crmEmerName;
-
+    /**
+     * 紧急联系人电话
+     */
     private String crmEmerTelphone;
-
+    /**
+     * 委托项目名称
+     */
     private String orderItemName;
-
+    /**
+     * 委托项目类型
+     */
     private String orderItemType;
-
+    /**
+     * 项目规格
+     */
     private String orderItemSpec;
-
+    /**
+     * 数量
+     */
     private Integer orderItemQty;
-
+    /**
+     * 数量单位
+     */
     private String orderItemQtyUnit;
-
+    /**
+     *使用标准id
+     */
     private String useStdUuid;
-
+    /**
+     * 使用标准名称
+     */
     private String useStdName;
-
+    /**
+     * 标准说明
+     */
     private String useStdComment;
-
+    /**
+     *总费用
+     */
     private Integer totalFee;
-
+    /**
+     * 首次计费日期
+     */
     private Date firstFeeDate;
-
+    /**
+     * 是Y否N内部委托单
+     */
     private String isInternal;
-
+    /**
+     * 委托单来源机构id
+     */
     private String sourceOrgUuid;
-
+    /**
+     * 委托单来源机构名称
+     */
     private String sourceOrgName;
-
+    /**
+     * 计划检验时间
+     */
     private Date planInspectDate;
-
+    /**
+     * 计划检验地
+     */
     private Date planInspectAddr;
-
+    /**
+     * 备注
+     */
     private String comments;
-
+    /**
+     * 币种id
+     */
     private String currencyType;
-
+    /**
+     * 结论方式
+     */
     private String conclusionType;
-
+    /**
+     * 证书语种id
+     */
     private String certLangUuid;
-
+    /**
+     * 证书正本数量
+     */
     private Integer certQty;
-
+    /**
+     * 证书副本数量
+     */
     private Integer certCopyQty;
-
+    /**
+     * 受理日期
+     */
     private Date acceptDate;
-
+    /**
+     * 受理机构id
+     */
     private String acceptOrgUuid;
-
+    /**
+     * 受理机构名称（公司名称）
+     */
     private String acceptOrgName;
-
+    /**
+     * 状态uuid
+     */
     private String statusUuid;
-
+    /**
+     * 状态名称
+     */
     private String statusName;
-
+    /**
+     * 是Y否N分包标记，默认为N
+     */
     private String lblSubpkg;
-
+    /**
+     * 是Y否N执行标记，默认为N
+     */
     private String lblExec;
-
+    /**
+     * 委托方是Y否N具备专业能力，默认为N
+     */
     private String lblCrmCapc;
-
+    /**
+     * 是Y否N需要评审，默认为N
+     */
     private String isReview;
-
+    /**
+     * 删除标识（N正常Y删除）
+     */
     private String isDeleted;
-
+    /**
+     * 创建时间
+     */
     private Date createdTime;
-
+    /**
+     * 创建人id
+     */
     private String createdUuid;
-
+    /**
+     * 创建人
+     */
     private String createdName;
-
+    /**
+     * 最后一次更新时间
+     */
     private Date updatedTime;
-
+    /**
+     * 更新人uuid
+     */
     private String updatedUuid;
-
+    /**
+     * 更新人
+     */
     private String updatedName;
-
+    /**
+     * 产品线id
+     */
     private String prodCatalogUuid;
-
+    /**
+     * 归属机构id
+     */
     private String orgUuid;
-
+    /**
+     * 应用系统id
+     */
     private String appSysUuid;
-
-    private String currentStatus;//委托单当前状态
-
-    private String nextStatus;//委托单下一状态
-
-    private List<String> orderUuids;//委托单id集合
-
-    private String shippingTypeId;//运输单信息
-
+    /**
+     * 委托单当前状态
+     */
+    private String currentStatus;
+    /**
+     * 委托单下一状态
+     */
+    private String nextStatus;
+    /**
+     * 委托单id集合
+     */
+    private List<String> orderUuids;
+    /**
+     * 运输方式id
+     */
+    private String shippingTypeId;
+    /**
+     * 船名
+     */
     private String vesselName;
-
+    /**
+     * 提单号
+     */
     private String blNo;
-
+    /**
+     * 航次
+     */
     private String voyageName;
-
+    /**
+     * 起运港
+     */
     private String dispathPortId;
-
+    /**
+     * 目的港
+     */
     private String destPortId;
-
+    /**
+     *装货港
+     */
     private String loadingPortId;
-
+    /**
+     *卸货港
+     */
     private String dischargePortId;
-
+    /**
+     *贸易性质
+     */
     private String tradeNatureId;
-
+    /**
+     *海关证书号
+     */
     private String customsCertNo;
-
+    /**
+     *海关报关号
+     */
     private String customsDeclNo;
-
+    /**
+     *报验人
+     */
     private String inspectionPerson;
-
+    /**
+     *重量
+     */
     private String weight;
-
+    /**
+     *重量单位
+     */
     private String weightUnit;
-
+    /**
+     *发货人
+     */
     private String consignerName;
-
+    /**
+     *收货人
+     */
     private String consigneeName;
-
+    /**
+     *提供单证id，以逗号区分
+     */
     private String provideCertUuid;
-
+    /**
+     *提供单证的名称，以逗号区分
+     */
     private String provideCertName;
-
+    /**
+     *是Y否N出证，默认N
+     */
     private String isOpenCert;
-
-    private List<OrderItemDTO> orderItemDTO;//服务项
-
-    private List<OrderSampleTypeDO> orderSampleTypeDO;//委托样品类型
+    /**
+     *服务项
+     */
+    private List<OrderItemDTO> orderItemDTO;
+    /**
+     *委托样品类型
+     */
+    private List<OrderSampleTypeDO> orderSampleTypeDO;
 }

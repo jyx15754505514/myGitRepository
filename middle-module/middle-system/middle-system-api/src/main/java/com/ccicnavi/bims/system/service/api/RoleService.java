@@ -46,7 +46,7 @@ public interface RoleService {
      * @return role
      * @throws Exception
      */
-    public RoleDO getRole(RoleDO role);
+    public RoleDTO getRole(RoleDTO role);
 
     /*
     * 根据用户UUID查询所有角色UUID

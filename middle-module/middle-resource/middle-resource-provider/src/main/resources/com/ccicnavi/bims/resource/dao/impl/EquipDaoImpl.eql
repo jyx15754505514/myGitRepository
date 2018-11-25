@@ -1,3 +1,155 @@
+-- [listEquipByTest]
+SELECT
+    e.equip_uuid equipUuid,
+    e.equip_name equipName,
+    e.equip_name_en equipNameEn,
+    e.control_code controlCode,
+    e.equip_model equipModel,
+    e.equip_spec equipSpec,
+    e.factory_no factoryNo,
+    e.manufacture manufacture,
+    e.factory_level factoryLevel,
+    e.measure_range measureRange,
+    e.accuracy_level accuracyLevel,
+    e.equip_abc equipAbc,
+    e.status_uuid statusUuid,
+    e.equip_plan_uuid equipPlanUuid,
+    e.equip_order_uuid equipOrderUuid,
+    e.appoint_uuid appointUuid,
+    e.cert_no certNo,
+    e.use_date useDate,
+    e.use_dept_uuid useDeptUuid,
+    e.is_verify isVerify,
+    e.purchase_date purchaseDate,
+    e.purchase_price purchasePrice,
+    e.purchase_count purchaseCount,
+    e.is_rent isRent,
+    e.is_local_test isLocalTest,
+    e.is_self_test isSelfTest,
+    e.agency_uuid agencyUuid,
+    e.agency_name agencyName,
+    e.repair_fee repairFee,
+    e.location_addr locationAddr,
+    e.dept_uuid deptUuid,
+    e.mgr_uuid mgrUuid,
+    e.parts_desc partsDesc,
+    e.row_type rowType,
+    e.is_file isFile,
+    e.is_cert_file isCertFile,
+    e.source_cfm_name sourceCfmName,
+    e.source_cfm_date sourceCfmDate,
+    e.comments comments,
+    e.is_deleted isDeleted,
+    e.created_time createdTime,
+    e.created_uuid createdUuid,
+    e.updated_time updatedTime,
+    e.updated_name updatedName,
+    e.org_uuid orgUuid,
+    e.app_sys_uuid appSysUuid,
+    e.created_name createdName,
+    e.updated_uuid updatednuid,
+    e.prod_catalog_uuid prodCatalogUuid,
+    et.equip_test_uuid equipTestUuid,
+    et.cert_no testCertNo,
+    et.test_date testDate,
+    et.test_cycle testCycle,
+    et.is_long_term isLongTerm,
+    et.test_valid_date testValidDate,
+    et.test_result testResult,
+    et.test_type testType,
+    et.test_fee testFee,
+    et.fee_desc feeDesc,
+    et.standard_desc standardDesc,
+    et.online_cert_url onlineCertUrl
+FROM
+    res_equip AS e LEFT JOIN res_equip_test AS et ON et.equip_uuid = e.equip_uuid
+    AND et.test_valid_date = (SELECT MAX(test_valid_date) testValidDate FROM res_equip_test WHERE test_valid_date <= '#nowDate#')
+where
+    e.is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    AND e.org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid != ''
+    and e.app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and e.prod_catalog_uuid = '#prodCatalogUuid#'
+--end
+
+
+-- [listEquip]
+  SELECT
+     equip_uuid equipUuid,
+     equip_name equipName,
+     equip_name_en equipNameEn,
+     control_code controlCode,
+     equip_model equipModel,
+     equip_spec equipSpec,
+     factory_no factoryNo,
+     manufacture manufacture,
+     factory_level factoryLevel,
+     measure_range measureRange,
+     accuracy_level accuracyLevel,
+     equip_abc equipAbc,
+     status_uuid statusUuid,
+     equip_plan_uuid equipPlanUuid,
+     equip_order_uuid equipOrderUuid,
+     appoint_uuid appointUuid,
+     cert_no certNo,
+     test_date testDate,
+     use_date useDate,
+     use_dept_uuid useDeptUuid,
+     is_verify isVerify,
+     test_cycle testCycle,
+     is_long_term isLongTerm,
+     test_valid_date testValidDate,
+     test_result testResult,
+     purchase_date purchaseDate,
+     purchase_price purchasePrice,
+     purchase_count purchaseCount,
+     is_rent isRent,
+     is_local_test isLocalTest,
+     is_self_test isSelfTest,
+     agency_uuid agencyUuid,
+     agency_name agencyName,
+     test_type testType,
+     test_fee testFee,
+     repair_fee repairFee,
+     fee_desc feeDesc,
+     location_addr locationAddr,
+     dept_uuid deptUuid,
+     mgr_uuid mgrUuid,
+     parts_desc partsDesc,
+     standard_desc standardDesc,
+     row_type rowType,
+     is_file isFile,
+     is_cert_file isCertFile,
+     online_cert_url onlineCertUrl,
+     source_cfm_name sourceCfmName,
+     source_cfm_date sourceCfmDate,
+     comments comments,
+     is_deleted isDeleted,
+     created_time createdTime,
+     created_uuid createdUuid,
+     updated_time updatedTime,
+     updated_name updatedName,
+     org_uuid orgUuid,
+     app_sys_uuid appSysUuid,
+     created_name createdName,
+     updated_uuid updatednuid,
+     prod_catalog_uuid prodCatalogUuid
+from
+    res_equip
+where
+    is_deleted = 'N'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid !=''
+    and app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+--iff testValidDate != null
+    and test_valid_date <= '#testValidDate#'
+-- end
+
 -- [getEquip]
   SELECT
      equip_uuid equipUuid,
@@ -72,6 +224,8 @@ where
 --iff equipUuid != null and equipUuid != ''
     and equip_uuid = '#equipUuid#'
 
+
+-- 批量获取设备信息
 -- [getEquipList]
   SELECT
      equip_uuid equipUuid,
@@ -149,79 +303,6 @@ where
         '#item#'
     -- end
 
--- [listEquip]
-  SELECT
-     equip_uuid equipUuid,
-     equip_name equipName,
-     equip_name_en equipNameEn,
-     control_code controlCode,
-     equip_model equipModel,
-     equip_spec equipSpec,
-     factory_no factoryNo,
-     manufacture manufacture,
-     factory_level factoryLevel,
-     measure_range measureRange,
-     accuracy_level accuracyLevel,
-     equip_abc equipAbc,
-     status_uuid statusUuid,
-     equip_plan_uuid equipPlanUuid,
-     equip_order_uuid equipOrderUuid,
-     appoint_uuid appointUuid,
-     cert_no certNo,
-     test_date testDate,
-     use_date useDate,
-     use_dept_uuid useDeptUuid,
-     is_verify isVerify,
-     test_cycle testCycle,
-     is_long_term isLongTerm,
-     test_valid_date testValidDate,
-     test_result testResult,
-     purchase_date purchaseDate,
-     purchase_price purchasePrice,
-     purchase_count purchaseCount,
-     is_rent isRent,
-     is_local_test isLocalTest,
-     is_self_test isSelfTest,
-     agency_uuid agencyUuid,
-     agency_name agencyName,
-     test_type testType,
-     test_fee testFee,
-     repair_fee repairFee,
-     fee_desc feeDesc,
-     location_addr locationAddr,
-     dept_uuid deptUuid,
-     mgr_uuid mgrUuid,
-     parts_desc partsDesc,
-     standard_desc standardDesc,
-     row_type rowType,
-     is_file isFile,
-     is_cert_file isCertFile,
-     online_cert_url onlineCertUrl,
-     source_cfm_name sourceCfmName,
-     source_cfm_date sourceCfmDate,
-     comments comments,
-     is_deleted isDeleted,
-     created_time createdTime,
-     created_uuid createdUuid,
-     updated_time updatedTime,
-     updated_name updatedName,
-     org_uuid orgUuid,
-     app_sys_uuid appSysUuid,
-     created_name createdName,
-     updated_uuid updatednuid,
-     prod_catalog_uuid prodCatalogUuid
-from
-    res_equip
-where
-    is_deleted = 'N'
---iff orgUuid != null and orgUuid != ''
-    and org_uuid = '#orgUuid#'
---iff appSysUuid != null and appSysUuid !=''
-    and app_sys_uuid = '#appSysUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
---iff testValidDate != null
-    and test_valid_date <= '#testValidDate#'
 
 -- [insertEquip]
     insert into res_equip
@@ -503,9 +584,9 @@ where
       --iff certNo != null and certNo != ''
         cert_no = '#certNo#',
       --iff testDate != null
-        test_date = '#testDate',
+        test_date = '#testDate#',
       --iff useDate != null
-        use_date = '#useDate' ,
+        use_date = '#useDate#' ,
       --iff useDeptUuid != null and useDeptUuid != ''
         use_dept_uuid = '#useDeptUuid#',
       --iff isVerify != null and isVerify != ''
@@ -590,8 +671,8 @@ where
     -- end
   where
     is_deleted = 'N'
-  --iff equipUseUuid != null and equipUseUuid != ''
-    and equip_use_uuid = '#equipUseUuid#'
+  --iff equipUuid != null and equipUuid != ''
+    and equip_uuid = '#equipUuid#'
 
 
 

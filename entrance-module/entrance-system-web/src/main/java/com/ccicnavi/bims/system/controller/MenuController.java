@@ -27,10 +27,10 @@ import java.util.List;
 @Slf4j
 public class MenuController {
     //url 指定dubbo的地址
-    @Reference
+    @Reference(timeout = 6000,url = "dubbo://127.0.0.1:20881")
     private MenuService menuService;
 
-    @Reference
+    @Reference(timeout = 6000,url = "dubbo://127.0.0.1:20881")
     private MenuButtonService menuButtonService;
     /**
      * 功能描述: 根据条件查询菜单

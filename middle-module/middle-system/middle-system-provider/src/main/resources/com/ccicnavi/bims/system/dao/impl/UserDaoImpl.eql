@@ -366,6 +366,8 @@
        u.prod_catalog_uuid as prodCatalogUuid,
        o.org_name as orgName,
        o.org_code as orgCode,
+       o.is_enabled as orgIsEnabled,
+       o.is_deleted as orgIsDeleted,
        u.extend1,
        u.extend2,
        u.extend3

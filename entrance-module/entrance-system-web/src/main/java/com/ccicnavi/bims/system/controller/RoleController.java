@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @create: 2018-11-15 21:04
  */
 @RestController
-@RequestMapping("system")
+@RequestMapping("/role")
 @Slf4j
 public class RoleController {
 
@@ -35,7 +35,7 @@ public class RoleController {
      * @Date 2018/11/16 10:49
      * @Param [pageParameter]
      **/
-    @PostMapping(value = "listRole")
+    @PostMapping(value = "/listRole")
     public ResultT listRole(@RequestBody PageParameter<RoleDO> pageParameter) {
         try {
             PageBean<RoleDO> roleDOList = roleService.listRole(pageParameter);
@@ -57,7 +57,7 @@ public class RoleController {
      * @Date 2018/11/16 15:21
      * @Param [role]
      **/
-    @PostMapping(value = "insertRole")
+    @PostMapping(value = "/insertRole")
     public ResultT insertRole(@RequestBody RoleDO role) {
         try {
             Integer integer = roleService.insertRole(role);
@@ -103,6 +103,7 @@ public class RoleController {
     @RequestMapping(value = "/deleteRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT deleteRole(@RequestBody RoleDTO roleDO) {
         try {
+
             Integer deleteResult = roleService.deleteRole(roleDO);
             if(deleteResult != null && deleteResult != 0) {
                 return ResultT.success();
@@ -121,9 +122,9 @@ public class RoleController {
      * @return com.ccicnavi.bims.common.ResultT
      **/
     @RequestMapping(value = "/getRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT getRole(@RequestBody RoleDO roleDO) {
+    public ResultT getRole(@RequestBody RoleDTO roleDO) {
         try {
-            RoleDO resultBean = roleService.getRole(roleDO);
+            RoleDTO resultBean = roleService.getRole(roleDO);
             if(resultBean != null) {
                 return ResultT.success(resultBean);
             }

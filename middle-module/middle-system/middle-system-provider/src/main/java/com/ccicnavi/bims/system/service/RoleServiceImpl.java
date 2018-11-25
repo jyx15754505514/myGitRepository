@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.system.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.*;
@@ -12,6 +14,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,6 +24,8 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     RoleDao roleDao;
 
+    @Reference
+    IdWorkerService idWorkerService;
     @Override
     public PageBean<RoleDO> listRole(PageParameter<RoleDO> pageParameter){
         try {
@@ -34,7 +39,9 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Integer insertRole(RoleDO role){
         try {
-            return roleDao.insertRole(role);
+            String uuid = idWorkerService.getId(new Date());
+            role.setRoleUuid(uuid);
+            return roleDao.insertRole(role,null);
         } catch (Exception e) {
             log.error("新增失败",e);
             return 0;
@@ -44,7 +51,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Integer updateRole(RoleDO role){
         try {
-            return roleDao.updateRole(role);
+            return roleDao.updateRole(role,null);
         } catch (Exception e) {
             log.error("修改失败",e);
             return 0;
@@ -59,7 +66,7 @@ public class RoleServiceImpl implements RoleService {
             role.setRoleUuids(resultList);
         }
         try {
-            return roleDao.deleteRole(role);
+            return roleDao.deleteRole(role,null);
         } catch (Exception e) {
             log.error("删除失败",e);
             return 0;
@@ -67,12 +74,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleDO getRole(RoleDO role){
+    public RoleDTO getRole(RoleDTO role){
         try {
             return roleDao.getRole(role);
         } catch (Exception e) {
-            log.error("删除失败",e);
-            return new RoleDO();
+            log.error("根据主键获取失败",e);
+            return new RoleDTO();
         }
     }
 

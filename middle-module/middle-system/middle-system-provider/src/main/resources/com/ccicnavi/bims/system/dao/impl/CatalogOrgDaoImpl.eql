@@ -4,7 +4,7 @@ SELECT
 FROM
     sys_catalog_org
 WHERE
-    organization_uuid = '#organization_uuid#'
+    organization_uuid = '#organizationUuid#'
 
 
 --[saveCatalogOrgDO]

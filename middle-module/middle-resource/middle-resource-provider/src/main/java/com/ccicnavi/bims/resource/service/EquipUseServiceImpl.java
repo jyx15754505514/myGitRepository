@@ -39,14 +39,14 @@ public class EquipUseServiceImpl implements EquipUseService {
      * @Return com.ccicnavi.bims.resource.pojo.EquipUseDO
      */
     @Override
-    public EquipUseDO getEquipUse(String equipUseUuid){
-        EquipUseDO equipUseDO = null;
+    public EquipUseDO getEquipUse(EquipUseDO equipUseDO){
+        EquipUseDO equipUse = null;
         try {
-            equipUseDO = equipUseDao.getEquipUse(equipUseUuid);
+            equipUse = equipUseDao.getEquipUse(equipUseDO);
         } catch (Exception e) {
             log.error("根据设备领用归还信息主键获取设备领用归还信息错误",e);
         }
-        return equipUseDO;
+        return equipUse;
     }
 
     /**
@@ -94,7 +94,7 @@ public class EquipUseServiceImpl implements EquipUseService {
      */
     @Override
     public Integer insertEquipUse(EquipUseDO equipUseDO){
-        Integer count = null;
+        Integer count = 0;
         try {
             String equipUseUuid = idWorkerService.getId(new Date());
             equipUseDO.setEquipUseUuid(equipUseUuid);
@@ -114,7 +114,7 @@ public class EquipUseServiceImpl implements EquipUseService {
      */
     @Override
     public Integer updateEquipUse(EquipUseDO equipUseDO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipUseDao.updateEquipUse(equipUseDO,null);
         } catch (Exception e) {
@@ -125,14 +125,14 @@ public class EquipUseServiceImpl implements EquipUseService {
 
     /**
      * @Author panyida
-     * @Description 根据设备领用归还信息主键删除设备领用归还信息
-     * @Date 16:30 2018/11/14
+     * @Description
+     * @Date 16:30 2018/11/14根据设备领用归还信息主键删除设备领用归还信息
      * @Param [equipUseUuid]
      * @Return java.lang.Integer
      */
     @Override
     public Integer deleteEquipUse(EquipUseDTO equipUseDTO){
-        Integer count = null;
+        Integer count = 0;
         try {
             count = equipUseDao.deleteEquipUse(equipUseDTO,null);
         } catch (Exception e) {

@@ -70,8 +70,8 @@ INSERT INTO res_cert_paper
         	paper_end_num,
         --iff stromPerson != null and stromPerson !=''
         	strom_person,
-        --iff stromTime != null and stromTime !=''
-        	strom_time,
+        --iff stromDate != null
+        	strom_date,
         --iff leadUnit != null and leadUnit !=''
         	lead_unit,
         --iff leadDept != null and leadDept !=''
@@ -113,8 +113,8 @@ INSERT INTO res_cert_paper
         	'#paperEndNum#',
         --iff stromPerson != null and stromPerson !=''
         	'#stromPerson#',
-        --iff stromTime != null and stromTime !=''
-        	'#stromTime#',
+        --iff stromDate != null
+        	'#stromDate#',
         --iff leadUnit != null and leadUnit !=''
         	'#leadUnit#',
         --iff leadDept != null and leadDept !=''
@@ -157,8 +157,8 @@ UPDATE
     	paper_end_num = '#paperEndNum#',
     --iff stromPerson != null and stromPerson !=''
     	strom_person = '#stromPerson#',
-    --iff stromTime != null and stromTime!=''
-    	strom_time = '#stromTime#',
+    --iff stromDate != null
+    	strom_date = '#stromDate#',
     --iff leadUnit != null and leadUnit !=''
     	lead_unit = '#leadUnit#',
     --iff leadDept != null and leadDept !=''
@@ -173,11 +173,11 @@ UPDATE
     	current_code = '#currentCode#',
     --iff isDeleted != null and isDeleted !=''
     	is_deleted = '#isDeleted#',
-    --iff createdTime != null and createdTime !=''
+    --iff createdTime != null
     	created_time = '#createdTime#',
     --iff createdUuid != null and createdUuid !=''
     	created_uuid = '#createdUuid#',
-    --iff updatedTime != null and updatedTime !=''
+    --iff updatedTime != null
     	updated_time = '#updatedTime#',
     --iff updatedName != null and updatedName !=''
     	updated_name = '#updatedName#',

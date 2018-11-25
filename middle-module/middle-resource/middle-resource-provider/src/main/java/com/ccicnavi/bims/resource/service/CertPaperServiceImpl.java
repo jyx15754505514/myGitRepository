@@ -38,8 +38,7 @@ public class CertPaperServiceImpl implements CertPaperService {
         try {
             return certPaperDao.listCertPaper(certPaper);
         } catch (Exception e) {
-            log.debug("查询证书纸失败",e);
-            e.printStackTrace();
+            log.error("查询证书纸失败",e);
         }
         return null;
     }
@@ -54,8 +53,7 @@ public class CertPaperServiceImpl implements CertPaperService {
         try {
             return certPaperDao.getCertPaper(certPaper);
         } catch (Exception e) {
-            log.debug("查询单条证书纸失败",e);
-            e.printStackTrace();
+            log.error("根据uuid查询单条证书纸失败",e);
         }
         return null;
     }
@@ -74,9 +72,9 @@ public class CertPaperServiceImpl implements CertPaperService {
             //流水截止号
             String paperEndNum=certPaper.getPaperEndNum();
             //入库数量
-            certPaper.setStromNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum))+"");
+            certPaper.setStromNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum)+1)+"");
             //剩余数量默认等于入库数量
-            certPaper.setResidualNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum))+"");
+            certPaper.setResidualNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum)+1)+"");
             //当前号默认等于流水起始号
             certPaper.setCurrentCode(paperStartNum);
             //创建时间
@@ -90,8 +88,7 @@ public class CertPaperServiceImpl implements CertPaperService {
             certPaperDO.setAppSysUuid("1111");*/
             return certPaperDao.insertCertPaper(certPaper);
         } catch (Exception e) {
-            log.debug("新增证书纸失败",e);
-            e.printStackTrace();
+            log.error("新增证书纸失败",e);
         }
         return 0;
     }
@@ -109,9 +106,9 @@ public class CertPaperServiceImpl implements CertPaperService {
             //流水截止号
             String paperEndNum=certPaper.getPaperEndNum();
             //入库数量
-            certPaper.setStromNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum))+"");
+            certPaper.setStromNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum)+1)+"");
             //剩余数量默认等于入库数量
-            certPaper.setResidualNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum))+"");
+            certPaper.setResidualNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum)+1)+"");
             //当前号默认等于流水起始号
             certPaper.setCurrentCode(paperStartNum);
             //创建时间
@@ -125,8 +122,7 @@ public class CertPaperServiceImpl implements CertPaperService {
             certPaperDO.setAppSysUuid("1111");*/
             return certPaperDao.updateCertPaper(certPaper);
         } catch (Exception e) {
-            log.debug("更新证书纸失败",e);
-            e.printStackTrace();
+            log.error("更新证书纸失败",e);
         }
         return 0;
     }
@@ -141,13 +137,12 @@ public class CertPaperServiceImpl implements CertPaperService {
         try {
             return certPaperDao.deleteCertPaper(certPaper);
         } catch (Exception e) {
-            log.debug("删除证书纸失败",e);
-            e.printStackTrace();
+            log.error("删除证书纸失败",e);
         }
         return 0;
     }
     /*
-     * 校验证书纸
+     * 校验证书纸 流水起始号  流水结束号
      * @param certPaper
      * @return Boolean
      */
@@ -183,7 +178,7 @@ public class CertPaperServiceImpl implements CertPaperService {
                 }
             }
         } catch (Exception e) {
-            log.debug("校验证书纸失败",e);
+            log.error("校验证书纸失败",e);
         }
         return result;
     }
