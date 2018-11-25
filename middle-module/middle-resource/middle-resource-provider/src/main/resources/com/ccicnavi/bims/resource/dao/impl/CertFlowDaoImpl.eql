@@ -1,0 +1,93 @@
+-- [insertCertFlow]
+insert into res_cert_flow
+    --trim prefix=( suffix=) suffixOverrides=,
+        --iff flowUuid != null and flowUuid != ''
+            flow_uuid,
+        --iff flowNum != null and flowNum != ''
+            flow_num,
+        --iff emptyCardStatus != null and emptyCardStatus != ''
+            empty_card_status,
+        --iff reason != null and reason != ''
+            reason,
+        --iff certNum != null and certNum != ''
+            cert_num,
+        --iff certStatus != null and certStatus != ''
+            cert_status,
+        --iff leadUnit != null and leadUnit != ''
+            lead_unit,
+        --iff leadDept != null and leadDept !=''
+            lead_dept,
+        --iff cancelUuid != null and cancelUuid != ''
+            cancel_uuid,
+        --iff cancelName != null and cancelName != ''
+            cancel_name,
+        --iff cancelDate != null
+            cancel_date,
+        --iff comments != null and comments != ''
+            comments,
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted,
+        --iff createdTime != null
+            created_time,
+        --iff createdUuid != null and createdUuid != ''
+            created_uuid,
+        --iff createdName != null and createdName != ''
+            created_name,
+              --iff prodCatalogUuid != null and prodCatalogUuid != ''
+                         prod_catalog_uuid,
+                     --iff orgUuid != null and orgUuid != ''
+                         org_uuid,
+                     --iff appSysUuid != null and appSysUuid != ''
+                         app_sys_uuid,
+    --end
+    --trim prefix=values( suffix=) suffixOverrides=,
+        --iff flowUuid != null and flowUuid != ''
+            '#flowUuid#',
+        --iff flowNum != null and flowNum != ''
+            '#flowNum#',
+        --iff emptyCardStatus != null and emptyCardStatus != ''
+            '#emptyCardStatus#',
+        --iff reason != null and reason != ''
+            '#reason#',
+        --iff certNum != null and certNum != ''
+            '#certNum#',
+        --iff certStatus != null and certStatus != ''
+            '#certStatus#',
+        --iff leadUnit != null and leadUnit != ''
+            '#leadUnit#',
+        --iff leadDept != null and leadDept != ''
+            '#leadDept#',
+        --iff cancelUuid != null and cancelUuid != ''
+            '#cancelUuid#',
+        --iff cancelName != null and cancelName != ''
+            '#cancelName#',
+        --iff cancelDate != null
+            '#cancelDate#',
+        --iff comments != null and comments != ''
+            '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+         --iff createdTime != null
+            '#createdTime#',
+         --iff createdUuid != null and createdUuid != ''
+            '#createdUuid#',
+         --iff createdName != null and createdName != ''
+           '#createdName#',
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
+        --iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+    --end
+    -- [cancelCertFlow]
+    UPDATE res_cert_flow
+        -- trim prefix= set suffixOverrides=,
+            empty_card_status = 'Y'
+        -- end
+    where
+        empty_card_status = 'N'
+    --iff flowNum != null and flowNum != ''
+        and flow_num = '#flowNum#'
+         --iff flowUuid != null and flowUuid != ''
+                and flow_uuid = '#flowUuid#'
