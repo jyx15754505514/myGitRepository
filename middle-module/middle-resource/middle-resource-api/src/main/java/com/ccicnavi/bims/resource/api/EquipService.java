@@ -30,7 +30,7 @@ public interface EquipService {
      * @Param [pageParameter]
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.EquipDO>
      */
-    PageBean<EquipDO> listEquipByTest(PageParameter<EquipDTO> pageParameter);
+    PageBean<EquipDTO> listEquipByTest(PageParameter<EquipDTO> pageParameter);
 
     /**
      * @Author MengZiJie

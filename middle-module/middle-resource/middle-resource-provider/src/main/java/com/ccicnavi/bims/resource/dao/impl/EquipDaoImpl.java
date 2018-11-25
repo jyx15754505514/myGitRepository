@@ -66,9 +66,9 @@ public class EquipDaoImpl implements EquipDao {
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.EquipDO>
      */
     @Override
-    public PageBean<EquipDO> listEquipByTest(PageParameter<EquipDTO> pageParameter) {
+    public PageBean<EquipDTO> listEquipByTest(PageParameter<EquipDTO> pageParameter) {
         EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
-        List<EquipDO> listEquip = new Eql().select("listEquipByTest").params(pageParameter.getParameter()).returnType(EquipDO.class).limit(eqlPage).execute();
+        List<EquipDTO> listEquip = new Eql().select("listEquipByTest").params(pageParameter.getParameter()).returnType(EquipDTO.class).limit(eqlPage).execute();
         return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquip);
     }
 

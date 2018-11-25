@@ -31,7 +31,7 @@ public interface EquipDao {
      * @Param [equipDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipDO>
      */
-    PageBean<EquipDO> listEquipByTest(PageParameter<EquipDTO> pageParameter);
+    PageBean<EquipDTO> listEquipByTest(PageParameter<EquipDTO> pageParameter);
 
     /**
      * @Author MengZiJie

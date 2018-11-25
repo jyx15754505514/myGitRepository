@@ -18,7 +18,7 @@ import java.util.List;
 public class EquipDTO implements Serializable {
 
     /*
-     * 设备主键
+     * 设备信息主键
      */
     private String equipUuid;
     /*
@@ -253,6 +253,10 @@ public class EquipDTO implements Serializable {
      *应用系统id
      */
     private String appSysUuid;
+    /**
+     * 设备检定记录id
+     */
+    private String equipTestUuid;
     /*
      * 当前日期Date类型
      */

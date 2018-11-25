@@ -1,91 +1,20 @@
--- 查询器具台账列表(关联查询)
 -- [listEquipByTest]
 SELECT
-    e.equip_uuid equipUuid,
-    e.equip_name equipName,
-    e.equip_name_en equipNameEn,
-    e.control_code controlCode,
-    e.equip_model equipModel,
-    e.equip_spec equipSpec,
-    e.factory_no factoryNo,
-    e.manufacture manufacture,
-    e.factory_level factoryLevel,
-    e.measure_range measureRange,
-    e.accuracy_level accuracyLevel,
-    e.equip_abc equipAbc,
-    e.status_uuid statusUuid,
-    e.equip_plan_uuid equipPlanUuid,
-    e.equip_order_uuid equipOrderUuid,
-    e.appoint_uuid appointUuid,
-    e.cert_no certNo,
-    e.test_date testDate,
-    e.use_date useDate,
-    e.use_dept_uuid useDeptUuid,
-    e.is_verify isVerify,
-    e.test_cycle testCycle,
-    e.is_long_term isLongTerm,
-    e.test_valid_date testValidDate,
-    e.test_result testResult,
-    e.purchase_date purchaseDate,
-    e.purchase_price purchasePrice,
-    e.purchase_count purchaseCount,
-    e.is_rent isRent,
-    e.is_local_test isLocalTest,
-    e.is_self_test isSelfTest,
-    e.agency_uuid agencyUuid,
-    e.agency_name agencyName,
-    e.test_type testType,
-    e.test_fee testFee,
-    e.repair_fee repairFee,
-    e.fee_desc feeDesc,
-    e.location_addr locationAddr,
-    e.dept_uuid deptUuid,
-    e.mgr_uuid mgrUuid,
-    e.parts_desc partsDesc,
-    e.standard_desc standardDesc,
-    e.row_type rowType,
-    e.is_file isFile,
-    e.is_cert_file isCertFile,
-    e.online_cert_url onlineCertUrl,
-    e.source_cfm_name sourceCfmName,
-    e.source_cfm_date sourceCfmDate,
-    e.comments comments,
-    e.is_deleted isDeleted,
-    e.created_time createdTime,
-    e.created_uuid createdUuid,
-    e.updated_time updatedTime,
-    e.updated_name updatedName,
-    e.org_uuid orgUuid,
-    e.app_sys_uuid appSysUuid,
-    e.created_name createdName,
-    e.updated_uuid updatednuid,
-    e.prod_catalog_uuid prodCatalogUuid,
-    et.equip_test_uuid equipTestUuid,
-    et.cert_no testCertNo,
-    et.test_date testDate,
-    et.test_cycle testCycle,
-    et.is_long_term isLongTerm,
-    et.test_valid_date testValidDate,
-    et.test_result testResult,
-    et.test_type testType,
-    et.test_fee testFee,
-    et.fee_desc feeDesc,
-    et.standard_desc standardDesc,
-    et.online_cert_url onlineCertUrl
+    e.equip_uuid equipUuid
 FROM
     res_equip AS e LEFT JOIN res_equip_test AS et ON et.equip_uuid = e.equip_uuid
-    AND et.test_valid_date = (SELECT max(test_valid_date) FROM res_equip_test WHERE test_valid_date <= '#nowDate#')
+    AND et.test_valid_date = (SELECT MAX(test_valid_date) testValidDate FROM res_equip_test WHERE test_valid_date <= '#nowDate#')
 where
     e.is_deleted = 'N'
 --iff orgUuid != null and orgUuid != ''
-    and e.org_uuid = '#orgUuid#'
---iff appSysUuid != null and appSysUuid !=''
+    AND e.org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid != ''
     and e.app_sys_uuid = '#appSysUuid#'
 --iff prodCatalogUuid != null and prodCatalogUuid != ''
     and e.prod_catalog_uuid = '#prodCatalogUuid#'
+--end
 
 
--- 查询器具信息
 -- [listEquip]
   SELECT
      equip_uuid equipUuid,
@@ -159,9 +88,8 @@ where
     and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff testValidDate != null
     and test_valid_date <= '#testValidDate#'
+-- end
 
-
--- 获取单条设备信息
 -- [getEquip]
   SELECT
      equip_uuid equipUuid,

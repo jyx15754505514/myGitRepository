@@ -65,8 +65,8 @@ public class EquipServiceImpl implements EquipService {
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.EquipDO>
      */
     @Override
-    public PageBean<EquipDO> listEquipByTest(PageParameter<EquipDTO> pageParameter) {
-        PageBean<EquipDO> listEquipDO = null;
+    public PageBean<EquipDTO> listEquipByTest(PageParameter<EquipDTO> pageParameter) {
+        PageBean<EquipDTO> listEquipDO = null;
         try {
             listEquipDO = equipDao.listEquipByTest(pageParameter);
         } catch (Exception e) {

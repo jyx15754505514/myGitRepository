@@ -8,6 +8,7 @@ import com.ccicnavi.bims.resource.dao.impl.EquipUseDaoImpl;
 import com.ccicnavi.bims.resource.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -96,9 +97,43 @@ public class TestEquip {
             equipDTO.setProdCatalogUuid("yewu2.0");
             PageBean<EquipDO> equipDOPageBean = equipDaoImpl.listEquip(pageParameter);
             System.err.println(equipDOPageBean);
+            System.out.println(equipDOPageBean.getProducts().size()+"条");
         } catch (Exception e) {
             log.error("查询设备信息失败",e);
         }
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 设备台账查询
+     * @Data 2018/11/25 17:52
+     */
+    @Test
+    public void listEquipByTest(){
+        PageParameter<EquipDTO> pageParameter = new PageParameter();
+        EquipDTO equipDTO = new EquipDTO();
+        //设置分页参数
+        pageParameter.setStartIndex(1);
+        pageParameter.setPageRows(3);
+        pageParameter.setStartPage(1);
+        //设置查询参数
+        equipDTO.setAppSysUuid("yewu2.0");
+        equipDTO.setOrgUuid("yewu2.0");
+        equipDTO.setProdCatalogUuid("yewu2.0");
+        /**获取当前时间：年/月/日*/
+        Date vardate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String newDate = sdf.format(vardate);
+        calendar.setTime(vardate);
+        vardate = calendar.getTime();
+        System.out.println("参数："+vardate);
+        equipDTO.setNowDate(vardate);
+        pageParameter.setParameter(equipDTO);
+        PageBean<EquipDTO> equipDOPageBean = equipDaoImpl.listEquipByTest(pageParameter);
+        System.out.println(equipDOPageBean);
+        System.out.println(equipDOPageBean.getProducts().size()+"条");
+        System.out.println(equipDOPageBean.getProducts().get(0).getEquipTestUuid());
     }
 
     /**
@@ -127,7 +162,7 @@ public class TestEquip {
             String newDate = sdf.format(vardate);
             calendar.setTime(vardate);
             /**减去提醒的天数*/
-            calendar.add(Calendar.DAY_OF_MONTH, -expireDay);
+            calendar.add(Calendar.DAY_OF_MONTH, +expireDay);
             vardate = calendar.getTime();
             System.out.println("到期时间为：" +vardate);
             equipDTO.setTestValidDate(vardate);
@@ -243,5 +278,23 @@ public class TestEquip {
         } catch (Exception e){
             log.error("删除设备失败",e);
         }
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 获取当前时间 类型Date() 格式yyyy-MM-dd
+     * @Data 2018/11/25 17:15
+     */
+    @Test
+    public void getDate(){
+        /**获取当前时间：年/月/日*/
+        Date vardate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String newDate = sdf.format(vardate);
+        System.out.println("当前时间（字符串）为："+newDate);
+        ParsePosition pos = new ParsePosition(0);
+        Date parse = sdf.parse(newDate, pos);
+        System.out.println("yyyy-MM-dd格式结果为："+parse);
     }
 }
