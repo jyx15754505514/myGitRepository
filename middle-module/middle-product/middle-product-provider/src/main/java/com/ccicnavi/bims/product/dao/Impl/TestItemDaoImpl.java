@@ -20,8 +20,8 @@ import java.util.List;
 public class TestItemDaoImpl implements TestItemDao {
 
     @Override
-    public List<TestItemDO> listTestItem(){
-        return new Eql().select("listTestItemDO").returnType(TestItemDO.class).execute();
+    public List<TestItemDO> listTestItem(TestItemDO testItemDO){
+        return new Eql().select("listTestItemDO").params(testItemDO).returnType(TestItemDO.class).execute();
     }
 
     @Override

@@ -28,7 +28,7 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public List<CatalogDO> listCatalog(CatalogDO catalogDO){
         try {
-            return catalogDao.listCatalog();
+            return catalogDao.listCatalog(catalogDO);
         } catch (Exception e) {
             log.error("查询产品线信息失败",e);
             return null;

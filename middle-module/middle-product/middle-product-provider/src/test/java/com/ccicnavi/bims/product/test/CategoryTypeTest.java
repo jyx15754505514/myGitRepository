@@ -20,7 +20,9 @@ public class CategoryTypeTest {
 
     @Test
     public void lsitCategoryTypeDOTest(){
-        List<CategoryTypeDO> categoryDOList=categoryTypeDaoTest.lsitCategoryType();
+        CategoryTypeDO categoryTypeDO=new CategoryTypeDO();
+        categoryTypeDO.setTypeName("矿石");
+        List<CategoryTypeDO> categoryDOList=categoryTypeDaoTest.lsitCategoryType(categoryTypeDO);
         System.out.println(categoryDOList);
     }
 
@@ -58,7 +60,7 @@ public class CategoryTypeTest {
     @Test
     public void getCategoryTypeDOTest(){
         CategoryTypeDO categoryTypeDO=new CategoryTypeDO();;
-        categoryTypeDO.setProductCategoryTypeUuid("pctu_9");
+        categoryTypeDO.setProductCategoryTypeUuid("pctu_999");
         CategoryTypeDO categoryTypeDOResult=categoryTypeDaoTest.getCategoryType(categoryTypeDO);
         System.out.println(categoryTypeDOResult);
     }

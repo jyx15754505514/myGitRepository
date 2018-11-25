@@ -40,14 +40,6 @@ public class SerialnumCfgDTO implements Serializable {
      *周期
      */
     private String sncPeriod;
-
-    private String isHop;
-
-    private String delimiter;
-
-    private String isDelimAfterFirst;
-
-    private String isDelimBeforeLast;
     /**
      * 排序编号
      */

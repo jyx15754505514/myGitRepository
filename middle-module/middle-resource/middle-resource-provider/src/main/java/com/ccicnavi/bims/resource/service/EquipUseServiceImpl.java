@@ -39,14 +39,14 @@ public class EquipUseServiceImpl implements EquipUseService {
      * @Return com.ccicnavi.bims.resource.pojo.EquipUseDO
      */
     @Override
-    public EquipUseDO getEquipUse(String equipUseUuid){
-        EquipUseDO equipUseDO = null;
+    public EquipUseDO getEquipUse(EquipUseDO equipUseDO){
+        EquipUseDO equipUse = null;
         try {
-            equipUseDO = equipUseDao.getEquipUse(equipUseUuid);
+            equipUse = equipUseDao.getEquipUse(equipUseDO);
         } catch (Exception e) {
             log.error("根据设备领用归还信息主键获取设备领用归还信息错误",e);
         }
-        return equipUseDO;
+        return equipUse;
     }
 
     /**

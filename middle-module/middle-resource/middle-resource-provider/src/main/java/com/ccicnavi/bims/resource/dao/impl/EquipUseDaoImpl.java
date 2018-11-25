@@ -26,8 +26,8 @@ public class EquipUseDaoImpl implements EquipUseDao {
      * @Return com.ccicnavi.bims.resource.pojo.EquipUseDO
      */
     @Override
-    public EquipUseDO getEquipUse(String equipUseUuid){
-        return new Eql().selectFirst("getEquipUse").params(equipUseUuid).returnType(EquipUseDO.class).execute();
+    public EquipUseDO getEquipUse(EquipUseDO equipUseDO){
+        return new Eql().selectFirst("getEquipUse").params(equipUseDO).returnType(EquipUseDO.class).execute();
     }
 
     /**
