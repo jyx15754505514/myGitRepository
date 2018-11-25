@@ -1,0 +1,260 @@
+--[listGoodsDO]
+select
+    goods_uuid,
+    goods_name,
+    goods_name_en,
+    product_category_uuid,
+    goods_unit_uuid,
+    goods_spec,
+    comments,
+    is_deleted,
+    created_time,
+    created_uuid,
+    created_name,
+    updated_time,
+    updated_uuid,
+    updated_name,
+    prod_catalog_uuid,
+    org_uuid,
+    app_sys_uuid,
+    extend1,
+    extend2,
+    extend3
+from product_goods
+where 1=1
+    --if isDeleted != null and isDeleted != ''
+        and is_deleted = '#is_deleted#'
+    --else
+        and is_deleted = 'N'
+    --end
+    --iff goodsUuid != null and goodsUuid != ''
+        and goods_uuid = '#goodsUuid#'
+    --iff goodsName != null and goodsName != ''
+        and goods_name LIKE CONCAT('%','#goodsName#','%')
+    --iff goodsNameEn != null and goodsNameEn != ''
+        and goods_name_en LIKE CONCAT('%','#goodsNameEn#','%')
+    --iff productCategoryUuid != null and productCategoryUuid != ''
+        and product_category_uuid = '#productCategoryUuid#'
+
+--[saveGoodsDO]
+insert into product_goods
+    --trim prefix=( suffix=) suffixOverrides=,
+      --iff goodsUuid != null and goodsUuid != ''
+        goods_uuid,
+
+      --iff goodsName != null and goodsName !=''
+        goods_name,
+
+      --iff goodsNameEn != null and goodsNameEn != ''
+        goods_name_en,
+
+      --iff productCategoryUuid != null and productCategoryUuid != ''
+        product_category_uuid,
+
+      --iff goodsUnitUuid != null and goodsUnitUuid != ''
+        goods_unit_uuid,
+
+      --iff goodsSpec != null and goodsSpec != ''
+        goods_spec,
+
+      --iff comments != null and comments != ''
+        comments,
+
+      --iff isDeleted != null and isDeleted != ''
+        is_deleted,
+
+      --iff createdTime != null and createdTime != ''
+        created_time,
+
+      --iff createdUuid != null and createdUuid != ''
+        created_uuid,
+
+      --iff createdName != null and createdName != ''
+        created_name,
+
+      --iff updatedTime != null and updatedTime != ''
+        updated_time,
+
+      --iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
+
+      --iff updatedName != null and updatedName != ''
+        updated_name,
+
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+
+      --iff orgUuid != null and orgUuid != ''
+        org_uuid,
+
+      --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid,
+
+      --iff extend1 != null and extend1 != ''
+        extend1,
+
+      --iff extend2 != null and extend2 != ''
+        extend2,
+
+      --iff extend3 != null and extend3 != ''
+        extend3,
+
+    --end
+    --trim prefix=values( suffix=) suffixOverrides=,
+      --iff goodsUuid != null and goodsUuid != ''
+        '#goodsUuid#',
+
+      --iff goodsName != null and goodsName !=''
+        '#goodsName#',
+
+      --iff goodsNameEn != null and goodsNameEn != ''
+        '#goodsNameEn#',
+
+      --iff productCategoryUuid != null and productCategoryUuid != ''
+        '#productCategoryUuid#',
+
+      --iff goodsUnitUuid != null and goodsUnitUuid != ''
+        '#goodsUnitUuid#',
+
+      --iff goodsSpec != null and goodsSpec != ''
+        '#goodsSpec#',
+
+      --iff comments != null and comments != ''
+        '#comments#',
+
+      --iff isDeleted != null and isDeleted != ''
+        '#isDeleted#',
+
+      --iff createdTime != null and createdTime != ''
+        '#createdTime#',
+
+      --iff createdUuid != null and createdUuid != ''
+        '#createdUuid#',
+
+      --iff createdName != null and createdName != ''
+        '#createdName#',
+
+      --iff updatedTime != null and updatedTime != ''
+        '#updatedTime#',
+
+      --iff updatedUuid != null and updatedUuid != ''
+        '#updatedUuid#',
+
+      --iff updatedName != null and updatedName != ''
+        '#updatedName#',
+
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+
+      --iff orgUuid != null and orgUuid != ''
+        '#orgUuid#',
+
+      --iff appSysUuid != null and appSysUuid != ''
+        '#appSysUuid#',
+
+      --iff extend1 != null and extend1 != ''
+        '#extend1#',
+
+      --iff extend2 != null and extend2 != ''
+        '#extend2#',
+
+      --iff extend3 != null and extend3 != ''
+        '#extend3#',
+
+    --end
+
+--[removeGoodsDO]
+update product_goods
+set is_deleted = 'Y'
+where is_deleted = 'N'
+and goods_uuid = '#goodsUuid#'
+
+--[updateGoodsDO]
+update product_goods
+    --trim prefix=SET suffixOverrides=,
+        --iff goodsUuid != null and goodsUuid != ''
+            goods_uuid = '#goodsUuid#',
+
+        --iff goodsName != null and goodsName !=''
+            goods_name = '#goodsName#',
+
+        --iff goodsNameEn != null and goodsNameEn != ''
+            goods_name_en = '#goodsNameEn#',
+
+        --iff productCategoryUuid != null and productCategoryUuid != ''
+            product_category_uuid = '#productCategoryUuid#',
+
+        --iff goodsUnitUuid != null and goodsUnitUuid != ''
+            goods_unit_uuid = '#goodsUnitUuid#',
+
+        --iff goodsSpec != null and goodsSpec != ''
+            goods_spec = '#goodsSpec#',
+
+        --iff comments != null and comments != ''
+            comments = '#comments#',
+
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted = '#isDeleted#',
+
+        --iff createdTime != null and createdTime != ''
+            created_time = '#createdTime#',
+
+        --iff createdUuid != null and createdUuid != ''
+            created_uuid = '#createdUuid#',
+
+        --iff createdName != null and createdName != ''
+            created_name = '#createdName#',
+
+        --iff updatedTime != null and updatedTime != ''
+            updated_time = '#updatedTime#',
+
+        --iff updatedUuid != null and updatedUuid != ''
+            updated_uuid = '#updatedUuid#',
+
+        --iff updatedName != null and updatedName != ''
+            updated_name = '#updatedName#',
+
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            prod_catalog_uuid = '#prodCatalogUuid#',
+
+        --iff orgUuid != null and orgUuid != ''
+            org_uuid = '#orgUuid#',
+
+        --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid = '#appSysUuid#',
+
+        --iff extend1 != null and extend1 != ''
+            extend1 = '#extend1#',
+
+        --iff extend2 != null and extend2 != ''
+            extend2 = '#extend2#',
+
+        --iff extend3 != null and extend3 != ''
+            extend3 = '#extend3#',
+    --end
+where goods_uuid = '#goodsUuid#'
+
+--[getGoodsDO]
+select
+    goods_uuid,
+    goods_name,
+    goods_name_en,
+    product_category_uuid,
+    goods_unit_uuid,
+    goods_spec,
+    comments,
+    is_deleted,
+    created_time,
+    created_uuid,
+    created_name,
+    updated_time,
+    updated_uuid,
+    updated_name,
+    prod_catalog_uuid,
+    org_uuid,
+    app_sys_uuid,
+    extend1,
+    extend2,
+    extend3
+from product_goods
+where goods_uuid = '#goodsUuid#'
