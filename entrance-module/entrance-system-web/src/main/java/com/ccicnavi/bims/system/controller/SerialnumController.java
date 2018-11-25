@@ -110,7 +110,7 @@ public class SerialnumController {
      * @Date 2018/11/21 23:15
      * @Param
      **/
-    @RequestMapping(value = "/deleteSerialnumCfg", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/deleteSerialnumCfg", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8")
     public ResultT deleteSerialnumCfg(@RequestParam(value="sncUuid") String sncUuid) {
         try {
             serialnumService.deleteSerialnumCfg(sncUuid);
