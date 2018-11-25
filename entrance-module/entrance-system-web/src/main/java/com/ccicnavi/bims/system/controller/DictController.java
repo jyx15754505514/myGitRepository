@@ -6,6 +6,7 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.system.pojo.DictTypeDTO;
 import com.ccicnavi.bims.system.service.api.DictService;
+import com.ccicnavi.bims.system.service.api.DictTypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -28,9 +29,11 @@ public class DictController {
 
     private final static Logger log = LoggerFactory.getLogger(DictController.class);
 
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private DictService dictService;
 
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    private DictTypeService dictTypeService;
     /**
     *@Description: 根据字典类别编号查询字典信息
     *@Param: [dictTypeDTO]
@@ -54,4 +57,61 @@ public class DictController {
         }
         return ResultT.failure(ResultCode.LIST_FAILURE);
     }
+
+    /**
+    *@Description: 新增字典类型
+    *@Param: [dictTypeDTO]
+    *@return: com.ccicnavi.bims.common.ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/24
+    */
+    @RequestMapping(value = "/insertDictType", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT insertDictType(@RequestBody DictTypeDTO dictTypeDTO ) {
+        Integer integer = null;
+            try {
+                integer = dictTypeService.insertDictType(dictTypeDTO);
+                return ResultT.success();
+            } catch (Exception e) {
+                log.error("新增字典类型失败", e);
+            }
+        return ResultT.failure(ResultCode.ADD_FAILURE);
+    }
+
+    /**
+    *@Description: 修改字典类型
+    *@Param: [dictTypeDTO]
+    *@return: com.ccicnavi.bims.common.ResultT
+    *@Author: zhangxingbiao
+    *@date: 2018/11/24
+    */
+    @RequestMapping(value = "/updateDictType", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT updateDictType(@RequestBody DictTypeDTO dictTypeDTO ) {
+        Integer integer = null;
+        try {
+            integer = dictTypeService.updateDictType(dictTypeDTO);
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("修改字典类型失败", e);
+        }
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
+    }
+    /**
+     *@Description: 删除字典类型
+     *@Param: [dictTypeDTO]
+     *@return: com.ccicnavi.bims.common.ResultT
+     *@Author: zhangxingbiao
+     *@date: 2018/11/24
+     */
+    @RequestMapping(value = "/deleteDictType", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT deleteDictType(@RequestBody DictTypeDTO dictTypeDTO ) {
+        Integer integer = null;
+        try {
+            integer = dictTypeService.deleteDictType(dictTypeDTO);
+            return ResultT.success();
+        } catch (Exception e) {
+            log.error("删除字典类型失败", e);
+        }
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
+    }
+
 }
