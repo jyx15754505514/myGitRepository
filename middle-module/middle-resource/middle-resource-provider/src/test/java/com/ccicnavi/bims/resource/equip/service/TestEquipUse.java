@@ -1,4 +1,5 @@
-package com.ccicnavi.bims.resource.service;
+package com.ccicnavi.bims.resource.equip.service;
+
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.impl.EquipUseDaoImpl;
