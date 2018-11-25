@@ -1,0 +1,163 @@
+-- 新增数据字典数值
+--[insertDictValue]
+INSERT INTO
+    sys_dict_value
+ --trim prefix=( suffix=) suffixOverrides= ,
+       --if dictValueUuid != null and dictValueUuid != ''
+            dictValueUuid,
+       --end
+       --if dictValueName != null and dictValueName != ''
+            dict_value_name,
+       --end
+       --if dictValueCode != null and dictValueCode != ''
+            dict_value_code,
+       --end
+       --if dictParentUuid != null and dictParentUuid != ''
+            dict_parent_uuid,
+       --end
+       --if comments != null and comments != ''
+            comments,
+       --end
+       --if isDeleted != null and isDeleted != ''
+            is_deleted,
+       --end
+        --if createdTime != null and createdTime != ''
+             created_time,
+        --end
+        --if createdUuid != null and createdUuid != ''
+             created_uuid,
+        --end
+        --if createdName != null and createdName != ''
+             created_name,
+        --end
+        --if updatedTime != null and updatedTime != ''
+              updated_time,
+        --end
+        --if updatedUuid != null and updatedUuid != ''
+              updated_uuid,
+        --end
+        --if updatedName != null and updatedName != ''
+              updated_name,
+        --end
+       --if orgUuid != null and orgUuid != ''
+             org_uuid,
+       --end
+       --if appSysUuid != null and appSysUuid != ''
+             app_sys_uuid,
+       --end
+       --if prodCatalogUuid != null and prodCatalogUuid != ''
+             prod_catalog_uuid,
+       --end
+ --end
+ --trim prefix= values( suffix=) suffixOverrides= ,
+           --if dictValueUuid != null and dictValueUuid != ''
+             '#dictValueUuid#',
+           --end
+           --if dictValueName != null and dictValueName != ''
+             '#dictValueName#',
+           --end
+           --if dictValueCode != null and dictValueCode != ''
+             '#dictValueCode#',
+           --end
+           --if dictParentUuid != null and dictParentUuid != ''
+             '#dictParentUuid#',
+           --end
+           --if comments != null and comments != ''
+             '#comments#',
+           --end
+           --if isDeleted != null  and isDeleted != ''
+             '#isDeleted#',
+           --end
+           --if createdTime != null and createdTime != ''
+             '#createdTime#',
+           --end
+           --if createdUuid != null and createdUuid != ''
+             '#createdUuid#',
+           --end
+           --if createdName != null and createdName != ''
+              '#createdName#',
+           --end
+           --if updatedTime != null and updatedTime != ''
+               '#updatedTime#',
+           --end
+           --if updatedUuid != null and updatedUuid != ''
+               '#updatedUuid#',
+           --end
+           --if updatedName != null and updatedName != ''
+              '#updatedName#',
+           --end
+           --if orgUuid != null  and orgUuid != ''
+             '#orgUuid#',
+           --end
+           --if appSysUuid != null and appSysUuid != ''
+             '#appSysUuid#',
+           --end
+           --if prodCatalogUuid != null and prodCatalogUuid != ''
+             '#prodCatalogUuid#',
+           --end
+ --end
+ --更改数据字典数值
+  --[updateDictValue]
+     UPDATE
+         sys_dict_value
+     -- trim  prefix= set suffixOverrides=,
+                 --iff dictValueUuid != null and dictValueUuid != ''
+                   dict_value_uuid = '#dictValueUuid#',
+                 --iff dictValueName != null and dictValueName != ''
+                   dict_value_name = '#dictValueName#',
+                 --iff dictValueCode != null and dictValueCode != ''
+                   dict_value_code = '#dictValueCode#',
+                 --iff dictParentUuid != null and dictParentUuid != ''
+                   dict_parent_uuid = '#dictParentUuid#',
+                 --iff sortNum != null and sortNum != ''
+                   sort_num = '#sortNum#',
+                 --iff comments != null and comments != ''
+                   comments = '#comments#',
+                 --iff isDeleted != null and isDeleted != ''
+                    is_deleted = '#isDeleted#',
+                 --iff createdTime != null and createdTime != ''
+                    created_time = '#createdTime#',
+                 --iff createdUuid != null and createdUuid != ''
+                    created_uuid = '#createdUuid#',
+                 --iff createdName != null and createdName != ''
+                    created_name = '#createdName#',
+                 --iff updatedTime != null and updatedTime != ''
+                    updated_time = '#updatedTime#',
+                 --iff updatedUuid != null and updatedUuid != ''
+                    updated_uuid = '#updatedUuid#',
+                 --iff updatedName != null and updatedName != ''
+                    updated_name = '#updatedName#',
+                 --iff prodCatalogUuid != null and prodCatalogUuid != ''
+                    prod_catalog_uuid = '#prodCatalogUuid#',
+                 --iff orgUuid != null and orgUuid != ''
+                   org_uuid = '#orgUuid#',
+                 --iff appSysUuid != null and appSysUuid != ''
+                   app_sys_uuid = '#appSysUuid#',
+     --end
+       where
+               -- if dictValueUuid != null
+               		dict_value_uuid = '#dictValueUuid#'
+               -- end
+               -- if uuids != null
+               		dict_value_uuid in
+               -- for item=item index=index collection=uuids open=( separator=, close=)
+               		'#item#'
+               	-- end
+              -- end
+ -- 删除数据字典数值
+ --[deleteDictValue]
+     UPDATE
+         sys_dict_value
+         -- trim prefix= set suffixOverrides=,
+                 is_deleted = 'Y'
+         -- end
+     where
+          -- if dictValueUuid != null and dictValueUuid != ''
+                  	dict_value_uuid = '#dictValueUuid#'
+          -- end
+           -- if uuids != null
+                	dict_value_uuid in
+             -- for item=item index=index collection=uuids open=( separator=, close=)
+                  '#item#'
+             -- end
+           -- end
