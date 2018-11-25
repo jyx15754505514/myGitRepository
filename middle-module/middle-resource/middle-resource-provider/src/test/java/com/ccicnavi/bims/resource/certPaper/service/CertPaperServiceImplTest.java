@@ -1,10 +1,12 @@
 package com.ccicnavi.bims.resource.certPaper.service;
 import com.ccicnavi.bims.resource.dao.impl.CertPaperDaoImpl;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.Date;
 import java.util.List;
+
 
 /*
  * @Author:
@@ -12,6 +14,7 @@ import java.util.List;
  * @Date:  2018/11/23  11:21
  * @Modified By:
  */
+@Slf4j
 public class CertPaperServiceImplTest {
 
     /*
@@ -23,11 +26,22 @@ public class CertPaperServiceImplTest {
         String a ="0001010";
         int b = Integer.parseInt(a);
         CertPaperDO certPaperDO =new CertPaperDO();
-        certPaperDO.setPaperStartNum("001");
-        certPaperDO.setPaperUuid("12");
+        certPaperDO.setPaperStartNum("1001");
+        certPaperDO.setPaperUuid("4");
         certPaperDO.setIsDeleted("N");
-        certPaperDO.setPaperEndNum("00100");
-        certPaperDO.setStromNum("100");
+        certPaperDO.setPaperEndNum("1100");
+        //流水起始号
+        String paperStartNum =certPaperDO.getPaperStartNum();
+        //流水截止号
+        String paperEndNum=certPaperDO.getPaperEndNum();
+        //入库数量
+        certPaperDO.setStromNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum)+1)+"");
+        //剩余数量默认等于入库数量
+        certPaperDO.setResidualNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum)+1)+"");
+        //当前号默认等于流水起始号
+        certPaperDO.setCurrentCode(paperStartNum);
+        //创建时间
+        certPaperDO.setCreatedTime(new Date());
         certPaperDO.setStromDate(new Date());
         certPaperDO.setComments("这是新增的证书纸");
         certPaperDO.setProdCatalogUuid("111");
@@ -38,7 +52,7 @@ public class CertPaperServiceImplTest {
         Integer result= certPaperDaoImpl.insertCertPaper(certPaperDO);
            System.out.println(result);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("新增证书纸失败",e);
         }
 
     }
@@ -49,16 +63,14 @@ public class CertPaperServiceImplTest {
     @Test
     public void getCertPaper(){
         CertPaperDO certPaperDO =new CertPaperDO();
-        certPaperDO.setPaperUuid("1111");
+        certPaperDO.setPaperUuid("4");
         CertPaperDaoImpl certPaperDaoImpl =new CertPaperDaoImpl();
         try {
             CertPaperDO getCertPaper=certPaperDaoImpl.getCertPaper(certPaperDO);
             System.out.println(getCertPaper);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("根据uuid查询证书纸对象失败",e);
         }
-
-
     }
     /*
      *
@@ -67,22 +79,33 @@ public class CertPaperServiceImplTest {
     @Test
     public void updateCertPaper(){
         CertPaperDO certPaperDO =new CertPaperDO();
-        certPaperDO.setPaperStartNum("0011");
+        certPaperDO.setPaperStartNum("1001");
         certPaperDO.setPaperUuid("12");
         certPaperDO.setIsDeleted("N");
-        certPaperDO.setPaperEndNum("001001");
-        certPaperDO.setStromNum("1000");
+        certPaperDO.setPaperEndNum("1100");
+        //流水起始号
+        String paperStartNum =certPaperDO.getPaperStartNum();
+        //流水截止号
+        String paperEndNum=certPaperDO.getPaperEndNum();
+        //入库数量
+        certPaperDO.setStromNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum)+1)+"");
+        //剩余数量默认等于入库数量
+        certPaperDO.setResidualNum((Integer.parseInt(paperEndNum)-Integer.parseInt(paperStartNum)+1)+"");
+        //当前号默认等于流水起始号
+        certPaperDO.setCurrentCode(paperStartNum);
+        //创建时间
+        certPaperDO.setCreatedTime(new Date());
         certPaperDO.setStromDate(new Date());
-        certPaperDO.setComments("这是新增的证书纸1");
-        certPaperDO.setProdCatalogUuid("1111");
-        certPaperDO.setOrgUuid("11111");
-        certPaperDO.setAppSysUuid("11111");
+        certPaperDO.setComments("这是新增的证书纸");
+        certPaperDO.setProdCatalogUuid("111");
+        certPaperDO.setOrgUuid("1111");
+        certPaperDO.setAppSysUuid("1111");
         CertPaperDaoImpl certPaperDaoImpl =new CertPaperDaoImpl();
         try {
             Integer result= certPaperDaoImpl.updateCertPaper(certPaperDO);
             System.out.println(result);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("修改证书纸失败",e);
         }
 
     }
@@ -93,13 +116,13 @@ public class CertPaperServiceImplTest {
     @Test
     public void deleteCertPaper(){
         CertPaperDO certPaperDO =new CertPaperDO();
-        certPaperDO.setPaperUuid("1111");
+        certPaperDO.setPaperUuid("1");
         CertPaperDaoImpl certPaperDaoImpl =new CertPaperDaoImpl();
         try {
             Integer result=certPaperDaoImpl.deleteCertPaper(certPaperDO);
             System.out.println(result);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("删除证书纸失败",e);
         }
     }
     /*
@@ -112,8 +135,9 @@ public class CertPaperServiceImplTest {
         try {
             List<CertPaperDO> listCertPaper=certPaperDaoImpl.listCertPaper(certPaper);
             System.out.println(listCertPaper);
+            System.out.println(listCertPaper.size());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("查询证书纸失败",e);
         }
     }
 
