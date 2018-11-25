@@ -142,7 +142,7 @@ public class CertPaperServiceImpl implements CertPaperService {
         return 0;
     }
     /*
-     * 校验证书纸
+     * 校验证书纸 流水起始号  流水结束号
      * @param certPaper
      * @return Boolean
      */
@@ -178,7 +178,7 @@ public class CertPaperServiceImpl implements CertPaperService {
                 }
             }
         } catch (Exception e) {
-            log.debug("校验证书纸失败",e);
+            log.error("校验证书纸失败",e);
         }
         return result;
     }

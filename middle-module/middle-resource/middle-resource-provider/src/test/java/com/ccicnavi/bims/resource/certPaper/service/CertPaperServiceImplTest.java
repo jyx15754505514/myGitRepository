@@ -140,5 +140,49 @@ public class CertPaperServiceImplTest {
             log.error("查询证书纸失败",e);
         }
     }
+    /*
+     * 校验证书纸 流水起始号  流水结束号
+     **/
+    @Test
+    public void  checkCertPaper(){
+        CertPaperDO certPaper =new CertPaperDO ();
+        CertPaperDaoImpl certPaperDaoImpl =new CertPaperDaoImpl();
+        certPaper.setPaperStartNum("1000");
+        certPaper.setPaperEndNum("1200");
+        CertPaperDO certPaperDO = new CertPaperDO();
+        boolean result=true;
+        try {
+            //查询所有的证书纸
+            List<CertPaperDO> listCertPaper = certPaperDaoImpl.listCertPaper(certPaperDO);
+            //传过来的流水起始号
+            Integer paperStartNum=null;
+            //传过来的流水结束号
+            Integer paperEndNum=null;
+            if(certPaper.getPaperStartNum()!=null){
+                paperStartNum=Integer.parseInt(certPaper.getPaperStartNum());
+            }
+            if(certPaper.getPaperEndNum()!=null){
+                paperEndNum=Integer.parseInt(certPaper.getPaperEndNum());
+            }
+            for(CertPaperDO c:listCertPaper){
+                if(paperStartNum!=null){
+                    if(paperStartNum>=Integer.parseInt(c.getPaperStartNum()) && paperStartNum<=Integer.parseInt(c.getPaperEndNum())){
+                        result=false;
+                        //return result;
+                    }
+                }
+                if(paperEndNum!=null){
+                    if(paperEndNum>=Integer.parseInt(c.getPaperStartNum()) && paperEndNum<=Integer.parseInt(c.getPaperEndNum())){
+                        result=false;
+                      //  return result;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("校验证书纸失败",e);
+        }
+       // return result;
+
+    }
 
 }
