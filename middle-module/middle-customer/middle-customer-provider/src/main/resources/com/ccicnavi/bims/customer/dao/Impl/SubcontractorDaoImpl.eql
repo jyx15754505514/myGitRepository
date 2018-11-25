@@ -25,14 +25,11 @@ SELECT
     updated_name as updateName,
     prod_catalog_uuid as prodCatalogUuid,
     org_uuid as orgUuid,
-    app_sys_uuid as appSysUuid,
-    extend1 as extend1,
-    extend2 as extend2,
-    extend3 as extend3
+    app_sys_uuid as appSysUuid
 FROM
     crm_subcontractor
 WHERE
-    is_deleted='N'
+    is_deleted = 'N'
 
 -- [insertSubcontractor]
 INSERT INTO crm_subcontractor
@@ -49,7 +46,6 @@ INSERT INTO crm_subcontractor
         legal_rep,
      -- iff regCapital != null and regCapital != ''
         reg_capital,
-
      -- iff subcShortName != null and subcShortName != ''
         subc_short_name,
      -- iff subcPostCode != null and subcPostCode != ''
@@ -227,23 +223,23 @@ AND subcontractor_uuid='#subcontractorUuid#'
 
 -- [getSubcontractor]
   SELECT
-    subcontractor_uuid  prod_catalogUuid,
+    crm_subcontractor crmSubcontractor,
     subc_code subcCode,
-    name name,
+    reg_capital regCapital,
+    legal_rep legalRep,
+    name,
     en_name enName,
     subc_short_name subcShortName,
     subc_post_code subcPostCode,
     subc_url subcUrl,
-    legal_rep as legalRep,
-    reg_capital as regCapital,
-    fax fax,
-    tel tel,
+    fax,
+    tel,
     subc_phone subcPhone,
-    addr addr,
-    rank rank,
+    addr,
+    rank,
     detection_field detectionField,
-    is_deleted isDeleted,
     comments comments,
+    is_deleted isDeleted,
     created_time createdTime,
     created_uuid createdUuid,
     created_name createdName,
@@ -256,9 +252,10 @@ AND subcontractor_uuid='#subcontractorUuid#'
     extend1 extend1,
     extend2 extend2,
     extend3 extend3
-FROM crm_subcontractor
+FROM
+    crm_subcontractor
 WHERE
     is_deleted='N'
-        --if subcontractorUuid !=null and subcontractorUuid != ''
-            and subcontractor_uuid = '#subcontractorUuid#'
-        --end
+    --if subcontractorUuid !=null and subcontractorUuid != ''
+        and subcontractor_uuid = '#subcontractorUuid#'
+    --end
