@@ -74,7 +74,7 @@ SELECT
     et.online_cert_url onlineCertUrl
 FROM
     res_equip AS e LEFT JOIN res_equip_test AS et ON et.equip_uuid = e.equip_uuid
-    AND et.test_valid_date = (SELECT max(test_valid_date) FROM res_equip_test WHERE test_valid_date <= '##')
+    AND et.test_valid_date = (SELECT max(test_valid_date) FROM res_equip_test WHERE test_valid_date <= '#nowDate#')
 where
     e.is_deleted = 'N'
 --iff orgUuid != null and orgUuid != ''
