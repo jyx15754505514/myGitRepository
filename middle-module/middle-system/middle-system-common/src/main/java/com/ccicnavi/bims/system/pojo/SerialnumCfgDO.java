@@ -36,22 +36,16 @@ public class SerialnumCfgDO implements Serializable {
      */
     private Integer sncStep;
     /**
-     *周期
+     *跳号周期
      */
     private String sncPeriod;
-
-    private String isHop;
-
-    private String delimiter;
-
-    private String isDelimAfterFirst;
-
-    private String isDelimBeforeLast;
     /**
      * 排序编号
      */
     private String sortNum;
-
+    /**
+     * 备注
+     */
     private String comments;
     /**
      * 是否删除
