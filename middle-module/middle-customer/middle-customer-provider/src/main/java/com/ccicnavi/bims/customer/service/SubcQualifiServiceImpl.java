@@ -10,7 +10,6 @@ import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.Date;
 import java.util.List;
 

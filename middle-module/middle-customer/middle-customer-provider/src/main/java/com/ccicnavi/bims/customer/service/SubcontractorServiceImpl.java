@@ -13,7 +13,6 @@ import com.ccicnavi.bims.customer.dao.SubcontractorDao;
 import com.ccicnavi.bims.customer.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.Date;
 import java.util.List;
 
@@ -26,15 +25,19 @@ import java.util.List;
 @Service
 @Slf4j
 public class SubcontractorServiceImpl implements SubcontractorService{
+
     @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
     IdWorkerService idWorkerService;
 
     @Autowired
     SubcontractorDao subcontractorDao;
+
     @Autowired
     SubcQualifiDao subcQualifiDao;
+
     @Autowired
     SubBankDao subBankDao;
+
     @Autowired
     SubLinkmanDao subLinkmanDao;
 

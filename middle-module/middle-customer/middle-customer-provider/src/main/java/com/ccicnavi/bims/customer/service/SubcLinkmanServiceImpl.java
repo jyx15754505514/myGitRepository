@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.customer.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.customer.api.SubcLinkmanService;
 import com.ccicnavi.bims.customer.dao.SubLinkmanDao;
@@ -9,7 +10,6 @@ import com.ccicnavi.bims.customer.pojo.SubLinkmanDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +19,9 @@ import java.util.List;
  * @Description:
  */
 @Slf4j
+@Service
 public class SubcLinkmanServiceImpl implements SubcLinkmanService {
+
     @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
     IdWorkerService idWorkerService;
 
