@@ -22,7 +22,7 @@ public class OrderReviewDaoImpl implements OrderReviewDao {
      */
     @Override
     public Integer insertOrderReview(OrderReviewDO orderReviewDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if (tran !=null){
             return eql.useTran(tran).insert("insertOrderReview").params(orderReviewDO).returnType(Integer.class).execute();
         }
@@ -38,7 +38,7 @@ public class OrderReviewDaoImpl implements OrderReviewDao {
      */
     @Override
     public Integer updateOrderReview(OrderReviewDO orderReviewDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if (tran !=null){
             return eql.useTran(tran).update("updateOrderReview").params(orderReviewDO).returnType(Integer.class).execute();
         }

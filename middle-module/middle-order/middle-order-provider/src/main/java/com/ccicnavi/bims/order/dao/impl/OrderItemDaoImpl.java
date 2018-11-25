@@ -24,7 +24,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
      */
     @Override
     public Integer insertOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).insert("insertOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
         }
@@ -40,7 +40,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
      */
     @Override
     public Integer updateOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("updateOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
         }
@@ -56,7 +56,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
      */
     @Override
     public List<OrderItemDTO> listOrderItemDTO(OrderInfoDO orderInfoDO) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         return  eql.select("listOrderItem").params(orderInfoDO).returnType(OrderItemDTO.class).execute();
     }
 
@@ -69,7 +69,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
      */
     @Override
     public Integer deleteOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("deleteOrderItem").params(orderItemDTO).returnType(Integer.class).execute();
         }

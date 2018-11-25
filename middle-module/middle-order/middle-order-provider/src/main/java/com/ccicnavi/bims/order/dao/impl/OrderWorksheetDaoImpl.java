@@ -22,7 +22,7 @@ public class OrderWorksheetDaoImpl implements OrderWorksheetDao {
      */
     @Override
     public Integer insertOrderWorksheet(OrderWorksheetDO orderWorksheetDO, EqlTran tran) {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).insert("insertOrderWorksheet").params(orderWorksheetDO).returnType(Integer.class).execute();
         }
@@ -38,7 +38,7 @@ public class OrderWorksheetDaoImpl implements OrderWorksheetDao {
      */
     @Override
     public Integer deleteOrderWorksheet(OrderWorksheetDO orderWorksheetDO, EqlTran tran) {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("deleteOrderWorksheet").params(orderWorksheetDO).returnType(Integer.class).execute();
         }
@@ -54,7 +54,7 @@ public class OrderWorksheetDaoImpl implements OrderWorksheetDao {
      */
     @Override
     public Integer updateOrderWorksheet(OrderWorksheetDO orderWorksheetDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if (tran !=null){
             return eql.useTran(tran).update("updateOrderWorksheet").params(orderWorksheetDO).returnType(Integer.class).execute();
         }

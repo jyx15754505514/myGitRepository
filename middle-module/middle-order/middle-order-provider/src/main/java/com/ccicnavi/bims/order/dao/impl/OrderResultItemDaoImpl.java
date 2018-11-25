@@ -47,7 +47,7 @@ public class OrderResultItemDaoImpl implements OrderResultItemDao {
      */
     @Override
     public Integer insertOrderResultItem(OrderResultItemDO orderResultItemDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("insertOrderResultItem").params(orderResultItemDO).returnType(Integer.class).execute();
         }
@@ -63,7 +63,7 @@ public class OrderResultItemDaoImpl implements OrderResultItemDao {
      */
     @Override
     public Integer updateOrderResultItem(OrderResultItemDO orderResultItemDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("updateOrderResultItem").params(orderResultItemDO).returnType(Integer.class).execute();
         }
@@ -79,7 +79,7 @@ public class OrderResultItemDaoImpl implements OrderResultItemDao {
      */
     @Override
     public Integer deleteOrderResultItem(OrderResultItemDO orderResultItemDOm, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("deleteOrderResultItem").params(orderResultItemDOm).returnType(Integer.class).execute();
         }

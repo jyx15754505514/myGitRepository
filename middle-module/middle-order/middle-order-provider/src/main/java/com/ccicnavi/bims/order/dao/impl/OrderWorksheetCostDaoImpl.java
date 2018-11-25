@@ -21,7 +21,7 @@ public class OrderWorksheetCostDaoImpl implements OrderWorksheetCostDao {
      */
     @Override
     public Integer insertOrderWorksheetCost(OrderWorksheetCostDO orderWorksheetCostDo, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).insert("insertOrderWorksheetCost").params(orderWorksheetCostDo).returnType(Integer.class).execute();
         }
@@ -36,7 +36,7 @@ public class OrderWorksheetCostDaoImpl implements OrderWorksheetCostDao {
      */
     @Override
     public Integer updateOrderWorksheetCost(OrderWorksheetCostDO orderWorksheetCostDo, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("updateOrderWorksheetCost").params(orderWorksheetCostDo).returnType(Integer.class).execute();
         }

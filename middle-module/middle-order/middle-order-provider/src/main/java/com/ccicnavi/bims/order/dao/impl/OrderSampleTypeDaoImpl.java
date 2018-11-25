@@ -45,7 +45,7 @@ public class OrderSampleTypeDaoImpl implements OrderSampleTypeDao {
      */
     @Override
     public Integer insertOrderSampleType(OrderSampleTypeDO orderSampleTypeDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("insertOrderSampleType").params(orderSampleTypeDO).returnType(Integer.class).execute();
         }
@@ -61,7 +61,7 @@ public class OrderSampleTypeDaoImpl implements OrderSampleTypeDao {
      */
     @Override
     public Integer updateOrderSampleType(OrderSampleTypeDO orderSampleTypeDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("updateOrderSampleType").params(orderSampleTypeDO).returnType(Integer.class).execute();
         }
@@ -77,7 +77,7 @@ public class OrderSampleTypeDaoImpl implements OrderSampleTypeDao {
      */
     @Override
     public Integer deleteOrderSampleType(OrderSampleTypeDO orderSampleTypeDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("deleteOrderSampleType").params(orderSampleTypeDO).returnType(Integer.class).execute();
         }

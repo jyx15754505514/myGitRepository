@@ -17,7 +17,7 @@ public class OrderTypeDaoImpl implements OrderTypeDao {
      */
     @Override
     public Integer insertOrderType(OrderTypeDO orderTypeDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if (tran != null) {
             return eql.useTran(tran).update("insertOrderType").params(orderTypeDO).returnType(Integer.class).execute();
         }
@@ -33,7 +33,7 @@ public class OrderTypeDaoImpl implements OrderTypeDao {
      */
     @Override
     public Integer deleteOrderType(OrderTypeDO orderTypeDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("deleteOrderSampleType").params(orderTypeDO).returnType(Integer.class).execute();
         }

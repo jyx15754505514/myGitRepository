@@ -9,7 +9,6 @@ import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -29,7 +28,7 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
      */
     @Override
     public Integer insertOrderInfo(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).insert("insertOrderInfo").params(orderInfoDTO).returnType(Integer.class).execute();
         }
@@ -45,7 +44,7 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
      */
     @Override
     public Integer updateOrderInfo(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("updateOrderInfo").params(orderInfoDTO).returnType(Integer.class).execute();
         }
@@ -61,8 +60,7 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
      */
     @Override
     public OrderInfoDTO getOrderInfo(OrderInfoDO orderInfoDO) throws Exception {
-        Eql eql = new Eql("DEFAULT");
-        return eql.selectFirst("getOrderInfo").params(orderInfoDO).returnType(OrderInfoDTO.class).execute();
+        return new Eql().selectFirst("getOrderInfo").params(orderInfoDO).returnType(OrderInfoDTO.class).execute();
     }
 
     /**

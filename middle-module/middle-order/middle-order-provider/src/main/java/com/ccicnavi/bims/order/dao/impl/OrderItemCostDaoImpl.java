@@ -21,7 +21,7 @@ public class OrderItemCostDaoImpl implements OrderItemCostDao {
      */
     @Override
     public Integer insertOrderItemCost(OrderItemCostDO orderItemCostDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).insert("insertOrderItemCost").params(orderItemCostDO).returnType(Integer.class).execute();
         }
@@ -37,7 +37,7 @@ public class OrderItemCostDaoImpl implements OrderItemCostDao {
      */
     @Override
     public Integer updateOrderItemCost(OrderItemCostDO orderItemCostDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("updateOrderItemCost").params(orderItemCostDO).returnType(Integer.class).execute();
         }
