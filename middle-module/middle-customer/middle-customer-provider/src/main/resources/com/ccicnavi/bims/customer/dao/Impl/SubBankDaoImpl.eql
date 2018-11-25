@@ -1,5 +1,5 @@
 -- [listSubBank]
-  SELECT
+SELECT
     subc_bank_uuid subcBankUuid,
     subc_uuid subcUuid,
     subc_customer subcCustomer,
@@ -14,224 +14,155 @@
     created_name createdName,
     updated_time updatedTime,
     updated_uuid updatedUuid,
-    updated_name updatedName,
-    extend1 extend1,
-    extend2 extend2,
-    extend3 extend3
-
-    from crm_subc_bank
-    where is_deleted = 'N'
-   --if subcBankAccount !=null and subcBankAccount != ''
-       and subc_bank_account = '#subcBankAccount:like#'
-   --end
-   --if subcBankAddr !=null and subcBankAddr != ''
-       and subc_bank_addr = '#subcBankAddr#'
-   --end
+    updated_name updatedName
+from crm_subc_bank
+where
+    is_deleted = 'N'
+--if subcBankAccount !=null and subcBankAccount != ''
+    and subc_bank_account = '#subcBankAccount:like#'
+--end
+--if subcBankAddr !=null and subcBankAddr != ''
+    and subc_bank_addr = '#subcBankAddr#'
+--end
 
 
 -- [deleteSubBank]
-   update  crm_subc_bank set is_deleted ='Y'
-   where is_deleted = 'N'
-   -- if subcBankUuids != null
-     AND subc_bank_uuid IN
+update crm_subc_bank
+set
+    is_deleted ='Y'
+where
+    is_deleted = 'N'
+    -- if subcBankUuids != null
+    AND subc_bank_uuid IN
       -- for item=item index=index collection=subcBankUuids open=( separator=, close=)
-          #item#
+          '#item#'
       -- end
-   -- end
+    -- end
 
 -- [insertSubBank]
     insert into crm_subc_bank
     -- trim prefix=( suffix=) suffixOverrides=,
       -- iff subcBankUuid != null
         subc_bank_uuid,
-
       -- iff subcUuid != null
         subc_uuid,
-
       -- iff subcCustomer != null
         subc_customer,
-
       -- iff subcStatus != null
         subc_status,
-
       -- iff subcBankAccount != null
         subc_bank_account,
-
       -- iff subcBankAddr != null
         subc_bank_addr,
-
       -- iff subcBankCode != null
         subc_bank_code,
-
       -- iff comments != null
-        comment
-s,
+        comment,
       -- iff isDeleted != null
         is_deleted,
-
       -- iff createdTime != null
         created_time,
-
       -- iff createdUuid != null
         created_uuid,
-
       -- iff createdName != null
         created_name,
-
       -- iff updatedTime != null
         updated_time,
-
       -- iff updatedUuid != null
         updated_uuid,
-
       -- iff updatedName != null
         updated_name,
-
-      -- iff extend1 != null
-        extend1,
-
-      -- iff extend2 != null
-        extend2,
-
-      -- iff extend3 != null
-        extend3,
       -- end
     --trim prefix=values( suffix=) suffixOverrides=,
       -- iff subcBankUuid != null
         '#subcBankUuid#',
-
       -- iff subcUuid != null
         '#subcUuid#',
-
       -- iff subcCustomer != null
         '#subcCustomer#',
-
       -- iff subcStatus != null
         '#subcStatus#',
-
       -- iff subcBankAccount != null
         '#subcBankAccount#',
-
       -- iff subcBankAddr != null
         '#subcBankAddr#',
-
       -- iff subcBankCode != null
         '#subcBankCode#',
-
       -- iff comments != null
         '#comments#',
-
       -- iff isDeleted != null
         '#isDeleted#',
-
       -- iff createdTime != null
         '#createdTime#',
-
       -- iff createdUuid != null
         '#createdUuid#',
-
       -- iff createdName != null
         '#createdName#',
-
       -- iff updatedTime != null
         '#updatedTime#',
-
       -- iff updatedUuid != null
         '#updatedUuid#',
-
       -- iff updatedName != null
         '#updatedName#',
-
-      -- iff extend1 != null
-        '#extend1#',
-
-      -- iff extend2 != null
-        '#extend2#',
-
-      -- iff extend3 != null
-        '#extend3#',
       --end
 
 
- -- [updateSubBank]
+-- [updateSubBank]
     update crm_subc_bank
    	  -- trim prefix=SET suffixOverrides=,
       -- iff subcUuid != null
         subc_uuid = '#subcUuid#',
-
       -- iff subcCustomer != null
         subc_customer = '#subcCustomer#',
-
       -- iff subcStatus != null
         subc_status = '#subcStatus#',
-
       -- iff subcBankAccount != null
         subc_bank_account = '#subcBankAccount#',
-
       -- iff subcBankAddr != null
         subc_bank_addr = '#subcBankAddr#',
-
       -- iff subcBankCode != null
         subc_bank_code = '#subcBankCode#',
-
       -- iff comments != null
         comments = '#comments#',
-
       -- iff isDeleted != null
         is_deleted = '#isDeleted#',
-
       -- iff createdTime != null
         created_time = '#createdTime#',
-
       -- iff createdUuid != null
         created_uuid = '#createdUuid#',
-
       -- iff createdName != null
         created_name = '#createdName#',
-
       -- iff updatedTime != null
         updated_time = '#updatedTime#',
-
       -- iff updatedUuid != null
         updated_uuid = '#updatedUuid#',
-
       -- iff updatedName != null
         updated_name = '#updatedName#',
-
-      -- iff extend1 != null
-        extend1 = '#extend1#',
-
-      -- iff extend2 != null
-        extend2 = '#extend2#',
-
-      -- iff extend3 != null
-        extend3 = '#extend3#',
       -- end
-    where subc_bank_uuid = '#subcBankUuid#'
+    where
+        subc_bank_uuid = '#subcBankUuid#'
 
 
 
 -- [getSubBank]
 SELECT
-   subc_bank_uuid subcBankUuid,
-       subc_uuid subcUuid,
-       subc_customer subcCustomer,
-       subc_status subcStatus,
-       subc_bank_account subcBankAccount,
-       subc_bank_addr subcBankAddr,
-       subc_bank_code subcBankCode,
-       comments comments,
-       is_deleted isDeleted,
-       created_time createdTime,
-       created_uuid createdUuid,
-       created_name createdName,
-       updated_time updatedTime,
-       updated_uuid updatedUuid,
-       updated_name updatedName,
-       extend1 extend1,
-       extend2 extend2,
-       extend3 extend3
-    from crm_subc_bank
+    subc_bank_uuid subcBankUuid,
+    subc_uuid subcUuid,
+    subc_customer subcCustomer,
+    subc_status subcStatus,
+    subc_bank_account subcBankAccount,
+    subc_bank_addr subcBankAddr,
+    subc_bank_code subcBankCode,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName
+from
+    crm_subc_bank
 WHERE
 	is_deleted = 'N'
 and subc_bank_uuid = '#subcBankUuid#'
