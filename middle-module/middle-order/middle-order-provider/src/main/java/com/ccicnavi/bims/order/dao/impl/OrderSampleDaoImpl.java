@@ -5,7 +5,6 @@ import com.ccicnavi.bims.order.pojo.OrderSampleDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -24,7 +23,7 @@ public class OrderSampleDaoImpl implements OrderSampleDao {
      */
     @Override
     public Integer insertOrderSample(OrderSampleDO orderSampleDO,EqlTran tran) {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).insert("insertOrderSample").params(orderSampleDO).returnType(Integer.class).execute();
         }
@@ -40,7 +39,7 @@ public class OrderSampleDaoImpl implements OrderSampleDao {
      */
     @Override
     public Integer deleteOrderSample(OrderSampleDO orderSampleDO,EqlTran tran) {
-        Eql eql = new Eql("DEFAULT");
+        Eql eql = new Eql();
         if(tran != null){
             return eql.useTran(tran).update("deleteOrderSample").params(orderSampleDO).returnType(Integer.class).execute();
         }
@@ -55,7 +54,6 @@ public class OrderSampleDaoImpl implements OrderSampleDao {
       */
     @Override
     public List<OrderSampleDO> listOrderSample(OrderSampleDO orderSampleDO) throws Exception {
-        Eql eql = new Eql("DEFAULT");
-        return eql.select("listOrderSample").params(orderSampleDO).returnType(OrderSampleDO.class).execute();
+        return new Eql().select("listOrderSample").params(orderSampleDO).returnType(OrderSampleDO.class).execute();
     }
 }
