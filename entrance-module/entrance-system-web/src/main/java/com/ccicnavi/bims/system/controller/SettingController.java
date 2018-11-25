@@ -32,7 +32,7 @@ public class SettingController {
     private final static Logger log = LoggerFactory.getLogger(SettingController.class);
 
 //    @Reference(url = "dubbo://127.0.0.1:20881", timeout = 10000)
-    @Resource
+    @Reference
     SettingService settingService;
 
     /**
