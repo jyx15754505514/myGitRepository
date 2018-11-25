@@ -14,17 +14,25 @@ import lombok.ToString;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryOrgDTO {
-    private String productCategoryUuid;//产品类别id
 
-    private String organizationUuid;//组织机构id
+    /**产品类别id*/
+    private String productCategoryUuid;
 
-    private String prodCatalogUuid;//产品线id
+    /**组织机构id*/
+    private String organizationUuid;
 
-    private String appSysUuid;//应用系统id
+    /**产品线id*/
+    private String prodCatalogUuid;
 
+    /**应用系统id*/
+    private String appSysUuid;
+
+    /**产品类别id 集合*/
     private String categoryUuidList;
 
+    /**组织机构id 集合*/
     private String orgUuidList;
 
+    /**产品线id 集合*/
     private String catalogUuidList;
 }

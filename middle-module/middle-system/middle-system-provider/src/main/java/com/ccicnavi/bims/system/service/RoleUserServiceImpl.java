@@ -63,7 +63,7 @@ public class RoleUserServiceImpl implements RoleUserService {
                     roleUserDto.setRoleUuid(roleUserDTO.getRoleUuid());
                     roleUserDto.setUserUuid(useruuid);
                     roleUserDto.setOrgUuid(roleUserDTO.getOrgUuid());
-                    savenum = roleUserDao.insertRoleUser(roleUserDTO, tran);
+                    savenum = roleUserDao.insertRoleUser(roleUserDto, tran);
                 }
             }else{
                 savenum=1;

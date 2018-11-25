@@ -103,6 +103,7 @@ public class RoleController {
     @RequestMapping(value = "/deleteRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT deleteRole(@RequestBody RoleDTO roleDO) {
         try {
+
             Integer deleteResult = roleService.deleteRole(roleDO);
             if(deleteResult != null && deleteResult != 0) {
                 return ResultT.success();
@@ -121,9 +122,9 @@ public class RoleController {
      * @return com.ccicnavi.bims.common.ResultT
      **/
     @RequestMapping(value = "/getRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT getRole(@RequestBody RoleDO roleDO) {
+    public ResultT getRole(@RequestBody RoleDTO roleDO) {
         try {
-            RoleDO resultBean = roleService.getRole(roleDO);
+            RoleDTO resultBean = roleService.getRole(roleDO);
             if(resultBean != null) {
                 return ResultT.success(resultBean);
             }

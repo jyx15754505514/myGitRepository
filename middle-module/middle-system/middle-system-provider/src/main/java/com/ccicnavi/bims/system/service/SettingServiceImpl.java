@@ -38,16 +38,14 @@ public class SettingServiceImpl implements SettingService{
     */
 
     @Override
-    public ResultT listSetting(PageParameter<SettingDO> pageParameter){
+    public PageBean<SettingDO> listSetting(PageParameter<SettingDO> pageParameter){
         try{
             PageBean<SettingDO> pageBean = settingDao.listSetting(pageParameter);
-            if (pageBean != null){
-                return ResultT.success(pageBean);
-            }
+            return pageBean;
         }catch (Exception e){
             log.error("查询系统设置信息失败", e);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
+        return null;
     }
 
 

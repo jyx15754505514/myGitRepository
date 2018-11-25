@@ -13,15 +13,25 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CatalogOrgDTO {
-
-    private String organizationUuid;//组织机构id
-
-    private String prodCatalogUuid;//产品线id
-
-    private String appSysUuid;//应用系统id
-
+    /**
+     * 组织机构id
+     */
+    private String organizationUuid;
+    /**
+     *
+     */
+    private String prodCatalogUuid;
+    /**
+     *产品线id
+     */
+    private String appSysUuid;
+    /**
+     *机构编号集合
+     */
     private String orgUuidList;
-
+    /**
+     *产品线编号集合
+     */
     private String catalogUuidList;
 
 }

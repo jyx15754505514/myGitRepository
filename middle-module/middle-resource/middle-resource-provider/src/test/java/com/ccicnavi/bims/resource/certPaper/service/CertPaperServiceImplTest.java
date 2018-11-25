@@ -1,4 +1,6 @@
 package com.ccicnavi.bims.resource.certPaper.service;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.impl.CertPaperDaoImpl;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +11,7 @@ import java.util.List;
 
 
 /*
- * @Author:
+ * @Author:  heibin
  * @Description:   证书纸测试类
  * @Date:  2018/11/23  11:21
  * @Modified By:
@@ -183,6 +185,27 @@ public class CertPaperServiceImplTest {
         }
        // return result;
 
+    }
+    /*
+     * 证书纸分页列表
+     **/
+    @Test
+    public void listCertPaperPage(){
+        CertPaperDaoImpl certPaperDaoImpl =new CertPaperDaoImpl();
+        try {
+            PageParameter<CertPaperDO> pageParameter = new PageParameter();
+            CertPaperDO certPaperDO = new CertPaperDO();
+            pageParameter.setStartIndex(1);
+            pageParameter.setPageRows(2);
+            pageParameter.setStartPage(1);
+            certPaperDO.setAppSysUuid("yewu2.0");
+            certPaperDO.setProdCatalogUuid("yewu2.0");
+            certPaperDO.setOrgUuid("yewu2.0");
+            PageBean<CertPaperDO> certPaperDOPageBean = certPaperDaoImpl.listCertPaperPage(pageParameter);
+            System.out.println(certPaperDOPageBean);
+        } catch (Exception e) {
+            log.error("证书纸分页查询失败",e);
+        }
     }
 
 }

@@ -18,7 +18,7 @@
         comments,
      -- iff isDeleted != null and isDeleted != ''
         is_deleted,
-     -- iff createdTime != null
+     -- iff createdTime == null
         created_time,
      -- iff createdUuid != null and createdUuid != ''
         created_uuid,
@@ -55,8 +55,8 @@
             '#comments#',
          -- iff isDeleted != null and isDeleted != ''
             '#isDeleted#',
-         -- iff createdTime != null
-            '#createdTime#',
+         -- iff createdTime == null
+            NOW(),
          -- iff createdUuid != null and createdUuid != ''
             '#createdUuid#',
          -- iff createdName != null and createdName != ''
@@ -93,8 +93,8 @@
              comments = '#comments#',
           -- iff isDeleted != null and isDeleted != ''
              is_deleted = '#isDeleted#',
-          -- iff updatedTime != null
-             updated_time = '#updatedTime#',
+          -- iff updatedTime == null
+             updated_time = NOW(),
           -- iff updatedName != null and updatedName != ''
              updated_name = '#updatedName#',
           -- iff orgUuid != null and orgUuid != ''

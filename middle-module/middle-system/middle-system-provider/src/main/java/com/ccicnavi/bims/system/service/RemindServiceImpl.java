@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.system.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.dao.RemindDao;
@@ -13,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,6 +31,8 @@ public class RemindServiceImpl implements RemindService {
 
     @Autowired
     private RemindDao sysRemindDao;
+    @Reference
+    IdWorkerService idWorkerService;
     @Override
     public PageBean<RemindDTO> listRemind(PageParameter<RemindDTO> PageParameter){
         try {
@@ -42,7 +47,9 @@ public class RemindServiceImpl implements RemindService {
     @Override
     public Integer insertRemind(RemindDTO remind){
         try {
-           Integer num =  sysRemindDao.insertRemind(remind,null);
+            String uuid = idWorkerService.getId(new Date());
+            remind.setRemindUuid(uuid);
+            Integer num =  sysRemindDao.insertRemind(remind,null);
             return num;
         }catch (Exception e) {
             log.error("新增提醒设置失败", e);

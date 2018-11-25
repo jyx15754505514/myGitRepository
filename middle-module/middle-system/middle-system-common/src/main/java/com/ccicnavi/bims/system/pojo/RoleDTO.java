@@ -42,13 +42,13 @@ public class RoleDTO implements Serializable {
 
     private String updatedName;
 
-    private String orgUuid;
+    private String updatedUuid;
 
-    private String orgName;
+    private String orgUuid;
 
     private String appSysUuid;
 
-    private String businessLine;
+    private String prodCatalogUuid;
 
     private String extend1;
 

@@ -37,11 +37,13 @@ public class RoleDO implements Serializable {
 
     private String updatedName;
 
+    private String updatedUuid;
+
     private String orgUuid;
 
     private String appSysUuid;
 
-    private String businessLine;
+    private String prodCatalogUuid;
 
     private String extend1;
 

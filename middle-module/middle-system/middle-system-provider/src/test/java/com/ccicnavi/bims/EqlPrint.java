@@ -7,16 +7,38 @@ package com.ccicnavi.bims;
  */
 public class EqlPrint {
     static String table = "t_user_info";
-    static String dbColumns = "user_id,user_name,password,branch_no,tel,address,email";
-    static String beansAttrs = "userId,userName,password,branchNo,tel,address,email";
+    static String dbColumns = "user_id,user_name,password,branch_no,tel,address,email,user_login_id";
+    static String[] dbcols=null,beans=null;
     public static void main(String[] args){
-//        insertEqlPrint();
+        getEntifyCols();
+        insertEqlPrint();
 //        updateEqlPrint();
-        selectEqlPrint();
+//        selectEqlPrint();
+    }
+    public static void getEntifyCols(){
+        dbcols = dbColumns.split(",");
+        beans = new String[dbcols.length];
+        String[] dbColsArr = dbColumns.split(",");
+        for(int i=0;i<dbColsArr.length;i++){
+            String dbcolumn = dbColsArr[i];
+            String[] items = dbcolumn.split("_");
+            if(items!=null&&items.length==1){//不包含下划线
+                beans[i] = items[0];
+            }else if(items!=null&&items.length>1){
+                StringBuffer sb = new StringBuffer("");
+                for(int k=0;k<items.length;k++){
+                    if(k!=0){
+                        sb.append(items[k].replaceFirst(items[k].substring(0,1), items[k].substring(0,1).toUpperCase()));
+                    }else{
+                        sb.append(items[k]);
+                    }
+                }
+                beans[i] = sb.toString();
+//                System.out.println("数据库字段为："+dbcols[i]+",处理后实体字段为："+sb.toString());
+            }
+        }
     }
     public static void selectEqlPrint(){
-        String[] dbcols = dbColumns.split(",");
-        String[] beans = beansAttrs.split(",");
         StringBuffer sql = new StringBuffer("SELECT").append("\n");
         for(int i=0;i<dbcols.length;i++){
             sql.append("\t"+dbcols[i]+" "+beans[i]+"");
@@ -31,8 +53,6 @@ public class EqlPrint {
         System.out.println(sql.toString());
     }
     public static void insertEqlPrint(){
-        String[] dbcols = dbColumns.split(",");
-        String[] beans = beansAttrs.split(",");
         StringBuffer sql = new StringBuffer("insert into ").append(table).append("\n");
         sql.append("-- trim prefix=( suffix=) suffixOverrides=,").append("\n");
         for(int i=0;i<dbcols.length;i++){
@@ -52,8 +72,6 @@ public class EqlPrint {
     }
 
     public static void updateEqlPrint(){
-        String[] dbcols = dbColumns.split(",");
-        String[] beans = beansAttrs.split(",");
         StringBuffer sql = new StringBuffer("update ").append(table).append("\n");
         sql.append("-- trim prefix=SET suffixOverrides=,").append("\n");
         for(int i=0;i<dbcols.length;i++){
