@@ -27,7 +27,7 @@ public interface CertAwayService {
      */
     PageBean<CertAwayDO> listCertAwayPage(PageParameter<CertAwayDO> pageParameter);
     /*
-     * 作废证书纸
+     * 删除证书纸
      * @param certPaper
      * @return
      */

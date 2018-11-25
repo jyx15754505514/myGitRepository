@@ -8,9 +8,11 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.CertAwayService;
 import com.ccicnavi.bims.resource.dao.CertAwayDao;
+import com.ccicnavi.bims.resource.dao.CertFlowDao;
 import com.ccicnavi.bims.resource.dao.CertPaperDao;
 import com.ccicnavi.bims.resource.pojo.CertAwayDO;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
+import com.ccicnavi.bims.resource.pojo.CertFlowDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
@@ -28,6 +30,8 @@ import java.util.Date;
 @Slf4j
 public class CertAwayServiceImpl implements CertAwayService {
     @Autowired
+    CertFlowDao certFlowDao;
+    @Autowired
     CertAwayDao certAwayDao;
     @Autowired
     CertPaperDao certPaperDao;
@@ -43,6 +47,8 @@ public class CertAwayServiceImpl implements CertAwayService {
         EqlTran eqlTran = new Eql("DEFAULT").newTran();
         Integer certPaperResult=null;
         Integer certAwayResult=null;
+        Integer certFloeResult=null;
+        boolean result=true;
         try {
             eqlTran.start();
             CertPaperDO certPaper =new CertPaperDO();
@@ -64,7 +70,28 @@ public class CertAwayServiceImpl implements CertAwayService {
                     Integer.parseInt(getCertPaper.getCurrentCode())+(Integer.parseInt(awayNum)-1)+""
             );
             certAwayResult=certAwayDao.insertCertAway(certAwayDO);
-            if(certPaperResult==1 && certAwayResult==1){
+           //证书流水
+            Integer startNum=Integer.parseInt(getCertPaper.getCurrentCode());
+            Integer endNum=Integer.parseInt(getCertPaper.getCurrentCode())+(Integer.parseInt(awayNum)-1);
+            for(int i=startNum;i<=endNum;i++){
+                CertFlowDO certflowDO=new CertFlowDO();
+                certflowDO.setFlowUuid(idWorkerService.getId(new Date()));
+                certflowDO.setFlowNum(i+"");
+                certflowDO.setEmptyCardStatus("N");
+                certflowDO.setCreatedTime(new Date());
+                certflowDO.setIsDeleted("N");
+                //待完善
+                certflowDO.setCreatedName("1");
+                certflowDO.setCreatedUuid("1");
+                certflowDO.setAppSysUuid("yewu2.0");
+                certflowDO.setProdCatalogUuid("yewu2.0");
+                certflowDO.setOrgUuid("yewu2.0");
+                certFloeResult=certFlowDao.insertCertFlow(certflowDO);
+                if(certFloeResult!=1){
+                    result=false;
+                }
+            }
+            if(certPaperResult==1 && certAwayResult==1 && result==true){
                 eqlTran.commit();
                 return ResultT.success();
             }
