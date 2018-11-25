@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 /**
  * @program: bims-backend
  * @description: 设备信息api接口实现类
@@ -37,9 +38,10 @@ public class EquipServiceImpl implements EquipService {
 
     @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
     IdWorkerService idWorkerService;
+
     /**
      * @Author panyida
-     * @Description 设备信息查询
+     * @Description 设备信息查询(公共接口)
      * @Date 16:28 2018/11/14
      * @Param [equipDO]
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDO>
@@ -52,7 +54,25 @@ public class EquipServiceImpl implements EquipService {
         } catch (Exception e) {
             log.error("设备信息查询错误", e);
         }
-            return listEquipDO;
+        return listEquipDO;
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 设备台账查询
+     * @Data 2018/11/25 17:29
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.EquipDO>
+     */
+    @Override
+    public PageBean<EquipDO> listEquipByTest(PageParameter<EquipDTO> pageParameter) {
+        PageBean<EquipDO> listEquipDO = null;
+        try {
+            listEquipDO = equipDao.listEquipByTest(pageParameter);
+        } catch (Exception e) {
+            log.error("设备信息查询错误", e);
+        }
+        return listEquipDO;
     }
 
     /**
@@ -100,29 +120,29 @@ public class EquipServiceImpl implements EquipService {
         EquipTestDTO equipTestDTO = new EquipTestDTO();
         //创建领用记录对象
         EquipUseDTO equipUseDTO = new EquipUseDTO();
-        equipDTO = equipDao.getEquip(equipDTO);
-        if(equipDTO != null){
+        EquipDTO equipInfo = equipDao.getEquip(equipDTO);
+        if(equipInfo != null){
             /**设置相关参数*/
-            equipTestDTO.setAppSysUuid(equipDTO.getAppSysUuid());
-            equipTestDTO.setOrgUuid(equipDTO.getOrgUuid());
-            equipTestDTO.setProdCatalogUuid(equipDTO.getProdCatalogUuid());
-            equipTestDTO.setEquipUuid(equipDTO.getEquipUuid());
+            equipTestDTO.setAppSysUuid(equipInfo.getAppSysUuid());
+            equipTestDTO.setOrgUuid(equipInfo.getOrgUuid());
+            equipTestDTO.setProdCatalogUuid(equipInfo.getProdCatalogUuid());
+            equipTestDTO.setEquipUuid(equipInfo.getEquipUuid());
             /**获取设备相关检定记录*/
             List<EquipTestDO> equipTestDO = equipTestDao.getEquipTestList(equipTestDTO);
             if(equipTestDO.size() > 0){
-                equipDTO.setEquipTestDTO(equipTestDO);
+                equipInfo.setEquipTestDTO(equipTestDO);
             }
             /**设置相关参数*/
-            equipUseDTO.setAppSysUuid(equipDTO.getAppSysUuid());
-            equipUseDTO.setOrgUuid(equipDTO.getOrgUuid());
-            equipUseDTO.setProdCatalogUuid(equipDTO.getProdCatalogUuid());
-            equipUseDTO.setEquipUuid(equipDTO.getEquipUuid());
+            equipUseDTO.setAppSysUuid(equipInfo.getAppSysUuid());
+            equipUseDTO.setOrgUuid(equipInfo.getOrgUuid());
+            equipUseDTO.setProdCatalogUuid(equipInfo.getProdCatalogUuid());
+            equipUseDTO.setEquipUuid(equipInfo.getEquipUuid());
             /**获取设备相关*/
             List<EquipUseDO> equipUses = equipUseDao.getEquipUseList(equipUseDTO);
             if(equipUses.size() > 0){
-                equipDTO.setEquipUseDO(equipUses);
+                equipInfo.setEquipUseDO(equipUses);
             }
-            return equipDTO;
+            return equipInfo;
         }
         return null;
     }

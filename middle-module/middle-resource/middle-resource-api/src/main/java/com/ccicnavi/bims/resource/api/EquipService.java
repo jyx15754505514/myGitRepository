@@ -16,12 +16,21 @@ public interface EquipService {
 
     /**
      * @Author panyida
-     * @Description 设备信息查询
+     * @Description 设备信息查询(公共接口)
      * @Date 11:44 2018/11/14
      * @Param [equipDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipDO>
      */
     PageBean<EquipDO> listEquip(PageParameter<EquipDTO> pageParameter);
+
+    /**
+     * @Author MengZiJie
+     * @Description 设备台账查询
+     * @Data 2018/11/25 17:27
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.EquipDO>
+     */
+    PageBean<EquipDO> listEquipByTest(PageParameter<EquipDTO> pageParameter);
 
     /**
      * @Author MengZiJie

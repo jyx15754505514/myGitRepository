@@ -44,10 +44,9 @@ public class EquipDaoImpl implements EquipDao {
         return new Eql().select("getEquipList").params(equipDTO).returnType(EquipDTO.class).execute();
     }
 
-
     /**
      * @Author panyida
-     * @Description 设备信息查询
+     * @Description 设备信息查询(单表查询)
      * @Date 16:28 2018/11/14
      * @Param [equipDO]
      * @Return java.util.List<com.ccicnavi.bims.resource.pojo.EquipDO>
@@ -56,6 +55,20 @@ public class EquipDaoImpl implements EquipDao {
     public PageBean<EquipDO> listEquip(PageParameter<EquipDTO> pageParameter){
         EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
         List<EquipDO> listEquip = new Eql().select("listEquip").params(pageParameter.getParameter()).returnType(EquipDO.class).limit(eqlPage).execute();
+        return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquip);
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 设备信息查询(关联查询)
+     * @Data 2018/11/25 17:25
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.EquipDO>
+     */
+    @Override
+    public PageBean<EquipDO> listEquipByTest(PageParameter<EquipDTO> pageParameter) {
+        EqlPage eqlPage = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        List<EquipDO> listEquip = new Eql().select("listEquipByTest").params(pageParameter.getParameter()).returnType(EquipDO.class).limit(eqlPage).execute();
         return new PageBean<>(eqlPage.getTotalRows(),eqlPage.getTotalPages(),eqlPage.getCurrentPage(),eqlPage.getPageRows(),eqlPage.getStartIndex(),listEquip);
     }
 

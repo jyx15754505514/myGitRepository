@@ -5,7 +5,6 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
 import com.ccicnavi.bims.resource.pojo.EquipDTO;
 import org.n3r.eql.EqlTran;
-
 import java.util.List;
 
 /**
@@ -15,14 +14,24 @@ import java.util.List;
  * @create: 2018-11-14 15:49
  **/
 public interface EquipDao {
+
     /**
      * @Author panyida
-     * @Description 设备信息查询
+     * @Description 设备信息查询(单表)
      * @Date 11:44 2018/11/14
      * @Param [equipDO]
      * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipDO>
      */
     PageBean<EquipDO> listEquip(PageParameter<EquipDTO> pageParameter);
+
+    /**
+     * @Author panyida
+     * @Description 设备信息查询(关联查询)
+     * @Date 11:44 2018/11/14
+     * @Param [equipDO]
+     * @Return java.util.List<com.ccicnavi.bims.ource.pojo.EquipDO>
+     */
+    PageBean<EquipDO> listEquipByTest(PageParameter<EquipDTO> pageParameter);
 
     /**
      * @Author MengZiJie
