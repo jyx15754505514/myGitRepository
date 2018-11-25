@@ -28,7 +28,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
      */
     @Override
     public List<CertPaperDO> listCertPaper(CertPaperDO certPaper) throws Exception{
-        return EqlUtils.getInstance("druid").select("listCertPaper").params(certPaper).returnType(CertPaperDO.class).execute();
+        return EqlUtils.getInstance("DEFAULT").select("listCertPaper").params(certPaper).returnType(CertPaperDO.class).execute();
     }
 
     /*
@@ -39,7 +39,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
      */
     @Override
     public Integer insertCertPaper(CertPaperDO certPaper) throws Exception{
-        return EqlUtils.getInstance("druid").insert("insertCertPaper").params(certPaper).returnType(Integer.class).execute();
+        return EqlUtils.getInstance("DEFAULT").insert("insertCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
 
     /*
@@ -50,7 +50,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
      */
     @Override
     public Integer updateCertPaper(CertPaperDO certPaper) throws Exception{
-        return EqlUtils.getInstance("druid").update("updateCertPaper").params(certPaper).returnType(Integer.class).execute();
+        return EqlUtils.getInstance("DEFAULT").update("updateCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
     /*
      *删除证书纸信息
@@ -60,7 +60,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
      */
     @Override
     public Integer deleteCertPaper(CertPaperDO certPaper) throws Exception{
-        return EqlUtils.getInstance("druid").delete("deleteCertPaper").params(certPaper).returnType(Integer.class).execute();
+        return EqlUtils.getInstance("DEFAULT").delete("deleteCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
     /*
      *根据uuid查询证书纸信息对象
@@ -70,7 +70,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
      */
     @Override
     public CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception{
-        return EqlUtils.getInstance("druid").selectFirst("getCertPaper").params(certPaper).returnType(CertPaperDO.class).execute();
+        return EqlUtils.getInstance("DEFAULT").selectFirst("getCertPaper").params(certPaper).returnType(CertPaperDO.class).execute();
     }
     /*
      *分页查询证书纸列表
