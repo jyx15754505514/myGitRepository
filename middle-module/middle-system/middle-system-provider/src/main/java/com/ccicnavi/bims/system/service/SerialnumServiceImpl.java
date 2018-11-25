@@ -288,11 +288,14 @@ public class SerialnumServiceImpl implements SerialnumService {
 
 //            String snUuid = new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
             busiSerialDO.setSnUuid(snUuid);
-            busiSerialDO.setSeqId(serialStr.toString());
+            if(!StringUtils.isEmpty(businessNo)){
+                busiSerialDO.setBusUuid(businessNo);
+            }
+            /*busiSerialDO.setSeqId(serialStr.toString());
             if(cfgDO.getSncPeriod()!=null){
                 DateFormat df = new SimpleDateFormat(cfgDO.getSncPeriod());
                 busiSerialDO.setSeqYmd(df.format(new Date()));
-            }
+            }*/
             serialnumDao.insertSerialnum(busiSerialDO);
         }/*else{//翻牌更新(采用redis生成序号后，不需要更新serialnum)
             busiSerialDO.setSeqId(serialStr.toString());
