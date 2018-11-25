@@ -7,7 +7,8 @@ import com.ccicnavi.bims.resource.pojo.CertAwayDO;
 
 /*
  * @Auther: heibin
- * @Date: 2018/11/14 16:04
+ * @Date:package com.ccicnavi.bims.resource.api;
+ 2018/11/14 16:04
  * @Description: 证书纸管理-分发记录
  */
 public interface CertAwayService {

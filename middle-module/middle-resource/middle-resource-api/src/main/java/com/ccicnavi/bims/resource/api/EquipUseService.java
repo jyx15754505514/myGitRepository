@@ -30,7 +30,7 @@ public interface EquipUseService {
      * @Param [equipUseUuid]
      * @Return com.ccicnavi.bims.ource.pojo.EquipUseDO
      */
-    EquipUseDO getEquipUse(String EquipUseUuid);
+    EquipUseDO getEquipUse(EquipUseDO equipUseDO);
 
     /**
      * @Author MengZiJie

@@ -115,7 +115,7 @@ public class EquipServiceImpl implements EquipService {
             /**设置相关参数*/
             equipUseDTO.setAppSysUuid(equipDTO.getAppSysUuid());
             equipUseDTO.setOrgUuid(equipDTO.getOrgUuid());
-            equipUseDTO.setProdCatalogPuid(equipDTO.getProdCatalogUuid());
+            equipUseDTO.setProdCatalogUuid(equipDTO.getProdCatalogUuid());
             equipUseDTO.setEquipUuid(equipDTO.getEquipUuid());
             /**获取设备相关*/
             List<EquipUseDO> equipUses = equipUseDao.getEquipUseList(equipUseDTO);
