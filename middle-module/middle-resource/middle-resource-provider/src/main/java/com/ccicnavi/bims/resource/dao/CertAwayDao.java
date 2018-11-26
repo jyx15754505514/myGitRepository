@@ -17,7 +17,7 @@ public interface CertAwayDao {
      * @throws Exception
      */
     public Integer insertCertAway(CertAwayDO certAwayDO) throws Exception;
-    /*
+    /**
      * @Author heibin
      * @Description  证书纸管理-分发记录分页列表
      * @Date 22:34 2018/11/23

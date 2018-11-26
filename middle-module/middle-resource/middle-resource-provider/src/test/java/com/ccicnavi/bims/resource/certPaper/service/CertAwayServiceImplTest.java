@@ -17,7 +17,7 @@ import org.n3r.eql.EqlTran;
 
 import java.util.Date;
 
-/*
+/**
  * @Author:  heibin
  * @Description:   证书纸管理-分发记录测试类
  * @Date:  2018/11/25  11:37
@@ -25,7 +25,7 @@ import java.util.Date;
  */
 @Slf4j
 public class CertAwayServiceImplTest {
-    /*
+    /**
      * 分发记录新增
      **/
     @Test
@@ -101,7 +101,7 @@ public class CertAwayServiceImplTest {
 
 
     }
-    /*
+    /**
      * 分发记录作废
      **/
     @Test
@@ -115,7 +115,7 @@ public class CertAwayServiceImplTest {
             log.error("作废证书纸管理-分发记录失败",e);
         }
     }
-    /*
+    /**
      * 分发记录分页
      **/
     @Test

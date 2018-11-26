@@ -118,7 +118,45 @@ insert into res_cert_flow
     -- [cancelCertFlow]
     UPDATE res_cert_flow
         -- trim prefix= set suffixOverrides=,
-            empty_card_status = 'Y'
+
+             --iff flowUuid != null and flowUuid !=''
+                	flow_uuid = '#flowUuid#',
+                --iff flowNum != null and flowNum !=''
+                	flow_num = '#flowNum#',
+                --iff emptyCardStatus != null and emptyCardStatus !=''
+                	empty_card_status = '#emptyCardStatus#',
+                --iff reason != null and reason !=''
+                	reason = '#reason#',
+                --iff certNum != null and certNum !=''
+                	cert_num = '#certNum#',
+                --iff certStatus != null and certStatus !=''
+                	cert_status = '#certStatus#',
+                --iff leadUnit != null and leadUnit !=''
+                	lead_unit = '#leadUnit#',
+                --iff leadDept != null and leadDept !=''
+                	lead_dept = '#leadDept#',
+                --iff cancelUuid != null and cancelUuid !=''
+                	cancel_uuid = '#cancelUuid#',
+                --iff cancelName != null and cancelName !=''
+                	cancel_name = '#cancelName#',
+                --iff cancelDate != null
+                	cancel_date = '#cancelDate#',
+                --iff comments != null
+                	comments = '#comments#',
+                --iff isDeleted != null and isDeleted !=''
+                	is_deleted = '#isDeleted#',
+                --iff createdTime != null
+                	created_time = '#createdTime#',
+                --iff createdUuid != null and createdUuid !=''
+                	created_uuid = '#createdUuid#',
+                	--iff createdName != null and createdName !=''
+                        	created_name = '#createdName#',
+                --iff orgUuid != null and orgUuid !=''
+                	org_uuid = '#orgUuid#',
+                --iff appSysUuid != null and appSysUuid !=''
+                	app_sys_uuid = '#appSysUuid#',
+                	 --iff prodCatalogUuid != null and prodCatalogUuid != ''
+                                '#prodCatalogUuid#',
         -- end
     where
         empty_card_status = 'N'

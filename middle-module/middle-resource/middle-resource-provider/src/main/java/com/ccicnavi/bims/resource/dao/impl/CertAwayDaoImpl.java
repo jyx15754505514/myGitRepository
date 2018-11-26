@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class CertAwayDaoImpl implements CertAwayDao {
 
-    /*
+    /**
      * 新增分发记录表
      * @param certAwayDO
      * @return  Integer
@@ -29,7 +29,7 @@ public class CertAwayDaoImpl implements CertAwayDao {
     public Integer insertCertAway(CertAwayDO certAwayDO) throws Exception {
         return new Eql().insert("insertCertAway").params(certAwayDO).returnType(Integer.class).execute();
     }
-    /*
+    /**
      *分页查询证书纸管理-分发记录列表
      * @param pageParameter
      * @return
@@ -47,7 +47,7 @@ public class CertAwayDaoImpl implements CertAwayDao {
             return null;
         }
     }
-    /*
+    /**
      *作废证书纸管理-分发记录
      * @param certAwayDO
      * @return
