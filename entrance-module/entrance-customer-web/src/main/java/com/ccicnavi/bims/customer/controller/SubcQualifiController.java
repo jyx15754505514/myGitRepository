@@ -62,7 +62,7 @@ public class SubcQualifiController {
         try {
             count=subcQualifiService.insertSubcQuali(subcQualifiDO);
             if(count>0){
-                return ResultT.success("新增分包方资质");
+                return ResultT.success("新增分包方资质信息成功");
              }
         } catch (Exception e) {
             log.error("新增分包方资质信息失败",e);
@@ -81,11 +81,13 @@ public class SubcQualifiController {
         int count=0;
         try {
             count=subcQualifiService.deleteSubcQuali(subcQualifiDTO);
-            return ResultT.success(count);
+            if(count > 0){
+                return ResultT.success("删除分包方资质信息成功");
+            }
         } catch (Exception e) {
             log.error("删除分包方资质信息失败",e);
-            return ResultT.failure(ResultCode.DELETE_FAILURE);
         }
+        return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 
     /**
@@ -99,11 +101,13 @@ public class SubcQualifiController {
         int count=0;
         try {
             count=subcQualifiService.updateSubcQuali(subcQualifiDO);
-            return ResultT.success(count);
+            if(count > 0){
+                return ResultT.success("修改分包方资质信息成功");
+            }
         } catch (Exception e) {
             log.error("修改分包方资质信息失败",e);
-            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     /**
@@ -117,11 +121,13 @@ public class SubcQualifiController {
         SubcQualifiDO subcQualifiDO=new SubcQualifiDO();
         try {
             subcQualifiDO=subcQualifiService.getSubcQuali(subcQualifiDORequstBody);
-            return ResultT.success(subcQualifiDO);
+            if(subcQualifiDO != null) {
+                return ResultT.success(subcQualifiDO);
+            }
         } catch (Exception e) {
             log.error("获取分包方资质信息失败",e);
-            return ResultT.failure(ResultCode.GET_FAILURE);
         }
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
 }
