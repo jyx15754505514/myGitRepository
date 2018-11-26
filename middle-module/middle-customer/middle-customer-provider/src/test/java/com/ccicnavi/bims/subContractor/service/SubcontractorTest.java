@@ -110,7 +110,7 @@ public class SubcontractorTest {
         try {
             eqlTran.start();
             SubcontractorDTO subcontractorDTO=new SubcontractorDTO();
-            subcontractorDTO.setSubcontractorUuid("181125202847516349557563592704");
+            subcontractorDTO.setSubcontractorUuid("000000100");
             /**删除分包方信息*/
             Integer integer = subcontractorDaoTest.removeSubcontractor(subcontractorDTO, eqlTran);
             System.out.println("删除分包方信息为："+integer);
@@ -119,13 +119,13 @@ public class SubcontractorTest {
             Integer linkMan = subLinkmanDao.deleteSubLinkman(subLinkmanDTO,eqlTran);
             System.out.println("删除联系人为："+linkMan);
             /**删除资质信息*/
-            subcQualifiDTO.setSubcUuid(subcontractorDTO.getSubcUuid());
+            subcQualifiDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
             Integer subcuQuali = subcQualifiDao.deleteSubcuQuali(subcQualifiDTO, eqlTran);
             System.out.println("资质信息为："+subcuQuali);
             /**删除分包方银行*/
             subBankDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
             Integer subBank = subBankDao.deleteSubBank(subBankDTO, eqlTran);
-            System.out.println("银行信息为："+subcuQuali);
+            System.out.println("银行信息为："+subBank);
             eqlTran.commit();
         } catch (Exception e){
             log.error("删除失败",e);
