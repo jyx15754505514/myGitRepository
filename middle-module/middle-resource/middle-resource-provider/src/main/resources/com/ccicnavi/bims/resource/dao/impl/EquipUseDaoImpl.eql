@@ -229,6 +229,11 @@ WHERE
     is_deleted = 'N'
 --iff equipUuid != null and equipUuid != ''
     and equip_uuid = '#equipUuid#'
+--iff equipUuids != null
+    and equip_uuid in
+    -- for item=item index=index collection=equipUuids open=( separator=, close=)
+        '#item#'
+    -- end
 -- iff equipUseUuid != null and equipUseUuid != ''
     and equip_use_uuid = '#equipUseUuid#'
 -- iff equipUseUuids != null
@@ -236,6 +241,7 @@ WHERE
     -- for item=item index=index collection=equipUseUuids open=( separator=, close=)
         '#item#'
     -- end
+
 
 -- [listEquipUseDTO]
   SELECT

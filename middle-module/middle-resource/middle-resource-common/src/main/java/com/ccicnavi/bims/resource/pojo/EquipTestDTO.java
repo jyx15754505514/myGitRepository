@@ -140,4 +140,8 @@ public class EquipTestDTO implements Serializable {
      * 检定记录主键集合
      */
     private List<String> equipTestUuids;
+    /**
+     * 设备id集合
+     */
+    private List<String> equipUuids;
 }
