@@ -99,10 +99,10 @@ public class SubcontractorController {
      * @return: com.ccicnavi.bims.common.ResultT
      */
     @RequestMapping(value = "/removeSubcontractor",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeSubcontractor(@RequestBody SubcontractorDO subcontractorDO){
+    public ResultT removeSubcontractor(@RequestBody SubcontractorDTO subcontractorDTO){
         int count=0;
         try {
-            count=subcontractorService.removeSubcontractor(subcontractorDO);
+            count=subcontractorService.removeSubcontractor(subcontractorDTO);
             return ResultT.success(count);
         } catch (Exception e) {
             log.error("删除分包方信息失败",e);

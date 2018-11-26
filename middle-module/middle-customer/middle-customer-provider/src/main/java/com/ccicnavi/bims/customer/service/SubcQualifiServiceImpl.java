@@ -9,6 +9,7 @@ import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Date;
@@ -75,12 +76,18 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
      * @return java.lang.Integer
      */
     @Override
-    public Integer deleteSubcQuali(SubcQualifiDTO subcQualifiDTO, EqlTran eqlTran) {
+    public Integer deleteSubcQuali(SubcQualifiDTO subcQualifiDTO) {
+        EqlTran eqlTran = new Eql("DEFAULT").newTran();
+        eqlTran.start();
         Integer count=0;
         try {
             count=subcQualifiDao.deleteSubcuQuali(subcQualifiDTO, eqlTran);
+            eqlTran.commit();
         } catch (Exception e) {
             log.error("删除分包方资质信息失败",e);
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
         }
         return count;
     }

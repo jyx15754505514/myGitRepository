@@ -52,7 +52,7 @@ where
     -- for item=item index=index collection=equipUseUuids open=( separator=, close=)
         '#item#'
     -- end
--- iff equipUuid != null and equipUuid != ''
+--iff equipUuid != null and equipUuid != ''
     and equip_uuid = '#equipUuid#'
 
 
