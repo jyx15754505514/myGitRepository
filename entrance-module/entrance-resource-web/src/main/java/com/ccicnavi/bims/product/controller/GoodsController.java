@@ -9,6 +9,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.GoodsService;
 import com.ccicnavi.bims.product.pojo.GoodsDO;
+import com.ccicnavi.bims.product.pojo.GoodsDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -82,10 +83,10 @@ public class GoodsController {
      * @return com.ccicnavi.bims.common.ResultT
      **/
     @RequestMapping(value = "/removeGoodsDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeGoodsDO(@RequestBody GoodsDO goodsDO){
-        log.info("删除商品信息 入参 goodsDO={}", JSON.toJSONString(goodsDO));
+    public ResultT removeGoodsDO(@RequestBody GoodsDTO goodsDTO){
+        log.info("删除商品信息 入参 goodsDO={}", JSON.toJSONString(goodsDTO));
         try {
-            int count = goodsService.removeGoodsDO(goodsDO);
+            int count = goodsService.removeGoodsDO(goodsDTO);
             return ResultT.success(count);
         } catch (Exception e) {
             e.printStackTrace();

@@ -42,9 +42,16 @@
      --iff userUuid != null and userUuid != ''
         and user_uuid = '#userUuid#'
      --end
-     --iff userName != null and userName != ''
-         and user_name like '#userName:like#'
-      --end
+     --iff loginName != null and loginName != ''
+         and login_name like '#loginName:like#'
+     --end
+     --iff deptUuid != null and deptUuid != ''
+          and dept_uuid = '#deptUuid#'
+     --end
+     --iff orgUuid != null and orgUuid != ''
+          and org_uuid = '#orgUuid#'
+     --end
+
 
 -- 新增登录用户信息
 -- [insertUser]

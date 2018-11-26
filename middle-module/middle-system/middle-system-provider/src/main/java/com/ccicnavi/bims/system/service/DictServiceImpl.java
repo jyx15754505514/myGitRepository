@@ -49,4 +49,6 @@ public class DictServiceImpl implements DictService {
         }
         return dictTypeList;
     }
+
+
 }

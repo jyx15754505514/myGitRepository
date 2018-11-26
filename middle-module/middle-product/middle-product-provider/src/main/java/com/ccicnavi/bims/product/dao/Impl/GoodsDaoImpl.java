@@ -4,11 +4,14 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.GoodsDao;
 import com.ccicnavi.bims.product.pojo.GoodsDO;
+import com.ccicnavi.bims.product.pojo.GoodsDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 商品信息
@@ -36,8 +39,8 @@ public class GoodsDaoImpl implements GoodsDao {
     }
 
     @Override
-    public int removeGoodsDO(GoodsDO goodsDO) {
-        return new Eql().update("removeGoodsDO").params(goodsDO).returnType(int.class).execute();
+    public int removeGoodsDO(GoodsDTO goodsDTO) {
+        return new Eql().update("removeGoodsDO").params(goodsDTO).returnType(int.class).execute();
     }
 
     @Override

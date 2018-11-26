@@ -11,6 +11,7 @@ import java.util.Date;
 @Setter
 @ToString
 public class RoleDO implements Serializable {
+
     private String roleUuid;
 
     private String parentRoleUuid;
@@ -50,4 +51,6 @@ public class RoleDO implements Serializable {
     private String extend2;
 
     private String extend3;
+
+
 }
