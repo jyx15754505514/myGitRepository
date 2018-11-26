@@ -32,6 +32,11 @@ public class SubcQualifiDTO implements Serializable {
     private String subcUuid;
 
     /**
+     *所属分包方UUIDS
+     */
+    private List<String> subcUuids;
+
+    /**
      * 资质范围
      */
     private String qualifiRange;

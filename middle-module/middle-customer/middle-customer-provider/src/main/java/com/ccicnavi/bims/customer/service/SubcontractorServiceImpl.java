@@ -123,20 +123,18 @@ public class SubcontractorServiceImpl implements SubcontractorService{
         SubBankDTO subBankDTO = new SubBankDTO();
         try {
             eqlTran.start();
+            /**删除分包方信息**/
             count=subcontractorDao.removeSubcontractor(subcontractorDTO, eqlTran);
-            /**删除联系人*/
-            subLinkmanDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
+            /**删除联系人 根据分包方主键删除所有得联系人*/
+            subLinkmanDTO.setSubcUuids(subcontractorDTO.getSubcontractorUuids());
             Integer linkMan = subLinkmanDao.deleteSubLinkman(subLinkmanDTO,eqlTran);
             /**删除资质信息*/
-            subcQualifiDTO.setSubcUuid(subcontractorDTO.getSubcUuid());
+            subcQualifiDTO.setSubcUuids(subcontractorDTO.getSubcontractorUuids());
             Integer subcuQuali = subcQualifiDao.deleteSubcuQuali(subcQualifiDTO, eqlTran);
             /**删除分包方银行*/
-            subBankDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
+            subBankDTO.setSubcUuids(subcontractorDTO.getSubcontractorUuids());
             Integer subBank = subBankDao.deleteSubBank(subBankDTO, eqlTran);
-            /**删除分包方*/
-            subcontractorDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
-            Integer subcTor = subcontractorDao.removeSubcontractor(subcontractorDTO, eqlTran);
-                if(count>=0 && count !=null){
+            if(count>=0 && count !=null){
                 eqlTran.commit();
                 return count;
             }

@@ -29,7 +29,7 @@ public class SubcBankTest {
             for (int i = 1; i <= 30; i++) {
                 SubBankDO subBankDO = new SubBankDO();
                 subBankDO.setSubcBankUuid("000000"+i);
-                subBankDO.setSubcUuid("000000100");
+                subBankDO.setSubcUuid("88881");
                 subBankDO.setSubcCustomer("二级公司"+i);
                 subBankDO.setSubcBankAccount("银行账号"+i);
                 subBankDO.setSubcBankAddr("开户行地址"+i);

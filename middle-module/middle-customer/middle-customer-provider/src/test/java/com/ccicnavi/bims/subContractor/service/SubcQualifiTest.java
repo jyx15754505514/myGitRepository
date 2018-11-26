@@ -38,7 +38,7 @@ public class SubcQualifiTest {
         {
             subcQualifiDO.setSubcQualifiUuid("000"+i);
             //指定的分包方的uuid
-            subcQualifiDO.setSubcUuid("000000100");
+            subcQualifiDO.setSubcUuid("88881");
             subcQualifiDO.setQualifiRange("资质范围"+i);
             subcQualifiDO.setQualifiEnmUuid("资质类型UUID"+i);
             subcQualifiDO.setQualifiDescribe("资质描述"+i);

@@ -136,10 +136,31 @@ INSERT INTO sys_atta_tmp
 
 -- [listAttaTmp]
 SELECT
-	t2.*
+	t2.id,
+	t2.file_new_name,
+	t2.file_old_name,
+	t2.file_ext,
+	t2.file_type,
+	t2.file_group,
+	t2.create_by,
+	t2.remark
 FROM
 	sys_atta_tmp t1,
 	sys_atta t2
 WHERE
 	t1.atta_id = t2.id
-	AND t2.busin_id in '##'
+	AND t1.busin_id in (/* in _1 */)
+
+
+--[deleteAtta]
+delete from sys_atta
+ where id = '##'
+
+
+--[deleteAttaTmp]
+delete from sys_atta_tmp
+where atta_id = '##'
+
+
+--[selectString]
+SELECT remark FROM sys_atta WHERE id IN (/* in _1 */)

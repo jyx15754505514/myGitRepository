@@ -2,6 +2,7 @@ package com.ccicnavi.bims.product.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,6 +36,8 @@ public class CatalogController {
     CatalogService catalogService;
     @Reference(timeout = 30000)
     CatalogOrgService catalogOrgService;
+    @Reference(timeout = 30000)
+    IdWorkerService idWorkerService;
 
 
     /**
@@ -46,11 +50,14 @@ public class CatalogController {
     public ResultT listCatalog(@RequestBody CatalogDO catalogDO){
         try {
             List<CatalogDO> catalogDOList=catalogService.listCatalog(catalogDO);
-            return ResultT.success(catalogDOList);
+            if (catalogDOList!=null)
+            {
+                return ResultT.success(catalogDOList);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
+        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
     /**
@@ -61,13 +68,17 @@ public class CatalogController {
      */
     @RequestMapping(value = "/saveCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT saveCatalog(@RequestBody CatalogDO catalogDO){
+        catalogDO.setProdCatalogUuid(idWorkerService.getId(new Date()));
         try {
             Integer num=catalogService.saveCatalog(catalogDO);
-            return ResultT.success(num);
+            if (num>0)
+            {
+                return ResultT.success(num);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(ResultCode.ADD_FAILURE);
         }
+        return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
     /**
@@ -80,11 +91,14 @@ public class CatalogController {
     public ResultT removeCatalog(@RequestBody CatalogDO catalogDO){
         try {
             Integer num=catalogService.removeCatalog(catalogDO);
-            return ResultT.success(num);
+            if (num>0)
+            {
+                return ResultT.success(num);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(ResultCode.DELETE_FAILURE);
         }
+        return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 
     /**
@@ -97,11 +111,14 @@ public class CatalogController {
     public ResultT updateCatalog(@RequestBody CatalogDO catalogDO){
         try {
             Integer num=catalogService.updateCatalog(catalogDO);
-            return ResultT.success(num);
+            if (num>0)
+            {
+                return ResultT.success(num);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
+        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     /**
@@ -114,11 +131,14 @@ public class CatalogController {
     public ResultT getCatalog(@RequestBody CatalogDO catalogDO){
         try {
             CatalogDO catalogDOResult=catalogService.getCatalog(catalogDO);
-            return ResultT.success(catalogDOResult);
+            if (catalogDOResult!=null)
+            {
+                return ResultT.success(catalogDOResult);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(ResultCode.GET_FAILURE);
         }
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
     /**
@@ -131,11 +151,14 @@ public class CatalogController {
     public ResultT listCatalogPage(@RequestBody PageParameter<CatalogDO> pageParameter){
         try {
             PageBean<CatalogDO> catalogDOPageBean=catalogService.listCatalogPage(pageParameter);
-            return ResultT.success(catalogDOPageBean);
+            if (catalogDOPageBean!=null)
+            {
+                return ResultT.success(catalogDOPageBean);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
+        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
     /**
@@ -148,11 +171,14 @@ public class CatalogController {
     public ResultT getCatalogByOrgUUid(@RequestBody CatalogOrgDO catalogOrgDO){
         try {
             List<CatalogDO> catalogDOList=catalogService.getCatalogByOrgUUid(catalogOrgDO);
-            return ResultT.success(catalogDOList);
+            if (catalogDOList!=null)
+            {
+                return ResultT.success(catalogDOList);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultT.failure(ResultCode.GET_FAILURE);
         }
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
     /**
