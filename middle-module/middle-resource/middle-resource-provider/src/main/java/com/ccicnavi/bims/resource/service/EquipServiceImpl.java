@@ -38,7 +38,7 @@ public class EquipServiceImpl implements EquipService {
     @Autowired
     private EquipUseDao equipUseDao;
 
-    @Reference(timeout = 1000)
+    @Reference(timeout = 3000)
     IdWorkerService idWorkerService;
 
     /**
@@ -260,23 +260,30 @@ public class EquipServiceImpl implements EquipService {
         Boolean equip = true;
         try {
             eqlTran.start();
-            Integer count = equipDao.deleteEquip(equipDTO,null);
+            Integer count = equipDao.deleteEquip(equipDTO,eqlTran);
             if(count <= 0){
                 equip = false;
             }
+            /**判断是否是批量操作*/
+            if(equipDTO.getEquipUuid() != null){
+                equipTestDTO.setEquipUuid(equipDTO.getEquipUuid());
+                equipUseDTO.setEquipUuid(equipDTO.getEquipUuid());
+            }else if(equipDTO.getEquipUuids().size() > 0){
+                equipTestDTO.setEquipUuids(equipDTO.getEquipUuids());
+                equipUseDTO.setEquipUuids(equipDTO.getEquipUuids());
+            }
             /**删除设备检定记录*/
-            equipTestDTO.setEquipUuid(equipDTO.getEquipUuid());
             Integer equipTest = equipTestDao.deleteEquipTest(equipTestDTO,eqlTran);
             if(equipTest <= 0){
                 equip = false;
             }
             /**删除设备领用记录*/
-            equipUseDTO.setEquipUuid(equipDTO.getEquipUuid());
             Integer equipUse = equipUseDao.deleteEquipUse(equipUseDTO,eqlTran);
             if(equipUse <= 0){
                 equip = false;
             }
             if(equip = true){
+                eqlTran.commit();
                 return count;
             }
         } catch (Exception e) {

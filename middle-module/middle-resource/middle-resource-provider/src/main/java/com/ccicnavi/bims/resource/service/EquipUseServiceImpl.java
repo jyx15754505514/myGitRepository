@@ -29,7 +29,7 @@ public class EquipUseServiceImpl implements EquipUseService {
     @Autowired
     EquipUseDao equipUseDao;
 
-    @Reference(timeout = 1000)
+    @Reference(timeout = 3000)
     IdWorkerService idWorkerService;
     /**
      * @Author panyida
