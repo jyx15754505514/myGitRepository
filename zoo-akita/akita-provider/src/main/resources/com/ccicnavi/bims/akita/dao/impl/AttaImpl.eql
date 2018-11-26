@@ -1,0 +1,145 @@
+-- [insertAtta]
+INSERT INTO sys_atta
+   -- trim prefix=( suffix=) suffixOverrides=,
+     -- iff id != null and id != ''
+        id,
+
+     -- iff fileNewName != null and fileNewName != ''
+        file_new_name,
+
+     -- iff fileOldName != null and fileOldName != ''
+        file_old_name,
+
+     -- iff fileExt != null and fileExt != ''
+        file_ext,
+
+     -- iff fileType != null and fileType != ''
+        file_type,
+
+     -- iff fileGroup != null and fileGroup != ''
+        file_group,
+
+     -- iff createBy != null and createBy != ''
+        create_by,
+
+     -- iff remark != null and remark != ''
+        remark,
+
+     -- iff createDt != null and createDt != ''
+        create_dt,
+
+     -- iff updateDt != null and updateDt != ''
+        update_dt,
+
+     -- iff reserveVarchar1 != null and reserveVarchar1 != ''
+        reserve_varchar_1,
+
+     -- iff reserveVarchar2 != null and reserveVarchar2 != ''
+        reserve_varchar_2,
+
+     -- iff reserveVarchar3 != null and reserveVarchar3 != ''
+        reserve_varchar_3,
+   --end
+   -- trim prefix=values( suffix=) suffixOverrides=,
+     -- iff id != null and id != ''
+        '#id#',
+
+     -- iff fileNewName != null and fileNewName != ''
+        '#fileNewName#',
+
+     -- iff fileOldName != null and fileOldName != ''
+        '#fileOldName#',
+
+     -- iff fileExt != null and fileExt != ''
+        '#fileExt#',
+
+     -- iff fileType != null and fileType != ''
+        '#fileType#',
+
+     -- iff fileGroup != null and fileGroup != ''
+        '#fileGroup#',
+
+     -- iff createBy != null and createBy != ''
+        '#createBy#',
+
+     -- iff remark != null and remark != ''
+        '#remark#',
+
+     -- iff createDt != null and createDt != ''
+        '#createDt#',
+
+     -- iff updateDt != null and updateDt != ''
+        '#updateDt#',
+
+     -- iff reserveVarchar1 != null and reserveVarchar1 != ''
+        '#reserveVarchar1#',
+
+     -- iff reserveVarchar2 != null and reserveVarchar2 != ''
+        '#reserveVarchar2#',
+
+     -- iff reserveVarchar3 != null and reserveVarchar3 != ''
+        '#reserveVarchar3#',
+    --end
+
+-- [insertAttaTmp]
+INSERT INTO sys_atta_tmp
+   -- trim prefix=( suffix=) suffixOverrides=,
+     -- iff id != null and id != ''
+        id,
+
+     -- iff businId != null and businId != ''
+        busin_id,
+
+     -- iff attaId != null and attaId != ''
+        atta_id,
+     -- iff remark != null and remark != ''
+        remark,
+     -- iff createDt != null and createDt != ''
+        create_dt,
+     -- iff updateDt != null and updateDt != ''
+        update_dt,
+     -- iff reserveVarchar1 != null and reserveVarchar1 != ''
+        reserve_varchar_1,
+     -- iff reserveVarchar2 != null and reserveVarchar2 != ''
+        reserve_varchar_2,
+     -- iff reserveVarchar3 != null and reserveVarchar3 != ''
+        reserve_varchar_3,
+   --end
+   -- trim prefix=values( suffix=) suffixOverrides=,
+     -- iff id != null and id != ''
+        '#id#',
+
+     -- iff businId != null and businId != ''
+        '#businId#',
+
+     -- iff attaId != null and attaId != ''
+        '#attaId#',
+
+     -- iff remark != null and remark != ''
+        '#remark#',
+
+     -- iff createDt != null and createDt != ''
+        '#createDt#',
+
+     -- iff updateDt != null and updateDt != ''
+        '#updateDt#',
+
+     -- iff reserveVarchar1 != null and reserveVarchar1 != ''
+        '#reserveVarchar1#',
+
+     -- iff reserveVarchar2 != null and reserveVarchar2 != ''
+        '#reserveVarchar2#',
+
+     -- iff reserveVarchar3 != null and reserveVarchar3 != ''
+        '#reserveVarchar3#',
+    --end
+
+-- [listAttaTmp]
+SELECT
+	t2.*
+FROM
+	sys_atta_tmp t1,
+	sys_atta t2
+WHERE
+	t1.atta_id = t2.id
+	AND t2.busin_id in '##'
