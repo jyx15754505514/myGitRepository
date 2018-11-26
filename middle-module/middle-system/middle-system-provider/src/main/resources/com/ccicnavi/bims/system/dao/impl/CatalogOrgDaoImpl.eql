@@ -1,15 +1,17 @@
 --[listCatalogOrgDO]
 SELECT
-   prod_catalog_uuid as prodCatalogUuid,
-   organization_uuid as organizationUuid,
-   app_sys_uuid as appSysUuid
+   co.prod_catalog_uuid as prodCatalogUuid,
+   co.organization_uuid as organizationUuid,
+   co.app_sys_uuid as appSysUuid,
+   pc.catalog_name as catalogName
 FROM
-   sys_catalog_org
+   sys_catalog_org co
+   LEFT JOIN prod_catalog pc ON pc.prod_catalog_uuid = co.prod_catalog_uuid
 WHERE 1=1
    --iff organizationUuid != null and organizationUuid != ''
-       and organization_uuid = '#organizationUuid#'
+       and co.organization_uuid = '#organizationUuid#'
    --iff prodCatalogUuid != null and prodCatalogUuid != ''
-       and prod_catalog_uuid = '#prodCatalogUuid#'
+       and co.prod_catalog_uuid = '#prodCatalogUuid#'
 
 
 --[saveCatalogOrgDO]

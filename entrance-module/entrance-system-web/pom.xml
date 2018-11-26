@@ -99,6 +99,18 @@
             <groupId>org.jolokia</groupId>
             <artifactId>jolokia-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>middle-resource</groupId>
+            <artifactId>middle-resource-common</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>middle-resource</groupId>
+            <artifactId>middle-resource-api</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
     <dependencyManagement>
