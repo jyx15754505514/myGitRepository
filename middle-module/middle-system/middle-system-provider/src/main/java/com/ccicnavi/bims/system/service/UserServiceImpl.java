@@ -63,13 +63,13 @@ public class UserServiceImpl implements UserService{
         try{
             PageBean<UserDTO> pageBean = userDao.listUser(pageParameter);
             if (pageBean != null){
-                List<UserDTO> userList = pageBean.getProducts();
+                /*List<UserDTO> userList = pageBean.getProducts();
                 if(userList != null && userList.size() > 0) {
                     for (UserDTO user : userList) {
                         List<RoleDTO> roleDTOList = roleService.listRoleByUser(user);
                         user.setRoleDTOList(roleDTOList);
                     }
-                }
+                }*/
                  return ResultT.success(pageBean);
             }
         }catch (Exception e){
@@ -96,7 +96,6 @@ public class UserServiceImpl implements UserService{
             tran.start();
             //新增用户表信息
             insertUser = userDao.insertUser(userDTO, tran);
-
             List<String> roleList = userDTO.getAddRoleList();
             //判断角色是否为空
             if(roleList != null && roleList.size() > 0){
@@ -105,13 +104,13 @@ public class UserServiceImpl implements UserService{
                     //新增用户角色中间表
                     insertRole += roleUserDao.insertRoleUsers(userDTO, tran);
                 }
+                if(insertRole != roleList.size()) {
+                    tran.rollback();
+                    log.debug("新建用户失败");
+                    return null;
+                }
+                tran.commit();
             }
-            if(insertUser == 0 || insertRole != roleList.size()) {
-                tran.rollback();
-                log.debug("新建用户失败");
-                return null;
-            }
-            tran.commit();
         }catch (Exception e){
             log.error("新建用户失败", e);
             tran.rollback();
@@ -131,36 +130,26 @@ public class UserServiceImpl implements UserService{
      */
     @Override
     public Integer updateUser(UserDTO userDTO){
-        EqlTran tran = new Eql("DEFAULT").newTran();
         Integer updateUser = 0;
-        Integer deleteRoleUser = 0;
-        Integer insertRole = 0;
         try {
-            tran.start();
             //更新用户表信息
-            updateUser = userDao.updateUser(userDTO, tran);
+            updateUser = userDao.updateUser(userDTO, null);
             //删除角色的集合不为空就根据用户uuid删除中间表角色信息
-            List<String> deleteRoleList = userDTO.getDeleteRoleList();
+           /* List<String> deleteRoleList = userDTO.getDeleteRoleList();
             if(deleteRoleList != null && deleteRoleList.size() > 0){
                 deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
-            }
+            }*/
             //添加角色的集合不为空就根据用户uuid添加用户和角色信息
-            List<String> addRoleList = userDTO.getAddRoleList();
+           /* List<String> addRoleList = userDTO.getAddRoleList();
             if(addRoleList != null && addRoleList.size() > 0){
                 for(String roleUuid : addRoleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表
                     insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
                 }
-            }
-            if(deleteRoleUser != null && insertRole != null) {
-                tran.commit();
-            }
+            }*/
         } catch (Exception e) {
             log.error("更新登录用户信息失败",e);
-            tran.rollback();
-        }finally {
-            Closes.closeQuietly(tran);
         }
         return updateUser;
     }
@@ -214,6 +203,14 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+
+    /*
+    * 根据角色查询用户信息失败
+    * @Author zhaotao
+    * @Date  2018/11/26 23:19
+    * @Param [userDTO]
+    * @return com.ccicnavi.bims.system.pojo.UserDTO
+    **/
     @Override
     public UserDTO selectByRoleUser(UserDTO userDTO) {
         //授权用户
@@ -255,7 +252,6 @@ public class UserServiceImpl implements UserService{
     *@Author: zhangxingbiao
     *@date: 2018/11/23
     */
-
     @Override
     public Integer addUserRole(UserDTO userDTO) {
         EqlTran tran = new Eql("DEFAULT").newTran();
@@ -263,10 +259,11 @@ public class UserServiceImpl implements UserService{
         Integer deleteRoleUser = null;
         try {
             tran.start();
-            List<String> deleteRoleList = userDTO.getDeleteRoleList();
+            deleteRoleUser = roleUserDao.deleteRoleByUser(userDTO, tran);
+           /* List<String> deleteRoleList = userDTO.getDeleteRoleList();
             if(deleteRoleList != null && deleteRoleList.size() > 0){
                 deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
-            }
+            }*/
             //添加角色的集合不为空就根据用户uuid添加用户和角色信息
             List<String> addRoleList = userDTO.getAddRoleList();
             if(addRoleList != null && addRoleList.size() > 0){
@@ -276,7 +273,7 @@ public class UserServiceImpl implements UserService{
                     insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
-            if((insertRole != null && insertRole != addRoleList.size()) || (deleteRoleUser != null && deleteRoleUser != deleteRoleList.size())) {
+            if((insertRole == null || insertRole != addRoleList.size())) {
                 tran.rollback();
                 return null;
             }
@@ -289,10 +286,18 @@ public class UserServiceImpl implements UserService{
         return insertRole;
     }
 
+
+    /**
+    * 登录获取用户信息
+    * @Author zhaotao
+    * @Date  2018/11/26 23:05
+    * @Param [userDTO]
+    * @return com.ccicnavi.bims.sso.common.pojo.SSOUser
+    **/
     @Override
     public SSOUser login(UserDTO userDTO) {
+        SSOUser user = null;
         try {
-            SSOUser user = new SSOUser();
             user = userDao.login(userDTO);
             return user;
         } catch (Exception e) {
@@ -325,7 +330,7 @@ public class UserServiceImpl implements UserService{
                 //获取初始密码
                 String initialpassword = settingDO.getInitialPassword();
                 //获取盐值
-                String salt = passwdService.getSalt();
+                String salt = user.getSalt();
                 //密码加密
                 String password = passwdService.getHash(initialpassword, salt);
                 //将密码返回

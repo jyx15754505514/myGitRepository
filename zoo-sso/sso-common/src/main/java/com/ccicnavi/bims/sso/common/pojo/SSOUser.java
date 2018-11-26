@@ -25,7 +25,30 @@ public class SSOUser implements Serializable {
 
     private List<String> btnUrlList;    //按钮绑定的url列表
 
-    private List<DepartmentDTO> departmentList;//部门信息
+    /*
+    * 部门名称
+    **/
+    private String  deptName;
+
+    /*
+     * 部门主键
+     **/
+    private String  deptUuid;
+
+    /*
+     * 部门编号
+     **/
+    private String  deptCode;
+
+    /*
+     * 部门是否删除
+     **/
+    private String  deptIsDeleted;
+
+    /*
+     * 部门是否启用
+     **/
+    private String  deptIsEnabled;
 
     private String jsessionID;    //jsessionID
 
@@ -103,7 +126,7 @@ public class SSOUser implements Serializable {
 
     private String prodCatalogUuid;
 
-    private String extend1;
+    private String realName;
 
     private String extend2;
 

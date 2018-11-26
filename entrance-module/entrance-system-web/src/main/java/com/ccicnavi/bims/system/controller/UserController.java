@@ -180,9 +180,7 @@ public class UserController {
         Integer saveUser = null;
         try {
             if (StringUtils.isEmpty(userDTO.getUserUuid())) {
-                String userUuid = idWorkerService.getId(new Date());
-                userDTO.setUserUuid(userUuid);
-                saveUser = userService.insertUser(userDTO);
+                saveUser = userManager.insertUser(userDTO);
             } else {
                 saveUser = userService.updateUser(userDTO);
             }

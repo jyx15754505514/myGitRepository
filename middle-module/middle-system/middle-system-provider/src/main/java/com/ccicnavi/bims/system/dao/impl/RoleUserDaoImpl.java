@@ -30,7 +30,6 @@ public class RoleUserDaoImpl implements RoleUserDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/22
     */
-
     @Override
     public Integer insertRoleUsers(UserDTO userDTO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
@@ -92,7 +91,6 @@ public class RoleUserDaoImpl implements RoleUserDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/22
     */
-
     @Override
     public List<RoleUserDO> listRoleUser(UserDTO userDTO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
@@ -100,5 +98,21 @@ public class RoleUserDaoImpl implements RoleUserDao {
             eql.useTran(tran);
         }
         return new Eql("DEFAULT").select("listRoleUser").params(userDTO).returnType(RoleUserDO.class).execute();
+    }
+
+    /*
+    * 根据用户删除用户角色中间信息
+    * @Author zhaotao
+    * @Date  2018/11/26 23:11
+    * @Param [userDTO, tran]
+    * @return java.lang.Integer
+    **/
+    @Override
+    public Integer deleteRoleByUser(UserDTO userDTO, EqlTran tran) {
+        Eql eql = new Eql("DEFAULT");
+        if (tran != null) {
+            eql.useTran(tran);
+        }
+        return new Eql("DEFAULT").delete("deleteRoleByUser").params(userDTO).returnType(Integer.class).execute();
     }
 }

@@ -1,55 +1,47 @@
 -- 查询登录用户信息
 -- [listUser]
     SELECT
-        user_uuid as  userUuid,
-        nick_name as nickName,
-        login_name as loginName,
-        login_email as loginEmail,
-        login_phone as loginPhone,
-        current_password as currentPassword,
-        salt,
-        dept_uuid as deptUuid,
-        password_hints as passwordHints,
-        is_change_password as isChangePassword,
-        login_usertype as loginUsertype,
-        disabled_time as disabledTime,
-        disabled_reason as disabledReason,
-        failed_logins as failedLogins,
-        login_method as loginMethod,
-        last_time_zone as lastTimeZone,
-        last_local as lastLocal,
-        last_login_ip as lastLoginIp,
-        last_login_time as lastLoginTime,
-        bind_login_ip as bindLoginIp,
-        is_enabled as isEnabled,
-        comments,
-        is_deleted as isDeleted,
-        created_time as createdTime,
-        created_uuid as createdUuid,
-        created_name as createdName,
-        updated_time as updatedTime,
-        updated_name as updatedName,
-        org_uuid as orgUuid,
-        app_sys_uuid as appSysUuid,
-        prod_catalog_uuid as prodCatalogUuid,
-        real_name as realName,
-        extend2,
-        extend3
-    FROM
-        sys_user
-    WHERE
-     is_deleted = 'N'
+       u.user_uuid as  userUuid,
+       u.nick_name as nickName,
+       u.login_name as loginName,
+       u.login_email as loginEmail,
+       u.login_phone as loginPhone,
+       u.current_password as currentPassword,
+       u.login_method as loginMethod,
+       u.last_login_ip as lastLoginIp,
+       u.last_login_time as lastLoginTime,
+       u.is_enabled as isEnabled,
+       u.comments,
+       u.dept_uuid as deptUuid,
+       u.created_time as createdTime,
+       u.created_uuid as createdUuid,
+       u.created_name as createdName,
+       u.org_uuid as orgUuid,
+       o.org_name as orgName,
+       d.org_name as deptName,
+       u.real_name as realName,
+       GROUP_CONCAT(r.role_name) as roleName,
+       u.extend2,
+       u.extend3
+     FROM
+        sys_user u
+        LEFT JOIN sys_role_user ru ON ru.user_uuid = u.user_uuid
+        LEFT JOIN sys_role r ON r.role_uuid = ru.role_uuid
+        LEFT JOIN sys_organization o ON u.org_uuid = o.organization_uuid
+        LEFT JOIN sys_organization d ON u.dept_uuid = d.organization_uuid
+     WHERE
+     u.is_deleted = 'N'
      --iff userUuid != null and userUuid != ''
-        and user_uuid = '#userUuid#'
+        and u.user_uuid = '#userUuid#'
      --end
      --iff loginName != null and loginName != ''
-         and login_name like '#loginName:like#'
+         and u.login_name like '#loginName:like#'
      --end
      --iff deptUuid != null and deptUuid != ''
-          and dept_uuid = '#deptUuid#'
+          and u.dept_uuid = '#deptUuid#'
      --end
      --iff orgUuid != null and orgUuid != ''
-          and org_uuid = '#orgUuid#'
+          and u.org_uuid = '#orgUuid#'
      --end
 
 
@@ -375,12 +367,17 @@
        o.org_code as orgCode,
        o.is_enabled as orgIsEnabled,
        o.is_deleted as orgIsDeleted,
+       d.org_name as deptName,
+       d.org_code as deptCode,
+       d.is_enabled as deptIsEnabled,
+       d.is_deleted as deptIsDeleted,
        u.real_name as realName,
        u.extend2,
        u.extend3
      FROM
         sys_user u
         LEFT JOIN sys_organization o ON u.org_uuid = o.organization_uuid
+        LEFT JOIN sys_organization d ON u.dept_uuid = d.organization_uuid
      WHERE
          u.login_name = '#loginName#'
 
