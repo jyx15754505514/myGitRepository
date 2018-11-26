@@ -28,20 +28,23 @@ public class SSOServiceImpl implements SSOService {
      */
     public ReturnT<String> login(SSOUser xxlUser) {
 
-        xxlUser.setVersion(UUID.randomUUID().toString().replaceAll("-", ""));
-        xxlUser.setExpireMinite(SsoLoginStore.getRedisExpireMinite());
-        xxlUser.setExpireFreshTime(System.currentTimeMillis());
+        try {
+            xxlUser.setVersion(UUID.randomUUID().toString().replaceAll("-", ""));
+            xxlUser.setExpireMinite(SsoLoginStore.getRedisExpireMinite());
+            xxlUser.setExpireFreshTime(System.currentTimeMillis());
 
 
-        // 2、generate sessionId + storeKey
-        String sessionId = SsoSessionIdHelper.makeSessionId(xxlUser);
+            // 2、generate sessionId + storeKey
+            String sessionId = SsoSessionIdHelper.makeSessionId(xxlUser);
 
-        // 3、login, store storeKey
-        ssoTokenLoginHelper.login(sessionId, xxlUser);
+            // 3、login, store storeKey
+            ssoTokenLoginHelper.login(sessionId, xxlUser);
 
-        // 4、return sessionId
-        return new ReturnT<String>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message(),sessionId);
-
+            // 4、return sessionId
+            return new ReturnT<String>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message(),sessionId);
+        } catch (Exception e) {
+            return new ReturnT<String>(ResultCode.USER_LOGIN_EXCEPTION.code(),ResultCode.USER_LOGIN_EXCEPTION.message());
+        }
     }
 
     /**
@@ -50,8 +53,12 @@ public class SSOServiceImpl implements SSOService {
      * @return
      */
     public ReturnT<String> logout(String sessionId) {
-        ssoTokenLoginHelper.logout(sessionId);
-        return new ReturnT<String>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message());
+        try {
+            ssoTokenLoginHelper.logout(sessionId);
+            return new ReturnT<String>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message());
+        } catch (Exception e) {
+            return new ReturnT<String>(ResultCode.USER_LOGINOUT_EXCEPTION.code(),ResultCode.USER_LOGINOUT_EXCEPTION.message());
+        }
     }
 
     /**
@@ -60,15 +67,19 @@ public class SSOServiceImpl implements SSOService {
      * @return
      */
     public ReturnT<SSOUser> logincheck(String sessionId) {
-        SSOUser xxlUser = ssoTokenLoginHelper.loginCheck(sessionId);
-        if (xxlUser == null) {
-            if(ssoTokenLoginHelper.hasLandedOnKey(sessionId)){
-                return new ReturnT<SSOUser>(ResultCode.USER_LOGIN_OUT.code(),ResultCode.USER_LOGIN_OUT.message());
-            }else{
-                return new ReturnT<SSOUser>(ResultCode.USER_NOT_LOGIN.code(),ResultCode.USER_NOT_LOGIN.message());
+        try {
+            SSOUser xxlUser = ssoTokenLoginHelper.loginCheck(sessionId);
+            if (xxlUser == null) {
+                if(ssoTokenLoginHelper.hasLandedOnKey(sessionId)){
+                    return new ReturnT<SSOUser>(ResultCode.USER_LOGIN_OUT.code(),ResultCode.USER_LOGIN_OUT.message());
+                }else{
+                    return new ReturnT<SSOUser>(ResultCode.USER_NOT_LOGIN.code(),ResultCode.USER_NOT_LOGIN.message());
+                }
             }
+            return new ReturnT<SSOUser>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message(),xxlUser);
+        } catch (Exception e) {
+            return new ReturnT<SSOUser>(ResultCode.USER_LOGINCHECK_EXCEPTION.code(),ResultCode.USER_LOGINCHECK_EXCEPTION.message());
         }
-        return new ReturnT<SSOUser>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message(),xxlUser);
     }
 
     /**
@@ -78,18 +89,22 @@ public class SSOServiceImpl implements SSOService {
      * @return
      */
     public ReturnT<SSOUser> checkAccess(String sessionId,String path){
-        //判断登录
-        ReturnT<SSOUser> ssoUserReturnT = logincheck(sessionId);
-        if(ssoUserReturnT.getCode() != 1){
-            return ssoUserReturnT;
-        }
+        try {
+            //判断登录
+            ReturnT<SSOUser> ssoUserReturnT = logincheck(sessionId);
+            if(ssoUserReturnT.getCode() != 1){
+                return ssoUserReturnT;
+            }
 
-        List<String> btnUrlList = ssoUserReturnT.getData().getBtnUrlList() == null ? new ArrayList<>() : ssoUserReturnT.getData().getBtnUrlList();
-        if(btnUrlList.contains(path)){
+            List<String> btnUrlList = ssoUserReturnT.getData().getBtnUrlList() == null ? new ArrayList<>() : ssoUserReturnT.getData().getBtnUrlList();
+            if(btnUrlList.contains(path)){
 
-            return new ReturnT<SSOUser>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message(),ssoUserReturnT.getData());
-        }else{
-            return new ReturnT<SSOUser>(ResultCode.USER_CANT_ACCESS.code(),ResultCode.USER_CANT_ACCESS.message());
+                return new ReturnT<SSOUser>(ResultCode.SUCCESS.code(),ResultCode.SUCCESS.message(),ssoUserReturnT.getData());
+            }else{
+                return new ReturnT<SSOUser>(ResultCode.USER_CANT_ACCESS.code(),ResultCode.USER_CANT_ACCESS.message());
+            }
+        } catch (Exception e) {
+            return new ReturnT<SSOUser>(ResultCode.USER_CHECKACCESS_EXCEPTION.code(),ResultCode.USER_CHECKACCESS_EXCEPTION.message());
         }
     }
 

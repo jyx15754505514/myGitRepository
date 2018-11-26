@@ -61,9 +61,6 @@ public class SSOInterceptor implements HandlerInterceptor {
                 e.printStackTrace();
             }
         }
-        /*String path = request.getRequestURI();
-       System.out.println("进来了~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-       return true;*/
     }
 
     /**
