@@ -139,7 +139,11 @@ public class UserManagerImpl implements UserManager {
         //查产品线
         CatalogOrgDO catalogOrgDO = new CatalogOrgDO();
         catalogOrgDO.setOrganizationUuid(ssoUser.getOrgUuid());
-        List<String> prodCatalogList = catalogOrgService.listCatalogOrgDO(catalogOrgDO);
+        List<CatalogOrgDO> catalogOrgDOList = catalogOrgService.listCatalogOrgDO(catalogOrgDO);
+        List<String> prodCatalogList = new ArrayList<>();
+        for (CatalogOrgDO catalogOrg : catalogOrgDOList) {
+            prodCatalogList.add(catalogOrg.getOrganizationUuid());
+        }
         //查权限
         MenuDTO menuDTO = new MenuDTO();
         List<String> roleUuids = new ArrayList<>();
