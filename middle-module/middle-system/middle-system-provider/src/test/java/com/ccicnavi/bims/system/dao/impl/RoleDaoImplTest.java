@@ -10,12 +10,6 @@ class RoleDaoImplTest {
 
     @Test
     void listRole() {
-        RoleDaoImpl roleDao = new RoleDaoImpl();
-        RoleDO roleDO = new RoleDO();
-        roleDO.setOrgUuid("CCIC");
-        roleDO.setAppSysUuid("CCIC");
-        roleDO.setBusinessLine("CQC");
-        roleDO.setRoleUuid("111");
     }
 
     @Test
@@ -32,14 +26,6 @@ class RoleDaoImplTest {
 
     @Test
     void getRole() {
-        RoleDaoImpl roleDao = new RoleDaoImpl();
-        RoleDO roleDO = new RoleDO();
-        roleDO.setOrgUuid("CCIC");
-        roleDO.setAppSysUuid("CCIC");
-        roleDO.setBusinessLine("CQC");
-        roleDO.setRoleUuid("111");
-        RoleDO role = roleDao.getRole(roleDO);
-        System.out.println(role);
 
     }
 }
