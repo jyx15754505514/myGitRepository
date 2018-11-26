@@ -1,10 +1,15 @@
 --[listCatalogOrgDO]
 SELECT
-    prod_catalog_uuid as prodCatalogUuid
+   prod_catalog_uuid as prodCatalogUuid,
+   organization_uuid as organizationUuid,
+   app_sys_uuid as appSysUuid
 FROM
-    sys_catalog_org
-WHERE
-    organization_uuid = '#organizationUuid#'
+   sys_catalog_org
+WHERE 1=1
+   --iff organizationUuid != null and organizationUuid != ''
+       and organization_uuid = '#organizationUuid#'
+   --iff prodCatalogUuid != null and prodCatalogUuid != ''
+       and prod_catalog_uuid = '#prodCatalogUuid#'
 
 
 --[saveCatalogOrgDO]

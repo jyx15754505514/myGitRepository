@@ -13,6 +13,7 @@
         <module>middle-module</module>
         <module>zoo-akita</module>
         <module>zoo-shiba</module>
+        <module>zoo-admin</module>
         <module>zoo-breeder</module>
         <module>zoo-sso</module>
         <module>zoo-sleuth</module>
