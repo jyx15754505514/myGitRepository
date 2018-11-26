@@ -23,7 +23,15 @@ public class SubcontractorDTO implements Serializable {
     /**
      * 分包方主键
      */
+    private List<String> subcontractorUuids;
+    /**
+     * 分包方主键
+     */
     private String subcUuid;
+    /**
+     * 分包方主键
+     */
+    private List<String> subcUuids;
     /**
      * 统一社会信用代码
      */

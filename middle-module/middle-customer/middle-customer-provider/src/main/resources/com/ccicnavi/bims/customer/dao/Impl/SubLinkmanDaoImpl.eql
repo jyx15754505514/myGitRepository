@@ -258,10 +258,15 @@ WHERE
     AND linkman_uuid='#linkmanUuid#'
 --iff subcUuid != null and subcUuid != ''
     AND subc_uuid = '#subcUuid#'
+-- if subcUuids != null
+    AND subc_uuid IN
+    -- for item=item index=index collection=subcUuids open=( separator=, close=)
+        '#item#'
+    -- end
 -- if linkmanUuids != null
     AND linkman_uuid IN
     -- for item=item index=index collection=linkmanUuids open=( separator=, close=)
-        '#item#',
+        '#item#'
     -- end
 -- end
 

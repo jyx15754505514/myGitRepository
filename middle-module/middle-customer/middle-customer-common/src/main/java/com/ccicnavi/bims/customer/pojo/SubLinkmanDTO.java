@@ -27,6 +27,10 @@ public class SubLinkmanDTO implements Serializable {
      */
     private String subcUuid;
     /**
+     *分包方主键
+     */
+    private List<String> subcUuids;
+    /**
      * 联系人名称
      */
     private String linkmanName;
