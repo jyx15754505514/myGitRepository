@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.sso.common.pojo;
 
+import com.ccicnavi.bims.system.pojo.CatalogOrgDTO;
 import com.ccicnavi.bims.system.pojo.DepartmentDTO;
 import com.ccicnavi.bims.system.pojo.MenuDTO;
 import com.ccicnavi.bims.system.pojo.RoleDTO;
@@ -16,7 +17,7 @@ public class SSOUser implements Serializable {
     /**
     * 当前登录人所在公司对应的产品线
     **/
-    private List<String> prodCatalogList;
+    private List<CatalogOrgDTO> prodCatalogList;
 
     private List<MenuDTO> menuList;
 

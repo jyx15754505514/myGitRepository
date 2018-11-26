@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.dao.impl;
 
 import com.ccicnavi.bims.system.dao.CatalogOrgDao;
 import com.ccicnavi.bims.system.pojo.CatalogOrgDO;
+import com.ccicnavi.bims.system.pojo.CatalogOrgDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ import java.util.List;
 @Service
 public class CatalogOrgDaoImpl implements CatalogOrgDao {
     @Override
-    public List<CatalogOrgDO> listCatalogOrgDO(CatalogOrgDO catalogOrgDO) {
-        return new Eql().select("listCatalogOrgDO").params(catalogOrgDO).returnType(CatalogOrgDO.class).execute();
+    public List<CatalogOrgDTO> listCatalogOrgDO(CatalogOrgDO catalogOrgDO) {
+        return new Eql().select("listCatalogOrgDO").params(catalogOrgDO).returnType(CatalogOrgDTO.class).execute();
     }
 
     @Override

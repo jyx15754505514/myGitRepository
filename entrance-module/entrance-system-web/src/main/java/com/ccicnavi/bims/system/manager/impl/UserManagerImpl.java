@@ -1,9 +1,12 @@
 package com.ccicnavi.bims.system.manager.impl;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.breeder.api.PasswdService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.resource.api.PersonService;
+import com.ccicnavi.bims.resource.pojo.PersonDO;
 import com.ccicnavi.bims.sso.api.SSOService;
 import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.sso.common.result.ReturnT;
@@ -11,9 +14,12 @@ import com.ccicnavi.bims.system.manager.UserManager;
 import com.ccicnavi.bims.system.pojo.*;
 import com.ccicnavi.bims.system.service.api.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,6 +52,34 @@ public class UserManagerImpl implements UserManager {
 
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
     private SSOService ssoService;
+
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
+    private PersonService personService;
+
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    private IdWorkerService idWorkerService;
+
+    @Autowired
+    private HttpServletRequest request;
+
+    /*
+    * 新增用户
+    * @Author zhaotao
+    * @Date  2018/11/26 17:17
+    * @Param [userDTO]
+    * @return java.lang.Integer
+    **/
+    @Override
+    public Integer insertUser(UserDTO userDTO) throws Exception {
+        String userUuid = idWorkerService.getId(new Date());
+        userDTO.setUserUuid(userUuid);
+        Integer insertUser = userService.insertUser(userDTO);
+
+
+        PersonDO personDO = new PersonDO();
+        Integer insertPerson = personService.insertPerson(personDO);
+        return null;
+    }
     /*
     * 用户登录
     * @Author zhaotao
@@ -111,6 +145,9 @@ public class UserManagerImpl implements UserManager {
                     ssoUser.setCurrentPassword("");
                     ssoUser.setSalt("");
                     //SSO返回1 登录成功
+                    //获取登录IP,更新用户信息
+                    //request.getHeader()
+                    //userService.updateUser(userDTO);
                     return ResultT.success(ssoUser);
                 }else {
                     //SSO服务登录失败
@@ -139,10 +176,10 @@ public class UserManagerImpl implements UserManager {
         //查产品线
         CatalogOrgDO catalogOrgDO = new CatalogOrgDO();
         catalogOrgDO.setOrganizationUuid(ssoUser.getOrgUuid());
-        List<CatalogOrgDO> catalogOrgDOList = catalogOrgService.listCatalogOrgDO(catalogOrgDO);
+        List<CatalogOrgDTO> catalogOrgDOList = catalogOrgService.listCatalogOrgDO(catalogOrgDO);
         List<String> prodCatalogList = new ArrayList<>();
-        for (CatalogOrgDO catalogOrg : catalogOrgDOList) {
-            prodCatalogList.add(catalogOrg.getOrganizationUuid());
+        for (CatalogOrgDTO catalogOrg : catalogOrgDOList) {
+            prodCatalogList.add(catalogOrg.getProdCatalogUuid());
         }
         //查权限
         MenuDTO menuDTO = new MenuDTO();
@@ -161,7 +198,7 @@ public class UserManagerImpl implements UserManager {
         List<String> buttonUrlList = menuService.listButtonUrlByRole(userDTO);
         ssoUser.setRoleList(roleDTOList);
         ssoUser.setBtnUrlList(buttonUrlList);
-        ssoUser.setProdCatalogList(prodCatalogList);
+        ssoUser.setProdCatalogList(catalogOrgDOList);
         ssoUser.setMenuList(menuList);
     }
 
