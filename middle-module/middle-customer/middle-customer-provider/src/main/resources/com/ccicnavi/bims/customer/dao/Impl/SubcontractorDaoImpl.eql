@@ -2,6 +2,8 @@
 SELECT
     subcontractor_uuid as subcontractorUuid,
     subc_code as subcCode,
+    subc_uscc as subcUscc,
+    subc_unit_type as  subcUnitType,
     name as name,
     en_name as enName,
     subc_short_name as subcShortName,
@@ -38,6 +40,10 @@ INSERT INTO crm_subcontractor
         subcontractor_uuid,
      -- iff subcCode != null and subcCode != ''
         subc_code,
+     -- iff subcUscc != null and subcUscc != ''
+        subc_uscc,
+     -- iff subcUnitType != null and subcUnitType != ''
+        subc_unit_type,
      -- iff name != null and name != ''
         name,
      -- iff enName != null and enName != ''
@@ -96,6 +102,10 @@ INSERT INTO crm_subcontractor
         '#subcontractorUuid#',
      -- iff subcCode != null and subcCode != ''
         '#subcCode#',
+     -- iff subcUscc != null and subcUscc != ''
+        '#subcUscc#',
+     -- iff subcUnitType != null and subcUnitType != ''
+        '#subcUnitType#',
      -- iff name != null and name != ''
         '#name#',
      -- iff enName != null and enName != ''
@@ -167,6 +177,10 @@ WHERE
         subcontractor_uuid = '#subcontractorUuid#',
       -- iff subcCode != null
         subc_code = '#subcCode#',
+      -- iff subcUscc != null
+        subc_uscc = '#subcUscc#',
+      -- iff subcUnitType != null
+        subc_unit_type = '#subcUnitType#',
       -- iff name != null
         name = '#name#',
       -- iff enName != null
@@ -228,6 +242,8 @@ WHERE
   SELECT
     subcontractor_uuid subcontractorUuid,
     subc_code subcCode,
+    subc_uscc as subcUscc,
+    subc_unit_type as  subcUnitType,
     reg_capital regCapital,
     legal_rep legalRep,
     name,
