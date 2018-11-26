@@ -35,7 +35,7 @@ public class RoleController {
      * @Date 2018/11/16 10:49
      * @Param [pageParameter]
      **/
-    @PostMapping(value = "/listRole")
+    @RequestMapping(value = "/listRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listRole(@RequestBody PageParameter<RoleDO> pageParameter) {
         try {
             PageBean<RoleDO> roleDOList = roleService.listRole(pageParameter);
@@ -57,7 +57,7 @@ public class RoleController {
      * @Date 2018/11/16 15:21
      * @Param [role]
      **/
-    @PostMapping(value = "/insertRole")
+    @RequestMapping(value = "/insertRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT insertRole(@RequestBody RoleDO role) {
         try {
             Integer integer = roleService.insertRole(role);
@@ -73,7 +73,7 @@ public class RoleController {
     }
 
 
-    /*
+    /**
      * 单个或批量更新角色
      * @Author zhaotao
      * @Date  2018/11/15 22:03
@@ -93,7 +93,7 @@ public class RoleController {
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
-    /*
+    /**
      * 单个或批量删除角色
      * @Author zhaotao
      * @Date  2018/11/15 22:03
@@ -114,7 +114,7 @@ public class RoleController {
         return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 
-    /*
+    /**
      * 获取指定角色
      * @Author zhaotao
      * @Date  2018/11/15 22:03

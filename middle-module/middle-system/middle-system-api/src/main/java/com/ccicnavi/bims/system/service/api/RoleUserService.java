@@ -10,5 +10,6 @@ import com.ccicnavi.bims.system.pojo.RoleUserDTO;
  * @create: 2018-11-22 14:04
  */
 public interface RoleUserService {
+
     public Integer insertRoleUser(RoleUserDTO roleUserDTO);
 }

@@ -42,9 +42,16 @@
      --iff userUuid != null and userUuid != ''
         and user_uuid = '#userUuid#'
      --end
-     --iff userName != null and userName != ''
-         and user_name like '#userName:like#'
-      --end
+     --iff loginName != null and loginName != ''
+         and login_name like '#loginName:like#'
+     --end
+     --iff deptUuid != null and deptUuid != ''
+          and dept_uuid = '#deptUuid#'
+     --end
+     --iff orgUuid != null and orgUuid != ''
+          and org_uuid = '#orgUuid#'
+     --end
+
 
 -- 新增登录用户信息
 -- [insertUser]
@@ -439,6 +446,8 @@
     WHERE
      su.is_deleted = 'N'
      and sr.role_uuid ='#roleUuid#'
+     --if orgUuid != null and  orgUuid != ''
+     and su.org_uuid ='#orgUuid#'
 
 -- 查询未授权用户
 -- [selectunauthUserList]
@@ -485,4 +494,7 @@
     LEFT JOIN sys_role_user sr ON su.user_uuid = sr.user_uuid
     WHERE
         su.is_deleted = 'N'
-        and sr.role_uuid ='#roleUuid#')
+        and sr.role_uuid ='#roleUuid#'
+        and su.org_uuid ='#orgUuid#'
+        )
+             and org_uuid ='#orgUuid#'

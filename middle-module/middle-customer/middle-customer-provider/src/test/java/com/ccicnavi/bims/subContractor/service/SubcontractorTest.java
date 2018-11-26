@@ -7,7 +7,10 @@ import com.ccicnavi.bims.customer.dao.Impl.SubcQualifiDaoImpl;
 import com.ccicnavi.bims.customer.dao.Impl.SubcontractorDaoImpl;
 import com.ccicnavi.bims.customer.pojo.*;
 import com.ccicnavi.bims.customer.util.EqlUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +22,7 @@ import java.util.Map;
  * @author: WangYingLing
  * @create: 2018-11-16 14:21
  */
+@Slf4j
 public class SubcontractorTest {
 
     SubcontractorDaoImpl subcontractorDaoTest=new SubcontractorDaoImpl();
@@ -98,14 +102,38 @@ public class SubcontractorTest {
      */
     @Test
     public void removeSubcontractor() {
-//        String uuids = "asd1,asd10,asd2";
-//        String[] ids = uuids.split(",");
-//        Map<String, Object> data = new HashMap<String, Object>();
-//        data.put("ids", ids);
-        SubcontractorDO subcontractorDO=new SubcontractorDO();
-        subcontractorDO.setSubcontractorUuid("0000001");
-        int count = subcontractorDaoTest.removeSubcontractor(subcontractorDO);
-        System.out.println(count);
+        EqlTran eqlTran = new Eql().newTran();
+        /**联系人对象*/
+        SubLinkmanDTO subLinkmanDTO = new SubLinkmanDTO();
+        SubcQualifiDTO subcQualifiDTO = new SubcQualifiDTO();
+        SubBankDTO subBankDTO = new SubBankDTO();
+        try {
+            eqlTran.start();
+            SubcontractorDTO subcontractorDTO=new SubcontractorDTO();
+            subcontractorDTO.setSubcontractorUuid("181125202847516349557563592704");
+            /**删除分包方信息*/
+            Integer integer = subcontractorDaoTest.removeSubcontractor(subcontractorDTO, eqlTran);
+            System.out.println("删除分包方信息为："+integer);
+            /**删除联系人*/
+            subLinkmanDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
+            Integer linkMan = subLinkmanDao.deleteSubLinkman(subLinkmanDTO,eqlTran);
+            System.out.println("删除联系人为："+linkMan);
+            /**删除资质信息*/
+            subcQualifiDTO.setSubcUuid(subcontractorDTO.getSubcUuid());
+            Integer subcuQuali = subcQualifiDao.deleteSubcuQuali(subcQualifiDTO, eqlTran);
+            System.out.println("资质信息为："+subcuQuali);
+            /**删除分包方银行*/
+            subBankDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
+            Integer subBank = subBankDao.deleteSubBank(subBankDTO, eqlTran);
+            System.out.println("银行信息为："+subcuQuali);
+            eqlTran.commit();
+        } catch (Exception e){
+            log.error("删除失败",e);
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
+        }
+
     }
     /**
      * @Author FanDongSheng

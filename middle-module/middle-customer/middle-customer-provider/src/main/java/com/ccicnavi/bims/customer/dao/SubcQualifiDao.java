@@ -3,6 +3,7 @@ package com.ccicnavi.bims.customer.dao;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    Integer deleteSubcuQuali(SubcQualifiDTO subcQualifiDTO) throws Exception;
+    Integer deleteSubcuQuali(SubcQualifiDTO subcQualifiDTO, EqlTran eqlTran) throws Exception;
 
     /**
      *@Description: 修改分包方资质信息

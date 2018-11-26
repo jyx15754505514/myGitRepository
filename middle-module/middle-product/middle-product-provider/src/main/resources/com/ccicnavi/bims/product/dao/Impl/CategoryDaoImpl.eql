@@ -61,17 +61,22 @@ FROM
 	product_category_org pco
 LEFT JOIN product_category pc ON pc.product_category_uuid = pco.product_category_uuid
 AND pc.is_deleted = 'N'
-WHERE
-        pco.organization_uuid = '#organizationUuid#'
-        AND pco.prod_catalog_uuid = '#prodCatalogUuid#'
-
-        --if productCategoryTypeUuid !=null and productCategoryTypeUuid != ''
-            AND pc.product_category_type_uuid = '#productCategoryTypeUuid#'
+WHERE 1=1
+        --if organizationUuid !=null and organizationUuid != ''
+               AND pco.organization_uuid = '#organizationUuid#'
         --end
-
-        AND pc.prod_catalog_uuid = '#prodCatalogUuid#'
+        --if prodCatalogUuid !=null and prodCatalogUuid != ''
+               AND pco.prod_catalog_uuid = '#prodCatalogUuid#'
+               AND pc.prod_catalog_uuid = '#prodCatalogUuid#'
+        --end
+        --if productCategoryTypeUuid !=null and productCategoryTypeUuid != ''
+               AND pc.product_category_type_uuid = '#productCategoryTypeUuid#'
+        --end
+        --if appSysUuid !=null and appSysUuid != ''
+               AND pc.app_sys_uuid='#appSysUuid#'
+        --end
         AND pc.parent_category_uuid IS null
-        AND pc.app_sys_uuid='#appSysUuid#'
+
 
 
 -- [listCategoryByParentUuid]
@@ -186,6 +191,57 @@ AND pco.app_sys_uuid = '#appSysUuid#'
         --end
 ORDER BY
 	pc.seq_num
+
+
+-- 根据所属机构查询对应的产品分类的UUID(中间表查询)
+-- [listCategoryOrgByOrgUuid]
+SELECT
+	product_category_uuid
+FROM
+	product_category_org
+WHERE 1=1
+        --if organizationUuid !=null and organizationUuid != ''
+            AND organization_uuid = '#organizationUuid#'
+        --end
+        --if prodCatalogUuid !=null and prodCatalogUuid != ''
+            AND prod_catalog_uuid = '#prodCatalogUuid#'
+        --end
+        --if appSysUuid !=null and appSysUuid != ''
+            AND app_sys_uuid = '#appSysUuid#'
+        --end
+
+
+-- 根据父级产品的分类ID(支持多个)查询出对应的产品分类信息
+-- [listCategoryByParentAllUuids]
+SELECT
+	product_category_uuid,
+	parent_category_uuid,
+	parent_all_category_uuid,
+	category_name,
+	seq_num,
+	prod_catalog_uuid,
+	org_uuid,
+	app_sys_uuid
+FROM
+	product_category
+WHERE
+	is_deleted = 'N'
+AND is_enabled = 'Y'
+        --if organizationUuid !=null and organizationUuid != ''
+            AND org_uuid = '#organizationUuid#' OR org_uuid = 'CCIC'
+        --end
+        --if categoryUuidList !=null and categoryUuidList != ''
+            AND parent_all_category_uuid REGEXP
+                '#categoryUuidList#'
+        --end
+        --if prodCatalogUuid !=null and prodCatalogUuid != ''
+            AND prod_catalog_uuid = '#prodCatalogUuid#'
+        --end
+GROUP BY
+	seq_num
+
+
+
 
 
 

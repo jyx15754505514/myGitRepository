@@ -21,12 +21,6 @@ from
     res_equip_use
 where
     is_deleted = 'N'
---iff orgUuid != null and orgUuid != ''
-    and org_uuid = '#orgUuid#'
---iff appSysUuid != null and appSysUuid !=''
-    and app_sys_uuid = '#appSysUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
 -- iff equipUseUuid != null and equipUseUuid != ''
     and equip_use_uuid = '#equipUseUuid#'
 
@@ -53,12 +47,6 @@ from
     res_equip_use
 where
     is_deleted = 'N'
---iff orgUuid != null and orgUuid != ''
-    and org_uuid = '#orgUuid#'
---iff appSysUuid != null and appSysUuid !=''
-    and app_sys_uuid = '#appSysUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff equipUseUuids != null
     and equip_use_uuid in
     -- for item=item index=index collection=equipUseUuids open=( separator=, close=)
@@ -95,8 +83,6 @@ where
       and org_uuid = '#orgUuid#'
   --iff appSysUuid != null and appSysUuid !=''
       and app_sys_uuid = '#appSysUuid#'
-  --iff prodCatalogUuid != null and prodCatalogUuid != ''
-      and prod_catalog_uuid = '#prodCatalogUuid#'
 
 -- [insertEquipUse]
     insert into res_equip_use
@@ -229,6 +215,11 @@ WHERE
     is_deleted = 'N'
 --iff equipUuid != null and equipUuid != ''
     and equip_uuid = '#equipUuid#'
+--iff equipUuids != null
+    and equip_uuid in
+    -- for item=item index=index collection=equipUuids open=( separator=, close=)
+        '#item#'
+    -- end
 -- iff equipUseUuid != null and equipUseUuid != ''
     and equip_use_uuid = '#equipUseUuid#'
 -- iff equipUseUuids != null
@@ -236,6 +227,7 @@ WHERE
     -- for item=item index=index collection=equipUseUuids open=( separator=, close=)
         '#item#'
     -- end
+
 
 -- [listEquipUseDTO]
   SELECT
@@ -270,5 +262,3 @@ WHERE
       and eu.org_uuid = '#orgUuid#'
   --iff appSysUuid != null and appSysUuid !=''
       and eu.app_sys_uuid = '#appSysUuid#'
-  --iff prodCatalogUuid != null and prodCatalogUuid != ''
-      and eu.prod_catalog_uuid = '#prodCatalogUuid#'

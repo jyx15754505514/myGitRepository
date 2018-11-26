@@ -1,12 +1,19 @@
 package com.ccicnavi.bims.resource.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.PersonService;
 import com.ccicnavi.bims.resource.dao.PersonDao;
+import com.ccicnavi.bims.resource.dao.PersonWorkDao;
 import com.ccicnavi.bims.resource.pojo.PersonDO;
+import com.ccicnavi.bims.system.dao.RoleDao;
+import com.ccicnavi.bims.system.dao.UserDao;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
+import org.n3r.eql.util.Closes;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -128,4 +135,8 @@ public class PersonServiceImpl implements PersonService {
             return null;
         }
     }
+
+
+
+
 }

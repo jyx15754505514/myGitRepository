@@ -206,5 +206,6 @@ FROM
 	prod_catalog_workhour
 WHERE
 	is_deleted = 'N'
+
 and prod_catalog_uuid = '#prodCatalogUuid#'
 and organization_uuid = '#organizationUuid#'

@@ -7,6 +7,7 @@ import com.ccicnavi.bims.resource.dao.PersonWorkDao;
 import com.ccicnavi.bims.resource.pojo.PersonWorkDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

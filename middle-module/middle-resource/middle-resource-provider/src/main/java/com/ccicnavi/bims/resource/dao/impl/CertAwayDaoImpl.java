@@ -7,6 +7,7 @@ import com.ccicnavi.bims.resource.dao.CertAwayDao;
 import com.ccicnavi.bims.resource.pojo.CertAwayDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,17 +20,21 @@ import java.util.List;
 @Service
 public class CertAwayDaoImpl implements CertAwayDao {
 
-    /*
+    /**
      * 新增分发记录表
      * @param certAwayDO
      * @return  Integer
      * @throws Exception
      */
     @Override
-    public Integer insertCertAway(CertAwayDO certAwayDO) throws Exception {
-        return new Eql().insert("insertCertAway").params(certAwayDO).returnType(Integer.class).execute();
+    public Integer insertCertAway(CertAwayDO certAwayDO, EqlTran tran) throws Exception {
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).insert("insertCertAway").params(certAwayDO).returnType(Integer.class).execute();
+        }
+        return eql.insert("insertCertAway").params(certAwayDO).returnType(Integer.class).execute();
     }
-    /*
+    /**
      *分页查询证书纸管理-分发记录列表
      * @param pageParameter
      * @return
@@ -47,7 +52,7 @@ public class CertAwayDaoImpl implements CertAwayDao {
             return null;
         }
     }
-    /*
+    /**
      *作废证书纸管理-分发记录
      * @param certAwayDO
      * @return

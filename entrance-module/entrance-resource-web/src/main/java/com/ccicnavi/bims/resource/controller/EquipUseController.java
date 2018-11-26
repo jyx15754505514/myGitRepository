@@ -52,7 +52,7 @@ public class EquipUseController {
     public ResultT insertEquipUse(@RequestBody EquipUseDO equipUseDO) {
         try {
             Integer num = equipUseService.insertEquipUse(equipUseDO);
-            return ResultT.success(num);
+            return ResultT.success("新增设备领用信息项成功");
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.ADD_FAILURE);
@@ -71,7 +71,7 @@ public class EquipUseController {
     public ResultT updateEquipUse(@RequestBody EquipUseDO equipUseDO) {
         try {
             Integer num = equipUseService.updateEquipUse(equipUseDO);
-            return ResultT.success(num);
+            return ResultT.success("修改设备领用信息成功");
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.UPDATE_FAILURE);
@@ -89,7 +89,7 @@ public class EquipUseController {
     public ResultT deleteEquipUse(@RequestBody EquipUseDTO equipUseDTO) {
         try {
             Integer num = equipUseService.deleteEquipUse(equipUseDTO);
-            return ResultT.success(num);
+            return ResultT.success("删除设备领用信息成功");
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.DELETE_FAILURE);

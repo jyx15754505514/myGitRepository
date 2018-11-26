@@ -11,6 +11,7 @@ import com.ccicnavi.bims.product.api.CatalogService;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
 import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import com.ccicnavi.bims.product.pojo.CatalogOrgDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/catalog")
+@Slf4j
 public class CatalogController {
 
     @Reference(timeout = 30000)

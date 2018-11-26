@@ -151,20 +151,37 @@
 
 -- [listRole]
 	SELECT
-        role_uuid, parent_role_uuid, role_name, role_code, is_system, is_enabled, comments,
-        is_deleted, created_time, created_uuid, created_name, updated_time, updated_name,
-        org_uuid, app_sys_uuid, prod_catalog_uuid, extend1, extend2, extend3
+        role_uuid as roleUuid,
+        parent_role_uuid as parentRoleUuid,
+        role_name as roleName,
+        role_code as roleCode,
+        is_system as isSystem,
+        is_enabled as isEnabled,
+        comments,
+        is_deleted as isDeleted,
+        created_time as createdTime,
+        created_uuid as createdUuid,
+        created_name as createdName,
+        updated_time as updatedTime,
+        updated_name as updatedName,
+        updated_uuid as updatedUuid,
+        org_uuid as orgUuid,
+        app_sys_uuid as appSysUuid,
+        prod_catalog_uuid as prodCatalogUuid,
+        extend1,
+        extend2,
+        extend3
 	FROM
 		sys_role
 	WHERE
 		is_deleted = 'N'
-		-- if test=orgUuid != null and orgUuid != ''
+		-- if orgUuid != null and orgUuid != ''
                and org_uuid = '#orgUuid#',
         -- end
-        -- if test=appSysUuid != null and appSysUuid != ''
+        -- if appSysUuid != null and appSysUuid != ''
                 and app_sys_uuid = '#appSysUuid#',
         -- end
-        -- if test=prodCatalogUuid != null and prodCatalogUuid != ''
+        -- if prodCatalogUuid != null and prodCatalogUuid != ''
                 and prod_catalog_uuid = '#prodCatalogUuid#'
         -- end
 
@@ -173,9 +190,26 @@
 
 -- [getRole]
 	SELECT
-        role_uuid, parent_role_uuid, role_name, role_code, is_system, is_enabled, comments,
-        is_deleted, created_time, created_uuid, created_name, updated_time, updated_name,
-        org_uuid, app_sys_uuid, prod_catalog_uuid, extend1, extend2, extend3
+         role_uuid as roleUuid,
+               parent_role_uuid as parentRoleUuid,
+               role_name as roleName,
+               role_code as roleCode,
+               is_system as isSystem,
+               is_enabled as isEnabled,
+               comments,
+               is_deleted as isDeleted,
+               created_time as createdTime,
+               created_uuid as createdUuid,
+               created_name as createdName,
+               updated_time as updatedTime,
+               updated_name as updatedName,
+               updated_uuid as updatedUuid,
+               org_uuid as orgUuid,
+               app_sys_uuid as appSysUuid,
+               prod_catalog_uuid as prodCatalogUuid,
+               extend1,
+               extend2,
+               extend3
 	FROM
 		sys_role
 	WHERE  is_deleted = 'N'
@@ -216,6 +250,7 @@
         r.role_code as roleCode,
         r.is_system as isSystem,
         r.is_enabled as isEnabled,
+        r.org_uuid as orgUuid,
         o.org_name as orgName
    FROM
         sys_role_user ru

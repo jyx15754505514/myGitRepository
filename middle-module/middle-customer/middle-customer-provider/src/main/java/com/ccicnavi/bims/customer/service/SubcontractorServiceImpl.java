@@ -3,6 +3,7 @@ package com.ccicnavi.bims.customer.service;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.SubcontractorService;
@@ -12,6 +13,8 @@ import com.ccicnavi.bims.customer.dao.SubcQualifiDao;
 import com.ccicnavi.bims.customer.dao.SubcontractorDao;
 import com.ccicnavi.bims.customer.pojo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Date;
 import java.util.List;
@@ -108,18 +111,42 @@ public class SubcontractorServiceImpl implements SubcontractorService{
      * @Author WangYingling
      * @Description 删除分包方信息
      * @Date 20:00 2018/11/14
-     * @param subcontractor
+     * @param subcontractorDTO
      * @return java.lang.Integer
      */
     @Override
-    public Integer removeSubcontractor(SubcontractorDO subcontractor) {
+    public Integer removeSubcontractor(SubcontractorDTO subcontractorDTO ) {
+        EqlTran eqlTran = new Eql("DEFAULT").newTran();
         Integer count=0;
+        SubLinkmanDTO subLinkmanDTO = new SubLinkmanDTO();
+        SubcQualifiDTO subcQualifiDTO = new SubcQualifiDTO();
+        SubBankDTO subBankDTO = new SubBankDTO();
         try {
-            count=subcontractorDao.removeSubcontractor(subcontractor);
+            eqlTran.start();
+            count=subcontractorDao.removeSubcontractor(subcontractorDTO, eqlTran);
+            /**删除联系人*/
+            subLinkmanDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
+            Integer linkMan = subLinkmanDao.deleteSubLinkman(subLinkmanDTO,eqlTran);
+            /**删除资质信息*/
+            subcQualifiDTO.setSubcUuid(subcontractorDTO.getSubcUuid());
+            Integer subcuQuali = subcQualifiDao.deleteSubcuQuali(subcQualifiDTO, eqlTran);
+            /**删除分包方银行*/
+            subBankDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
+            Integer subBank = subBankDao.deleteSubBank(subBankDTO, eqlTran);
+            /**删除分包方*/
+            subcontractorDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
+            Integer subcTor = subcontractorDao.removeSubcontractor(subcontractorDTO, eqlTran);
+                if(count>=0 && count !=null){
+                eqlTran.commit();
+                return count;
+            }
         } catch (Exception e) {
             log.error("Service层删除分包方信息失败",e);
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
         }
-        return count;
+        return -1;
     }
 
     /**

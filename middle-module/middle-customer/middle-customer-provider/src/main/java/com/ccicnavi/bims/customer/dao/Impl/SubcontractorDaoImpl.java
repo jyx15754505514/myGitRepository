@@ -7,6 +7,7 @@ import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
             return null;
         }
     }
+
+
     /** *
      * @Author WangYingLing
      * @Description 新增分包方信息
@@ -50,6 +53,7 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
         return new Eql().insert("insertSubcontractor").params(subcontractor).returnType(Integer.class).execute();
     }
 
+
     /** *
      * @Author WangYingLing
      * @Description 删除分包方信息
@@ -58,7 +62,7 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer removeSubcontractor(SubcontractorDO subcontractor) {
+    public Integer removeSubcontractor(SubcontractorDTO subcontractor ,EqlTran eqlTran) {
         return new Eql().update("removeSubcontractor").params(subcontractor).returnType(Integer.class).execute();
     }
 
