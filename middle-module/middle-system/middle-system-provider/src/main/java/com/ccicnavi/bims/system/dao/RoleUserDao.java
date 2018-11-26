@@ -49,4 +49,13 @@ public interface RoleUserDao {
     *@date: 2018/11/22
     */
     public List<RoleUserDO> listRoleUser(UserDTO userDTO, EqlTran tran);
+
+    /*
+    * 根据用户删除用户角色中间信息
+    * @Author zhaotao
+    * @Date  2018/11/26 23:11
+    * @Param [userDTO, tran]
+    * @return java.lang.Integer
+    **/
+    Integer deleteRoleByUser(UserDTO userDTO, EqlTran tran);
 }

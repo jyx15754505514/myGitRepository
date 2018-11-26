@@ -21,6 +21,6 @@ public class RolePermissionDTO implements Serializable {
     private String butUuid;
     private String appSysUuid;
     private String prodCatalogUuid;
-    private List<String> saveButUuid;
-    private List<String> deleteButUuid;
+    private List<String> saveButUuids;
+    private List<String> deleteButUuids;
 }

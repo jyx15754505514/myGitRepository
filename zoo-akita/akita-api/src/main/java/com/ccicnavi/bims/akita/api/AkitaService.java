@@ -27,4 +27,10 @@ public interface AkitaService {
      * @return
      */
     List<AttaDO> listAtta(String... businId);
+
+    /**
+     * 删除文件
+     *
+     */
+    void delete(AttaDO attaDO);
 }

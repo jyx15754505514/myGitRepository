@@ -24,6 +24,6 @@ public class RoleUserDTO implements Serializable {
 
     private String orgUuid;
 
-    private List<String> saveUserUuid;
-    private List<String> deleteUserUuid;
+    private List<String> saveUserUuids;
+    private List<String> deleteUserUuids;
 }

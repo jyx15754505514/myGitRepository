@@ -47,6 +47,16 @@
       user_uuid = '#userUuid#'
       and org_uuid = '#orgUuid#'
 
+
+-- 根据用户删除用户角色
+--[deleteRoleByUser]
+    DELETE
+    FROM
+        sys_role_user
+    where
+      user_uuid = '#userUuid#'
+
+
 --查询用户角色信息
 --[listRoleUser]
     SELECT

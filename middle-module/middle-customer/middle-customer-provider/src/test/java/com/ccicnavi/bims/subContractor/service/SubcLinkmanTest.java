@@ -6,6 +6,8 @@ import com.ccicnavi.bims.customer.pojo.SubLinkmanDO;
 import com.ccicnavi.bims.customer.pojo.SubLinkmanDTO;
 import org.junit.Test;
 
+import java.util.List;
+
 /**
  * @Auther: fandongsheng
  * @Date: 2018/11/23 20:36
@@ -25,7 +27,7 @@ public class SubcLinkmanTest{
         for (int i = 1; i <= 20; i++) {
             SubLinkmanDO subLinkmanDO = new SubLinkmanDO();
             subLinkmanDO.setLinkmanUuid("000000"+i);
-            subLinkmanDO.setSubcUuid("000000100");
+            subLinkmanDO.setSubcUuid("88881");
             subLinkmanDO.setLinkmanName("联系人名称" + i);
             subLinkmanDO.setGender("F");
             subLinkmanDO.setPhone("1314100013"+i);
@@ -59,7 +61,7 @@ public class SubcLinkmanTest{
     public void deleteSubcLinkman(){
 
         SubLinkmanDTO subLinkmanDTO = new SubLinkmanDTO();
-        subLinkmanDTO.setLinkmanUuid("181125213417516366039202795520");
+        subLinkmanDTO.setLinkmanUuids(subLinkmanDTO.getLinkmanUuids());
         Integer integer = subLinkmanDaoImpl.deleteSubLinkman(subLinkmanDTO, null);
         System.err.println(integer);
 
@@ -68,7 +70,7 @@ public class SubcLinkmanTest{
     @Test
     public void getSubcLinkman(){
         SubLinkmanDO subLinkmanDO  = new SubLinkmanDO();
-        subLinkmanDO.setLinkmanUuid("00000010");
+        subLinkmanDO.setLinkmanUuid("181126114612516580431408271360");
         SubLinkmanDO subLinkmanDO1 = subLinkmanDaoImpl.getSubLinkman(subLinkmanDO);
         System.err.println(subLinkmanDO1);
     }

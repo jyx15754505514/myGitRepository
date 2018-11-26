@@ -1,10 +1,7 @@
 package com.ccicnavi.bims.customer.pojo;
 
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -16,9 +13,8 @@ import java.util.List;
  * @create: 2018-11-15 09:16
  */
 
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SubcQualifiDTO implements Serializable {
 
     /**
@@ -34,6 +30,11 @@ public class SubcQualifiDTO implements Serializable {
      *所属分包方UUID
      */
     private String subcUuid;
+
+    /**
+     *所属分包方UUIDS
+     */
+    private List<String> subcUuids;
 
     /**
      * 资质范围

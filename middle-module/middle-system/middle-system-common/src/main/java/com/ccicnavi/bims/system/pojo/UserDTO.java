@@ -1,6 +1,5 @@
 package com.ccicnavi.bims.system.pojo;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -189,6 +188,11 @@ public class UserDTO implements Serializable {
      * 产品线ID
      */
     private String prodCatalogUuid;
+
+    /**
+     * 用户姓名姓名
+     */
+    private String realName;
 
     private String extend1;
 

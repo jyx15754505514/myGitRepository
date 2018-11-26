@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.system.manager.impl;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.breeder.api.PasswdService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
@@ -11,9 +12,12 @@ import com.ccicnavi.bims.system.manager.UserManager;
 import com.ccicnavi.bims.system.pojo.*;
 import com.ccicnavi.bims.system.service.api.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,26 +30,62 @@ import java.util.List;
 @Slf4j
 public class UserManagerImpl implements UserManager {
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private UserService userService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private RoleService roleService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private DepartmentService deptService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private MenuService menuService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private CatalogOrgService catalogOrgService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference
     private PasswdService passwdService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    @Reference
     private SSOService ssoService;
+
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference
+    private IdWorkerService idWorkerService;
+
+    @Autowired
+    private HttpServletRequest request;
+
+    
+    /*
+    * 新建用户
+    * @Author zhaotao
+    * @Date  2018/11/26 21:03
+    * @Param [userDTO]
+    * @return java.lang.Integer
+    **/
+    @Override
+    public Integer insertUser(UserDTO userDTO) {
+        //获取UUID
+        String userUuid = idWorkerService.getId(new Date());
+        userDTO.setUserUuid(userUuid);
+        //密码加盐
+        String salt = passwdService.getSalt();
+        String hashPass = passwdService.getHash(userDTO.getCurrentPassword(), salt);
+        userDTO.setSalt(salt);
+        userDTO.setCurrentPassword(hashPass);
+        return userService.insertUser(userDTO);
+    }
+    
     /*
     * 用户登录
     * @Author zhaotao
@@ -60,24 +100,9 @@ public class UserManagerImpl implements UserManager {
             ssoUser = userService.login(userDTO);
             if(ssoUser != null) {
                 //判断账号是否被禁用
-                if("N".equals(ssoUser.getIsEnabled()) || "Y".equals(ssoUser.getIsDeleted()) ||
-                        "N".equals(ssoUser.getOrgIsEnabled()) || "Y".equals(ssoUser.getOrgIsDeleted())) {
-                    return ResultT.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
-                }
-                //对用户depteUuid和orgUuid进行判断，如果被禁用，返回被禁用
-                userDTO.setUserUuid(ssoUser.getUserUuid());
-                userDTO.setOrgUuid(ssoUser.getOrgUuid());
-                //查部门
-                List<DepartmentDTO> deptList = deptService.listDeptByUser(userDTO);
-                boolean deptStatus = false;
-                for(DepartmentDTO departmentDTO : deptList) {
-                    //用户所在部门有一个部门未被禁用并且为被删除，则可以登录
-                    if("Y".equals(departmentDTO.getIsEnabled()) && "N".equals(departmentDTO.getIsDeleted())) {
-                        deptStatus = true;
-                        break;
-                    }
-                }
-                if(deptStatus == false) {
+                if("N".equals(ssoUser.getIsEnabled()) || "Y".equals(ssoUser.getIsDeleted())
+                     || "N".equals(ssoUser.getOrgIsEnabled()) || "Y".equals(ssoUser.getOrgIsDeleted())
+                        ||  "N".equals(ssoUser.getDeptIsEnabled()) || "Y".equals(ssoUser.getDeptIsDeleted())) {
                     return ResultT.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
                 }
                 //获取登录密码
@@ -103,13 +128,13 @@ public class UserManagerImpl implements UserManager {
                     return ResultT.failure(ResultCode.USER_LOGIN_ERROR);
                 }
                 getUserBaseData(userDTO, ssoUser);
-                ssoUser.setDepartmentList(deptList);
                 //调用SSO服务登录操作
                 ReturnT<String> login = ssoService.login(ssoUser);
                 ssoUser.setJsessionID(login.getData());
                 if(login.getCode() == 1) {
-                    ssoUser.setCurrentPassword("");
-                    ssoUser.setSalt("");
+                    //获取登录IP,更新用户信息
+                    //request.getHeader()
+                    //userService.updateUser(userDTO);
                     //SSO返回1 登录成功
                     return ResultT.success(ssoUser);
                 }else {
@@ -134,15 +159,17 @@ public class UserManagerImpl implements UserManager {
     * @return void
     **/
     private void getUserBaseData(UserDTO userDTO, SSOUser ssoUser) {
+        userDTO.setUserUuid(ssoUser.getUserUuid());
+        userDTO.setOrgUuid(ssoUser.getOrgUuid());
         //查角色
         List<RoleDTO> roleDTOList = roleService.listRoleByUser(userDTO);
         //查产品线
         CatalogOrgDO catalogOrgDO = new CatalogOrgDO();
         catalogOrgDO.setOrganizationUuid(ssoUser.getOrgUuid());
-        List<CatalogOrgDO> catalogOrgDOList = catalogOrgService.listCatalogOrgDO(catalogOrgDO);
+        List<CatalogOrgDTO> catalogOrgDOList = catalogOrgService.listCatalogOrgDO(catalogOrgDO);
         List<String> prodCatalogList = new ArrayList<>();
-        for (CatalogOrgDO catalogOrg : catalogOrgDOList) {
-            prodCatalogList.add(catalogOrg.getOrganizationUuid());
+        for (CatalogOrgDTO catalogOrg : catalogOrgDOList) {
+            prodCatalogList.add(catalogOrg.getProdCatalogUuid());
         }
         //查权限
         MenuDTO menuDTO = new MenuDTO();
@@ -161,7 +188,7 @@ public class UserManagerImpl implements UserManager {
         List<String> buttonUrlList = menuService.listButtonUrlByRole(userDTO);
         ssoUser.setRoleList(roleDTOList);
         ssoUser.setBtnUrlList(buttonUrlList);
-        ssoUser.setProdCatalogList(prodCatalogList);
+        ssoUser.setProdCatalogList(catalogOrgDOList);
         ssoUser.setMenuList(menuList);
     }
 

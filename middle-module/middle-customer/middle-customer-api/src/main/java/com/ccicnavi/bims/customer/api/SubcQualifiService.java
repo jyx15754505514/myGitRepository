@@ -4,6 +4,7 @@ package com.ccicnavi.bims.customer.api;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 

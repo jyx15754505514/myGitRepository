@@ -2,6 +2,7 @@ package com.ccicnavi.bims.product.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
@@ -12,11 +13,13 @@ import com.ccicnavi.bims.product.pojo.CatalogDO;
 import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import com.ccicnavi.bims.product.pojo.CatalogOrgDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,6 +37,8 @@ public class CatalogController {
     CatalogService catalogService;
     @Reference(timeout = 30000)
     CatalogOrgService catalogOrgService;
+    @Reference(timeout = 30000)
+    IdWorkerService idWorkerService;
 
 
     /**
@@ -51,6 +56,7 @@ public class CatalogController {
             e.printStackTrace();
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
+
     }
 
     /**
@@ -61,9 +67,20 @@ public class CatalogController {
      */
     @RequestMapping(value = "/saveCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT saveCatalog(@RequestBody CatalogDO catalogDO){
+        catalogDO.setProdCatalogUuid(idWorkerService.getId(new Date()));
         try {
+            if (StringUtils.isEmpty(catalogDO.getProdCatalogUuid())&&StringUtils.isEmpty(catalogDO.getOrgUuid())&&StringUtils.isEmpty(catalogDO.getAppSysUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=catalogService.saveCatalog(catalogDO);
-            return ResultT.success(num);
+            if (num>0)
+            {
+                return ResultT.success(num);
+            }else
+            {
+                return ResultT.failure(ResultCode.ADD_FAILURE);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.ADD_FAILURE);
@@ -79,8 +96,18 @@ public class CatalogController {
     @RequestMapping(value = "/removeCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT removeCatalog(@RequestBody CatalogDO catalogDO){
         try {
+            if (StringUtils.isEmpty(catalogDO.getProdCatalogUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=catalogService.removeCatalog(catalogDO);
-            return ResultT.success(num);
+            if (num>0)
+            {
+                return ResultT.success(num);
+            }else
+            {
+                return ResultT.failure(ResultCode.DELETE_FAILURE);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.DELETE_FAILURE);
@@ -96,8 +123,17 @@ public class CatalogController {
     @RequestMapping(value = "/updateCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT updateCatalog(@RequestBody CatalogDO catalogDO){
         try {
+            if (StringUtils.isEmpty(catalogDO.getCreatedUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=catalogService.updateCatalog(catalogDO);
-            return ResultT.success(num);
+            if (num>0)
+            {
+                return ResultT.success(num);
+            }else {
+                return ResultT.failure(ResultCode.UPDATE_FAILURE);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.UPDATE_FAILURE);
@@ -113,6 +149,10 @@ public class CatalogController {
     @RequestMapping(value = "/getCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getCatalog(@RequestBody CatalogDO catalogDO){
         try {
+            if (StringUtils.isEmpty(catalogDO.getProdCatalogUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             CatalogDO catalogDOResult=catalogService.getCatalog(catalogDO);
             return ResultT.success(catalogDOResult);
         } catch (Exception e) {
@@ -147,8 +187,18 @@ public class CatalogController {
     @RequestMapping(value = "/getCatalogByOrgUUid",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getCatalogByOrgUUid(@RequestBody CatalogOrgDO catalogOrgDO){
         try {
+            if (StringUtils.isEmpty(catalogOrgDO.getOrganizationUuid())&&StringUtils.isEmpty(catalogOrgDO.getAppSysUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             List<CatalogDO> catalogDOList=catalogService.getCatalogByOrgUUid(catalogOrgDO);
-            return ResultT.success(catalogDOList);
+            if (catalogDOList!=null)
+            {
+                return ResultT.success(catalogDOList);
+            }else
+            {
+                return ResultT.failure(ResultCode.GET_FAILURE);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.GET_FAILURE);

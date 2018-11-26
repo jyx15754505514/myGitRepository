@@ -1,9 +1,7 @@
 package com.ccicnavi.bims.customer.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -15,9 +13,8 @@ import java.util.List;
  * @create: 2018-11-15 09:16
  */
 
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SubcontractorDTO implements Serializable {
     /**
      * 分包方主键
@@ -26,8 +23,23 @@ public class SubcontractorDTO implements Serializable {
     /**
      * 分包方主键
      */
+    private List<String> subcontractorUuids;
+    /**
+     * 分包方主键
+     */
     private String subcUuid;
-
+    /**
+     * 分包方主键
+     */
+    private List<String> subcUuids;
+    /**
+     * 统一社会信用代码
+     */
+    private String subcUscc;
+    /**
+     * 分包方类型
+     */
+    private String subcUnitType;
     /**
      * 分包方代码
      */
