@@ -54,7 +54,7 @@ public class AkitaProviderApplicationTest {
     @Test
     public void upload() {
         try {
-            File file = new File("C:\\Users\\husky\\Pictures\\20181120100740.jpg");
+            File file = new File("c:/test/333.txt");
             FileInputStream inputStream = new FileInputStream(file);
             StorePath storePath = fastFileStorageClient.uploadFile(inputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
             System.out.println(storePath);

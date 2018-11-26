@@ -4,11 +4,13 @@ import com.ccicnavi.bims.akita.common.pojo.domain.AttaDO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaTmpDO;
 import com.ccicnavi.bims.akita.dao.AttaDao;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.n3r.eql.util.Closes;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ import java.util.List;
 public class AttaImpl implements AttaDao {
 
     @Override
-    public boolean insertAtta(AttaDO attaDO,AttaTmpDO attaTmpDO) {
+    public boolean insertAtta(AttaDO attaDO, AttaTmpDO attaTmpDO) {
         EqlTran eqlTran = new Eql().newTran();
         int execAttaCount = 0;
         int execAttaTmpCount = 0;
@@ -44,12 +46,29 @@ public class AttaImpl implements AttaDao {
     @Override
     public List<AttaDO> listAtta(String... businId) {
         List<AttaDO> attaDOList = null;
+//        String join = StringUtils.join(businId, ",");
         try {
-            attaDOList = new Eql().select("").returnType(AttaDO.class).execute();
+            attaDOList = new Eql().select("listAttaTmp").params(businId).returnType(AttaDO.class).execute();
         } catch (Exception e) {
             log.error("", e);
             return null;
         }
         return attaDOList;
+    }
+
+    @Override
+    public boolean deleteAtta(String id) {
+        EqlTran eqlTran = new Eql().newTran();
+        int execAttaCount = 0;
+        int execAttaTmpCount = 0;
+        try {
+            execAttaCount = new Eql().delete("deleteAtta").returnType(Integer.class).params(id).execute();
+            execAttaTmpCount = new Eql().delete("deleteAttaTmp").returnType(Integer.class).params(id).execute();
+        } catch (Exception e) {
+            log.error("", e);
+            eqlTran.rollback();
+            return false;
+        }
+        return (execAttaCount > 0 && execAttaTmpCount > 0);
     }
 }

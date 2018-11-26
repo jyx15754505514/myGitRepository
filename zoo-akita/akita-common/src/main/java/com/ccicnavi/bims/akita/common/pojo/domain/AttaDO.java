@@ -2,6 +2,8 @@ package com.ccicnavi.bims.akita.common.pojo.domain;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @Auther: husky
  * @Date: 2018/11/24 14:21
@@ -9,7 +11,7 @@ import lombok.Data;
  * @Description:
  */
 @Data
-public class AttaDO extends BaseDO{
+public class AttaDO extends BaseDO implements Serializable {
     private String id;
     private String fileNewName;
     private String fileOldName;

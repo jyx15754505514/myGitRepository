@@ -4,6 +4,7 @@ import com.ccicnavi.bims.akita.common.pojo.domain.AttaDO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaTmpDO;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -21,5 +22,7 @@ public interface AttaDao {
     boolean insertAtta(AttaDO attaDO,AttaTmpDO attaTmpDO);
 
 
-    List<AttaDO> listAtta(String ...businId);
+    List<AttaDO> listAtta(String... businId);
+
+    boolean deleteAtta(String id);
 }
