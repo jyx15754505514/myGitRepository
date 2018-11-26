@@ -9,6 +9,7 @@ import com.ccicnavi.bims.resource.api.CertPaperService;
 import com.ccicnavi.bims.resource.dao.CertPaperDao;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -101,6 +102,7 @@ public class CertPaperServiceImpl implements CertPaperService {
     @Override
     public Integer updateCertPaper(CertPaperDO certPaper) {
         try {
+            EqlTran tran=null;
             //流水起始号
             String paperStartNum =certPaper.getPaperStartNum();
             //流水截止号
@@ -120,7 +122,7 @@ public class CertPaperServiceImpl implements CertPaperService {
             certPaperDO.setProdCatalogUuid("111");
             certPaperDO.setOrgUuid("1111");
             certPaperDO.setAppSysUuid("1111");*/
-            return certPaperDao.updateCertPaper(certPaper);
+            return certPaperDao.updateCertPaper(certPaper,tran);
         } catch (Exception e) {
             log.error("更新证书纸失败",e);
         }

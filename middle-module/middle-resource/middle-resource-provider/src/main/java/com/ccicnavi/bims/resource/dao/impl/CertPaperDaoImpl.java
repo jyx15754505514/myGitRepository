@@ -9,6 +9,7 @@ import com.ccicnavi.bims.resource.pojo.SealDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -49,8 +50,12 @@ public class CertPaperDaoImpl implements CertPaperDao {
      * @throws
      */
     @Override
-    public Integer updateCertPaper(CertPaperDO certPaper) throws Exception{
-        return EqlUtils.getInstance("DEFAULT").update("updateCertPaper").params(certPaper).returnType(Integer.class).execute();
+    public Integer updateCertPaper(CertPaperDO certPaper, EqlTran tran) throws Exception{
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).update("updateCertPaper").params(certPaper).returnType(Integer.class).execute();
+        }
+        return eql.update("updateCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
     /**
      *删除证书纸信息
