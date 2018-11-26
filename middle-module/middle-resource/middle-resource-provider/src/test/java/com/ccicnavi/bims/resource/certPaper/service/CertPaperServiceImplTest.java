@@ -5,6 +5,7 @@ import com.ccicnavi.bims.resource.dao.impl.CertPaperDaoImpl;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.n3r.eql.EqlTran;
 
 import java.util.Date;
 import java.util.List;
@@ -104,7 +105,8 @@ public class CertPaperServiceImplTest {
         certPaperDO.setAppSysUuid("1111");
         CertPaperDaoImpl certPaperDaoImpl =new CertPaperDaoImpl();
         try {
-            Integer result= certPaperDaoImpl.updateCertPaper(certPaperDO);
+            EqlTran tran=null;
+            Integer result= certPaperDaoImpl.updateCertPaper(certPaperDO,tran);
             System.out.println(result);
         } catch (Exception e) {
             log.error("修改证书纸失败",e);
