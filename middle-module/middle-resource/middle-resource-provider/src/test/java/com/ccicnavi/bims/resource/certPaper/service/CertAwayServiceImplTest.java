@@ -5,8 +5,10 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.impl.CertAwayDaoImpl;
+import com.ccicnavi.bims.resource.dao.impl.CertFlowDaoImpl;
 import com.ccicnavi.bims.resource.dao.impl.CertPaperDaoImpl;
 import com.ccicnavi.bims.resource.pojo.CertAwayDO;
+import com.ccicnavi.bims.resource.pojo.CertFlowDO;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -30,12 +32,15 @@ public class CertAwayServiceImplTest {
     public void insertCertAway(){
         CertAwayDO certAwayDO =new CertAwayDO ();
         certAwayDO.setPaperUuid("4");
-        certAwayDO.setAwayNum("50");
+        certAwayDO.setAwayNum("20");
         EqlTran eqlTran = new Eql("DEFAULT").newTran();
         Integer certPaperResult=null;
         Integer certAwayResult=null;
+        Integer certFlowResult=null;
+        boolean result=true;
         CertPaperDaoImpl certPaperDaoImpl =new CertPaperDaoImpl();
         CertAwayDaoImpl certAwayDaoImpl=new CertAwayDaoImpl();
+        CertFlowDaoImpl certFlowDaoImpl=new CertFlowDaoImpl();
         try {
             eqlTran.start();
             CertPaperDO certPaper =new CertPaperDO();
@@ -49,7 +54,7 @@ public class CertAwayServiceImplTest {
             certPaperDO.setResidualNum((Integer.parseInt(getCertPaper.getResidualNum())-Integer.parseInt(awayNum))+"");
             certPaperDO.setCurrentCode(Integer.parseInt(getCertPaper.getCurrentCode())+(Integer.parseInt(awayNum))+"");
             certPaperResult=certPaperDaoImpl.updateCertPaper(certPaperDO);
-            certAwayDO.setAwayUuid("4");
+            certAwayDO.setAwayUuid("16");
             //分发前证书纸对象当前号也就是分发开始号
             certAwayDO.setStartNum(getCertPaper.getCurrentCode());
             //分号结束号
@@ -60,7 +65,29 @@ public class CertAwayServiceImplTest {
             certAwayDO.setOrgUuid("1111");
             certAwayDO.setAppSysUuid("1111");
             certAwayResult=certAwayDaoImpl.insertCertAway(certAwayDO);
-            if(certPaperResult==1 && certAwayResult==1){
+           //证书流水
+            Integer startNum=Integer.parseInt(getCertPaper.getCurrentCode());
+            Integer endNum=Integer.parseInt(getCertPaper.getCurrentCode())+(Integer.parseInt(awayNum)-1);
+            for(int i=startNum;i<=endNum;i++){
+                CertFlowDO certflowDO=new CertFlowDO();
+                certflowDO.setFlowUuid(i+"");
+                certflowDO.setFlowNum(i+"");
+                certflowDO.setEmptyCardStatus("N");
+                certflowDO.setCreatedTime(new Date());
+                certflowDO.setIsDeleted("N");
+                //待完善
+                certflowDO.setCreatedName("1");
+                certflowDO.setCreatedUuid("1");
+                certflowDO.setAppSysUuid("yewu2.0");
+                certflowDO.setProdCatalogUuid("yewu2.0");
+                certflowDO.setOrgUuid("yewu2.0");
+                certFlowResult=certFlowDaoImpl.insertCertFlow(certflowDO);
+                if(certFlowResult!=1){
+                    result=false;
+                }
+            }
+
+            if(certPaperResult==1 && certAwayResult==1 && result==true){
                 eqlTran.commit();
                // return ResultT.success();
             }
