@@ -58,7 +58,7 @@ public class EquipmentLedgerController {
         try {
             Integer isSuccess = equipService.insertEquip(equipDO);
             if (isSuccess > 0) {
-                return ResultT.success(isSuccess);
+                return ResultT.success("添加设备台账成功");
             } else {
                 return ResultT.failure(ResultCode.ADD_FAILURE);
             }
@@ -87,7 +87,7 @@ public class EquipmentLedgerController {
         try {
             Integer isSuccess = equipService.updateEquip(equipDO);
             if (isSuccess > 0) {
-                return ResultT.success(isSuccess);
+                return ResultT.success("更新台账信息");
             } else {
                 return ResultT.failure(ResultCode.UPDATE_FAILURE);
             }
@@ -99,7 +99,7 @@ public class EquipmentLedgerController {
 
     /*
      *@Param: [equipDTO]
-     *@description: 删除设备台账  (待修改)
+     *@description: 删除设备台账
      *@return: com.ccicnavi.bims.common.ResultT
      *@author: WangGengXiang
      *@create: 2018/11/24 11:42
@@ -107,9 +107,9 @@ public class EquipmentLedgerController {
     @RequestMapping(value = "/deleteEquipLedger", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT deleteEquip(@RequestBody EquipDTO equipDTO) {
         try {
-            Integer isSuccess = equipService.deleteEquip(equipDTO);
+            Integer isSuccess = equipService.deleteEquipInfo(equipDTO);
             if (isSuccess > 0) {
-                return ResultT.success(isSuccess);
+                return ResultT.success("删除设备台账");
             } else {
                 return ResultT.failure(ResultCode.DELETE_FAILURE);
             }

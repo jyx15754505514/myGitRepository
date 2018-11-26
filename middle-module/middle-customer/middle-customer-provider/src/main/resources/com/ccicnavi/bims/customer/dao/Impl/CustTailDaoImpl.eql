@@ -183,7 +183,7 @@ WHERE
      -- if uuids != null
             AND tail_uuid IN
             -- for item=item index=index collection=uuids open=( separator=, close=)
-                #item#
+                '#item#'
             -- end
         -- end
 

@@ -3,24 +3,19 @@ package com.ccicnavi.bims.system.controller;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.sso.api.SSOService;
 import com.ccicnavi.bims.system.manager.UserManager;
-import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Date;
 
 /**
  * @program: bims-backend
@@ -39,11 +34,9 @@ public class UserController {
     @Autowired
     private UserManager userManager;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
-    private IdWorkerService idWorkerService;
-
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
     private SSOService ssoService;
+
 
     /**
     *@Description: 查询登录用户信息(条件查询)
@@ -179,17 +172,15 @@ public class UserController {
     */
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT saveUser(@RequestBody UserDTO userDTO) {
-        Integer integer = null;
+        Integer saveUser = null;
         try {
             if (StringUtils.isEmpty(userDTO.getUserUuid())) {
-                String userUuid = idWorkerService.getId(new Date());
-                userDTO.setUserUuid(userUuid);
-                integer = userService.insertUser(userDTO);
+                saveUser = userManager.insertUser(userDTO);
             } else {
-                integer = userService.updateUser(userDTO);
+                saveUser = userService.updateUser(userDTO);
             }
-            if (integer != null) {
-                return ResultT.success(integer);
+            if (saveUser != null) {
+                return ResultT.success(saveUser);
             }
         } catch (Exception e) {
             log.error("新建用户失败", e);
