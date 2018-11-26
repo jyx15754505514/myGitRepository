@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.util.Date;
 
-/*
+/**
  * @Author:  heibin
  * @Description:   证书纸管理-证书流水测试类
  * @Date:  2018/11/26  11:05
@@ -18,7 +18,7 @@ import java.util.Date;
 @Slf4j
 public class CertFlowServiceImplTest {
     CertFlowDaoImpl certFlowDaoImpl =new CertFlowDaoImpl();
-    /*
+    /**
      * 流水号作废
      **/
     @Test
@@ -37,7 +37,7 @@ public class CertFlowServiceImplTest {
             log.error("作废流水号失败",e);
         }
     }
-    /*
+    /**
      * 证书流水分页
      **/
     @Test

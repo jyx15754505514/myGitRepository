@@ -49,7 +49,7 @@ public interface CertPaperDao {
      * @throws Exception
      */
     public CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception;
-    /*
+    /**
      * @Author heibin
      * @Description  证书纸分页列表
      * @Date 17:02 2018/11/23

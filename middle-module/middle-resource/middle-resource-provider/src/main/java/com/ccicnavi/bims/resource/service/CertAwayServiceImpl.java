@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-/*
+/**
  * @Auther: heibin
  * @Date: 2018/11/23 20:51
  * @Description: 证书纸管理-分发记录表
@@ -37,7 +37,7 @@ public class CertAwayServiceImpl implements CertAwayService {
     CertPaperDao certPaperDao;
     @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
     IdWorkerService idWorkerService;
-    /*
+    /**
      * 新增分发记录表
      * @param certAwayDO
      * @return Integer
@@ -119,9 +119,9 @@ public class CertAwayServiceImpl implements CertAwayService {
             return null;
         }
     }
-    /*
+    /**
      * 作废分发记录
-     * @param certPaper
+     * @param certAwayDO
      * @return
      */
     @Override
