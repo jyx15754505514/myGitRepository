@@ -250,6 +250,7 @@
         r.role_code as roleCode,
         r.is_system as isSystem,
         r.is_enabled as isEnabled,
+        r.org_uuid as orgUuid,
         o.org_name as orgName
    FROM
         sys_role_user ru

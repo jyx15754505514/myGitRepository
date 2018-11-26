@@ -69,6 +69,7 @@ public class EqlPrint {
         dbcols = dbColumns.split(",");
         beans = new String[dbcols.length];
         String[] dbColsArr = dbColumns.split(",");
+        System.out.println("----------------开始打印实体属性----------------");
         for(int i=0;i<dbColsArr.length;i++){
             String dbcolumn = dbColsArr[i];
             String[] items = dbcolumn.split("_");
@@ -85,7 +86,9 @@ public class EqlPrint {
                 }
                 beans[i] = sb.toString();
             }
+            System.out.println("private String "+beans[i]+";\n");
         }
+        System.out.println("----------------打印实体属性结束----------------");
         if(dbPrimaryKeys.length()>0){
             dbpks = dbPrimaryKeys.split(",");
             pks = new String[dbpks.length];

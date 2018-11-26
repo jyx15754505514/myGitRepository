@@ -17,7 +17,7 @@ import org.n3r.eql.EqlTran;
 
 import java.util.Date;
 
-/*
+/**
  * @Author:  heibin
  * @Description:   证书纸管理-分发记录测试类
  * @Date:  2018/11/25  11:37
@@ -25,7 +25,7 @@ import java.util.Date;
  */
 @Slf4j
 public class CertAwayServiceImplTest {
-    /*
+    /**
      * 分发记录新增
      **/
     @Test
@@ -53,7 +53,7 @@ public class CertAwayServiceImplTest {
             certPaperDO.setPaperUuid(certAwayDO.getPaperUuid());
             certPaperDO.setResidualNum((Integer.parseInt(getCertPaper.getResidualNum())-Integer.parseInt(awayNum))+"");
             certPaperDO.setCurrentCode(Integer.parseInt(getCertPaper.getCurrentCode())+(Integer.parseInt(awayNum))+"");
-            certPaperResult=certPaperDaoImpl.updateCertPaper(certPaperDO);
+            certPaperResult=certPaperDaoImpl.updateCertPaper(certPaperDO,eqlTran);
             certAwayDO.setAwayUuid("16");
             //分发前证书纸对象当前号也就是分发开始号
             certAwayDO.setStartNum(getCertPaper.getCurrentCode());
@@ -64,7 +64,7 @@ public class CertAwayServiceImplTest {
             certAwayDO.setProdCatalogUuid("111");
             certAwayDO.setOrgUuid("1111");
             certAwayDO.setAppSysUuid("1111");
-            certAwayResult=certAwayDaoImpl.insertCertAway(certAwayDO);
+            certAwayResult=certAwayDaoImpl.insertCertAway(certAwayDO,eqlTran);
            //证书流水
             Integer startNum=Integer.parseInt(getCertPaper.getCurrentCode());
             Integer endNum=Integer.parseInt(getCertPaper.getCurrentCode())+(Integer.parseInt(awayNum)-1);
@@ -81,7 +81,7 @@ public class CertAwayServiceImplTest {
                 certflowDO.setAppSysUuid("yewu2.0");
                 certflowDO.setProdCatalogUuid("yewu2.0");
                 certflowDO.setOrgUuid("yewu2.0");
-                certFlowResult=certFlowDaoImpl.insertCertFlow(certflowDO);
+                certFlowResult=certFlowDaoImpl.insertCertFlow(certflowDO,eqlTran);
                 if(certFlowResult!=1){
                     result=false;
                 }
@@ -101,7 +101,7 @@ public class CertAwayServiceImplTest {
 
 
     }
-    /*
+    /**
      * 分发记录作废
      **/
     @Test
@@ -115,7 +115,7 @@ public class CertAwayServiceImplTest {
             log.error("作废证书纸管理-分发记录失败",e);
         }
     }
-    /*
+    /**
      * 分发记录分页
      **/
     @Test

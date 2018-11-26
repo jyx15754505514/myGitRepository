@@ -17,9 +17,15 @@ extend2 extend2,
 extend3 extend3
 from sys_serialnum_cfg
 WHERE snc_uuid = '#sncUuid#' and is_deleted = 'N'
-and org_uuid = '#orgUuid#'
-and app_sys_uuid = '#appSysUuid#'
-and prod_catalog_uuid = '#prodCatalogUuid#'
+-- if orgUuid != null and orgUuid != ''
+  and org_uuid = '#orgUuid#'
+-- end
+-- if appSysUuid != null and appSysUuid != ''
+  and app_sys_uuid = '#appSysUuid#'
+-- end
+-- if prodCatalogUuid != null and prodCatalogUuid != ''
+  and prod_catalog_uuid = '#prodCatalogUuid#'
+-- end
 
 -- [listSerialnumCfg]
 SELECT
@@ -260,7 +266,7 @@ order by sort_num
     extend1 extend1,
     extend2 extend2,
     extend3 extend3
-    from sys_serialnum where 1=1
+    from sys_serialnum where is_deleted = 'N'
     -- if sncUuid != null and sncUuid != ''
         and snc_uuid = '#sncUuid#'
     -- end
@@ -270,7 +276,6 @@ order by sort_num
     -- if busUuid != null and busUuid != ''
         and bus_uuid = '#busUuid#'
     -- end
-    and is_deleted = 'N'
 
 -- [insertSerialnum]
     insert into sys_serialnum
@@ -283,6 +288,9 @@ order by sort_num
       -- end
       -- if snDeptCode != null
         sn_dept_code,
+      -- end
+      -- if busUuid != null and busUuid != ''
+        bus_uuid,
       -- end
       -- if seqId != null
         seq_id,
@@ -342,6 +350,9 @@ order by sort_num
       -- end
       -- if snDeptCode != null
         '#snDeptCode#',
+      -- end
+      -- if busUuid != null and busUuid != ''
+         '#busUuid#',
       -- end
       -- if seqId != null
         '#seqId#',

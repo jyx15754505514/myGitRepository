@@ -6,6 +6,7 @@ import com.ccicnavi.bims.resource.dao.CertFlowDao;
 import com.ccicnavi.bims.resource.pojo.CertFlowDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @Service
 public class CertFlowDaoImpl implements CertFlowDao {
+
     /**
      * 新增证书流水
      * @param certFlowDO
@@ -24,8 +26,12 @@ public class CertFlowDaoImpl implements CertFlowDao {
      * @throws Exception
      */
     @Override
-    public Integer insertCertFlow(CertFlowDO certFlowDO) throws Exception {
-        return new Eql().insert("insertCertFlow").params(certFlowDO).returnType(Integer.class).execute();
+    public Integer insertCertFlow(CertFlowDO certFlowDO, EqlTran tran) throws Exception {
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).insert("insertCertFlow").params(certFlowDO).returnType(Integer.class).execute();
+        }
+        return eql.insert("insertCertFlow").params(certFlowDO).returnType(Integer.class).execute();
     }
     /**
      *作废流水号

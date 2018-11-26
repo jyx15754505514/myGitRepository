@@ -185,20 +185,22 @@ public class SerialnumServiceImpl implements SerialnumService {
         String busiNo = "";
         try {
             ReturnT<SSOUser> ssoUser = ssoService.logincheck(token);
-
-            /*if(ssoUser==null||ssoUser.getData()==null){
+//            SSOUser user = new SSOUser();
+//            user.setOrgCode("1030102");
+//            user.setLoginName("王子文");
+            if(ssoUser==null||ssoUser.getData()==null){
                 log.info("获取用户信息失败...");
                 return "";
-            }*/
+            }
             SerialQueryDTO serialQueryDTO = new SerialQueryDTO();
             serialQueryDTO.setSncUuid(sncUuid);
             serialQueryDTO.setBusUuid(busUuid);
-//            serialQueryDTO.setOrgUuid(ssoUser.getData().getOrgUuid());//暂定，后由用户信息获得
+            serialQueryDTO.setOrgUuid(ssoUser.getData().getOrgUuid());//暂定，后由用户信息获得
 //            serialQueryDTO.setAppSysUuid(ssoUser.getData().getAppSysUuid());//暂定，后由用户信息获得
 //            serialQueryDTO.setProdCatalogUuid(ssoUser.getData().getProdCatalogUuid());//暂定，后由用户信息获得
-            serialQueryDTO.setOrgUuid("0102");
-            serialQueryDTO.setAppSysUuid("bims");
-            serialQueryDTO.setProdCatalogUuid("test");
+//            serialQueryDTO.setOrgUuid("0102");
+//            serialQueryDTO.setAppSysUuid("bims");
+//            serialQueryDTO.setProdCatalogUuid("test");
             SerialnumCfgDO cfgDO = serialnumDao.getSerialnumCfg(serialQueryDTO);
             List<SerialnumCfgItemDO> itemList = serialnumDao.getSeriItemList(serialQueryDTO.getSncUuid());
             SerialnumDO serialnumDO = new SerialnumDO();
@@ -255,23 +257,9 @@ public class SerialnumServiceImpl implements SerialnumService {
                 int sncLength = cfgDO.getSncLength();
                 int sncStep = cfgDO.getSncStep();
                 String sncPeriod = cfgDO.getSncPeriod();
-                /*if(busiSerialDO!=null&& !StringUtils.isEmpty(sncPeriod)){//超过周期，序号重新翻牌
-                    DateFormat df = new SimpleDateFormat(sncPeriod);
-                    int currTime = Integer.parseInt(df.format(new Date()));
-                    int beginTime = Integer.parseInt(busiSerialDO.getSeqYmd());
-                    if(currTime!=beginTime){
-                        busiSerialDO.setSeqId((Integer.parseInt(cfgDO.getSncInitValue())-cfgDO.getSncStep().intValue())+"");
-                        busiSerialDO.setSeqYmd(currTime+"");
-                    }
-                }
-                int seqNo = cfgDO.getSncInitValue()==null?0:Integer.parseInt(cfgDO.getSncInitValue());
-                if(busiSerialDO!=null){//系统中已含有业务序号信息
-                    seqNo = Integer.parseInt(busiSerialDO.getSeqId());
-                    seqNo = seqNo + sncStep;
-                }*/
+                long initValue = StringUtils.isEmpty(cfgDO.getSncInitValue())?0:Long.parseLong(cfgDO.getSncInitValue());
                 //redis请求接口，获取业务序号
-                String seqNo = idWorkerService.getBusinessNumber(snUuid, cfgDO.getSncInitValue(), sncStep+"", sncPeriod);
-
+                String seqNo = idWorkerService.getBusinessNumber(snUuid, initValue, sncStep+"", sncPeriod);
                 for(int i=0;i<sncLength-(seqNo+"").length();i++){
                     serialStr.append("0");
                 }
@@ -285,22 +273,13 @@ public class SerialnumServiceImpl implements SerialnumService {
         if(busiSerialDO==null){
             busiSerialDO = new SerialnumDO();
             BeanUtils.copyProperties(cfgDO, busiSerialDO);
-
-//            String snUuid = new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
             busiSerialDO.setSnUuid(snUuid);
             if(!StringUtils.isEmpty(businessNo)){
                 busiSerialDO.setBusUuid(businessNo);
             }
-            /*busiSerialDO.setSeqId(serialStr.toString());
-            if(cfgDO.getSncPeriod()!=null){
-                DateFormat df = new SimpleDateFormat(cfgDO.getSncPeriod());
-                busiSerialDO.setSeqYmd(df.format(new Date()));
-            }*/
             serialnumDao.insertSerialnum(busiSerialDO);
-        }/*else{//翻牌更新(采用redis生成序号后，不需要更新serialnum)
-            busiSerialDO.setSeqId(serialStr.toString());
-            serialnumDao.updateSerialnum(busiSerialDO);
-        }*/
+        }
+        log.info("新生成业务编号："+busiSerialNo.toString());
         return busiSerialNo.toString();
     }
 
@@ -309,28 +288,32 @@ public class SerialnumServiceImpl implements SerialnumService {
         switch (type){
             case SerialnumCfgType.JG1:
                 if(user.getOrgCode().length()>=7){
-                    sysValue = user.getOrgCode().substring(3,5);
+                    sysValue = getStringValue(user.getOrgCode().substring(3,5));
                 }else{
                     sysValue = type;
                 }
                 break;
             case SerialnumCfgType.JG2:
                 if(user.getOrgCode().length()>=7){
-                    sysValue = user.getOrgCode().substring(5,7);
+                    sysValue = getStringValue(user.getOrgCode().substring(5,7));
                 }else{
                     sysValue = type;
                 }
                 break;
             case SerialnumCfgType.BMBH:
-                sysValue = user.getOrgCode();
+                sysValue = getStringValue(user.getOrgCode());
                 break;
             case SerialnumCfgType.UN:
-                sysValue = user.getLoginName();
+                sysValue = getStringValue(user.getLoginName());
                 break;
             case SerialnumCfgType.GH:
-                sysValue = "";//未提供
+                sysValue = getStringValue("");//未提供
                 break;
         }
         return sysValue;
+    }
+
+    public String getStringValue(Object obj){
+        return obj==null?"":obj.toString();
     }
 }

@@ -26,7 +26,7 @@ public class EquipTestServiceImpl implements EquipTestService {
 
     @Autowired
     EquipTestDao equipTestDao;
-    @Reference(timeout = 1000)
+    @Reference(timeout = 3000)
     IdWorkerService idWorkerService;
     /**
      * @Author panyida
