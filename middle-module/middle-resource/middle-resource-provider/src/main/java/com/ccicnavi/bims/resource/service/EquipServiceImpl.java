@@ -11,6 +11,8 @@ import com.ccicnavi.bims.resource.dao.EquipTestDao;
 import com.ccicnavi.bims.resource.dao.EquipUseDao;
 import com.ccicnavi.bims.resource.pojo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,7 +38,7 @@ public class EquipServiceImpl implements EquipService {
     @Autowired
     private EquipUseDao equipUseDao;
 
-    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    @Reference(timeout = 1000)
     IdWorkerService idWorkerService;
 
     /**
@@ -240,6 +242,50 @@ public class EquipServiceImpl implements EquipService {
         return count;
     }
 
-
+    /**
+     * @Author MengZiJie
+     * @Description 删除器具台账(器具、检定、领用信息)
+     * @Data 2018/11/26 10:31
+     * @Param [equipDTO]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer deleteEquipInfo(EquipDTO equipDTO) {
+        /**创建事务*/
+        EqlTran eqlTran = new Eql().newTran();
+        /**定义检定记录对象*/
+        EquipTestDTO equipTestDTO = new EquipTestDTO();
+        /**定义领用记录对象*/
+        EquipUseDTO equipUseDTO = new EquipUseDTO();
+        Boolean equip = true;
+        try {
+            eqlTran.start();
+            Integer count = equipDao.deleteEquip(equipDTO,null);
+            if(count <= 0){
+                equip = false;
+            }
+            /**删除设备检定记录*/
+            equipTestDTO.setEquipUuid(equipDTO.getEquipUuid());
+            Integer equipTest = equipTestDao.deleteEquipTest(equipTestDTO,eqlTran);
+            if(equipTest <= 0){
+                equip = false;
+            }
+            /**删除设备领用记录*/
+            equipUseDTO.setEquipUuid(equipDTO.getEquipUuid());
+            Integer equipUse = equipUseDao.deleteEquipUse(equipUseDTO,eqlTran);
+            if(equipUse <= 0){
+                equip = false;
+            }
+            if(equip = true){
+                return count;
+            }
+        } catch (Exception e) {
+            log.error("删除设备台账失败",e);
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
+        }
+        return -1;
+    }
 
 }
