@@ -5,6 +5,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.CategoryDao;
 import com.ccicnavi.bims.product.pojo.CategoryDO;
 import com.ccicnavi.bims.product.pojo.CategoryDTO;
+import com.ccicnavi.bims.product.pojo.CategoryOrgDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
@@ -102,4 +103,23 @@ public class CategoryDaoImpl implements CategoryDao {
         return new Eql().select("listCategorySubByOrgAndProd").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 
+    /**
+     * 根据组织机构和产品线的ID查询出其下的子级产品分类信息
+     * @param categoryOrgDTO
+     * @return
+     */
+    @Override
+    public List<String> listCategoryOrgByOrgUuid(CategoryOrgDTO categoryOrgDTO) {
+        return new Eql().select("listCategoryOrgByOrgUuid").params(categoryOrgDTO).returnType(String.class).execute();
+    }
+
+    /**
+     * 根据多个父级产品分类的ID查询出对应的产品分类信息
+     * @param categoryOrgDTO
+     * @return
+     */
+    @Override
+    public List<CategoryDO> listCategoryByParentAllUuids(CategoryOrgDTO categoryOrgDTO) {
+        return new Eql().select("listCategoryByParentAllUuids").params(categoryOrgDTO).returnType(CategoryDO.class).execute();
+    }
 }

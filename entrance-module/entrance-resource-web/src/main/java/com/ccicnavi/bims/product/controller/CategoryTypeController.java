@@ -7,6 +7,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CategoryTypeService;
 import com.ccicnavi.bims.product.pojo.CategoryTypeDO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/categoryType")
+@Slf4j
 public class CategoryTypeController {
 
     @Reference(timeout = 30000)
