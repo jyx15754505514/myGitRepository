@@ -3,6 +3,7 @@ package com.ccicnavi.bims.resource.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.CertFlowDO;
+import org.n3r.eql.EqlTran;
 
 /**
  * @Auther: hebin
@@ -16,7 +17,7 @@ public interface CertFlowDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer insertCertFlow(CertFlowDO certFlowDO) throws Exception;
+    public Integer insertCertFlow(CertFlowDO certFlowDO, EqlTran tran) throws Exception;
     /**
      * 作废流水号
      * @param certFlowDO

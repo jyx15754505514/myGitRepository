@@ -32,12 +32,22 @@ set
     is_deleted ='Y'
 where
     is_deleted = 'N'
-    -- if subcBankUuids != null
+--iff subcUuid != null and subcUuid != ''
+    AND subc_uuid = '#subcUuid#'
+--iff subcBankUuid != null and subcBankUuid != ''
+    and subc_bank_uuid = '#subcBankUuid#'
+-- if subcBankUuids != null
     AND subc_bank_uuid IN
       -- for item=item index=index collection=subcBankUuids open=( separator=, close=)
           '#item#'
       -- end
-    -- end
+-- if subcUuids != null
+    AND subc_uuid IN
+      -- for item=item index=index collection=subcUuids open=( separator=, close=)
+          '#item#'
+      -- end
+-- end
+
 
 -- [insertSubBank]
     insert into crm_subc_bank

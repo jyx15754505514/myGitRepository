@@ -5,8 +5,8 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.system.pojo.DictTypeDTO;
-import com.ccicnavi.bims.system.service.api.DictService;
 import com.ccicnavi.bims.system.service.api.DictTypeService;
+import com.ccicnavi.bims.system.service.api.DictValueService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -29,10 +29,10 @@ public class DictController {
 
     private final static Logger log = LoggerFactory.getLogger(DictController.class);
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
-    private DictService dictService;
+    @Reference
+    private DictValueService dictValueService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private DictTypeService dictTypeService;
     /**
     *@Description: 根据字典类别编号查询字典信息
@@ -46,8 +46,7 @@ public class DictController {
     public ResultT listDict(@RequestBody DictTypeDTO dictTypeDTO ) {
         if(!StringUtils.isEmpty(dictTypeDTO.getTypeList())) {
             try {
-                List<String> typeList = dictTypeDTO.getTypeList();
-                List<DictTypeDTO> dictTypeList = dictService.listDictValue(typeList);
+                List<DictTypeDTO> dictTypeList = dictValueService.listDictValue(dictTypeDTO);
                 if(dictTypeList != null && !dictTypeList.isEmpty()) {
                     return ResultT.success(dictTypeList);
                 }

@@ -7,6 +7,7 @@ import com.ccicnavi.bims.resource.dao.CertAwayDao;
 import com.ccicnavi.bims.resource.pojo.CertAwayDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +27,12 @@ public class CertAwayDaoImpl implements CertAwayDao {
      * @throws Exception
      */
     @Override
-    public Integer insertCertAway(CertAwayDO certAwayDO) throws Exception {
-        return new Eql().insert("insertCertAway").params(certAwayDO).returnType(Integer.class).execute();
+    public Integer insertCertAway(CertAwayDO certAwayDO, EqlTran tran) throws Exception {
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).insert("insertCertAway").params(certAwayDO).returnType(Integer.class).execute();
+        }
+        return eql.insert("insertCertAway").params(certAwayDO).returnType(Integer.class).execute();
     }
     /**
      *分页查询证书纸管理-分发记录列表

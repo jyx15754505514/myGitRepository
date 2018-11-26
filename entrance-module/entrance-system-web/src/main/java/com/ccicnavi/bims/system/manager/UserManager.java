@@ -21,4 +21,6 @@ public interface UserManager {
     * @return com.ccicnavi.bims.common.ResultT
     **/
     ResultT userLogin(UserDTO userDTO);
+
+
 }

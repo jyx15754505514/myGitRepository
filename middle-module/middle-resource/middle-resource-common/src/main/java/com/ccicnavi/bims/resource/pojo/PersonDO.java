@@ -14,9 +14,13 @@ public class PersonDO implements Serializable {
 
     private String personUuid;
 
+    private String userUuid;
+
     private String personCode;
 
     private String name;
+
+    private String firstName;
 
     private String personType;
 

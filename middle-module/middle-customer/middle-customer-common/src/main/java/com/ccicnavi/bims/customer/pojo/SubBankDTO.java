@@ -1,9 +1,7 @@
 package com.ccicnavi.bims.customer.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -13,9 +11,8 @@ import java.util.List;
  * @Date: 2018/11/23 15:20
  * @Description: 分包方银行信息
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SubBankDTO implements Serializable {
     /**
      * 分包方银行主键
@@ -27,6 +24,10 @@ public class SubBankDTO implements Serializable {
      * 分包方主键
      */
     private String subcUuid;
+    /**
+     * 分包方主键List
+     */
+    private List<String> subcUuids;
     /**
      * 分包方名称
      */

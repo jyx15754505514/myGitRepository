@@ -2,6 +2,8 @@ package com.ccicnavi.bims.resource.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
+import org.n3r.eql.EqlTran;
+
 import java.util.List;
 
 /**
@@ -32,7 +34,7 @@ public interface CertPaperDao {
      * @return Integer
      * @throws Exception
      */
-    public Integer updateCertPaper(CertPaperDO certPaper) throws Exception;
+    public Integer updateCertPaper(CertPaperDO certPaper, EqlTran tran) throws Exception;
 
     /**
      * 删除证书纸信息

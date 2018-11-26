@@ -32,8 +32,6 @@
     and org_uuid = '#orgUuid#'
  --iff appSysUuid != null and appSysUuid !=''
     and app_sys_uuid = '#appSysUuid#'
- --iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
 
 -- [getEquipTest]
 SELECT
@@ -65,12 +63,6 @@ from
     res_equip_test
 where
     is_deleted = 'N'
---iff orgUuid != null and orgUuid != ''
-    and org_uuid = '#orgUuid#'
---iff appSysUuid != null and appSysUuid !=''
-    and app_sys_uuid = '#appSysUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff equipTestUuid != null and equipTestUuid != ''
     and equip_test_uuid = '#equipTestUuid#'
 
@@ -104,14 +96,8 @@ where
     res_equip_test
 where
     is_deleted = 'N'
--- iff equipUuid != null and equipUuid != ''
+--iff equipUuid != null and equipUuid != ''
     and equip_uuid = '#equipUuid#'
---iff orgUuid != null and orgUuid != ''
-    and org_uuid = '#orgUuid#'
---iff appSysUuid != null and appSysUuid !=''
-    and app_sys_uuid = '#appSysUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff equipTestUuids != null
     and equip_test_uuid in
     -- for item=item index=index collection=equipTestUuids open=( separator=, close=)
@@ -135,7 +121,7 @@ where
         test_cycle,
       --iff isLongTerm != null and isLongTerm != ''
         is_long_term,
-      --iff testValidDate != null and testValidDate != ''
+      --iff testValidDate != null
         test_valid_date,
       --iff testResult != null and testResult != ''
         test_result,
@@ -213,7 +199,7 @@ where
         '#createdName#',
       --iff updatedTime != null
         '#updatedTime#',
-      -iff updatedUuid != null and updatedUuid != ''
+      --iff updatedUuid != null and updatedUuid != ''
           'updatedUuid#',
       --iff updatedName != null and updatedName != ''
         '#updatedName#',
@@ -346,5 +332,3 @@ where
     and et.org_uuid = '#orgUuid#'
 --iff appSysUuid != null and appSysUuid !=''
     and et.app_sys_uuid = '#appSysUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and et.prod_catalog_uuid = '#prodCatalogUuid#'

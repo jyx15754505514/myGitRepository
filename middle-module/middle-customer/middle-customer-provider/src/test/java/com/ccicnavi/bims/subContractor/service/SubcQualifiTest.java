@@ -7,6 +7,7 @@ import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
 import org.junit.jupiter.api.Test;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,7 @@ public class SubcQualifiTest {
         {
             subcQualifiDO.setSubcQualifiUuid("000"+i);
             //指定的分包方的uuid
-            subcQualifiDO.setSubcUuid("000000100");
+            subcQualifiDO.setSubcUuid("88881");
             subcQualifiDO.setQualifiRange("资质范围"+i);
             subcQualifiDO.setQualifiEnmUuid("资质类型UUID"+i);
             subcQualifiDO.setQualifiDescribe("资质描述"+i);
@@ -54,9 +55,10 @@ public class SubcQualifiTest {
      */
     @Test
     public void removeSubcuQuali(){
-        SubcQualifiDTO subcQualifiDO=new SubcQualifiDTO();
-        subcQualifiDO.setSubcQualifiUuid("0001");
-        int count=subcQualifiDaoTest.deleteSubcuQuali(subcQualifiDO);
+        EqlTran eqlTran = new Eql("DEFAULT").newTran();
+        SubcQualifiDTO subcQualifiDTO=new SubcQualifiDTO();
+        subcQualifiDTO.setSubcQualifiUuid("111");
+        int count=subcQualifiDaoTest.deleteSubcuQuali(subcQualifiDTO,eqlTran);
         System.out.println(count);
     }
     /**

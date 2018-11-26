@@ -32,7 +32,7 @@
         org_uuid as orgUuid,
         app_sys_uuid as appSysUuid,
         prod_catalog_uuid as prodCatalogUuid,
-        extend1,
+        real_name as realName,
         extend2,
         extend3
     FROM
@@ -115,8 +115,8 @@
           prod_catalog_uuid,
       --iff deptUuid != null and deptUuid != ''
             dept_uuid,
-        --iff extend1 != null
-          extend1,
+        --iff realName != null
+          real_name,
         --iff extend2 != null
           extend2,
         --iff extend3 != null
@@ -181,8 +181,8 @@
             '#prodCatalogUuid#',
          --iff deptUuid != null and deptUuid != ''
              '#deptUuid#',
-          --iff extend1 != null
-            '#extend1#',
+          --iff realName != null
+            '#realName#',
           --iff extend2 != null
             '#extend2#',
           --iff extend3 != null
@@ -252,8 +252,8 @@
           app_sys_uuid = '#appSysUuid#',
         --iff prodCatalogUuid != null
           prod_catalog_uuid = '#prodCatalogUuid#',
-        --iff extend1 != null
-          extend1 = '#extend1#',
+        --iff realName != null
+          real_name = '#realName#',
         --iff extend2 != null
           extend2 = '#extend2#',
         --iff extend3 != null
@@ -321,7 +321,7 @@
            org_uuid as orgUuid,
            app_sys_uuid as appSysUuid,
            prod_catalog_uuid as prodCatalogUuid,
-           extend1,
+           real_name as realName,
            extend2,
            extend3
      FROM
@@ -375,7 +375,7 @@
        o.org_code as orgCode,
        o.is_enabled as orgIsEnabled,
        o.is_deleted as orgIsDeleted,
-       u.extend1,
+       u.real_name as realName,
        u.extend2,
        u.extend3
      FROM
@@ -437,7 +437,7 @@
         su.org_uuid as orgUuid,
         su.app_sys_uuid as appSysUuid,
         su.prod_catalog_uuid as prodCatalogUuid,
-        su.extend1,
+        su.real_name as realName,
         su.extend2,
         su.extend3
     FROM
@@ -482,7 +482,7 @@
          org_uuid as orgUuid,
          app_sys_uuid as appSysUuid,
          prod_catalog_uuid as prodCatalogUuid,
-         extend1,
+         real_name as realName,,
          extend2,
          extend3
  from sys_user

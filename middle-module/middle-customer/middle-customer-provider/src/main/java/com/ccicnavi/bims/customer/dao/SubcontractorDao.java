@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public interface SubcontractorDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    Integer insertSubcontractor(SubcontractorDO subcontractor) throws Exception;
+    Integer insertSubcontractor(SubcontractorDO subcontractor ) throws Exception;
 
     /**
      *@Description: 删除分包方信息
@@ -41,7 +42,7 @@ public interface SubcontractorDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    Integer removeSubcontractor(SubcontractorDO subcontractor) throws Exception;
+    Integer removeSubcontractor(SubcontractorDTO subcontractor,EqlTran eqlTran) throws Exception;
 
     /**
      *@Description: 修改分包方信息

@@ -1,9 +1,12 @@
 package com.ccicnavi.bims.system.manager.impl;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.breeder.api.PasswdService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.resource.api.PersonService;
+import com.ccicnavi.bims.resource.pojo.PersonDO;
 import com.ccicnavi.bims.sso.api.SSOService;
 import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.sso.common.result.ReturnT;
@@ -11,9 +14,12 @@ import com.ccicnavi.bims.system.manager.UserManager;
 import com.ccicnavi.bims.system.pojo.*;
 import com.ccicnavi.bims.system.service.api.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,26 +32,42 @@ import java.util.List;
 @Slf4j
 public class UserManagerImpl implements UserManager {
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private UserService userService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private RoleService roleService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private DepartmentService deptService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private MenuService menuService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private CatalogOrgService catalogOrgService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference
     private PasswdService passwdService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    @Reference
     private SSOService ssoService;
+
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference
+    private IdWorkerService idWorkerService;
+
+    @Autowired
+    private HttpServletRequest request;
+
+
     /*
     * 用户登录
     * @Author zhaotao
@@ -111,6 +133,9 @@ public class UserManagerImpl implements UserManager {
                     ssoUser.setCurrentPassword("");
                     ssoUser.setSalt("");
                     //SSO返回1 登录成功
+                    //获取登录IP,更新用户信息
+                    //request.getHeader()
+                    //userService.updateUser(userDTO);
                     return ResultT.success(ssoUser);
                 }else {
                     //SSO服务登录失败
@@ -139,10 +164,10 @@ public class UserManagerImpl implements UserManager {
         //查产品线
         CatalogOrgDO catalogOrgDO = new CatalogOrgDO();
         catalogOrgDO.setOrganizationUuid(ssoUser.getOrgUuid());
-        List<CatalogOrgDO> catalogOrgDOList = catalogOrgService.listCatalogOrgDO(catalogOrgDO);
+        List<CatalogOrgDTO> catalogOrgDOList = catalogOrgService.listCatalogOrgDO(catalogOrgDO);
         List<String> prodCatalogList = new ArrayList<>();
-        for (CatalogOrgDO catalogOrg : catalogOrgDOList) {
-            prodCatalogList.add(catalogOrg.getOrganizationUuid());
+        for (CatalogOrgDTO catalogOrg : catalogOrgDOList) {
+            prodCatalogList.add(catalogOrg.getProdCatalogUuid());
         }
         //查权限
         MenuDTO menuDTO = new MenuDTO();
@@ -161,7 +186,7 @@ public class UserManagerImpl implements UserManager {
         List<String> buttonUrlList = menuService.listButtonUrlByRole(userDTO);
         ssoUser.setRoleList(roleDTOList);
         ssoUser.setBtnUrlList(buttonUrlList);
-        ssoUser.setProdCatalogList(prodCatalogList);
+        ssoUser.setProdCatalogList(catalogOrgDOList);
         ssoUser.setMenuList(menuList);
     }
 

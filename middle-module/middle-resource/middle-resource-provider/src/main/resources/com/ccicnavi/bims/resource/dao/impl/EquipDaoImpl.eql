@@ -72,8 +72,6 @@ where
     AND e.org_uuid = '#orgUuid#'
 --iff appSysUuid != null and appSysUuid != ''
     and e.app_sys_uuid = '#appSysUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and e.prod_catalog_uuid = '#prodCatalogUuid#'
 --end
 
 
@@ -146,8 +144,6 @@ where
     and org_uuid = '#orgUuid#'
 --iff appSysUuid != null and appSysUuid !=''
     and app_sys_uuid = '#appSysUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff testValidDate != null
     and test_valid_date <= '#testValidDate#'
 -- end
@@ -217,17 +213,10 @@ from
     res_equip
 where
     is_deleted = 'N'
---iff orgUuid != null and orgUuid != ''
-    and org_uuid = '#orgUuid#'
---iff appSysUuid != null and appSysUuid !=''
-    and app_sys_uuid = '#appSysUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff equipUuid != null and equipUuid != ''
     and equip_uuid = '#equipUuid#'
 
 
--- 批量获取设备信息
 -- [getEquipList]
   SELECT
      equip_uuid equipUuid,
@@ -293,12 +282,6 @@ from
     res_equip
 where
     is_deleted = 'N'
---iff orgUuid != null and orgUuid != ''
-    and org_uuid = '#orgUuid#'
---iff appSysUuid != null and appSysUuid !=''
-    and app_sys_uuid = '#appSysUuid#'
---iff prodCatalogUuid != null and prodCatalogUuid != ''
-    and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff equipUuids != null
     and equip_uuid in
     -- for item=item index=index collection=equipUuids open=( separator=, close=)

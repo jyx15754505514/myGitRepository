@@ -12,7 +12,10 @@ import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.system.dao.RoleUserDao;
 import com.ccicnavi.bims.system.dao.SettingDao;
 import com.ccicnavi.bims.system.dao.UserDao;
-import com.ccicnavi.bims.system.pojo.*;
+import com.ccicnavi.bims.system.pojo.RoleDTO;
+import com.ccicnavi.bims.system.pojo.SettingDO;
+import com.ccicnavi.bims.system.pojo.UserDO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.RoleService;
 import com.ccicnavi.bims.system.service.api.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +24,6 @@ import org.n3r.eql.EqlTran;
 import org.n3r.eql.util.Closes;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -87,12 +89,14 @@ public class UserServiceImpl implements UserService{
     @Override
     public Integer insertUser(UserDTO userDTO){
         EqlTran tran = new Eql("DEFAULT").newTran();
-        Integer saveUser = 0;
+        Integer insertUser = 0;
         Integer insertRole = 0;
+        Integer insertPerson = 0;
         try{
             tran.start();
             //新增用户表信息
-            saveUser = userDao.insertUser(userDTO, tran);
+            insertUser = userDao.insertUser(userDTO, tran);
+
             List<String> roleList = userDTO.getAddRoleList();
             //判断角色是否为空
             if(roleList != null && roleList.size() > 0){
@@ -102,7 +106,7 @@ public class UserServiceImpl implements UserService{
                     insertRole += roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
-            if(saveUser == 0 || insertRole != roleList.size()) {
+            if(insertUser == 0 || insertRole != roleList.size()) {
                 tran.rollback();
                 log.debug("新建用户失败");
                 return null;
@@ -114,7 +118,7 @@ public class UserServiceImpl implements UserService{
         }finally {
             Closes.closeQuietly(tran);
         }
-        return saveUser;
+        return insertUser;
 
     }
 
