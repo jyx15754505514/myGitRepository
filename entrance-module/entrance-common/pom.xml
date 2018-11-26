@@ -10,44 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>entrance-common</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>5.1.2.RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>sso-sso</groupId>
-            <artifactId>sso-common</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>sso-sso</groupId>
-            <artifactId>sso-common</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-core</artifactId>
-            <version>9.0.12</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>zoo-sso</groupId>
-            <artifactId>sso-api</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>2.6.2</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
 
 </project>
