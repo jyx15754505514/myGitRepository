@@ -15,6 +15,9 @@ INSERT INTO
        --if dictParentUuid != null and dictParentUuid != ''
             dict_parent_uuid,
        --end
+       --if sortNum != null and sortNum != ''
+           sort_num,
+      --end
        --if comments != null and comments != ''
             comments,
        --end
@@ -30,15 +33,6 @@ INSERT INTO
         --if createdName != null and createdName != ''
              created_name,
         --end
-        --if updatedTime != null and updatedTime != ''
-              updated_time,
-        --end
-        --if updatedUuid != null and updatedUuid != ''
-              updated_uuid,
-        --end
-        --if updatedName != null and updatedName != ''
-              updated_name,
-        --end
        --if orgUuid != null and orgUuid != ''
              org_uuid,
        --end
@@ -48,6 +42,15 @@ INSERT INTO
        --if prodCatalogUuid != null and prodCatalogUuid != ''
              prod_catalog_uuid,
        --end
+       -- if test=extend1 != null and extend1 != ''
+             extend1,
+       -- end
+        - if test=extend2 != null and extend2 != ''
+             extend2,
+        -- end
+       -- if test=extend3 != null and extend3 != ''
+             extend3,
+       -- end
  --end
  --trim prefix= values( suffix=) suffixOverrides= ,
            --if dictValueUuid != null and dictValueUuid != ''
@@ -61,6 +64,9 @@ INSERT INTO
            --end
            --if dictParentUuid != null and dictParentUuid != ''
              '#dictParentUuid#',
+           --end
+           --if sortNum != null and sortNum != ''
+             '#sortNum#',
            --end
            --if comments != null and comments != ''
              '#comments#',
@@ -77,15 +83,6 @@ INSERT INTO
            --if createdName != null and createdName != ''
               '#createdName#',
            --end
-           --if updatedTime != null and updatedTime != ''
-               '#updatedTime#',
-           --end
-           --if updatedUuid != null and updatedUuid != ''
-               '#updatedUuid#',
-           --end
-           --if updatedName != null and updatedName != ''
-              '#updatedName#',
-           --end
            --if orgUuid != null  and orgUuid != ''
              '#orgUuid#',
            --end
@@ -95,6 +92,15 @@ INSERT INTO
            --if prodCatalogUuid != null and prodCatalogUuid != ''
              '#prodCatalogUuid#',
            --end
+            -- if test=extend1 != null and extend1 != ''
+                  '#extend1#',
+            -- end
+            -- if test=extend2 != null and extend2 != ''
+                  '#extend2#',
+            -- end
+            -- if test=extend3 != null and extend3 != ''
+                  '#extend3#',
+            -- end
  --end
  --更改数据字典数值
   --[updateDictValue]
@@ -115,12 +121,6 @@ INSERT INTO
                    comments = '#comments#',
                  --iff isDeleted != null and isDeleted != ''
                     is_deleted = '#isDeleted#',
-                 --iff createdTime != null and createdTime != ''
-                    created_time = '#createdTime#',
-                 --iff createdUuid != null and createdUuid != ''
-                    created_uuid = '#createdUuid#',
-                 --iff createdName != null and createdName != ''
-                    created_name = '#createdName#',
                  --iff updatedTime != null and updatedTime != ''
                     updated_time = '#updatedTime#',
                  --iff updatedUuid != null and updatedUuid != ''
@@ -133,8 +133,25 @@ INSERT INTO
                    org_uuid = '#orgUuid#',
                  --iff appSysUuid != null and appSysUuid != ''
                    app_sys_uuid = '#appSysUuid#',
+                 -- iff test=extend1 != null
+                   extend1 = '#extend1#',
+                 -- iff test=extend2 != null
+                   extend2 = '#extend2#',
+                 -- iff test=extend3 != null
+                   extend3 = '#extend3#',
      --end
        where
+             -- if uuids != null
+                    dict_value_uuid in
+                      -- for item=item index=index collection=uuids open=( separator=, close=)
+                      		'#item#'
+                      -- end
+             -- else
+                     dict_value_uuid = '#dictValueUuid#'
+             -- end
+
+
+
                -- if dictValueUuid != null
                		dict_value_uuid = '#dictValueUuid#'
                -- end
@@ -161,3 +178,18 @@ INSERT INTO
                   '#item#'
              -- end
            -- end
+-- 根据父级类型uuid查询字典数据
+-- [listDictValue]
+SELECT
+    dict_value_uuid dictValueUuid,
+    dict_value_name dictValueName,
+    dict_value_code dictValueCode,
+    dict_parent_uuid dictParentUuid
+from
+    sys_dict_value
+WHERE
+    is_deleted = 'N'
+    and dict_parent_uuid = '##'
+    order by dict_parent_uuid
+
+

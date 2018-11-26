@@ -190,6 +190,11 @@ public class UserDTO implements Serializable {
      */
     private String prodCatalogUuid;
 
+    /**
+     * 用户姓名姓名
+     */
+    private String realName;
+
     private String extend1;
 
     private String extend2;

@@ -96,7 +96,7 @@ where
     res_equip_test
 where
     is_deleted = 'N'
--- iff equipUuid != null and equipUuid != ''
+--iff equipUuid != null and equipUuid != ''
     and equip_uuid = '#equipUuid#'
 --iff equipTestUuids != null
     and equip_test_uuid in
