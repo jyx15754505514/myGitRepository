@@ -47,7 +47,7 @@ public interface SubcontractorService {
 
 
     /**删除分包方信息*/
-    Integer removeSubcontractor(SubcontractorDO subcontractor) ;
+    Integer removeSubcontractor(SubcontractorDTO subcontractorDTO) ;
 
     /**修改分包方信息*/
     Integer updateSubcontractor(SubcontractorDO subcontractor) ;

@@ -27,7 +27,14 @@ public class SubcontractorDTO implements Serializable {
      * 分包方主键
      */
     private String subcUuid;
-
+    /**
+     * 统一社会信用代码
+     */
+    private String subcUscc;
+    /**
+     * 分包方类型
+     */
+    private String subcUnitType;
     /**
      * 分包方代码
      */

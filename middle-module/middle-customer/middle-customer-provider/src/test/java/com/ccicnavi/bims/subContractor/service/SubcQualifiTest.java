@@ -7,6 +7,7 @@ import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import com.ccicnavi.bims.customer.util.EqlUtils;
 import org.junit.jupiter.api.Test;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
 
 import java.util.HashMap;
 import java.util.List;
@@ -54,9 +55,10 @@ public class SubcQualifiTest {
      */
     @Test
     public void removeSubcuQuali(){
-        SubcQualifiDTO subcQualifiDO=new SubcQualifiDTO();
-        subcQualifiDO.setSubcQualifiUuid("0001");
-        int count=subcQualifiDaoTest.deleteSubcuQuali(subcQualifiDO);
+        EqlTran eqlTran = new Eql("DEFAULT").newTran();
+        SubcQualifiDTO subcQualifiDTO=new SubcQualifiDTO();
+        subcQualifiDTO.setSubcQualifiUuid("111");
+        int count=subcQualifiDaoTest.deleteSubcuQuali(subcQualifiDTO,eqlTran);
         System.out.println(count);
     }
     /**
