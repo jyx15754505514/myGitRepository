@@ -98,7 +98,7 @@ public class EquipServiceImpl implements EquipService {
                 String newDate = sdf.format(vardate);
                 calendar.setTime(vardate);
                 /**减去提醒的天数*/
-                calendar.add(Calendar.DAY_OF_MONTH, -expireDay);
+                calendar.add(Calendar.DAY_OF_MONTH, +expireDay);
                 vardate = calendar.getTime();
                 equipDTO.setTestValidDate(vardate);
             }
