@@ -59,10 +59,10 @@ public class OrganizationDTO implements Serializable{
      * 公司代码
      */
     private String orgCode;
-//    /**
-//     *
-//     */
-//    private String orgType;
+    /**
+     *
+     */
+    private String orgType;
     /**
      * 省公司UUID
      */

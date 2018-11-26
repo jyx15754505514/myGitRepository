@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.system.service.api;
 
+import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.OrganizationDTO;
@@ -16,9 +17,9 @@ import java.util.List;
 public interface OrganizationService {
     /**
      * 查询组织机构
-     * @param organizationDTO
+     * @param ResultT
      */
-    public PageBean<OrganizationDTO> listOrganization(PageParameter<OrganizationDTO> pageParameter);
+    public ResultT listOrganization(PageParameter<OrganizationDTO> pageParameter);
 
     /**
      * 根据主键查询组织机构
@@ -50,21 +51,12 @@ public interface OrganizationService {
 
     /**
     *@Description: 根据用户查询省公司
-    *@Param: [userDO]
+    *@Param: [organizationDTO]
     *@return: java.util.List<com.ccicnavi.bims.system.pojo.OrganizationDO>
     *@Author: zhangpengwei
     *@date: 2018/11/20
     */
-    public OrganizationDTO getOrgByUser(UserDTO userDTO);
-
-//    /**
-//    *@Description: 根据传入的公司UUID或者部门UUID===启用/禁用===当前公司或者部门自身及其下级公司或部门
-//    *@Param: [orgDeptDTO]
-//    *@return: java.lang.Integer
-//    *@Author: zhangpengwei
-//    *@date: 2018/11/21
-//    */
-//    public Integer updateOrgEnable(OrganizationDTO organizationDTO);
+    public OrganizationDTO getOrgByUser(OrganizationDTO organizationDTO);
 
     /**
     *@Description: 根据当前用户的orgUuid获取所有的当前机构和子机构
@@ -73,6 +65,23 @@ public interface OrganizationService {
     *@Author: zhangpengwei
     *@date: 2018/11/22
     */
+    public List<OrganizationDTO> listOrgByUser(OrganizationDTO organizationDTO);
+
+    /**
+    *@Description: 根据当前机构查询下级机构（包括公司和部门：只查一级）
+    *@Param: [organizationDTO]
+    *@return: java.util.List<com.ccicnavi.bims.system.pojo.OrganizationDTO>
+    *@Author: zhangpengwei
+    *@date: 2018/11/26
+    */
     public List<OrganizationDTO> listOrgByOrg(OrganizationDTO organizationDTO);
 
+    /**
+    *@Description: 禁用/启用机构和子机构（包括公司和部门）
+    *@Param: [organizationDTO]
+    *@return: java.lang.Integer
+    *@Author: zhangpengwei
+    *@date: 2018/11/26
+    */
+    public Integer updateOrgByEnable(OrganizationDTO organizationDTO);
 }
