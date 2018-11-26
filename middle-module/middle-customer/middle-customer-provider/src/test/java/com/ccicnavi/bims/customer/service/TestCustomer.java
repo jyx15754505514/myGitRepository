@@ -117,7 +117,7 @@ public class TestCustomer {
         CustomerDTO customerDTO=new CustomerDTO();
         customerDTO.setCustUuid("asd186");
         customerDTO.setBankName("中国建设银行");
-        customerDTO.setBusinessLine("CUSTOMER");
+        customerDTO.setUpdatedUuid("CUSTOMER");
         customerDTO.setOrgUuid("XN102");
         customerDTO.setAppSysUuid("KKLIMS102");
         Integer count= EqlUtils.getInstance("druid").insert("insertCustomer").params(customerDTO).execute();

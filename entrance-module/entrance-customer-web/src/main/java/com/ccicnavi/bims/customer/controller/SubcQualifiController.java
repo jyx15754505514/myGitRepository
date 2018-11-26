@@ -7,6 +7,7 @@ import com.ccicnavi.bims.customer.api.SubcQualifiService;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
+import org.n3r.eql.EqlTran;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -77,10 +78,10 @@ public class SubcQualifiController {
      * @return com.ccicnavi.bims.common.ResultT
      */
     @RequestMapping(value = "/removeSubcQuali",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeSubcQuali(@RequestBody SubcQualifiDTO subcQualifiDTO){
+    public ResultT removeSubcQuali(@RequestBody SubcQualifiDTO subcQualifiDTO, EqlTran eqlTran ){
         int count=0;
         try {
-            count=subcQualifiService.deleteSubcQuali(subcQualifiDTO);
+            count=subcQualifiService.deleteSubcQuali(subcQualifiDTO,eqlTran);
             if(count > 0){
                 return ResultT.success("删除分包方资质信息成功");
             }

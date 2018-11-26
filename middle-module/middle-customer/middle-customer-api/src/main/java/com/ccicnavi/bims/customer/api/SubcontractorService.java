@@ -6,6 +6,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
@@ -43,11 +44,8 @@ public interface SubcontractorService {
      */
     SubcontractorDTO getSubcontractorList(SubcontractorDTO subcontractorDTO);
 
-
-
-
     /**删除分包方信息*/
-    Integer removeSubcontractor(SubcontractorDO subcontractor) ;
+    Integer removeSubcontractor(SubcontractorDTO subcontractor) ;
 
     /**修改分包方信息*/
     Integer updateSubcontractor(SubcontractorDO subcontractor) ;

@@ -42,7 +42,7 @@ public interface SubcQualifiService {
      * @Param [subcQuali]
      * @Return java.lang.Integer
      */
-    Integer deleteSubcQuali(SubcQualifiDTO subcQualifiDTO ,EqlTran eqlTran) ;
+    Integer deleteSubcQuali(SubcQualifiDTO subcQualifiDTO, EqlTran eqlTran) ;
 
     /**修改分包方资质信息*/
     Integer updateSubcQuali(SubcQualifiDO subcQuali) ;
