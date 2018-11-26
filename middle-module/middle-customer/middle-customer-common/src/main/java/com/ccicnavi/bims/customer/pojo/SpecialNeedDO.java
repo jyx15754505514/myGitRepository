@@ -14,41 +14,69 @@ import java.util.Date;
  * @create: 2018-11-15 09:16
  */
 
-
 @Getter
 @Setter
 @ToString
-
 public class SpecialNeedDO implements Serializable {
-
+    /**
+     *主键UUID
+     */
     private String needUuid;
-
+    /**
+     *客户唯一标识符
+     */
     private String custUuid;
-
+    /**
+     *需求类型
+     */
     private String needType;
-
+    /**
+     *需求类型
+     */
     private String needContent;
-
+    /**
+     *部门
+     */
     private String deptUuid;
-
+    /**
+     *备注
+     */
     private String comments;
-
+    /**
+     *删除标识（N正常Y删除）
+     */
     private String isDeleted;
-
+    /**
+     *创建时间
+     */
     private Date createdTime;
-
+    /**
+     *创建人id
+     */
     private String createdUuid;
-
+    /**
+     *创建人
+     */
     private String createdName;
-
+    /**
+     *最后一次更新时间
+     */
     private Date updatedTime;
-
+    /**
+     *最后一次更新人
+     */
     private String updatedName;
-
+    /**
+     *预留字段1
+     */
     private String extend1;
-
+    /**
+     *预留字段2
+     */
     private String extend2;
-
+    /**
+     *预留字段3
+     */
     private String extend3;
 
 }

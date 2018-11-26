@@ -21,4 +21,13 @@ public interface UserManager {
     * @return com.ccicnavi.bims.common.ResultT
     **/
     ResultT userLogin(UserDTO userDTO);
+
+    /*
+    * 新增用户
+    * @Author zhaotao
+    * @Date  2018/11/26 17:16
+    * @Param [userDTO]
+    * @return java.lang.Integer
+    **/
+    Integer insertUser(UserDTO userDTO) throws Exception;
 }
