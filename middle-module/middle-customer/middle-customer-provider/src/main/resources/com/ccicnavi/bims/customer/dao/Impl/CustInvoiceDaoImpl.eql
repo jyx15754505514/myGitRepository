@@ -149,7 +149,7 @@ where  	is_deleted = 'N'
      -- if uuids != null
             AND invoice_uuid IN
             -- for item=item index=index collection=uuids open=( separator=, close=)
-                #item#
+                '#item#'
             -- end
         -- end
 

@@ -231,6 +231,6 @@ WHERE
 	    -- if uuids != null
                 AND cust_uuid IN
                 -- for item=item index=index collection=uuids open=( separator=, close=)
-                    #item#
+                    '#item#'
                 -- end
         -- end
