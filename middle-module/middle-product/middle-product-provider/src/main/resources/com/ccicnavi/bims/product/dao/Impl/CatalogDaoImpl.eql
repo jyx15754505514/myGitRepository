@@ -227,7 +227,11 @@ WHERE
 
 -- [getCatalogThroughOrgUUid]
 SELECT
-	pc.prod_catalog_uuid
+	pc.prod_catalog_uuid,
+	catalog_name,
+    catalog_code,
+    org_uuid,
+    app_sys_uuid
 FROM
 	prod_catalog_org pco
 	LEFT JOIN prod_catalog pc ON pco.prod_catalog_uuid = pc.prod_catalog_uuid
