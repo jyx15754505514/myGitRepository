@@ -4,6 +4,7 @@ package com.ccicnavi.bims.customer.api;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public interface SubcQualifiService {
      * @Param [subcQuali]
      * @Return java.lang.Integer
      */
-    Integer deleteSubcQuali(SubcQualifiDTO subcQualifiDTO) ;
+    Integer deleteSubcQuali(SubcQualifiDTO subcQualifiDTO ,EqlTran eqlTran) ;
 
     /**修改分包方资质信息*/
     Integer updateSubcQuali(SubcQualifiDO subcQuali) ;
