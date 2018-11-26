@@ -3,6 +3,7 @@ package com.ccicnavi.bims.resource.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.PersonDO;
+import org.n3r.eql.EqlTran;
 
 import java.util.List;
 

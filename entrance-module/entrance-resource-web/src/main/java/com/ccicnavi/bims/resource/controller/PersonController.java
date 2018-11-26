@@ -7,6 +7,9 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.PersonService;
 import com.ccicnavi.bims.resource.pojo.PersonDO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +18,8 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
 
-//    private final static Logger log = LoggerFactory.getLogger(PersonDO.class);
+    private final static Logger log = LoggerFactory.getLogger(PersonController.class);
+
 
     @Reference(timeout = 30000)
     PersonService personService;
@@ -110,5 +114,9 @@ public class PersonController {
             return  ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
+
+
+
+
 
 }
