@@ -33,7 +33,7 @@ public class CatalogOrgServiceImpl implements CatalogOrgService {
      * @return java.util.List<com.ccicnavi.bims.product.pojo.CatalogOrgDO>
      **/
     @Override
-    public List<String> listCatalogOrgDO(CatalogOrgDO catalogOrgDO) {
+    public List<CatalogOrgDO> listCatalogOrgDO(CatalogOrgDO catalogOrgDO) {
         try {
             return catalogOrgDao.listCatalogOrgDO(catalogOrgDO);
         } catch (Exception e) {
