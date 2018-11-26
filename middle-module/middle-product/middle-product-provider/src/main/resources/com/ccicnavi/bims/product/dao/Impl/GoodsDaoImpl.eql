@@ -167,7 +167,10 @@ insert into product_goods
 update product_goods
 set is_deleted = 'Y'
 where is_deleted = 'N'
-and goods_uuid = '#goodsUuid#'
+and goods_uuid in
+    -- for item=item index=index collection=goodsUuidList open=( separator=, close=)
+        '#item#'
+    -- end
 
 --[updateGoodsDO]
 update product_goods

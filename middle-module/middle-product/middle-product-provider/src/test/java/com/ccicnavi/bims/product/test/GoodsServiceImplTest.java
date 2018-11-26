@@ -1,9 +1,17 @@
 package com.ccicnavi.bims.product.test;
 
+import com.ccicnavi.bims.product.api.GoodsService;
 import com.ccicnavi.bims.product.pojo.GoodsDO;
+import com.ccicnavi.bims.product.pojo.GoodsDTO;
 import com.ccicnavi.bims.product.service.GoodsServiceImpl;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,14 +22,23 @@ import static org.junit.Assert.*;
  * @author: guojinxu
  * @create: 2018/11/22 17:55
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class GoodsServiceImplTest {
+    @Resource
+    GoodsService goodsService;
 
     @Test
     public void listGoodsDO() {
-        GoodsServiceImpl goodsServiceTest = new GoodsServiceImpl();
+        //GoodsServiceImpl goodsServiceTest = new GoodsServiceImpl();
         GoodsDO goodsDO = new GoodsDO();
         goodsDO.setGoodsName("中国");
-        List<GoodsDO> goodsDOList = goodsServiceTest.listGoodsDO(goodsDO);
+        List<GoodsDO> goodsDOList = null;
+        try {
+            goodsDOList = goodsService.listGoodsDO(goodsDO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("--------"+goodsDOList);
     }
 
@@ -42,11 +59,20 @@ public class GoodsServiceImplTest {
 
     @Test
     public void removeGoodsDO() {
-        GoodsServiceImpl goodsServiceTest = new GoodsServiceImpl();
-        GoodsDO goodsDO = new GoodsDO();
-        goodsDO.setGoodsUuid("000001");
-        int count = goodsServiceTest.removeGoodsDO(goodsDO);
-        System.out.println("------"+count);
+        //GoodsServiceImpl goodsServiceTest = new GoodsServiceImpl();
+        //GoodsDO goodsDO = new GoodsDO();
+        GoodsDTO goodsDTO = new GoodsDTO();
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        goodsDTO.setGoodsUuidList(list);
+        int count = 0;
+        try {
+            count = goodsService.removeGoodsDO(goodsDTO);
+            System.out.println("------"+count);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
