@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.system.dao.DictDao;
 import com.ccicnavi.bims.system.pojo.DictTypeDO;
+import com.ccicnavi.bims.system.pojo.DictTypeDTO;
 import com.ccicnavi.bims.system.pojo.DictValueDO;
 import org.n3r.eql.Eql;
 import org.springframework.stereotype.Service;
@@ -30,4 +31,6 @@ public class DictDaoImpl implements DictDao {
     public List<DictValueDO> listDictValue(String dictParentUuid) throws Exception {
         return new Eql("DEFAULT").select("listDictValue").params(dictParentUuid).returnType(DictValueDO.class).execute();
     }
+
+
 }

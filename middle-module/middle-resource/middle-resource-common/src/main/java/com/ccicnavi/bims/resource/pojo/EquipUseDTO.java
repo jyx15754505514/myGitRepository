@@ -111,4 +111,8 @@ public class EquipUseDTO implements Serializable {
      * 领用记录主键uuid集合
      */
     private List<String> equipUseUuids;
+    /**
+     * 设备id集合
+     */
+    private List<String> equipUuids;
 }

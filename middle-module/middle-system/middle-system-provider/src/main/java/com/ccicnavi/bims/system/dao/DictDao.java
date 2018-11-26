@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.dao;
 
 import com.ccicnavi.bims.system.pojo.AreaDO;
 import com.ccicnavi.bims.system.pojo.DictTypeDO;
+import com.ccicnavi.bims.system.pojo.DictTypeDTO;
 import com.ccicnavi.bims.system.pojo.DictValueDO;
 
 import java.util.List;
@@ -23,4 +24,5 @@ public interface DictDao {
     *@date: 2018/11/20
     */
     List<DictValueDO> listDictValue(String dictParentUuid) throws Exception;
+
 }

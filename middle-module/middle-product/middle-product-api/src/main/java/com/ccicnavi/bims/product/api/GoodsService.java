@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.api;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.GoodsDO;
+import com.ccicnavi.bims.product.pojo.GoodsDTO;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface GoodsService {
     int saveGoodsDO(GoodsDO goodsDO) throws Exception;
 
     /**删除商品信息*/
-    int removeGoodsDO(GoodsDO goodsDO) throws Exception;
+    int removeGoodsDO(GoodsDTO goodsDTO) throws Exception;
 
     /**修改商品信息*/
     int updateGoodsDO(GoodsDO goodsDO) throws Exception;
