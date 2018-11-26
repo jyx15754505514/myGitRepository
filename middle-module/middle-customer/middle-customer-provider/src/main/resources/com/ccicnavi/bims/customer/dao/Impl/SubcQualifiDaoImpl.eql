@@ -125,7 +125,7 @@ WHERE is_deleted='N'
  -- if subcQualifiUuids != null
        AND subc_qualifi_uuid IN
         -- for item=item index=index collection=subcQualifiUuids open=( separator=, close=)
-            #item#
+            '#item#'
         -- end
     -- end
 
