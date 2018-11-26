@@ -13,7 +13,7 @@ import java.util.List;
 public interface CatalogOrgService {
 
     /**组织机构与产品线关系查询*/
-    List<String> listCatalogOrgDO(CatalogOrgDO catalogOrgDO);
+    List<CatalogOrgDO> listCatalogOrgDO(CatalogOrgDO catalogOrgDO);
 
     /**更新组织机构与产品线间的关系*/
     int updateCatalogOrgDO(CatalogOrgDTO catalogOrgDTO)throws Exception;
