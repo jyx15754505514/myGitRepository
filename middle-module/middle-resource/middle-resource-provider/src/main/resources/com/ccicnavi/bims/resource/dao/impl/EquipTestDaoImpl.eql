@@ -121,7 +121,7 @@ where
         test_cycle,
       --iff isLongTerm != null and isLongTerm != ''
         is_long_term,
-      --iff testValidDate != null and testValidDate != ''
+      --iff testValidDate != null
         test_valid_date,
       --iff testResult != null and testResult != ''
         test_result,
@@ -199,7 +199,7 @@ where
         '#createdName#',
       --iff updatedTime != null
         '#updatedTime#',
-      -iff updatedUuid != null and updatedUuid != ''
+      --iff updatedUuid != null and updatedUuid != ''
           'updatedUuid#',
       --iff updatedName != null and updatedName != ''
         '#updatedName#',
