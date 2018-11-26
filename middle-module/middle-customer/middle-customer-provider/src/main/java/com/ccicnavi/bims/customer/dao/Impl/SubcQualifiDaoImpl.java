@@ -54,7 +54,7 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
      */
     @Override
     public Integer deleteSubcuQuali(SubcQualifiDTO subcQualifiDTO, EqlTran eqlTran) {
-        return new Eql().update("deleteSubcuQuali").params(subcQualifiDTO).returnType(Integer.class).execute();
+        return new Eql().useTran(eqlTran).update("deleteSubcuQuali").params(subcQualifiDTO).returnType(Integer.class).execute();
     }
 
     /** *
