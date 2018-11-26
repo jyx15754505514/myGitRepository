@@ -26,14 +26,7 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonDao personDao;
 
-    @Reference
-    private UserDao userDao;
 
-    @Reference
-    private RoleDao roleDao;
-
-    @Reference
-    private PersonWorkDao personWorkDao;
     /**
      * 查询人员信息
      *
