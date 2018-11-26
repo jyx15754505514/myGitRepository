@@ -3,6 +3,7 @@ package com.ccicnavi.bims.subContractor.service;
 import com.ccicnavi.bims.customer.dao.Impl.SubLinkmanDaoImpl;
 import com.ccicnavi.bims.customer.dao.SubLinkmanDao;
 import com.ccicnavi.bims.customer.pojo.SubLinkmanDO;
+import com.ccicnavi.bims.customer.pojo.SubLinkmanDTO;
 import org.junit.Test;
 
 /**
@@ -42,7 +43,7 @@ public class SubcLinkmanTest{
     @Test
     public void  updateSubcLinkman(){
         SubLinkmanDO subLinkmanDO = new SubLinkmanDO();
-        subLinkmanDO.setLinkmanUuid("0000001");
+        subLinkmanDO.setLinkmanUuid("181125213417516366039202795520");
         subLinkmanDO.setLinkmanName("联系人改名称了");
         int count = subLinkmanDaoImpl.updateSubLinkman(subLinkmanDO,null);
         System.err.println(count);
@@ -56,11 +57,13 @@ public class SubcLinkmanTest{
      */
     @Test
     public void deleteSubcLinkman(){
-        SubLinkmanDO subLinkmanDO = new SubLinkmanDO();
-        subLinkmanDO.setLinkmanUuid("0000001");
-        subLinkmanDO.setIsDeleted("Y");
-        int count = subLinkmanDaoImpl.updateSubLinkman(subLinkmanDO,null);
-        System.err.println(count);
+
+        SubLinkmanDTO subLinkmanDTO = new SubLinkmanDTO();
+        subLinkmanDTO.setLinkmanUuid("181125213417516366039202795520");
+        Integer integer = subLinkmanDaoImpl.deleteSubLinkman(subLinkmanDTO, null);
+        System.err.println(integer);
+
+
     }
     @Test
     public void getSubcLinkman(){
