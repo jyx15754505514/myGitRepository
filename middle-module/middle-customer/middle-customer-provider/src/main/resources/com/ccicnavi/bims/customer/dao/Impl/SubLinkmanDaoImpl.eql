@@ -257,7 +257,7 @@ WHERE
      -- if linkmanUuids != null
        AND linkman_uuid IN
         -- for item=item index=index collection=linkmanUuids open=( separator=, close=)
-            #item#
+            '#item#',
         -- end
     -- end
 

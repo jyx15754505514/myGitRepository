@@ -9,6 +9,8 @@ import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.n3r.eql.EqlTran;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /**
@@ -16,6 +18,7 @@ import java.util.List;
  * @Date: 2018/11/23 15:27
  * @Description: 分包方银行信息
  */
+@Service
 public class SubBankDaoImpl implements SubBankDao {
     /**
      * @Author FanDongSheng

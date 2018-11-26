@@ -11,8 +11,7 @@ import com.ccicnavi.bims.product.pojo.CategoryDO;
 import com.ccicnavi.bims.product.pojo.CategoryDTO;
 import com.ccicnavi.bims.product.pojo.CategoryOrgDO;
 import com.ccicnavi.bims.product.pojo.CategoryOrgDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,9 +28,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/category")
+@Slf4j
 public class CategoryController {
 
-    private final static Logger log = LoggerFactory.getLogger(CategoryController.class);
 
     @Reference(timeout = 30000)
     CategoryService categoryService;
@@ -260,6 +259,20 @@ public class CategoryController {
             return ResultT.success(CustInvoiceList);
         } catch (Exception e) {
             log.error("根据所属公司机构和业务线查询出所有子级产品分类信息(子公司)~", e);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+    }
+
+    /**
+     * 根据组织机构对应的产品分类(支持多个)查询其下的具体产品分类信息
+     */
+    @RequestMapping(value = "/listCategoryByParentAllUuids", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT listCategoryByParentAllUuids(@RequestBody CategoryOrgDTO categoryOrgDTO) {
+        try {
+            List<CategoryDO> CustInvoiceList = categoryService.listCategoryByParentAllUuids(categoryOrgDTO);
+            return ResultT.success(CustInvoiceList);
+        } catch (Exception e) {
+            log.error("根据组织机构对应的产品分类(支持多个)查询其下的具体产品分类信息~", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }

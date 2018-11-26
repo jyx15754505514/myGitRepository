@@ -5,14 +5,11 @@
        btn_uuid,
        app_sys_uuid,
        prod_catalog_uuid
-from sys_role_permission
-
- --iff butUuid != null and butUuid != ''
-   where btn_uuid = '#butUuid#'
-  --end
- --iff roleUuid != null and roleUuid != ''
+from
+    sys_role_permission
+   where
+   btn_uuid = '#butUuid#'
   and role_uuid = '#roleUuid#'
-  --end
 
 -- 新增角色按钮
 -- [insertRolePermission]
@@ -40,12 +37,7 @@ from sys_role_permission
 
 -- 删除角色按钮
 -- [deleteRolePermission]
-
     delete from sys_role_permission
     where
-     --iff butUuid != null and butUuid != ''
        btn_uuid = '#butUuid#'
-     --end
-     --iff roleUuid != null and roleUuid != ''
       and role_uuid = '#roleUuid#'
-     --end

@@ -8,8 +8,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CatalogWorkhourService;
 import com.ccicnavi.bims.product.pojo.CatalogWorkhourDO;
 import com.ccicnavi.bims.product.pojo.CatalogWorkhourDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +25,11 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/catalogWorkhour")
+@Slf4j
 public class CatalogWorkhourController {
-
-    private final static Logger log = LoggerFactory.getLogger(CategoryController.class);
 
     @Reference(timeout = 30000)
     CatalogWorkhourService catalogWorkhourService;
-
 
     /**
      * 查询全部产品线对应工时工资信息()
