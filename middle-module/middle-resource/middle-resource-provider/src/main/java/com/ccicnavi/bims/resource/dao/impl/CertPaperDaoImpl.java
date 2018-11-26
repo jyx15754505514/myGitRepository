@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Service
 public class CertPaperDaoImpl implements CertPaperDao {
-    /*
+    /**
      * 查询证书纸信息
      * @param certPaper
      * @return
@@ -31,7 +31,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
         return EqlUtils.getInstance("DEFAULT").select("listCertPaper").params(certPaper).returnType(CertPaperDO.class).execute();
     }
 
-    /*
+    /**
      * 新增证书纸信息
      * @param certPaper
      * @return
@@ -42,7 +42,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
         return EqlUtils.getInstance("DEFAULT").insert("insertCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
 
-    /*
+    /**
      *更新证书纸信息
      * @param certPaper
      * @return
@@ -52,7 +52,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
     public Integer updateCertPaper(CertPaperDO certPaper) throws Exception{
         return EqlUtils.getInstance("DEFAULT").update("updateCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
-    /*
+    /**
      *删除证书纸信息
      * @param certPaper
      * @return
@@ -62,7 +62,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
     public Integer deleteCertPaper(CertPaperDO certPaper) throws Exception{
         return EqlUtils.getInstance("DEFAULT").delete("deleteCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
-    /*
+    /**
      *根据uuid查询证书纸信息对象
      * @param certPaper
      * @return
@@ -72,7 +72,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
     public CertPaperDO getCertPaper(CertPaperDO certPaper) throws Exception{
         return EqlUtils.getInstance("DEFAULT").selectFirst("getCertPaper").params(certPaper).returnType(CertPaperDO.class).execute();
     }
-    /*
+    /**
      *分页查询证书纸列表
      * @param pageParameter
      * @return

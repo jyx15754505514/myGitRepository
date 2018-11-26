@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 
-/*
+/**
  * @Author:  heibin
  * @Description:   证书纸测试类
  * @Date:  2018/11/23  11:21
@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 public class CertPaperServiceImplTest {
 
-    /*
+    /**
      * 证书纸新增
      **/
     @Test
@@ -58,7 +58,7 @@ public class CertPaperServiceImplTest {
         }
 
     }
-    /*
+    /**
      *编辑回显的时候用
      * 根据主键id查询证书纸对象
      **/
@@ -74,7 +74,7 @@ public class CertPaperServiceImplTest {
             log.error("根据uuid查询证书纸对象失败",e);
         }
     }
-    /*
+    /**
      *
      * 修改证书纸
      **/
@@ -111,7 +111,7 @@ public class CertPaperServiceImplTest {
         }
 
     }
-    /*
+    /**
      *
      * 删除证书纸
      **/
@@ -127,7 +127,7 @@ public class CertPaperServiceImplTest {
             log.error("删除证书纸失败",e);
         }
     }
-    /*
+    /**
      * 查询所有的证书纸
      **/
     @Test
@@ -142,7 +142,7 @@ public class CertPaperServiceImplTest {
             log.error("查询证书纸失败",e);
         }
     }
-    /*
+    /**
      * 校验证书纸 流水起始号  流水结束号
      **/
     @Test
@@ -186,7 +186,7 @@ public class CertPaperServiceImplTest {
        // return result;
 
     }
-    /*
+    /**
      * 证书纸分页列表
      **/
     @Test

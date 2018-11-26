@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/*
+/**
  * @Auther: fandongsheng
  * @Date: 2018/11/14 16:13
  * @Description:
@@ -28,7 +28,7 @@ public class CertPaperServiceImpl implements CertPaperService {
     CertPaperDao certPaperDao;
     @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
     IdWorkerService idWorkerService;
-    /*
+    /**
      * 查询证书纸
      * @param certPaper
      * @return
@@ -43,7 +43,7 @@ public class CertPaperServiceImpl implements CertPaperService {
         return null;
     }
 
-    /*
+    /**
      * 根据证书纸paperUuid找到证书纸信息
      * @param certPaper
      * @return
@@ -58,7 +58,7 @@ public class CertPaperServiceImpl implements CertPaperService {
         return null;
     }
 
-    /*
+    /**
      * 新增证书纸信息
      * @param certPaper
      * @return
@@ -93,7 +93,7 @@ public class CertPaperServiceImpl implements CertPaperService {
         return 0;
     }
 
-    /*
+    /**
      * 更新证书纸信息
      * @param certPaper
      * @return
@@ -127,7 +127,7 @@ public class CertPaperServiceImpl implements CertPaperService {
         return 0;
     }
 
-    /*
+    /**
      * 删除证书纸
      * @param certPaper
      * @return
@@ -141,7 +141,7 @@ public class CertPaperServiceImpl implements CertPaperService {
         }
         return 0;
     }
-    /*
+    /**
      * 校验证书纸 流水起始号  流水结束号
      * @param certPaper
      * @return Boolean
@@ -182,7 +182,7 @@ public class CertPaperServiceImpl implements CertPaperService {
         }
         return result;
     }
-    /*
+    /**
      * @Author heibin
      * @Description  证书纸分页列表
      * @Date 17:02 2018/11/23
