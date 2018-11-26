@@ -41,6 +41,12 @@ where
       -- for item=item index=index collection=subcBankUuids open=( separator=, close=)
           '#item#'
       -- end
+-- if subcUuids != null
+    AND subc_uuid IN
+      -- for item=item index=index collection=subcUuids open=( separator=, close=)
+          '#item#'
+      -- end
+-- end
 
 
 -- [insertSubBank]

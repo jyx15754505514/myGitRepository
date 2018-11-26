@@ -25,6 +25,10 @@ public class SubBankDTO implements Serializable {
      */
     private String subcUuid;
     /**
+     * 分包方主键List
+     */
+    private List<String> subcUuids;
+    /**
      * 分包方名称
      */
     private String subcCustomer;

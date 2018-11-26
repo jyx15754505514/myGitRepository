@@ -25,12 +25,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @program: bims-backend
- * @description: 设备管理
- * @author: ZhaoXu
- * @create: 2018-11-23 10:27
- */
+/*
+*@Param:
+*@description: 设备管理
+*@return:
+*@author: WangGengXiang
+*@create: 2018/11/26 20:21
+*/
 @RestController
 @RequestMapping(value = "/expire")
 @Slf4j
@@ -42,25 +43,6 @@ public class ExpireEquipController {
 
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
     EquipTestService equipTestService;
-
-    /*
-     *@Param: [pageParameter]
-     *@description: 到期提醒查询
-     *@return: com.ccicnavi.bims.common.ResultT
-     *@author: WangGengXiang
-     *@create: 2018/11/26 17:29
-     */
-//    @RequestMapping(value = "/listExpireTypePage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-//    public ResultT expireEquip(@RequestBody PageParameter<EquipDTO> pageParameter) {
-//        try {
-//            PageBean<EquipDO> EquipList = equipService.expireEquip(pageParameter);
-//            return ResultT.success(EquipList);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResultT.failure(ResultCode.LIST_FAILURE);
-//        }
-//    }
-
 
     /*
      *@Param: [pageParameter]

@@ -64,8 +64,15 @@ public class AkitaServiceImpl implements AkitaService {
 
     @Override
     public List<AttaDO> listAtta(String... businId) {
-
-
-        return null;
+        List<AttaDO> attaDOS = attaDao.listAtta(businId);
+        return attaDOS;
     }
+
+    @Override
+    public void delete(AttaDO attaDO) {
+        fastFileStorageClient.deleteFile(attaDO.getFileNewName());
+        attaDao.deleteAtta(attaDO.getId());
+    }
+
+
 }

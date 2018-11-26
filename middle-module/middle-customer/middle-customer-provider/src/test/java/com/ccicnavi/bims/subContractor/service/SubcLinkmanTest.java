@@ -27,7 +27,7 @@ public class SubcLinkmanTest{
         for (int i = 1; i <= 20; i++) {
             SubLinkmanDO subLinkmanDO = new SubLinkmanDO();
             subLinkmanDO.setLinkmanUuid("000000"+i);
-            subLinkmanDO.setSubcUuid("000000100");
+            subLinkmanDO.setSubcUuid("88881");
             subLinkmanDO.setLinkmanName("联系人名称" + i);
             subLinkmanDO.setGender("F");
             subLinkmanDO.setPhone("1314100013"+i);
