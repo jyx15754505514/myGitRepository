@@ -27,6 +27,14 @@ public class SubcontractorDO implements Serializable {
      */
     private String subcCode;
     /**
+     * 统一社会信用代码
+     */
+    private String subcUscc;
+    /**
+     * 分包方类型
+     */
+    private String subcUnitType;
+    /**
      * 单位名称
      */
     private String name;
