@@ -74,7 +74,9 @@ public class UserManagerImpl implements UserManager {
         String userUuid = idWorkerService.getId(new Date());
         userDTO.setUserUuid(userUuid);
         Integer insertUser = userService.insertUser(userDTO);
+        if(insertUser != null && insertUser > 0) {
 
+        }
 
         PersonDO personDO = new PersonDO();
         Integer insertPerson = personService.insertPerson(personDO);
