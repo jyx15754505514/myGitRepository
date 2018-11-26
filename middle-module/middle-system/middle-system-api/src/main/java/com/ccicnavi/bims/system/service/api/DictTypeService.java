@@ -17,29 +17,39 @@ import java.util.List;
 public interface DictTypeService {
 
     /**
-    *@Description: 新增数据字典类型
-    *@Param: [dictTypeDTO]
-    *@return: java.lang.Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/24
-    */
+     * 列表查询字典类型
+     *
+     * @return java.util.List<com.ccicnavi.bims.system.pojo.DictTypeDO>
+     * @author TXW
+     * @date 2018/11/26 20:02
+     * @params [dictTypeDTO]
+     */
+    public List<DictTypeDO> listDictType(DictTypeDTO dictTypeDTO);
+
+    /**
+     * @Description: 新增数据字典类型
+     * @Param: [dictTypeDTO]
+     * @return: java.lang.Integer
+     * @Author: zhangxingbiao
+     * @date: 2018/11/24
+     */
     public Integer insertDictType(DictTypeDTO dictTypeDTO);
 
     /**
-    *@Description: 删除数据字典类型
-    *@Param: [dictTypeDTO]
-    *@return: java.lang.Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/24
-    */
+     * @Description: 删除数据字典类型
+     * @Param: [dictTypeDTO]
+     * @return: java.lang.Integer
+     * @Author: zhangxingbiao
+     * @date: 2018/11/24
+     */
     public Integer deleteDictType(DictTypeDTO dictTypeDTO);
 
     /**
-    *@Description: 更改字典类型
-    *@Param: [dictTypeDTO]
-    *@return: java.lang.Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/24
-    */
+     * @Description: 更改字典类型
+     * @Param: [dictTypeDTO]
+     * @return: java.lang.Integer
+     * @Author: zhangxingbiao
+     * @date: 2018/11/24
+     */
     public Integer updateDictType(DictTypeDTO dictTypeDTO);
 }

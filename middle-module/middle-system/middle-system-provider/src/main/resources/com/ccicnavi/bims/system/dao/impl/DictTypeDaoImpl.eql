@@ -119,3 +119,13 @@ INSERT INTO
                  '#item#'
             -- end
           -- end
+-- 列表查询字典类型
+--[listDictType]
+ select
+    dict_type_uuid, dict_type_name, dict_type_code, sort_num, comments, is_deleted, prod_catalog_uuid,
+    org_uuid, app_sys_uuid, extend1, extend2, extend3
+    from sys_dict_type
+    where is_delete = 'N'
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+    and app_sys_uuid = '#appSysUuid#'
+    and rg_uuid = '#orgUuid#'

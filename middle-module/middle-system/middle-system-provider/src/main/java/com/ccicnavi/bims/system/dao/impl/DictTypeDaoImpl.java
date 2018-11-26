@@ -26,6 +26,18 @@ import java.util.List;
 public class DictTypeDaoImpl implements DictTypeDao {
 
     /**
+     * 列表查询字典类型
+     * @author TXW
+     * @date 2018/11/26 20:30
+     * @params [dictTypeDTO]
+     * @return java.util.List<com.ccicnavi.bims.system.pojo.DictTypeDO>
+     */
+    @Override
+    public List<DictTypeDO> listDictType(DictTypeDTO dictTypeDTO) throws Exception {
+        return new Eql("DEFAULT").insert("listDictType").params(dictTypeDTO).returnType(DictTypeDO.class).execute();
+    }
+
+    /**
     *@Description: 新增数据字典类型
     *@Param: [dictTypeDTO]
     *@return: java.lang.Integer
@@ -33,7 +45,7 @@ public class DictTypeDaoImpl implements DictTypeDao {
     *@date: 2018/11/24
     */
     @Override
-    public Integer insertDictType(DictTypeDTO dictTypeDTO) {
+    public Integer insertDictType(DictTypeDTO dictTypeDTO) throws Exception{
         return new Eql("DEFAULT").insert("insertDictType").params(dictTypeDTO).returnType(Integer.class).execute();
     }
 
@@ -45,7 +57,7 @@ public class DictTypeDaoImpl implements DictTypeDao {
     *@date: 2018/11/24
     */
     @Override
-    public Integer deleteDictType(DictTypeDTO dictTypeDTO) {
+    public Integer deleteDictType(DictTypeDTO dictTypeDTO) throws Exception {
         return new Eql("DEFAULT").delete("deleteDictType").params(dictTypeDTO).returnType(Integer.class).execute();
     }
 
@@ -57,7 +69,7 @@ public class DictTypeDaoImpl implements DictTypeDao {
     *@date: 2018/11/24
     */
     @Override
-    public Integer updateDictType(DictTypeDTO dictTypeDTO) {
+    public Integer updateDictType(DictTypeDTO dictTypeDTO) throws Exception {
         return new Eql("DEFAULT").update("updateDictType").params(dictTypeDTO).returnType(Integer.class).execute();
     }
 }
