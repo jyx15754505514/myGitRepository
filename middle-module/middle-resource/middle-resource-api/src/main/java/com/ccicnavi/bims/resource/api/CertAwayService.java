@@ -14,7 +14,7 @@ import com.ccicnavi.bims.resource.pojo.CertAwayDO;
 public interface CertAwayService {
     /**
      * 新增分发记录
-     * @param certPaper
+     * @param certAwayDO
      * @return Integer
      */
     ResultT insertCertAway(CertAwayDO certAwayDO) ;
@@ -28,7 +28,7 @@ public interface CertAwayService {
     PageBean<CertAwayDO> listCertAwayPage(PageParameter<CertAwayDO> pageParameter);
     /**
      * 删除证书纸
-     * @param certPaper
+     * @param certAwayDO
      * @return
      */
     Integer deleteCertAway(CertAwayDO certAwayDO) ;
