@@ -8,6 +8,10 @@ import com.ccicnavi.bims.resource.dao.impl.EquipUseDaoImpl;
 import com.ccicnavi.bims.resource.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
+import org.springframework.util.StringUtils;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -281,6 +285,64 @@ public class TestEquip {
             System.err.print(equipDaoImpl.deleteEquip(equipDTO, null));
         } catch (Exception e){
             log.error("删除设备失败",e);
+        }
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 删除
+     * @Data 2018/11/26 11:24
+     * @Param []
+     * @Return void
+     */
+    @Test
+    public void deleteEquipInfo(){
+        /**创建事务*/
+        EqlTran eqlTran = new Eql().newTran();
+        /**定义检定记录对象*/
+        EquipTestDTO equipTestDTO = new EquipTestDTO();
+        /**定义领用记录对象*/
+        EquipUseDTO equipUseDTO = new EquipUseDTO();
+        /**定义设备对象*/
+        EquipDTO equipDTO = new EquipDTO();
+        Boolean equip = true;
+        try {
+            eqlTran.start();
+            List<String> equipUuid = new ArrayList<>();
+            equipUuid.add("equip_uuid_a");
+            equipDTO.setEquipUuids(equipUuid);
+            Integer count = equipDaoImpl.deleteEquip(equipDTO,eqlTran);
+            if(count <= 0){
+                equip = false;
+            }
+           if(!StringUtils.isEmpty(equipDTO.getEquipUuid())){
+               equipTestDTO.setEquipUuid(equipDTO.getEquipUuid());
+               equipUseDTO.setEquipUuid(equipDTO.getEquipUuid());
+           }else if(equipDTO.getEquipUuids().size() > 0){
+               equipTestDTO.setEquipUuids(equipDTO.getEquipUuids());
+               equipUseDTO.setEquipUuids(equipDTO.getEquipUuids());
+           }
+            /**删除设备检定记录*/
+            Integer equipTest = equipTestDaoImpl.deleteEquipTest(equipTestDTO,eqlTran);
+            if(equipTest <= 0){
+                equip = false;
+            }
+            /**删除设备领用记录*/
+            Integer equipUse = equipUseDaoImpl.deleteEquipUse(equipUseDTO,eqlTran);
+            if(equipUse <= 0){
+                equip = false;
+            }
+            if(equip = true){
+                eqlTran.commit();
+            }
+            System.out.println("删除设备信息："+count);
+            System.out.println("删除检定记录："+equipTest);
+            System.out.println("删除领用记录："+equipUse);
+        } catch (Exception e) {
+            log.error("删除设备台账失败",e);
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
         }
     }
 
