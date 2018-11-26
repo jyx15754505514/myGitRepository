@@ -1,21 +1,17 @@
 package com.ccicnavi.bims.customer.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @Auther: fandongsheng
  * @Date: 2018/11/23 14:38
  * @Description: 分包方联系人
  */
-@Setter
-@Getter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SubLinkmanDO implements Serializable {
     /**
      * 联系人主键
