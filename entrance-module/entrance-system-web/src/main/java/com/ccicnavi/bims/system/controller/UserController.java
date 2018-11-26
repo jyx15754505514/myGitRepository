@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.controller;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
 
 /**
  * @program: bims-backend
@@ -37,7 +40,8 @@ public class UserController {
     @Reference
     private SSOService ssoService;
 
-
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    private IdWorkerService idWorkerService;
     /**
     *@Description: 查询登录用户信息(条件查询)
     *@Param: [UserDO]
@@ -175,7 +179,9 @@ public class UserController {
         Integer saveUser = null;
         try {
             if (StringUtils.isEmpty(userDTO.getUserUuid())) {
-                saveUser = userManager.insertUser(userDTO);
+                String userUuid = idWorkerService.getId(new Date());
+                userDTO.setUserUuid(userUuid);
+                saveUser = userService.insertUser(userDTO);
             } else {
                 saveUser = userService.updateUser(userDTO);
             }
@@ -183,9 +189,9 @@ public class UserController {
                 return ResultT.success(saveUser);
             }
         } catch (Exception e) {
-            log.error("新建用户失败", e);
-        }
-        return ResultT.failure(ResultCode.USER_SAVE_USER);
+                log.error("新建用户失败", e);
+            }
+            return ResultT.failure(ResultCode.USER_SAVE_USER);
     }
 
     /**

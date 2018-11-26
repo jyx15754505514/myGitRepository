@@ -32,65 +32,34 @@ import java.util.List;
 @Slf4j
 public class UserManagerImpl implements UserManager {
 
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private UserService userService;
 
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private RoleService roleService;
 
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private DepartmentService deptService;
 
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private MenuService menuService;
 
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private CatalogOrgService catalogOrgService;
 
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
     private PasswdService passwdService;
 
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
     private SSOService ssoService;
 
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
-    @Reference
-    private PersonService personService;
-
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
-    @Reference
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
     private IdWorkerService idWorkerService;
 
     @Autowired
     private HttpServletRequest request;
 
-    /*
-    * 新增用户
-    * @Author zhaotao
-    * @Date  2018/11/26 17:17
-    * @Param [userDTO]
-    * @return java.lang.Integer
-    **/
-    @Override
-    public Integer insertUser(UserDTO userDTO) throws Exception {
-        String userUuid = idWorkerService.getId(new Date());
-        userDTO.setUserUuid(userUuid);
-        Integer insertUser = userService.insertUser(userDTO);
-        if(insertUser != null && insertUser > 0) {
 
-        }
-
-        PersonDO personDO = new PersonDO();
-        Integer insertPerson = personService.insertPerson(personDO);
-        return null;
-    }
     /*
     * 用户登录
     * @Author zhaotao
