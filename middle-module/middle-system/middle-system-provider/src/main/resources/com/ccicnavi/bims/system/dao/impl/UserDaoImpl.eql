@@ -439,6 +439,8 @@
     WHERE
      su.is_deleted = 'N'
      and sr.role_uuid ='#roleUuid#'
+     --if orgUuid != null and  orgUuid != ''
+     and su.org_uuid ='#orgUuid#'
 
 -- 查询未授权用户
 -- [selectunauthUserList]
@@ -485,4 +487,7 @@
     LEFT JOIN sys_role_user sr ON su.user_uuid = sr.user_uuid
     WHERE
         su.is_deleted = 'N'
-        and sr.role_uuid ='#roleUuid#')
+        and sr.role_uuid ='#roleUuid#'
+        and su.org_uuid ='#orgUuid#'
+        )
+             and org_uuid ='#orgUuid#'

@@ -251,7 +251,7 @@ and cust_uuid = '#custUuid#'
 		-- iff isDeleted != null and isDeleted !=''
 				is_deleted,
 
-		-- iff createdTime != null and createdTime !=''
+		-- iff createdTime == null
 				created_time,
 
 		-- iff createdUuid != null and createdUuid !=''
@@ -259,12 +259,6 @@ and cust_uuid = '#custUuid#'
 
 		-- iff createdName != null and createdName !=''
 				created_name,
-
-		-- iff updatedTime != null and updatedTime !=''
-				updated_time,
-
-		-- iff updatedName != null and updatedName !=''
-				updated_name,
 
 		-- iff prodCatalogUuid != null and prodCatalogUuid !=''
 				prod_catalog_uuid,
@@ -404,20 +398,14 @@ and cust_uuid = '#custUuid#'
 		-- iff isDeleted != null and isDeleted !=''
 				'#isDeleted#',
 
-		-- iff createdTime != null and createdTime !=''
-				'#createdTime#',
+		-- iff createdTime == null
+				NOW(),
 
 		-- iff createdUuid != null and createdUuid !=''
 				'#createdUuid#',
 
 		-- iff createdName != null and createdName !=''
 				'#createdName#',
-
-		-- iff updatedTime != null and updatedTime !=''
-				'#updatedTime#',
-
-		-- iff updatedName != null and updatedName !=''
-				'#updatedName#',
 
 		-- iff prodCatalogUuid != null and prodCatalogUuid !=''
 				'#prodCatalogUuid#',
@@ -561,6 +549,7 @@ and cust_uuid = '#custUuid#'
 
        -- iff updatedName != null
          updated_name ='#updatedName#',
+
        -- iff updatedUuid != null
          updated_uuid ='#updatedUuid#',
 
