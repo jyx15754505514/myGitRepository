@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.resource.equip.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.impl.EquipDaoImpl;
@@ -35,6 +37,9 @@ public class TestEquip {
 
     //调用设备检定记录
     EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
+
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
 
     /**
      * @author songyateng
@@ -240,7 +245,8 @@ public class TestEquip {
     public void insertEquip(){
         try {
             EquipDO equipDO = new EquipDO();
-            equipDO.setEquipUuid("equip_uuid_d");
+            String equipUuid = idWorkerService.getId(new Date());
+            equipDO.setEquipUuid(equipUuid);
             equipDO.setIsDeleted("N");
             equipDO.setProdCatalogUuid("yewu2.0");
             equipDO.setOrgUuid("yewu2.0");
