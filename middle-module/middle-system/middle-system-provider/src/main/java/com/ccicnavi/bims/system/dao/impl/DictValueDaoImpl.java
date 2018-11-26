@@ -14,48 +14,61 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- *@program: bims-backend
- *@description: 数据字典数值
- *@author: zhangxingbiao
- *@create: 2018-11-20 11:06
+ * @program: bims-backend
+ * @description: 数据字典数值
+ * @author: zhangxingbiao
+ * @create: 2018-11-20 11:06
  */
 @Service
 @Slf4j
 public class DictValueDaoImpl implements DictValueDao {
 
     /**
-    *@Description: 新增数据字典数值
-    *@Param: [dictTypeDTO]
-    *@return: java.lang.Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/24
-    */
+     * @Description: 新增数据字典数值
+     * @Param: [dictTypeDTO]
+     * @return: java.lang.Integer
+     * @Author: zhangxingbiao
+     * @date: 2018/11/24
+     */
     @Override
-    public Integer insertDictValue(DictTypeDTO dictTypeDTO) {
+    public Integer insertDictValue(DictTypeDTO dictTypeDTO) throws Exception {
         return new Eql("DEFAULT").insert("insertDictValue").params(dictTypeDTO).returnType(Integer.class).execute();
     }
 
     /**
-    *@Description: 删除数据字典数值
-    *@Param: [dictTypeDTO]
-    *@return: java.lang.Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/24
-    */
+     * @Description: 删除数据字典数值
+     * @Param: [dictTypeDTO]
+     * @return: java.lang.Integer
+     * @Author: zhangxingbiao
+     * @date: 2018/11/24
+     */
     @Override
-    public Integer deleteDictValue(DictTypeDTO dictTypeDTO) {
+    public Integer deleteDictValue(DictTypeDTO dictTypeDTO) throws Exception {
         return new Eql("DEFAULT").delete("insertDictValue").params(dictTypeDTO).returnType(Integer.class).execute();
     }
 
     /**
-    *@Description: 更改数据字典数值
-    *@Param: [dictTypeDTO]
-    *@return: java.lang.Integer
-    *@Author: zhangxingbiao
-    *@date: 2018/11/24
-    */
+     * @Description: 更改数据字典数值
+     * @Param: [dictTypeDTO]
+     * @return: java.lang.Integer
+     * @Author: zhangxingbiao
+     * @date: 2018/11/24
+     */
     @Override
-    public Integer updateDictValue(DictTypeDTO dictTypeDTO) {
+    public Integer updateDictValue(DictTypeDTO dictTypeDTO) throws Exception {
         return new Eql("DEFAULT").update("insertDictValue").params(dictTypeDTO).returnType(Integer.class).execute();
+    }
+
+    /**
+     * 查询字典值列表
+     *
+     * @return java.util.List<com.ccicnavi.bims.system.pojo.DictValueDO>
+     * @author TXW
+     * @date 2018/11/26 17:40
+     * @params [dictParentUuid]
+     */
+    @Override
+    public List<DictValueDO> listDictValue(String dictParentUuid) throws Exception {
+        return new Eql("DEFAULT").select("listDictValue").params(dictParentUuid).returnType(DictValueDO.class).execute();
     }
 }
