@@ -1,9 +1,7 @@
 package com.ccicnavi.bims.resource.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,48 +11,88 @@ import java.util.Date;
  * @author: panyida
  * @create: 2018-11-15 19:32
  **/
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EquipUseDO implements Serializable {
 
+    /**
+     * 主键uuid
+     */
     private String equipUseUuid;
-
+    /**
+     * 器具uuid
+     */
     private String equipUuid;
-
+    /**
+     * 领用日期
+     */
     private Date useDate;
-
+    /**
+     * 领用人
+     */
     private String usePerson;
-
+    /**
+     * 领用人部门
+     */
     private String useDept;
-
+    /**
+     * 归还日期
+     */
     private Date backDate;
-
+    /**
+     * 备注
+     */
     private String comments;
-
+    /**
+     * 删除标识（N正常Y删除）
+     */
     private String isDeleted;
-
+    /**
+     * 创建时间
+     */
     private Date createdTime;
-
+    /**
+     * 创建人uuid
+     */
     private String createdUuid;
-
+    /**
+     * 创建人
+     */
     private String createdName;
-
+    /**
+     * 最后一次更新时间
+     */
     private Date updatedTime;
-
+    /**
+     * 更新人uuid
+     */
     private String updatedUuid;
-
+    /**
+     * 更新人
+     */
     private String updatedName;
-
+    /**
+     * 产品线id
+     */
     private String prodCatalogUuid;
-
+    /**
+     * 归属机构id
+     */
     private String orgUuid;
-
+    /**
+     * 应用系统id
+     */
     private String appSysUuid;
-
+    /**
+     * 拓展字段1
+     */
     private String extend1;
-
+    /**
+     * 拓展字段2
+     */
     private String extend2;
-
+    /**
+     * 拓展字段3
+     */
     private String extend3;
 }

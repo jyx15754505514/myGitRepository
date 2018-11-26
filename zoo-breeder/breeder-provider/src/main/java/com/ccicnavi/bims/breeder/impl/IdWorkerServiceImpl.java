@@ -36,10 +36,10 @@ public class IdWorkerServiceImpl implements IdWorkerService {
     }
 
     @Override
-    public String getBusinessNumber(String sysUID, String busiId, String step, String cycle) {
+    public String getBusinessNumber(String sysUID, long initValue, String step, String cycle) {
         Long incr = null;
         try {
-            incr = incr(sysUID + busiId,
+            incr = incr(sysUID,initValue,
                     "D".equals(cycle) ? Constants.SECONDS_DAY :
                             ("W".equals(cycle) ? Constants.SECONDS_WEEK :
                                     ("M".equals(cycle) ? Constants.SECONDS_MONTH :
@@ -48,15 +48,16 @@ public class IdWorkerServiceImpl implements IdWorkerService {
             log.error("", e);
             throw new RuntimeException();
         }
-        return busiId + NumberUtails.autoGenericCode(String.valueOf(incr),Integer.parseInt(step));
+        return String.valueOf(incr);
     }
 
-    public Long incr(String key, long liveTime) {
+    private Long incr(String key,long initValue, long liveTime) {
         RedisAtomicLong entityIdCounter = new RedisAtomicLong(key, redisTemplate.getConnectionFactory());
         Long increment = entityIdCounter.getAndIncrement();
         if ((null == increment || increment.longValue() == 0) && liveTime > 0) {
+            entityIdCounter.set(initValue);
             entityIdCounter.expire(liveTime, TimeUnit.SECONDS);
         }
-        return increment;
+        return entityIdCounter.addAndGet(increment);
     }
 }
