@@ -9,8 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 客户发票
- */
+  * @author songyateng
+  * @description 客户发票
+  * @date 2018/11/26 10:00
+  */
 @Setter
 @Getter
 @ToString
@@ -95,6 +97,8 @@ public class CustInvoiceDO implements Serializable {
      * 扩展字段3
      */
     private String extend3;
-
-    private List<String> uuids;//要删除的客户发票主键
+    /**
+     * 要删除的客户发票主键
+     */
+    private List<String> uuids;
 }
