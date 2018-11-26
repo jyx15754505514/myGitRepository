@@ -78,10 +78,10 @@ public class SubcQualifiController {
      * @return com.ccicnavi.bims.common.ResultT
      */
     @RequestMapping(value = "/removeSubcQuali",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT removeSubcQuali(@RequestBody SubcQualifiDTO subcQualifiDTO, EqlTran eqlTran ){
+    public ResultT removeSubcQuali(@RequestBody SubcQualifiDTO subcQualifiDTO){
         int count=0;
         try {
-            count=subcQualifiService.deleteSubcQuali(subcQualifiDTO,eqlTran);
+            count=subcQualifiService.deleteSubcQuali(subcQualifiDTO);
             if(count > 0){
                 return ResultT.success("删除分包方资质信息成功");
             }
