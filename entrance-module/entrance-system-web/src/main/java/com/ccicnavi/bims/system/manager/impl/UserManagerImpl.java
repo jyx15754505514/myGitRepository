@@ -32,28 +32,36 @@ import java.util.List;
 @Slf4j
 public class UserManagerImpl implements UserManager {
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private UserService userService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private RoleService roleService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private DepartmentService deptService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private MenuService menuService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private CatalogOrgService catalogOrgService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference
     private PasswdService passwdService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    @Reference
     private SSOService ssoService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference
     private IdWorkerService idWorkerService;
 
     @Autowired
