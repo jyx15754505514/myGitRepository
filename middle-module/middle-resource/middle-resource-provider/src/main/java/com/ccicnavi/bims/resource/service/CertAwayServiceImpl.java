@@ -61,7 +61,7 @@ public class CertAwayServiceImpl implements CertAwayService {
             certPaperDO.setPaperUuid(certAwayDO.getPaperUuid());
             certPaperDO.setResidualNum((Integer.parseInt(getCertPaper.getResidualNum())-Integer.parseInt(awayNum))+"");
             certPaperDO.setCurrentCode(Integer.parseInt(getCertPaper.getCurrentCode())+(Integer.parseInt(awayNum))+"");
-            certPaperResult=certPaperDao.updateCertPaper(certPaperDO);
+            certPaperResult=certPaperDao.updateCertPaper(certPaperDO,eqlTran);
             certAwayDO.setAwayUuid(idWorkerService.getId(new Date()));
             //分发前证书纸对象当前号也就是分发开始号
             certAwayDO.setStartNum(getCertPaper.getCurrentCode());
@@ -69,7 +69,7 @@ public class CertAwayServiceImpl implements CertAwayService {
             certAwayDO.setEndNum(
                     Integer.parseInt(getCertPaper.getCurrentCode())+(Integer.parseInt(awayNum)-1)+""
             );
-            certAwayResult=certAwayDao.insertCertAway(certAwayDO);
+            certAwayResult=certAwayDao.insertCertAway(certAwayDO,eqlTran);
            //证书流水
             Integer startNum=Integer.parseInt(getCertPaper.getCurrentCode());
             Integer endNum=Integer.parseInt(getCertPaper.getCurrentCode())+(Integer.parseInt(awayNum)-1);
@@ -86,7 +86,7 @@ public class CertAwayServiceImpl implements CertAwayService {
                 certflowDO.setAppSysUuid("yewu2.0");
                 certflowDO.setProdCatalogUuid("yewu2.0");
                 certflowDO.setOrgUuid("yewu2.0");
-                certFlowResult=certFlowDao.insertCertFlow(certflowDO);
+                certFlowResult=certFlowDao.insertCertFlow(certflowDO,eqlTran);
                 if(certFlowResult!=1){
                     result=false;
                 }
