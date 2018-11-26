@@ -6,11 +6,15 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.GoodsService;
 import com.ccicnavi.bims.product.dao.GoodsDao;
+import com.ccicnavi.bims.product.dao.Impl.GoodsDaoImpl;
 import com.ccicnavi.bims.product.pojo.GoodsDO;
+import com.ccicnavi.bims.product.pojo.GoodsDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -72,9 +76,9 @@ public class GoodsServiceImpl implements GoodsService {
      * @return int
      **/
     @Override
-    public int removeGoodsDO(GoodsDO goodsDO){
+    public int removeGoodsDO(GoodsDTO goodsDTO){
         try {
-            int count = goodsDao.removeGoodsDO(goodsDO);
+            int count = goodsDao.removeGoodsDO(goodsDTO);
             return count;
         } catch (Exception e) {
             e.printStackTrace();

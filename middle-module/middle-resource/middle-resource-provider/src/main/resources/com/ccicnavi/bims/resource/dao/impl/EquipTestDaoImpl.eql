@@ -300,6 +300,11 @@ WHERE
     -- end
 --iff equipUuid != null and equipUuid != ''
     and equip_uuid = '#equipUuid#'
+--iff equipUuids != null
+    and equip_uuid in
+    -- for item=item index=index collection=equipUuids open=( separator=, close=)
+        '#item#'
+    -- end
 
 
 -- [listEquipTestDTO]

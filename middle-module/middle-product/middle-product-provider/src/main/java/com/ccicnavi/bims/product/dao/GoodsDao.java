@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.GoodsDO;
+import com.ccicnavi.bims.product.pojo.GoodsDTO;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface GoodsDao {
 
     int saveGoodsDO(GoodsDO goodsDO) throws Exception;
 
-    int removeGoodsDO(GoodsDO goodsDO) throws Exception;
+    int removeGoodsDO(GoodsDTO goodsDTO) throws Exception;
 
     int updateGoodsDO(GoodsDO goodsDO) throws Exception;
 
