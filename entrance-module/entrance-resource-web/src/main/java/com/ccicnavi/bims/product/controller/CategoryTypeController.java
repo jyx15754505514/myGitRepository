@@ -9,6 +9,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CategoryTypeService;
 import com.ccicnavi.bims.product.pojo.CategoryTypeDO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,85 +38,107 @@ public class CategoryTypeController {
     public ResultT listCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
             List<CategoryTypeDO> categoryTypeDOList=categoryTypeService.listCategoryType(categoryTypeDO);
-            if (categoryTypeDOList!=null)
-            {
-                return ResultT.success(categoryTypeDOList);
-            }
+            return ResultT.success(categoryTypeDOList);
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
     @RequestMapping(value = "/saveCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT saveCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         categoryTypeDO.setProductCategoryTypeUuid(idWorkerService.getId(new Date()));
         try {
+            if (StringUtils.isEmpty(categoryTypeDO.getProductCategoryTypeUuid())&&StringUtils.isEmpty(categoryTypeDO.getProdCatalogUuid())&&StringUtils.isEmpty(categoryTypeDO.getOrgUuid())&&StringUtils.isEmpty(categoryTypeDO.getAppSysUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=categoryTypeService.saveCategoryType(categoryTypeDO);
             if (num>0)
             {
                 return ResultT.success(num);
+            }else
+            {
+                return ResultT.failure(ResultCode.ADD_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.ADD_FAILURE);
         }
-        return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
     @RequestMapping(value = "/removeCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT removeCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
+            if (StringUtils.isEmpty(categoryTypeDO.getProductCategoryTypeUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=categoryTypeService.removeCategoryType(categoryTypeDO);
             if (num>0)
             {
                 return ResultT.success(num);
+            }else
+            {
+                return ResultT.failure(ResultCode.DELETE_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.DELETE_FAILURE);
         }
-        return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 
     @RequestMapping(value = "/updateCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT updateCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
+            if (StringUtils.isEmpty(categoryTypeDO.getProductCategoryTypeUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=categoryTypeService.updateCategoryType(categoryTypeDO);
             if (num>0)
             {
                 return ResultT.success(num);
+            }else
+            {
+                return ResultT.failure(ResultCode.UPDATE_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
-        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     @RequestMapping(value = "/getCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
+            if (StringUtils.isEmpty(categoryTypeDO.getProductCategoryTypeUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             CategoryTypeDO categoryTypeDOResult=categoryTypeService.getCategoryType(categoryTypeDO);
             if (categoryTypeDOResult!=null)
             {
                 return ResultT.success(categoryTypeDOResult);
+            }else
+            {
+                return ResultT.failure(ResultCode.GET_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.GET_FAILURE);
         }
-        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
     @RequestMapping(value = "/listCategoryTypePage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listCategoryTypePage(@RequestBody PageParameter<CategoryTypeDO> pageParameter){
         try {
             PageBean<CategoryTypeDO> categoryTypeDOPageBean=categoryTypeService.listCategoryTypePage(pageParameter);
-            if (categoryTypeDOPageBean!=null)
-            {
-                return ResultT.success(categoryTypeDOPageBean);
-            }
+            return ResultT.success(categoryTypeDOPageBean);
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
 }

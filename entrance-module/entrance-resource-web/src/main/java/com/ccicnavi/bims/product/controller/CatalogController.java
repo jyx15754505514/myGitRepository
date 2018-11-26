@@ -13,6 +13,7 @@ import com.ccicnavi.bims.product.pojo.CatalogDO;
 import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import com.ccicnavi.bims.product.pojo.CatalogOrgDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,14 +51,12 @@ public class CatalogController {
     public ResultT listCatalog(@RequestBody CatalogDO catalogDO){
         try {
             List<CatalogDO> catalogDOList=catalogService.listCatalog(catalogDO);
-            if (catalogDOList!=null)
-            {
-                return ResultT.success(catalogDOList);
-            }
+            return ResultT.success(catalogDOList);
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
+
     }
 
     /**
@@ -70,15 +69,22 @@ public class CatalogController {
     public ResultT saveCatalog(@RequestBody CatalogDO catalogDO){
         catalogDO.setProdCatalogUuid(idWorkerService.getId(new Date()));
         try {
+            if (StringUtils.isEmpty(catalogDO.getProdCatalogUuid())&&StringUtils.isEmpty(catalogDO.getOrgUuid())&&StringUtils.isEmpty(catalogDO.getAppSysUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=catalogService.saveCatalog(catalogDO);
             if (num>0)
             {
                 return ResultT.success(num);
+            }else
+            {
+                return ResultT.failure(ResultCode.ADD_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.ADD_FAILURE);
         }
-        return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
     /**
@@ -90,15 +96,22 @@ public class CatalogController {
     @RequestMapping(value = "/removeCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT removeCatalog(@RequestBody CatalogDO catalogDO){
         try {
+            if (StringUtils.isEmpty(catalogDO.getProdCatalogUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=catalogService.removeCatalog(catalogDO);
             if (num>0)
             {
                 return ResultT.success(num);
+            }else
+            {
+                return ResultT.failure(ResultCode.DELETE_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.DELETE_FAILURE);
         }
-        return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 
     /**
@@ -110,15 +123,21 @@ public class CatalogController {
     @RequestMapping(value = "/updateCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT updateCatalog(@RequestBody CatalogDO catalogDO){
         try {
+            if (StringUtils.isEmpty(catalogDO.getCreatedUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=catalogService.updateCatalog(catalogDO);
             if (num>0)
             {
                 return ResultT.success(num);
+            }else {
+                return ResultT.failure(ResultCode.UPDATE_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
-        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     /**
@@ -130,15 +149,16 @@ public class CatalogController {
     @RequestMapping(value = "/getCatalog",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getCatalog(@RequestBody CatalogDO catalogDO){
         try {
-            CatalogDO catalogDOResult=catalogService.getCatalog(catalogDO);
-            if (catalogDOResult!=null)
+            if (StringUtils.isEmpty(catalogDO.getProdCatalogUuid()))
             {
-                return ResultT.success(catalogDOResult);
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
             }
+            CatalogDO catalogDOResult=catalogService.getCatalog(catalogDO);
+            return ResultT.success(catalogDOResult);
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.GET_FAILURE);
         }
-        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
     /**
@@ -151,14 +171,11 @@ public class CatalogController {
     public ResultT listCatalogPage(@RequestBody PageParameter<CatalogDO> pageParameter){
         try {
             PageBean<CatalogDO> catalogDOPageBean=catalogService.listCatalogPage(pageParameter);
-            if (catalogDOPageBean!=null)
-            {
-                return ResultT.success(catalogDOPageBean);
-            }
+            return ResultT.success(catalogDOPageBean);
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
     /**
@@ -170,15 +187,22 @@ public class CatalogController {
     @RequestMapping(value = "/getCatalogByOrgUUid",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getCatalogByOrgUUid(@RequestBody CatalogOrgDO catalogOrgDO){
         try {
+            if (StringUtils.isEmpty(catalogOrgDO.getOrganizationUuid())&&StringUtils.isEmpty(catalogOrgDO.getAppSysUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             List<CatalogDO> catalogDOList=catalogService.getCatalogByOrgUUid(catalogOrgDO);
             if (catalogDOList!=null)
             {
                 return ResultT.success(catalogDOList);
+            }else
+            {
+                return ResultT.failure(ResultCode.GET_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.GET_FAILURE);
         }
-        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
     /**

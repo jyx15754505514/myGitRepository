@@ -9,6 +9,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.TestItemService;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,62 +38,84 @@ public class TestItemController {
     public ResultT listTestItem(@RequestBody TestItemDO testItemDO){
         try {
             List<TestItemDO> testItemDOList=testItemService.listTestItem(testItemDO);
-            if (testItemDOList!=null)
-            {
-                return ResultT.success(testItemDOList);
-            }
+            return ResultT.success(testItemDOList);
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.LIST_FAILURE);
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
     @RequestMapping(value = "/saveTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT saveTestItem(@RequestBody TestItemDO testItemDO){
         testItemDO.setItemUuid(idWorkerService.getId(new Date()));
         try {
+            if (StringUtils.isEmpty(testItemDO.getItemUuid())&&StringUtils.isEmpty(testItemDO.getItemName())&&StringUtils.isEmpty(testItemDO.getProdCatalogUuid())&&StringUtils.isEmpty(testItemDO.getOrgUuid())&&StringUtils.isEmpty(testItemDO.getAppSysUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=testItemService.saveTestItem(testItemDO);
             if (num>0)
             {
                 return ResultT.success(num);
+            }else
+            {
+                return ResultT.failure(ResultCode.ADD_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.ADD_FAILURE);
         }
-        return ResultT.failure(ResultCode.ADD_FAILURE);
     }
 
     @RequestMapping(value = "/removeTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT removeTestItem(@RequestBody TestItemDO testItemDO){
         try {
+            if (StringUtils.isEmpty(testItemDO.getItemUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=testItemService.removeTestItem(testItemDO);
             if (num>0)
             {
                 return ResultT.success(num);
+            }else
+            {
+                return ResultT.failure(ResultCode.DELETE_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.DELETE_FAILURE);
         }
-        return ResultT.failure(ResultCode.DELETE_FAILURE);
     }
 
     @RequestMapping(value = "/updateTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT updateTestItem(@RequestBody TestItemDO testItemDO){
         try {
+            if (StringUtils.isEmpty(testItemDO.getItemUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer num=testItemService.updateTestItem(testItemDO);
             if (num>0)
             {
                 return ResultT.success(testItemDO);
+            }else
+            {
+                return ResultT.failure(ResultCode.UPDATE_FAILURE);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
-        return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
     @RequestMapping(value = "/getTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getTestItem(@RequestBody TestItemDO testItemDO){
         try {
+            if (StringUtils.isEmpty(testItemDO.getItemUuid()))
+            {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             TestItemDO testItemDOResult=testItemService.getTestItem(testItemDO);
             if (testItemDOResult!=null)
             {
