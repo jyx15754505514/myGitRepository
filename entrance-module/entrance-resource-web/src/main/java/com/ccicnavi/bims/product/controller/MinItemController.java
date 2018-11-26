@@ -9,8 +9,7 @@ import com.ccicnavi.bims.product.api.MinItemService;
 import com.ccicnavi.bims.product.api.MinItemStdService;
 import com.ccicnavi.bims.product.api.MinItemTestService;
 import com.ccicnavi.bims.product.pojo.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +26,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/minItem")
+@Slf4j
 public class MinItemController {
-
-
-    private final static Logger log = LoggerFactory.getLogger(MinItemController.class);
 
     @Reference(timeout = 30000)
     MinItemService minItemService;

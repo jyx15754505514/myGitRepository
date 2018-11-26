@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.CategoryDO;
 import com.ccicnavi.bims.product.pojo.CategoryDTO;
+import com.ccicnavi.bims.product.pojo.CategoryOrgDTO;
 
 import java.util.List;
 
@@ -44,5 +45,11 @@ public interface CategoryService {
 
     /**根据所属机构和产品线ID查询出其下的产品分类信息(子公司)*/
     List<CategoryDO> listCategorySubByOrgAndProd(CategoryDTO categoryDTO);
+
+    /**查询组织机构对应的产品分类信息UUID*/
+    List<String> listCategoryOrgByOrgUuid(CategoryOrgDTO categoryOrgDTO);
+
+    /**根据多个产品分类ID查询其下的子级分类信息(包括子级)*/
+    List<CategoryDO> listCategoryByParentAllUuids(CategoryOrgDTO categoryOrgDTO);
 
 }
