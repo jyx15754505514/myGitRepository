@@ -132,8 +132,6 @@ public class UserDaoImpl implements UserDao {
         return new Eql().select("selectunauthUserList").params(userDTO).returnType(UserDO.class).execute();
 
     }
-
-
     /**
     *@Description: 更改启用禁用状态
     *@Param: [userDO, tran]

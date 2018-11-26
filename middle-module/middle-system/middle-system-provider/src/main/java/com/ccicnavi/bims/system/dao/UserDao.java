@@ -106,4 +106,5 @@ public interface UserDao {
     * @return com.ccicnavi.bims.sso.common.pojo.SSOUser
     **/
     SSOUser login(UserDTO userDTO);
+
 }

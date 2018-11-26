@@ -7,10 +7,10 @@ import com.ccicnavi.bims.resource.pojo.PersonDO;
 import com.ccicnavi.bims.resource.dao.PersonDao;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
+import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class PersonDaoImpl  implements PersonDao {
@@ -86,5 +86,12 @@ public class PersonDaoImpl  implements PersonDao {
         List<PersonDO> personDOS = EqlUtils.getInstance("DEFAULT").id("getPagePerson").params(pageParameter.getParameter()).limit(page).execute();
         return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),personDOS);
     }
+
+
+
+
+
+
+
 
 }
