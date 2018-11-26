@@ -150,12 +150,15 @@ INSERT INTO crm_subcontractor
         '#extend3#',
     --end
 
-
 -- [removeSubcontractor]
 UPDATE crm_subcontractor
 SET is_deleted='Y'
-WHERE is_deleted='N'
-AND subcontractor_uuid='#subcontractorUuid#'
+WHERE
+    is_deleted='N'
+--iff subcontractorUuid != null and subcontractorUuid != ''
+    AND subcontractor_uuid='#subcontractorUuid#'
+
+
 
 -- [updateSubcontractor]
  update crm_subcontractor
