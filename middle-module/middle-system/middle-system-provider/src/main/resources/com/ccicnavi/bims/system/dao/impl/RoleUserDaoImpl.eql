@@ -73,12 +73,9 @@
         role_uuid roleUuid
     FROM
         sys_role_user
-
-    --iff userUuid != null and userUuid != ''
-     WHERE    user_uuid = '#userUuid#'
-    --end
-    --iff roleUuid != null and roleUuid != ''
+     WHERE
+        user_uuid = '#userUuid#'
       and role_uuid = '#roleUuid#'
-    --end
+
 
 

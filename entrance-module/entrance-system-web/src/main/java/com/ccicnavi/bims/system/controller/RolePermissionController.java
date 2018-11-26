@@ -8,6 +8,7 @@ import com.ccicnavi.bims.system.pojo.RolePermissionDTO;
 import com.ccicnavi.bims.system.service.api.RolePermissionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,9 @@ public class RolePermissionController {
 
     @RequestMapping(value = "/insertRolePermission",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT insertArea(@RequestBody RolePermissionDTO rolePermissionDTO){
+        if(StringUtils.isEmpty(rolePermissionDTO.getRoleUuid())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
             Integer integer = rolePermissionService.insertRolePermission(rolePermissionDTO);
             return ResultT.success();

@@ -1,7 +1,9 @@
 package com.ccicnavi.bims.customer.service;
 
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
@@ -23,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +38,8 @@ import java.util.List;
 @Slf4j
 public class CustomerServiceImpl implements CustomerService {
 
+    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    IdWorkerService idWorkerService;
     @Autowired
     CustomerDao customerDao;
     @Autowired
@@ -57,6 +62,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public int saveCustomer(CustomerDO customer) {
         try {
+            String uuid = idWorkerService.getId(new Date());
+            customer.setCustUuid(uuid);
             return customerDao.saveCustomer(customer,null);
         } catch (Exception e) {
             log.error("保存客户信息失败~", e);

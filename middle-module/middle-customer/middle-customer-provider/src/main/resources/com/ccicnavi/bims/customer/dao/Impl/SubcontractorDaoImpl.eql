@@ -223,7 +223,7 @@ AND subcontractor_uuid='#subcontractorUuid#'
 
 -- [getSubcontractor]
   SELECT
-    crm_subcontractor crmSubcontractor,
+    subcontractor_uuid subcontractorUuid,
     subc_code subcCode,
     reg_capital regCapital,
     legal_rep legalRep,

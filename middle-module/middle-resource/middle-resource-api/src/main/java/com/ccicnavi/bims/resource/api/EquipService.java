@@ -25,7 +25,7 @@ public interface EquipService {
 
     /**
      * @Author MengZiJie
-     * @Description 设备台账查询
+     * @Description 预留接口
      * @Data 2018/11/25 17:27
      * @Param [pageParameter]
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.EquipDO>
@@ -94,4 +94,13 @@ public interface EquipService {
      * @Return java.lang.Integer
      */
     Integer deleteEquip(EquipDTO equipDTO);
+
+    /**
+     * @Author MengZiJie
+     * @Description 删除器具台账(器具、检定、领用信息)
+     * @Data 2018/11/26 10:28
+     * @Param [equipDTO]
+     * @Return java.lang.Integer
+     */
+    Integer deleteEquipInfo(EquipDTO equipDTO);
 }
