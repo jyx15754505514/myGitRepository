@@ -236,7 +236,7 @@ insert into crm_customer_linkman
         '#extend3#',
     -- end
 
--- [deleteLinkman]
+-- [deleteSubLinkman]
 UPDATE crm_customer_linkman
 SET is_deleted = 'Y'
 WHERE
@@ -244,9 +244,8 @@ WHERE
      -- if uuids != null
            AND linkman_uuid IN
             -- for item=item index=index collection=uuids open=( separator=, close=)
-                #item#
+               '#item#'
             -- end
-        -- end
 
 -- [updateLinkman]
  update crm_customer_linkman
