@@ -13,7 +13,7 @@
         <version>1.0</version>
     </parent>
     <name>entrance-all</name>
-    <description>Demo project for Spring Boot</description>
+    <description>entrance-all project for Spring Boot</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,8 +28,44 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <groupId>entrance-module</groupId>
+            <artifactId>entrance-resource-web</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>entrance-module</groupId>
+            <artifactId>entrance-order-web</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>entrance-module</groupId>
+            <artifactId>entrance-fin-web</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>entrance-module</groupId>
+            <artifactId>entrance-document-web</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>entrance-module</groupId>
+            <artifactId>entrance-customer-web</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>entrance-module</groupId>
+            <artifactId>entrance-certmgr-web</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>zoo-sso</groupId>
+            <artifactId>sso-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
         </dependency>
     </dependencies>
 

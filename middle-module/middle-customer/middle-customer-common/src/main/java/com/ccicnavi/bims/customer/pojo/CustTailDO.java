@@ -34,6 +34,14 @@ public class CustTailDO implements Serializable {
      */
     private String personName;
     /**
+     *联系人UUID
+     */
+    private String linkmanUuid;
+    /**
+     *联系人姓名
+     */
+    private String linkmanName;
+    /**
      *跟进状态（枚举）
      */
     private String statusUuid;

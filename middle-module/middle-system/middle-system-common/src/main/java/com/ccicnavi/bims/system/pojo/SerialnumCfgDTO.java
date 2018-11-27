@@ -41,6 +41,10 @@ public class SerialnumCfgDTO implements Serializable {
      */
     private String sncPeriod;
     /**
+     *区分部门
+     */
+    private String disDept;
+    /**
      * 排序编号
      */
     private String sortNum;

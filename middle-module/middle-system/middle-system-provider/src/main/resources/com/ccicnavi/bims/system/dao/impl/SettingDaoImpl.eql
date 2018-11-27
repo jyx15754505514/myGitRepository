@@ -32,6 +32,9 @@
      --iff settingUuid != null and settingUuid != ''
         and setting_uuid like '#settingUuid:like#'
      --end
+     -- if appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid='#appSysUuid#',
+     -- end
 
 -- 新增系统设置信息
 -- [insertSetting]
