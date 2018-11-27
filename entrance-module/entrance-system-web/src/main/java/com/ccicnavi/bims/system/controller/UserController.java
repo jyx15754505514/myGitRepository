@@ -31,17 +31,16 @@ import java.util.Date;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    @Reference
+    @Reference//(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private UserService userService;
 
     @Autowired
     private UserManager userManager;
 
-    @Reference
+    @Reference//(timeout = 30000, url = "dubbo://127.0.0.1:20896")
     private SSOService ssoService;
 
-    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
-    @Reference
+    @Reference//(timeout = 30000, url = "dubbo://127.0.0.1:20880")
     private IdWorkerService idWorkerService;
     /**
     *@Description: 查询登录用户信息(条件查询)

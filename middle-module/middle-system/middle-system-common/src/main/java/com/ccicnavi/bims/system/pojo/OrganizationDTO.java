@@ -60,7 +60,7 @@ public class OrganizationDTO implements Serializable{
      */
     private String orgCode;
     /**
-     *
+     * 组织机构类型
      */
     private String orgType;
     /**

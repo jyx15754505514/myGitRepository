@@ -64,10 +64,7 @@ public class UserDTO implements Serializable {
      * orgUuid集合
      */
     private List<String> orgList;
-    /**
-     * userUuid集合
-     */
-    private List<String> userList;
+
     /**
      * 用户主键
      */

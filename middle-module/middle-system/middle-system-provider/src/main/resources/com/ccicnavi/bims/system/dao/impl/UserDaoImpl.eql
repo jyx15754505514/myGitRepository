@@ -43,6 +43,7 @@
      --iff orgUuid != null and orgUuid != ''
           and u.org_uuid = '#orgUuid#'
      --end
+     GROUP BY u.user_uuid
 
 
 -- 新增登录用户信息

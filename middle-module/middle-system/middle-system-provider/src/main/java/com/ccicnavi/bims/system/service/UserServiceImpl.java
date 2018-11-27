@@ -168,8 +168,8 @@ public class UserServiceImpl implements UserService{
         Integer deleteRoleUser = 0;
         try {
             tran.start();
-            deleteUser = userDao.deleteUser(userDTO, null);
-            deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, null);
+            deleteUser = userDao.deleteUser(userDTO, tran);
+            deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
             if(deleteUser != null && deleteRoleUser != null){
                 tran.commit();
             }
