@@ -21,19 +21,19 @@ FROM
 	crm_customer_addr
 WHERE
 	is_deleted = 'N'
-        --if custAddr !=null and custAddr != ''
+        --iff custAddr !=null and custAddr != ''
             and cust_addr = '#custAddr:like#'
         --end
-        --if addrUuid !=null and addrUuid != ''
+        --iff addrUuid !=null and addrUuid != ''
             and addr_uuid = '#addrUuid#'
         --end
-         --if orgUuid != null and  orgUuid != ''
+         --iff orgUuid != null and  orgUuid != ''
             and  org_uuid = '#orgUuid#'
          --end
-         --if appSysUuid != null and  appSysUuid != ''
+         --iff appSysUuid != null and  appSysUuid != ''
             and  app_sys_uuid = '#appSysUuid#'
           --end
-         --if custUuid !=null and custUuid != ''
+         --iff custUuid !=null and custUuid != ''
             and cust_uuid = '#custUuid#'
          --end
 
@@ -131,7 +131,7 @@ insert into crm_customer_addr
 UPDATE crm_customer_addr
 SET is_deleted = 'Y'
 WHERE  	is_deleted = 'N'
-     -- if uuids != null
+     -- iff uuids != null
             AND addr_uuid IN
             -- for item=item index=index collection=uuids open=( separator=, close=)
                 '#item#'

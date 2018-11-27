@@ -32,13 +32,13 @@ FROM
 	crm_subc_linkman
 WHERE
 	is_deleted = 'N'
-    --if linkmanName !=null and linkmanName != ''
+    --iff linkmanName !=null and linkmanName != ''
         and linkman_name = '#linkmanName:like#'
     --end
-    --if linkmanUuid !=null and linkmanUuid != ''
+    --iff linkmanUuid !=null and linkmanUuid != ''
         and linkman_uuid = '#linkmanUuid#'
     --end
-    --if subcUuid !=null and subcUuid != ''
+    --iff subcUuid !=null and subcUuid != ''
         and subc_uuid = '#subcUuid#'
     --end
 
