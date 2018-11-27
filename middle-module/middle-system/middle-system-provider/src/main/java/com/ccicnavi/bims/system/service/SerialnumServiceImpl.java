@@ -32,10 +32,10 @@ import java.util.List;
 @Service
 public class SerialnumServiceImpl implements SerialnumService {
 
-    @Reference(timeout = 1000000,url = "dubbo://127.0.0.1:20880")
+    @Reference(timeout = 1000000)
 //    @Reference
     IdWorkerService idWorkerService;
-    @Reference(timeout = 1000000,url = "dubbo://127.0.0.1:20896")
+    @Reference(timeout = 1000000)
 //    @Reference
     SSOService ssoService;
     @Autowired
