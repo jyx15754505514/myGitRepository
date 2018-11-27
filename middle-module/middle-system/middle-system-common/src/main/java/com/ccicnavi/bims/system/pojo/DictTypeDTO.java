@@ -1,8 +1,7 @@
 package com.ccicnavi.bims.system.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,9 +16,8 @@ import java.util.List;
  *@author: zhangxingbiao
  *@create: 2018-11-20 11:45
  */
-@Setter
-@Getter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DictTypeDTO implements Serializable {
     /**
      * 主键uuid

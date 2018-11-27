@@ -8,6 +8,7 @@ import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.sso.api.SSOService;
+import com.ccicnavi.bims.sso.common.result.ReturnT;
 import com.ccicnavi.bims.system.manager.UserManager;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.UserService;
@@ -31,16 +32,19 @@ import java.util.Date;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    @Reference//(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference
     private UserService userService;
 
     @Autowired
     private UserManager userManager;
 
-    @Reference//(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    @Reference
     private SSOService ssoService;
 
-    @Reference//(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference
     private IdWorkerService idWorkerService;
     /**
     *@Description: 查询登录用户信息(条件查询)
@@ -161,7 +165,10 @@ public class UserController {
     @RequestMapping(value = "/userLogout", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT userLogout(@RequestBody String jsessionId) {
         try {
-            ssoService.logout(jsessionId);
+            ReturnT<String> logout = ssoService.logout(jsessionId);
+            if(logout.getCode() == 1) {
+                return ResultT.success();
+            }
         } catch (Exception e) {
             log.error("用户登出失败", e);
         }
@@ -244,11 +251,13 @@ public class UserController {
         Integer integer = null;
         try {
             integer = userService.addUserRole(userDTO);
-            return ResultT.success();
+            if(integer != null && integer > 0) {
+                return ResultT.success();
+            }
         } catch (Exception e) {
             log.error("根据用户分配角色失败", e);
-            return ResultT.failure(ResultCode.USER_ALLOT_ROLE);
         }
+        return ResultT.failure(ResultCode.USER_ALLOT_ROLE);
     }
 
     /**

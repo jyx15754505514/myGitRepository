@@ -30,15 +30,15 @@ public class RoleUserDaoImpl implements RoleUserDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/22
     */
-
     @Override
     public Integer insertRoleUsers(UserDTO userDTO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
         if(tran != null) {
             eql.useTran(tran);
         }
-        return new Eql("DEFAULT").insert("insertRoleUser").params(userDTO).returnType(Integer.class).execute();
+        return eql.insert("insertRoleUser").params(userDTO).returnType(Integer.class).execute();
     }
+
 
     @Override
     public Integer insertRoleUser(RoleUserDTO roleUserDTO, EqlTran tran) {
@@ -46,7 +46,7 @@ public class RoleUserDaoImpl implements RoleUserDao {
         if(tran != null) {
             eql.useTran(tran);
         }
-        return new Eql("DEFAULT").insert("insertRoleUser").params(roleUserDTO).returnType(Integer.class).execute();
+        return eql.insert("insertRoleUser").params(roleUserDTO).returnType(Integer.class).execute();
     }
 
     /**
@@ -63,7 +63,7 @@ public class RoleUserDaoImpl implements RoleUserDao {
         if (tran != null) {
             eql.useTran(tran);
         }
-        return new Eql("DEFAULT").update("updateRoleUser").params(userDTO).returnType(Integer.class).execute();
+        return eql.update("updateRoleUser").params(userDTO).returnType(Integer.class).execute();
     }
 
     /**
@@ -73,14 +73,13 @@ public class RoleUserDaoImpl implements RoleUserDao {
     *@Author: zhangxingbiao
     *@date: 2018/11/22
     */
-
     @Override
     public Integer deleteRoleUsers(UserDTO userDTO, EqlTran tran) {
         Eql eql = new Eql("DEFAULT");
         if (tran != null) {
             eql.useTran(tran);
         }
-        return new Eql("DEFAULT").delete("deleteRoleUsers").params(userDTO).returnType(Integer.class).execute();
+        return eql.delete("deleteRoleUsers").params(userDTO).returnType(Integer.class).execute();
     }
 
 
@@ -98,12 +97,4 @@ public class RoleUserDaoImpl implements RoleUserDao {
         return new Eql("DEFAULT").select("listRoleUser").params(userDTO).returnType(RoleUserDO.class).execute();
     }
 
-    @Override
-    public Integer deleteRoleByUser(UserDTO userDTO, EqlTran tran) {
-        Eql eql = new Eql("DEFAULT");
-        if (tran != null) {
-            eql.useTran(tran);
-        }
-        return new Eql("DEFAULT").delete("deleteRoleUser").params(userDTO).returnType(Integer.class).execute();
-    }
 }

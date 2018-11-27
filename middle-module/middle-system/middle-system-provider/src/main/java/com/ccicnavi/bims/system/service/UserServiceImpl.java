@@ -255,15 +255,16 @@ public class UserServiceImpl implements UserService{
     @Override
     public Integer addUserRole(UserDTO userDTO) {
         EqlTran tran = new Eql("DEFAULT").newTran();
-        Integer insertRole = null;
-        Integer deleteRoleUser = null;
+        Integer insertRole = 0;
+        Integer deleteRoleUser = 0;
         try {
             tran.start();
-            //deleteRoleUser = roleUserDao.deleteRoleByUser(userDTO, tran);
-           List<String> deleteRoleList = userDTO.getDeleteRoleList();
+            deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
+           /* List<String> deleteRoleList = userDTO.getDeleteRoleList();
             if(deleteRoleList != null && deleteRoleList.size() > 0){
                 deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
-            }
+            }*/
+
             //添加角色的集合不为空就根据用户uuid添加用户和角色信息
             List<String> addRoleList = userDTO.getAddRoleList();
             if(addRoleList != null && addRoleList.size() > 0){
