@@ -22,7 +22,7 @@ public class LinkmanDaoImpl implements LinkmanDao {
 
     @Override
     public List<LinkmanDO> listLinkman(LinkmanDO linkmanDO) {
-        return new Eql().select("listLinkman").params(linkmanDO).execute();
+        return new Eql().select("listLinkman").params(linkmanDO).returnType(LinkmanDO.class).execute();
     }
 
     @Override

@@ -175,10 +175,13 @@
 		sys_role
 	WHERE
 		is_deleted = 'N'
-               and org_uuid = '#orgUuid#',
-                and app_sys_uuid = '#appSysUuid#',
-
-        -- if prodCatalogUuid != null and prodCatalogUuid != ''
+		-- iff orgUuid != null and orgUuid != ''
+               and org_uuid = '#orgUuid#'
+        -- end
+        -- iff appSysUuid != null and appSysUuid != ''
+                and app_sys_uuid = '#appSysUuid#'
+        -- end
+        -- iff prodCatalogUuid != null and prodCatalogUuid != ''
                 and prod_catalog_uuid = '#prodCatalogUuid#'
         -- end
 
@@ -214,10 +217,10 @@
     	and	role_uuid = '#roleUuid#'
     -- end
     -- if test=orgUuid != null and orgUuid != ''
-       and org_uuid = '#orgUuid#',
+       and org_uuid = '#orgUuid#'
     -- end
     -- if test=appSysUuid != null and appSysUuid != ''
-       and app_sys_uuid = '#appSysUuid#',
+       and app_sys_uuid = '#appSysUuid#'
     -- end
     -- if test=prodCatalogUuid != null and prodCatalogUuid != ''
        and prod_catalog_uuid = '#prodCatalogUuid#'
