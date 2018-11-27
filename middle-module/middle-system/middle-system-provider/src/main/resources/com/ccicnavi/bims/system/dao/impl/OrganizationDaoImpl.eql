@@ -449,10 +449,20 @@ where
     is_deleted = 'N'
     --iff orgUuid != null
         and org_uuid = '#orgUuid#'
+    --end
     --iff orgParentUuid != null
         and org_parent_uuid = '#orgParentUuid#'
+    --end
     --iff orgType != null
         and org_type = '#orgType#'
+    --end
+    --iff uuids != null
+        and organization_uuid in
+        -- for item=item index=index collection=uuids open=( separator=, close=)
+            '#item#'
+        --end
+    --end
+
 
 
 --根据当前机构查询下级机构（包括公司和部门：只查一级）
