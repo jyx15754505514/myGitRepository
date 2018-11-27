@@ -17,7 +17,7 @@ import java.util.List;
 public interface CategoryService {
 
     /**查询全部产品分类信息*/
-    List<CategoryDO> listCategory(CategoryDO category);
+    List<CategoryDO> listCategory(CategoryDTO categoryDTO);
 
     /**新增产品分类信息*/
     int saveCategory(CategoryDO category);
@@ -32,7 +32,7 @@ public interface CategoryService {
     CategoryDO getCategory(CategoryDO Category);
 
     /**分页查询产品分类信息*/
-    PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDO> pageParameter);
+    PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDTO> pageParameter);
 
     /**根据所属公司与所属业务线查询出对应的一级分类信息*/
     List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDTO categoryDTO);

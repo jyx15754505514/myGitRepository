@@ -2,9 +2,6 @@ package com.ccicnavi.bims.product.pojo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -81,9 +78,11 @@ public class CategoryDTO implements Serializable {
     /**产品分类与组织机构关系表所属组织机构UUID*/
     private String organizationUuid;
 
-
     /**要删除的产品分类主键数组*/
     private String [] uuids;
+
+    /**公共所属组织机构*/
+    private String publicOrgUuid;
 
 
 

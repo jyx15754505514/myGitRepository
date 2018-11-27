@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.product.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,6 +39,9 @@ public class MinItemController {
 
     @Reference(timeout = 30000)
     MinItemTestService minItemTestService;
+
+    @Reference(timeout = 30000)
+    IdWorkerService idWorkerService;
 
     /**
      * 查询全部最小服务项信息()
@@ -102,6 +107,7 @@ public class MinItemController {
     @RequestMapping(value = "/saveMinItem", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT saveMinItem(@RequestBody MinItemDO minItemDO) {
         try {
+            minItemDO.setMinItemUuid(idWorkerService.getId(new Date()));
             Integer count = minItemService.saveMinItem(minItemDO);
             if (count > 0) {
                 return ResultT.success("新增最小服务项成功");

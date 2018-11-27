@@ -34,8 +34,16 @@ DELETE
 FROM
 	product_min_item_std
 WHERE
-	min_item_uuid = '#minItemUuid#'
-AND std_uuid = '#stdUuid#'
-AND org_uuid = '#orgUuid#'
+    min_item_uuid = '#minItemUuid#'
+--if stdUuid !=null and stdUuid != ''
+            AND std_uuid = '#stdUuid#'
+--end
+--if orgUuid !=null and orgUuid != ''
+            AND org_uuid = '#orgUuid#'
+--end
+
+--if appSysUuid !=null and appSysUuid != ''
+            AND app_sys_uuid='#appSysUuid#'
+--end
 
 
