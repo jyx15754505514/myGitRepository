@@ -320,7 +320,7 @@ public class UserServiceImpl implements UserService{
         Integer updateUser = 0;
         try{
             tran.start();
-            List<String> userList = userDTO.getUserList();
+            List<String> userList = userDTO.getUuids();
             for(String uuid : userList){
                 userDTO.setUserUuid(uuid);
                 UserDTO user = userDao.getUser(userDTO);
