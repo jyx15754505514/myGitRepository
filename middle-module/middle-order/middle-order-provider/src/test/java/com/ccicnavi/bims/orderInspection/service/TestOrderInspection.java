@@ -3,6 +3,7 @@ package com.ccicnavi.bims.orderInspection.service;
 import com.ccicnavi.bims.order.dao.impl.OrderInspectionDaoImpl;
 import com.ccicnavi.bims.order.pojo.OrderInspectionDO;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 
 /**
  * @Author songyateng
@@ -15,16 +16,22 @@ import lombok.extern.slf4j.Slf4j;
 public class TestOrderInspection {
     /**
      * @Author songyateng
-     * @Description
+     * @Description 测试运输方式信息保存
      * @Date 2018/11/27 21:21
      * @Param
      * @Return
      */
-
-    public void updateInspection(){
-        //123
-        //456
-        OrderInspectionDaoImpl order = new OrderInspectionDaoImpl();
-        OrderInspectionDO orderInspectionDO = new OrderInspectionDO();
+    @Test
+    public void updateInspection() {
+        try {
+            //123
+            OrderInspectionDaoImpl order = new OrderInspectionDaoImpl();
+            OrderInspectionDO orderInspectionDO = new OrderInspectionDO();
+            orderInspectionDO.setOrderUuid("181127170753");
+            orderInspectionDO.setVesselName("名称");
+            System.err.print(order.updateInspection(orderInspectionDO, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
