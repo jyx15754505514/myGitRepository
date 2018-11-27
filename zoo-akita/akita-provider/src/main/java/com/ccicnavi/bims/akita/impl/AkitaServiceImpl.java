@@ -6,6 +6,7 @@ import com.ccicnavi.bims.akita.api.AkitaService;
 import com.ccicnavi.bims.akita.common.pojo.EnclosureVO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaDO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaTmpDO;
+import com.ccicnavi.bims.akita.common.pojo.domain.AttaTmpDTO;
 import com.ccicnavi.bims.akita.dao.AttaDao;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.github.tobato.fastdfs.domain.StorePath;
@@ -63,8 +64,8 @@ public class AkitaServiceImpl implements AkitaService {
     }
 
     @Override
-    public List<AttaDO> listAtta(String... businId) {
-        List<AttaDO> attaDOS = attaDao.listAtta(businId);
+    public List<AttaTmpDTO> listAtta(String... businId) {
+        List<AttaTmpDTO> attaDOS = attaDao.listAtta(businId);
         return attaDOS;
     }
 

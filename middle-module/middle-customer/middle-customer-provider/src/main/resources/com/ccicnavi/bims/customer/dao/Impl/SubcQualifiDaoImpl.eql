@@ -128,12 +128,12 @@ WHERE
     AND subc_uuid = '#subcUuid#'
 --iff subcQualifiUuid != null and subcQualifiUuid != ''
     and subc_qualifi_uuid = '#subcQualifiUuid#'
--- if subcQualifiUuids != null
+-- iff subcQualifiUuids != null
     AND subc_qualifi_uuid IN
     -- for item=item index=index collection=subcQualifiUuids open=( separator=, close=)
         '#item#'
     -- end
--- if subcUuids != null
+-- iff subcUuids != null
     AND subc_uuid IN
     -- for item=item index=index collection=subcUuids open=( separator=, close=)
         '#item#'
@@ -211,10 +211,10 @@ SELECT
 FROM crm_subc_qualification
 WHERE
     is_deleted='N'
-    --if subcUuid !=null and subcUuid != ''
+    --iff subcUuid !=null and subcUuid != ''
         and subc_uuid = '#subcUuid#'
     --end
-    --if subcQualifiUuid !=null and subcQualifiUuid != ''
+    --iff subcQualifiUuid !=null and subcQualifiUuid != ''
         and subc_qualifi_uuid = '#subcQualifiUuid#'
     --end
 
