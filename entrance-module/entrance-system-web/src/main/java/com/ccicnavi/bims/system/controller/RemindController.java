@@ -8,6 +8,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.RemindDO;
 import com.ccicnavi.bims.system.pojo.RemindDTO;
 import com.ccicnavi.bims.system.service.api.RemindService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,9 +29,10 @@ import static com.ccicnavi.bims.common.ResultCode.*;
 
 @RestController
 @RequestMapping("/remind")
+@Slf4j
 public class RemindController {
 
-    private final static Logger log = LoggerFactory.getLogger(RemindController.class);
+
     @Reference
     private RemindService remindServic;
 

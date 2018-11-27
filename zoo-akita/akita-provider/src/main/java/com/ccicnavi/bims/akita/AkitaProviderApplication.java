@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.akita;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.github.tobato.fastdfs.FdfsClientConfig;
 import org.springframework.boot.SpringApplication;
 
@@ -14,6 +15,7 @@ import org.springframework.jmx.support.RegistrationPolicy;
 @Import(FdfsClientConfig.class)
 // 解决jmx重复注册bean的问题
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
+@EnableApolloConfig
 @SpringBootApplication
 public class AkitaProviderApplication {
 

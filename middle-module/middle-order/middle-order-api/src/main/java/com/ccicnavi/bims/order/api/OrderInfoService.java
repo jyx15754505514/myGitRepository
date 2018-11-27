@@ -12,7 +12,6 @@ import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
  */
 public interface OrderInfoService {
 
-
     /**
      * @Author MengZiJie
      * @Description 新增委托单信息
@@ -61,12 +60,14 @@ public interface OrderInfoService {
      * @Return com.ccicnavi.bims.order.pojo.OrderInfoDTO
      */
     OrderInfoDTO getOrderInfo(OrderInfoDO orderInfoDO);
-    /**委托单状态调整**/
-
-    /**委托单设置为加急**/
-
-
-
+    /**
+     * @Author MengZiJie
+     * @Description 更改委托单状态
+     * @Data 2018/11/27 17:16
+     * @Param [orderInfoDTO]
+     * @Return java.lang.Integer
+     */
+    Integer updateOrderStatus(OrderInfoDTO orderInfoDTO);
 
 
 }

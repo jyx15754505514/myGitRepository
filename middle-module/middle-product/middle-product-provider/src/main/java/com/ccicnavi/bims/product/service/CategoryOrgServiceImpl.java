@@ -60,11 +60,12 @@ public class CategoryOrgServiceImpl implements CategoryOrgService {
             //以产品分类id进行更新
             if(categoryOrgDTO.getProductCategoryUuid() != null && !"".equals(categoryOrgDTO.getProductCategoryUuid())){
                 categoryOrgDO.setProductCategoryUuid(categoryOrgDTO.getProductCategoryUuid());
+                categoryOrgDO.setAppSysUuid(categoryOrgDTO.getAppSysUuid());
                 categoryOrgDao.removeCategoryOrgDO(categoryOrgDO,eqlTran);
-                String[] orgUuidList = categoryOrgDTO.getOrgUuidList().split(",",-1);
-                String[] catalogUuidList = categoryOrgDTO.getCatalogUuidList().split(",",-1);
+                String[] orgUuidList = categoryOrgDTO.getOrgUuidList().split(",");
+                String[] catalogUuidList = categoryOrgDTO.getCatalogUuidList().split(",");
                 if(orgUuidList.length>0){
-                    for(int i = 0;i<orgUuidList.length-1;i++){
+                    for(int i = 0;i<orgUuidList.length;i++){
                         CategoryOrgDO categoryOrgDO1 = new CategoryOrgDO();
                         categoryOrgDO1.setProductCategoryUuid(categoryOrgDTO.getProductCategoryUuid());
                         categoryOrgDO1.setAppSysUuid(categoryOrgDTO.getAppSysUuid());
@@ -73,18 +74,19 @@ public class CategoryOrgServiceImpl implements CategoryOrgService {
                         count += categoryOrgDao.saveCategoryOrgDO(categoryOrgDO1,eqlTran);
                     }
                 }
-                if(orgUuidList.length-1 != count){
+                if(orgUuidList.length != count){
                     success=false;
                 }
             }
             //以组织机构id进行更新
             if(categoryOrgDTO.getOrganizationUuid() != null && !"".equals(categoryOrgDTO.getOrganizationUuid())){
                 categoryOrgDO.setOrganizationUuid(categoryOrgDTO.getOrganizationUuid());
+                categoryOrgDO.setAppSysUuid(categoryOrgDTO.getAppSysUuid());
                 categoryOrgDao.removeCategoryOrgDO(categoryOrgDO,eqlTran);
-                String[] catalogUuidList = categoryOrgDTO.getCatalogUuidList().split(",",-1);
-                String[] categoryUuidList = categoryOrgDTO.getCategoryUuidList().split(",",-1);
+                String[] catalogUuidList = categoryOrgDTO.getCatalogUuidList().split(",");
+                String[] categoryUuidList = categoryOrgDTO.getCategoryUuidList().split(",");
                 if(catalogUuidList.length>0){
-                    for(int i = 0;i<catalogUuidList.length-1;i++){
+                    for(int i = 0;i<catalogUuidList.length;i++){
                         CategoryOrgDO categoryOrgDO1 = new CategoryOrgDO();
                         categoryOrgDO1.setOrganizationUuid(categoryOrgDTO.getOrganizationUuid());
                         categoryOrgDO1.setAppSysUuid(categoryOrgDTO.getAppSysUuid());
@@ -93,18 +95,19 @@ public class CategoryOrgServiceImpl implements CategoryOrgService {
                         count += categoryOrgDao.saveCategoryOrgDO(categoryOrgDO1,eqlTran);
                     }
                 }
-                if(catalogUuidList.length-1 != count){
+                if(catalogUuidList.length != count){
                     success=false;
                 }
             }
             //以产品线id进行更新
             if(categoryOrgDTO.getProdCatalogUuid() != null && !"".equals(categoryOrgDTO.getProdCatalogUuid())){
                 categoryOrgDO.setProdCatalogUuid(categoryOrgDTO.getProdCatalogUuid());
+                categoryOrgDO.setAppSysUuid(categoryOrgDTO.getAppSysUuid());
                 categoryOrgDao.removeCategoryOrgDO(categoryOrgDO,eqlTran);
-                String[] orgUuidList = categoryOrgDTO.getOrgUuidList().split(",",-1);
-                String[] categoryUuidList = categoryOrgDTO.getCategoryUuidList().split(",",-1);
+                String[] orgUuidList = categoryOrgDTO.getOrgUuidList().split(",");
+                String[] categoryUuidList = categoryOrgDTO.getCategoryUuidList().split(",");
                 if(orgUuidList.length>0){
-                    for(int i = 0;i<orgUuidList.length-1;i++){
+                    for(int i = 0;i<orgUuidList.length;i++){
                         CategoryOrgDO categoryOrgDO1 = new CategoryOrgDO();
                         categoryOrgDO1.setOrganizationUuid(orgUuidList[i]);
                         categoryOrgDO1.setAppSysUuid(categoryOrgDTO.getAppSysUuid());
@@ -113,7 +116,7 @@ public class CategoryOrgServiceImpl implements CategoryOrgService {
                         count += categoryOrgDao.saveCategoryOrgDO(categoryOrgDO1,eqlTran);
                     }
                 }
-                if(orgUuidList.length-1 != count){
+                if(orgUuidList.length != count){
                     success=false;
                 }
             }

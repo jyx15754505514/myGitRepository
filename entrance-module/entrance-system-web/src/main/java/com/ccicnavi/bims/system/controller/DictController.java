@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.Constants;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,6 +39,11 @@ public class DictController {
 
     @Reference(timeout = 30000)
     private DictTypeService dictTypeService;
+
+    @Reference(timeout = 30000)
+    IdWorkerService idWorkerService;
+
+
 
     /**
      * @Author LiJie
@@ -102,6 +109,7 @@ public class DictController {
     @RequestMapping(value = "/insertDictValue", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT insertDictValue(@RequestBody DictValueDO dictValueDO) {
         try {
+            dictValueDO.setDictValueUuid(idWorkerService.getId(new Date()));
             Integer integer = dictValueService.insertDictValue(dictValueDO);
             if (integer > 0) {
                 return ResultT.success("新增字典数值成功~");
@@ -124,10 +132,10 @@ public class DictController {
         try {
             Integer integer = dictValueService.updateDictValue(dictValueDO);
             if (integer > 0) {
-                return ResultT.success("修改字典类型成功~");
+                return ResultT.success("修改字典数值成功~");
             }
         } catch (Exception e) {
-            log.error("修改字典类型失败", e);
+            log.error("修改字典数值失败", e);
         }
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
@@ -140,10 +148,10 @@ public class DictController {
      * @date: 2018/11/24
      */
     @RequestMapping(value = "/deleteDictValue", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT deleteDictType(@RequestBody DictTypeDTO dictTypeDTO) {
+    public ResultT deleteDictValue(@RequestBody DictTypeDTO dictTypeDTO) {
         try {
             if (!StringUtils.isEmpty(dictTypeDTO.getValueUuids())) {
-                Integer count = dictTypeService.deleteDictType(dictTypeDTO);
+                Integer count = dictValueService.deleteDictValue(dictTypeDTO);
                 if (count > 0) {
                     return ResultT.success("删除字典数值成功~");
                 }
@@ -152,6 +160,27 @@ public class DictController {
             log.error("删除字典数值失败", e);
         }
         return ResultT.failure(ResultCode.DELETE_FAILURE);
+    }
+
+    /**
+     * 根据主键获取对应的数据字典数值信息
+     * @param dictValueDO
+     * @return
+     * @Author LiJie
+     */
+    @RequestMapping(value = "/getDictValue", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT getDictValue(@RequestBody DictValueDO dictValueDO) {
+        try {
+            if (!StringUtils.isEmpty(dictValueDO.getDictValueUuid())) {
+                DictValueDO getDictValueDO = dictValueService.getDictValue(dictValueDO);
+                if(!StringUtils.isEmpty(getDictValueDO)){
+                    return ResultT.success(getDictValueDO);
+                }
+            }
+        } catch (Exception e) {
+            log.error("根据主键获取对应的数据字典数值信息失败", e);
+        }
+        return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
 }

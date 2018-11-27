@@ -163,18 +163,12 @@ where
         comments,
       --iff isDeleted != null
         is_deleted,
-      --iff createdTime != null
+      --iff createdTime == null
         created_time,
       --iff createdUuid != null
         created_uuid,
       --iff createdName != null
         created_name,
-      --iff updatedTime != null
-        updated_time,
-      --iff updatedUuid != null
-        updated_uuid,
-      --iff updatedName != null
-        updated_name,
       --iff prodCatalogUuid != null
         prod_catalog_uuid,
       --iff orgUuid != null
@@ -231,18 +225,12 @@ where
         '#comments#',
       --iff isDeleted != null
         '#isDeleted#',
-      --iff createdTime != null
-        '#createdTime#',
+      --iff createdTime == null
+        NOW(),
       --iff createdUuid != null
         '#createdUuid#',
       --iff createdName != null
         '#createdName#',
-      --iff updatedTime != null
-        '#updatedTime#',
-      --iff updatedUuid != null
-        '#updatedUuid#',
-      --iff updatedName != null
-        '#updatedName#',
       --iff prodCatalogUuid != null
         '#prodCatalogUuid#',
       --iff orgUuid != null
@@ -316,8 +304,7 @@ update sys_organization
     updated_name = '#updatedName#',
   --iff prodCatalogUuid != null
     prod_catalog_uuid = '#prodCatalogUuid#',
-  --iff orgUuid != null
-    org_uuid = '#orgUuid#',
+
   --iff appSysUuid != null
     app_sys_uuid = '#appSysUuid#',
   --iff extend1 != null
@@ -350,10 +337,14 @@ WHERE
     and organization_uuid in
     -- for item=item index=index collection=uuids open=( separator=, close=)
         '#item#'
+    --end
 
+
+    --屏蔽掉此部分
     --iff organizationUuid != null and organizationUuid != ''
         and organization_uuid = '#organizationUuid#'
     --end
+    --屏蔽掉此部分
 
 
 --根据用户查询省公司
@@ -410,6 +401,7 @@ SELECT
     org_parent_uuid as orgParentUuid,
     org_all_parent_uuid as orgAllParentUuid,
     org_name as orgName,
+    org_name as title,
     org_short_name as orgShortName,
     org_type as orgType,
     ehr_code as ehrCode,
@@ -509,7 +501,7 @@ WHERE
         -- for item=item index=index collection=uuids open=( separator=, close=)
             '#item#'
         --end
-    -- end
+    --end
 
 
 -- 屏蔽掉此部分

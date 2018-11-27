@@ -106,7 +106,7 @@ public class CertPaperController {
                 return ResultT.success(resultBean);
             }
         } catch (Exception e) {
-            log.error("根据证书纸paperUuid找到证书纸信息",e);
+            log.error("根据证书纸paperUuid找到证书纸信息失败",e);
         }
         return ResultT.failure(ResultCode.GET_FAILURE);
     }

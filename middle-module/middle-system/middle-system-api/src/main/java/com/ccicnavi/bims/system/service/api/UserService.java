@@ -83,7 +83,7 @@ public interface UserService {
     *@Author: zhangxingbiao
     *@date: 2018/11/23
     */
-    public UserDTO initialPassword(UserDTO userDTO);
+    public Integer initialPassword(UserDTO userDTO);
 
     /**
      *@Description: 用户登录

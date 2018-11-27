@@ -130,5 +130,7 @@ INSERT INTO
     WHERE
     	is_deleted='N'
     and prod_catalog_uuid = '#prodCatalogUuid#'
-    and app_sys_uuid = '#appSysUuid#'
     and (org_uuid = '#orgUuid#' or org_uuid='#publicOrgUuid#')
+    -- if appSysUuid != null and appSysUuid!=''
+                       AND app_sys_uuid = '#appSysUuid#'
+    -- end

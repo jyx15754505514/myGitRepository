@@ -1,4 +1,4 @@
--- [lsitCategoryTypeDO]
+-- [listCategoryType]
 SELECT
     product_category_type_uuid,
     parent_type_uuid,

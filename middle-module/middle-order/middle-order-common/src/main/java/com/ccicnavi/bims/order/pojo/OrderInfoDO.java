@@ -37,13 +37,13 @@ public class OrderInfoDO implements Serializable {
      */
     private Date orderDate;
     /**
-     * 客户号
-     */
-    private String orderCrmNo;
-    /**
-     * 区域id
+     * 委托区域id
      */
     private String orderAreaId;
+    /**
+     * 外部编号
+     */
+    private String crmExternalNo;
     /**
      * 客户id
      */
@@ -65,17 +65,21 @@ public class OrderInfoDO implements Serializable {
      */
     private String crmEmail;
     /**
-     * 合同编号
+     * 贸易合同编号
      */
     private String crmContractNo;
     /**
-     * 紧急联系人
+     * 联检方
      */
-    private String crmEmerName;
+    private String thirdOrgName;
     /**
-     * 紧急联系人电话
+     * 联检方联系人
      */
-    private String crmEmerTelphone;
+    private String thirdOrgLinkman;
+    /**
+     * 联检方联系人电话
+     */
+    private String thirdOrgTelphone;
     /**
      * 委托项目名称
      */
@@ -124,6 +128,10 @@ public class OrderInfoDO implements Serializable {
      * 是Y否N内部委托单
      */
     private String isInternal;
+    /**
+     * 委托人来源
+     */
+    private String orderCrmSource;
     /**
      * 委托单来源机构id
      */

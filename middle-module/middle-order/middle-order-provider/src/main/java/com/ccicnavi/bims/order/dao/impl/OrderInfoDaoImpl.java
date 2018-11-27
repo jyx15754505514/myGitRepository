@@ -82,4 +82,19 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
             return null;
         }
     }
+
+    /**
+     * @Author MengZiJie
+     * @Description 更改委托单状态
+     * @Data 2018/11/27 17:23
+     * @Param [orderInfoDTO, tran]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer updateOrderStatus(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception {
+        if(tran != null){
+            return new Eql().useTran(tran).update("updateOrderStatus").params(orderInfoDTO).returnType(Integer.class).execute();
+        }
+        return  new Eql().update("updateOrderStatus").params(orderInfoDTO).returnType(Integer.class).execute();
+    }
 }

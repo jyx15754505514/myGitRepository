@@ -32,6 +32,9 @@
      --iff settingUuid != null and settingUuid != ''
         and setting_uuid like '#settingUuid:like#'
      --end
+     -- if appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid='#appSysUuid#',
+     -- end
 
 -- 新增系统设置信息
 -- [insertSetting]
@@ -63,7 +66,7 @@
             comments,
           --iff isDeleted != null
             is_deleted,
-          --iff createdTime != null
+          --iff createdTime == null
             created_time,
           --iff createdUuid != null
             created_uuid,
@@ -122,8 +125,8 @@
           --iff isDeleted != null
             '#isDeleted#',
 
-          --iff createdTime != null
-            '#createdTime#',
+          --iff createdTime == null
+            NOW(),
 
           --iff createdUuid != null
             '#createdUuid#',
@@ -268,8 +271,8 @@
         sys_setting
      WHERE
         is_deleted = 'N'
-        --if userUuid != null and userUuid != ''
-              and  setting_uuid = '#userUuid#'
+        --if settingUuid != null and settingUuid != ''
+              and  setting_uuid = '#settingUuid#'
         --end
         --if orgUuid != null and  orgUuid != ''
               and  org_uuid = '#orgUuid#'
