@@ -136,6 +136,7 @@ where
 		'#item#'
 	-- end
 
+
 -- [insertOrderInfo]
 insert into order_info
     --trim prefix=( suffix=) suffixOverrides=,
@@ -379,9 +380,7 @@ insert into order_info
 
 -- [updateOrderInfo]
 update order_info
-    -- trim prefix= set suffixOverrides=,
-        --iff orderUuid != null and orderUuid !=''
-        	order_uuid = '#orderUuid#',
+    -- trim prefix=set suffixOverrides=,
         --iff productCategoryUuid != null and productCategoryUuid !=''
         	product_category_uuid = '#productCategoryUuid#',
         --iff orderNo != null and orderNo !=''
@@ -502,9 +501,36 @@ where
 --iff orderUuid != null and orderUuid != ''
     and order_uuid = '#orderUuid#'
 
+
+-- [updateOrderStatus]
+update order_info
+    -- trim prefix=set suffixOverrides=,
+        --iff statusUuid != null and statusUuid !=''
+        	status_uuid = '#statusUuid#',
+        --iff statusName != null and statusName !=''
+        	status_name = '#statusName#',
+        --iff updatedTime != null
+        	updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid !=''
+        	updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName !=''
+        	updated_name = '#updatedName#',
+    -- end
+where
+    is_deleted = 'N'
+--iff orderUuid != null and orderUuid != ''
+    and order_uuid = '#orderUuid#'
+--iff orderUuids != null
+    and order_uuid in
+    -- for item=item index=index collection=orderUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
+
+
 -- [deleteOrderInfo]
 UPDATE order_info
-    -- trim prefix= set suffixOverrides=,
+    -- trim prefix=set suffixOverrides=,
         is_deleted = 'Y'
         --iff updatedTime != null
             updated_time = '#updatedTime#',
@@ -517,4 +543,8 @@ where
     is_deleted = 'N'
 --iff orderUuid != null and orderUuid != ''
     and order_uuid = '#orderUuid#'
-
+--iff orderUuids != null
+    and order_uuid in
+    -- for item=item index=index collection=orderUuids open=( separator=, close=)
+        '#item#'
+    -- end
