@@ -89,6 +89,10 @@ public class OrderInfoDO implements Serializable {
      */
     private String orderItemSpec;
     /**
+     * 项目标识
+     */
+    private String orderItemSign;
+    /**
      * 数量
      */
     private Integer orderItemQty;
