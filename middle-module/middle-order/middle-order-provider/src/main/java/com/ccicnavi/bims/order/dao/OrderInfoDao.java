@@ -44,5 +44,13 @@ public interface OrderInfoDao {
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderInfoDO>
      */
     PageBean<OrderInfoDO> listOrderInfoPage(PageParameter<OrderInfoDO> orderInfoDO) throws Exception;
+    /**
+     * @Author MengZiJie
+     * @Description 作废委托单
+     * @Data 2018/11/27 17:16
+     * @Param [orderInfoDTO]
+     * @Return java.lang.Integer
+     */
+    Integer updateOrderStatus(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
 
 }
