@@ -32,10 +32,10 @@ public class DictController {
 
     private final static Logger log = LoggerFactory.getLogger(DictController.class);
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference(timeout = 30000)
     private DictValueService dictValueService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference(timeout = 30000)
     private DictTypeService dictTypeService;
 
     /**
@@ -95,7 +95,7 @@ public class DictController {
     /**
      * 新增数据字典数值
      *
-     * @param dictTypeDO
+     * @param dictValueDO
      * @return
      * @Author LiJie
      */
