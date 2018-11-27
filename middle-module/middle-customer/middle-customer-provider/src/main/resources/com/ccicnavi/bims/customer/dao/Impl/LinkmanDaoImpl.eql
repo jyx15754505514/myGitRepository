@@ -30,8 +30,7 @@ SELECT
 	extend3
 FROM
 	crm_customer_linkman
-WHERE
-	is_deleted = 'N'
+WHERE 1=1
         --iff linkmanName !=null and linkmanName != ''
             and linkman_name = '#linkmanName:like#'
         --end
@@ -41,8 +40,10 @@ WHERE
         --iff custUuid !=null and custUuid != ''
             and cust_uuid = '#custUuid#'
         --end
-
-
+        --iff isDeleted !=null and isDeleted != ''
+            and is_deleted = '#isDeleted#'
+        --end
+        order by created_time desc
 -- [getLinkman]
 SELECT
 	linkman_uuid,

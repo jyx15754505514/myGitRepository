@@ -252,7 +252,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             if(orgList != null && orgList.size() > 0 ){
                 //递归调用，获取树形部门结构
                 listOrganiztionUuid(organizationDTO, orgList, uuids);
-                //System.out.println("uuids:::::"+uuids);
+                System.out.println("uuids:::::"+uuids);
                 organizationDTO.setOrganizationUuid(null);
                 organizationDTO.setUuids(uuids);
                 return organizationDao.updateOrgByEnable(organizationDTO);
@@ -279,7 +279,9 @@ public class OrganizationServiceImpl implements OrganizationService {
             String organizationUuid = org.getOrganizationUuid();
             organizationDTO.setOrgParentUuid(organizationUuid);
             organizationDTO.setOrgUuid(null);
+            organizationDTO.setUuids(null);
             uuids.add(org.getOrganizationUuid());
+
             childList = organizationDao.listOrgByUser(organizationDTO);
 
             if (childList != null && childList.size() > 0) {

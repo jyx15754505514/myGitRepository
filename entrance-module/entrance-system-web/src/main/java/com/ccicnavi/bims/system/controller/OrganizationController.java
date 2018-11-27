@@ -70,6 +70,7 @@ public class OrganizationController {
         try {
             String organizationUuid = idWorkerService.getId(new Date());
             organizationDTO.setOrganizationUuid(organizationUuid);
+            organizationDTO.setOrgParentUuid(organizationDTO.getOrgUuid());
             //organizationDTO.setOrgAllParentUuid();
             organizationDTO.setOrgUuid(organizationUuid);
             integer = organizationService.insertOrganization(organizationDTO);
@@ -241,7 +242,7 @@ public class OrganizationController {
     public ResultT updateOrgByEnable(@RequestBody OrganizationDTO organizationDTO) {
         Integer integer = null;
         try {
-            if (StringUtils.isNotEmpty(organizationDTO.getOrgUuid())) {
+            if (StringUtils.isNotEmpty(organizationDTO.getOrgUuid()) || organizationDTO.getUuids().size() > 0) {
                 integer = organizationService.updateOrgByEnable(organizationDTO);
                 if (integer != null && integer != 0) {
                     return ResultT.success();
