@@ -1,7 +1,5 @@
 package com.ccicnavi.bims.system.service.api;
 
-import com.ccicnavi.bims.common.ResultT;
-import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.DictTypeDO;
 import com.ccicnavi.bims.system.pojo.DictTypeDTO;
 
@@ -52,4 +50,5 @@ public interface DictTypeService {
      * @date: 2018/11/24
      */
     public Integer updateDictType(DictTypeDTO dictTypeDTO);
+
 }
