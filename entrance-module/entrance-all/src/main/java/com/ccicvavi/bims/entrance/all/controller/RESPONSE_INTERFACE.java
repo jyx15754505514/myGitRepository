@@ -1,4 +1,4 @@
-package com.ccicvavi.bims.entranceall.controller;
+package com.ccicvavi.bims.entrance.all.controller;
 
 import lombok.Data;
 
