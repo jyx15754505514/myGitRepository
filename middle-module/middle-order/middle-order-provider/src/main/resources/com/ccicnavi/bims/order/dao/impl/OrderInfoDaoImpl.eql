@@ -18,6 +18,7 @@ select
     order_item_name orderItemName,
     order_item_type orderItemType,
     order_item_spec orderItemSpec,
+    order_item_sign orderItemSign,
     order_item_qty orderItemQty,
     order_item_qty_unit orderItemQtyUnit,
     use_std_uuid useStdUuid,
@@ -80,6 +81,7 @@ select
     order_item_name orderItemName,
     order_item_type orderItemType,
     order_item_spec orderItemSpec,
+    order_item_sign orderItemSign,
     order_item_qty orderItemQty,
     order_item_qty_unit orderItemQtyUnit,
     use_std_uuid useStdUuid,
@@ -168,6 +170,8 @@ insert into order_info
             order_item_type,
         -- iff orderItemSpec != null and orderItemSpec != ''
             order_item_spec,
+        -- iff orderItemSign != null and orderItemSign != ''
+            order_item_sign,
         -- iff orderItemQty != null and orderItemQty != ''
             order_item_qty,
         -- iff orderItemQtyUnit != null and orderItemQtyUnit != ''
@@ -280,6 +284,8 @@ insert into order_info
             '#orderItemType#',
         --iff orderItemSpec != null and orderItemSpec != ''
             '#orderItemSpec#',
+         --iff orderItemSign != null and orderItemSign != ''
+            '#orderItemSign#',
         --iff orderItemQty != null and orderItemQty != ''
             '#orderItemQty#',
         --iff orderItemQtyUnit != null and orderItemQtyUnit != ''
@@ -393,6 +399,8 @@ update order_info
             order_item_type = '#orderItemType#',
         --iff orderItemSpec != null and orderItemSpec != ''
             order_item_spec = '#orderItemSpec#',
+        --iff orderItemSign != null and orderItemSign != ''
+            order_item_sign = '#orderItemSign#',
         --iff orderItemQty != null and orderItemQty != ''
             order_item_qty = '#orderItemQty#',
         --iff orderItemQtyUnit != null and orderItemQtyUnit != ''
