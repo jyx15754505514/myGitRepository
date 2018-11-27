@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.system.service.api;
 
 
+import com.ccicnavi.bims.system.pojo.DictTypeDO;
 import com.ccicnavi.bims.system.pojo.DictTypeDTO;
 import com.ccicnavi.bims.system.pojo.DictValueDO;
 
@@ -21,7 +22,7 @@ public interface DictValueService {
      * @Author: zhangxingbiao
      * @date: 2018/11/24
      */
-    public Integer insertDictValue(DictTypeDTO dictTypeDTO);
+    public Integer insertDictValue(DictValueDO dictValueDO);
 
     /**
      * @Description: 删除数据字典数值
@@ -39,7 +40,7 @@ public interface DictValueService {
      * @Author: zhangxingbiao
      * @date: 2018/11/24
      */
-    public Integer updateDictValue(DictTypeDTO dictTypeDTO);
+    public Integer updateDictValue(DictValueDO dictValueDO);
 
     /**
      * 根据字典类别编号查询字典信息
@@ -49,6 +50,6 @@ public interface DictValueService {
      * @date 2018/11/26 17:33
      * @params [dictType]
      */
-    public List<DictTypeDTO> listDictValue(DictTypeDTO dictTypeDTO);
+    public List<DictValueDO> listDictValue(DictTypeDTO dictTypeDTO);
 
 }

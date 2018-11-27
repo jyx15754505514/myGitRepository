@@ -2,6 +2,7 @@ package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.system.dao.DictValueDao;
+import com.ccicnavi.bims.system.pojo.DictTypeDO;
 import com.ccicnavi.bims.system.pojo.DictTypeDTO;
 import com.ccicnavi.bims.system.pojo.DictValueDO;
 import com.ccicnavi.bims.system.service.api.DictValueService;
@@ -32,12 +33,12 @@ public class DictValueServiceImpl implements DictValueService {
      * @date: 2018/11/24
      */
     @Override
-    public Integer insertDictValue(DictTypeDTO dictTypeDTO) {
+    public Integer insertDictValue(DictValueDO dictValueDO) {
         try {
-            return dictValueDao.insertDictValue(dictTypeDTO);
+            return dictValueDao.insertDictValue(dictValueDO);
         } catch (Exception e) {
-            log.error("删除数据字典数值失败", e);
-            return null;
+            log.error("新增数据字典数值失败", e);
+            return 0;
         }
     }
 
@@ -66,9 +67,9 @@ public class DictValueServiceImpl implements DictValueService {
      * @date: 2018/11/24
      */
     @Override
-    public Integer updateDictValue(DictTypeDTO dictTypeDTO) {
+    public Integer updateDictValue(DictValueDO dictValueDO) {
         try {
-            return dictValueDao.updateDictValue(dictTypeDTO);
+            return dictValueDao.updateDictValue(dictValueDO);
         } catch (Exception e) {
             log.error("删除数据字典数值失败", e);
             return null;
@@ -82,24 +83,12 @@ public class DictValueServiceImpl implements DictValueService {
      * @create: 2018-11-20 10:41
      */
     @Override
-    public List<DictTypeDTO> listDictValue(DictTypeDTO dictTypeDTO) {
-        List<DictTypeDTO> dictTypeList = null;
-        List<String> dictType = dictTypeDTO.getTypeList();
+    public List<DictValueDO> listDictValue(DictTypeDTO dictTypeDTO) {
         try {
-            if (dictType != null && dictType.size() > 0) {
-                dictTypeList = new ArrayList<>();
-                for (String type : dictType) {
-                    //查询子项封装成list
-                    List<DictValueDO> dictValueList = dictValueDao.listDictValue(type);
-                    DictTypeDTO dictTypeDTO1 = new DictTypeDTO();
-                    dictTypeDTO1.setDictParentUuid(type);
-                    dictTypeDTO1.setValueList(dictValueList);
-                    dictTypeList.add(dictTypeDTO1);
-                }
-            }
+            return  dictValueDao.listDictValue(dictTypeDTO);
         } catch (Exception e) {
             log.error("根据字典类别编号查询字典信息失败", e);
+            return null;
         }
-        return dictTypeList;
     }
 }
