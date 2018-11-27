@@ -29,7 +29,7 @@ public class TestOrderInspection {
             OrderInspectionDO orderInspectionDO = new OrderInspectionDO();
             orderInspectionDO.setOrderUuid("181127170753");
             orderInspectionDO.setVesselName("名称");
-            System.err.print(order.updateInspection(orderInspectionDO, null));
+            //System.err.print(order.updateInspection(orderInspectionDO, null));
         } catch (Exception e) {
             e.printStackTrace();
         }
