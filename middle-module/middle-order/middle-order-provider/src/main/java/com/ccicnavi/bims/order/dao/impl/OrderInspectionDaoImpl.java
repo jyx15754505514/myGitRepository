@@ -2,6 +2,7 @@ package com.ccicnavi.bims.order.dao.impl;
 
 import com.ccicnavi.bims.order.dao.OrderInspectionDao;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
+import com.ccicnavi.bims.order.pojo.OrderInspectionDO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,14 @@ public class OrderInspectionDaoImpl implements OrderInspectionDao {
             return eql.useTran(tran).update("updateOrderInspection").params(orderInfoDTO).returnType(Integer.class).execute();
         }
         return eql.update("updateOrderInspection").params(orderInfoDTO).returnType(Integer.class).execute();
+    }
+
+    @Override
+    public Integer updateInspection(OrderInspectionDO orderInspectionDO, EqlTran tran) throws Exception {
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).update("updateInspection").params(orderInspectionDO).returnType(Integer.class).execute();
+        }
+        return eql.update("updateInspection").params(orderInspectionDO).returnType(Integer.class).execute();
     }
 }
