@@ -169,7 +169,7 @@ public class UserServiceImpl implements UserService{
         try {
             tran.start();
             deleteUser = userDao.deleteUser(userDTO, tran);
-            deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
+            deleteRoleUser = roleUserDao.deleteRoleUserByUser(userDTO, tran);
             if(deleteUser != null && deleteRoleUser != null){
                 tran.commit();
             }
@@ -259,7 +259,7 @@ public class UserServiceImpl implements UserService{
         Integer deleteRoleUser = 0;
         try {
             tran.start();
-            deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
+            deleteRoleUser = roleUserDao.deleteRoleUserByUser(userDTO, tran);
            /* List<String> deleteRoleList = userDTO.getDeleteRoleList();
             if(deleteRoleList != null && deleteRoleList.size() > 0){
                 deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
@@ -271,7 +271,7 @@ public class UserServiceImpl implements UserService{
                 for(String roleUuid : addRoleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表
-                    insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
+                    insertRole += roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
             if((insertRole == null || insertRole != addRoleList.size())) {

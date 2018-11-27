@@ -61,7 +61,7 @@ public class RoleUserServiceImpl implements RoleUserService {
             userDTO.setRoleUuid(roleUserDTO.getRoleUuid());
             List<RoleUserDTO> roleUserList = roleUserDao.listRoleUser(userDTO);
             if(roleUserList !=null && roleUserList.size()>0){
-                deletenum = roleUserDao.deleteRoleUsers(userDTO,tran);
+                deletenum = roleUserDao.deleteRoleUserByRole(userDTO,tran);
             }else{
                 deletenum=1;
             }

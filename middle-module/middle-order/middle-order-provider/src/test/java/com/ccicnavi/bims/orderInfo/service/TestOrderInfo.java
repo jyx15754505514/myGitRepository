@@ -2,6 +2,7 @@ package com.ccicnavi.bims.orderInfo.service;
 
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.dao.OrderInfoDao;
 import com.ccicnavi.bims.order.dao.OrderInspectionDao;
@@ -27,9 +28,27 @@ public class TestOrderInfo {
 
     private static SimpleDateFormat timeFormat = new SimpleDateFormat("yyMMddHHmmss");
 
-
-
-
+    /**
+     * @author songyateng
+     * @description 更新委托方信息
+     * @date 2018/11/27 20:07
+     */
+    @Test
+    public void updateOrderInfoTest(){
+        try {
+            OrderInfoDaoImpl orderInfoDaoImpl = new OrderInfoDaoImpl();
+            OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
+            orderInfoDTO.setOrderUuid("AAA");
+            orderInfoDTO.setIsDeleted("N");
+            orderInfoDTO.setProdCatalogUuid("chanpinxianuuid");
+            orderInfoDTO.setOrgUuid("guishujigouid");
+            orderInfoDTO.setAppSysUuid("yingyongxitongid");
+            orderInfoDTO.setOrderName("AAA");
+            System.err.print(orderInfoDaoImpl.updateOrderInfo(orderInfoDTO, null));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void getOrderInfo(){
@@ -66,12 +85,13 @@ public class TestOrderInfo {
             pageParameter.startPage = 1;
             pageParameter.pageRows = 2;
             OrderInfoDO orderInfoDO = new OrderInfoDO();
+            orderInfoDO.setOrderUuid("aaa");
             pageParameter.setParameter(orderInfoDO);
-            order.listOrderInfoPage(pageParameter);
+            PageBean<OrderInfoDO> orderInfoDOPageBean = order.listOrderInfoPage(pageParameter);
+            System.err.println(orderInfoDOPageBean);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     /**

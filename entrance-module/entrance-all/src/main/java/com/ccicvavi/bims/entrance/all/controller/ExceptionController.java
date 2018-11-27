@@ -1,6 +1,5 @@
-package com.ccicvavi.bims.entranceall.controller;
+package com.ccicvavi.bims.entrance.all.controller;
 
-import com.ccicnavi.bims.common.BaseController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 @ControllerAdvice
 @RestController
 @RequestMapping(value = "/error")
-public class ExceptionController  {
+public class ExceptionController {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseBody
