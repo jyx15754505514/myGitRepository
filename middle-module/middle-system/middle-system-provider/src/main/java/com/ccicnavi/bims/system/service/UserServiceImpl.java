@@ -259,11 +259,11 @@ public class UserServiceImpl implements UserService{
         Integer deleteRoleUser = null;
         try {
             tran.start();
-            //deleteRoleUser = roleUserDao.deleteRoleByUser(userDTO, tran);
-           List<String> deleteRoleList = userDTO.getDeleteRoleList();
+            deleteRoleUser = roleUserDao.deleteRoleByUser(userDTO, tran);
+           /* List<String> deleteRoleList = userDTO.getDeleteRoleList();
             if(deleteRoleList != null && deleteRoleList.size() > 0){
                 deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
-            }
+            }*/
             //添加角色的集合不为空就根据用户uuid添加用户和角色信息
             List<String> addRoleList = userDTO.getAddRoleList();
             if(addRoleList != null && addRoleList.size() > 0){
