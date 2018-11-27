@@ -40,13 +40,13 @@ public class RoleUserServiceImpl implements RoleUserService {
         Integer deletenum = 0;
         Integer savenum = 0;
         try {
-            if(!StringUtils.isEmpty(roleUserDTO.getDeleteUserUuid())){
+        /*    if(!StringUtils.isEmpty(roleUserDTO.getDeleteUserUuid())){
                 List<String> list = roleUserDTO.getDeleteUserUuid();
                 for(String str :list){
                     UserDTO userDTO =new UserDTO();
                     userDTO.setUserUuid(str);
                     userDTO.setRoleUuid(roleUserDTO.getRoleUuid());
-                    List<RoleUserDO> roleUserList = roleUserDao.listRoleUser(userDTO,tran);
+                    List<RoleUserDO> roleUserList = roleUserDao.listRoleUser(userDTO);
                     if(roleUserList != null && roleUserList.size() > 0){
                         deletenum = roleUserDao.deleteRoleUsers(userDTO, tran);
                     }else{
@@ -55,9 +55,18 @@ public class RoleUserServiceImpl implements RoleUserService {
                 }
             }else{
                 deletenum =1;
+            }*/
+            UserDTO userDTO =new UserDTO();
+            userDTO.setOrgUuid(roleUserDTO.getOrgUuid());
+            userDTO.setRoleUuid(roleUserDTO.getRoleUuid());
+            List<RoleUserDTO> roleUserList = roleUserDao.listRoleUser(userDTO);
+            if(roleUserList !=null && roleUserList.size()>0){
+                deletenum = roleUserDao.deleteRoleUsers(userDTO,tran);
+            }else{
+                deletenum=1;
             }
-            if(!StringUtils.isEmpty(roleUserDTO.getSaveUserUuid())){
-                List<String> list = roleUserDTO.getSaveUserUuid();
+            if(!StringUtils.isEmpty(roleUserDTO.getSaveUserUuids())){
+                List<String> list = roleUserDTO.getSaveUserUuids();
                 for(String useruuid:list){
                     RoleUserDTO roleUserDto = new RoleUserDTO();
                     roleUserDto.setRoleUuid(roleUserDTO.getRoleUuid());

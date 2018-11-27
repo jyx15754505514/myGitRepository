@@ -32,7 +32,7 @@ public class RolePermissionServiceImpl implements RolePermissionService {
         Integer savenum = 0;
         try {
             tran.start();
-            if(!StringUtils.isEmpty(rolePermissionDTO.getDeleteButUuid())){
+     /*       if(!StringUtils.isEmpty(rolePermissionDTO.getDeleteButUuid())){
                 List<String> list = rolePermissionDTO.getDeleteButUuid();
                 for(String str:list){
                     RolePermissionDTO rolePermissionDto = new RolePermissionDTO();
@@ -47,9 +47,15 @@ public class RolePermissionServiceImpl implements RolePermissionService {
                 }
             }else{
                 deletenum=1;
+            }*/
+            List<RolePermissionDTO> listRolePermission= rolePermissionDao.selectRolePermission(rolePermissionDTO);
+            if(listRolePermission != null && listRolePermission.size() >0){
+                deletenum = rolePermissionDao.deleteRolePermission(rolePermissionDTO,tran);
+            }else{
+                deletenum=1;
             }
-            if(!StringUtils.isEmpty(rolePermissionDTO.getSaveButUuid())){
-                List<String> list = rolePermissionDTO.getSaveButUuid();
+            if(!StringUtils.isEmpty(rolePermissionDTO.getSaveButUuids())){
+                List<String> list = rolePermissionDTO.getSaveButUuids();
                 for(String butuuid:list){
                     RolePermissionDTO rolePermissionDto = new RolePermissionDTO();
                     rolePermissionDto.setRoleUuid(rolePermissionDTO.getRoleUuid());
