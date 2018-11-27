@@ -271,8 +271,8 @@
         sys_setting
      WHERE
         is_deleted = 'N'
-        --if userUuid != null and userUuid != ''
-              and  setting_uuid = '#userUuid#'
+        --if settingUuid != null and settingUuid != ''
+              and  setting_uuid = '#settingUuid#'
         --end
         --if orgUuid != null and  orgUuid != ''
               and  org_uuid = '#orgUuid#'
