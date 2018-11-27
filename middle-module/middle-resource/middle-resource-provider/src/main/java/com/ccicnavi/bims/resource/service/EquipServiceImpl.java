@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -188,11 +190,49 @@ public class EquipServiceImpl implements EquipService {
      */
     @Override
     public Integer updateEquip(EquipDO equipDO){
+        /**创建事务*/
+        EqlTran eqlTran = new Eql().newTran();
+        /**定义检定记录对象*/
+        EquipTestDTO equipTestDTO = new EquipTestDTO();
+        EquipTestDO equipTestDO = new EquipTestDO();
         Integer count = 0;
         try {
+            eqlTran.start();
+            equipTestDO.setCertNo(equipDO.getCertNo());//证书号
+            equipTestDO.setTestDate(equipDO.getTestDate());//检测日期
+            equipTestDO.setTestCycle(equipDO.getTestCycle());//检定周期
+            equipTestDO.setIsLongTerm(equipDO.getIsLongTerm());//是否长期有效
+            equipTestDO.setTestValidDate(equipDO.getTestValidDate());//检定有效日期
+            equipTestDO.setTestResult(equipDO.getTestResult());//检定结果
+            equipTestDO.setTestType(equipDO.getTestType());//检测类型
+            equipTestDO.setTestFee(equipDO.getTestFee());//费用
+            equipTestDO.setFeeDesc(equipDO.getFeeDesc());//费用说明
+            equipTestDO.setStandardDesc(equipDO.getStandardDesc());//依据技术文件
+            equipTestDO.setOnlineCertUrl(equipDO.getOnlineCertUrl());//证书在线url
+            /**查询对应检定记录*/
+            equipTestDTO.setEquipUuid(equipDO.getEquipUuid());
+            List<EquipTestDO> equipTestList = equipTestDao.getEquipTestList(equipTestDTO);
+            if(equipTestList.size() > 0){
+                for (int i = 0;i < equipTestList.size();i++) {
+                    EquipTestDO  equipTestInfo = equipTestList.get(i);
+                    if(!StringUtils.isEmpty(equipTestInfo.getCertNo())){
+                        equipTestDO.setEquipTestUuid(equipTestInfo.getEquipTestUuid());
+                        equipTestDao.updateEquipTest(equipTestDO,eqlTran);
+                    }else{
+                        //获取主键
+                        String equipTestUuid = idWorkerService.getId(new Date());
+                        equipTestDO.setEquipTestUuid(equipTestUuid);
+                        equipTestDao.insertEquipTest(equipTestDO,eqlTran);
+                    }
+                }
+            }
             count = equipDao.updateEquip(equipDO,null);
+            eqlTran.commit();
         } catch (Exception e) {
             log.error("更新设备信息错误",e);
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
         }
         return count;
     }
