@@ -230,11 +230,15 @@ public class MenuServiceImpl implements MenuService {
                 menu.setMenuDTO(childList);
                 MenuButtonDTO menuButtonDTO = new MenuButtonDTO();
                 menuButtonDTO.setMenuUuid(menu.getMenuUuid());
+                menuButtonDTO.setAppSysUuid(menu.getAppSysUuid());
+                menuButtonDTO.setOrgUuid(menu.getOrgUuid());
                 menuButtonDTO.setProdCatalogList(menu.getProdCatalogList());
                 //菜单所对应的所有按钮
                 List<MenuButtonDTO> menuButtonDOList=menuButtonDao.listMenuButton(menuButtonDTO);
                 menu.setMenuButtonDOList(menuButtonDOList);
                 menuDTO.setMenuUuid(menu.getMenuUuid());
+                menuDTO.setAppSysUuid(menu.getAppSysUuid());
+                menuDTO.setOrgUuid(menu.getOrgUuid());
                 List<MenuButtonDTO> selectmenuButtonDOList =  menuButtonDao.listMenuButtonByRole(menuDTO);
                 menu.setSelectdMenuButtonDOList(selectmenuButtonDOList);
             }

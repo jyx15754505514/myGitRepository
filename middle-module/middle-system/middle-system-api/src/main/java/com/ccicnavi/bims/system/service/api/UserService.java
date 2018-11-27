@@ -52,10 +52,10 @@ public interface UserService {
      *@Description: 根据角色查询用户
      *@Param: userDTO
      *@return: UserDTO
-     *@Author: 本人姓名
+     *@Author: zqq
      *@date: 2018/11/22
      */
-    public UserDTO selectByRoleUser(UserDTO userDTO);
+    public UserDTO selectByRoleUser(PageParameter<UserDTO> PageParameter);
 
 
     /**

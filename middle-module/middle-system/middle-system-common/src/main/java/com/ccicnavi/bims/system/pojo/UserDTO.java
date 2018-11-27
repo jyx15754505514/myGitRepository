@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.system.pojo;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -35,7 +36,7 @@ public class UserDTO implements Serializable {
     /**
      * 未授权用户集合
      */
-    private List<UserDTO> unauthUserList;
+    private PageBean<UserDTO> unauthUserList;
     /**
      * 用户拥有的角色集合
      */
@@ -197,5 +198,10 @@ public class UserDTO implements Serializable {
 
     private String extend3;
 
+    private  List<String> userUuids;
 
+    private String firstName;
+    private String skillName;
+    private String deptName;
+    private String phone;
 }

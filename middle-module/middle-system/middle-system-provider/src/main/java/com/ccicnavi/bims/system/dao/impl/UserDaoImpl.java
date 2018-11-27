@@ -5,6 +5,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.system.dao.UserDao;
+import com.ccicnavi.bims.system.pojo.RemindDTO;
 import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -128,8 +129,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<UserDTO> selectunauthUserList(UserDTO userDTO) {
-        return new Eql().select("selectunauthUserList").params(userDTO).returnType(UserDTO.class).execute();
+    public PageBean<UserDTO> selectunauthUserList(PageParameter<UserDTO> PageParameter) {
+        EqlPage page = new EqlPage(PageParameter.getStartIndex(),PageParameter.getPageRows());
+        List<UserDTO> list = new Eql().select("selectunauthUserList").params(PageParameter.getParameter()).returnType(UserDTO.class).limit(page).execute();
+        return new PageBean<UserDTO>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),list);
 
     }
     /**

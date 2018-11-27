@@ -137,6 +137,15 @@
   -- if updatedUuid != null
         updated_uuid = '#updatedUuid#',
    -- end
+  -- if prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
+   -- end
+  -- if appSysUuid != null
+        app_sys_uuid = '#appSysUuid#',
+   -- end
+  -- if orgUuid != null
+          org_uuid = '#orgUuid#',
+  -- end
   -- if extend1 != null
         extend1 = '#extend1#',
   -- end
@@ -183,6 +192,12 @@
         -- end
         -- iff prodCatalogUuid != null and prodCatalogUuid != ''
                 and prod_catalog_uuid = '#prodCatalogUuid#'
+        -- end
+        -- iff la != null and roleName != ''
+                and role_name like   '#roleName:like#'
+        -- end
+        -- iff roleCode != null and roleCode != ''
+                and role_code like   '#roleCode:like#'
         -- end
 
 
