@@ -2,6 +2,7 @@ package com.ccicnavi.bims.orderInfo.service;
 
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.dao.OrderInfoDao;
 import com.ccicnavi.bims.order.dao.OrderInspectionDao;
@@ -66,12 +67,13 @@ public class TestOrderInfo {
             pageParameter.startPage = 1;
             pageParameter.pageRows = 2;
             OrderInfoDO orderInfoDO = new OrderInfoDO();
+            orderInfoDO.setOrderUuid("aaa");
             pageParameter.setParameter(orderInfoDO);
-            order.listOrderInfoPage(pageParameter);
+            PageBean<OrderInfoDO> orderInfoDOPageBean = order.listOrderInfoPage(pageParameter);
+            System.err.println(orderInfoDOPageBean);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     /**
