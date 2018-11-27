@@ -215,7 +215,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDTO selectByRoleUser(PageParameter<UserDTO> PageParameter) {
         //授权用户
-        List<String> userUuids =new ArrayList<String>();
+        List<String> userUuids =null;
         try {
             UserDTO userdto =new UserDTO();
             userdto.setRoleUuid(PageParameter.getParameter().getRoleUuid());

@@ -435,12 +435,13 @@ select
 from sys_user s
 LEFT JOIN res_person r on s.user_uuid =r.user_uuid
 LEFT JOIN sys_organization so on s.dept_uuid=so.organization_uuid
- where s.user_uuid
- not in
-            -- for item=item index=index collection=userUuids open=( separator=, close=)
-				'#item#'
-			-- end
-           and s.org_uuid ='#orgUuid#'
+ where  s.org_uuid ='#orgUuid#'
+            -- if userUuids != null
+            and  s.user_uuid  not in
+                -- for item=item index=index collection=userUuids open=( separator=, close=)
+            		'#item#'
+            	-- end
+            --end
     --if deptUuid != null and  deptUuid != ''
            and s.dept_uuid ='#deptUuid#'
     --end
