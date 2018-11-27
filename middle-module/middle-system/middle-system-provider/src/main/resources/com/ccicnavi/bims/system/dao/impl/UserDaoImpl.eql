@@ -404,94 +404,49 @@
 -- 查询已授权的用户
 -- [listauthUserList]
  SELECT
-        su.user_uuid as  userUuid,
-        su.nick_name as nickName,
-        su.login_name as loginName,
-        su.login_email as loginEmail,
-        su.login_phone as loginPhone,
-        su.current_password as currentPassword,
-        su.password_hints as passwordHints,
-        su.is_change_password as isChangePassword,
-        su.login_usertype as loginUsertype,
-        su.disabled_time as disabledTime,
-        su.dept_uuid as deptUuid,
-        su.disabled_reason as disabledReason,
-        su.failed_logins as failedLogins,
-        su.login_method as loginMethod,
-        su.last_time_zone as lastTimeZone,
-        su.last_local as lastLocal,
-        su.last_login_ip as lastLoginIp,
-        su.last_login_time as lastLoginTime,
-        su.bind_login_ip as bindLoginIp,
-        su.is_enabled as isEnabled,
-        su.comments,
-        su.is_deleted as isDeleted,
-        su.created_time as createdTime,
-        su.created_uuid as createdUuid,
-        su.created_name as createdName,
-        su.updated_time as updatedTime,
-        su.updated_name as updatedName,
-        su.org_uuid as orgUuid,
-        su.app_sys_uuid as appSysUuid,
-        su.prod_catalog_uuid as prodCatalogUuid,
-        su.real_name as realName,
-        su.extend2,
-        su.extend3
-    FROM
-        sys_user su
-    LEFT JOIN sys_role_user sr ON su.user_uuid = sr.user_uuid
-    WHERE
-     su.is_deleted = 'N'
-     and sr.role_uuid ='#roleUuid#'
-     --if orgUuid != null and  orgUuid != ''
-     and su.org_uuid ='#orgUuid#'
+         rp.first_name as firstName,
+         su.nick_name as nickName,
+ 		 rp.skill_name as skillName,
+ 		 so.org_name as deptName,
+ 		 rp.phone as phone
+     FROM
+         sys_user su
+        LEFT JOIN sys_role_user sr ON su.user_uuid = sr.user_uuid
+ 		LEFT JOIN res_person rp on su.user_uuid =rp.user_uuid
+ 		LEFT JOIN sys_organization so on su.dept_uuid=so.organization_uuid
+     WHERE
+      su.is_deleted = 'N'
+           and sr.role_uuid ='#roleUuid#'
+           and su.org_uuid ='#orgUuid#'
+
+
 
 -- 查询未授权用户
 -- [selectunauthUserList]
- select
-         user_uuid as  userUuid,
-         nick_name as nickName,
-         login_name as loginName,
-         login_email as loginEmail,
-         login_phone as loginPhone,
-         current_password as currentPassword,
-         password_hints as passwordHints,
-         is_change_password as isChangePassword,
-         login_usertype as loginUsertype,
-         disabled_time as disabledTime,
-         dept_uuid as deptUuid,
-         disabled_reason as disabledReason,
-         failed_logins as failedLogins,
-         login_method as loginMethod,
-         last_time_zone as lastTimeZone,
-         last_local as lastLocal,
-         last_login_ip as lastLoginIp,
-         last_login_time as lastLoginTime,
-         bind_login_ip as bindLoginIp,
-         is_enabled as isEnabled,
-         comments,
-         is_deleted as isDeleted,
-         created_time as createdTime,
-         created_uuid as createdUuid,
-         created_name as createdName,
-         updated_time as updatedTime,
-         updated_name as updatedName,
-         org_uuid as orgUuid,
-         app_sys_uuid as appSysUuid,
-         prod_catalog_uuid as prodCatalogUuid,
-         real_name as realName,,
-         extend2,
-         extend3
- from sys_user
- where
-    user_uuid not in ( SELECT
+select
+		 r.first_name as firstName,
+         s.nick_name as nickName,
+ 		 r.skill_name as skillName,
+ 		 so.org_name as deptName,
+ 		 r.phone as phone
+from sys_user s
+LEFT JOIN res_person r on s.user_uuid =r.user_uuid
+LEFT JOIN sys_organization so on s.dept_uuid=so.organization_uuid where s.user_uuid not in
+(SELECT
         su.user_uuid
     FROM
         sys_user su
     LEFT JOIN sys_role_user sr ON su.user_uuid = sr.user_uuid
+		LEFT JOIN res_person rp on su.user_uuid =rp.user_uuid
+		LEFT JOIN sys_organization so on su.dept_uuid=so.organization_uuid
     WHERE
-        su.is_deleted = 'N'
-        and sr.role_uuid ='#roleUuid#'
-        and su.org_uuid ='#orgUuid#'
-        )
-             and org_uuid ='#orgUuid#'
+           su.is_deleted = 'N'
+           and sr.role_uuid ='#roleUuid#'
+           and su.org_uuid ='#orgUuid#')
+           and s.org_uuid ='#orgUuid#'
+    --if deptUuid != null and  deptUuid != ''
+           and s.dept_uuid ='#deptUuid#'
+    --end
+    --if firstName != null and  firstName != ''
+           and rp.first_name like '#firstName:like#'
+    --end

@@ -8,8 +8,9 @@
 from
     sys_role_permission
    where
-   btn_uuid = '#butUuid#'
-  and role_uuid = '#roleUuid#'
+    role_uuid = '#roleUuid#'
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+    and app_sys_uuid ='#appSysUuid#'
 
 -- 新增角色按钮
 -- [insertRolePermission]
@@ -39,5 +40,6 @@ from
 -- [deleteRolePermission]
     delete from sys_role_permission
     where
-       btn_uuid = '#butUuid#'
-      and role_uuid = '#roleUuid#'
+     role_uuid = '#roleUuid#'
+          and prod_catalog_uuid = '#prodCatalogUuid#'
+          and app_sys_uuid ='#appSysUuid#'
