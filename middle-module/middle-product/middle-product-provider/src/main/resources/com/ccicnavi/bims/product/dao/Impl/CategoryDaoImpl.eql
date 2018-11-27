@@ -393,13 +393,14 @@ GROUP BY
 UPDATE product_category
 SET is_deleted = 'Y'
 WHERE
-	is_deleted = 'N'
- -- if uuids != null
-            AND product_category_uuid IN
+        -- if uuids != null
+            product_category_uuid IN
             -- for item=item index=index collection=uuids open=( separator=, close=)
-                #item#
+                '#item#'
             -- end
         -- end
+      AND org_uuid='#orgUuid#'
+      AND app_sys_uuid='#appSysUuid#'
 
 -- [updateCategory]
   update product_category

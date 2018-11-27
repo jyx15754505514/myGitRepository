@@ -31,8 +31,8 @@ public class DictValueDaoImpl implements DictValueDao {
      * @date: 2018/11/24
      */
     @Override
-    public Integer insertDictValue(DictTypeDTO dictTypeDTO) throws Exception {
-        return new Eql("DEFAULT").insert("insertDictValue").params(dictTypeDTO).returnType(Integer.class).execute();
+    public Integer insertDictValue(DictValueDO dictValueDO) {
+        return new Eql("DEFAULT").insert("insertDictValue").params(dictValueDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -43,8 +43,8 @@ public class DictValueDaoImpl implements DictValueDao {
      * @date: 2018/11/24
      */
     @Override
-    public Integer deleteDictValue(DictTypeDTO dictTypeDTO) throws Exception {
-        return new Eql("DEFAULT").delete("insertDictValue").params(dictTypeDTO).returnType(Integer.class).execute();
+    public Integer deleteDictValue(DictTypeDTO dictTypeDTO)  {
+        return new Eql("DEFAULT").update("deleteDictValue").params(dictTypeDTO).returnType(Integer.class).execute();
     }
 
     /**
@@ -55,20 +55,19 @@ public class DictValueDaoImpl implements DictValueDao {
      * @date: 2018/11/24
      */
     @Override
-    public Integer updateDictValue(DictTypeDTO dictTypeDTO) throws Exception {
-        return new Eql("DEFAULT").update("insertDictValue").params(dictTypeDTO).returnType(Integer.class).execute();
+    public Integer updateDictValue(DictValueDO dictValueDO)  {
+        return new Eql("DEFAULT").update("updateDictValue").params(dictValueDO).returnType(Integer.class).execute();
     }
 
     /**
-     * 查询字典值列表
-     *
+     * 查询字典值列表根据字典类别ID和所属机构和所属产品线ID查询
      * @return java.util.List<com.ccicnavi.bims.system.pojo.DictValueDO>
      * @author TXW
      * @date 2018/11/26 17:40
      * @params [dictParentUuid]
      */
     @Override
-    public List<DictValueDO> listDictValue(String dictParentUuid) throws Exception {
-        return new Eql("DEFAULT").select("listDictValue").params(dictParentUuid).returnType(DictValueDO.class).execute();
+    public List<DictValueDO> listDictValue(DictTypeDTO dictTypeDTO)  {
+        return new Eql("DEFAULT").select("listDictValue").params(dictTypeDTO).returnType(DictValueDO.class).execute();
     }
 }

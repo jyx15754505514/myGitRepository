@@ -21,7 +21,7 @@ public interface DictValueDao {
      * @Author: zhangxingbiao
      * @date: 2018/11/24
      */
-    public Integer insertDictValue(DictTypeDTO dictTypeDTO) throws Exception;
+    public Integer insertDictValue(DictValueDO dictValueDO) throws Exception;
 
     /**
      * @Description: 删除数据字典数值
@@ -39,17 +39,16 @@ public interface DictValueDao {
      * @Author: zhangxingbiao
      * @date: 2018/11/24
      */
-    public Integer updateDictValue(DictTypeDTO dictTypeDTO) throws Exception;
+    public Integer updateDictValue(DictValueDO dictValueDO) throws Exception;
 
     /**
-     * 查询字典值列表
-     *
+     * 根据字典类别UUID和所属机构和所属产品线查询对应的value值
      * @return java.util.List<com.ccicnavi.bims.system.pojo.DictValueDO>
      * @author TXW
      * @date 2018/11/26 17:38
      * @params [dictParentUuid]
      */
-    List<DictValueDO> listDictValue(String dictParentUuid) throws Exception;
+    List<DictValueDO> listDictValue(DictTypeDTO dictTypeDTO) throws Exception;
 
 
 }

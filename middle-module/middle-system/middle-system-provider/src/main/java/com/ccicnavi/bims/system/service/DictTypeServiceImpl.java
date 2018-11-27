@@ -43,14 +43,11 @@ public class DictTypeServiceImpl implements DictTypeService {
     @Override
     public List<DictTypeDO> listDictType(DictTypeDTO dictTypeDTO) {
         try {
-            List<DictTypeDO> dictTypeDOS = dictTypeDao.listDictType(dictTypeDTO);
-            if (dictTypeDOS != null) {
-                return dictTypeDOS;
-            }
+            return dictTypeDao.listDictType(dictTypeDTO);
         } catch (Exception e) {
             log.error("根据条件查询字典类型失败", e);
+            return null;
         }
-        return null;
     }
 
     /**
@@ -67,7 +64,7 @@ public class DictTypeServiceImpl implements DictTypeService {
             return dictTypeDao.insertDictType(dictTypeDTO);
         } catch (Exception e) {
             log.error("新增字典类型失败", e);
-            return null;
+            return 0;
         }
     }
 
@@ -84,7 +81,7 @@ public class DictTypeServiceImpl implements DictTypeService {
             return dictTypeDao.deleteDictType(dictTypeDTO);
         } catch (Exception e) {
             log.error("删除字典类型失败", e);
-            return null;
+            return 0;
         }
     }
 
@@ -101,7 +98,7 @@ public class DictTypeServiceImpl implements DictTypeService {
             return dictTypeDao.updateDictType(dictTypeDTO);
         } catch (Exception e) {
             log.error("更新字典类型失败", e);
-            return null;
+            return 0;
         }
     }
 }

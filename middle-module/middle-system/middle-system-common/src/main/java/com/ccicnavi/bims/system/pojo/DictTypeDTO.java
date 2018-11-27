@@ -37,10 +37,17 @@ public class DictTypeDTO implements Serializable {
      * 排序编号
      */
     private String sortNum;
+
+    
+    /**
+     * ————————以下是数据字典value的具体参数————————
+     */
+
     /**
      * 主键uuid
      */
     private String dictValueUuid;
+
     /**
      * 字典数值名称
      */
@@ -53,6 +60,11 @@ public class DictTypeDTO implements Serializable {
      * 父节点uuid
      */
     private String dictParentUuid;
+
+    /**
+     * ————————公共字段————————
+     */
+
     /**
      * 备注
      */
@@ -89,6 +101,12 @@ public class DictTypeDTO implements Serializable {
      * 归属机构id
      */
     private String orgUuid;
+
+    /**
+     * 公共所属机构
+     */
+    private String publicOrgUuid;
+
     /**
      * 应用系统id
      */
@@ -106,8 +124,8 @@ public class DictTypeDTO implements Serializable {
      */
     private List<String> typeList;
     /**
-     * 字典类型主键集合
+     * 字典数值集合
      */
-    private List<String> uuids;
+    private List<String> valueUuids;
 
 }

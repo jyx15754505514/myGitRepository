@@ -58,7 +58,7 @@ public class DictTypeDaoImpl implements DictTypeDao {
     */
     @Override
     public Integer deleteDictType(DictTypeDTO dictTypeDTO) throws Exception {
-        return new Eql("DEFAULT").delete("deleteDictType").params(dictTypeDTO).returnType(Integer.class).execute();
+        return new Eql("DEFAULT").update("deleteDictType").params(dictTypeDTO).returnType(Integer.class).execute();
     }
 
     /**
