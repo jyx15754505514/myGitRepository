@@ -12,7 +12,9 @@ WHERE 1=1
        and co.organization_uuid = '#organizationUuid#'
    --iff prodCatalogUuid != null and prodCatalogUuid != ''
        and co.prod_catalog_uuid = '#prodCatalogUuid#'
-
+   -- if appSysUuid != null and appSysUuid != ''
+       and app_sys_uuid='#appSysUuid#',
+   -- end
 
 --[saveCatalogOrgDO]
 INSERT INTO sys_catalog_org

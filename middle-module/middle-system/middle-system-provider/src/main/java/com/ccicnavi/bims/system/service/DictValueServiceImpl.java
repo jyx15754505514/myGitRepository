@@ -2,14 +2,12 @@ package com.ccicnavi.bims.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.system.dao.DictValueDao;
-import com.ccicnavi.bims.system.pojo.DictTypeDO;
 import com.ccicnavi.bims.system.pojo.DictTypeDTO;
 import com.ccicnavi.bims.system.pojo.DictValueDO;
 import com.ccicnavi.bims.system.service.api.DictValueService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,6 +86,21 @@ public class DictValueServiceImpl implements DictValueService {
             return  dictValueDao.listDictValue(dictTypeDTO);
         } catch (Exception e) {
             log.error("根据字典类别编号查询字典信息失败", e);
+            return null;
+        }
+    }
+
+    /**
+     * 根据主键获取对应数据字典数值信息
+     * @param dictValueDO
+     * @return
+     */
+    @Override
+    public DictValueDO getDictValue(DictValueDO dictValueDO) {
+        try {
+            return dictValueDao.getDictValue(dictValueDO);
+        } catch (Exception e) {
+            log.error("根据主键获取对应数据字典数值信息失败", e);
             return null;
         }
     }

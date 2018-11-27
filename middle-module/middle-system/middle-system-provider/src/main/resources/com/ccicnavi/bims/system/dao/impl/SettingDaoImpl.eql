@@ -32,6 +32,9 @@
      --iff settingUuid != null and settingUuid != ''
         and setting_uuid like '#settingUuid:like#'
      --end
+     -- if appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid='#appSysUuid#',
+     -- end
 
 -- 新增系统设置信息
 -- [insertSetting]
@@ -268,8 +271,8 @@
         sys_setting
      WHERE
         is_deleted = 'N'
-        --if userUuid != null and userUuid != ''
-              and  setting_uuid = '#userUuid#'
+        --if settingUuid != null and settingUuid != ''
+              and  setting_uuid = '#settingUuid#'
         --end
         --if orgUuid != null and  orgUuid != ''
               and  org_uuid = '#orgUuid#'

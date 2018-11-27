@@ -50,12 +50,4 @@ public interface RoleUserDao {
     */
     public List<RoleUserDTO> listRoleUser(UserDTO userDTO);
 
-    /*
-    * 根据用户主键删除用户角色信息
-    * @Author zhaotao
-    * @Date  2018/11/27 9:45
-    * @Param [userDTO, tran]
-    * @return java.lang.Integer
-    **/
-    Integer deleteRoleByUser(UserDTO userDTO, EqlTran tran);
 }
