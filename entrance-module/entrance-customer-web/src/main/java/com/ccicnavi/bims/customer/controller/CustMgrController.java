@@ -23,7 +23,7 @@ import java.util.List;
  * @Version 1.0
  */
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/custMgr")
 public class CustMgrController {
 
     private final static Logger log = LoggerFactory.getLogger(CustMgrController.class);
@@ -57,7 +57,7 @@ public class CustMgrController {
      *@date: 2018/11/19
      */
 
-    @RequestMapping(value = "/listCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/getCustMgrPageData", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listCustomer(@RequestBody PageParameter<CustMgrDO> pageParameter) {
         try {
             PageBean<CustMgrDO> custMgrPage = custMgrService.listCustMgrPage(pageParameter);
