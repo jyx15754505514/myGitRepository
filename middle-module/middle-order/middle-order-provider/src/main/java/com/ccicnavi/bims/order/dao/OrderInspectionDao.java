@@ -20,7 +20,7 @@ public interface OrderInspectionDao {
     Integer insertOrderInspection(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
     /**
      * @Author MengZiJie
-     * @Description 更新运输方式
+     * @Description 更新运输方式（参数：OrderInfoDTO）
      * @Date 20:35 2018/11/20
      * @Param [orderInfoDTO, tran]
      * @Return java.lang.Integer
@@ -28,7 +28,7 @@ public interface OrderInspectionDao {
     Integer updateOrderInspection(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
     /**
      * @Author songyateng
-     * @Description 运输方式信息保存
+     * @Description 新运输方式（参数：OrderInspectionDO）
      * @Date 2018/11/27 21:14
      * @Param [orderInspectionDO, tran]
      * @Return java.lang.Integer

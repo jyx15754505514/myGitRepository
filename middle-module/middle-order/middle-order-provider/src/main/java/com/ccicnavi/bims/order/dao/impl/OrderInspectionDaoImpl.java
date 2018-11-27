@@ -32,7 +32,7 @@ public class OrderInspectionDaoImpl implements OrderInspectionDao {
 
     /**
      * @Author MengZiJie
-     * @Description 更新运输方式信息
+     * @Description 更新运输方式信息（参数：OrderInfoDTO）
      * @Date 16:27 2018/11/19
      * @Param [orderShipmentDO, tran]
      * @Return java.lang.Integer
@@ -45,7 +45,13 @@ public class OrderInspectionDaoImpl implements OrderInspectionDao {
         }
         return eql.update("updateOrderInspection").params(orderInfoDTO).returnType(Integer.class).execute();
     }
-
+    /**
+     * @Author songyateng
+     * @Description 更新运输方式信息（参数：OrderInspectionDO）
+     * @Date 2018/11/27 21:56
+     * @Param [orderInspectionDO, tran]
+     * @Return java.lang.Integer
+     */
     @Override
     public Integer updateInspection(OrderInspectionDO orderInspectionDO, EqlTran tran) throws Exception {
         Eql eql = new Eql();

@@ -20,7 +20,7 @@ public interface OrderInspectionService {
     Integer insertOrderInspection(OrderInfoDTO orderInfoDTO);
     /**
      * @Author songyateng
-     * @Description 更新运输方式
+     * @Description 更新运输方式（参数：OrderInfoDTO）
      * @Date 2018/11/27 21:05
      * @Param [orderInfoDTO]
      * @Return java.lang.Integer
@@ -28,7 +28,7 @@ public interface OrderInspectionService {
     Integer updateOrderInspection(OrderInfoDTO orderInfoDTO);
     /**
      * @Author songyateng
-     * @Description 运输方式信息保
+     * @Description 更新运输方式（参数：OrderInspectionDO）
      * @Date 2018/11/27 21:10
      * @Param [orderInspectionDO]
      * @Return java.lang.Integer

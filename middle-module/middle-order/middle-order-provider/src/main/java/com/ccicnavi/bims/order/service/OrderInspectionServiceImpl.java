@@ -53,7 +53,7 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
 
     /**
      * @Author heibin
-     * @Description 更新委托单运输方式
+     * @Description 更新委托单运输方式（参数：OrderInfoDTO）
      * @Date 18:04 2018/11/19
      * @Param [orderShipmentDO]
      * @Return java.lang.Integer
@@ -75,7 +75,7 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
 
     /**
      * @Author songyateng
-     * @Description 运输方式信息保存
+     * @Description 更新委托单运输方式（参数：OrderInspectionDO）
      * @Date 2018/11/27 21:15
      * @Param [orderInspectionDO]
      * @Return java.lang.Integer
