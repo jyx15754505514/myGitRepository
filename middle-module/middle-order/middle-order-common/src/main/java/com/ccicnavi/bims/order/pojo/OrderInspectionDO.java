@@ -109,4 +109,21 @@ public class OrderInspectionDO implements Serializable {
      * 预留字段3
      */
     private String extend3;
+    /**
+     * 货值
+     */
+    private Integer goodsValue;
+    /**
+     * 货值币种
+     */
+    private String goodsCurrency;
+    /**
+     * 批重量
+     */
+    private Integer weightBatch;
+    /**
+     * 批重量单位
+     */
+    private String weightBatchUnit;
+
 }
