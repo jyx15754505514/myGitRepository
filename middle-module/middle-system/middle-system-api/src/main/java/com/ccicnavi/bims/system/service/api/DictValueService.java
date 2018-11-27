@@ -1,7 +1,6 @@
 package com.ccicnavi.bims.system.service.api;
 
 
-import com.ccicnavi.bims.system.pojo.DictTypeDO;
 import com.ccicnavi.bims.system.pojo.DictTypeDTO;
 import com.ccicnavi.bims.system.pojo.DictValueDO;
 
@@ -52,4 +51,10 @@ public interface DictValueService {
      */
     public List<DictValueDO> listDictValue(DictTypeDTO dictTypeDTO);
 
+    /**
+     * 根据主键获取对应数据字典数值信息
+     * @param dictValueDO
+     * @return
+     */
+    DictValueDO getDictValue(DictValueDO dictValueDO);
 }
