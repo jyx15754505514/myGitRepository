@@ -8,9 +8,9 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletResponse;
 
-@ControllerAdvice
-@RestController
-@RequestMapping(value = "/error")
+//@ControllerAdvice
+//@RestController
+//@RequestMapping(value = "/error")
 public class ExceptionController {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
