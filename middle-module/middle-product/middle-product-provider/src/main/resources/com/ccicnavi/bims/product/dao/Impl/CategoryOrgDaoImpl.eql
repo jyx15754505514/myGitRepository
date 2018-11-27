@@ -12,6 +12,8 @@ where 1=1
         and prod_catalog_uuid = '#prodCatalogUuid#'
     --iff productCategoryUuid != null and productCategoryUuid != ''
         and product_category_uuid = '#productCategoryUuid#'
+    --iff appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid = '#appSysUuid#'
 
 --[saveCategoryOrgDO]
 insert into product_category_org
@@ -53,3 +55,5 @@ where 1=1
         and organization_uuid = '#organizationUuid#'
     --iff prodCatalogUuid != null and prodCatalogUuid != ''
         and prod_catalog_uuid = '#prodCatalogUuid#'
+    --iff appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid = '#appSysUuid#'
