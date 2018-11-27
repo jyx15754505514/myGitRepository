@@ -24,7 +24,7 @@ public class TestOrderInspection {
     @Test
     public void updateInspection() {
         try {
-            //123
+            //456
             OrderInspectionDaoImpl order = new OrderInspectionDaoImpl();
             OrderInspectionDO orderInspectionDO = new OrderInspectionDO();
             orderInspectionDO.setOrderUuid("181127170753");
