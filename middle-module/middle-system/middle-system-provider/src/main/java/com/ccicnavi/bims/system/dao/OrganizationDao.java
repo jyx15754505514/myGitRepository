@@ -82,7 +82,8 @@ public interface OrganizationDao {
      *@Author: zhangpengwei
      *@date: 2018/11/26
      */
-    public List<OrganizationDTO> listOrgByOrg(OrganizationDTO organizationDTO) throws Exception;
+    //public List<OrganizationDTO> listOrgByOrg(OrganizationDTO organizationDTO) throws Exception;
+    public PageBean<OrganizationDTO> listOrgByOrg(PageParameter<OrganizationDTO> pageParameter) throws Exception;
 
     /**
      *@Description: 禁用/启用机构和子机构（包括公司和部门）

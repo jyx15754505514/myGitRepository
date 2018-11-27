@@ -335,6 +335,7 @@ is_deleted = 'N'
     and organization_uuid in
     -- for item=item index=index collection=uuids open=( separator=, close=)
         '#item#'
+    --end
 -- end
 
 -- [deleteOrganization]
@@ -345,13 +346,15 @@ UPDATE
 -- end
 WHERE
     is_deleted = 'N'
+
+    and organization_uuid in
+    -- for item=item index=index collection=uuids open=( separator=, close=)
+        '#item#'
+
     --iff organizationUuid != null and organizationUuid != ''
         and organization_uuid = '#organizationUuid#'
-    --iff uuids != null
-        and organization_uuid in
-        -- for item=item index=index collection=uuids open=( separator=, close=)
-            '#item#'
-    -- end
+    --end
+
 
 --根据用户查询省公司
  -- [getOrgByUser]
@@ -505,6 +508,7 @@ WHERE
         and organization_uuid in
         -- for item=item index=index collection=uuids open=( separator=, close=)
             '#item#'
+        --end
     -- end
 
 

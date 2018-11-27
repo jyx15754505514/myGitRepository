@@ -32,10 +32,12 @@ public class OrganizationController {
 
     private final static Logger log = LoggerFactory.getLogger(OrganizationController.class);
 
-    @Reference(timeout = 60000, url = "dubbo://127.0.0.1:20881")
+    @Reference
+    //(timeout = 60000, url = "dubbo://127.0.0.1:20881")
     OrganizationService organizationService;
 
-    @Reference(timeout = 60000, url = "dubbo://127.0.0.1:20880")
+    @Reference
+    //(timeout = 60000, url = "dubbo://127.0.0.1:20880")
     IdWorkerService idWorkerService;
 
     /**
@@ -94,10 +96,10 @@ public class OrganizationController {
             if (integer != null && integer != 0) {
                 return ResultT.success();
             }
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         } catch (Exception e) {
             log.error("更新组织机构信息失败", e);
-            return ResultT.failure(ResultCode.ADD_FAILURE);
+            return ResultT.failure(ResultCode.UPDATE_FAILURE);
         }
     }
 
@@ -148,12 +150,12 @@ public class OrganizationController {
     }
 
     /**
-    *@Description: 根据用户查询省公司Uuid
-    *@Param: [organizationDTO]
-    *@return: com.ccicnavi.bims.common.ResultT
-    *@Author: zhangpengwei
-    *@date: 2018/11/26
-    */
+     *@Description: 根据用户查询省公司Uuid
+     *@Param: [organizationDTO]
+     *@return: com.ccicnavi.bims.common.ResultT
+     *@Author: zhangpengwei
+     *@date: 2018/11/26
+     */
     @RequestMapping(value = "/getOrgByUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT getOrgByUser(@RequestBody OrganizationDTO organizationDTO) {
         if(StringUtils.isEmpty(organizationDTO.getOrgUuid())){
@@ -163,7 +165,7 @@ public class OrganizationController {
             OrganizationDTO organization = new OrganizationDTO();
             organization = organizationService.getOrgByUser(organizationDTO);
             //if (organization != null) {
-                return ResultT.success(organization);
+            return ResultT.success(organization);
             //}
             //return ResultT.failure(ResultCode.GET_FAILURE);
         } catch (Exception e) {
@@ -203,28 +205,36 @@ public class OrganizationController {
      *@date: 2018/11/26
      */
     @RequestMapping(value = "/listOrgByOrg", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listOrgByOrg(@RequestBody OrganizationDTO organizationDTO){
-        //判断接收到的对象中机构UUID不为空
-        if (StringUtils.isEmpty(organizationDTO.getOrgUuid())) {
-            return ResultT.failure(ResultCode.LIST_FAILURE);
-        }
+//    public ResultT listOrgByOrg(@RequestBody OrganizationDTO organizationDTO){
+//        //判断接收到的对象中机构UUID不为空
+//        if (StringUtils.isEmpty(organizationDTO.getOrgUuid())) {
+//            return ResultT.failure(ResultCode.LIST_FAILURE);
+//        }
+//        try {
+//            //获取所有当前机构下的所有子机构
+//            List<OrganizationDTO> organizationDTOList = organizationService.listOrgByOrg(organizationDTO);
+//            return ResultT.success(organizationDTOList);
+//        } catch (Exception e) {
+//            log.error("查询组织机构信息失败", e);
+//            return ResultT.failure(ResultCode.LIST_FAILURE);
+//        }
+//    }
+    public ResultT listOrgByOrg(@RequestBody PageParameter<OrganizationDTO> pageParameter) {
         try {
-            //获取所有当前机构下的所有子机构
-            List<OrganizationDTO> organizationDTOList = organizationService.listOrgByOrg(organizationDTO);
-            return ResultT.success(organizationDTOList);
+            return organizationService.listOrgByOrg(pageParameter);
         } catch (Exception e) {
-            log.error("查询组织机构信息失败", e);
+            log.error("根据条件查询组织结构信息失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }
 
     /**
-    *@Description: 禁用/启用机构和子机构（包括公司和部门）
-    *@Param: [organizationDTO]
-    *@return: com.ccicnavi.bims.common.ResultT
-    *@Author: zhangpengwei
-    *@date: 2018/11/26
-    */
+     *@Description: 禁用/启用机构和子机构（包括公司和部门）
+     *@Param: [organizationDTO]
+     *@return: com.ccicnavi.bims.common.ResultT
+     *@Author: zhangpengwei
+     *@date: 2018/11/26
+     */
     @RequestMapping(value = "/updateOrgByEnable", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT updateOrgByEnable(@RequestBody OrganizationDTO organizationDTO) {
         Integer integer = null;

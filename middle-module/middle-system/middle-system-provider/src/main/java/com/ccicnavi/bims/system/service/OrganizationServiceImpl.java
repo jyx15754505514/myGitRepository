@@ -97,7 +97,20 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public Integer deleteOrganization(OrganizationDTO organizationDTO) {
         try {
-            return organizationDao.deleteOrganization(organizationDTO);
+            List<OrganizationDTO> orgList = new ArrayList<OrganizationDTO>();
+            List<String> uuids = new ArrayList<String>();
+            orgList = organizationDao.listOrgByUser(organizationDTO);
+            //禁用/启用 递归调用
+            if(orgList != null && orgList.size() > 0 ){
+                //递归调用，获取树形部门结构
+                listOrganiztionUuid(organizationDTO, orgList, uuids);
+                //System.out.println("uuids:::::"+uuids);
+                OrganizationDTO orgDTO = new OrganizationDTO();
+                orgDTO.setUuids(uuids);
+                return organizationDao.deleteOrganization(orgDTO);
+            }else{
+                return null;
+            }
         } catch (Exception e) {
             log.error("组织机构对象删除失败" + e);
             return null;
@@ -188,30 +201,44 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     /**
-    *@Description: 根据当前机构查询下级机构（包括公司和部门：只查一级）
-    *@Param: [organizationDTO]
-    *@return: java.util.List<com.ccicnavi.bims.system.pojo.OrganizationDTO>
-    *@Author: zhangpengwei
-    *@date: 2018/11/26
-    */
-    public List<OrganizationDTO> listOrgByOrg(OrganizationDTO organizationDTO){
-        List<OrganizationDTO> orgList = new ArrayList<OrganizationDTO>();
+     *@Description: 根据当前机构查询下级机构（包括公司和部门：只查一级）
+     *@Param: [organizationDTO]
+     *@return: java.util.List<com.ccicnavi.bims.system.pojo.OrganizationDTO>
+     *@Author: zhangpengwei
+     *@date: 2018/11/26
+     */
+//    @Override
+//    public List<OrganizationDTO> listOrgByOrg(OrganizationDTO organizationDTO){
+//        List<OrganizationDTO> orgList = new ArrayList<OrganizationDTO>();
+//        try {
+//            orgList = organizationDao.listOrgByOrg(organizationDTO);
+//            return orgList;
+//        } catch (Exception e) {
+//            log.error("查询组织机构信息失败", e);
+//            return null;
+//        }
+//    }
+    @Override
+    public ResultT listOrgByOrg(PageParameter<OrganizationDTO> pageParameter) {
         try {
-            orgList = organizationDao.listOrgByOrg(organizationDTO);
-            return orgList;
+            PageBean<OrganizationDTO> pageBean = organizationDao.listOrgByOrg(pageParameter);
+            if (pageBean != null) {
+                return ResultT.success(pageBean);
+            }
         } catch (Exception e) {
-            log.error("查询组织机构信息失败", e);
-            return null;
+            log.error("组织机构列表获取失败" + e);
         }
+        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
     /**
-    *@Description: 禁用/启用机构和子机构（包括公司和部门）
-    *@Param: [organizationDTO]
-    *@return: java.lang.Integer
-    *@Author: zhangpengwei
-    *@date: 2018/11/26
-    */
+     *@Description: 禁用/启用机构和子机构（包括公司和部门）
+     *@Param: [organizationDTO]
+     *@return: java.lang.Integer
+     *@Author: zhangpengwei
+     *@date: 2018/11/26
+     */
+    @Override
     public Integer updateOrgByEnable(OrganizationDTO organizationDTO){
         try {
             //String orgAllParentUuid = organizationDTO.getOrgUuid();
@@ -224,10 +251,13 @@ public class OrganizationServiceImpl implements OrganizationService {
             if(orgList != null && orgList.size() > 0 ){
                 //递归调用，获取树形部门结构
                 listOrganiztionUuid(organizationDTO, orgList, uuids);
+                //System.out.println("uuids:::::"+uuids);
+                OrganizationDTO orgDTO = new OrganizationDTO();
+                orgDTO.setUuids(uuids);
+                return organizationDao.updateOrgByEnable(orgDTO);
+            }else{
+                return null;
             }
-            System.out.println("uuids:::::"+uuids);
-            organizationDTO.setUuids(uuids);
-            return organizationDao.updateOrgByEnable(organizationDTO);
         } catch (Exception e) {
             log.error("组织机构删除失败" + e);
             return null;
