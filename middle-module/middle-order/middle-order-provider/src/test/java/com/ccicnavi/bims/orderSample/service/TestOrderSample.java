@@ -11,6 +11,7 @@ import java.util.Date;
  * @Date 17:32 2018/11/22
  */
 public class TestOrderSample {
+    OrderSampleDaoImpl order = new OrderSampleDaoImpl();
     /**
       * @author songyateng
       * @description 保存样品信息
@@ -19,7 +20,6 @@ public class TestOrderSample {
     @Test
     public void insertOrderSample(){
         try {
-            OrderSampleDaoImpl order = new OrderSampleDaoImpl();
             OrderSampleDO orderSampleDO = new OrderSampleDO();
             orderSampleDO.setSampleUuid("yangpin");
             orderSampleDO.setOrderUuid("AAA");
@@ -65,7 +65,6 @@ public class TestOrderSample {
     @Test
     public void deleteOrderSample(){
         try {
-            OrderSampleDaoImpl order = new OrderSampleDaoImpl();
             OrderSampleDO orderSampleDO = new OrderSampleDO();
             orderSampleDO.setSampleUnit("yangpin");
             System.err.print(order.deleteOrderSample(orderSampleDO, null));
@@ -82,10 +81,26 @@ public class TestOrderSample {
     @Test
     public void listOrderSample(){
         try {
-            OrderSampleDaoImpl order = new OrderSampleDaoImpl();
             OrderSampleDO orderSampleDO = new OrderSampleDO();
             orderSampleDO.setSampleUuid("yangpin");
             System.err.print(order.listOrderSample(orderSampleDO));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @Author songyateng
+     * @Description 更新样品数据
+     * @Date 2018/11/27 23:35
+     */
+    @Test
+    public void updateOrderSample(){
+        try {
+            OrderSampleDO orderSampleDO = new OrderSampleDO();
+            orderSampleDO.setSampleUuid("AAA");
+            orderSampleDO.setSampleName("BBB");
+            System.err.print(order.updateOrderSample(orderSampleDO,null));
         } catch (Exception e){
             e.printStackTrace();
         }

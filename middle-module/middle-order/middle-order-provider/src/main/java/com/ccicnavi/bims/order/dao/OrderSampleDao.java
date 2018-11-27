@@ -31,10 +31,18 @@ public interface OrderSampleDao {
 
     /**
       * @author songyateng
-      * @description
+      * @description 查询样品
       * @date 2018/11/23 14:42
       * @Param [orderSampleDO]
       * @return java.util.List<com.ccicnavi.bims.order.pojo.OrderSampleDO>
       */
     List<OrderSampleDO> listOrderSample(OrderSampleDO orderSampleDO) throws Exception;
+    /**
+     * @Author songyateng
+     * @Description 更新样品信息
+     * @Date 2018/11/27 23:27
+     * @Param [orderSampleDO, eqlTran]
+     * @Return java.lang.Integer
+     */
+    Integer updateOrderSample(OrderSampleDO orderSampleDO,EqlTran tran);
 }

@@ -1,4 +1,4 @@
-package com.ccicvavi.bims.entrance.all;
+package com.ccicnavi.bims.entrance.all;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
