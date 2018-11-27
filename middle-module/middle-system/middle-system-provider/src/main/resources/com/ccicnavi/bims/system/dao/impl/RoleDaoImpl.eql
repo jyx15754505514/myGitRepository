@@ -193,7 +193,7 @@
         -- iff prodCatalogUuid != null and prodCatalogUuid != ''
                 and prod_catalog_uuid = '#prodCatalogUuid#'
         -- end
-        -- iff la != null and roleName != ''
+        -- iff roleName != null and roleName != ''
                 and role_name like   '#roleName:like#'
         -- end
         -- iff roleCode != null and roleCode != ''
