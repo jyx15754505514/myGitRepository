@@ -5,10 +5,14 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.system.dao.RolePermissionDao;
+import com.ccicnavi.bims.system.dao.RoleUserDao;
 import com.ccicnavi.bims.system.pojo.*;
 import com.ccicnavi.bims.system.service.api.RoleService;
 import com.ccicnavi.bims.system.dao.RoleDao;
 import lombok.extern.slf4j.Slf4j;
+import org.n3r.eql.Eql;
+import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
@@ -23,8 +27,11 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     RoleDao roleDao;
-
-    @Reference
+    @Autowired
+    private RolePermissionDao rolePermissionDao;
+    @Autowired
+    private RoleUserDao roleUserDao;
+    @Reference(url = "dubbo://127.0.0.1:20880", timeout = 5000)
     IdWorkerService idWorkerService;
     @Override
     public PageBean<RoleDO> listRole(PageParameter<RoleDO> pageParameter){
@@ -60,17 +67,47 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Integer deleteRole(RoleDTO role){
-        if(!StringUtils.isEmpty(role.getUuids()) && role.getUuids() != ""){
-            String[] split = StringUtils.split(role.getUuids(), ",");
-            List<String> resultList= new ArrayList<>(Arrays.asList(split));
-            role.setRoleUuids(resultList);
-        }
+        EqlTran tran = new Eql("DEFAULT").newTran();
+        List<String> list = role.getRoleUuids();
+        Integer rolenum=0;
+        Integer roleusernum=0;
+        Integer rolepernum=0;
         try {
-            return roleDao.deleteRole(role,null);
+            tran.start();
+            rolenum = roleDao.deleteRole(role,tran);
+            for(String roleuuid:list){
+                UserDTO userDTO =new UserDTO();
+                userDTO.setRoleUuid(roleuuid);
+                userDTO.setOrgUuid(role.getOrgUuid());
+                List<RoleUserDTO> roleuserlist= roleUserDao.listRoleUser(userDTO);
+                if(roleuserlist !=null && roleuserlist.size()>0){
+                    roleusernum = roleUserDao.deleteRoleUsers(userDTO,tran);
+                }else{
+                    roleusernum=1;
+                }
+
+                RolePermissionDTO rolePermissionDTO =new RolePermissionDTO();
+                rolePermissionDTO.setRoleUuid(roleuuid);
+                rolePermissionDTO.setProdCatalogUuid(role.getProdCatalogUuid());
+                List<RolePermissionDTO>  roleperlist = rolePermissionDao.selectRolePermission(rolePermissionDTO);
+                if(roleperlist !=null && roleperlist.size()>0){
+                    rolepernum = rolePermissionDao.deleteRolePermission(rolePermissionDTO,tran);
+                }else{
+                    rolepernum=1;
+                }
+            }
+            if(rolenum >0 && roleusernum>0 && rolepernum>0){
+                tran.commit();
+                return rolenum;
+            }
         } catch (Exception e) {
             log.error("删除失败",e);
+            tran.rollback();
             return 0;
+        }finally {
+            tran.close();
         }
+        return 0;
     }
 
     @Override

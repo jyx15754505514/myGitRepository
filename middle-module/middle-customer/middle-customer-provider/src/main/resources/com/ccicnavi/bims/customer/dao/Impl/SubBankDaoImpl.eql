@@ -18,10 +18,10 @@ SELECT
 from crm_subc_bank
 where
     is_deleted = 'N'
---if subcBankAccount !=null and subcBankAccount != ''
+--iff subcBankAccount !=null and subcBankAccount != ''
     and subc_bank_account = '#subcBankAccount:like#'
 --end
---if subcBankAddr !=null and subcBankAddr != ''
+--iff subcBankAddr !=null and subcBankAddr != ''
     and subc_bank_addr = '#subcBankAddr#'
 --end
 
@@ -36,12 +36,12 @@ where
     AND subc_uuid = '#subcUuid#'
 --iff subcBankUuid != null and subcBankUuid != ''
     and subc_bank_uuid = '#subcBankUuid#'
--- if subcBankUuids != null
+-- iff subcBankUuids != null
     AND subc_bank_uuid IN
       -- for item=item index=index collection=subcBankUuids open=( separator=, close=)
           '#item#'
       -- end
--- if subcUuids != null
+-- iff subcUuids != null
     AND subc_uuid IN
       -- for item=item index=index collection=subcUuids open=( separator=, close=)
           '#item#'

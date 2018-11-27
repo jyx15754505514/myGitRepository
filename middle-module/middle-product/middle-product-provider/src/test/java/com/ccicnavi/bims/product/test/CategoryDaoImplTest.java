@@ -28,7 +28,7 @@ public class CategoryDaoImplTest {
 
     @Test
     public void listCategory() {
-        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategory(new CategoryDO());
+        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategory(new CategoryDTO());
         System.out.println(categoryDOS);
     }
 
@@ -83,7 +83,7 @@ public class CategoryDaoImplTest {
 
     @Test
     public void listCategoryPage() {
-        PageParameter<CategoryDO> pageParameter=new PageParameter<CategoryDO>();
+        PageParameter<CategoryDTO> pageParameter=new PageParameter<CategoryDTO>();
         pageParameter.setStartIndex(1);
         pageParameter.setPageRows(2);
         pageParameter.setStartPage(1);
@@ -136,11 +136,11 @@ public class CategoryDaoImplTest {
 
     @Test
     public void listCategoryByPage(){
-        PageParameter<CategoryDO> pageParameter =new PageParameter<CategoryDO>();
+        PageParameter<CategoryDTO> pageParameter =new PageParameter<CategoryDTO>();
         pageParameter.setPageRows(10);
         pageParameter.setStartPage(1);
-        CategoryDO categoryDO=new CategoryDO();
-        categoryDO.setCategoryName("二");
+        CategoryDTO categoryDTO=new CategoryDTO();
+        categoryDTO.setCategoryName("二");
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         Date parses = null;
         try {
@@ -148,8 +148,8 @@ public class CategoryDaoImplTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        categoryDO.setCreatedTime(parses);
-        pageParameter.setParameter(categoryDO);
+        categoryDTO.setCreatedTime(parses);
+        pageParameter.setParameter(categoryDTO);
         PageBean<CategoryDO> categoryDOPageBean = categoryDaoImpl.listCategoryPage(pageParameter);
         System.out.println("分页信息如下："+categoryDOPageBean);
     }

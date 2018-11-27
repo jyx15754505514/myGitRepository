@@ -1,8 +1,10 @@
 package com.ccicnavi.bims.product.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.Constants;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CategoryOrgService;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,10 +35,12 @@ import java.util.List;
 public class CategoryController {
 
 
-    @Reference(timeout = 30000)
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     CategoryService categoryService;
-    @Reference(timeout = 30000)
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     CategoryOrgService categoryOrgService;
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    IdWorkerService idWorkerService;
 
     /**
      * 查询全部产品分类信息()
@@ -43,9 +48,10 @@ public class CategoryController {
      * @return
      */
     @RequestMapping(value = "/listAllCategory", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listAllCategory( @RequestBody CategoryDO category) {
+    public ResultT listAllCategory( @RequestBody CategoryDTO categoryDTO) {
         try {
-            List<CategoryDO> CustInvoiceList = categoryService.listCategory(category);
+            categoryDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);//设置公共所属机构
+            List<CategoryDO> CustInvoiceList = categoryService.listCategory(categoryDTO);
             return ResultT.success(CustInvoiceList);
         } catch (Exception e) {
             log.error("查询产品分类信息失败~", e);
@@ -55,13 +61,14 @@ public class CategoryController {
 
 
     /**
-     * 查询全部产品分类信息()
+     * 查询全部产品分类信息(分页查询)
      *
      * @return
      */
     @RequestMapping(value = "/listCategoryPage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listCategoryPage(@RequestBody PageParameter<CategoryDO> pageParameter) {
+    public ResultT listCategoryPage(@RequestBody PageParameter<CategoryDTO> pageParameter) {
         try {
+            pageParameter.getParameter().setPublicOrgUuid(Constants.PUBLIC_ORGUUID);//设置公共所属机构
             PageBean<CategoryDO> categoryList = categoryService.listCategoryPage(pageParameter);
             return ResultT.success(categoryList);
         } catch (Exception e) {
@@ -79,8 +86,8 @@ public class CategoryController {
     @RequestMapping(value = "/listCategoryFirstByOrgAndProd", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listCategoryFirstByOrgAndProd(@RequestBody CategoryDTO categoryDTO) {
         try {
-            List<CategoryDO> CustInvoiceList = categoryService.listCategoryFirstByOrgAndProd(categoryDTO);
-            return ResultT.success(CustInvoiceList);
+            List<CategoryDO> listCategoryFirstByOrgAndProd = categoryService.listCategoryFirstByOrgAndProd(categoryDTO);
+            return ResultT.success(listCategoryFirstByOrgAndProd);
         } catch (Exception e) {
             log.error(" 根据所属公司机构和业务线查询出一级产品分类~", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
@@ -95,6 +102,7 @@ public class CategoryController {
     @RequestMapping(value = "/listCategoryByParentUuid", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listCategoryByParentUuid(@RequestBody CategoryDTO categoryDTO) {
         try {
+            categoryDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);//设置公共所属机构
             List<CategoryDO> CustInvoiceList = categoryService.listCategoryByParentUuid(categoryDTO);
             return ResultT.success(CustInvoiceList);
         } catch (Exception e) {
@@ -136,6 +144,7 @@ public class CategoryController {
     @RequestMapping(value = "/saveCategory", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT saveCategory(@RequestBody CategoryDO categoryDO) {
         try {
+            categoryDO.setProductCategoryUuid(idWorkerService.getId(new Date()));
             Integer count = categoryService.saveCategory(categoryDO);
             if (count > 0) {
                 return ResultT.success("新增产品分类成功");
@@ -269,6 +278,7 @@ public class CategoryController {
     @RequestMapping(value = "/listCategoryByParentAllUuids", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listCategoryByParentAllUuids(@RequestBody CategoryOrgDTO categoryOrgDTO) {
         try {
+            categoryOrgDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
             List<CategoryDO> CustInvoiceList = categoryService.listCategoryByParentAllUuids(categoryOrgDTO);
             return ResultT.success(CustInvoiceList);
         } catch (Exception e) {

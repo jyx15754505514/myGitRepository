@@ -2,6 +2,7 @@ package com.ccicnavi.bims.product.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
@@ -10,6 +11,7 @@ import com.ccicnavi.bims.product.api.StandardInfoService;
 import com.ccicnavi.bims.product.pojo.StandardInfoDO;
 import com.ccicnavi.bims.product.pojo.StandardInfoDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +34,9 @@ public class ProductStandardInfoController {
     @Reference(timeout = 30000)
     private StandardInfoService standardInfoService;
 
+    @Reference(timeout = 30000)
+    IdWorkerService idWorkerService;
+
     /**
      * 保存产品标准信息
      * @Author lvqiru
@@ -42,7 +47,14 @@ public class ProductStandardInfoController {
     @RequestMapping(value = "saveStandardInfo",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT saveStandardInfo(@RequestBody StandardInfoDTO psiDto){
         log.info("开始保存产品标准信息 Param: " + JSON.toJSONString(psiDto) + " Time: " + new Date());
+        psiDto.setStdUuid(idWorkerService.getId(new Date()));
         try {
+            if (StringUtils.isEmpty(psiDto.getStdUuid()) ||
+                StringUtils.isEmpty(psiDto.getProdCatalogUuid()) ||
+                StringUtils.isEmpty(psiDto.getOrgUuid()) ||
+                StringUtils.isEmpty(psiDto.getAppSysUuid())) {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
             Integer count = standardInfoService.insertStandardInfo(psiDto);
             if (count > 0) {
                 log.info("保存产品标准信息结果: " + "新增数据条数 " + count);

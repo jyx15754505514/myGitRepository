@@ -123,7 +123,7 @@ insert into crm_special_need
 UPDATE crm_special_need
 SET is_deleted='Y'
 WHERE is_deleted='N'
-     -- if ids != null
+     -- iff ids != null
             AND need_uuid IN
             -- for item=item index=index collection=ids open=( separator=, close=)
                 '#item#'
@@ -204,9 +204,9 @@ FROM
     crm_special_need
 WHERE
 	is_deleted = 'N'
-        --if custUuid !=null and custUuid != ''
+        --iff custUuid !=null and custUuid != ''
             and cust_uuid = '#custUuid:like#'
         --end
-        --if needUuid !=null and needUuid != ''
+        --iff needUuid !=null and needUuid != ''
             and need_uuid = '#needUuid#'
         --end
