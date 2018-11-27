@@ -1,8 +1,12 @@
 package com.ccicnavi.bims.customer.dao.Impl;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.dao.SpecialNeedDao;
+import com.ccicnavi.bims.customer.pojo.CustMgrDO;
 import com.ccicnavi.bims.customer.pojo.SpecialNeedDO;
 import org.n3r.eql.Eql;
+import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -78,7 +82,26 @@ public class SpecialNeedDaoImpl implements SpecialNeedDao {
      */
     @Override
     public SpecialNeedDO getSpecialNeed(SpecialNeedDO specialNeed) {
-        return new Eql().select("getSpecialNeed").params(specialNeed).execute();
+        return new Eql().selectFirst("getSpecialNeed").params(specialNeed).returnType(SpecialNeedDO.class).execute();
     }
 
+    /**
+     *@Description: 分页查询客户特殊需求信息
+     *@Param: PageBean
+     *@return: SpecialNeedDO
+     *@Author: congzhiyuan
+     *@date: 2018/11/27
+     */
+    @Override
+    public PageBean<SpecialNeedDO> getSpecialNeedPage(PageParameter<SpecialNeedDO> pageParameter) {
+        //封装分页参数
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        //执行查询
+        List<SpecialNeedDO> custList = new Eql().select("getSpecialNeed").params(pageParameter.getParameter()).returnType(SpecialNeedDO.class).limit(page).execute();
+        if(custList != null) {
+            return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),custList);
+        }else {
+            return null;
+        }
+    }
 }
