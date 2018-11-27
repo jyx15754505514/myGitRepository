@@ -5,14 +5,11 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.CertPaperDao;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
-import com.ccicnavi.bims.resource.pojo.SealDO;
-import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

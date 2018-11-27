@@ -97,4 +97,13 @@ public class RoleUserDaoImpl implements RoleUserDao {
     public List<RoleUserDTO> listRoleUser(UserDTO userDTO) {
         return new Eql("DEFAULT").select("listRoleUser").params(userDTO).returnType(RoleUserDO.class).execute();
     }
+
+    @Override
+    public Integer deleteRoleByUser(UserDTO userDTO, EqlTran tran) {
+        Eql eql = new Eql("DEFAULT");
+        if (tran != null) {
+            eql.useTran(tran);
+        }
+        return new Eql("DEFAULT").delete("deleteRoleUser").params(userDTO).returnType(Integer.class).execute();
+    }
 }
