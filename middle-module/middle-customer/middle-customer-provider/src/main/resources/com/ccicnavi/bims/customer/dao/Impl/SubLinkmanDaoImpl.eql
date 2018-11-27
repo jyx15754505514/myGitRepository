@@ -256,19 +256,19 @@ WHERE
     is_deleted='N'
 --iff linkmanUuid != null and linkmanUuid != ''
     AND linkman_uuid='#linkmanUuid#'
---iff subcUuid != null and subcUuid != ''
-    AND subc_uuid = '#subcUuid#'
--- if subcUuids != null
-    AND subc_uuid IN
-    -- for item=item index=index collection=subcUuids open=( separator=, close=)
-        '#item#'
-    -- end
--- if linkmanUuids != null
+--iff linkmanUuids != null
     AND linkman_uuid IN
     -- for item=item index=index collection=linkmanUuids open=( separator=, close=)
         '#item#'
     -- end
--- end
+--iff subcUuid != null and subcUuid != ''
+    AND subc_uuid = '#subcUuid#'
+--iff subcUuids != null
+    AND subc_uuid IN
+    -- for item=item index=index collection=subcUuids open=( separator=, close=)
+        '#item#'
+    -- end
+--end
 
 -- [updateSubLinkman]
  update crm_subc_linkman
