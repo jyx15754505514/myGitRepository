@@ -26,7 +26,7 @@ import java.util.List;
 @Slf4j
 public class SpecialNeedServiceImpl implements SpecialNeedService {
 
-    @Reference(timeout = 1000000,url = "dubbo://127.0.0.1:20880")
+    @Reference(timeout = 1000000)
     IdWorkerService idWorkerService;
 
     @Autowired

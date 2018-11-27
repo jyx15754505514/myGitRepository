@@ -38,7 +38,7 @@ import java.util.List;
 @Slf4j
 public class CustomerServiceImpl implements CustomerService {
 
-    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    @Reference(timeout = 1000)
     IdWorkerService idWorkerService;
     @Autowired
     CustomerDao customerDao;
