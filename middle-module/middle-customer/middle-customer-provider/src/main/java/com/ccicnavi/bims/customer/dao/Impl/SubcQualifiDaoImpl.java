@@ -30,7 +30,7 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
      */
     @Override
     public List<SubcQualifiDO> listSubcuQuali(SubcontractorDTO subcontractorDTO) {
-        return new Eql().select("listSubcuQuali").params(subcontractorDTO).returnType(SubcontractorDTO.class).execute();
+        return new Eql().select("listSubcuQuali").params(subcontractorDTO).returnType(SubcQualifiDO.class).execute();
     }
 
     /** *
