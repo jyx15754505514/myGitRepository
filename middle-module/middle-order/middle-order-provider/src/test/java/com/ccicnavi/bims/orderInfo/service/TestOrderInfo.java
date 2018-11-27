@@ -9,6 +9,7 @@ import com.ccicnavi.bims.order.dao.OrderInspectionDao;
 import com.ccicnavi.bims.order.dao.impl.*;
 import com.ccicnavi.bims.order.pojo.*;
 import com.ccicnavi.bims.order.service.OrderInfoServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
@@ -24,6 +25,7 @@ import java.util.List;
  * @Date: 2018/11/20 20:31
  * @Description:
  */
+@Slf4j
 public class TestOrderInfo {
 
     private static SimpleDateFormat timeFormat = new SimpleDateFormat("yyMMddHHmmss");
@@ -390,5 +392,27 @@ public class TestOrderInfo {
             eqlTran.close();
         }
       //  return ResultT.failure(ResultCode.UPDATE_FAILURE);
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 更改委托单状态
+     * @Data 2018/11/27 20:10
+     */
+    @Test
+    public void updateOrderStatus(){
+        OrderInfoDaoImpl orderInfoDaoImpl = new OrderInfoDaoImpl();
+        OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
+        List<String> orderUuids = new ArrayList<>();
+        try {
+            orderUuids.add("181127170753");
+            orderUuids.add("AAA");
+            orderInfoDTO.setStatusUuid("order_approval");
+            orderInfoDTO.setOrderUuids(orderUuids);
+            Integer status = orderInfoDaoImpl.updateOrderStatus(orderInfoDTO, null);
+            System.out.println("更新结果为："+status);
+        } catch (Exception e) {
+            log.error("更新失败",e);
+        }
     }
 }
