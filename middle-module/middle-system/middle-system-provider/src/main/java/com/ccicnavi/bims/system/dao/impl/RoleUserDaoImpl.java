@@ -63,7 +63,7 @@ public class RoleUserDaoImpl implements RoleUserDao {
         if (tran != null) {
             eql.useTran(tran);
         }
-        return new Eql("DEFAULT").update("updateRoleUser").params(userDTO).returnType(Integer.class).execute();
+        return eql.update("updateRoleUser").params(userDTO).returnType(Integer.class).execute();
     }
 
     /**
