@@ -143,13 +143,17 @@ SELECT
 	t2.file_type,
 	t2.file_group,
 	t2.create_by,
-	t2.remark
+	t2.remark,
+	t1.busin_id
 FROM
 	sys_atta_tmp t1,
 	sys_atta t2
 WHERE
 	t1.atta_id = t2.id
-	AND t1.busin_id in (/* in _1 */)
+	AND t1.busin_id in
+    -- for item=item index=index collection=list open=( separator=, close=)
+    #item#
+    -- end
 
 
 --[deleteAtta]
@@ -164,3 +168,4 @@ where atta_id = '##'
 
 --[selectString]
 SELECT remark FROM sys_atta WHERE id IN (/* in _1 */)
+

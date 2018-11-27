@@ -63,7 +63,7 @@ public class SubcontractorController {
     public ResultT saveSubcontractor(@RequestBody SubcontractorDO subcontractorDO){
         try {
             Integer count=subcontractorService.insertSubcontractor(subcontractorDO);
-            if(count == 1){
+            if(count >= 1){
                 return ResultT.success();
             }
             return ResultT.failure(ResultCode.ADD_FAILURE);
@@ -105,7 +105,7 @@ public class SubcontractorController {
 
         try {
             Integer count = subcontractorService.removeSubcontractor(subcontractorDTO);
-            if(count == 1){
+            if(count >= 1){
                 return ResultT.success();
             }
             return ResultT.failure(ResultCode.DELETE_FAILURE);
@@ -124,6 +124,9 @@ public class SubcontractorController {
      */
     @RequestMapping(value = "/getSubcontractorList",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getSubcontractorList(@RequestBody SubcontractorDTO subcontractorDTO){
+        if(subcontractorDTO.getSubcontractorUuid() == null || "".equals(subcontractorDTO.getSubcontractorUuid())){
+            return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+        }
         try {
             subcontractorDTO = subcontractorService.getSubcontractorList(subcontractorDTO);
             if(subcontractorDTO != null && subcontractorDTO.getSubcontractorUuid() != null && !"".equals(subcontractorDTO.getSubcontractorUuid())){
