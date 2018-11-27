@@ -14,7 +14,7 @@
     sys_role_user
         (role_uuid,
          user_uuid,
-          org_uuid,)
+          org_uuid)
     values
          ('#roleUuid#',
          '#userUuid#',
@@ -64,7 +64,7 @@
     FROM
         sys_role_user
     where
-      and role_uuid = '#roleUuid#'
+       role_uuid = '#roleUuid#'
       and org_uuid = '#orgUuid#'
 
 

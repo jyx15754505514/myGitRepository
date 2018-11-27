@@ -24,7 +24,8 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class RoleController {
 
-    @Reference(url = "dubbo://127.0.0.1:20881", timeout = 5000)
+//    @Reference(url = "dubbo://127.0.0.1:20881", timeout = 5000)
+    @Reference
     private RoleService roleService;
 
     /**
