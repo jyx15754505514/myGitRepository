@@ -263,7 +263,7 @@ public class UserServiceImpl implements UserService{
            /* List<String> deleteRoleList = userDTO.getDeleteRoleList();
             if(deleteRoleList != null && deleteRoleList.size() > 0){
                 deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
-            }*/
+            }
             //添加角色的集合不为空就根据用户uuid添加用户和角色信息
             List<String> addRoleList = userDTO.getAddRoleList();
             if(addRoleList != null && addRoleList.size() > 0){
@@ -314,7 +314,7 @@ public class UserServiceImpl implements UserService{
      *@date: 2018/11/23
      */
     @Override
-    public UserDTO initialPassword(UserDTO userDTO) {
+    public Integer initialPassword(UserDTO userDTO) {
         EqlTran tran = new Eql("DEFAULT").newTran();
         SettingDO settingDO = null;
         Integer updateUser = 0;
@@ -334,14 +334,14 @@ public class UserServiceImpl implements UserService{
                 //密码加密
                 String password = passwdService.getHash(initialpassword, salt);
                 //将密码返回
-                userDTO.setCurrentPassword(password);
-                userDTO.setSalt(salt);
+                user.setCurrentPassword(password);
+                user.setSalt(salt);
                 //更改用户密码
-                updateUser = userDao.updateUser(userDTO, tran);
+                updateUser = userDao.updateUser(user, tran);
             }
             if(userList != null && userList.size() > 0){
                 tran.commit();
-            }
+           }
         }catch (Exception e){
             log.error("恢复初始密码失败");
             tran.rollback();
@@ -349,6 +349,6 @@ public class UserServiceImpl implements UserService{
         }finally {
             Closes.closeQuietly(tran);
         }
-        return userDTO;
+        return updateUser;
     }
 }
