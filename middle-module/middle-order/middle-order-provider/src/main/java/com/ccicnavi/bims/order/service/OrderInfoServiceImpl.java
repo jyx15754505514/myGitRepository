@@ -346,4 +346,24 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         }
         return orderInfoDTO;
     }
+
+    /**
+     * @Author MengZiJie
+     * @Description 作废委托单
+     * @Data 2018/11/27 17:19
+     * @Param [orderInfoDTO]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer updateOrderStatus(OrderInfoDTO orderInfoDTO) {
+        try {
+            Integer orderInfo = orderInfoDao.updateOrderStatus(orderInfoDTO, null);
+            if(orderInfo > 0){
+                return orderInfo;
+            }
+        } catch (Exception e) {
+            log.error("操作失败！",e);
+        }
+        return -1;
+    }
 }

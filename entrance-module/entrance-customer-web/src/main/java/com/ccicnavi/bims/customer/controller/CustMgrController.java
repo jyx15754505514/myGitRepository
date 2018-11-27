@@ -120,11 +120,8 @@ public class CustMgrController {
     public ResultT deleteCustomer(@RequestBody CustMgrDO custMgrDO) {
         try {
             Integer count = custMgrService.deleteCustMgr(custMgrDO);
-            if (count > 0) {
-                return ResultT.success("删除客户跟进人成功");
-            } else {
-                return ResultT.failure(ResultCode.ADD_FAILURE);
-            }
+            log.info("删除客户跟进人成功");
+            return ResultT.success("删除客户跟进人成功");
         } catch (Exception e) {
             log.error("删除客户跟进人失败", e);
             return ResultT.failure(ResultCode.ADD_FAILURE);

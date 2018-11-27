@@ -30,7 +30,7 @@ public class CustomerController {
 
     private final static Logger log = LoggerFactory.getLogger(CustomerController.class);
 
-    @Reference(timeout = 30000)
+    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20883")
     CustomerService customerService;
 
     /**

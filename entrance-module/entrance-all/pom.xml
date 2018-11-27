@@ -57,16 +57,6 @@
             <artifactId>entrance-certmgr-web</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>zoo-sso</groupId>
-            <artifactId>sso-api</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -74,6 +64,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>exec</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
