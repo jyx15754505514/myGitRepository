@@ -20,18 +20,6 @@ import java.util.List;
 public class OrganizationDTO implements Serializable{
 
     /**
-     * 组织机构主键集合
-     */
-    private List<String> uuids;
-    /**
-     * 所在级别
-     */
-    private Long levels;
-    /**
-     * 组织机构子集
-     */
-    private List<OrganizationDTO> orgChildList;
-    /**
      * 组织机构主键
      */
     private String organizationUuid;
@@ -47,6 +35,10 @@ public class OrganizationDTO implements Serializable{
      * 组织机构名称
      */
     private String orgName;
+    /**
+     * 组织机构名称
+     */
+    private String title;
     /**
      * 简称
      */
@@ -163,4 +155,16 @@ public class OrganizationDTO implements Serializable{
      * 预留字段3
      */
     private String extend3;
+    /**
+     * 组织机构主键集合
+     */
+    private List<String> uuids;
+    /**
+     * 所在级别
+     */
+    private Long levels;
+    /**
+     * 组织机构子集
+     */
+    private List<OrganizationDTO> children;
 }
