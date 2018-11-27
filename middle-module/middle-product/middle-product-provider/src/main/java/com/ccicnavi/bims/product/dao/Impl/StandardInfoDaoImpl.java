@@ -27,7 +27,7 @@ public class StandardInfoDaoImpl implements StandardInfoDao {
 
     @Override
     public Integer deleteStandarInfo(StandardInfoDTO psiDto) {
-        return new Eql("DEFAULT").delete("deleteStandarInfo").params(psiDto).execute();
+        return new Eql("DEFAULT").update("deleteStandarInfo").params(psiDto).execute();
     }
 
     @Override

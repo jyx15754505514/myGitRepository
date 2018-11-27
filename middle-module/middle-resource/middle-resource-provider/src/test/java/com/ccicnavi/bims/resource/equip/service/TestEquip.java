@@ -245,8 +245,8 @@ public class TestEquip {
     public void insertEquip(){
         try {
             EquipDO equipDO = new EquipDO();
-            String equipUuid = idWorkerService.getId(new Date());
-            equipDO.setEquipUuid(equipUuid);
+            //String equipUuid = idWorkerService.getId(new Date());
+            equipDO.setEquipUuid("equip_uuid_b");
             equipDO.setIsDeleted("N");
             equipDO.setProdCatalogUuid("yewu2.0");
             equipDO.setOrgUuid("yewu2.0");
@@ -277,6 +277,83 @@ public class TestEquip {
             log.error("更新设备信息失败",e);
         }
     }
+
+    /**
+     * @Author MengZiJie
+     * @Description 设备台账更新
+     * @Data 2018/11/26 22:54
+     * @Param []
+     * @Return void
+     */
+    @Test
+    public void updateEquipInfo(){
+        /**创建事务*/
+        EqlTran eqlTran = new Eql().newTran();
+        /**定义检定记录对象*/
+        EquipTestDTO equipTestDTO = new EquipTestDTO();
+        EquipTestDO equipTestDO = new EquipTestDO();
+        EquipDO equipDO = new EquipDO();
+        List<String> arr = new ArrayList<>();
+        equipDO.setEquipUuid("equip_uuid_b");
+        equipDO.setFeeDesc("git相关");
+        Integer count = 0;
+        try {
+            eqlTran.start();
+            equipTestDO.setCertNo(equipDO.getCertNo());//证书号
+            equipTestDO.setTestDate(equipDO.getTestDate());//检测日期
+            equipTestDO.setTestCycle(equipDO.getTestCycle());//检定周期
+            equipTestDO.setIsLongTerm(equipDO.getIsLongTerm());//是否长期有效
+            equipTestDO.setTestValidDate(equipDO.getTestValidDate());//检定有效日期
+            equipTestDO.setTestResult(equipDO.getTestResult());//检定结果
+            equipTestDO.setTestType(equipDO.getTestType());//检测类型
+            equipTestDO.setTestFee(equipDO.getTestFee());//费用
+            equipTestDO.setFeeDesc(equipDO.getFeeDesc());//费用说明
+            equipTestDO.setStandardDesc(equipDO.getStandardDesc());//依据技术文件
+            equipTestDO.setOnlineCertUrl(equipDO.getOnlineCertUrl());//证书在线url
+            /**查询对应检定记录*/
+            equipTestDTO.setEquipUuid(equipDO.getEquipUuid());
+            List<EquipTestDO> equipTestList = equipTestDaoImpl.getEquipTestList(equipTestDTO);
+            System.out.println(equipTestList.size());
+            if(equipTestList.size() > 0) {
+                for (int i = 0; i < equipTestList.size(); i++) {
+                    EquipTestDO  equipTestInfo = equipTestList.get(i);
+                    if(!StringUtils.isEmpty(equipTestInfo.getCertNo())){
+                        arr.add(equipTestInfo.getEquipTestUuid());
+                        equipTestDO.setEquipTestUuid(equipTestInfo.getEquipTestUuid());
+                        Integer test = equipTestDaoImpl.updateEquipTest(equipTestDO,eqlTran);
+                        System.out.println("更新结果为："+test);
+                    }
+                }
+                if(arr.size() <= 0){
+                    equipTestDO.setEquipTestUuid("equip_test_uuid_d");
+                    equipTestDO.setEquipUuid(equipDO.getEquipUuid());
+                    equipTestDO.setAppSysUuid("yewu2.0");//设置应用系统id
+                    equipTestDO.setOrgUuid("yewu2.0");//设置组织机构id
+                    equipTestDO.setProdCatalogUuid("yewu2.0");//设置产品线
+                    Integer brr = equipTestDaoImpl.insertEquipTest(equipTestDO,eqlTran);
+                    System.out.println("新增结果为："+brr);
+                }
+            }else{
+                equipTestDO.setEquipTestUuid("equip_test_uuid_d");
+                equipTestDO.setEquipUuid(equipDO.getEquipUuid());
+                equipTestDO.setProdCatalogUuid("yewu2.0");//设置产品线
+                equipTestDO.setOrgUuid("yewu2.0");//设置组织机构id
+                equipTestDO.setAppSysUuid("yewu2.0");//设置应用系统id
+                Integer brr = equipTestDaoImpl.insertEquipTest(equipTestDO,eqlTran);
+                System.out.println("新增结果为："+brr);
+            }
+            count = equipDaoImpl.updateEquip(equipDO,null);
+            System.out.println(count);
+            eqlTran.commit();
+        } catch (Exception e) {
+            log.error("更新设备信息错误",e);
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
+        }
+        System.out.println("执行完成");
+    }
+
 
     /**
       * @author songyateng

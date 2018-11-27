@@ -1,7 +1,7 @@
 package com.ccicnavi.bims.resource.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.alibaba.dubbo.config.support.Parameter;
+import com.ccicnavi.bims.base.controller.BaseController;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
@@ -9,6 +9,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.EquipService;
 import com.ccicnavi.bims.resource.pojo.EquipDO;
 import com.ccicnavi.bims.resource.pojo.EquipDTO;
+import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.system.pojo.RemindDTO;
 import com.ccicnavi.bims.system.service.api.RemindService;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/equipLedger")
-public class EquipmentLedgerController {
+public class EquipmentLedgerController extends BaseController {
 
     @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
     EquipService equipService;
@@ -145,7 +146,7 @@ public class EquipmentLedgerController {
 
     /*
      *@Param: [pageParameter]
-     *@description: 到期提醒查询
+     *@description: 到期提醒查询 (待修改 原因:中台 过期提醒字段type值还未定义)
      *@return: com.ccicnavi.bims.common.ResultT
      *@author: WangGengXiang
      *@create: 2018/11/26 20:27
@@ -153,13 +154,15 @@ public class EquipmentLedgerController {
     @RequestMapping(value = "/listRemindEquip", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT expireListEquip(@RequestBody PageParameter<EquipDTO> pageParameter) {
         try {
-            RemindDTO remindDTO = new RemindDTO();
-            //remindDTO.setAppSysUuid("");
-            RemindDTO remindDTO1 = remindService.getRemind(remindDTO);
+            //获取当前登录人员信息
+            SSOUser SSOUser = getUserInfo();
             //获取设置的提醒天数
+            RemindDTO remindDTO = new RemindDTO();
+            remindDTO.setOrgUuid(SSOUser.getOrgUuid());
+            RemindDTO remindDTO1 = remindService.getRemind(remindDTO);
+            //获取到期设备信息
             pageParameter.getParameter().setExpireDay(Integer.parseInt(remindDTO1.getNum()));
             PageBean<EquipDO> pageBean = equipService.expireListEquip(pageParameter);
-
             return ResultT.success(pageBean);
         } catch (Exception e) {
             e.printStackTrace();
