@@ -22,7 +22,7 @@ public class CategoryTypeTest {
     public void lsitCategoryTypeDOTest(){
         CategoryTypeDO categoryTypeDO=new CategoryTypeDO();
         categoryTypeDO.setTypeName("矿石");
-        List<CategoryTypeDO> categoryDOList=categoryTypeDaoTest.lsitCategoryType(categoryTypeDO);
+        List<CategoryTypeDO> categoryDOList=categoryTypeDaoTest.listCategoryType(categoryTypeDO);
         System.out.println(categoryDOList);
     }
 
