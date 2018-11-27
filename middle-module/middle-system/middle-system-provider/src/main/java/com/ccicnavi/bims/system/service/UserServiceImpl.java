@@ -215,7 +215,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDTO selectByRoleUser(PageParameter<UserDTO> PageParameter) {
         //授权用户
-        List<String> userUuids =null;
+        List<String> userUuids = new ArrayList<String>();
         try {
             UserDTO userdto =new UserDTO();
             userdto.setRoleUuid(PageParameter.getParameter().getRoleUuid());
@@ -225,6 +225,8 @@ public class UserServiceImpl implements UserService{
                 for(UserDTO user:authUserList){
                     userUuids.add(user.getUserUuid());
                 }
+            }else{
+                userUuids =null;
             }
             PageParameter.getParameter().setUserUuids(userUuids);
             PageBean<UserDTO> pageList = userDao.selectunauthUserList(PageParameter);
