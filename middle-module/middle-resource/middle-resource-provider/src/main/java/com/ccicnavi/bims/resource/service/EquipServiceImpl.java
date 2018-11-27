@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -195,6 +196,8 @@ public class EquipServiceImpl implements EquipService {
         /**定义检定记录对象*/
         EquipTestDTO equipTestDTO = new EquipTestDTO();
         EquipTestDO equipTestDO = new EquipTestDO();
+        /**自定义list*/
+        List<String> testUuidList = new ArrayList<>();
         Integer count = 0;
         try {
             eqlTran.start();
@@ -216,15 +219,32 @@ public class EquipServiceImpl implements EquipService {
                 for (int i = 0;i < equipTestList.size();i++) {
                     EquipTestDO  equipTestInfo = equipTestList.get(i);
                     if(!StringUtils.isEmpty(equipTestInfo.getCertNo())){
+                        testUuidList.add(equipTestInfo.getEquipTestUuid());
                         equipTestDO.setEquipTestUuid(equipTestInfo.getEquipTestUuid());
                         equipTestDao.updateEquipTest(equipTestDO,eqlTran);
-                    }else{
-                        //获取主键
-                        String equipTestUuid = idWorkerService.getId(new Date());
-                        equipTestDO.setEquipTestUuid(equipTestUuid);
-                        equipTestDao.insertEquipTest(equipTestDO,eqlTran);
                     }
                 }
+                if(testUuidList.size() <= 0){
+                    /**获取主键*/
+                    String equipTestUuid = idWorkerService.getId(new Date());
+                    /**设置相关参数*/
+                    equipTestDO.setEquipTestUuid(equipTestUuid);
+                    equipTestDO.setEquipUuid(equipDO.getEquipUuid());
+                    equipTestDO.setOrgUuid(equipDO.getOrgUuid());//设置组织机构id
+                    equipTestDO.setProdCatalogUuid(equipDO.getProdCatalogUuid());//设置产品线id
+                    equipTestDO.setAppSysUuid(equipDO.getAppSysUuid());//设置应用系统id
+                    equipTestDao.insertEquipTest(equipTestDO,eqlTran);
+                }
+            } else {
+                /**获取主键*/
+                String equipTestUuid = idWorkerService.getId(new Date());
+                /**设置相关参数*/
+                equipTestDO.setEquipTestUuid(equipTestUuid);
+                equipTestDO.setEquipUuid(equipDO.getEquipUuid());
+                equipTestDO.setProdCatalogUuid(equipDO.getProdCatalogUuid());//设置产品线id
+                equipTestDO.setOrgUuid(equipDO.getOrgUuid());//设置组织机构id
+                equipTestDO.setAppSysUuid(equipDO.getAppSysUuid());//设置应用系统id
+                equipTestDao.insertEquipTest(equipTestDO,eqlTran);
             }
             count = equipDao.updateEquip(equipDO,null);
             eqlTran.commit();
