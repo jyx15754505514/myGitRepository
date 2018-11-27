@@ -1,105 +1,105 @@
 -- [insertRole]
     insert into sys_role
 -- trim prefix=( suffix=) suffixOverrides=,
-  -- if test=roleUuid != null and roleUuid != ''
+  -- if roleUuid != null and roleUuid != ''
         role_uuid,
   -- end
-  -- if test=parentRoleUuid != null and parentRoleUuid != ''
+  -- if parentRoleUuid != null and parentRoleUuid != ''
         parent_role_uuid,
   -- end
-  -- if test=roleName != null and roleName != ''
+  -- if roleName != null and roleName != ''
         role_name,
   -- end
-  -- if test=roleCode != null and roleCode != ''
+  -- if roleCode != null and roleCode != ''
         role_code,
   -- end
-  -- if test=isSystem != null and isSystem != ''
+  -- if isSystem != null and isSystem != ''
         is_system,
   -- end
-  -- if test=isEnabled != null and isEnabled != ''
+  -- if isEnabled != null and isEnabled != ''
         is_enabled,
   -- end
-  -- if test=comments != null and comments != ''
+  -- if comments != null and comments != ''
         comments,
   -- end
-  -- if test=createdTime == null
+  -- if createdTime == null
         created_time,
   -- end
-  -- if test=createdUuid != null and createdUuid != ''
+  -- if createdUuid != null and createdUuid != ''
         created_uuid,
   -- end
-  -- if test=createdName != null and uuid != ''
+  -- if createdName != null and uuid != ''
         created_name,
   -- end
-  -- if test=orgUuid != null and orgUuid != ''
+  -- if orgUuid != null and orgUuid != ''
         org_uuid,
   -- end
-  -- if test=appSysUuid != null and appSysUuid != ''
+  -- if appSysUuid != null and appSysUuid != ''
         app_sys_uuid,
   -- end
-  -- if test=prodCatalogUuid != null and prodCatalogUuid != ''
+  -- if prodCatalogUuid != null and prodCatalogUuid != ''
         prod_catalog_uuid,
   -- end
-  -- if test=extend1 != null and extend1 != ''
+  -- if extend1 != null and extend1 != ''
         extend1,
   -- end
-  -- if test=extend2 != null and extend2 != ''
+  -- if extend2 != null and extend2 != ''
         extend2,
   -- end
-  -- if test=extend3 != null and extend3 != ''
+  -- if extend3 != null and extend3 != ''
         extend3,
   -- end
 -- end
 -- trim prefix=values( suffix=) suffixOverrides=,
-  -- if test=roleUuid != null and roleUuid != ''
+  -- if roleUuid != null and roleUuid != ''
         '#roleUuid#',
   -- end
-  -- if test=parentRoleUuid != null and parentRoleUuid != ''
+  -- if parentRoleUuid != null and parentRoleUuid != ''
         '#parentRoleUuid#',
   -- end
-  -- if test=roleName != null and roleName != ''
+  -- if roleName != null and roleName != ''
         '#roleName#',
   -- end
-  -- if test=roleCode != null and roleCode != ''
+  -- if roleCode != null and roleCode != ''
         '#roleCode#',
   -- end
-  -- if test=isSystem != null and isSystem != ''
+  -- if isSystem != null and isSystem != ''
         '#isSystem#',
   -- end
-  -- if test=isEnabled != null and isEnabled != ''
+  -- if isEnabled != null and isEnabled != ''
         '#isEnabled#',
   -- end
-  -- if test=comments != null and comments != ''
+  -- if comments != null and comments != ''
         '#comments#',
   -- end
-  -- if test=isDeleted != null and isDeleted != ''
+  -- if isDeleted != null and isDeleted != ''
         '#isDeleted#',
   -- end
-  -- if test=createdTime == null
+  -- if createdTime == null
         NOW(),
   -- end
-  -- if test=createdUuid != null and createdUuid != ''
+  -- if createdUuid != null and createdUuid != ''
         '#createdUuid#',
   -- end
-  -- if test=createdName != null and createdName != ''
+  -- if createdName != null and createdName != ''
         '#createdName#',
   -- end
-  -- if test=orgUuid != null and orgUuid != ''
+  -- if orgUuid != null and orgUuid != ''
         '#orgUuid#',
   -- end
-  -- if test=appSysUuid != null and appSysUuid != ''
+  -- if appSysUuid != null and appSysUuid != ''
         '#appSysUuid#',
   -- end
-  -- if test=prodCatalogUuid != null and prodCatalogUuid != ''
+  -- if prodCatalogUuid != null and prodCatalogUuid != ''
         '#prodCatalogUuid#',
   -- end
-  -- if test=extend1 != null and extend1 != ''
+  -- if extend1 != null and extend1 != ''
         '#extend1#',
   -- end
-  -- if test=extend2 != null and extend2 != ''
+  -- if extend2 != null and extend2 != ''
         '#extend2#',
   -- end
-  -- if test=extend3 != null and extend3 != ''
+  -- if extend3 != null and extend3 != ''
         '#extend3#',
   -- end
 -- end
@@ -107,43 +107,43 @@
 -- [updateRole]
     update sys_role
 -- trim prefix=SET suffixOverrides=,
-  -- if test=parentRoleUuid != null
+  -- if parentRoleUuid != null
         parent_role_uuid = '#parentRoleUuid#',
   -- end
-  -- if test=roleName != null
+  -- if roleName != null
         role_name = '#roleName#',
   -- end
-  -- if test=roleCode != null
+  -- if roleCode != null
         role_code = '#roleCode#',
   -- end
-  -- if test=isSystem != null
+  -- if isSystem != null
         is_system = '#isSystem#',
   -- end
-  -- if test=isEnabled != null
+  -- if isEnabled != null
         is_enabled = '#isEnabled#',
   -- end
-  -- if test=comments != null
+  -- if comments != null
         comments = '#comments#',
   -- end
-  -- if test=isDeleted != null
+  -- if isDeleted != null
         is_deleted = '#isDeleted#',
   -- end
-  -- if test=updatedTime == null
+  -- if updatedTime == null
         updated_time =  NOW(),
   -- end
-  -- if test=updatedName != null
+  -- if updatedName != null
         updated_name = '#updatedName#',
   -- end
-  -- if test=updatedUuid != null
+  -- if updatedUuid != null
         updated_uuid = '#updatedUuid#',
    -- end
-  -- if test=extend1 != null
+  -- if extend1 != null
         extend1 = '#extend1#',
   -- end
-  -- if test=extend2 != null
+  -- if extend2 != null
         extend2 = '#extend2#',
   -- end
-  -- if test=extend3 != null
+  -- if extend3 != null
         extend3 = '#extend3#',
   -- end
 -- end
@@ -216,13 +216,13 @@
 	-- if roleUuid != null and roleUuid != ''
     	and	role_uuid = '#roleUuid#'
     -- end
-    -- if test=orgUuid != null and orgUuid != ''
+    -- if orgUuid != null and orgUuid != ''
        and org_uuid = '#orgUuid#'
     -- end
-    -- if test=appSysUuid != null and appSysUuid != ''
+    -- if appSysUuid != null and appSysUuid != ''
        and app_sys_uuid = '#appSysUuid#'
     -- end
-    -- if test=prodCatalogUuid != null and prodCatalogUuid != ''
+    -- if prodCatalogUuid != null and prodCatalogUuid != ''
        and prod_catalog_uuid = '#prodCatalogUuid#'
     -- end
 
