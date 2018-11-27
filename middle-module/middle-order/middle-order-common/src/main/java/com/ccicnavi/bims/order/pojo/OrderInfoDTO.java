@@ -16,7 +16,7 @@ import java.util.List;
 @ToString
 public class OrderInfoDTO implements Serializable {
     /**
-     * 委托单id
+     *委托单主键
      */
     private String orderUuid;
     /**
@@ -24,11 +24,11 @@ public class OrderInfoDTO implements Serializable {
      */
     private String productCategoryUuid;
     /**
-     * 委托编号
+     *委托编号
      */
     private String orderNo;
     /**
-     * 委托单名称
+     *委托单名称
      */
     private String orderName;
     /**
@@ -36,13 +36,13 @@ public class OrderInfoDTO implements Serializable {
      */
     private Date orderDate;
     /**
-     * 客户号
-     */
-    private String orderCrmNo;
-    /**
-     *区域id
+     * 委托区域id
      */
     private String orderAreaId;
+    /**
+     * 外部编号
+     */
+    private String crmExternalNo;
     /**
      * 客户id
      */
@@ -64,17 +64,21 @@ public class OrderInfoDTO implements Serializable {
      */
     private String crmEmail;
     /**
-     * 合同编号
+     * 贸易合同编号
      */
     private String crmContractNo;
     /**
-     * 紧急联系人
+     * 联检方
      */
-    private String crmEmerName;
+    private String thirdOrgName;
     /**
-     * 紧急联系人电话
+     * 联检方联系人
      */
-    private String crmEmerTelphone;
+    private String thirdOrgLinkman;
+    /**
+     * 联检方联系人电话
+     */
+    private String thirdOrgTelphone;
     /**
      * 委托项目名称
      */
@@ -100,7 +104,7 @@ public class OrderInfoDTO implements Serializable {
      */
     private String orderItemQtyUnit;
     /**
-     *使用标准id
+     * 使用标准id
      */
     private String useStdUuid;
     /**
@@ -112,7 +116,7 @@ public class OrderInfoDTO implements Serializable {
      */
     private String useStdComment;
     /**
-     *总费用
+     * 总费用
      */
     private Integer totalFee;
     /**
@@ -123,6 +127,10 @@ public class OrderInfoDTO implements Serializable {
      * 是Y否N内部委托单
      */
     private String isInternal;
+    /**
+     * 委托人来源
+     */
+    private String orderCrmSource;
     /**
      * 委托单来源机构id
      */
