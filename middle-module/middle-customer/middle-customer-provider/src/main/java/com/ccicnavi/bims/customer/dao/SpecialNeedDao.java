@@ -1,5 +1,8 @@
 package com.ccicnavi.bims.customer.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
+import com.ccicnavi.bims.customer.pojo.CustMgrDO;
 import com.ccicnavi.bims.customer.pojo.SpecialNeedDO;
 
 import java.util.List;
@@ -58,4 +61,12 @@ public interface SpecialNeedDao {
      */
     SpecialNeedDO getSpecialNeed(SpecialNeedDO specialNeed);
 
+   /**
+    *@Description: 分页查询客户特殊需求信息
+    *@Param: [specialNeed]
+    *@return: SpecialNeedDO
+    *@Author: congzhiyuan
+    *@date: 2018/11/27
+    */
+    PageBean<SpecialNeedDO> getSpecialNeedPage(PageParameter<SpecialNeedDO> pageParameter);
 }
