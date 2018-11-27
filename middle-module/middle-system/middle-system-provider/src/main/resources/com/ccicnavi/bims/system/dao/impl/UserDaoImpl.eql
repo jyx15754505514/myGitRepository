@@ -407,7 +407,7 @@
  SELECT
          su.user_uuid  as userUuid,
          rp.first_name as firstName,
-         su.login_name as nickName,
+         su.login_name as loginName,
  		 rp.skill_name as skillName,
  		 so.org_name as deptName,
  		 rp.phone as phone
@@ -428,28 +428,22 @@
 select
          s.user_uuid  as userUuid,
 		 r.first_name as firstName,
-         s.login_name as nickName,
+         s.login_name as loginName,
  		 r.skill_name as skillName,
  		 so.org_name as deptName,
  		 r.phone as phone
 from sys_user s
 LEFT JOIN res_person r on s.user_uuid =r.user_uuid
-LEFT JOIN sys_organization so on s.dept_uuid=so.organization_uuid where s.user_uuid not in
-(SELECT
-        su.user_uuid
-    FROM
-        sys_user su
-    LEFT JOIN sys_role_user sr ON su.user_uuid = sr.user_uuid
-		LEFT JOIN res_person rp on su.user_uuid =rp.user_uuid
-		LEFT JOIN sys_organization so on su.dept_uuid=so.organization_uuid
-    WHERE
-           su.is_deleted = 'N'
-           and sr.role_uuid ='#roleUuid#'
-           and su.org_uuid ='#orgUuid#')
+LEFT JOIN sys_organization so on s.dept_uuid=so.organization_uuid
+ where s.user_uuid
+ not in
+            -- for item=item index=index collection=userUuids open=( separator=, close=)
+				'#item#'
+			-- end
            and s.org_uuid ='#orgUuid#'
     --if deptUuid != null and  deptUuid != ''
            and s.dept_uuid ='#deptUuid#'
     --end
     --if firstName != null and  firstName != ''
-           and rp.first_name like '#firstName:like#'
+           and r.first_name like '#firstName:like#'
     --end

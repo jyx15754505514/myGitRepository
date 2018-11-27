@@ -3,6 +3,7 @@ package com.ccicnavi.bims.system.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.sso.common.pojo.SSOUser;
+import com.ccicnavi.bims.system.pojo.RemindDTO;
 import com.ccicnavi.bims.system.pojo.UserDO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 import org.n3r.eql.EqlTran;
@@ -78,7 +79,7 @@ public interface UserDao {
      *@Author: zqq
      *@date: 2018/11/22
      */
-    public List<UserDTO> selectunauthUserList(UserDTO userDTO);
+    public PageBean<UserDTO> selectunauthUserList(PageParameter<UserDTO> PageParameter);
 
     /**
      *@Description: 保存登录用户信息

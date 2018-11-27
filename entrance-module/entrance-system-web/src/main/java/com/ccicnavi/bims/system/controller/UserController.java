@@ -219,12 +219,12 @@ public class UserController {
      *@date: 2018/11/22
      */
     @RequestMapping(value = "/selectByRoleUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT selectByRoleUser(@RequestBody UserDTO userDTO) {
-        if(StringUtils.isEmpty(userDTO.getRoleUuid())){
+    public ResultT selectByRoleUser(@RequestBody PageParameter<UserDTO> PageParameter) {
+        if(StringUtils.isEmpty(PageParameter.getParameter().getRoleUuid())){
             return ResultT.failure(ResultCode.PARAM_IS_BLANK);
         }
         try {
-            UserDTO userDto = userService.selectByRoleUser(userDTO);
+            UserDTO userDto = userService.selectByRoleUser(PageParameter);
             return ResultT.success(userDto);
         } catch (Exception e) {
             log.error("查询用户信息失败", e);
