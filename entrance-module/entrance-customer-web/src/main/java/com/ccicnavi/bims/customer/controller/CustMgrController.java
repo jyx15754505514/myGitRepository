@@ -27,7 +27,7 @@ import java.util.List;
 public class CustMgrController {
 
     private final static Logger log = LoggerFactory.getLogger(CustMgrController.class);
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20883")
+    @Reference(timeout = 30000)
     CustMgrService custMgrService;
 
     /**
