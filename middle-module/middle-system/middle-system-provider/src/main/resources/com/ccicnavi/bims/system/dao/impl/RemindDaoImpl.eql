@@ -22,7 +22,7 @@
         created_time,
      -- iff createdUuid != null and createdUuid != ''
         created_uuid,
-     -- iff createdName != null and createdName != ''
+     -- iff createdName != null
         created_name,
      -- iff orgUuid != null and orgUuid != ''
         org_uuid,
@@ -125,7 +125,7 @@
 			remind_uuid = '#remindUuid#'
 		-- end
 		-- if uuids != null
-			and notworkday_uuid in
+			and remind_uuid in
 			-- for item=item index=index collection=uuids open=( separator=, close=)
 				'#item#'
 			-- end
