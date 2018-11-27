@@ -11,6 +11,9 @@ select
     ref_workhour refWorkhour,
     is_subpkg isSubpkg,
     is_subpkg_mgr isSubpkgMgr,
+    ref_discount refDiscount,
+    currency_type currencyType,
+    currency_amount currencyAmount,
     rece_org_uuid receOrgUuid,
     rece_org_name receOrgName,
     rece_user_uuid receUserUuid,
@@ -53,6 +56,9 @@ select
     ref_workhour refWorkhour,
     is_subpkg isSubpkg,
     is_subpkg_mgr isSubpkgMgr,
+    ref_discount refDiscount,
+    currency_type currencyType,
+    currency_amount currencyAmount,
     rece_org_uuid receOrgUuid,
     rece_org_name receOrgName,
     rece_user_uuid receUserUuid,
@@ -101,6 +107,12 @@ where
             min_item_uuid,
         --iff minItemType != null and minItemType != ''
             min_item_type,
+        --iff refDiscount != null and refDiscount != ''
+            ref_discount,
+        --iff currencyType != null and currencyType != ''
+            currency_type,
+        --iff currencyAmount != null and currencyAmount != ''
+            currency_amount,
         --iff receivableAmount != null and receivableAmount != ''
             receivable_amount,
         --iff refAmount != null and refAmount != ''
@@ -123,7 +135,6 @@ where
             use_std_uuid,
         --iff useStdName != null and useStdName != ''
             use_std_name,
-
         --iff statusUuid != null and statusUuid != ''
             status_uuid,
         --iff statusName != null and statusName != ''
@@ -174,6 +185,12 @@ where
             '#refAmount#',
         --iff refWorkhour != null and refWorkhour != ''
             '#refWorkhour#',
+        --iff refDiscount != null and refDiscount != ''
+            '#refDiscount#',
+        --iff currencyType != null and currencyType != ''
+            '#currencyType#',
+        --iff currencyAmount != null and currencyAmount != ''
+            '#currencyAmount#',
         --iff isSubpkg != null and isSubpkg != ''
             'N',
         --iff isSubpkgMgr != null and isSubpkgMgr != ''
@@ -241,6 +258,12 @@ where
             ref_amount = '#refAmount#',
         --iff refWorkhour != null and refWorkhour != ''
             ref_workhour = '#refWorkhour#',
+        --iff refDiscount != null and refDiscount != ''
+            ref_discount = '#refDiscount#',
+        --iff currencyType != null and currencyType != ''
+            currency_type = '#currencyType#',
+        --iff currencyAmount != null and currencyAmount != ''
+            currency_amount = '#currencyAmount#',
         --iff isSubpkg != null and isSubpkg != ''
             is_subpkg = '#isSubpkg#',
         --iff isSubpkgMgr != null and isSubpkgMgr != ''

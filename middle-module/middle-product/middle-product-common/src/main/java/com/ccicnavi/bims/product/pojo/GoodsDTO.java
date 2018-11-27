@@ -15,6 +15,15 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GoodsDTO implements Serializable {
 
-    /**商品id集合 以，号隔开*/
+    /**商品id集合*/
     private List<String> goodsUuidList;
+
+    /**产品线id*/
+    private String prodCatalogUuid;
+
+    /**归属机构id*/
+    private String orgUuid;
+
+    /**应用系统id*/
+    private String appSysUuid;
 }
