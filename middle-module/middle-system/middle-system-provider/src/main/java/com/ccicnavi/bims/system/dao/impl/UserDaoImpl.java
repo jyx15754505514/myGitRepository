@@ -123,13 +123,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<UserDO> listauthUserList(UserDTO userDTO) {
-        return new Eql().select("listauthUserList").params(userDTO).returnType(UserDO.class).execute();
+    public List<UserDTO> listauthUserList(UserDTO userDTO) {
+        return new Eql().select("listauthUserList").params(userDTO).returnType(UserDTO.class).execute();
     }
 
     @Override
-    public List<UserDO> selectunauthUserList(UserDTO userDTO) {
-        return new Eql().select("selectunauthUserList").params(userDTO).returnType(UserDO.class).execute();
+    public List<UserDTO> selectunauthUserList(UserDTO userDTO) {
+        return new Eql().select("selectunauthUserList").params(userDTO).returnType(UserDTO.class).execute();
 
     }
     /**

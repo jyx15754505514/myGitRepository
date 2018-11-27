@@ -28,6 +28,16 @@ FROM
 	product_min_item
 WHERE
 	is_deleted = 'N'
+ --if prodCatalogUuid !=null and prodCatalogUuid != ''
+             AND prod_catalog_uuid = '#prodCatalogUuid#'
+ --end
+ --if orgUuid !=null and orgUuid != ''
+             AND (org_uuid='#publicOrgUuid#' OR org_uuid='#orgUuid#')
+ --end
+ --if appSysUuid !=null and appSysUuid != ''
+             AND app_sys_uuid='#appSysUuid#'
+ --end
+
 
 -- [insertMinItem]
  insert into product_min_item
@@ -298,4 +308,6 @@ FROM
 	product_min_item
 WHERE
 	is_deleted = 'N'
-AND min_item_uuid='#minItemUuid#'
+      -- iff minItemUuid != null and  minItemUuid != ''
+        AND min_item_uuid='#minItemUuid#'
+      --end

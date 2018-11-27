@@ -167,7 +167,7 @@ WHERE
     is_deleted='N'
 --iff subcontractorUuid != null and subcontractorUuid != ''
     AND subcontractor_uuid='#subcontractorUuid#'
--- if subcontractorUuids != null
+-- iff subcontractorUuids != null
     AND subcontractor_uuid IN
     -- for item=item index=index collection=subcontractorUuids open=( separator=, close=)
         '#item#'
@@ -281,6 +281,6 @@ FROM
     crm_subcontractor
 WHERE
     is_deleted='N'
-    --if subcontractorUuid !=null and subcontractorUuid != ''
+    --iff subcontractorUuid !=null and subcontractorUuid != ''
         and subcontractor_uuid = '#subcontractorUuid#'
     --end
