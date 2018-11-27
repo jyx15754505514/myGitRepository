@@ -2,6 +2,7 @@ package com.ccicnavi.bims.akita.api;
 
 import com.ccicnavi.bims.akita.common.pojo.EnclosureVO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaDO;
+import com.ccicnavi.bims.akita.common.pojo.domain.AttaTmpDTO;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public interface AkitaService {
      * @param businId 业务ID,可多个
      * @return
      */
-    List<AttaDO> listAtta(String... businId);
+    List<AttaTmpDTO> listAtta(String... businId);
 
     /**
      * 删除文件

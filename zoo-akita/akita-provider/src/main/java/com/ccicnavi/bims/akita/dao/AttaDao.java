@@ -2,6 +2,7 @@ package com.ccicnavi.bims.akita.dao;
 
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaDO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaTmpDO;
+import com.ccicnavi.bims.akita.common.pojo.domain.AttaTmpDTO;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -22,7 +23,7 @@ public interface AttaDao {
     boolean insertAtta(AttaDO attaDO,AttaTmpDO attaTmpDO);
 
 
-    List<AttaDO> listAtta(String... businId);
+    List<AttaTmpDTO> listAtta(String... businId);
 
     boolean deleteAtta(String id);
 }
