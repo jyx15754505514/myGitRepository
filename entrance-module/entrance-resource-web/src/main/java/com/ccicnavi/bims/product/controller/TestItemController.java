@@ -98,7 +98,7 @@ public class TestItemController {
             Integer num=testItemService.updateTestItem(testItemDO);
             if (num>0)
             {
-                return ResultT.success(testItemDO);
+                return ResultT.success(num);
             }else
             {
                 return ResultT.failure(ResultCode.UPDATE_FAILURE);
