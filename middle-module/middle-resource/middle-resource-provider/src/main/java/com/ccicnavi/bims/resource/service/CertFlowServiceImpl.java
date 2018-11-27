@@ -7,7 +7,7 @@ import com.ccicnavi.bims.resource.dao.CertFlowDao;
 import com.ccicnavi.bims.resource.pojo.CertFlowDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.alibaba.dubbo.config.annotation.Service;
 
 /**
  * @Auther: heibin
