@@ -1,57 +1,115 @@
 -- [listOrderReview]
 	SELECT
+        order_review_uuid orderReviewUuid,
         order_uuid orderUuid,
         review_user_uuid reviewUserUuid,
         review_suggest reviewSuggest,
         review_date reviewDate,
-        is_pass isPass
+        is_pass isPass,
+        extend1 extend1,
+        extend2 extend2,
+        extend3 extend3
     from
         order_review
-    where order_uuid = '#orderUuid#'
+    where order_review_uuid = '#orderReviewUuid#'
 
 -- [deleteOrderReview]
     delete from order_review
-    where order_uuid = '#orderUuid#'
+    where order_review_uuid = '#orderReviewUuid#'
+
+
 
 -- [insertOrderReview]
-    insert into order_review
     -- trim prefix=( suffix=) suffixOverrides=,
-      -- iff orderUuid != null and orderUuid != ''
-        order_uuid,
-      -- iff reviewUserUuid != null and reviewUserUuid != ''
-        review_user_uuid,
-      -- iff reviewSuggest != null and reviewSuggest != ''
-        review_suggest,
-      -- iff reviewDate != null
-        review_date,
-      -- iff isPass != null and isPass != ''
-        is_pass,
+    	-- if orderReviewUuid != null and orderReviewUuid !=''
+    		order_review_uuid,
+    	-- end
+    	-- if orderUuid != null and orderUuid !=''
+    		order_uuid,
+    	-- end
+    	-- if reviewUserUuid != null and reviewUserUuid !=''
+    		review_user_uuid,
+    	-- end
+    	-- if reviewSuggest != null and reviewSuggest !=''
+    		review_suggest,
+    	-- end
+    	-- if reviewDate != null and reviewDate !=''
+    		review_date,
+    	-- end
+    	-- if isPass != null and isPass !=''
+    		is_pass,
+    	-- end
+    	-- if extend1 != null and extend1 !=''
+    		extend1,
+    	-- end
+    	-- if extend2 != null and extend2 !=''
+    		extend2,
+    	-- end
+    	-- if extend3 != null and extend3 !=''
+    		extend3,
+    	-- end
     -- end
     -- trim prefix=values( suffix=) suffixOverrides=,
-      -- iff orderUuid != null and orderUuid != ''
-      	'#orderUuid#',
-      -- iff reviewUserUuid != null and reviewUserUuid != ''
-      	'#reviewUserUuid#',
-      -- iff reviewSuggest != null and reviewSuggest != ''
-      	'#reviewSuggest#',
-      -- iff reviewDate != null
-      	'#reviewDate#',
-      -- iff isPass != null and isPass != ''
-      	'#isPass#',
-   -- end
+    	-- if orderReviewUuid != null and orderReviewUuid !=''
+    		'#orderReviewUuid#',
+    	-- end
+    	-- if orderUuid != null and orderUuid !=''
+    		'#orderUuid#',
+    	-- end
+    	-- if reviewUserUuid != null and reviewUserUuid !=''
+    		'#reviewUserUuid#',
+    	-- end
+    	-- if reviewSuggest != null and reviewSuggest !=''
+    		'#reviewSuggest#',
+    	-- end
+    	-- if reviewDate != null and reviewDate !=''
+    		'#reviewDate#',
+    	-- end
+    	-- if isPass != null and isPass !=''
+    		'#isPass#',
+    	-- end
+    	-- if extend1 != null and extend1 !=''
+    		'#extend1#',
+    	-- end
+    	-- if extend2 != null and extend2 !=''
+    		'#extend2#',
+    	-- end
+    	-- if extend3 != null and extend3 !=''
+    		'#extend3#',
+    	-- end
+    -- end
 
 -- [updateOrderReview]
     update order_review
-     -- trim prefix=SET suffixOverrides=,
-      --iff reviewUserUuid != null and reviewUserUuid != ''
-        review_user_uuid = '#reviewUserUuid#',
-      --iff reviewSuggest != null and reviewSuggest != ''
-        review_suggest = '#reviewSuggest#',
-      --iff reviewDate != null
-        review_date = '#reviewDate#',
-      --iff isPass != null and isPass != ''
-        is_pass = '#isPass#',
+    -- trim prefix=SET suffixOverrides=,
+    	-- if orderReviewUuid != null and orderReviewUuid !=''
+    		order_review_uuid = '#orderReviewUuid#',
+    	-- end
+    	-- if orderUuid != null and orderUuid !=''
+    		order_uuid = '#orderUuid#',
+    	-- end
+    	-- if reviewUserUuid != null and reviewUserUuid !=''
+    		review_user_uuid = '#reviewUserUuid#',
+    	-- end
+    	-- if reviewSuggest != null and reviewSuggest !=''
+    		review_suggest = '#reviewSuggest#',
+    	-- end
+    	-- if reviewDate != null and reviewDate !=''
+    		review_date = '#reviewDate#',
+    	-- end
+    	-- if isPass != null and isPass !=''
+    		is_pass = '#isPass#',
+    	-- end
+    	-- if extend1 != null and extend1 !=''
+    		extend1 = '#extend1#',
+    	-- end
+    	-- if extend2 != null and extend2 !=''
+    		extend2 = '#extend2#',
+    	-- end
+    	-- if extend3 != null and extend3 !=''
+    		extend3 = '#extend3#',
+    	-- end
     -- end
-    where
-        order_uuid = '#orderUuid#'
+    where 1=1
+         and order_review_uuid = '#orderReviewUuid#'
 

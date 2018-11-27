@@ -2,7 +2,6 @@ package com.ccicnavi.bims.resource.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
-import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.CertPaperService;
