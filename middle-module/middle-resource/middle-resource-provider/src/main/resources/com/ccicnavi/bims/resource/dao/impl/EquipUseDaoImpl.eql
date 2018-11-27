@@ -162,8 +162,6 @@ where
 -- [updateEquipUse]
     update res_equip_use
     -- trim prefix= set suffixOverrides=,
-      --iff equipUseUuid != null and equipUseUuid != ''
-        equip_use_uuid = '#equipUseUuid#',
       --iff equipUuid != null and equipUuid != ''
         equip_uuid = '#equipUuid#',
       --iff useDate != null

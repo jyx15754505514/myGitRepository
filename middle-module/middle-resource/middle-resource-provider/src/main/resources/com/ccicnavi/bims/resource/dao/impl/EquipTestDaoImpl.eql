@@ -212,8 +212,6 @@ where
   -- [updateEquipTest]
     update res_equip_test
     -- trim prefix= set suffixOverrides=,
-      --iff equipTestUuid != null and equipTestUuid != ''
-        equip_test_uuid = '#equipTestUuid#',
       --iff equipUuid != null and equipUuid != ''
         equip_uuid = '#equipUuid#',
       --iff certNo != null and certNo != ''
