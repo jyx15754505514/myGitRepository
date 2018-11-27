@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CertFlowDO {
+public class CertFlowDO implements Serializable {
     /**
      * 证书流水uuid
      */
