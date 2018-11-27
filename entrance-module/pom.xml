@@ -20,6 +20,7 @@
         <module>entrance-system-web</module>
         <module>entrance-resource-web</module>
         <module>entrance-common</module>
+        <module>entrance-all</module>
     </modules>
 
     <dependencies>
