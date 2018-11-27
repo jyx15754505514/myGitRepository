@@ -163,18 +163,12 @@ where
         comments,
       --iff isDeleted != null
         is_deleted,
-      --iff createdTime != null
+      --iff createdTime == null
         created_time,
       --iff createdUuid != null
         created_uuid,
       --iff createdName != null
         created_name,
-      --iff updatedTime != null
-        updated_time,
-      --iff updatedUuid != null
-        updated_uuid,
-      --iff updatedName != null
-        updated_name,
       --iff prodCatalogUuid != null
         prod_catalog_uuid,
       --iff orgUuid != null
@@ -231,18 +225,12 @@ where
         '#comments#',
       --iff isDeleted != null
         '#isDeleted#',
-      --iff createdTime != null
-        '#createdTime#',
+      --iff createdTime == null
+        NOW(),
       --iff createdUuid != null
         '#createdUuid#',
       --iff createdName != null
         '#createdName#',
-      --iff updatedTime != null
-        '#updatedTime#',
-      --iff updatedUuid != null
-        '#updatedUuid#',
-      --iff updatedName != null
-        '#updatedName#',
       --iff prodCatalogUuid != null
         '#prodCatalogUuid#',
       --iff orgUuid != null
@@ -449,10 +437,20 @@ where
     is_deleted = 'N'
     --iff orgUuid != null
         and org_uuid = '#orgUuid#'
+    --end
     --iff orgParentUuid != null
         and org_parent_uuid = '#orgParentUuid#'
+    --end
     --iff orgType != null
         and org_type = '#orgType#'
+    --end
+    --iff uuids != null
+        and organization_uuid in
+        -- for item=item index=index collection=uuids open=( separator=, close=)
+            '#item#'
+        --end
+    --end
+
 
 
 --根据当前机构查询下级机构（包括公司和部门：只查一级）

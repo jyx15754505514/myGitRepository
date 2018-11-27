@@ -66,7 +66,7 @@
             comments,
           --iff isDeleted != null
             is_deleted,
-          --iff createdTime != null
+          --iff createdTime == null
             created_time,
           --iff createdUuid != null
             created_uuid,
@@ -125,8 +125,8 @@
           --iff isDeleted != null
             '#isDeleted#',
 
-          --iff createdTime != null
-            '#createdTime#',
+          --iff createdTime == null
+            NOW(),
 
           --iff createdUuid != null
             '#createdUuid#',

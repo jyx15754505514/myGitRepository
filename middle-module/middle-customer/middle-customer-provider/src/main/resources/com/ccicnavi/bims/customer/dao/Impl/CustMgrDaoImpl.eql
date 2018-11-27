@@ -53,3 +53,6 @@ insert into crm_customer_mgr
 
 -- [deleteCustMgr]
 delete from crm_customer_mgr where cust_uuid='#custUuid#'
+-- if userUuid != null and userUuid !=''
+    and user_uuid='#userUuid#',
+-- end

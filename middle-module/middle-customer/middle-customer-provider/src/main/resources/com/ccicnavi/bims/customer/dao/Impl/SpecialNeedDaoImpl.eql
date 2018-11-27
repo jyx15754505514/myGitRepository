@@ -205,7 +205,7 @@ FROM
 WHERE
 	is_deleted = 'N'
         --iff custUuid !=null and custUuid != ''
-            and cust_uuid = '#custUuid:like#'
+            and cust_uuid = '#custUuid#'
         --end
         --iff needUuid !=null and needUuid != ''
             and need_uuid = '#needUuid#'
