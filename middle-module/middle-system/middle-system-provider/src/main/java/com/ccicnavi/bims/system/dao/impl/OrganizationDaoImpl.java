@@ -116,7 +116,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
     @Override
     public PageBean<OrganizationDTO> listOrgByOrg(PageParameter<OrganizationDTO> pageParameter) throws Exception{
         EqlPage page = new EqlPage(pageParameter.getStartIndex(),pageParameter.getPageRows());
-        List<OrganizationDTO> OrganizationDOs = new Eql("DEFAULT").select("listOrgByUser").params(pageParameter.getParameter()).returnType(OrganizationDTO.class).limit(page).execute();
+        List<OrganizationDTO> OrganizationDOs = new Eql("DEFAULT").select("listOrgByOrg").params(pageParameter.getParameter()).returnType(OrganizationDTO.class).limit(page).execute();
         return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),OrganizationDOs);
     }
 
