@@ -16,6 +16,8 @@ public class RoleDTO implements Serializable {
 
     private String uuids;
 
+    private String userUuid;
+
     private String orgName;
 
     private List<String> roleUuids;

@@ -255,11 +255,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public Integer addUserRole(UserDTO userDTO) {
         EqlTran tran = new Eql("DEFAULT").newTran();
-        Integer insertRole = null;
-        Integer deleteRoleUser = null;
+        Integer insertRole = 0;
+        Integer deleteRoleUser = 0;
         try {
             tran.start();
-            deleteRoleUser = roleUserDao.deleteRoleByUser(userDTO, tran);
+            deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
            /* List<String> deleteRoleList = userDTO.getDeleteRoleList();
             if(deleteRoleList != null && deleteRoleList.size() > 0){
                 deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
@@ -270,7 +270,7 @@ public class UserServiceImpl implements UserService{
                 for(String roleUuid : addRoleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表
-                    insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
+                    insertRole += roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
             if((insertRole == null || insertRole != addRoleList.size())) {

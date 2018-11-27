@@ -8,9 +8,12 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.RoleDO;
 import com.ccicnavi.bims.system.pojo.RoleDTO;
+import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -133,4 +136,28 @@ public class RoleController {
         }
         return ResultT.failure(ResultCode.GET_FAILURE);
     }
+
+    /**
+     * 获取用户下的所有角色
+     * @Author zhaotao
+     * @Date  2018/11/15 22:03
+     * @Param [roleDO]
+     * @return com.ccicnavi.bims.common.ResultT
+     **/
+    @RequestMapping(value = "/listRoleByUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT listRoleByUser(@RequestBody UserDTO userDO) {
+        try {
+            List<RoleDTO> roleDTOList = roleService.listRoleByUser(userDO);
+            if(roleDTOList != null) {
+                return ResultT.success(roleDTOList);
+            }
+        }catch (Exception e) {
+            log.debug("获取指定角色失败", e);
+        }
+        return ResultT.failure(ResultCode.GET_FAILURE);
+    }
+
+
+
+
 }
