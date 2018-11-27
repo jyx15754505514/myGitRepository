@@ -118,16 +118,12 @@ INSERT INTO sys_log
             comments,
         --iff isDeleted != null and isDeleted != ''
             is_deleted,
-        --iff createdTime != null
+        --iff createdTime == null
             created_time,
         --iff createdUuid != null and createdUuid !=''
             created_uuid,
         --iff createdName != null and createdName != ''
             created_name,
-        --iff updatedTime != null
-            updated_time,
-        --iff updatedName != null and updatedName != ''
-            updated_name,
         --iff orgUuid != null and orgUuid != ''
             org_uuid,
         --iff appSysUuid != null and appSysUuid != ''
@@ -168,16 +164,12 @@ INSERT INTO sys_log
             '#comments#',
         --iff isDeleted != null and isDeleted != ''
             '#isDeleted#',
-        --iff createdTime != null
-            '#createdTime#',
+        --iff createdTime == null
+            NOW(),
         --iff createdUuid != null and createdUuid !=''
             '#createdUuid#',
         --iff createdName != null and createdName != ''
             '#createdName#',
-        --iff updatedTime != null
-            '#updatedTime#',
-        --iff updatedName != null and updatedName != ''
-            '#updatedName#',
         --iff orgUuid != null and orgUuid != ''
             '#orgUuid#',
         --iff appSysUuid != null and appSysUuid != ''

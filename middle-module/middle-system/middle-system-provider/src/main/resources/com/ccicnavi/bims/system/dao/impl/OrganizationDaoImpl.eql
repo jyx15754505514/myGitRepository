@@ -163,18 +163,12 @@ where
         comments,
       --iff isDeleted != null
         is_deleted,
-      --iff createdTime != null
+      --iff createdTime == null
         created_time,
       --iff createdUuid != null
         created_uuid,
       --iff createdName != null
         created_name,
-      --iff updatedTime != null
-        updated_time,
-      --iff updatedUuid != null
-        updated_uuid,
-      --iff updatedName != null
-        updated_name,
       --iff prodCatalogUuid != null
         prod_catalog_uuid,
       --iff orgUuid != null
@@ -231,18 +225,12 @@ where
         '#comments#',
       --iff isDeleted != null
         '#isDeleted#',
-      --iff createdTime != null
-        '#createdTime#',
+      --iff createdTime == null
+        NOW(),
       --iff createdUuid != null
         '#createdUuid#',
       --iff createdName != null
         '#createdName#',
-      --iff updatedTime != null
-        '#updatedTime#',
-      --iff updatedUuid != null
-        '#updatedUuid#',
-      --iff updatedName != null
-        '#updatedName#',
       --iff prodCatalogUuid != null
         '#prodCatalogUuid#',
       --iff orgUuid != null
