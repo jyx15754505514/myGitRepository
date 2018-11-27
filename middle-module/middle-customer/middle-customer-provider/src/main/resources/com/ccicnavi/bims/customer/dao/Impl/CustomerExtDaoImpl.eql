@@ -26,10 +26,10 @@ SELECT
 FROM
 	crm_customer_ext
 WHERE is_deleted='N'
-        --if legalRep !=null and legalRep != ''
+        --iff legalRep !=null and legalRep != ''
                 and legal_rep  like '#legalRep:like#'
             --end
-        --if custUuid !=null and custUuid != ''
+        --iff custUuid !=null and custUuid != ''
             and cust_uuid = '#custUuid#'
         --end
 
@@ -228,7 +228,7 @@ UPDATE crm_customer_ext
 SET is_deleted = 'Y'
 WHERE
 	is_deleted = 'N'
-	    -- if uuids != null
+	    -- iff uuids != null
                 AND cust_uuid IN
                 -- for item=item index=index collection=uuids open=( separator=, close=)
                     '#item#'

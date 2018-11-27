@@ -2,9 +2,8 @@ package com.ccicnavi.bims.product.pojo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+
+import java.io.Serializable;
 
 /**
  * @description:
@@ -13,7 +12,7 @@ import lombok.ToString;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CategoryOrgDTO {
+public class CategoryOrgDTO implements Serializable {
 
     /**产品类别id*/
     private String productCategoryUuid;
@@ -35,4 +34,9 @@ public class CategoryOrgDTO {
 
     /**产品线id 集合*/
     private String catalogUuidList;
+
+    /**
+     * 设置公共所属机构
+     */
+    private String publicOrgUuid;
 }

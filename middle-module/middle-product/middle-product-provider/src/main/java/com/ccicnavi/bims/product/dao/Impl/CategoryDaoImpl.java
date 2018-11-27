@@ -22,8 +22,8 @@ import java.util.List;
 public class CategoryDaoImpl implements CategoryDao {
 
     @Override
-    public List<CategoryDO> listCategory(CategoryDO category) {
-        return new Eql().select("listCategory").params(category).returnType(CategoryDO.class).execute();
+    public List<CategoryDO> listCategory(CategoryDTO categoryDTO) {
+        return new Eql().select("listCategory").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDO> pageParameter) {
+    public PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDTO> pageParameter) {
         //封装分页参数
         EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
         //执行查询

@@ -6,9 +6,7 @@
         org_uuid
   from sys_role_user
  where
- --iff roleUuid != null and roleUuid != ''
-   and role_uuid = '#roleUuid#'
---end
+  where role_uuid = '#roleUuid#'
 
 -- 新增角色用户
 -- [insertRoleUser]
@@ -44,7 +42,7 @@
     FROM
         sys_role_user
     where
-      user_uuid = '#userUuid#'
+      role_uuid = '#roleUuid#'
       and org_uuid = '#orgUuid#'
 
 
@@ -66,11 +64,7 @@
     FROM
         sys_role_user
     where
-    --iff userUuid != null and userUuid != ''
-       and  user_uuid = '#userUuid#'
-    --end
-    --iff roleUuid != null and roleUuid != ''
       and role_uuid = '#roleUuid#'
-    --end
+      and org_uuid = '#orgUuid#'
 
 

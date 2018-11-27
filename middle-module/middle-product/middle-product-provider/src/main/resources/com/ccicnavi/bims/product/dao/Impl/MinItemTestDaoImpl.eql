@@ -26,7 +26,6 @@ insert into product_min_item_test
 
       -- iff appSysUuid != null and appSysUuid  != ''
         '#appSysUuid#',
-
 	--end
 
 
@@ -36,8 +35,16 @@ FROM
 	product_min_item_test
 WHERE
 	min_item_uuid = '#minItemUuid#'
-AND test_item_uuid = '#testItemUuid#'
-AND org_uuid = '#orgUuid#'
+--if testItemUuid !=null and testItemUuid != ''
+           AND test_item_uuid = '#testItemUuid#'
+--end
+--if orgUuid !=null and orgUuid != ''
+           AND org_uuid = '#orgUuid#'
+--end
+--if appSysUuid !=null and appSysUuid != ''
+            AND app_sys_uuid='#appSysUuid#'
+--end
+
 
 -- [findTestItemByMinItemUuid]
 SELECT
