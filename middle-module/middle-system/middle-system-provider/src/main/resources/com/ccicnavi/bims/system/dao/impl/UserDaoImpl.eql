@@ -405,8 +405,9 @@
 -- 查询已授权的用户
 -- [listauthUserList]
  SELECT
+         su.user_uuid  as userUuid,
          rp.first_name as firstName,
-         su.nick_name as nickName,
+         su.login_name as nickName,
  		 rp.skill_name as skillName,
  		 so.org_name as deptName,
  		 rp.phone as phone
@@ -425,8 +426,9 @@
 -- 查询未授权用户
 -- [selectunauthUserList]
 select
+         s.user_uuid  as userUuid,
 		 r.first_name as firstName,
-         s.nick_name as nickName,
+         s.login_name as nickName,
  		 r.skill_name as skillName,
  		 so.org_name as deptName,
  		 r.phone as phone
