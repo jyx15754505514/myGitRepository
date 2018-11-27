@@ -17,11 +17,15 @@ import java.util.Date;
 @ToString
 public class OrderReviewDO implements Serializable {
     /**
+     * 评审主键
+     */
+    private String orderReviewUuid;
+    /**
      * 委托单主键
      */
     private String orderUuid;
     /**
-     * 评审人主键
+     * 评审人uuid
      */
     private String reviewUserUuid;
     /**
