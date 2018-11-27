@@ -271,7 +271,7 @@ public class UserServiceImpl implements UserService{
                 for(String roleUuid : addRoleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表
-                    insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
+                    insertRole += roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
             if((insertRole == null || insertRole != addRoleList.size())) {
