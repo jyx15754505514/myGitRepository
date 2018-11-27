@@ -1,0 +1,55 @@
+-- [listCustMgr]
+SELECT
+	cust_uuid custUuid,
+	user_uuid userUuid,
+	performance performance,
+	status_uuid statusUuid,
+	comments comments
+from crm_customer_mgr
+where 1=1
+-- if custUuid != null and custUuid !=''
+	and cust_uuid='#custUuid#'
+-- end
+-- if userUuid != null and userUuid !=''
+	and user_uuid='#userUuid#'
+-- end
+
+-- [insertCustMgr]
+insert into crm_customer_mgr
+-- trim prefix=( suffix=) suffixOverrides=,
+	-- if custUuid != null and custUuid !=''
+		cust_uuid,
+	-- end
+	-- if userUuid != null and userUuid !=''
+		user_uuid,
+	-- end
+	-- if performance != null and performance !=''
+		performance,
+	-- end
+	-- if statusUuid != null and statusUuid !=''
+		status_uuid,
+	-- end
+	-- if comments != null and comments !=''
+		comments,
+	-- end
+-- end
+-- trim prefix=values( suffix=) suffixOverrides=,
+	-- if custUuid != null and custUuid !=''
+		'#custUuid#',
+	-- end
+	-- if userUuid != null and userUuid !=''
+		'#userUuid#',
+	-- end
+	-- if performance != null and performance !=''
+		'#performance#',
+	-- end
+	-- if statusUuid != null and statusUuid !=''
+		'#statusUuid#',
+	-- end
+	-- if comments != null and comments !=''
+		'#comments#',
+	-- end
+-- end
+
+-- [deleteCustMgr]
+delete from crm_customer_mgr where cust_uuid='#custUuid#'

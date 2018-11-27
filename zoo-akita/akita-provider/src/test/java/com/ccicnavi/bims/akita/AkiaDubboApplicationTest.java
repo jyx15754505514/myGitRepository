@@ -43,7 +43,7 @@ public class AkiaDubboApplicationTest {
     public void listAtta() {
         String businId = "8447dc26-1da2-405b-88e9-1f2b38c86c9a";
         List<AttaTmpDTO> attaDOS = akitaService.listAtta(businId);
-        log.info("attaDOS:{}", attaDOS);
+        log.info("===========================attaDOS:{}", attaDOS);
     }
 
     @Test
