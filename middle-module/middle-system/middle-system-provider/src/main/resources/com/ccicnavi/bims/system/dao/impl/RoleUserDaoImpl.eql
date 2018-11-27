@@ -42,8 +42,13 @@
     FROM
         sys_role_user
     where
-      role_uuid = '#roleUuid#'
-      and org_uuid = '#orgUuid#'
+        org_uuid = '#orgUuid#'
+      --iff roleUuid != null and roleUuid != ''
+         and role_uuid = '#roleUuid#'
+      --iff userUuid != null and userUuid != ''
+         and user_uuid = '#userUuid#'
+
+
 
 
 -- 根据用户删除用户角色
