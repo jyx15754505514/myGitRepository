@@ -267,11 +267,13 @@ public class UserController {
     @RequestMapping(value = "/initialPassword", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT initialPassword(@RequestBody UserDTO userDTO) {
         try {
-            userService.initialPassword(userDTO);
-            return ResultT.success();
+            Integer userdto = userService.initialPassword(userDTO);
+            if(userdto != null && userdto > 0){
+                return ResultT.success();
+            }
         } catch (Exception e) {
             log.error("恢复初始密码失败", e);
-            return ResultT.failure(ResultCode.USER_NOT_INITIALPASSWORD);
         }
+        return ResultT.failure(ResultCode.USER_NOT_INITIALPASSWORD);
     }
 }

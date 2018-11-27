@@ -24,13 +24,13 @@ FROM
 	crm_customer_invoice
 WHERE
 	is_deleted = 'N'
-        --if invoiceTitle !=null and invoiceTitle != ''
+        --iff invoiceTitle !=null and invoiceTitle != ''
             and invoice_title = '#invoiceTitle:like#'
         --end
-        --if invoiceUuid !=null and invoiceUuid != ''
+        --iff invoiceUuid !=null and invoiceUuid != ''
             and invoice_uuid = '#invoiceUuid#'
         --end
-        --if custUuid !=null and custUuid != ''
+        --iff custUuid !=null and custUuid != ''
             and cust_uuid = '#custUuid#'
         --end
 
@@ -146,7 +146,7 @@ insert into crm_customer_invoice
 UPDATE crm_customer_invoice
 SET is_deleted = 'Y'
 where  	is_deleted = 'N'
-     -- if uuids != null
+     -- iff uuids != null
             AND invoice_uuid IN
             -- for item=item index=index collection=uuids open=( separator=, close=)
                 '#item#'

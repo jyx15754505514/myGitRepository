@@ -79,48 +79,54 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     /**
-    *@Description: 根据用户查询省公司
-    *@Param: [organizationDTO]
-    *@return: com.ccicnavi.bims.system.pojo.OrganizationDO
-    *@Author: zhangpengwei
-    *@date: 2018/11/20
-    */
+     *@Description: 根据用户查询省公司
+     *@Param: [organizationDTO]
+     *@return: com.ccicnavi.bims.system.pojo.OrganizationDO
+     *@Author: zhangpengwei
+     *@date: 2018/11/20
+     */
     @Override
     public OrganizationDTO getOrgByUser(OrganizationDTO organizationDTO) throws Exception {
         return new Eql().selectFirst("getOrgByUser").params(organizationDTO).returnType(OrganizationDTO.class).execute();
     }
 
     /**
-    *@Description: 根据当前用户的orgUuid获取所有的当前机构和子机构
-    *@Param: [organizationDO]
-    *@return: java.util.List<com.ccicnavi.bims.system.pojo.OrganizationDTO>
-    *@Author: zhangpengwei
-    *@date: 2018/11/22
-    */
+     *@Description: 根据当前用户的orgUuid获取所有的当前机构和子机构
+     *@Param: [organizationDO]
+     *@return: java.util.List<com.ccicnavi.bims.system.pojo.OrganizationDTO>
+     *@Author: zhangpengwei
+     *@date: 2018/11/22
+     */
     @Override
     public List<OrganizationDTO> listOrgByUser(OrganizationDTO organizationDTO) throws Exception {
         return new Eql().select("listOrgByUser").params(organizationDTO).returnType(OrganizationDTO.class).execute();
     }
 
     /**
-    *@Description: 根据当前机构查询下级机构（包括公司和部门：只查一级）
-    *@Param: [organizationDTO]
-    *@return: java.util.List<com.ccicnavi.bims.system.pojo.OrganizationDTO>
-    *@Author: zhangpengwei
-    *@date: 2018/11/26
-    */
+     *@Description: 根据当前机构查询下级机构（包括公司和部门：只查一级）
+     *@Param: [organizationDTO]
+     *@return: java.util.List<com.ccicnavi.bims.system.pojo.OrganizationDTO>
+     *@Author: zhangpengwei
+     *@date: 2018/11/26
+     */
+//    @Override
+//    public List<OrganizationDTO> listOrgByOrg(OrganizationDTO organizationDTO) throws Exception {
+//        return new Eql().select("listOrgByOrg").params(organizationDTO).returnType(OrganizationDTO.class).execute();
+//    }
     @Override
-    public List<OrganizationDTO> listOrgByOrg(OrganizationDTO organizationDTO) throws Exception {
-        return new Eql().select("listOrgByOrg").params(organizationDTO).returnType(OrganizationDTO.class).execute();
+    public PageBean<OrganizationDTO> listOrgByOrg(PageParameter<OrganizationDTO> pageParameter) throws Exception{
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(),pageParameter.getPageRows());
+        List<OrganizationDTO> OrganizationDOs = new Eql("DEFAULT").select("listOrgByUser").params(pageParameter.getParameter()).returnType(OrganizationDTO.class).limit(page).execute();
+        return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),OrganizationDOs);
     }
 
     /**
-    *@Description: 禁用/启用机构和子机构（包括公司和部门）
-    *@Param: [organizationDTO]
-    *@return: java.lang.Integer
-    *@Author: zhangpengwei
-    *@date: 2018/11/26
-    */
+     *@Description: 禁用/启用机构和子机构（包括公司和部门）
+     *@Param: [organizationDTO]
+     *@return: java.lang.Integer
+     *@Author: zhangpengwei
+     *@date: 2018/11/26
+     */
     @Override
     public Integer updateOrgByEnable(OrganizationDTO organizationDTO) throws  Exception  {
 //        Eql eql = new Eql();

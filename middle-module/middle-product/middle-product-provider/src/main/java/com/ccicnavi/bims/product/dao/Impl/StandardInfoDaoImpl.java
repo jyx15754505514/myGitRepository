@@ -27,7 +27,7 @@ public class StandardInfoDaoImpl implements StandardInfoDao {
 
     @Override
     public Integer deleteStandarInfo(StandardInfoDTO psiDto) {
-        return new Eql("DEFAULT").delete("deleteStandarInfo").params(psiDto).execute();
+        return new Eql("DEFAULT").update("deleteStandarInfo").params(psiDto).execute();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class StandardInfoDaoImpl implements StandardInfoDao {
     @Override
     public PageBean<StandardInfoDO> listStandardInfoPage(PageParameter<StandardInfoDTO> pageParameter) {
         EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
-        List<StandardInfoDO> contractList = new Eql("DEFAULT").select("listStandardInfo").params(pageParameter.getParameter()).returnType(StandardInfoDO.class).execute();
+        List<StandardInfoDO> contractList = new Eql("DEFAULT").select("listStandardInfo").params(pageParameter.getParameter()).returnType(StandardInfoDO.class).limit(page).execute();
         return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),contractList);
     }
 }

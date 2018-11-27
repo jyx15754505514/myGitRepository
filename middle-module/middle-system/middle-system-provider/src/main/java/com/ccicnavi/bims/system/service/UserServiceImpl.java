@@ -216,8 +216,8 @@ public class UserServiceImpl implements UserService{
         //授权用户
         try {
             UserDTO userDto =new UserDTO();
-            List<UserDO> authUserList = userDao.listauthUserList(userDTO);
-            List<UserDO> unauthUserList =userDao.selectunauthUserList(userDTO);
+            List<UserDTO> authUserList = userDao.listauthUserList(userDTO);
+            List<UserDTO> unauthUserList =userDao.selectunauthUserList(userDTO);
             userDto.setAuthUserList(authUserList);
             userDto.setUnauthUserList(unauthUserList);
             return userDto;
@@ -270,7 +270,7 @@ public class UserServiceImpl implements UserService{
                 for(String roleUuid : addRoleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表
-                    insertRole += roleUserDao.insertRoleUsers(userDTO, tran);
+                    insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
             if((insertRole == null || insertRole != addRoleList.size())) {

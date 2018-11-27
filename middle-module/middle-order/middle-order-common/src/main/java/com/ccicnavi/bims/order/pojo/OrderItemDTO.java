@@ -52,6 +52,18 @@ public class OrderItemDTO implements Serializable {
      */
     private String refWorkhour;
     /**
+     *应收折扣
+     */
+    private Integer refDiscount;
+    /**
+     *币种
+     */
+    private String currencyType;
+    /**
+     *等值外币
+     */
+    private Integer currencyAmount;
+    /**
      *是Y否N分包，默认N
      */
     private String isSubpkg;
@@ -143,6 +155,18 @@ public class OrderItemDTO implements Serializable {
      *更新人
      */
     private String updatedName;
+    /**
+     *预留字段1
+     */
+    private String extend1;
+    /**
+     *预留字段2
+     */
+    private String extend2;
+    /**
+     *预留字段3
+     */
+    private String extend3;
     /**
      *子项
      */

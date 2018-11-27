@@ -35,6 +35,12 @@ where 1=1
         and goods_name_en LIKE CONCAT('%','#goodsNameEn#','%')
     --iff productCategoryUuid != null and productCategoryUuid != ''
         and product_category_uuid = '#productCategoryUuid#'
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and prod_catalog_uuid = '#prodCatalogUuid#'
+    --iff orgUuid != null and orgUuid != ''
+        and org_uuid = '#orgUuid#'
+    --iff appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid = '#appSysUuid#'
 
 --[saveGoodsDO]
 insert into product_goods
@@ -171,6 +177,12 @@ and goods_uuid in
     -- for item=item index=index collection=goodsUuidList open=( separator=, close=)
         '#item#'
     -- end
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and prod_catalog_uuid = '#prodCatalogUuid#'
+    --iff orgUuid != null and orgUuid != ''
+        and org_uuid = '#orgUuid#'
+    --iff appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid = '#appSysUuid#'
 
 --[updateGoodsDO]
 update product_goods
@@ -236,6 +248,12 @@ update product_goods
             extend3 = '#extend3#',
     --end
 where goods_uuid = '#goodsUuid#'
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and prod_catalog_uuid = '#prodCatalogUuid#'
+    --iff orgUuid != null and orgUuid != ''
+        and org_uuid = '#orgUuid#'
+    --iff appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid = '#appSysUuid#'
 
 --[getGoodsDO]
 select
@@ -261,3 +279,9 @@ select
     extend3
 from product_goods
 where goods_uuid = '#goodsUuid#'
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and prod_catalog_uuid = '#prodCatalogUuid#'
+    --iff orgUuid != null and orgUuid != ''
+        and org_uuid = '#orgUuid#'
+    --iff appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid = '#appSysUuid#'

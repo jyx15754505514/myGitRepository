@@ -6,6 +6,7 @@ snc_init_value sncInitValue,
 snc_length sncLength,
 snc_step sncStep,
 snc_period sncPeriod,
+dis_dept disDept,
 sort_num sortNum,
 comments comments,
 is_deleted isDeleted,
@@ -35,6 +36,7 @@ snc_init_value sncInitValue,
 snc_length sncLength,
 snc_step sncStep,
 snc_period sncPeriod,
+dis_dept disDept,
 sort_num sortNum,
 comments comments,
 is_deleted isDeleted,
@@ -48,10 +50,11 @@ from sys_serialnum_cfg
 WHERE
 is_deleted = 'N'
 and org_uuid = '#orgUuid#'
-and app_sys_uuid = '#appSysUuid#'
-and prod_catalog_uuid = '#prodCatalogUuid#'
+-- if appSysUuid != null and appSysUuid != ''
+  and app_sys_uuid='#appSysUuid#',
+-- end
 --iff sncName != null and sncName != ''
-    snc_name = '#sncName#'
+    and snc_name = '#sncName#'
 order by sort_num
 
 -- [insertSerialnumCfg]
@@ -74,6 +77,9 @@ order by sort_num
     -- end
     -- if sncPeriod != null
       snc_period,
+    -- end
+    -- if disDept != null and disDept != ''
+      dis_dept,
     -- end
     -- if sortNum != null
       sort_num,
@@ -122,6 +128,9 @@ order by sort_num
     -- if sncPeriod != null
       '#sncPeriod#',
     -- end
+    -- if disDept != null and disDept != ''
+      '#disDept#',
+    -- end
     -- if sortNum != null
       '#sortNum#',
     -- end
@@ -168,6 +177,9 @@ order by sort_num
   -- end
   -- if sncPeriod != null
     snc_period = '#sncPeriod#',
+  -- end
+  -- if disDept != null and disDept != ''
+    dis_dept = '#disDept#',
   -- end
   -- if sortNum != null
     sort_num = '#sortNum#',
@@ -275,6 +287,9 @@ order by sort_num
     -- end
     -- if busUuid != null and busUuid != ''
         and bus_uuid = '#busUuid#'
+    -- end
+    -- if snDeptCode != null and snDeptCode != ''
+        and sn_dept_code = '#snDeptCode#'
     -- end
 
 -- [insertSerialnum]

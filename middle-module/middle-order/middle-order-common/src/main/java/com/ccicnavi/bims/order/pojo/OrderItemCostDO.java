@@ -26,7 +26,7 @@ public class OrderItemCostDO implements Serializable {
     /**
      * 成本类型id
      */
-    private String costTypeId;
+    private String costTypeUuid;
     /**
      * 成本名称
      */

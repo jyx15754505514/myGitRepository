@@ -1,6 +1,5 @@
 package com.ccicnavi.bims.system.service;
 
-import com.alibaba.druid.sql.dialect.db2.ast.stmt.DB2SelectQueryBlock;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
@@ -11,7 +10,6 @@ import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import com.ccicnavi.bims.sso.common.result.ReturnT;
 import com.ccicnavi.bims.system.constant.SerialnumCfgType;
 import com.ccicnavi.bims.system.dao.SerialnumDao;
-import com.ccicnavi.bims.system.dao.impl.SerialnumDaoImpl;
 import com.ccicnavi.bims.system.pojo.*;
 import com.ccicnavi.bims.system.service.api.SerialnumService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +17,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.Resource;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,11 +32,11 @@ import java.util.List;
 @Service
 public class SerialnumServiceImpl implements SerialnumService {
 
-//    @Reference(timeout = 1000000,url = "dubbo://127.0.0.1:20880")
-    @Reference
+    @Reference(timeout = 1000000,url = "dubbo://127.0.0.1:20880")
+//    @Reference
     IdWorkerService idWorkerService;
-//    @Reference(timeout = 1000000,url = "dubbo://127.0.0.1:20896")
-    @Reference
+    @Reference(timeout = 1000000,url = "dubbo://127.0.0.1:20896")
+//    @Reference
     SSOService ssoService;
     @Autowired
     SerialnumDao serialnumDao;
@@ -172,9 +169,7 @@ public class SerialnumServiceImpl implements SerialnumService {
     }
 
     /**
-     *
      * 功能描述: 根据业务规则编号获取业务编码
-     *
      * @param: sncUuid
      * @return: busSerialnumNo
      * @date:  2018/11/20 20:50
@@ -207,6 +202,9 @@ public class SerialnumServiceImpl implements SerialnumService {
             serialnumDO.setSncUuid(serialQueryDTO.getSncUuid());
             serialnumDO.setOrgUuid(serialQueryDTO.getOrgUuid());
             serialnumDO.setBusUuid(serialQueryDTO.getBusUuid());
+            if(this.getStringValue(cfgDO.getDisDept()).equals("Y")){//编号区分部门
+                serialnumDO.setSnDeptCode(ssoUser.getData().getDeptCode());
+            }
             SerialnumDO busiSerialDO = serialnumDao.getSerialnumDO(serialnumDO);
             //根据查询规则信息生成业务编码
             if(cfgDO!=null&&itemList!=null&&!itemList.isEmpty()){
@@ -277,12 +275,22 @@ public class SerialnumServiceImpl implements SerialnumService {
             if(!StringUtils.isEmpty(businessNo)){
                 busiSerialDO.setBusUuid(businessNo);
             }
+            if(this.getStringValue(cfgDO.getDisDept()).equals("Y")){//保存部门编号
+                busiSerialDO.setSnDeptCode(user.getDeptCode());
+            }
             serialnumDao.insertSerialnum(busiSerialDO);
         }
         log.info("新生成业务编号："+busiSerialNo.toString());
         return busiSerialNo.toString();
     }
-
+    /**
+     * 功能描述: 获取系统变量
+     * @param: type
+     * @param: user
+     * @return: String
+     * @date: 2018/11/21 20:50
+     * @auther: CongZhiYuan
+     */
     public String getSysCfgValue(String type, SSOUser user){
         String sysValue = "";
         switch (type){
@@ -300,8 +308,12 @@ public class SerialnumServiceImpl implements SerialnumService {
                     sysValue = type;
                 }
                 break;
-            case SerialnumCfgType.BMBH:
-                sysValue = getStringValue(user.getOrgCode());
+            case SerialnumCfgType.BMBH://部门编号
+                if(user.getDeptCode().length()>=9){
+                    sysValue = getStringValue(user.getDeptCode().substring(7,9));
+                }else{
+                    sysValue = type;
+                }
                 break;
             case SerialnumCfgType.UN:
                 sysValue = getStringValue(user.getLoginName());

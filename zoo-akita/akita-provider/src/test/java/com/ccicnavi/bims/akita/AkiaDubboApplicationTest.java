@@ -4,6 +4,8 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.akita.api.AkitaService;
 import com.ccicnavi.bims.akita.common.pojo.EnclosureVO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaDO;
+import com.ccicnavi.bims.akita.common.pojo.domain.AttaTmpDTO;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -14,9 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = AkitaProviderApplication.class)
@@ -36,14 +36,14 @@ public class AkiaDubboApplicationTest {
         enclosureVO.setFileOldName(file.getName());
         enclosureVO.setRemark("晚上去洗澡");
         boolean upload = akitaService.upload(enclosureVO);
-//        log.info(String.valueOf(upload));
+        log.info(String.valueOf(upload));
     }
 
     @Test
     public void listAtta() {
-        String businId = "0d4e8e03-0577-477a-9a14-128edea555de";
-        List<AttaDO> attaDOS = akitaService.listAtta(businId);
-        log.info("attaDOS:{}", attaDOS);
+        String businId = "8447dc26-1da2-405b-88e9-1f2b38c86c9a";
+        List<AttaTmpDTO> attaDOS = akitaService.listAtta(businId);
+        log.info("===========================attaDOS:{}", attaDOS);
     }
 
     @Test

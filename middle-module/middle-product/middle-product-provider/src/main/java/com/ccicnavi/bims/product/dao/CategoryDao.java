@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface CategoryDao {
 
-    List<CategoryDO> listCategory(CategoryDO category) throws Exception;
+    List<CategoryDO> listCategory(CategoryDTO categoryDTO) throws Exception;
 
     int saveCategory(CategoryDO category) throws Exception;
 
@@ -21,7 +21,7 @@ public interface CategoryDao {
 
     CategoryDO getCategory(CategoryDO category) throws Exception;
 
-    PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDO> pageParameter) throws Exception;
+    PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDTO> pageParameter) throws Exception;
 
     List<CategoryDO> listCategoryFirstByOrgAndProd(CategoryDTO categoryDTO) throws Exception;
 

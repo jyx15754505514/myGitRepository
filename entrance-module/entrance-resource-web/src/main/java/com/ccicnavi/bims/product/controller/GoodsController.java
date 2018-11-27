@@ -84,7 +84,7 @@ public class GoodsController {
      **/
     @RequestMapping(value = "/removeGoodsDO",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT removeGoodsDO(@RequestBody GoodsDTO goodsDTO){
-        log.info("删除商品信息 入参 goodsDO={}", JSON.toJSONString(goodsDTO));
+        log.info("删除商品信息 入参 goodsDTO={}", JSON.toJSONString(goodsDTO));
         try {
             int count = goodsService.removeGoodsDO(goodsDTO);
             return ResultT.success(count);

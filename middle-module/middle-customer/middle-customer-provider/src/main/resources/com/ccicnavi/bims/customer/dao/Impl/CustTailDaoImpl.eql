@@ -4,6 +4,8 @@ SELECT
 	cust_uuid,
 	person_uuid,
 	person_name,
+	linkman_uuid linkmanUuid,
+    linkman_name linkmanName,
 	status_uuid,
 	performance,
 	visit_type,
@@ -25,10 +27,10 @@ FROM
 	crm_customer_tail
 WHERE
 	is_deleted = 'N'
-        --if personName !=null and personName != ''
+        --iff personName !=null and personName != ''
             and person_name like '#personName:like#'
         --end
-         --if custUuid !=null and custUuid != ''
+         --iff custUuid !=null and custUuid != ''
             and cust_uuid = '#custUuid#'
          --end
 
@@ -38,6 +40,8 @@ SELECT
 	cust_uuid,
 	person_uuid,
 	person_name,
+	linkman_uuid linkmanUuid,
+    linkman_name linkmanName,
 	status_uuid,
 	performance,
 	visit_type,
@@ -180,7 +184,7 @@ UPDATE crm_customer_tail
 SET is_deleted = 'Y'
 WHERE
 	is_deleted = 'N'
-     -- if uuids != null
+     -- iff uuids != null
             AND tail_uuid IN
             -- for item=item index=index collection=uuids open=( separator=, close=)
                 '#item#'

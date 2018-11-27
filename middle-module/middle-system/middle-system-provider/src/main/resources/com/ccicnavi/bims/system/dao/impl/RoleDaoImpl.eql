@@ -175,13 +175,13 @@
 		sys_role
 	WHERE
 		is_deleted = 'N'
-		-- if orgUuid != null and orgUuid != ''
-               and org_uuid = '#orgUuid#',
+		-- iff orgUuid != null and orgUuid != ''
+               and org_uuid = '#orgUuid#'
         -- end
-        -- if appSysUuid != null and appSysUuid != ''
-                and app_sys_uuid = '#appSysUuid#',
+        -- iff appSysUuid != null and appSysUuid != ''
+                and app_sys_uuid = '#appSysUuid#'
         -- end
-        -- if prodCatalogUuid != null and prodCatalogUuid != ''
+        -- iff prodCatalogUuid != null and prodCatalogUuid != ''
                 and prod_catalog_uuid = '#prodCatalogUuid#'
         -- end
 
@@ -217,30 +217,22 @@
     	and	role_uuid = '#roleUuid#'
     -- end
     -- if test=orgUuid != null and orgUuid != ''
-       and org_uuid = '#orgUuid#',
+       and org_uuid = '#orgUuid#'
     -- end
     -- if test=appSysUuid != null and appSysUuid != ''
-       and app_sys_uuid = '#appSysUuid#',
+       and app_sys_uuid = '#appSysUuid#'
     -- end
     -- if test=prodCatalogUuid != null and prodCatalogUuid != ''
        and prod_catalog_uuid = '#prodCatalogUuid#'
     -- end
 
 -- [deleteRole]
-    UPDATE
-        sys_role
-    SET
-        is_deleted = 'Y'
+ delete from sys_role
     WHERE
-		-- if roleUuid != null and roleUuid != ''
-			role_uuid = '#roleUuid#'
-		-- end
-		-- if roleUuids != null
 			role_uuid in
 			-- for item=item index=index collection=roleUuids open=( separator=, close=)
 				'#item#'
 			-- end
-		-- end
 
 -- 根据用户UUID获取所有角色UUID
 -- [listRoleByUser]

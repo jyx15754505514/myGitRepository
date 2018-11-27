@@ -29,9 +29,9 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     @Override
-    public List<CategoryDO> listCategory(CategoryDO category) {
+    public List<CategoryDO> listCategory(CategoryDTO categoryDTO) {
         try {
-            return categoryDao.listCategory(category);
+            return categoryDao.listCategory(categoryDTO);
         } catch (Exception e) {
             log.error("查询产品分类失败~", e);
             return null;
@@ -82,7 +82,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDO> pageParameter) {
+    public PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDTO> pageParameter) {
         try {
             return categoryDao.listCategoryPage(pageParameter);
         } catch (Exception e) {

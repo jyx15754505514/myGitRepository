@@ -31,11 +31,11 @@ public class UserDTO implements Serializable {
     /**
      * 已授权用户集合
      */
-    private List<UserDO> authUserList;
+    private List<UserDTO> authUserList;
     /**
      * 未授权用户集合
      */
-    private List<UserDO> unauthUserList;
+    private List<UserDTO> unauthUserList;
     /**
      * 用户拥有的角色集合
      */
