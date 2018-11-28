@@ -5,6 +5,7 @@ import com.ccicnavi.bims.akita.api.AkitaService;
 import com.ccicnavi.bims.akita.common.pojo.EnclosureVO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaDO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaTmpDTO;
+import com.ccicnavi.bims.akita.utils.FileUtils;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,14 +31,22 @@ public class AkiaDubboApplicationTest {
     AkitaService akitaService;
 
     @Test
-    public void test1() {
+    public void test1(){
         File file = new File("C:\\Users\\husky\\Pictures\\20181120100740.jpg");
         EnclosureVO enclosureVO = new EnclosureVO();
         enclosureVO.setBusinId(UUID.randomUUID().toString());
         enclosureVO.setCreateBy("husky");
-        enclosureVO.setFile(file);
+        InputStream input = null;
+        try {
+            input = new FileInputStream(file);
+            enclosureVO.setFile(FileUtils.input2byte(input));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         enclosureVO.setFileOldName(file.getName());
         enclosureVO.setRemark("晚上去洗澡");
+        enclosureVO.setExt("jpg");
+        enclosureVO.setLength(file.length());
         boolean upload = akitaService.upload(enclosureVO);
         log.info(String.valueOf(upload));
     }

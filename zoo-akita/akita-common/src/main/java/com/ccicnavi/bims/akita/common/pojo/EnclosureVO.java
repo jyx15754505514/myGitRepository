@@ -17,7 +17,7 @@ public class EnclosureVO implements Serializable {
     /**
      * 文件
      */
-    private File file;
+    private byte[] file;
     /**
      * 上传人
      */
@@ -37,5 +37,9 @@ public class EnclosureVO implements Serializable {
      * 业务ID
      */
     private String businId;
+
+    private String ext;
+    private long length;
+
 
 }
