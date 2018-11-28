@@ -137,5 +137,27 @@ public class OrderItemServiceImpl implements OrderItemService {
         }
         return -1;
     }
-
+    /**
+     * @Author songyateng
+     * @Description 删除服务项信息
+     * @Date 2018/11/28 10:39
+     * @Param [orderItemDTO]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer deleteOrderItem(OrderItemDTO orderItemDTO) {
+        EqlTran eqlTran = new Eql("DEFAULT").newTran();
+        eqlTran.start();
+        Integer count = 0;
+        try {
+            count = orderItemDao.deleteOrderItem(orderItemDTO, eqlTran);
+            eqlTran.commit();
+        } catch (Exception e) {
+            log.error("删除分包方资质信息失败", e);
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
+        }
+        return count;
+    }
 }

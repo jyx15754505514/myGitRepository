@@ -52,5 +52,12 @@ public interface OrderInfoDao {
      * @Return java.lang.Integer
      */
     Integer updateOrderStatus(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
-
+    /**
+     * @Author MengZiJie
+     * @Description 删除委托单
+     * @Data 2018/11/28 9:40
+     * @Param [orderInfoDTO, tran]
+     * @Return java.lang.Integer
+     */
+    Integer removeOrderInfo(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception;
 }

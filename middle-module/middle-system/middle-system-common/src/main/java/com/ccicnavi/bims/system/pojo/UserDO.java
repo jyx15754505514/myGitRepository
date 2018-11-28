@@ -53,7 +53,7 @@ public class UserDO implements Serializable {
     private String isChangePassword;
 
     private String loginUsertype;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date disabledTime;
 
     private String disabledReason;
@@ -67,7 +67,7 @@ public class UserDO implements Serializable {
     private String lastLocal;
 
     private String lastLoginIp;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date lastLoginTime;
 
     private String bindLoginIp;
@@ -77,14 +77,12 @@ public class UserDO implements Serializable {
     private String comments;
 
     private String isDeleted;
-
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
 
     private String createdUuid;
 
     private String createdName;
-
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
 

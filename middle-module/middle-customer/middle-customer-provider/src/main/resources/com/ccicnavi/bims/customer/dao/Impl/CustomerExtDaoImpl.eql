@@ -1,25 +1,25 @@
 -- [listCustomerExt]
 SELECT
-	cust_uuid,
-	legal_rep,
-	reg_capital,
-	reg_date,
-	reg_no,
-	business_scope,
-	bank_name,
-	bank_account,
-	pay_unit_name,
-	pay_unit_addr,
-	pay_unit_tel,
-	tax_no,
+	cust_uuid as custUuid,
+	legal_rep as legalRep,
+	reg_capital as regCapital,
+	reg_date as regDate,
+	reg_no as regNo,
+	business_scope as businessScope,
+	bank_name as bankName,
+	bank_account as bankAccount,
+	pay_unit_name as payUnitName,
+	pay_unit_addr as payUnitddr,
+	pay_unit_tel as payUnitTel,
+	tax_no as taxNo,
 	comments,
-	is_deleted,
-	created_time,
-	created_uuid,
-	created_name,
-	updated_time,
-	updated_name,
-	updated_uuid,
+	is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
 	extend1,
 	extend2,
 	extend3
@@ -206,11 +206,11 @@ update crm_customer_ext
       -- iff updatedTime != null
         updated_time = '#updatedTime#',
 
-      -- iff updatedName != null
-        updated_name = '#updatedName#',
-
       -- iff updatedUuid != null
         updated_uuid = '#updatedUuid#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
 
       -- iff extend1 != null
         extend1 = '#extend1#',

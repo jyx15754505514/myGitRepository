@@ -1,5 +1,8 @@
 package com.ccicnavi.bims.order.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,9 +14,9 @@ import java.util.List;
  * @Description 委托单DTO
  * @Date 9:23 2018/11/20
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 public class OrderInfoDTO implements Serializable {
     /**
      *委托单主键
@@ -343,4 +346,8 @@ public class OrderInfoDTO implements Serializable {
      *委托样品类型
      */
     private List<OrderSampleTypeDO> orderSampleTypeDO;
+    /**
+     * 运输信息
+     */
+    private OrderInspectionDO orderInspectionDO;
 }
