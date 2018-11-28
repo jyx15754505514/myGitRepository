@@ -12,6 +12,11 @@ select
     a.is_subpkg isSubpkg,
     a.is_subpkg_mgr isSubpkgMgr,
     a.ref_discount refDiscount,
+    a.assign_user_uuid assignUserUuid,
+    a.assign_time assignTime,
+    a.assign_comments assignComments,
+    a.plan_startwork_date planStartworkDate,
+    a.plan_finishwork_date planFinishworkDate,
     a.currency_type currencyType,
     a.currency_amount currencyAmount,
     a.rece_org_uuid receOrgUuid,
@@ -102,6 +107,11 @@ select
     ref_discount refDiscount,
     currency_type currencyType,
     currency_amount currencyAmount,
+    assign_user_uuid assignUserUuid,
+    assign_time assignTime,
+    assign_comments assignComments,
+    plan_startwork_date planStartworkDate,
+    plan_finishwork_date planFinishworkDate,
     rece_org_uuid receOrgUuid,
     rece_org_name receOrgName,
     rece_user_uuid receUserUuid,
@@ -148,6 +158,11 @@ select
     currency_type currencyType,
     currency_amount currencyAmount,
     rece_org_uuid receOrgUuid,
+    assign_user_uuid assignUserUuid,
+    assign_time assignTime,
+    assign_comments assignComments,
+    plan_startwork_date planStartworkDate,
+    plan_finishwork_date planFinishworkDate,
     rece_org_name receOrgName,
     rece_user_uuid receUserUuid,
     rece_user_time receUserTime,
@@ -205,6 +220,16 @@ where
             receivable_amount,
         --iff refAmount != null and refAmount != ''
             ref_amount,
+        --iff assignUserUuid != null and assignUserUuid != ''
+            assign_user_uuid,
+        --iff assignTime != null and assignTime != ''
+            assign_time,
+        --iff assignComments != null and assignComments != ''
+            assign_comments,
+        --iff planStartworkDate != null and planStartworkDate != ''
+            plan_startwork_date,
+        --iff planFinishworkDate != null and planFinishworkDate != ''
+            plan_finishwork_date,
         --iff refWorkhour != null and refWorkhour != ''
             ref_workhour,
         --iff isSubpkg != null and isSubpkg != ''
@@ -271,6 +296,16 @@ where
             '#receivableAmount#',
         --iff refAmount != null and refAmount != ''
             '#refAmount#',
+        --iff assignUserUuid != null and assignUserUuid != ''
+            '#assignUserUuid#',
+        --iff assignTime != null and assignTime != ''
+            '#assignTime#',
+        --iff assignComments != null and assignComments != ''
+            '#assignComments#',
+        --iff planStartworkDate != null and planStartworkDate != ''
+            '#planStartworkDate#',
+        --iff planFinishworkDate != null and planFinishworkDate != ''
+            '#planFinishworkDate#',
         --iff refWorkhour != null and refWorkhour != ''
             '#refWorkhour#',
         --iff refDiscount != null and refDiscount != ''
@@ -344,6 +379,16 @@ where
             receivable_amount = '#receivableAmount#',
         --iff refAmount != null and refAmount != ''
             ref_amount = '#refAmount#',
+        --iff assignUserUuid != null and assignUserUuid != ''
+            assign_user_uuid = '#assignUserUuid#',
+        --iff assignTime != null and assignTime != ''
+            assign_time = '#assignTime#',
+        --iff assignComments != null and assignComments != ''
+            assign_comments = '#assignComments#',
+        --iff planStartworkDate != null and planStartworkDate != ''
+            plan_startwork_date = '#planStartworkDate#',
+        --iff planFinishworkDate != null and planFinishworkDate != ''
+            plan_finishwork_date = '#planFinishworkDate#',
         --iff refWorkhour != null and refWorkhour != ''
             ref_workhour = '#refWorkhour#',
         --iff refDiscount != null and refDiscount != ''

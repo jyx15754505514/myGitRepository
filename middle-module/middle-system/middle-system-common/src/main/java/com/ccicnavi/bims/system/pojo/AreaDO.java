@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.system.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,7 +15,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AreaDO implements Serializable {
+
     private String areaUuid;
 
     private String areaParentUuid;
@@ -25,19 +28,6 @@ public class AreaDO implements Serializable {
 
     private String areaCode;
 
-    private String areaPost;
-
-    private String sortNum;
-
-    private String comments;
-
     private String isDeleted;
 
-    private String appSysUuid;
-
-    private String extend1;
-
-    private String extend2;
-
-    private String extend3;
 }

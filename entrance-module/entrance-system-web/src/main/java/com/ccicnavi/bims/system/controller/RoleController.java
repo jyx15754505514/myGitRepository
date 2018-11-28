@@ -8,6 +8,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.system.pojo.RoleDO;
 import com.ccicnavi.bims.system.pojo.RoleDTO;
+import com.ccicnavi.bims.system.pojo.RoleUserDTO;
 import com.ccicnavi.bims.system.pojo.UserDTO;
 import com.ccicnavi.bims.system.service.api.RoleService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +28,7 @@ import java.util.List;
 @Slf4j
 public class RoleController {
 
-//    @Reference(url = "dubbo://127.0.0.1:20881", timeout = 5000)
+    //@Reference(url = "dubbo://127.0.0.1:20881", timeout = 5000)
     @Reference
     private RoleService roleService;
 
@@ -148,9 +149,17 @@ public class RoleController {
     @RequestMapping(value = "/listRoleByUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listRoleByUser(@RequestBody UserDTO userDO) {
         try {
-            List<RoleDTO> roleDTOList = roleService.listRoleByUser(userDO);
-            if(roleDTOList != null) {
-                return ResultT.success(roleDTOList);
+
+            //根据用户查询角色信息
+            List<RoleDTO> userRoleList = roleService.listRoleByUser(userDO);
+            //查询所有角色信息
+            userDO.setUserUuid(null);
+            List<RoleDTO> orgRoleList = roleService.listRoleByUser(userDO);
+            if(orgRoleList != null && userRoleList != null) {
+                RoleUserDTO roleUserDTO = new RoleUserDTO();
+                roleUserDTO.setOrgRoleList(orgRoleList);
+                roleUserDTO.setUserRoleList(userRoleList);
+                return ResultT.success(roleUserDTO);
             }
         }catch (Exception e) {
             log.debug("获取指定角色失败", e);

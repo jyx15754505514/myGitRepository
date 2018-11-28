@@ -20,6 +20,12 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RoleUserDTO implements Serializable {
 
+    /**当前公司所用角色集合*/
+    private List<RoleDTO> orgRoleList;
+
+    /**当前用户所用角色集合*/
+    private List<RoleDTO> userRoleList;
+
     private String roleUuid;
 
     private String userUuid;
@@ -27,5 +33,6 @@ public class RoleUserDTO implements Serializable {
     private String orgUuid;
 
     private List<String> saveUserUuids;
+
     private List<String> deleteUserUuids;
 }
