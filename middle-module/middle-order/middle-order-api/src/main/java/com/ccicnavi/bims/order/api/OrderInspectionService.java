@@ -1,6 +1,5 @@
 package com.ccicnavi.bims.order.api;
 
-import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderInspectionDO;
 
 /**
@@ -26,13 +25,4 @@ public interface OrderInspectionService {
      * @Return java.lang.Integer
      */
     Integer updateOrderInspection(OrderInspectionDO orderInspectionDO);
-    /**
-     * @Author songyateng
-     * @Description 更新运输方式（参数：OrderInspectionDO）
-     * @Date 2018/11/27 21:10
-     * @Param [orderInspectionDO]
-     * @Return java.lang.Integer
-     */
-    Integer updateInspection(OrderInspectionDO orderInspectionDO);
-
 }
