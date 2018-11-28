@@ -17,6 +17,10 @@ select
     a.assign_comments assignComments,
     a.plan_startwork_date planStartworkDate,
     a.plan_finishwork_date planFinishworkDate,
+    a.plan_startwork_comments planStartworkComments,
+    a.real_startwork_date realStartworkDate,
+    a.real_finisthwork_date realFinisthworkDate,
+    a.real_finishwork_comments realFinishworkComments,
     a.currency_type currencyType,
     a.currency_amount currencyAmount,
     a.rece_org_uuid receOrgUuid,
@@ -112,6 +116,10 @@ select
     assign_comments assignComments,
     plan_startwork_date planStartworkDate,
     plan_finishwork_date planFinishworkDate,
+    plan_startwork_comments planStartworkComments,
+    real_startwork_date realStartworkDate,
+    real_finisthwork_date realFinisthworkDate,
+    real_finishwork_comments realFinishworkComments,
     rece_org_uuid receOrgUuid,
     rece_org_name receOrgName,
     rece_user_uuid receUserUuid,
@@ -163,6 +171,10 @@ select
     assign_comments assignComments,
     plan_startwork_date planStartworkDate,
     plan_finishwork_date planFinishworkDate,
+    plan_startwork_comments planStartworkComments,
+    real_startwork_date realStartworkDate,
+    real_finisthwork_date realFinisthworkDate,
+    real_finishwork_comments realFinishworkComments,
     rece_org_name receOrgName,
     rece_user_uuid receUserUuid,
     rece_user_time receUserTime,
@@ -230,6 +242,14 @@ where
             plan_startwork_date,
         --iff planFinishworkDate != null and planFinishworkDate != ''
             plan_finishwork_date,
+	    --iff planStartworkComments != null and planStartworkComments != ''
+		    plan_startwork_comments,
+	    --iff realStartworkDate != null
+		    real_startwork_date,
+	    --iff realFinisthworkDate != null
+		    real_finisthwork_date,
+	    --iff realFinishworkComments != null and realFinishworkComments != ''
+		    real_finishwork_comments,
         --iff refWorkhour != null and refWorkhour != ''
             ref_workhour,
         --iff isSubpkg != null and isSubpkg != ''
@@ -306,6 +326,14 @@ where
             '#planStartworkDate#',
         --iff planFinishworkDate != null and planFinishworkDate != ''
             '#planFinishworkDate#',
+    	--iff planStartworkComments != null and planStartworkComments != ''
+    		'#planStartworkComments#',
+    	--iff realStartworkDate != null
+    		'#realStartworkDate#',
+    	--iff realFinisthworkDate != null
+    		'#realFinisthworkDate#',
+    	--iff realFinishworkComments != null and realFinishworkComments != ''
+    		'#realFinishworkComments#',
         --iff refWorkhour != null and refWorkhour != ''
             '#refWorkhour#',
         --iff refDiscount != null and refDiscount != ''
@@ -389,6 +417,14 @@ where
             plan_startwork_date = '#planStartworkDate#',
         --iff planFinishworkDate != null and planFinishworkDate != ''
             plan_finishwork_date = '#planFinishworkDate#',
+    	--iff planStartworkComments != null and planStartworkComments != ''
+    		plan_startwork_comments = '#planStartworkComments#',
+    	--iff realStartworkDate != null
+    		real_startwork_date = '#realStartworkDate#',
+    	--iff realFinisthworkDate != null
+    		real_finisthwork_date = '#realFinisthworkDate#',
+    	--iff realFinishworkComments != null and realFinishworkComments != ''
+    		real_finishwork_comments = '#realFinishworkComments#',
         --iff refWorkhour != null and refWorkhour != ''
             ref_workhour = '#refWorkhour#',
         --iff refDiscount != null and refDiscount != ''
