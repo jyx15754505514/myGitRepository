@@ -21,16 +21,16 @@ FROM
 WHERE
     is_deleted='N'
         --if catalogName !=null and catalogName != ''
-                    AND catalog_name like '#catalogName:like#'
+                    AND catalog_name='#catalogName:like#'
         --end
         --if catalogCode !=null and catalogCode != ''
                     AND catalog_code like '#catalogCode:like#'
         --end
         --if orgUuid !=null and orgUuid != ''
-                    AND org_uuid like '#orgUuid#'
+                    AND org_uuid='#orgUuid#'
         --end
         --if appSysUuid !=null and appSysUuid != ''
-                    AND app_sys_uuid like '#appSysUuid#'
+                    AND app_sys_uuid='#appSysUuid#'
         --end
 
 -- [saveCatalogDO]

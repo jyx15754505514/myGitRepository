@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.resource.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import java.io.Serializable;
@@ -29,6 +30,7 @@ public class EquipTestDO implements Serializable {
     /**
      * 检定日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date testDate;
     /**
      * 检定周期
@@ -41,6 +43,7 @@ public class EquipTestDO implements Serializable {
     /**
      * 检定有效日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date testValidDate;
     /**
      * 检定结果（合格、不合格）
@@ -77,6 +80,7 @@ public class EquipTestDO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -89,6 +93,7 @@ public class EquipTestDO implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid

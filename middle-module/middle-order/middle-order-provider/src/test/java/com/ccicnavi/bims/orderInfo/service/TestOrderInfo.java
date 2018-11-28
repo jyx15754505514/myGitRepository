@@ -151,8 +151,9 @@ public class TestOrderInfo {
             Date currentTime = new Date();
             String orderUuid = timeFormat.format(currentTime);
             orderInfoDTO.setOrderUuid(orderUuid);
+            OrderInspectionDO orderInspectionDO = orderInfoDTO.getOrderInspectionDO();
             //添加委托单运输信息
-            shipment = orderInspectionDaoImpl.insertOrderInspection(orderInfoDTO,eqlTran);
+            shipment = orderInspectionDaoImpl.insertOrderInspection(orderInspectionDO,eqlTran);
             if(shipment!=1){
                 result=false;
             }
@@ -279,7 +280,8 @@ public class TestOrderInfo {
 
         try {
             //更新委托单运输信息
-            shipment = orderInspectionDaoImpl.updateOrderInspection(orderInfoDTO, eqlTran);
+            OrderInspectionDO orderInspectionDO = orderInfoDTO.getOrderInspectionDO();
+            shipment = orderInspectionDaoImpl.updateOrderInspection(orderInspectionDO, eqlTran);
             if(shipment!=1){
                 result=false;
             }

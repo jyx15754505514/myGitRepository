@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.system.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,6 +14,7 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrganizationDO implements Serializable{
 
     private String organizationUuid;
@@ -44,12 +47,14 @@ public class OrganizationDO implements Serializable{
 
     private String isDeleted;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
 
     private String createdUuid;
 
     private String createdName;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
 
     private String updatedName;

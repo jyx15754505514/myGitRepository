@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.resource.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import java.io.Serializable;
@@ -85,10 +86,12 @@ public class EquipDO implements Serializable {
     /**
      * 检定日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date testDate;
     /**
      * 启用日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date useDate;
     /**
      * 使用部门uuid
@@ -109,6 +112,7 @@ public class EquipDO implements Serializable {
     /**
      * 检定有效日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date testValidDate;
     /**
      * 检定结果（合格、不合格）
@@ -117,6 +121,7 @@ public class EquipDO implements Serializable {
     /**
      * 购置日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date purchaseDate;
     /**
      * 购置价格
@@ -205,6 +210,7 @@ public class EquipDO implements Serializable {
     /**
      * 计量确认时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date sourceCfmDate;
     /**
      * 备注
@@ -217,6 +223,7 @@ public class EquipDO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -229,6 +236,7 @@ public class EquipDO implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid

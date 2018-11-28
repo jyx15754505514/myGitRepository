@@ -3,13 +3,7 @@ SELECT
     area_uuid areaUuid,
     area_parent_uuid areaParentUuid,
     area_name areaName,
-    area_en_name areaEnName,
-    area_code areaCode,
-    area_post areaPost,
-    sort_num sortNum,
-    comments comments,
-    is_deleted isDeleted,
-    app_sys_uuid appSysUuid
+    area_code areaCode
 from
     sys_area
 where
@@ -17,6 +11,10 @@ where
 --iff areaName != null and areaName != ''
     and area_name like '#areaName:Like#'
 --end
+--iff areaParentUuid != null and areaParentUuid != ''
+    and area_parent_uuid = '#areaParentUuid#'
+--end
+ORDER BY area_code
 
 -- [getArea]
 SELECT
@@ -24,12 +22,7 @@ SELECT
     area_parent_uuid areaParentUuid,
     area_name areaName,
     area_en_name areaEnName,
-    area_code areaCode,
-    area_post areaPost,
-    sort_num sortNum,
-    comments comments,
-    is_deleted isDeleted,
-    app_sys_uuid appSysUuid
+    area_code areaCode
 from
     sys_area
 where
@@ -51,16 +44,8 @@ INSERT INTO sys_area
             area_en_name,
         --iff areaCode != null and areaCode != ''
             area_code,
-        --iff areaPost != null and areaPost != ''
-            area_post,
-        --iff sortNum != null and sortNum != ''
-            sort_num,
-        --iff comments != null and comments != ''
-            comments,
         --iff isDeleted != null and isDeleted != ''
             is_deleted,
-        --iff appSysUuid != null and appSysUuid != ''
-            app_sys_uuid,
     -- end
     -- trim prefix=values( suffix=) suffixOverrides=,
         --iff areaUuid != null and areaUuid != ''
@@ -73,16 +58,8 @@ INSERT INTO sys_area
             '#areaEnName#',
         --iff areaCode != null and areaCode != ''
             '#areaCode#',
-        --iff areaPost != null and areaPost != ''
-            '#areaPost#',
-        --iff sortNum != null and sortNum != ''
-            '#sortNum#',
-        --iff comments != null and comments != ''
-            '#comments#',
         --iff isDeleted != null and isDeleted != ''
             '#isDeleted#',
-        --iff appSysUuid != null and appSysUuid  != ''
-            '#appSysUuid#',
     -- end
 
 -- [updateArea]
@@ -97,26 +74,15 @@ UPDATE
             area_en_name = '#areaEnName#',
         --iff areaCode != null and areaCode != ''
             area_code = '#areaCode#',
-        --iff areaPost != null and areaPost != ''
-            area_post = '#areaPost#',
-        --iff sortNum != null and sortNum != ''
-            sort_num = '#sortNum#',
-        --iff comments != null and comments != ''
-            comments = '#comments#',
         --iff isDeleted != null and isDeleted != ''
             is_deleted = '#isDeleted#',
-        --iff appSysUuid != null and appSysUuid != ''
-            app_sys_uuid = '#appSysUuid#',
     -- end
 where
     is_deleted = 'N'
     --iff areaUuid != null and areaUuid != ''
         and area_uuid = '#areaUuid#'
-    --iff areaUuids != null
-        and area_uuid in
-        -- for item=item index=index collection=areaUuids open=( separator=, close=)
-            '#item#'
-        -- end
+
+
 
 -- [deleteArea]
 UPDATE

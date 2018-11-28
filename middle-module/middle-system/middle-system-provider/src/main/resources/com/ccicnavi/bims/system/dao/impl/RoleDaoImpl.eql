@@ -199,7 +199,7 @@
         -- iff roleCode != null and roleCode != ''
                 and role_code like   '#roleCode:like#'
         -- end
-
+    ORDER BY created_time desc
 
 
 
@@ -252,7 +252,7 @@
 -- 根据用户UUID获取所有角色UUID
 -- [listRoleByUser]
    SELECT
-        ru.role_uuid as roleUuid,
+        r.role_uuid as roleUuid,
         r.role_name as roleName,
         r.role_code as roleCode,
         r.is_system as isSystem,
@@ -260,12 +260,20 @@
         r.org_uuid as orgUuid,
         o.org_name as orgName
    FROM
-        sys_role_user ru
-        LEFT JOIN sys_role r ON ru.role_uuid = r.role_uuid
+        sys_role r
+        -- if userUuid != null and userUuid != ''
+            LEFT JOIN sys_role_user ru ON ru.role_uuid = r.role_uuid
+        -- end
         LEFT JOIN sys_organization o ON o.organization_uuid = r.org_uuid
    WHERE
         r.is_enabled = 'Y'
-        AND ru.user_uuid = '#userUuid#'
+        and r.is_deleted = 'N'
+        -- if userUuid != null and userUuid != ''
+            AND ru.user_uuid = '#userUuid#'
+        -- end
+        -- if orgUuid != null and orgUuid != ''
+            AND r.org_uuid = '#orgUuid#'
+        -- end
 
 
 

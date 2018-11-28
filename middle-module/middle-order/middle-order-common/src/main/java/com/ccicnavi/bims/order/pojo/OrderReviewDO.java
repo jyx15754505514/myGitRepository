@@ -1,9 +1,8 @@
 package com.ccicnavi.bims.order.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,9 +11,8 @@ import java.util.Date;
  * @Date: 2018/11/20 10:03
  * @Description:
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderReviewDO implements Serializable {
     /**
      * 评审主键
@@ -35,6 +33,7 @@ public class OrderReviewDO implements Serializable {
     /**
      * 评审日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date reviewDate;
     /**
      * 评审通过

@@ -1,6 +1,9 @@
 package com.ccicnavi.bims.order.api;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
+
 /**
  * @Author MengZiJie
  * @Description 委托单服务项
@@ -40,5 +43,21 @@ public interface OrderItemService {
      * @Return java.lang.Integer
      */
     Integer outsourcOrderItem(OrderItemDTO orderItemDTO);
+    /**
+     * @Author songyateng
+     * @Description 删除服务项信息
+     * @Date 2018/11/28 10:39
+     * @Param [orderItemDTO]
+     * @Return java.lang.Integer
+     */
+    Integer deleteOrderItem(OrderItemDTO orderItemDTO);
+    /**
+     * @Author heibin
+     * @Description 业务查询分页列表
+     * @Date 15:13 2018/11/28
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderItemDTO>
+     */
+    PageBean<OrderItemDTO> listOrderItemPage(PageParameter<OrderItemDTO> pageParameter);
 
 }

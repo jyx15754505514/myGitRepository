@@ -25,7 +25,7 @@ import java.util.List;
 public class CertPaperServiceImpl implements CertPaperService {
     @Autowired
     CertPaperDao certPaperDao;
-    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    @Reference(timeout = 1000)
     IdWorkerService idWorkerService;
     /**
      * 查询证书纸

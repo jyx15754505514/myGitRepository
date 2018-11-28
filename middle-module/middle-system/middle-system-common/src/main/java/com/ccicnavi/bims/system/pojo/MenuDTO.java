@@ -18,6 +18,7 @@ import java.util.Set;
 @Setter
 @Getter
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MenuDTO implements Serializable {
 
     private List<String> prodCatalogList;

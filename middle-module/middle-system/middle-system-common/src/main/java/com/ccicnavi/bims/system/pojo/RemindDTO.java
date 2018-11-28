@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.system.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,6 +20,7 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RemindDTO implements Serializable {
 
     /**
@@ -55,6 +58,7 @@ public class RemindDTO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -67,6 +71,7 @@ public class RemindDTO implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 最后一次更新人
@@ -102,4 +107,8 @@ public class RemindDTO implements Serializable {
      */
     private String orgName;
     private List<String> uuids;
+
+    private String remindTypeName;
+
+    private String dictParentUuid;
 }
