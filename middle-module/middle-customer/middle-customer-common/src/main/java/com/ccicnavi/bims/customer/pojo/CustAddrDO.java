@@ -1,10 +1,9 @@
 package com.ccicnavi.bims.customer.pojo;
 
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,9 +12,8 @@ import java.util.List;
 /**
  * 客户地址
  */
-@Setter
-@Getter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustAddrDO implements Serializable {
     /**
      * 客户地址主键
@@ -52,6 +50,7 @@ public class CustAddrDO implements Serializable {
     /**
      * 创建日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人uuid
@@ -64,6 +63,7 @@ public class CustAddrDO implements Serializable {
     /**
      * 更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人名称

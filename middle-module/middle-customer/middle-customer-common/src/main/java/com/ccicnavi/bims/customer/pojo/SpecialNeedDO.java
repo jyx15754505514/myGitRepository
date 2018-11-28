@@ -3,7 +3,6 @@ package com.ccicnavi.bims.customer.pojo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
 
