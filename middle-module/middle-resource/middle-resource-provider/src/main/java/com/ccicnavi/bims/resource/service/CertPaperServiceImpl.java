@@ -7,6 +7,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.CertPaperService;
 import com.ccicnavi.bims.resource.dao.CertPaperDao;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
+import com.ccicnavi.bims.resource.pojo.CertPaperDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,7 +134,7 @@ public class CertPaperServiceImpl implements CertPaperService {
      * @return
      */
     @Override
-    public Integer deleteCertPaper(CertPaperDO certPaper) {
+    public Integer deleteCertPaper(CertPaperDTO certPaper) {
         try {
             return certPaperDao.deleteCertPaper(certPaper);
         } catch (Exception e) {

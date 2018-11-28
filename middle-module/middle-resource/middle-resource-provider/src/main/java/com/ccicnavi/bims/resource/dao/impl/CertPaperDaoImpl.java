@@ -5,6 +5,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.CertPaperDao;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
+import com.ccicnavi.bims.resource.pojo.CertPaperDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.n3r.eql.EqlTran;
@@ -61,7 +62,7 @@ public class CertPaperDaoImpl implements CertPaperDao {
      * @throws
      */
     @Override
-    public Integer deleteCertPaper(CertPaperDO certPaper) throws Exception{
+    public Integer deleteCertPaper(CertPaperDTO certPaper) throws Exception{
         return EqlUtils.getInstance("DEFAULT").delete("deleteCertPaper").params(certPaper).returnType(Integer.class).execute();
     }
     /**
