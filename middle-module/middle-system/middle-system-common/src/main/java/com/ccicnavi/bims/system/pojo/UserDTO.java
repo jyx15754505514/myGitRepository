@@ -200,7 +200,7 @@ public class UserDTO implements Serializable {
 
     private  List<String> userUuids;
 
-    private String firstName;
+
     private String skillName;
     private String deptName;
     private String phone;
