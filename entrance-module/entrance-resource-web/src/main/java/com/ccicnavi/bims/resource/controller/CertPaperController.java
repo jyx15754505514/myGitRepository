@@ -25,7 +25,7 @@ public class CertPaperController {
 
     private final static Logger log = LoggerFactory.getLogger(CertPaperController.class);
 
-    @Reference(timeout = 30000)
+    @Reference(timeout = 30000,url="dubbo://127.0.0.1:20882")
     CertPaperService certPaperService;
 
     /**
@@ -129,5 +129,28 @@ public class CertPaperController {
             log.error("删除证书纸失败",e);
         }
         return ResultT.failure(ResultCode.DELETE_FAILURE);
+    }
+
+    /**
+    *@description: 校验证书纸 流水起始号  流水结束号
+    *@author: ChaiYanShun
+    *@create: 2018/11/28 20:32
+    *@Param [certPaper]
+    *@return com.ccicnavi.bims.common.ResultT
+    */
+    @RequestMapping(value = "/checkCertPaper",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT checkCertPaper(@RequestBody CertPaperDO certPaper){
+        try {
+            if(certPaper.getPaperStartNum() == null && certPaper.getPaperEndNum() == null){
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
+            Boolean result = certPaperService.checkCertPaper(certPaper);
+            if(result != null){
+                return ResultT.success(result);
+            }
+        } catch (Exception e) {
+            log.error("校验证书纸失败",e);
+        }
+        return ResultT.failure(ResultCode.SERIAL_CFG_ADD_FAILURE);
     }
 }
