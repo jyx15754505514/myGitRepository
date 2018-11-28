@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.CategoryTypeDO;
+import com.ccicnavi.bims.product.pojo.CategoryTypeDTO;
 
 import java.util.List;
 
@@ -18,6 +19,6 @@ public interface CategoryTypeDao {
 
     CategoryTypeDO getCategoryType(CategoryTypeDO categoryTypeDO);
 
-    PageBean<CategoryTypeDO> listCategoryTypePage(PageParameter<CategoryTypeDO> pageParameter);
+    PageBean<CategoryTypeDO> listCategoryTypePage(PageParameter<CategoryTypeDTO> pageParameter);
 
 }

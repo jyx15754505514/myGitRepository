@@ -1,7 +1,7 @@
 package com.ccicnavi.bims.product.test;
 
 import com.ccicnavi.bims.product.dao.Impl.MinItemTestDaoImpl;
-import com.ccicnavi.bims.product.pojo.MinItemTestDO;
+import com.ccicnavi.bims.product.pojo.MinItemTestDTO;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
 import org.junit.jupiter.api.Test;
 
@@ -23,11 +23,11 @@ class MinItemTestDaoImplTest {
     @Test
     void findTestItemByMinItemUuid() {
         MinItemTestDaoImpl minItemTestDaoImpl=new MinItemTestDaoImpl();
-        MinItemTestDO minItemTestDO =new MinItemTestDO();
-        minItemTestDO.setMinItemUuid("KC_MT_JM_JC");
-        minItemTestDO.setOrgUuid("HD601");
-        minItemTestDO.setAppSysUuid("BIMS2.0");
-        List<TestItemDO> testItemByMinItemUuid = minItemTestDaoImpl.findTestItemByMinItemUuid(minItemTestDO);
+        MinItemTestDTO minItemTestDTO =new MinItemTestDTO();
+        minItemTestDTO.setMinItemUuid("KC_MT_JM_JC");
+        minItemTestDTO.setOrgUuid("HD601");
+        minItemTestDTO.setAppSysUuid("BIMS2.0");
+        List<TestItemDO> testItemByMinItemUuid = minItemTestDaoImpl.findTestItemByMinItemUuid(minItemTestDTO);
         System.out.println(testItemByMinItemUuid);
     }
 

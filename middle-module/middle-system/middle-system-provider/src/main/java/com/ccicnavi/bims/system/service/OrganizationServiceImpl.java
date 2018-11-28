@@ -41,16 +41,38 @@ public class OrganizationServiceImpl implements OrganizationService {
      *@date: 2018/11/25
      */
     @Override
-    public ResultT listOrganization(PageParameter<OrganizationDTO> pageParameter) {
+//    public ResultT listOrganization(PageParameter<OrganizationDTO> pageParameter) {
+//        try {
+//            PageBean<OrganizationDTO> pageBean = organizationDao.listOrganization(pageParameter);
+//            if (pageBean != null) {
+//                return ResultT.success(pageBean);
+//            }
+//        } catch (Exception e) {
+//            log.error("组织机构列表获取失败" + e);
+//        }
+//        return ResultT.failure(ResultCode.LIST_FAILURE);
+//    }
+    public List<OrganizationDTO> listOrganization(OrganizationDTO organizationDTO) {
         try {
-            PageBean<OrganizationDTO> pageBean = organizationDao.listOrganization(pageParameter);
-            if (pageBean != null) {
-                return ResultT.success(pageBean);
+            List<OrganizationDTO> orgList = new ArrayList<OrganizationDTO>();
+            List<String> uuids = new ArrayList<String>();
+            orgList = organizationDao.listOrgByUser(organizationDTO);
+            // 递归调用
+            if(orgList != null && orgList.size() > 0 ){
+                //递归调用，获取树形部门结构
+                listOrganiztionUuid(organizationDTO, orgList, uuids);
+                //System.out.println("uuids:::::"+uuids);
+                //OrganizationDTO orgDTO = new OrganizationDTO();
+                organizationDTO.setOrganizationUuid(null);
+                organizationDTO.setUuids(uuids);
+                return organizationDao.listOrganization(organizationDTO);
+            }else{
+                return null;
             }
         } catch (Exception e) {
-            log.error("组织机构列表获取失败" + e);
+            log.error("查询组织机构信息失败", e);
+            return null;
         }
-        return ResultT.failure(ResultCode.LIST_FAILURE);
     }
 
     /**

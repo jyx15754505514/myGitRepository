@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface GoodsService {
     /**分页 查询商品信息*/
-    PageBean<GoodsDO> listGoodsPage(PageParameter<GoodsDO> goodsDOPageParameter) throws Exception;
+    PageBean<GoodsDO> listGoodsPage(PageParameter<GoodsDTO> goodsDOPageParameter) throws Exception;
 
     /**新增商品信息*/
     int saveGoodsDO(GoodsDO goodsDO) throws Exception;
@@ -26,7 +26,7 @@ public interface GoodsService {
     int updateGoodsDO(GoodsDO goodsDO) throws Exception;
 
     /**查询商品信息*/
-    List<GoodsDO> listGoodsDO(GoodsDO goodsDO)throws Exception;
+    List<GoodsDO> listGoodsDO(GoodsDTO goodsDTO)throws Exception;
 
     /**根据主键 查询商品信息*/
     GoodsDO getGoodsDO(GoodsDO goodsDO)throws Exception;

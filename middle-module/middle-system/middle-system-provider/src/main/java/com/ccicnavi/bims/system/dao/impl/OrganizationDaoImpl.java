@@ -24,10 +24,13 @@ public class OrganizationDaoImpl implements OrganizationDao {
      * 列表查询（组织机构）
      */
     @Override
-    public PageBean<OrganizationDTO> listOrganization(PageParameter<OrganizationDTO> pageParameter) throws Exception{
-        EqlPage page = new EqlPage(pageParameter.getStartIndex(),pageParameter.getPageRows());
-        List<OrganizationDTO> OrganizationDOs = new Eql("DEFAULT").select("listOrganization").params(pageParameter.getParameter()).returnType(OrganizationDTO.class).limit(page).execute();
-        return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),OrganizationDOs);
+//    public PageBean<OrganizationDTO> listOrganization(PageParameter<OrganizationDTO> pageParameter) throws Exception{
+//        EqlPage page = new EqlPage(pageParameter.getStartIndex(),pageParameter.getPageRows());
+//        List<OrganizationDTO> OrganizationDOs = new Eql("DEFAULT").select("listOrganization").params(pageParameter.getParameter()).returnType(OrganizationDTO.class).limit(page).execute();
+//        return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),OrganizationDOs);
+//    }
+    public List<OrganizationDTO> listOrganization(OrganizationDTO organizationDTO) throws Exception {
+        return new Eql().select("listOrganization").params(organizationDTO).returnType(OrganizationDTO.class).execute();
     }
 
     /**

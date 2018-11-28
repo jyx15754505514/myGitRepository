@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.product.api;
 
 import com.ccicnavi.bims.product.pojo.MinItemTestDO;
+import com.ccicnavi.bims.product.pojo.MinItemTestDTO;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface MinItemTestService {
 
     /**
      * 根据最小服务项ID查询出对应检测指标
-     * @param minItemTestDO
+     * @param minItemTestDTO
      */
-     List<TestItemDO> findTestItemByMinItemUuid(MinItemTestDO minItemTestDO);
+     List<TestItemDO> findTestItemByMinItemUuid(MinItemTestDTO minItemTestDTO);
 }

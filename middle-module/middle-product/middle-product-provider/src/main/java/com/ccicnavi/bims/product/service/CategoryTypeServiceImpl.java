@@ -6,6 +6,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CategoryTypeService;
 import com.ccicnavi.bims.product.dao.CategoryTypeDao;
 import com.ccicnavi.bims.product.pojo.CategoryTypeDO;
+import com.ccicnavi.bims.product.pojo.CategoryTypeDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -76,7 +77,7 @@ public class CategoryTypeServiceImpl implements CategoryTypeService {
     }
 
     @Override
-    public PageBean<CategoryTypeDO> listCategoryTypePage(PageParameter<CategoryTypeDO> pageParameter) {
+    public PageBean<CategoryTypeDO> listCategoryTypePage(PageParameter<CategoryTypeDTO> pageParameter) {
         try {
             return categoryTypeDao.listCategoryTypePage(pageParameter);
         } catch (Exception e) {

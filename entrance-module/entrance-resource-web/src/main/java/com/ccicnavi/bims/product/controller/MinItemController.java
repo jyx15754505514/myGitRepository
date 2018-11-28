@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.Constants;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.MinItemService;
@@ -31,16 +32,20 @@ import java.util.List;
 @Slf4j
 public class MinItemController {
 
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     @Reference(timeout = 30000)
     MinItemService minItemService;
 
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     @Reference(timeout = 30000)
     MinItemStdService minItemStdService;
 
-    @Reference(timeout = 30000)
+    //    @Reference(timeout = 30000)
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     MinItemTestService minItemTestService;
 
-    @Reference(timeout = 30000)
+    //    @Reference(timeout = 30000)
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     IdWorkerService idWorkerService;
 
     /**
@@ -49,9 +54,10 @@ public class MinItemController {
      * @return
      */
     @RequestMapping(value = "/listAllMinItem", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listAllMinItem(@RequestBody MinItemDO minItem) {
+    public ResultT listAllMinItem(@RequestBody MinItemDTO minItemDTO) {
         try {
-            List<MinItemDO> CustInvoiceList = minItemService.listMinItem(minItem);
+            minItemDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
+            List<MinItemDO> CustInvoiceList = minItemService.listMinItem(minItemDTO);
             return ResultT.success(CustInvoiceList);
         } catch (Exception e) {
             log.error("查询最小服务项信息失败~", e);
@@ -66,8 +72,9 @@ public class MinItemController {
      * @return
      */
     @RequestMapping(value = "/listMinItemPage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listMinItemPage(@RequestBody PageParameter<MinItemDO> pageParameter) {
+    public ResultT listMinItemPage(@RequestBody PageParameter<MinItemDTO> pageParameter) {
         try {
+            pageParameter.getParameter().setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
             PageBean<MinItemDO> minItemList = minItemService.listMinItemPage(pageParameter);
             return ResultT.success(minItemList);
         } catch (Exception e) {
@@ -258,9 +265,10 @@ public class MinItemController {
      * @return
      */
     @RequestMapping(value = "/findTestItemByMinItemUuid", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT findTestItemByMinItemUuid(@RequestBody MinItemTestDO minItemTestDO) {
+    public ResultT findTestItemByMinItemUuid(@RequestBody MinItemTestDTO minItemTestDTO) {
         try {
-            List<TestItemDO> testItemByMinItemUuid = minItemTestService.findTestItemByMinItemUuid(minItemTestDO);
+            minItemTestDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
+            List<TestItemDO> testItemByMinItemUuid = minItemTestService.findTestItemByMinItemUuid(minItemTestDTO);
             return ResultT.success(testItemByMinItemUuid);
         } catch (Exception e) {
             log.error("根据最小服务项ID和所属机构ID查询出对应的检测指标信息失败~", e);

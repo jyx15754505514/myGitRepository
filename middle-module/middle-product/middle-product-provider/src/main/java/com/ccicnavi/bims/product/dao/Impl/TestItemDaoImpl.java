@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.TestItemDao;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
+import com.ccicnavi.bims.product.pojo.TestItemDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,8 @@ import java.util.List;
 public class TestItemDaoImpl implements TestItemDao {
 
     @Override
-    public List<TestItemDO> listTestItem(TestItemDO testItemDO){
-        return new Eql().select("listTestItemDO").params(testItemDO).returnType(TestItemDO.class).execute();
+    public List<TestItemDO> listTestItem(TestItemDTO testItemDTO){
+        return new Eql().select("listTestItemDO").params(testItemDTO).returnType(TestItemDO.class).execute();
     }
 
     @Override
@@ -45,7 +46,7 @@ public class TestItemDaoImpl implements TestItemDao {
     }
 
     @Override
-    public PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDO> pageParameter) {
+    public PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDTO> pageParameter) {
         //封装分页参数
         EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
         //执行查询

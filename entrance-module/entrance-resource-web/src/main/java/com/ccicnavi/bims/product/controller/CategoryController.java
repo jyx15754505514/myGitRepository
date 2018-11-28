@@ -34,7 +34,7 @@ import java.util.List;
 public class CategoryController {
 
 
-    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     @Reference
     CategoryService categoryService;
 //    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
@@ -90,6 +90,7 @@ public class CategoryController {
     @RequestMapping(value = "/listCategoryFirstByOrgAndProd", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listCategoryFirstByOrgAndProd(@RequestBody CategoryDTO categoryDTO) {
         try {
+            categoryDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
             List<CategoryDO> listCategoryFirstByOrgAndProd = categoryService.listCategoryFirstByOrgAndProd(categoryDTO);
             return ResultT.success(listCategoryFirstByOrgAndProd);
         } catch (Exception e) {
@@ -127,9 +128,9 @@ public class CategoryController {
             return ResultT.failure(ResultCode.PARAM_IS_BLANK);
         }
         try {
-            CategoryDO customer = categoryService.getCategory(categoryDTO);
-            if (customer != null) {
-                return ResultT.success(customer);
+            CategoryDO categoryDO = categoryService.getCategory(categoryDTO);
+            if (categoryDO != null) {
+                return ResultT.success(categoryDO);
             }
         } catch (Exception e) {
             log.error("根据主键查询产品分类失败", e);
@@ -245,12 +246,12 @@ public class CategoryController {
 
     /**
      * 根据所属公司机构和业务线查询出所有子级产品分类信息(省公司)
-     *
      * @return
      */
     @RequestMapping(value = "/listCategoryByOrgAndProd", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listCategoryByOrgAndProd(@RequestBody CategoryDTO categoryDTO) {
         try {
+            categoryDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);//设置公共所属机构
             List<CategoryDO> CustInvoiceList = categoryService.listCategoryByOrgAndProd(categoryDTO);
             return ResultT.success(CustInvoiceList);
         } catch (Exception e) {
@@ -295,10 +296,11 @@ public class CategoryController {
      * 根据商品名称获取所有的商品分类
      */
     @RequestMapping(value = "/listCategoryByGoodName", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listCategoryByGoodName(@RequestBody GoodsDO goodsDO) {
+    public ResultT listCategoryByGoodName(@RequestBody GoodsDTO goodsDTO) {
         try {
-            if (!StringUtils.isEmpty(goodsDO.getGoodsName())) {
-                return categoryManager.listCategoryByGoodName(goodsDO);
+            if (!StringUtils.isEmpty(goodsDTO.getGoodsName())) {
+                goodsDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
+                return categoryManager.listCategoryByGoodName(goodsDTO);
             } else {
                 return ResultT.failure(ResultCode.PARAM_IS_BLANK);
             }

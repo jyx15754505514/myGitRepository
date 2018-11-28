@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.Constants;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.StandardInfoService;
@@ -158,6 +159,7 @@ public class ProductStandardInfoController {
     public ResultT listStandardInfo(@RequestBody StandardInfoDTO psiDto){
         log.info("开始查询产品标准信息列表 Param: " + JSON.toJSONString(psiDto) + " Time: " + new Date());
         try {
+            psiDto.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
             List<StandardInfoDO> productStandardInfoList = standardInfoService.listStandardInfo(psiDto);
             if (null == productStandardInfoList) {
                 log.error("查询产品标准信息列表异常");
@@ -183,6 +185,7 @@ public class ProductStandardInfoController {
     public ResultT pageStandardInfo(@RequestBody PageParameter<StandardInfoDTO> pageParameter){
         log.info("开始分页查询产品标准信息 Param: " + pageParameter.getParameter() + " Time: " + new Date());
         try {
+            pageParameter.getParameter().setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
             PageBean<StandardInfoDO> productStandardInfoList = standardInfoService.listStandardInfoPage(pageParameter);
             log.info("分页查询产品标准信息结果: " + JSON.toJSONString(productStandardInfoList));
             return ResultT.success(productStandardInfoList);

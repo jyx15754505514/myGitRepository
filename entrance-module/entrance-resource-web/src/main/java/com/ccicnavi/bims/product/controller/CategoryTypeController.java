@@ -4,10 +4,12 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.Constants;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CategoryTypeService;
 import com.ccicnavi.bims.product.pojo.CategoryTypeDO;
+import com.ccicnavi.bims.product.pojo.CategoryTypeDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,9 +31,12 @@ import java.util.List;
 @Slf4j
 public class CategoryTypeController {
 
+
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     @Reference
     CategoryTypeService categoryTypeService;
 
+//    @Reference(timeout = 30000, url = "dubbo://192.168.125.11:20880")
     @Reference
     IdWorkerService idWorkerService;
 
@@ -168,8 +173,9 @@ public class CategoryTypeController {
      * @author WangYingLing
      */
     @RequestMapping(value = "/listCategoryTypePage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listCategoryTypePage(@RequestBody PageParameter<CategoryTypeDO> pageParameter){
+    public ResultT listCategoryTypePage(@RequestBody PageParameter<CategoryTypeDTO> pageParameter){
         try {
+            pageParameter.getParameter().setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
             PageBean<CategoryTypeDO> categoryTypeDOPageBean=categoryTypeService.listCategoryTypePage(pageParameter);
             return ResultT.success(categoryTypeDOPageBean);
         } catch (Exception e) {

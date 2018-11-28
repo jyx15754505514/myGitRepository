@@ -48,9 +48,19 @@ public class OrganizationController {
      * @date: 2018/11/25
      */
     @RequestMapping(value = "/listOrg", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listOrg(@RequestBody PageParameter<OrganizationDTO> pageParameter) {
+//    public ResultT listOrg(@RequestBody PageParameter<OrganizationDTO> pageParameter) {
+//        try {
+//            return organizationService.listOrganization(pageParameter);
+//        } catch (Exception e) {
+//            log.error("根据条件查询组织结构信息失败", e);
+//            return ResultT.failure(ResultCode.LIST_FAILURE);
+//        }
+//    }
+    public ResultT listOrg(@RequestBody OrganizationDTO organizationDTO) {
         try {
-            return organizationService.listOrganization(pageParameter);
+            //获取所有当前机构下的所有子机构
+            List<OrganizationDTO> orgList = organizationService.listOrganization(organizationDTO);
+            return ResultT.success(orgList);
         } catch (Exception e) {
             log.error("根据条件查询组织结构信息失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);

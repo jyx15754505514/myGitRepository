@@ -77,6 +77,10 @@ FROM
 LEFT JOIN product_test_item pti ON pmit.test_item_uuid = pti.item_uuid
 WHERE
 	pti.is_deleted = 'N'
+--if orgUuid !=null and publicOrgUuid != null
+           AND (org_uuid = '#orgUuid#' OR org_uuid='#publicOrgUuid#')
+--end
 AND pmit.org_uuid = '#orgUuid#'
+
 AND pmit.min_item_uuid='#minItemUuid#'
 AND pmit.app_sys_uuid = '#appSysUuid#'

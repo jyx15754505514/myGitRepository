@@ -17,9 +17,10 @@ import java.util.List;
 public interface OrganizationService {
     /**
      * 查询组织机构
-     * @param pageParameter
+     * @param organizationDTO
      */
-    public ResultT listOrganization(PageParameter<OrganizationDTO> pageParameter);
+    //public ResultT listOrganization(PageParameter<OrganizationDTO> pageParameter);
+    public List<OrganizationDTO> listOrganization(OrganizationDTO organizationDTO);
 
     /**
      * 根据主键查询组织机构

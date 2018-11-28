@@ -9,13 +9,13 @@ import java.util.Date;
 
 /**
  * @program: bims-backend
- * @description: 检测指标DO(product_test_item)
- * @author: wangynigling
- * @create: 2018-11-19 17:02
+ * @description: 该类的作用描述
+ * @author: LiJie
+ * @create: 2018-11-28 22:14
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TestItemDO implements Serializable {
+public class TestItemDTO implements Serializable {
 
     /**
      * 主键
@@ -80,7 +80,7 @@ public class TestItemDO implements Serializable {
     /**
      * 创建时间
      */
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdTime;
 
     /**
@@ -96,7 +96,7 @@ public class TestItemDO implements Serializable {
     /**
      * 最后一次更新时间
      */
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updatedTime;
 
     /**
@@ -109,8 +109,8 @@ public class TestItemDO implements Serializable {
      */
     private String updatedName;
 
-    /**产品线id
-     *
+    /**
+     * 产品线id
      */
     private String prodCatalogUuid;
 
@@ -118,6 +118,11 @@ public class TestItemDO implements Serializable {
      * 归属机构id
      */
     private String orgUuid;
+
+    /**
+     * 公共所属机构ID
+     */
+    private String publicOrgUuid;
 
     /**
      * 应用系统id

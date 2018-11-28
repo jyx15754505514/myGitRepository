@@ -14,7 +14,7 @@ import java.util.List;
  * @create: 2018-11-19 21:25
  */
 public interface MinItemDao {
-    List<MinItemDO> listMinItem(MinItemDO minItem) throws Exception;
+    List<MinItemDO> listMinItem(MinItemDTO minItemDTO) throws Exception;
 
     int saveMinItem(MinItemDO minItem) throws Exception;
 
@@ -24,5 +24,5 @@ public interface MinItemDao {
 
     MinItemDO getMinItem(MinItemDO minItem) throws Exception;
 
-    PageBean<MinItemDO> listMinItemPage(PageParameter<MinItemDO> pageParameter) throws Exception;
+    PageBean<MinItemDO> listMinItemPage(PageParameter<MinItemDTO> pageParameter) throws Exception;
 }

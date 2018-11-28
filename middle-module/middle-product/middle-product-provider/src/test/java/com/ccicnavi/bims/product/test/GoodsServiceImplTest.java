@@ -1,21 +1,18 @@
 package com.ccicnavi.bims.product.test;
 
+import com.ccicnavi.bims.common.service.pojo.Constants;
 import com.ccicnavi.bims.product.api.GoodsService;
 import com.ccicnavi.bims.product.pojo.GoodsDO;
 import com.ccicnavi.bims.product.pojo.GoodsDTO;
 import com.ccicnavi.bims.product.service.GoodsServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * @description:
@@ -31,15 +28,18 @@ public class GoodsServiceImplTest {
     @Test
     public void listGoodsDO() {
         //GoodsServiceImpl goodsServiceTest = new GoodsServiceImpl();
-        GoodsDO goodsDO = new GoodsDO();
-        goodsDO.setGoodsName("中国");
+        GoodsDTO goodsDTO = new GoodsDTO();
+        goodsDTO.setGoodsName("牛");
+        goodsDTO.setOrgUuid("XN102");
+        goodsDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
+        goodsDTO.setAppSysUuid("BIMS2.0");
         List<GoodsDO> goodsDOList = null;
         try {
-            goodsDOList = goodsService.listGoodsDO(goodsDO);
+            goodsDOList = goodsService.listGoodsDO(goodsDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("--------"+goodsDOList);
+        System.out.println("---sssssssssssssssssssssssssssssss-----"+goodsDOList);
     }
 
     @Test

@@ -49,6 +49,6 @@ public class StandardInfoDaoImpl implements StandardInfoDao {
     public PageBean<StandardInfoDO> listStandardInfoPage(PageParameter<StandardInfoDTO> pageParameter) {
         EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
         List<StandardInfoDO> contractList = new Eql("DEFAULT").select("listStandardInfo").params(pageParameter.getParameter()).returnType(StandardInfoDO.class).limit(page).execute();
-        return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),contractList);
+        return new PageBean<>(page.getTotalRows(), page.getTotalPages(), page.getCurrentPage(), page.getPageRows(), page.getStartIndex(), contractList);
     }
 }
