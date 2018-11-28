@@ -1,9 +1,8 @@
 package com.ccicnavi.bims.customer.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -13,9 +12,8 @@ import java.util.List;
   * @description 客户联系人DO
   * @date 2018/11/26 18:01
   */
-@Setter
-@Getter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class LinkmanDO implements Serializable {
     /**
      * 键UUID
@@ -96,6 +94,7 @@ public class LinkmanDO implements Serializable {
     /**
      *创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      *创建人id
@@ -108,6 +107,7 @@ public class LinkmanDO implements Serializable {
     /**
      *最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      *更新人uuid
