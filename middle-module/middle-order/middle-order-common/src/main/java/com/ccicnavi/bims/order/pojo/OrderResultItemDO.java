@@ -1,9 +1,7 @@
 package com.ccicnavi.bims.order.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 
 /**
@@ -11,9 +9,8 @@ import java.io.Serializable;
  * @Description 委托服务项-证书关系
  * @Date 20:14 2018/11/20
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderResultItemDO  implements Serializable {
     /**
      * 主键
