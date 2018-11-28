@@ -29,7 +29,7 @@ public interface CategoryService {
     int updateCategory(CategoryDO category);
 
     /**根据主键返回对应产品分类信息*/
-    CategoryDO getCategory(CategoryDO Category);
+    CategoryDO getCategory(CategoryDTO categoryDTO);
 
     /**分页查询产品分类信息*/
     PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDTO> pageParameter);
@@ -52,4 +52,6 @@ public interface CategoryService {
     /**根据多个产品分类ID查询其下的子级分类信息(包括子级)*/
     List<CategoryDO> listCategoryByParentAllUuids(CategoryOrgDTO categoryOrgDTO);
 
+    /**根据商品分类ID查询出所有的上级分类ID*/
+    List<CategoryDO> listParentCategoryByUuid(CategoryDTO categoryDTO);
 }

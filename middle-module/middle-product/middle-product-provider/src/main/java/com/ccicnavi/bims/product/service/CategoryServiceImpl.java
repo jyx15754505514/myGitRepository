@@ -72,9 +72,9 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDO getCategory(CategoryDO category) {
+    public CategoryDO getCategory(CategoryDTO categoryDTO) {
         try {
-            return categoryDao.getCategory(category);
+            return categoryDao.getCategory(categoryDTO);
         } catch (Exception e) {
             log.error("根据主键获取产品分类信息失败~", e);
             return null;
@@ -191,6 +191,23 @@ public class CategoryServiceImpl implements CategoryService {
             }
         } catch (Exception e) {
             log.error("根据多个产品分类的ID查询其下的子级产品分类信息~", e);
+        }
+        return null;
+    }
+
+    /**
+     * 根据商品分类ID查询出所有的上级分类ID
+     * @param categoryDTO
+     * @return
+     */
+    @Override
+    public List<CategoryDO> listParentCategoryByUuid(CategoryDTO categoryDTO) {
+        try {
+            if (!StringUtils.isEmpty(categoryDTO.getProductCategoryUuidList())) {
+                return categoryDao.listParentCategoryByUuid(categoryDTO);
+            }
+        } catch (Exception e) {
+            log.error("根据商品分类ID查询出所有的上级分类ID失败~", e);
         }
         return null;
     }

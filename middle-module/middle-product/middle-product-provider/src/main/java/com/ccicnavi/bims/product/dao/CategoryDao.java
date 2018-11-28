@@ -19,7 +19,7 @@ public interface CategoryDao {
 
     int updateCategory(CategoryDO category) throws Exception;
 
-    CategoryDO getCategory(CategoryDO category) throws Exception;
+    CategoryDO getCategory(CategoryDTO categoryDTO) throws Exception;
 
     PageBean<CategoryDO> listCategoryPage(PageParameter<CategoryDTO> pageParameter) throws Exception;
 
@@ -47,4 +47,12 @@ public interface CategoryDao {
      * @throws Exception
      */
     List<CategoryDO> listCategoryByParentAllUuids(CategoryOrgDTO categoryOrgDTO) throws Exception;
+
+    /**
+     * 根据商品分类ID查询出所有的上级分类ID
+     * @param categoryDTO
+     * @return
+     * @throws Exception
+     */
+    List<CategoryDO> listParentCategoryByUuid(CategoryDTO categoryDTO) throws Exception;
 }
