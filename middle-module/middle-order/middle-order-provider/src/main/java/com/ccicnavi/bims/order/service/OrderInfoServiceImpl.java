@@ -210,7 +210,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         try {
             return orderInfoDao.listOrderInfoPage(pageParameter);
         } catch (Exception e) {
-            log.error("委托单分页查询失败");
+            log.error("委托单分页查询失败",e);
             return null;
         }
     }

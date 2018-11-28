@@ -14,12 +14,11 @@ import java.util.Date;
  **/
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 public class EquipHoldDO implements Serializable {
     private String equipHoldUuid;
 
     private String equipUuid;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date useDate;
 
     private String assetsCode;
@@ -27,7 +26,7 @@ public class EquipHoldDO implements Serializable {
     private String useDeptUuid;
 
     private String useDeptName;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date purchaseDate;
 
     private Integer purchasePrice;
@@ -53,13 +52,13 @@ public class EquipHoldDO implements Serializable {
     private String comments;
 
     private String isDeleted;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
 
     private String createdUuid;
 
     private String createdName;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
 
     private String updatedName;

@@ -3,6 +3,8 @@ package com.ccicnavi.bims.order.service;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.api.OrderItemService;
 import com.ccicnavi.bims.order.dao.OrderItemCostDao;
 import com.ccicnavi.bims.order.dao.OrderItemDao;
@@ -159,5 +161,21 @@ public class OrderItemServiceImpl implements OrderItemService {
             eqlTran.close();
         }
         return count;
+    }
+    /**
+     * @Author heibin
+     * @Description 业务查询分页列表
+     * @Date 15:13 2018/11/28
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderItemDTO>
+     */
+    @Override
+    public PageBean<OrderItemDTO> listOrderItemPage(PageParameter<OrderItemDTO> pageParameter) {
+        try {
+            return orderItemDao.listOrderItemPage(pageParameter);
+        } catch (Exception e) {
+            log.error("业务查询分页列表查询失败",e);
+            return null;
+        }
     }
 }

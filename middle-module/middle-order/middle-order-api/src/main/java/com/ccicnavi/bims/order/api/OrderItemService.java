@@ -1,7 +1,8 @@
 package com.ccicnavi.bims.order.api;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
-import org.n3r.eql.EqlTran;
 
 /**
  * @Author MengZiJie
@@ -50,4 +51,13 @@ public interface OrderItemService {
      * @Return java.lang.Integer
      */
     Integer deleteOrderItem(OrderItemDTO orderItemDTO);
+    /**
+     * @Author heibin
+     * @Description 业务查询分页列表
+     * @Date 15:13 2018/11/28
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderItemDTO>
+     */
+    PageBean<OrderItemDTO> listOrderItemPage(PageParameter<OrderItemDTO> pageParameter);
+
 }
