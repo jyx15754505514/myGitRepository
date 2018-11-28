@@ -4,6 +4,7 @@ import com.ccicnavi.bims.system.pojo.CatalogOrgDTO;
 import com.ccicnavi.bims.system.pojo.DepartmentDTO;
 import com.ccicnavi.bims.system.pojo.MenuDTO;
 import com.ccicnavi.bims.system.pojo.RoleDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SSOUser implements Serializable {
 
     /**
@@ -78,6 +80,7 @@ public class SSOUser implements Serializable {
 
     private String loginUsertype;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date disabledTime;
 
     private String disabledReason;
@@ -92,6 +95,7 @@ public class SSOUser implements Serializable {
 
     private String lastLoginIp;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date lastLoginTime;
 
     private String bindLoginIp;
@@ -102,12 +106,14 @@ public class SSOUser implements Serializable {
 
     private String isDeleted;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
 
     private String createdUuid;
 
     private String createdName;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
 
     private String updatedName;

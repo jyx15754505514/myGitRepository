@@ -20,7 +20,6 @@ import java.util.List;
 @Setter
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 public class OrganizationDTO implements Serializable{
 
     /**
@@ -114,6 +113,7 @@ public class OrganizationDTO implements Serializable{
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -126,6 +126,7 @@ public class OrganizationDTO implements Serializable{
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid

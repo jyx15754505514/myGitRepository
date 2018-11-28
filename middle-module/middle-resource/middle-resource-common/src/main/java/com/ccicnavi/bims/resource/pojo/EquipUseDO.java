@@ -14,7 +14,7 @@ import java.util.Date;
  **/
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+
 public class EquipUseDO implements Serializable {
 
     /**
@@ -28,6 +28,7 @@ public class EquipUseDO implements Serializable {
     /**
      * 领用日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date useDate;
     /**
      * 领用人
@@ -40,6 +41,7 @@ public class EquipUseDO implements Serializable {
     /**
      * 归还日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date backDate;
     /**
      * 备注
@@ -52,6 +54,7 @@ public class EquipUseDO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人uuid
@@ -64,6 +67,7 @@ public class EquipUseDO implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid

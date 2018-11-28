@@ -16,7 +16,6 @@ import java.util.List;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 public class OrderInfoDTO implements Serializable {
     /**
      *委托单主键
@@ -37,6 +36,7 @@ public class OrderInfoDTO implements Serializable {
     /**
      * 委托日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date orderDate;
     /**
      * 委托区域id
@@ -125,6 +125,7 @@ public class OrderInfoDTO implements Serializable {
     /**
      * 首次计费日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date firstFeeDate;
     /**
      * 是Y否N内部委托单
@@ -145,11 +146,12 @@ public class OrderInfoDTO implements Serializable {
     /**
      * 计划检验时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date planInspectDate;
     /**
      * 计划检验地
      */
-    private Date planInspectAddr;
+    private String planInspectAddr;
     /**
      * 备注
      */
@@ -177,6 +179,7 @@ public class OrderInfoDTO implements Serializable {
     /**
      * 受理日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date acceptDate;
     /**
      * 受理机构id
@@ -217,6 +220,7 @@ public class OrderInfoDTO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -229,6 +233,7 @@ public class OrderInfoDTO implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid
