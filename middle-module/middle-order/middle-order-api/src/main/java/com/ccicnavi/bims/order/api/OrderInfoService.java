@@ -27,7 +27,7 @@ public interface OrderInfoService {
      * @Param [orderInfoDTO]
      * @Return java.lang.Integer
      */
-    Integer updateOrderInfo(OrderInfoDTO orderInfoDTO);
+    ResultT updateOrderInfo(OrderInfoDTO orderInfoDTO);
     /**
      * @Author MengZiJie
      * @Description 委托单分页列表
@@ -44,14 +44,6 @@ public interface OrderInfoService {
      * @Return com.ccicnavi.bims.common.ResultT
      */
     ResultT saveOrderInfo(OrderInfoDTO orderInfoDTO);
-    /**
-     * @Author MengZiJie
-     * @Description 修改委托单
-     * @Date 15:30 2018/11/19
-     * @Param [orderInfoDTO]
-     * @Return com.ccicnavi.bims.common.ResultT
-     */
-    ResultT reNewOrderInfo(OrderInfoDTO orderInfoDTO);
     /**
      * @Author MengZiJie
      * @Description 回显委托单信息(根据委托单uuid)
