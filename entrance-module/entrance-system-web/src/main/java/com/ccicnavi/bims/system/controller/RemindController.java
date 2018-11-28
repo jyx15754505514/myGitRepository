@@ -1,6 +1,9 @@
 package com.ccicnavi.bims.system.controller;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
+import com.ccicnavi.bims.common.ConstantCode;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.ccicnavi.bims.common.ResultCode.*;
@@ -35,7 +39,8 @@ public class RemindController {
 
     @Reference
     private RemindService remindServic;
-
+    @Reference
+    IdWorkerService idWorkerService;
     /**
     *@Description: 查询提醒设置
     *@Param: PageParameter
@@ -64,12 +69,18 @@ public class RemindController {
     *@date: 2018/11/15
     */
 
-    @RequestMapping(value = "/insertRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT insertRemind(@RequestBody RemindDTO Remind){
+    @RequestMapping(value = "/saveRemind", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT insertRemind(@RequestBody RemindDTO remind){
 
         try {
-            Integer num = remindServic.insertRemind(Remind);
-            return ResultT.success();
+            if(StringUtils.isEmpty(remind.getRemindUuid())){
+                String uuid =idWorkerService.getId(new Date());
+                remind.setRemindUuid(uuid);
+                Integer num = remindServic.insertRemind(remind);
+            }else{
+                Integer num =remindServic.updateRemind(remind);
+            }
+            return ResultT.success("保存提醒设置成功");
         } catch (Exception e) {
             log.error("新增提醒设置失败", e);
             return ResultT.failure(ResultCode.ADD_FAILURE);
@@ -146,5 +157,27 @@ public class RemindController {
             log.error("查询提醒设置失败", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
+    }
+
+    /**
+    *@Description: 查询提醒设置
+    *@Param: remindDTO
+    *@return: List<RemindDTO>
+    *@Author: zqq
+    *@date: 2018/11/28
+    */
+
+    @RequestMapping(value = "/listRemindList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT listRemindList(@RequestBody RemindDTO  remindDTO){
+
+        try {
+            remindDTO.setDictParentUuid(ConstantCode.DICT_PARENT_UUID);
+            List<RemindDTO> list = remindServic.listRemindList(remindDTO);
+            return ResultT.success(list);
+        } catch (Exception e) {
+            log.error("根据条件查询提醒设置失败", e);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+
     }
 }
