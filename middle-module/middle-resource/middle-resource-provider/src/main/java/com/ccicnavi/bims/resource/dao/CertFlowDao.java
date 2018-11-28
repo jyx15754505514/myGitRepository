@@ -3,6 +3,7 @@ package com.ccicnavi.bims.resource.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.CertFlowDO;
+import com.ccicnavi.bims.resource.pojo.CertFlowDTO;
 import org.n3r.eql.EqlTran;
 
 /**
@@ -32,6 +33,6 @@ public interface CertFlowDao {
      * @Param [CertFlowDO]
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.CertFlowDO>
      */
-    PageBean<CertFlowDO> listCertFlowPage(PageParameter<CertFlowDO> certFlowDO) throws Exception;
+    PageBean<CertFlowDTO> listCertFlowPage(PageParameter<CertFlowDO> certFlowDO) throws Exception;
 
 }

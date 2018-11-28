@@ -3,6 +3,7 @@ package com.ccicnavi.bims.resource.api;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.CertFlowDO;
+import com.ccicnavi.bims.resource.pojo.CertFlowDTO;
 
 /**
  * @Auther: heibin
@@ -23,5 +24,5 @@ public interface CertFlowService {
      * @Param [pageParameter]
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.CertFlowDO>
      */
-    PageBean<CertFlowDO> listCertFlowPage(PageParameter<CertFlowDO> pageParameter);
+    PageBean<CertFlowDTO> listCertFlowPage(PageParameter<CertFlowDO> pageParameter);
 }
