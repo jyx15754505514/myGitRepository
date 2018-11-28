@@ -26,4 +26,7 @@ public class GoodsDTO implements Serializable {
 
     /**应用系统id*/
     private String appSysUuid;
+
+    /**所属分类ID*/
+    private List<String> productCategoryUuidList;
 }

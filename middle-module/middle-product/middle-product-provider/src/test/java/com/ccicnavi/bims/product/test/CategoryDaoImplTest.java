@@ -75,9 +75,9 @@ public class CategoryDaoImplTest {
 
     @Test
     public void getCategory() {
-        CategoryDO categoryDO=new CategoryDO();
-        categoryDO.setProductCategoryUuid("KC_MT_WYM");
-        CategoryDO category = categoryDaoImpl.getCategory(categoryDO);
+        CategoryDTO categoryDTO=new CategoryDTO();
+        categoryDTO.setProductCategoryUuid("KC_MT_WYM");
+        CategoryDO category = categoryDaoImpl.getCategory(categoryDTO);
         System.out.println(category);
     }
 
@@ -208,6 +208,7 @@ public class CategoryDaoImplTest {
         categoryOrgDTO.setOrganizationUuid("XN102");
         categoryOrgDTO.setAppSysUuid("BIMS2.0");
         categoryOrgDTO.setProdCatalogUuid("CATALOG_MINERAL");
+        categoryOrgDTO.setPublicOrgUuid("CCIC");
         List<String> list=new ArrayList<String>();
         list.add("energy_minerals_code");
         list.add("gricultural_products_code");

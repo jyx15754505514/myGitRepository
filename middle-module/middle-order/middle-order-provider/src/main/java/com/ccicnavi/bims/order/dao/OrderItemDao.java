@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.order.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.pojo.OrderInfoDO;
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
 import org.n3r.eql.EqlTran;
@@ -44,5 +46,12 @@ public interface OrderItemDao {
      * @Return java.lang.Integer
      */
     Integer deleteOrderItem(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception;
-
+    /**
+     * @Author heibin
+     * @Description 业务查询分页列表
+     * @Date 15:13 2018/11/28
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderItemDTO>
+     */
+    PageBean<OrderItemDTO> listOrderItemPage(PageParameter<OrderItemDTO> pageParameter);
 }

@@ -112,7 +112,6 @@ public class UserDTO implements Serializable {
     /**
      * 用户禁用时间
      */
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date disabledTime;
     /**
      * 用户禁用原因

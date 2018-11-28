@@ -27,15 +27,15 @@ import java.util.*;
 @Slf4j
 public class AkiaDubboApplicationTest {
 
-    @Reference(timeout = 60000, url = "dubbo://127.0.0.1:20880")
+    @Reference(timeout = 60000, url = "dubbo://192.168.125.12:20899")
     AkitaService akitaService;
 
     @Test
-    public void test1(){
-        File file = new File("C:\\Users\\husky\\Pictures\\20181120100740.jpg");
+    public void test1() {
+        File file = new File("C:\\test\\333.txt");
         EnclosureVO enclosureVO = new EnclosureVO();
         enclosureVO.setBusinId(UUID.randomUUID().toString());
-        enclosureVO.setCreateBy("husky");
+        enclosureVO.setCreateBy("yj");
         InputStream input = null;
         try {
             input = new FileInputStream(file);
@@ -44,8 +44,8 @@ public class AkiaDubboApplicationTest {
             e.printStackTrace();
         }
         enclosureVO.setFileOldName(file.getName());
-        enclosureVO.setRemark("晚上去洗澡");
-        enclosureVO.setExt("jpg");
+        enclosureVO.setRemark("测试");
+        enclosureVO.setExt("txt");
         enclosureVO.setLength(file.length());
         boolean upload = akitaService.upload(enclosureVO);
         log.info(String.valueOf(upload));
@@ -53,7 +53,7 @@ public class AkiaDubboApplicationTest {
 
     @Test
     public void listAtta() {
-        String businId = "8447dc26-1da2-405b-88e9-1f2b38c86c9a";
+        String businId = "91c69349-c3b4-4bdf-a62e-2489308489e2";
         List<AttaTmpDTO> attaDOS = akitaService.listAtta(businId);
         log.info("===========================attaDOS:{}", attaDOS);
     }

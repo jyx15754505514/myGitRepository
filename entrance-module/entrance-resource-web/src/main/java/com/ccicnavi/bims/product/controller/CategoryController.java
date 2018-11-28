@@ -9,11 +9,10 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.CategoryOrgService;
 import com.ccicnavi.bims.product.api.CategoryService;
-import com.ccicnavi.bims.product.pojo.CategoryDO;
-import com.ccicnavi.bims.product.pojo.CategoryDTO;
-import com.ccicnavi.bims.product.pojo.CategoryOrgDO;
-import com.ccicnavi.bims.product.pojo.CategoryOrgDTO;
+import com.ccicnavi.bims.product.manager.CategoryManager;
+import com.ccicnavi.bims.product.pojo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,12 +34,17 @@ import java.util.List;
 public class CategoryController {
 
 
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     @Reference
     CategoryService categoryService;
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     @Reference
     CategoryOrgService categoryOrgService;
+//    @Reference(timeout = 30000, url = "dubbo://192.168.125.11:20880")
     @Reference
     IdWorkerService idWorkerService;
+    @Autowired
+    private CategoryManager categoryManager;
 
     /**
      * 查询全部产品分类信息()
@@ -48,7 +52,7 @@ public class CategoryController {
      * @return
      */
     @RequestMapping(value = "/listAllCategory", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listAllCategory( @RequestBody CategoryDTO categoryDTO) {
+    public ResultT listAllCategory(@RequestBody CategoryDTO categoryDTO) {
         try {
             categoryDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);//设置公共所属机构
             List<CategoryDO> CustInvoiceList = categoryService.listCategory(categoryDTO);
@@ -114,17 +118,16 @@ public class CategoryController {
 
     /**
      * 根据主键查询对应产品分类信息
-     *
-     * @param categoryDO
+     * @param categoryDTO
      * @return
      */
     @RequestMapping(value = "/getCategory", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT getCategory(@RequestBody CategoryDO categoryDO) {
-        if (StringUtils.isEmpty(categoryDO.getProductCategoryUuid())) {
+    public ResultT getCategory(@RequestBody CategoryDTO categoryDTO) {
+        if (StringUtils.isEmpty(categoryDTO.getProductCategoryUuid())) {
             return ResultT.failure(ResultCode.PARAM_IS_BLANK);
         }
         try {
-            CategoryDO customer = categoryService.getCategory(categoryDO);
+            CategoryDO customer = categoryService.getCategory(categoryDTO);
             if (customer != null) {
                 return ResultT.success(customer);
             }
@@ -283,6 +286,24 @@ public class CategoryController {
             return ResultT.success(CustInvoiceList);
         } catch (Exception e) {
             log.error("根据组织机构对应的产品分类(支持多个)查询其下的具体产品分类信息~", e);
+            return ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+    }
+
+
+    /**
+     * 根据商品名称获取所有的商品分类
+     */
+    @RequestMapping(value = "/listCategoryByGoodName", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public ResultT listCategoryByGoodName(@RequestBody GoodsDO goodsDO) {
+        try {
+            if (!StringUtils.isEmpty(goodsDO.getGoodsName())) {
+                return categoryManager.listCategoryByGoodName(goodsDO);
+            } else {
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
+        } catch (Exception e) {
+            log.error("根据商品名称获取所有的商品分类信息失败~", e);
             return ResultT.failure(ResultCode.LIST_FAILURE);
         }
     }

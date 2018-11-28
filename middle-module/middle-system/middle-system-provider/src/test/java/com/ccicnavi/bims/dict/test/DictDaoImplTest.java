@@ -26,6 +26,14 @@ public class DictDaoImplTest {
         System.out.println(dictValueDOS);
     }
 
+
+    /**
+     * @Author LiJie
+     * @Description  {一句话描述}
+     * @Date 22:41 2018/11/27
+     * @Param []
+     * @Return void
+     */
     @Test
     public void  testDelDistValue(){
         DictValueDaoImpl dictValueDaoImpl=new DictValueDaoImpl();

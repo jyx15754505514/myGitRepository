@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: bims-backend
@@ -66,12 +67,6 @@ public class CategoryDTO implements Serializable {
 
     private String appSysUuid;
 
-    private String extend1;
-
-    private String extend2;
-
-    private String extend3;
-
     /**
      * 以下是产品分类与组织机构关系表字段：
      */
@@ -83,6 +78,16 @@ public class CategoryDTO implements Serializable {
 
     /**公共所属组织机构*/
     private String publicOrgUuid;
+
+    /**
+     * 商品信息
+     */
+    private List<GoodsDO> goodsDOList;
+
+    /**
+     * 产品分类主键list
+     */
+    private List<String> productCategoryUuidList;
 
 
 
