@@ -28,14 +28,6 @@ public interface OrderInspectionDao {
      */
     Integer updateOrderInspection(OrderInspectionDO orderInspectionDO, EqlTran tran) throws Exception;
     /**
-     * @Author songyateng
-     * @Description 新运输方式（参数：OrderInspectionDO）
-     * @Date 2018/11/27 21:14
-     * @Param [orderInspectionDO, tran]
-     * @Return java.lang.Integer
-     */
-    Integer updateInspection(OrderInspectionDO orderInspectionDO, EqlTran tran) throws Exception;
-    /**
      * @Author MengZiJie
      * @Description 删除运输方式
      * @Data 2018/11/28 10:21

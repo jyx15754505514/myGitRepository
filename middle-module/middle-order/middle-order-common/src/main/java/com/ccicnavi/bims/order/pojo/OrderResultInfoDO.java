@@ -13,7 +13,6 @@ import java.util.Date;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 public class OrderResultInfoDO implements Serializable {
     /**
      * 主键
@@ -34,6 +33,7 @@ public class OrderResultInfoDO implements Serializable {
     /**
      * 证书编制时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date certEditTime;
     /**
      * 证书核检人员id
@@ -42,6 +42,7 @@ public class OrderResultInfoDO implements Serializable {
     /**
      * 证书核检时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date certCheckTime;
     /**
      * 证书签发人员id
@@ -50,6 +51,7 @@ public class OrderResultInfoDO implements Serializable {
     /**
      * 证书签发时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date certSignTime;
     /**
      * 结果报告/证书是否上传
@@ -82,6 +84,7 @@ public class OrderResultInfoDO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -94,6 +97,7 @@ public class OrderResultInfoDO implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid

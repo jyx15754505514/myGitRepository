@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.system.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,7 +17,14 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RoleUserDTO implements Serializable {
+
+    /**当前公司所用角色集合*/
+    private List<RoleDTO> orgRoleList;
+
+    /**当前用户所用角色集合*/
+    private List<RoleDTO> userRoleList;
 
     private String roleUuid;
 
@@ -25,5 +33,6 @@ public class RoleUserDTO implements Serializable {
     private String orgUuid;
 
     private List<String> saveUserUuids;
+
     private List<String> deleteUserUuids;
 }

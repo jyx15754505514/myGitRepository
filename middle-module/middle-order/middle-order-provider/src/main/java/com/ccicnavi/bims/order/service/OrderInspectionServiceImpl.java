@@ -5,12 +5,10 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.order.api.OrderInspectionService;
 import com.ccicnavi.bims.order.dao.OrderInspectionDao;
-import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderInspectionDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.Date;
 
 /**
  * @Author heibin
@@ -69,27 +67,4 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
         }
         return -1;
     }
-
-    /**
-     * @Author songyateng
-     * @Description 更新委托单运输方式（参数：OrderInspectionDO）
-     * @Date 2018/11/27 21:15
-     * @Param [orderInspectionDO]
-     * @Return java.lang.Integer
-     */
-    @Override
-    public Integer updateInspection(OrderInspectionDO orderInspectionDO) {
-        EqlTran eqlTran = null;
-        Integer inspection = null;
-        try {
-            inspection = orderInspectionDao.updateInspection(orderInspectionDO, eqlTran);
-            if (inspection > 0) {
-                return inspection;
-            }
-        } catch (Exception e) {
-            log.error("更新委托单运输方式失败",e);
-        }
-        return -1;
-    }
-
 }

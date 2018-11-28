@@ -79,7 +79,7 @@ public interface RemindDao {
     *@Description: 查询提醒设置(不分页)
     *@Param: remind
     *@return: List<RemindDTO>
-    *@Author: 本人姓名
+    *@Author: zqq
     *@date: 2018/11/19
     */
 

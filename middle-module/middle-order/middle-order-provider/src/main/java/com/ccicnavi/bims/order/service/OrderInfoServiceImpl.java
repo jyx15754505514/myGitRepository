@@ -210,7 +210,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         try {
             return orderInfoDao.listOrderInfoPage(pageParameter);
         } catch (Exception e) {
-            log.error("委托单分页查询失败");
+            log.error("委托单分页查询失败",e);
             return null;
         }
     }
@@ -316,13 +316,15 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
         try {
             if(orderInfoDO.getOrderUuid()!=null){
-               orderInfoDTO = orderInfoDao.getOrderInfo(orderInfoDO);//查询所有的委托单信息
-               List<OrderItemDTO> orderItemDTOList = orderItemDao.listOrderItemDTO(orderInfoDO);//根据委托单主键查询服务项目信息 返回list
+                //查询所有的委托单信息
+               orderInfoDTO = orderInfoDao.getOrderInfo(orderInfoDO);
+                //根据委托单主键查询服务项目信息 返回list
+               List<OrderItemDTO> orderItemDTOList = orderItemDao.listOrderItemDTO(orderInfoDO);
                if(orderItemDTOList!=null){
-                   for(OrderItemDTO orderItemDTO:orderItemDTOList){
-                       List<OrderItemSubDO> orderItemSubDOList = orderItemSubDao.listOrderItemSub(orderItemDTO);
+                   for(int i=0;i<orderItemDTOList.size();i++){
+                       List<OrderItemSubDO> orderItemSubDOList = orderItemSubDao.listOrderItemSub(orderItemDTOList.get(i));
                        if(orderItemSubDOList!=null){
-                           orderItemDTO.setOrderItemSubDO(orderItemSubDOList);
+                           orderItemDTOList.get(i).setOrderItemSubDO(orderItemSubDOList);
                        }
                    }
                    orderInfoDTO.setOrderItemDTO(orderItemDTOList);

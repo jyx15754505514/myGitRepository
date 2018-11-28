@@ -1,25 +1,25 @@
 -- [listCustTail]
 SELECT
-	tail_uuid,
-	cust_uuid,
-	person_uuid,
-	person_name,
-	linkman_uuid linkmanUuid,
-    linkman_name linkmanName,
-	status_uuid,
+	tail_uuid as tailUuid,
+	cust_uuid as custUuid,
+	person_uuid as personUuid,
+	person_name as personName,
+	linkman_uuid as linkmanUuid,
+    linkman_name as linkmanName,
+	status_uuid as statusUuid,
 	performance,
-	visit_type,
-	linkman_purpose,
+	visit_type as visitType,
+	linkman_purpose as linkmanPurpose,
 	idea,
-	next_link_time,
+	next_link_time as nextLinkTime,
 	comments,
-	is_deleted,
-	created_time,
-	created_uuid,
-	created_name,
-	updated_time,
-	updated_name,
-	updated_uuid,
+	is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
 	extend1,
 	extend2,
 	extend3
@@ -36,29 +36,29 @@ WHERE
 
 -- [getCustTail]
 SELECT
-	tail_uuid,
-	cust_uuid,
-	person_uuid,
-	person_name,
-	linkman_uuid linkmanUuid,
-    linkman_name linkmanName,
-	status_uuid,
-	performance,
-	visit_type,
-	linkman_purpose,
-	idea,
-	next_link_time,
-	comments,
-	is_deleted,
-	created_time,
-	created_uuid,
-	created_name,
-	updated_time,
-	updated_name,
-	updated_uuid,
-	extend1,
-	extend2,
-	extend3
+	tail_uuid as tailUuid,
+    cust_uuid as custUuid,
+    person_uuid as personUuid,
+    person_name as personName,
+    linkman_uuid as linkmanUuid,
+    linkman_name as linkmanName,
+    status_uuid as statusUuid,
+    performance,
+    visit_type as visitType,
+    linkman_purpose as linkmanPurpose,
+    idea,
+    next_link_time as nextLinkTime,
+    comments,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
+    extend1,
+    extend2,
+    extend3
 FROM
 	crm_customer_tail
 WHERE
@@ -230,11 +230,11 @@ WHERE
       -- iff updatedTime != null
         updated_time = '#updatedTime#',
 
-      -- iff updatedName != null
-        updated_name = '#updatedName#',
-
       -- iff updatedUuid != null
         updated_uuid = '#updatedUuid#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
 
       -- iff extend1 != null
         extend1 = '#extend1#',

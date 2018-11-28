@@ -5,6 +5,7 @@ import com.ccicnavi.bims.akita.api.AkitaService;
 import com.ccicnavi.bims.akita.common.pojo.EnclosureVO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaDO;
 import com.ccicnavi.bims.akita.common.pojo.domain.AttaTmpDTO;
+import com.ccicnavi.bims.akita.utils.FileUtils;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,25 +27,33 @@ import java.util.*;
 @Slf4j
 public class AkiaDubboApplicationTest {
 
-    @Reference(timeout = 60000, url = "dubbo://127.0.0.1:20880")
+    @Reference(timeout = 60000, url = "dubbo://192.168.125.12:20899")
     AkitaService akitaService;
 
     @Test
     public void test1() {
-        File file = new File("C:\\Users\\husky\\Pictures\\20181120100740.jpg");
+        File file = new File("C:\\test\\333.txt");
         EnclosureVO enclosureVO = new EnclosureVO();
         enclosureVO.setBusinId(UUID.randomUUID().toString());
-        enclosureVO.setCreateBy("husky");
-        enclosureVO.setFile(file);
+        enclosureVO.setCreateBy("yj");
+        InputStream input = null;
+        try {
+            input = new FileInputStream(file);
+            enclosureVO.setFile(FileUtils.input2byte(input));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         enclosureVO.setFileOldName(file.getName());
-        enclosureVO.setRemark("晚上去洗澡");
+        enclosureVO.setRemark("测试");
+        enclosureVO.setExt("txt");
+        enclosureVO.setLength(file.length());
         boolean upload = akitaService.upload(enclosureVO);
         log.info(String.valueOf(upload));
     }
 
     @Test
     public void listAtta() {
-        String businId = "8447dc26-1da2-405b-88e9-1f2b38c86c9a";
+        String businId = "91c69349-c3b4-4bdf-a62e-2489308489e2";
         List<AttaTmpDTO> attaDOS = akitaService.listAtta(businId);
         log.info("===========================attaDOS:{}", attaDOS);
     }
