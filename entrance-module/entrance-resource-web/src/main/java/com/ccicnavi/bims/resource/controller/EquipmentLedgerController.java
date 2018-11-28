@@ -22,10 +22,10 @@ import java.util.Date;
 @RequestMapping("/equipLedger")
 public class EquipmentLedgerController extends BaseController {
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
+    @Reference(timeout = 30000)
     EquipService equipService;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    @Reference(timeout = 30000)
     RemindService remindService;
 
     /*

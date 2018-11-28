@@ -24,7 +24,7 @@ public class BaseController {
     @Autowired
     private HttpServletRequest request;
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20896")
+    @Reference(timeout = 30000)
     private SSOService ssoService;
 
     public SSOUser getUserInfo() {

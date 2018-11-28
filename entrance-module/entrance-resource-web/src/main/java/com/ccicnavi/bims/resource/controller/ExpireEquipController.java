@@ -41,7 +41,7 @@ public class ExpireEquipController {
    /* @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20882")
     EquipService equipService;*/
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
+    @Reference(timeout = 30000)
     EquipTestService equipTestService;
 
     /*
