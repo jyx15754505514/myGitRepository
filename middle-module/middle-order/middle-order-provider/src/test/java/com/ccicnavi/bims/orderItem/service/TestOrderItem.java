@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.orderItem.service;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.dao.impl.OrderItemCostDaoImpl;
 import com.ccicnavi.bims.order.dao.impl.OrderItemDaoImpl;
 import com.ccicnavi.bims.order.pojo.OrderItemCostDO;
@@ -113,6 +115,28 @@ public class TestOrderItem {
             System.err.println(orderItemDaoImpl.deleteOrderItem(orderItemDTO,null));
         } catch (Exception e){
             log.error("测试删除服务项失败" ,e);
+        }
+    }
+    /**
+     * 业务查询分页列表
+     **/
+    @Test
+    public void listOrderItemPage(){
+        OrderItemDaoImpl orderItemDaoImpl =new OrderItemDaoImpl();
+        try {
+            PageParameter<OrderItemDTO> pageParameter = new PageParameter();
+            OrderItemDTO orderItemDTO = new OrderItemDTO();
+            pageParameter.setStartIndex(1);
+            pageParameter.setPageRows(2);
+            pageParameter.setStartPage(1);
+            orderItemDTO.setAppSysUuid("yewu2.0");
+            orderItemDTO.setProdCatalogUuid("yewu2.0");
+            orderItemDTO.setOrgUuid("yewu2.0");
+            pageParameter.setParameter(orderItemDTO);
+            PageBean<OrderItemDTO> certPaperDOPageBean = orderItemDaoImpl.listOrderItemPage(pageParameter);
+            System.out.println(certPaperDOPageBean);
+        } catch (Exception e) {
+            log.error("业务查询分页列表失败",e);
         }
     }
 
