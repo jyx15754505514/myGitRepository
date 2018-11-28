@@ -3,13 +3,8 @@ SELECT
     area_uuid areaUuid,
     area_parent_uuid areaParentUuid,
     area_name areaName,
-    area_en_name areaEnName,
     area_code areaCode,
-    area_post areaPost,
-    sort_num sortNum,
-    comments comments,
-    is_deleted isDeleted,
-    app_sys_uuid appSysUuid
+    area_post areaPost
 from
     sys_area
 where
@@ -17,6 +12,10 @@ where
 --iff areaName != null and areaName != ''
     and area_name like '#areaName:Like#'
 --end
+--iff areaParentUuid != null and areaParentUuid != ''
+    and area_parent_uuid = '#areaParentUuid#'
+--end
+ORDER BY area_code
 
 -- [getArea]
 SELECT

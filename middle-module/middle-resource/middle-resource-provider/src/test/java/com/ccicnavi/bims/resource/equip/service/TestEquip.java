@@ -38,7 +38,7 @@ public class TestEquip {
     //调用设备检定记录
     EquipUseDaoImpl equipUseDaoImpl = new EquipUseDaoImpl();
 
-    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    @Reference(timeout = 1000)
     IdWorkerService idWorkerService;
 
     /**
