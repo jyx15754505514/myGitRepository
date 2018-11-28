@@ -1,9 +1,8 @@
 package com.ccicnavi.bims.customer.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -13,9 +12,9 @@ import java.util.List;
   * @description 客户跟踪实体
   * @date 2018/11/26 17:56
   */
-@Setter
-@Getter
-@ToString
+
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustTailDO implements Serializable {
     /**
      * 主键UUID
@@ -64,6 +63,7 @@ public class CustTailDO implements Serializable {
     /**
      *下次联系时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date nextLinkTime;
     /**
      *备注
@@ -76,6 +76,7 @@ public class CustTailDO implements Serializable {
     /**
      *创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      *创建人id
@@ -88,6 +89,7 @@ public class CustTailDO implements Serializable {
     /**
      *最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      *更新人
