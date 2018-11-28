@@ -3,6 +3,8 @@ package com.ccicnavi.bims.product.pojo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @program: bims-backend
  * @description: 最小服务项与检测指标关系表DTO
@@ -11,7 +13,7 @@ import lombok.Data;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MinItemTestDTO {
+public class MinItemTestDTO implements Serializable {
 
     /**
      * 最小服务项ID

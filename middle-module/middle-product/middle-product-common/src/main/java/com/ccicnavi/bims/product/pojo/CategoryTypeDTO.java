@@ -11,61 +11,31 @@ import java.util.Date;
  * @program: bims-backend
  * @description: 该类的作用描述
  * @author: LiJie
- * @create: 2018-11-28 22:14
+ * @create: 2018-11-28 23:04
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TestItemDTO implements Serializable {
+public class CategoryTypeDTO implements Serializable {
 
     /**
      * 主键
      */
-    private String itemUuid;
+    private String productCategoryTypeUuid;
 
     /**
-     * 指标名称
+     * 父类型id
      */
-    private String itemName;
+    private String parentTypeUuid;
 
     /**
-     * 指标名称英文
+     * 是否有子表
      */
-    private String itemNameEn;
+    private String hasTable;
 
     /**
-     * 计量单位id
+     * 类型名称
      */
-    private String itemUomUuid;
-
-    /**
-     * 指标编码
-     */
-    private String itemCode;
-
-    /**
-     * 单价
-     */
-    private Integer itemPrice;
-
-    /**
-     * 标准工时
-     */
-    private String itemWorkhour;
-
-    /**
-     * 使用方法id
-     */
-    private String useStdUuid;
-
-    /**
-     * 使用标准名称
-     */
-    private String useStdName;
-
-    /**
-     * 名称别名
-     */
-    private String itemNameAlias;
+    private String typeName;
 
     /**
      * 备注
@@ -80,7 +50,7 @@ public class TestItemDTO implements Serializable {
     /**
      * 创建时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
 
     /**
@@ -96,7 +66,7 @@ public class TestItemDTO implements Serializable {
     /**
      * 最后一次更新时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
 
     /**
@@ -128,5 +98,4 @@ public class TestItemDTO implements Serializable {
      * 应用系统id
      */
     private String appSysUuid;
-
 }

@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.Impl.CategoryTypeDaoImpl;
 import com.ccicnavi.bims.product.pojo.CategoryTypeDO;
+import com.ccicnavi.bims.product.pojo.CategoryTypeDTO;
 import org.junit.Test;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class CategoryTypeTest {
     @Test
     public void lsitCategoryTypeDOTest(){
         CategoryTypeDO categoryTypeDO=new CategoryTypeDO();
-        categoryTypeDO.setTypeName("矿石");
+//        categoryTypeDO.setTypeName("矿石");
         List<CategoryTypeDO> categoryDOList=categoryTypeDaoTest.listCategoryType(categoryTypeDO);
         System.out.println(categoryDOList);
     }
@@ -67,7 +68,7 @@ public class CategoryTypeTest {
 
     @Test
     public void listCategoryTypePageDOTest(){
-        PageParameter<CategoryTypeDO> pageParameter=new PageParameter<>();
+        PageParameter<CategoryTypeDTO> pageParameter=new PageParameter<>();
         pageParameter.setStartIndex(5);
         pageParameter.setPageRows(9);
         pageParameter.setStartPage(1);

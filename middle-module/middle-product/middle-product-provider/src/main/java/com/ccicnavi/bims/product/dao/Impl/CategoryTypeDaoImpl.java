@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.CategoryTypeDao;
 import com.ccicnavi.bims.product.pojo.CategoryTypeDO;
+import com.ccicnavi.bims.product.pojo.CategoryTypeDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
@@ -45,10 +46,10 @@ public class CategoryTypeDaoImpl implements CategoryTypeDao {
     }
 
     @Override
-    public PageBean<CategoryTypeDO> listCategoryTypePage(PageParameter<CategoryTypeDO> pageParameter) {
+    public PageBean<CategoryTypeDO> listCategoryTypePage(PageParameter<CategoryTypeDTO> pageParameter) {
         EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
         //执行查询
-        List<CategoryTypeDO> categoryTypeList = new Eql().select("lsitCategoryTypeDO").params(pageParameter.getParameter()).returnType(CategoryTypeDO.class).limit(page).execute();
+        List<CategoryTypeDO> categoryTypeList = new Eql().select("listCategoryType").params(pageParameter.getParameter()).returnType(CategoryTypeDO.class).limit(page).execute();
         if(categoryTypeList != null) {
             return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),categoryTypeList);//封装分页
         }else {
