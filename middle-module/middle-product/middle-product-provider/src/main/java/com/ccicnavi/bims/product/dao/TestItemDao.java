@@ -3,12 +3,13 @@ package com.ccicnavi.bims.product.dao;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
+import com.ccicnavi.bims.product.pojo.TestItemDTO;
 
 import java.util.List;
 
 public interface TestItemDao {
 
-    List<TestItemDO> listTestItem(TestItemDO testItemDO) throws Exception;
+    List<TestItemDO> listTestItem(TestItemDTO testItemDTO) throws Exception;
 
     int saveTestItem(TestItemDO testItemDO) throws Exception;
 
@@ -18,6 +19,6 @@ public interface TestItemDao {
 
     TestItemDO getTestItem(TestItemDO testItemDO) throws Exception;
 
-    PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDO> pageParameter);
+    PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDTO> pageParameter);
 
 }

@@ -1,21 +1,15 @@
 package com.ccicnavi.bims.product.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.GoodsService;
 import com.ccicnavi.bims.product.dao.GoodsDao;
-import com.ccicnavi.bims.product.dao.Impl.GoodsDaoImpl;
 import com.ccicnavi.bims.product.pojo.GoodsDO;
 import com.ccicnavi.bims.product.pojo.GoodsDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 
@@ -38,7 +32,7 @@ public class GoodsServiceImpl implements GoodsService {
      * @return java.util.List<com.ccicnavi.bims.product.pojo.GoodsDO>
      **/
     @Override
-    public PageBean<GoodsDO> listGoodsPage(PageParameter<GoodsDO> goodsDOPageParameter) {
+    public PageBean<GoodsDO> listGoodsPage(PageParameter<GoodsDTO> goodsDOPageParameter) {
         try {
             PageBean<GoodsDO> goodsDOPageBean = goodsDao.listGoodsPage(goodsDOPageParameter);
             return goodsDOPageBean;
@@ -107,9 +101,9 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<GoodsDO> listGoodsDO(GoodsDO goodsDO){
+    public List<GoodsDO> listGoodsDO(GoodsDTO goodsDTO){
         try {
-            List<GoodsDO> goodsDOList = goodsDao.listGoodsDO(goodsDO);
+            List<GoodsDO> goodsDOList = goodsDao.listGoodsDO(goodsDTO);
             return goodsDOList;
         } catch (Exception e) {
             e.printStackTrace();

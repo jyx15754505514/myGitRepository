@@ -2,6 +2,8 @@ package com.ccicnavi.bims.resource.api;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
+import com.ccicnavi.bims.resource.pojo.CertPaperDTO;
+
 import java.util.List;
 /**
  * @Auther: fandongsheng
@@ -42,7 +44,7 @@ public interface CertPaperService {
      * @param certPaper
      * @return
      */
-    Integer deleteCertPaper(CertPaperDO certPaper) ;
+    Integer deleteCertPaper(CertPaperDTO certPaper) ;
     /**
      * 校验证书纸(流水起始号,流水截止号)
      * @param certPaper

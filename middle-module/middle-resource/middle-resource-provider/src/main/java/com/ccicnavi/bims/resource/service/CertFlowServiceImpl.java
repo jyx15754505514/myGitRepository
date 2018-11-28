@@ -5,6 +5,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.CertFlowService;
 import com.ccicnavi.bims.resource.dao.CertFlowDao;
 import com.ccicnavi.bims.resource.pojo.CertFlowDO;
+import com.ccicnavi.bims.resource.pojo.CertFlowDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -41,7 +42,7 @@ public class CertFlowServiceImpl implements CertFlowService {
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.resource.pojo.CertFlowDO>
      */
     @Override
-    public PageBean<CertFlowDO> listCertFlowPage(PageParameter<CertFlowDO> pageParameter) {
+    public PageBean<CertFlowDTO> listCertFlowPage(PageParameter<CertFlowDO> pageParameter) {
         try {
             return certFlowDao.listCertFlowPage(pageParameter);
         } catch (Exception e) {

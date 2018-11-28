@@ -3,9 +3,6 @@ package com.ccicnavi.bims.product.pojo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -126,20 +123,5 @@ public class TestItemDO implements Serializable {
      * 应用系统id
      */
     private String appSysUuid;
-
-    /**
-     * 预留字段1
-     */
-    private String extend1;
-
-    /**
-     * 预留字段2
-     */
-    private String extend2;
-
-    /**
-     * 预留字段3
-     */
-    private String extend3;
 
 }

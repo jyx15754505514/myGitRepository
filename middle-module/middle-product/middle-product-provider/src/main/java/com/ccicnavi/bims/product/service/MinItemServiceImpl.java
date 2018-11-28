@@ -28,9 +28,9 @@ public class MinItemServiceImpl implements MinItemService {
 
 
     @Override
-    public List<MinItemDO> listMinItem(MinItemDO minItem) {
+    public List<MinItemDO> listMinItem(MinItemDTO minItemDTO) {
         try {
-            return minItemDao.listMinItem(minItem);
+            return minItemDao.listMinItem(minItemDTO);
         } catch (Exception e) {
             log.error("查询最小服务项失败~", e);
             return null;
@@ -81,7 +81,7 @@ public class MinItemServiceImpl implements MinItemService {
     }
 
     @Override
-    public PageBean<MinItemDO> listMinItemPage(PageParameter<MinItemDO> pageParameter) {
+    public PageBean<MinItemDO> listMinItemPage(PageParameter<MinItemDTO> pageParameter) {
         try {
             return minItemDao.listMinItemPage(pageParameter);
         } catch (Exception e) {

@@ -31,12 +31,15 @@ WHERE
  --if prodCatalogUuid !=null and prodCatalogUuid != ''
              AND prod_catalog_uuid = '#prodCatalogUuid#'
  --end
- --if orgUuid !=null and orgUuid != ''
-             AND (org_uuid='#publicOrgUuid#' OR org_uuid='#orgUuid#')
+ --if orgUuid !=null and publicOrgUuid != null
+             AND (org_uuid='#orgUuid#' OR org_uuid='#publicOrgUuid#')
  --end
  --if appSysUuid !=null and appSysUuid != ''
              AND app_sys_uuid='#appSysUuid#'
  --end
+  --if minItemName !=null and minItemName != ''
+              AND min_item_name LIKE CONCAT('%','#minItemName#','%')
+  --end
 
 
 -- [insertMinItem]

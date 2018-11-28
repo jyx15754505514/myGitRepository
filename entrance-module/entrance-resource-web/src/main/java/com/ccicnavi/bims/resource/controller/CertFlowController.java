@@ -8,6 +8,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.CertFlowService;
 import com.ccicnavi.bims.resource.pojo.CertFlowDO;
+import com.ccicnavi.bims.resource.pojo.CertFlowDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,9 +46,12 @@ public class CertFlowController {
             if(StringUtils.isEmpty(certlowDO.getFlowNum())){
                 return ResultT.failure(ResultCode.PARAM_IS_BLANK);
             }
-            Integer num = certFlowService.cancelCertFlow(certlowDO);
-            if(num >= 1){
-                log.info("作废证书流水号数量：" + num);
+            //目前暂定于作废两个状态
+            certlowDO.setEmptyCardStatus("Y");
+            certlowDO.setIsDeleted("Y");
+            Integer count = certFlowService.cancelCertFlow(certlowDO);
+            if(count >= 1){
+                log.info("作废证书流水号数量：作废数量" + count);
                 return ResultT.success();
             }
             log.info("作废证书流水号异常");
@@ -74,7 +78,7 @@ public class CertFlowController {
                     StringUtils.isEmpty(pageParameter.getPageRows())   ){
                 return ResultT.failure(ResultCode.PARAM_IS_BLANK);
             }
-            PageBean<CertFlowDO> pageBean = certFlowService.listCertFlowPage(pageParameter);
+            PageBean<CertFlowDTO> pageBean = certFlowService.listCertFlowPage(pageParameter);
             if(null == pageBean){
                 log.info("获取证书流水号列表异常");
                 return ResultT.failure(ResultCode.LIST_FAILURE);

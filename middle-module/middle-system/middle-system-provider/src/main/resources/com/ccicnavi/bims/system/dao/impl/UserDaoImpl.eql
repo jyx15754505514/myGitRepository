@@ -31,18 +31,15 @@
         LEFT JOIN sys_organization d ON u.dept_uuid = d.organization_uuid
      WHERE
      u.is_deleted = 'N'
-     --iff userUuid != null and userUuid != ''
-        and u.user_uuid = '#userUuid#'
-     --end
      --iff loginName != null and loginName != ''
          and u.login_name like '#loginName:like#'
      --end
-     --iff deptUuid != null and deptUuid != ''
-          and u.dept_uuid = '#deptUuid#'
-     --end
-     --iff orgUuid != null and orgUuid != ''
-          and u.org_uuid = '#orgUuid#'
-     --end
+     --iff orgType != null and orgType == 'DEPT'
+         and u.dept_uuid = '#organizationUuid#'
+     -- end
+      --iff orgType != null and orgType == 'ORG'
+         and u.org_uuid = '#organizationUuid#'
+      -- end
      GROUP BY u.user_uuid
 
 

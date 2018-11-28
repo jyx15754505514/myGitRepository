@@ -35,13 +35,13 @@ WHERE
             AND item_name_en like '#itemNameEn:like#'
 --end
 --if itemUomUuid !=null and itemUomUuid != ''
-            AND item_uom_uuid like '#itemUomUuid#'
+            AND item_uom_uuid = '#itemUomUuid#'
 --end
 --if itemCode !=null and itemCode != ''
             AND item_code like '#itemCode:like#'
 --end
 --if useStdUuid !=null and useStdUuid != ''
-            AND use_std_uuid like '#useStdUuid#'
+            AND use_std_uuid = '#useStdUuid#'
 --end
 --if useStdName !=null and useStdName != ''
             AND use_std_name like '#useStdName:like#'
@@ -50,13 +50,13 @@ WHERE
             AND item_name_alias like '#itemNameAlias:like#'
 --end
 --if prodCatalogUuid !=null and prodCatalogUuid != ''
-            AND prod_catalog_uuid like '#prodCatalogUuid#'
+            AND prod_catalog_uuid = '#prodCatalogUuid#'
 --end
---if orgUuid !=null and orgUuid != ''
-            AND org_uuid like '#orgUuid#'
+--if orgUuid !=null and publicOrgUuid != null
+            AND (org_uuid = '#orgUuid#' or org_uuid = '#publicOrgUuid#')
 --end
 --if appSysUuid !=null and appSysUuid != ''
-            AND app_sys_uuid like '#appSysUuid#'
+            AND app_sys_uuid = '#appSysUuid#'
 --end
 
 
@@ -338,13 +338,13 @@ WHERE
             AND item_name_en like '#itemNameEn:like#'
 --end
 --if itemUomUuid !=null and itemUomUuid != ''
-            AND item_uom_uuid like '#itemUomUuid#'
+            AND item_uom_uuid = '#itemUomUuid#'
 --end
 --if itemCode !=null and itemCode != ''
             AND item_code like '#itemCode:like#'
 --end
 --if useStdUuid !=null and useStdUuid != ''
-            AND use_std_uuid like '#useStdUuid#'
+            AND use_std_uuid = '#useStdUuid#'
 --end
 --if useStdName !=null and useStdName != ''
             AND use_std_name like '#useStdName:like#'
@@ -353,11 +353,11 @@ WHERE
             AND item_name_alias like '#itemNameAlias:like#'
 --end
 --if prodCatalogUuid !=null and prodCatalogUuid != ''
-            AND prod_catalog_uuid like '#prodCatalogUuid#'
+            AND prod_catalog_uuid = '#prodCatalogUuid#'
 --end
 --if orgUuid !=null and orgUuid != ''
-            AND org_uuid like '#orgUuid#'
+            AND org_uuid = '#orgUuid#'
 --end
 --if appSysUuid !=null and appSysUuid != ''
-            AND app_sys_uuid like '#appSysUuid#'
+            AND app_sys_uuid = '#appSysUuid#'
 --end

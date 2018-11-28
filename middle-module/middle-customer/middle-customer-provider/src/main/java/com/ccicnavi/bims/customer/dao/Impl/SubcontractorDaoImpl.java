@@ -49,7 +49,10 @@ public class SubcontractorDaoImpl implements SubcontractorDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertSubcontractor(SubcontractorDO subcontractor) {
+    public Integer insertSubcontractor(SubcontractorDTO subcontractor,EqlTran eqlTran) {
+        if(eqlTran != null){
+            return new Eql().useTran(eqlTran).insert("insertSubcontractor").params(subcontractor).returnType(Integer.class).execute();
+        }
         return new Eql().insert("insertSubcontractor").params(subcontractor).returnType(Integer.class).execute();
     }
 

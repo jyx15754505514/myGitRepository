@@ -9,9 +9,7 @@ import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @description: 商品信息
@@ -21,7 +19,7 @@ import java.util.Map;
 @Service
 public class GoodsDaoImpl implements GoodsDao {
     @Override
-    public PageBean<GoodsDO> listGoodsPage(PageParameter<GoodsDO> goodsDOPageParameter) {
+    public PageBean<GoodsDO> listGoodsPage(PageParameter<GoodsDTO> goodsDOPageParameter) {
         //封装分页参数
         EqlPage page = new EqlPage(goodsDOPageParameter.getStartIndex(), goodsDOPageParameter.getPageRows());
         //执行查询
@@ -49,8 +47,8 @@ public class GoodsDaoImpl implements GoodsDao {
     }
 
     @Override
-    public List<GoodsDO> listGoodsDO(GoodsDO goodsDO) {
-        return new Eql().select("listGoodsDO").params(goodsDO).returnType(GoodsDO.class).execute();
+    public List<GoodsDO> listGoodsDO(GoodsDTO goodsDTO) {
+        return new Eql().select("listGoodsDO").params(goodsDTO).returnType(GoodsDO.class).execute();
     }
 
     @Override

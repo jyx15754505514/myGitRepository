@@ -4,10 +4,12 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
+import com.ccicnavi.bims.common.service.pojo.Constants;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.api.TestItemService;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
+import com.ccicnavi.bims.product.pojo.TestItemDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,14 +38,15 @@ public class TestItemController {
 
     /**
      * @description 查询全部检测指标信息
-     * @param testItemDO
+     * @param testItemDTO
      * @return com.ccicnavi.bims.common.ResultT
      * @author WangYingLing
      */
     @RequestMapping(value = "/listTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listTestItem(@RequestBody TestItemDO testItemDO){
+    public ResultT listTestItem(@RequestBody TestItemDTO testItemDTO){
         try {
-            List<TestItemDO> testItemDOList=testItemService.listTestItem(testItemDO);
+            testItemDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
+            List<TestItemDO> testItemDOList=testItemService.listTestItem(testItemDTO);
             return ResultT.success(testItemDOList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -164,8 +167,9 @@ public class TestItemController {
      * @author WangYingLing
      */
     @RequestMapping(value = "/listTestItemPage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT listTestItemPage(@RequestBody PageParameter<TestItemDO> pageParameter){
+    public ResultT listTestItemPage(@RequestBody PageParameter<TestItemDTO> pageParameter){
         try {
+            pageParameter.getParameter().setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
             PageBean<TestItemDO> testItemDOPageBean=testItemService.listTestItemPage(pageParameter);
             if (testItemDOPageBean!=null)
             {

@@ -42,8 +42,8 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public CategoryDO getCategory(CategoryDO category) {
-        return new Eql().selectFirst("getCategory").params(category).returnType(CategoryDO.class).execute();
+    public CategoryDO getCategory(CategoryDTO categoryDTO) {
+        return new Eql().selectFirst("getCategory").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 
     @Override
@@ -121,5 +121,17 @@ public class CategoryDaoImpl implements CategoryDao {
     @Override
     public List<CategoryDO> listCategoryByParentAllUuids(CategoryOrgDTO categoryOrgDTO) {
         return new Eql().select("listCategoryByParentAllUuids").params(categoryOrgDTO).returnType(CategoryDO.class).execute();
+    }
+
+
+    /**
+     * 根据商品分类的ID查询出所有的上级分类ID
+     * @param categoryDTO
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<CategoryDO> listParentCategoryByUuid(CategoryDTO categoryDTO) throws Exception {
+        return new Eql().select("listParentCategoryByUuid").params(categoryDTO).returnType(CategoryDO.class).execute();
     }
 }

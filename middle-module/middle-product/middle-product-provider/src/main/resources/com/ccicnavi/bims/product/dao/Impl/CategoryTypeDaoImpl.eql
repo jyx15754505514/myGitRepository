@@ -23,19 +23,19 @@ FROM
 WHERE
     is_deleted='N'
 --if parentTypeUuid !=null and parentTypeUuid != ''
-            AND parent_type_uuid like '#parentTypeUuid#'
+            AND parent_type_uuid = '#parentTypeUuid#'
 --end
 --if typeName !=null and typeName != ''
             AND type_name like '#typeName:like#'
 --end
 --if prodCatalogUuid !=null and prodCatalogUuid != ''
-            AND prod_catalog_uuid like '#prodCatalogUuid#'
+            AND prod_catalog_uuid = '#prodCatalogUuid#'
 --end
 --if orgUuid !=null and orgUuid != ''
-            AND org_uuid like '#orgUuid#'
+            AND org_uuid = '#orgUuid#'
 --end
 --if appSysUuid !=null and appSysUuid != ''
-            AND app_sys_uuid like '#appSysUuid#'
+            AND app_sys_uuid = '#appSysUuid#'
 --end
 
 -- [saveCategoryTypeDO]

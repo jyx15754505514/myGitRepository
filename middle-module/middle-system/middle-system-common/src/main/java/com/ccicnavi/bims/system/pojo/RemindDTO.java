@@ -107,4 +107,8 @@ public class RemindDTO implements Serializable {
      */
     private String orgName;
     private List<String> uuids;
+
+    private String remindTypeName;
+
+    private String dictParentUuid;
 }

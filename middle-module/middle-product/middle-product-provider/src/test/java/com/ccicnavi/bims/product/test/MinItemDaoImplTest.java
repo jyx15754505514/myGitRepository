@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.Impl.MinItemDaoImpl;
 import com.ccicnavi.bims.product.pojo.MinItemDO;
+import com.ccicnavi.bims.product.pojo.MinItemDTO;
 import org.junit.Test;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class MinItemDaoImplTest {
 
     @Test
     public void listMinItem() {
-        List<MinItemDO> minItemDOS = minItemDaoImpl.listMinItem(new MinItemDO());
+        List<MinItemDO> minItemDOS = minItemDaoImpl.listMinItem(new MinItemDTO());
         System.out.println(minItemDOS);
     }
 
@@ -66,7 +67,7 @@ public class MinItemDaoImplTest {
 
     @Test
     public void listMinItemPage() {
-        PageParameter<MinItemDO> pageParameter=new PageParameter<MinItemDO>();
+        PageParameter<MinItemDTO> pageParameter=new PageParameter<MinItemDTO>();
         pageParameter.setStartIndex(1);
         pageParameter.setPageRows(2);
         pageParameter.setStartPage(1);

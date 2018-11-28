@@ -3,6 +3,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.impl.CertPaperDaoImpl;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
+import com.ccicnavi.bims.resource.pojo.CertPaperDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.n3r.eql.EqlTran;
@@ -119,7 +120,7 @@ public class CertPaperServiceImplTest {
      **/
     @Test
     public void deleteCertPaper(){
-        CertPaperDO certPaperDO =new CertPaperDO();
+        CertPaperDTO certPaperDO =new CertPaperDTO();
         certPaperDO.setPaperUuid("1");
         CertPaperDaoImpl certPaperDaoImpl =new CertPaperDaoImpl();
         try {

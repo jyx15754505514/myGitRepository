@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.product.dao;
 
 import com.ccicnavi.bims.product.pojo.MinItemTestDO;
+import com.ccicnavi.bims.product.pojo.MinItemTestDTO;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
 
 import java.util.List;
@@ -20,5 +21,5 @@ public interface MinItemTestDao {
     int removeMinItemTest(MinItemTestDO MinItemTest) throws Exception;
 
     /**根据最小服务项ID查询出对应的检测指标关系*/
-    List<TestItemDO> findTestItemByMinItemUuid(MinItemTestDO minItemTestDO) throws Exception;
+    List<TestItemDO> findTestItemByMinItemUuid(MinItemTestDTO minItemTestDTO) throws Exception;
 }

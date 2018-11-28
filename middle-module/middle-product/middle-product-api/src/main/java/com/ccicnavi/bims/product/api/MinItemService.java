@@ -16,7 +16,7 @@ import java.util.List;
 public interface MinItemService {
 
     /**查询全部最小服务项信息*/
-    List<MinItemDO> listMinItem(MinItemDO minItem);
+    List<MinItemDO> listMinItem(MinItemDTO minItemDTO);
 
     /**新增最小服务项信息*/
     int saveMinItem(MinItemDO minItem);
@@ -31,7 +31,7 @@ public interface MinItemService {
     MinItemDO getMinItem(MinItemDO minItem);
 
     /**分页查询最小服务项信息*/
-    PageBean<MinItemDO> listMinItemPage(PageParameter<MinItemDO> pageParameter);
+    PageBean<MinItemDO> listMinItemPage(PageParameter<MinItemDTO> pageParameter);
 
 
 

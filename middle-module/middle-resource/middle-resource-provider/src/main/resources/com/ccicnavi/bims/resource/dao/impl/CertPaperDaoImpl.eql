@@ -210,8 +210,8 @@ WHERE
     is_deleted = 'N'
     --iff paperUuid != null and paperUuid != ''
         and paper_uuid = '#paperUuid#'
-    --iff paperUuids != null
+    --iff uuids != null
         and paper_uuid in
-        -- for item=item index=index collection=paperUuids open=( separator=, close=)
+        -- for item=item index=index collection=uuids open=( separator=, close=)
             '#item#'
         -- end

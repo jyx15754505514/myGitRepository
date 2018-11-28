@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.dao.impl.CertFlowDaoImpl;
 import com.ccicnavi.bims.resource.pojo.CertFlowDO;
+import com.ccicnavi.bims.resource.pojo.CertFlowDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -52,7 +53,7 @@ public class CertFlowServiceImplTest {
             certFlowDO.setAppSysUuid("yewu2.0");
             certFlowDO.setProdCatalogUuid("yewu2.0");
             certFlowDO.setOrgUuid("yewu2.0");
-            PageBean<CertFlowDO> certFlowDOPageBean = certFlowDaoImpl.listCertFlowPage(pageParameter);
+            PageBean<CertFlowDTO> certFlowDOPageBean = certFlowDaoImpl.listCertFlowPage(pageParameter);
             System.out.println(certFlowDOPageBean);
         } catch (Exception e) {
             log.error("证书流水分页查询失败",e);

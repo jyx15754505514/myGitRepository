@@ -7,6 +7,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.CertPaperService;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
+import com.ccicnavi.bims.resource.pojo.CertPaperDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -119,7 +120,7 @@ public class CertPaperController {
     *@return com.ccicnavi.bims.common.ResultT
     */
     @RequestMapping(value="/deleteCertPaper",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT deleteCertPaper(@RequestBody CertPaperDO certPaper){
+    public ResultT deleteCertPaper(@RequestBody CertPaperDTO certPaper){
         try {
             Integer num = certPaperService.deleteCertPaper(certPaper);
             if(num > 0){
@@ -129,5 +130,28 @@ public class CertPaperController {
             log.error("删除证书纸失败",e);
         }
         return ResultT.failure(ResultCode.DELETE_FAILURE);
+    }
+
+    /**
+    *@description: 校验证书纸 流水起始号  流水结束号
+    *@author: ChaiYanShun
+    *@create: 2018/11/28 20:32
+    *@Param [certPaper]
+    *@return com.ccicnavi.bims.common.ResultT
+    */
+    @RequestMapping(value = "/checkCertPaper",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public ResultT checkCertPaper(@RequestBody CertPaperDO certPaper){
+        try {
+            if(certPaper.getPaperStartNum() == null && certPaper.getPaperEndNum() == null){
+                return ResultT.failure(ResultCode.PARAM_IS_BLANK);
+            }
+            Boolean result = certPaperService.checkCertPaper(certPaper);
+            if(result != null){
+                return ResultT.success(result);
+            }
+        } catch (Exception e) {
+            log.error("校验证书纸失败",e);
+        }
+        return ResultT.failure(ResultCode.SERIAL_CFG_ADD_FAILURE);
     }
 }

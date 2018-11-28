@@ -40,20 +40,26 @@ public class SubcontractorTest {
      */
     @Test
     public void insertSubcontractor() {
-        for (int i = 1; i <= 300; i++) {
-            SubcontractorDO subcontractorDO = new SubcontractorDO();
-            subcontractorDO.setSubcontractorUuid("8888" + i);
-            subcontractorDO.setSubcCode("分包方代码" + i);
-            subcontractorDO.setLegalRep("法人" + i);
-            subcontractorDO.setRegCapital("注册资本"+i);
-            subcontractorDO.setName("分包方名称"+i);
-            subcontractorDO.setEnName("分包方英文名称"+i);
-            subcontractorDO.setAppSysUuid("BIMS");
-            subcontractorDO.setOrgUuid("CCIC");
-            subcontractorDO.setCreatedUuid("fands");
-            subcontractorDO.setCreatedName("樊东升");
-            int count = subcontractorDaoTest.insertSubcontractor(subcontractorDO);
-            System.out.println("count-----" + count);
+        for (int i = 1; i <= 2; i++) {
+            SubcontractorDTO subcontractorDTO = new SubcontractorDTO();
+            subcontractorDTO.setSubcontractorUuid("88844" + i);
+            subcontractorDTO.setSubcCode("分包方代码" + i);
+            subcontractorDTO.setLegalRep("法人" + i);
+            subcontractorDTO.setRegCapital("注册资本"+i);
+            subcontractorDTO.setName("分包方名称"+i);
+            subcontractorDTO.setEnName("分包方英文名称"+i);
+            subcontractorDTO.setAppSysUuid("BIMS");
+            subcontractorDTO.setOrgUuid("CCIC");
+            subcontractorDTO.setCreatedUuid("fands");
+            subcontractorDTO.setCreatedName("樊东升");
+            Integer count = subcontractorDaoTest.insertSubcontractor(subcontractorDTO,null);
+            System.out.println("第"+i+"次新增分包方结果为-----" + count);
+            /**新增联系人*/
+            SubLinkmanDO subLinkmanDTO = new SubLinkmanDO();
+            subLinkmanDTO.setLinkmanUuid("link_man_uuid"+i);
+            subLinkmanDTO.setSubcUuid(subcontractorDTO.getSubcontractorUuid());
+            Integer subLinkman = subLinkmanDao.insertSubLinkman(subLinkmanDTO,null);
+            System.out.println("第"+i+"次新增联系人结果为------"+subLinkman);
         }
     }
     /**

@@ -3,10 +3,12 @@ SELECT
    co.prod_catalog_uuid as prodCatalogUuid,
    co.organization_uuid as organizationUuid,
    co.app_sys_uuid as appSysUuid,
+   so.org_name as orgName,
    pc.catalog_name as catalogName
 FROM
    sys_catalog_org co
    LEFT JOIN prod_catalog pc ON pc.prod_catalog_uuid = co.prod_catalog_uuid
+   LEFT JOIN sys_organization so ON so.organization_uuid = co.organization_uuid
 WHERE 1=1
    --iff organizationUuid != null and organizationUuid != ''
        and co.organization_uuid = '#organizationUuid#'

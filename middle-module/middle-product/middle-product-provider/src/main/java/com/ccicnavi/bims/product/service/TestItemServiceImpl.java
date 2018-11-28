@@ -6,6 +6,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.TestItemDao;
 import com.ccicnavi.bims.product.api.TestItemService;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
+import com.ccicnavi.bims.product.pojo.TestItemDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,9 +26,9 @@ public class TestItemServiceImpl implements TestItemService {
     TestItemDao testItemDao;
 
     @Override
-    public List<TestItemDO> listTestItem(TestItemDO testItemDO){
+    public List<TestItemDO> listTestItem(TestItemDTO testItemDTO){
         try {
-            return testItemDao.listTestItem(testItemDO);
+            return testItemDao.listTestItem(testItemDTO);
         } catch (Exception e) {
             log.error("查询检测指标信息失败",e);
             return null;
@@ -75,7 +76,7 @@ public class TestItemServiceImpl implements TestItemService {
     }
 
     @Override
-    public PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDO> pageParameter) {
+    public PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDTO> pageParameter) {
         try {
             return testItemDao.listTestItemPage(pageParameter);
         } catch (Exception e) {

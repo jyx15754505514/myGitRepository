@@ -19,10 +19,7 @@ SELECT
 	updated_name,
 	prod_catalog_uuid,
 	org_uuid,
-	app_sys_uuid,
-	extend1,
-	extend2,
-	extend3
+	app_sys_uuid
 FROM
 	product_category
 WHERE
@@ -30,15 +27,22 @@ WHERE
 --if categoryName !=null and categoryName != ''
             AND category_name like '#categoryName:like#'
 --end
---if prodCatalogUuid !=null and prodCatalogUuid != ''
-            AND prod_catalog_uuid = '#prodCatalogUuid#'
+--if productCategoryUuidList !=null
+            AND product_category_uuid IN
+                 -- for item=item index=index collection=productCategoryUuidList open=( separator=, close=)
+                            '#item#'
+                 -- end
 --end
 --if orgUuid !=null and orgUuid != ''
-            AND (org_uuid='#publicOrgUuid#' OR org_uuid='#orgUuid#')
+            AND (org_uuid='#orgUuid#' OR org_uuid='#publicOrgUuid#')
 --end
 --if appSysUuid !=null and appSysUuid != ''
             AND app_sys_uuid='#appSysUuid#'
 --end
+ORDER BY seq_num
+
+
+
 
 
 
@@ -73,8 +77,8 @@ FROM
 LEFT JOIN product_category pc ON pc.product_category_uuid = pco.product_category_uuid
 AND pc.is_deleted = 'N'
 WHERE 1=1
-        --if organizationUuid !=null and organizationUuid != ''
-               AND pco.organization_uuid = '#organizationUuid#'
+        --if organizationUuid !=null and publicOrgUuid != null
+               AND (pco.organization_uuid = '#organizationUuid#' OR org_uuid='#publicOrgUuid#')
         --end
         --if prodCatalogUuid !=null and prodCatalogUuid != ''
                AND pco.prod_catalog_uuid = '#prodCatalogUuid#'
@@ -124,7 +128,7 @@ WHERE
         --end
 AND parent_category_uuid = '#parentCategoryUuid#'
         --if orgUuid !=null and publicOrgUuid != null
-               AND org_uuid='#publicOrgUuid#' OR org_uuid='#orgUuid#'
+               AND org_uuid='#orgUuid#' OR org_uuid='#publicOrgUuid#'
         --end
         --if appSysUuid !=null and appSysUuid != ''
             AND app_sys_uuid='#appSysUuid#'
@@ -518,12 +522,41 @@ SELECT
 	updated_name,
 	prod_catalog_uuid,
 	org_uuid,
-	app_sys_uuid,
-	extend1,
-	extend2,
-	extend3
+	app_sys_uuid
 FROM
 	product_category
 WHERE
 	is_deleted = 'N'
+ --if orgUuid !=null and orgUuid != ''
+             AND org_uuid = '#orgUuid#'
+ --end
+ --if appSysUuid !=null and appSysUuid != ''
+             AND app_sys_uuid = '#appSysUuid#'
+ --end
  AND product_category_uuid = '#productCategoryUuid#'
+
+
+--根据商品分类ID查询出所有的上级分类ID
+-- [listParentCategoryByUuid]
+SELECT
+	parent_all_category_uuid
+FROM
+	product_category
+WHERE
+	is_deleted = 'N'
+AND is_enabled = 'Y'
+--if orgUuid !=null and orgUuid != ''
+            AND org_uuid = '#orgUuid#'
+--end
+--if prodCatalogUuid !=null and prodCatalogUuid != ''
+            AND prod_catalog_uuid = '#prodCatalogUuid#'
+--end
+--if appSysUuid !=null and appSysUuid != ''
+            AND app_sys_uuid = '#appSysUuid#'
+--end
+        -- if productCategoryUuidList != null
+             AND product_category_uuid IN
+            -- for item=item index=index collection=productCategoryUuidList open=( separator=, close=)
+                '#item#'
+            -- end
+        -- end
