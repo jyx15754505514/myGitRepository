@@ -3,7 +3,6 @@ package com.ccicnavi.bims.customer.service;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
-import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.SubcontractorService;
@@ -69,15 +68,39 @@ public class SubcontractorServiceImpl implements SubcontractorService{
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertSubcontractor(SubcontractorDO subcontractor) {
+    public Integer insertSubcontractor(SubcontractorDTO subcontractor) {
+        /**创建事务*/
+        EqlTran eqlTran = new Eql().newTran();
+        Boolean insertSubcontracto = true;
         try {
+            eqlTran.start();
             String subcontractorUuid = idWorkerService.getId(new Date());
             subcontractor.setSubcontractorUuid(subcontractorUuid);
-           return subcontractorDao.insertSubcontractor(subcontractor);
+            Integer sub = subcontractorDao.insertSubcontractor(subcontractor,eqlTran);
+            if(sub <= 0){
+                insertSubcontracto = false;
+            }
+            SubLinkmanDO subLinkman = subcontractor.getSubLinkmanDO();
+            String linkmanUuid = idWorkerService.getId(new Date());
+            //生成主键
+            subLinkman.setLinkmanUuid(linkmanUuid);
+            //设置分包方主键
+            subLinkman.setSubcUuid(subcontractorUuid);
+            Integer linkman = subLinkmanDao.insertSubLinkman(subLinkman, eqlTran);
+            if(linkman <= 0){
+                insertSubcontracto = false;
+            }
+            if(insertSubcontracto = true){
+                eqlTran.commit();
+                return 1;
+            }
         } catch (Exception e) {
             log.error("Service层新增分包方信息失败",e);
-            return  null;
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
         }
+        return  -1;
     }
     /**
      * @Author FanDongSheng

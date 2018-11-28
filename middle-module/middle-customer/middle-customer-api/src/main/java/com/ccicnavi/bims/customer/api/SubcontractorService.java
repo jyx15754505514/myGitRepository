@@ -1,14 +1,9 @@
 package com.ccicnavi.bims.customer.api;
 
-
-import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
-import org.n3r.eql.EqlTran;
-
-import java.util.List;
 
 /**
  * @program: bims-backend
@@ -34,7 +29,7 @@ public interface SubcontractorService {
      * @Param [subcontractor]
      * @Return int
      */
-    Integer insertSubcontractor(SubcontractorDO subcontractor) ;
+    Integer insertSubcontractor(SubcontractorDTO subcontractor) ;
     /**
      * @Author FanDongSheng
      * @Description //TODO 根据分包方信息查询分包方包含的所有的信息（资质、联系人、银行信息）

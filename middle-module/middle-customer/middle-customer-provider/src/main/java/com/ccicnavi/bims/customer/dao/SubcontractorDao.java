@@ -33,7 +33,7 @@ public interface SubcontractorDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    Integer insertSubcontractor(SubcontractorDO subcontractor ) throws Exception;
+    Integer insertSubcontractor(SubcontractorDTO subcontractor,EqlTran eqlTran) throws Exception;
 
     /**
      *@Description: 删除分包方信息
