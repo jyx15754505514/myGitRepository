@@ -99,4 +99,21 @@ public class TestOrderItem {
         }
     }
 
+    /**
+     * @Author songyateng
+     * @Description 测试删除服务项
+     * @Date 2018/11/28 10:50
+     */
+    @Test
+    public void deleteOrderItem(){
+        try {
+            OrderItemDaoImpl orderItemDaoImpl = new OrderItemDaoImpl();
+            OrderItemDTO orderItemDTO = new OrderItemDTO();
+            orderItemDTO.setOrderItemUuid("1811271707532");
+            System.err.println(orderItemDaoImpl.deleteOrderItem(orderItemDTO,null));
+        } catch (Exception e){
+            log.error("测试删除服务项失败" ,e);
+        }
+    }
+
 }

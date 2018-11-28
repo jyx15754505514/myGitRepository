@@ -3,14 +3,16 @@ package com.ccicnavi.bims.order.pojo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import java.io.Serializable;
+import java.util.List;
+
 /**
  * @Author MengZiJie
- * @Description 运输单
+ * @Description 运输单DTO
  * @Date 21:19 2018/11/20
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OrderInspectionDO implements Serializable {
+public class OrderInspectionDTO implements Serializable {
     /**
      * 委托单id
      */
@@ -123,5 +125,13 @@ public class OrderInspectionDO implements Serializable {
      * 批重量单位
      */
     private String weightBatchUnit;
+    /**
+     * 运输方式主键uuids
+     */
+    private List<String> shippingTypeIds;
+    /**
+     * 委托单主键 uuids
+     */
+    private List<String> orderUuids;
 
 }
