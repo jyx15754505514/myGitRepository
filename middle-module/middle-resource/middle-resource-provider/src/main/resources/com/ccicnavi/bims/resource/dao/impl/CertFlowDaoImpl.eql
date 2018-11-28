@@ -1,34 +1,37 @@
                            -- [listCertFlow]
                            select
-                               flow_uuid flowUuid,
-                               flow_num flowNum,
-                               empty_card_status emptyCardStatus,
-                               reason reason,
-                               cert_num certNum,
-                               cert_status certStatus,
-                               lead_unit leadUnit,
-                               lead_dept leadDept,
-                               cancel_uuid cancelUuid,
-                               cancel_name cancelName,
-                               cancel_date cancelDate,
-                               comments comments,
-                               is_deleted isDeleted,
-                               created_time createdTime,
-                               created_uuid createdUuid,
-                               created_name createdName,
-                               prod_catalog_uuid prodCatalogUuid,
-                               org_uuid orgUuid,
-                               app_sys_uuid appSysUuid
+                               a.flow_uuid flowUuid,
+                               a.flow_num flowNum,
+                               a.empty_card_status emptyCardStatus,
+                               a.reason reason,
+                               a.cert_num certNum,
+                               a.cert_status certStatus,
+                               a.lead_unit leadUnit,
+                               a.lead_dept leadDept,
+                               a.cancel_uuid cancelUuid,
+                               a.cancel_name cancelName,
+                               a.cancel_date cancelDate,
+                               a.comments comments,
+                               a.is_deleted isDeleted,
+                               a.created_time createdTime,
+                               a.created_uuid createdUuid,
+                               a.created_name createdName,
+                               a.prod_catalog_uuid prodCatalogUuid,
+                               a.org_uuid orgUuid,
+                               a.app_sys_uuid appSysUuid,
+                               b.dict_value_name dictValueName
                            from
-                               res_cert_flow
+                               res_cert_flow a
+                               left join sys_dict_value b
+                               on a.reason=b.dict_value_uuid
                            where
-                               is_deleted = 'N'
+                               a.is_deleted = 'N'
                            --iff prodCatalogUuid != null and prodCatalogUuid != ''
-                               prod_catalog_uuid = '#prodCatalogUuid#'
+                               a.prod_catalog_uuid = '#prodCatalogUuid#'
                            --iff orgUuid != null and orgUuid != ''
-                               org_uuid = '#orgUuid#'
+                               a.org_uuid = '#orgUuid#'
                            --iff appSysUuid != null and appSysUuid != ''
-                               app_sys_uuid = '#appSysUuid#'
+                               a.app_sys_uuid = '#appSysUuid#'
 
 
 

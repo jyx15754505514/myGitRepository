@@ -156,6 +156,10 @@ public class SubcontractorDTO implements Serializable {
      */
     private String extend3;
     /**
+     * 联系人对象信息
+     */
+    private SubLinkmanDO SubLinkmanDO;
+    /**
      * 分包方对应的联系人信息
      */
     List<SubLinkmanDO> subLinkmanDOList;
