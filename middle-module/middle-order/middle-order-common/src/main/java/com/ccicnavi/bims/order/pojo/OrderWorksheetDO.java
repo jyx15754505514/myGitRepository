@@ -1,8 +1,7 @@
 package com.ccicnavi.bims.order.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,9 +10,8 @@ import java.util.Date;
  * @Description 工作单
  * @Date 15:14 2018/11/21
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderWorksheetDO implements Serializable {
     /**
      * 主键
