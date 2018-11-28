@@ -47,22 +47,6 @@ public class OrderInspectionDaoImpl implements OrderInspectionDao {
         return eql.update("updateOrderInspection").params(orderInspectionDO).returnType(Integer.class).execute();
     }
     /**
-     * @Author songyateng
-     * @Description 更新运输方式信息（参数：OrderInspectionDO）
-     * @Date 2018/11/27 21:56
-     * @Param [orderInspectionDO, tran]
-     * @Return java.lang.Integer
-     */
-    @Override
-    public Integer updateInspection(OrderInspectionDO orderInspectionDO, EqlTran tran) throws Exception {
-        Eql eql = new Eql();
-        if(tran != null){
-            return eql.useTran(tran).update("updateInspection").params(orderInspectionDO).returnType(Integer.class).execute();
-        }
-        return eql.update("updateInspection").params(orderInspectionDO).returnType(Integer.class).execute();
-    }
-
-    /**
      * @Author MengZiJie
      * @Description 删除运输方式
      * @Data 2018/11/28 10:23

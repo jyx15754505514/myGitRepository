@@ -1,19 +1,19 @@
 -- [listCustAddr]
 SELECT
-	addr_uuid,
-	cust_uuid,
-	cust_addr,
-	cust_region,
-	cust_addr_en,
-	addr_type,
+	addr_uuid as addrUuid,
+	cust_uuid as custUuid,
+	cust_addr as custAddr,
+	cust_region as custRegion,
+	cust_addr_en as custAddrEn,
+	addr_type as addrType,
 	comments,
-	is_deleted,
-	created_time,
-	created_uuid,
-	created_name,
-	updated_time,
-	updated_name,
-    updated_uuid,
+	is_deleted as isDeleted,
+	created_time as createdTime,
+	created_uuid as createdUuid,
+	created_name as createdName,
+	updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+	updated_name as updatedName,
 	extend1,
 	extend2,
 	extend3
@@ -166,10 +166,12 @@ WHERE  	is_deleted = 'N'
       -- iff updatedTime != null and updatedTime!= ''
         updated_time = '#updatedTime#',
 
-      -- iff updatedName != null
-        updated_name = '#updatedName#',
       -- iff updatedUuid != null
         updated_uuid = '#updatedUuid#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+
       -- iff extend1 != null
         extend1 = '#extend1#',
 
@@ -184,23 +186,23 @@ WHERE  	is_deleted = 'N'
 
   -- [getCustAddr]
   SELECT
-  	addr_uuid,
-  	cust_uuid,
-  	cust_addr,
-  	cust_region,
-  	cust_addr_en,
-  	addr_type,
-  	comments,
-  	is_deleted,
-  	created_time,
-  	created_uuid,
-  	created_name,
-  	updated_time,
-  	updated_name,
-    updated_uuid,
-  	extend1,
-  	extend2,
-  	extend3
+  	addr_uuid as addrUuid,
+    cust_uuid as custUuid,
+    cust_addr as custAddr,
+    cust_region as custRegion,
+    cust_addr_en as custAddrEn,
+    addr_type as addrType,
+    comments,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
+    extend1,
+    extend2,
+    extend3
   FROM
   	crm_customer_addr
   WHERE

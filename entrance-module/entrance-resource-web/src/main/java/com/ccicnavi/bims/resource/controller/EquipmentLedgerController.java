@@ -23,9 +23,11 @@ import java.util.Date;
 public class EquipmentLedgerController extends BaseController {
 
     @Reference(timeout = 30000)
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
     EquipService equipService;
 
     @Reference(timeout = 30000)
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     RemindService remindService;
 
     /*
