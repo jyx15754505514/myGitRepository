@@ -135,6 +135,24 @@ public class OrderItemDO implements Serializable {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date planFinishworkDate;
     /**
+     *计划开工说明
+     */
+    private String planStartworkComments;
+    /**
+     *实际开工日期
+     */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date realStartworkDate;
+    /**
+     *实际完工日期
+     */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date realFinisthworkDate;
+    /**
+     *实际完工说明
+     */
+    private String realFinishworkComments;
+    /**
      *是Y否N退检
      */
     private String isCancel;
