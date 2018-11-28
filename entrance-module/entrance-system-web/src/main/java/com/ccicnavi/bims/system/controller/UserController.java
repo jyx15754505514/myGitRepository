@@ -32,7 +32,7 @@ import java.util.Date;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    @Reference
+    @Reference//(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     private UserService userService;
 
     @Autowired

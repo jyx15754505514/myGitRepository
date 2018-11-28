@@ -1,9 +1,7 @@
 package com.ccicnavi.bims.order.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 
 /**
@@ -11,9 +9,8 @@ import java.io.Serializable;
  * @Description 委托样品类型
  * @Date 20:30 2018/11/21
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderSampleTypeDO implements Serializable {
     /**
      * 委托单样品主键

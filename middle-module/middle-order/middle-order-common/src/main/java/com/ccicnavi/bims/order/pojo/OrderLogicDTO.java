@@ -1,20 +1,17 @@
 package com.ccicnavi.bims.order.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
 /**
  * @Author MengZiJie
  * @Description 委托单逻辑信息
  * @Date 17:10 2018/11/21
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderLogicDTO implements Serializable {
     /**
      * 委托单主键
