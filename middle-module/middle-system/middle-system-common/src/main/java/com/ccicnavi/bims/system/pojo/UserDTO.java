@@ -198,6 +198,14 @@ public class UserDTO implements Serializable {
      */
     private String realName;
 
+    /**
+     * 用户姓名姓名
+     */
+    private String orgType;
+
+    /**组织机构主键*/
+    private String organizationUuid;
+
     private String extend1;
 
     private String extend2;
