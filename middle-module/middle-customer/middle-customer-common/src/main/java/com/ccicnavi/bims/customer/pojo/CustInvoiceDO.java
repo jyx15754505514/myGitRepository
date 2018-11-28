@@ -1,9 +1,8 @@
 package com.ccicnavi.bims.customer.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -13,9 +12,8 @@ import java.util.List;
   * @description 客户发票
   * @date 2018/11/26 10:00
   */
-@Setter
-@Getter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustInvoiceDO implements Serializable {
     /**
      * 发票主键
@@ -64,6 +62,7 @@ public class CustInvoiceDO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人
@@ -76,6 +75,7 @@ public class CustInvoiceDO implements Serializable {
     /**
      * 更新日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人名称

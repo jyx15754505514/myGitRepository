@@ -12,7 +12,6 @@ import java.util.Date;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 public class OrderItemCostDO implements Serializable {
     /**
      * 主键
@@ -41,6 +40,7 @@ public class OrderItemCostDO implements Serializable {
     /**
      * 申请日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date applyDate;
     /**
      * 备注

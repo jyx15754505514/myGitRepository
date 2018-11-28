@@ -13,7 +13,6 @@ import java.util.List;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 public class OrderLogicDTO implements Serializable {
     /**
      * 委托单主键
@@ -38,6 +37,7 @@ public class OrderLogicDTO implements Serializable {
     /**
      * 更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人UUID

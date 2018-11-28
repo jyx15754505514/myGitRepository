@@ -12,7 +12,6 @@ import java.util.Date;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 public class OrderSampleDO implements Serializable {
     /**
      * 样品主键
@@ -53,6 +52,7 @@ public class OrderSampleDO implements Serializable {
     /**
      * 送样日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date sendTime;
     /**
      * 取样人
@@ -61,6 +61,7 @@ public class OrderSampleDO implements Serializable {
     /**
      * 取样日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date receiveTime;
     /**
      * 接样人
@@ -69,6 +70,7 @@ public class OrderSampleDO implements Serializable {
     /**
      * 接样时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date receiptTime;
     /**
      * 接收时样品状态
@@ -81,6 +83,7 @@ public class OrderSampleDO implements Serializable {
     /**
      * 处置时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date disposerTime;
     /**
      * 处置方法
@@ -101,6 +104,7 @@ public class OrderSampleDO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人Uuid
@@ -113,6 +117,7 @@ public class OrderSampleDO implements Serializable {
     /**
      * 更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人Uuid
