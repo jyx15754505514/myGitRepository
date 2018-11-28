@@ -1,7 +1,6 @@
 package com.ccicnavi.bims.orderInspection.service;
 
 import com.ccicnavi.bims.order.dao.impl.OrderInspectionDaoImpl;
-import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderInspectionDO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -25,7 +24,7 @@ public class TestOrderInspection {
             OrderInspectionDO orderInspectionDO = new OrderInspectionDO();
             orderInspectionDO.setOrderUuid("181127170753");
             orderInspectionDO.setVesselName("名称");
-            System.err.print(order.updateInspection(orderInspectionDO, null));
+            System.err.print(order.updateOrderInspection(orderInspectionDO, null));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,10 +37,10 @@ public class TestOrderInspection {
     @Test
     public void updateOrderInspection(){
         try {
-            OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
-            orderInfoDTO.setOrderUuid("xinzengyunshifangshi");
-            orderInfoDTO.setVesselName("修改DTO");
-            System.err.print(order.updateOrderInspection(orderInfoDTO, null));
+            OrderInspectionDO orderInspectionDO = new OrderInspectionDO();
+            orderInspectionDO.setOrderUuid("xinzengyunshifangshi");
+            orderInspectionDO.setVesselName("修改DTO");
+            System.err.print(order.updateOrderInspection(orderInspectionDO, null));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,10 +54,10 @@ public class TestOrderInspection {
     @Test
     public void insertOrderInspection(){
         try {
-            OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
-            orderInfoDTO.setOrderUuid("xinzengyunshUfangshi");
-            orderInfoDTO.setVesselName("运输方式");
-            System.err.print(order.insertOrderInspection(orderInfoDTO,null));
+            OrderInspectionDO orderInspectionDO = new OrderInspectionDO();
+            orderInspectionDO.setOrderUuid("xinzengyunshUfangshi");
+            orderInspectionDO.setVesselName("运输方式");
+            System.err.print(order.insertOrderInspection(orderInspectionDO,null));
         } catch (Exception e){
             e.printStackTrace();
         }
