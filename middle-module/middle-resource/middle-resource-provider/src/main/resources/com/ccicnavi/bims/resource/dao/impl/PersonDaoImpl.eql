@@ -3,7 +3,7 @@
     person_uuid as personUuid,
       person_code as personCode,
       name as name,
-      user_uuid as userUuid，
+      user_uuid as userUuid,
       person_type as personType,
       former_name as formerName,
       gender as gender,
@@ -264,6 +264,7 @@
         -- end
          WHERE
             is_deleted = 'N'
+            and is_ehr = 'N'
         -- iff personUuid != null and personUuid != ''
             and person_uuid = '#personUuid#'
         -- iff personUuids != null
@@ -275,11 +276,11 @@
 --[deletePerson]
     UPDATE
         res_person
-     -- trim prefix= set suffixOverrides=,
-        is_deleted = 'Y',
-    -- end
+    SET
+        is_deleted = 'Y'
     WHERE
         is_deleted = 'N'
+        and is_ehr = 'N'
         -- iff personUuid != null and personUuid != ''
             and person_uuid = '#personUuid#'
         -- iff personUuids != null
@@ -290,7 +291,7 @@
 -- [getPerson]
   SELECT
      person_uuid as personUuid,
-     user_uuid as userUuid，
+     user_uuid as userUuid,
           person_code as personCode,
           name as name,
           person_type as personType,
