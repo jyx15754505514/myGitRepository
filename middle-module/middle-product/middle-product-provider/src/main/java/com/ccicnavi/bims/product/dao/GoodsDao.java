@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface GoodsDao {
 
-    PageBean<GoodsDO> listGoodsPage(PageParameter<GoodsDO> goodsDOPageParameter) throws Exception;
+    PageBean<GoodsDO> listGoodsPage(PageParameter<GoodsDTO> goodsDOPageParameter) throws Exception;
 
     int saveGoodsDO(GoodsDO goodsDO) throws Exception;
 
@@ -22,7 +22,7 @@ public interface GoodsDao {
 
     int updateGoodsDO(GoodsDO goodsDO) throws Exception;
 
-    List<GoodsDO> listGoodsDO(GoodsDO goodsDO)throws Exception;
+    List<GoodsDO> listGoodsDO(GoodsDTO goodsDTO)throws Exception;
 
     GoodsDO getGoodsDO(GoodsDO goodsDO) throws Exception;
 }

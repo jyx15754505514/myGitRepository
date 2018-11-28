@@ -3,9 +3,6 @@ package com.ccicnavi.bims.product.pojo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,104 +17,109 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StandardInfoDTO implements Serializable {
 
-	/**
-	 * 主键
-	 */
-	private String stdUuid;
+    /**
+     * 主键
+     */
+    private String stdUuid;
 
-	/**
-	 * 标准名称
-	 */
-	private String stdName;
+    /**
+     * 标准名称
+     */
+    private String stdName;
 
-	/**
-	 * 标准编号
-	 */
-	private String stdCode;
+    /**
+     * 标准编号
+     */
+    private String stdCode;
 
-	/**
-	 * 代替标准号
-	 */
-	private String stdReplaceCode;
+    /**
+     * 代替标准号
+     */
+    private String stdReplaceCode;
 
-	/**
-	 * 负责部门
-	 */
-	private String deptUuid;
+    /**
+     * 负责部门
+     */
+    private String deptUuid;
 
-	/**
-	 * 备注
-	 */
-	private String comments;
+    /**
+     * 备注
+     */
+    private String comments;
 
     /**
      * 产品线id
-	 */
-	private String prodCatalogUuid;
+     */
+    private String prodCatalogUuid;
 
-	/**
-	 *删除标识（N正常Y删除）
-	 */
-	private String isDeleted;
+    /**
+     * 删除标识（N正常Y删除）
+     */
+    private String isDeleted;
 
-	/**
-	 *创建时间
-	 */
-	private Date createdTime;
+    /**
+     * 创建时间
+     */
+    private Date createdTime;
 
-	/**
-	 *创建人id
-	 */
-	private String createdUuid;
+    /**
+     * 创建人id
+     */
+    private String createdUuid;
 
-	/**
-	 *创建人
-	 */
-	private String createdName;
+    /**
+     * 创建人
+     */
+    private String createdName;
 
-	/**
-	 *最后一次更新时间
-	 */
-	private Date updatedTime;
+    /**
+     * 最后一次更新时间
+     */
+    private Date updatedTime;
 
-	/**
-	 *更新人uuid
-	 */
-	private String updatedUuid;
+    /**
+     * 更新人uuid
+     */
+    private String updatedUuid;
 
-	/**
-	 *更新人
-	 */
-	private String updatedName;
+    /**
+     * 更新人
+     */
+    private String updatedName;
 
-	/**
-	 *归属机构id
-	 */
-	private String orgUuid;
+    /**
+     * 归属机构id
+     */
+    private String orgUuid;
 
-	/**
-	 *应用系统id
-	 */
-	private String appSysUuid;
+    /**
+     * 公共所属机构
+     */
+    private String publicOrgUuid;
 
-	/**
-	 *预留字段1
-	 */
-	private String extend1;
+    /**
+     * 应用系统id
+     */
+    private String appSysUuid;
 
-	/**
-	 *预留字段2
-	 */
-	private String extend2;
+    /**
+     * 预留字段1
+     */
+    private String extend1;
 
-	/**
-	 *预留字段3
-	 */
-	private String extend3;
+    /**
+     * 预留字段2
+     */
+    private String extend2;
 
-	/**
-	 * 批量主键
-	 */
-	private String [] uuids;
+    /**
+     * 预留字段3
+     */
+    private String extend3;
+
+    /**
+     * 批量主键
+     */
+    private String[] uuids;
 
 }

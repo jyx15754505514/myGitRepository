@@ -15,18 +15,67 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GoodsDTO implements Serializable {
 
-    /**商品id集合*/
+    /**
+     * 主键
+     */
+    private String goodsUuid;
+    /**
+     * 商品名称
+     */
+    private String goodsName;
+    /**
+     * 商品名称英文
+     */
+    private String goodsNameEn;
+    /**
+     * 商品分类
+     */
+    private String productCategoryUuid;
+    /**
+     * 计量单位
+     */
+    private String goodsUnitUuid;
+    /**
+     * 规格
+     */
+    private String goodsSpec;
+    /**
+     * 备注
+     */
+    private String comments;
+    /**
+     * 删除标识（N正常Y删除）
+     */
+    private String isDeleted;
+
+
+    /**
+     * 商品id集合
+     */
     private List<String> goodsUuidList;
 
-    /**产品线id*/
+    /**
+     * 产品线id
+     */
     private String prodCatalogUuid;
 
-    /**归属机构id*/
+    /**
+     * 归属机构id
+     */
     private String orgUuid;
 
-    /**应用系统id*/
+    /**
+     * 公共所属机构
+     */
+    private String publicOrgUuid;
+
+    /**
+     * 应用系统id
+     */
     private String appSysUuid;
 
-    /**所属分类ID*/
+    /**
+     * 所属分类ID
+     */
     private List<String> productCategoryUuidList;
 }

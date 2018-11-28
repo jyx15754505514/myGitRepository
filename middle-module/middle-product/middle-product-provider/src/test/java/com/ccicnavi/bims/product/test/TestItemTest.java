@@ -4,6 +4,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.dao.Impl.TestItemDaoImpl;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
+import com.ccicnavi.bims.product.pojo.TestItemDTO;
 import org.junit.Test;
 
 import java.util.List;
@@ -20,9 +21,9 @@ public class TestItemTest {
 
     @Test
     public void listTestItemTest(){
-        TestItemDO testItemDO=new TestItemDO();
-        testItemDO.setItemName("检测指标");
-        List<TestItemDO> testItemDOS=testItemDaoImpl.listTestItem(testItemDO);
+        TestItemDTO testItemDTO=new TestItemDTO();
+        testItemDTO.setItemName("检测指标");
+        List<TestItemDO> testItemDOS=testItemDaoImpl.listTestItem(testItemDTO);
         System.out.println(testItemDOS);
     }
 
@@ -71,8 +72,11 @@ public class TestItemTest {
 
     @Test
     public void pageTestItemTest(){
-        PageParameter<TestItemDO> page=new PageParameter<>();
-        TestItemDO testItemDO=new TestItemDO();
+        PageParameter<TestItemDTO> page=new PageParameter<>();
+        TestItemDTO testItemDO=new TestItemDTO();
+        testItemDO.setPublicOrgUuid("CCIC");
+        testItemDO.setOrgUuid("XN102");
+        testItemDO.setItemName("检测指标1");
         page.setStartIndex(1);
         page.setPageRows(4);
         page.setStartPage(1);

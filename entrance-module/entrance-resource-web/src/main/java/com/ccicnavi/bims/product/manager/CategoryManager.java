@@ -1,7 +1,7 @@
 package com.ccicnavi.bims.product.manager;
 
 import com.ccicnavi.bims.common.ResultT;
-import com.ccicnavi.bims.product.pojo.GoodsDO;
+import com.ccicnavi.bims.product.pojo.GoodsDTO;
 
 /**
  * @program: bims-backend
@@ -13,9 +13,9 @@ public interface CategoryManager {
 
     /**
      * 根据商品名称获取到所有的商品分类信息
-     * @param goodsDO
+     * @param goodsDTO
      * @return
      */
-    ResultT listCategoryByGoodName(GoodsDO goodsDO);
+    ResultT listCategoryByGoodName(GoodsDTO goodsDTO);
 
 }

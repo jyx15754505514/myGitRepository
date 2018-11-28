@@ -16,10 +16,7 @@ select
     updated_name,
     prod_catalog_uuid,
     org_uuid,
-    app_sys_uuid,
-    extend1,
-    extend2,
-    extend3
+    app_sys_uuid
 from product_goods
 where 1=1
     --if isDeleted != null and isDeleted != ''
@@ -37,10 +34,11 @@ where 1=1
         and product_category_uuid = '#productCategoryUuid#'
     --iff prodCatalogUuid != null and prodCatalogUuid != ''
         and prod_catalog_uuid = '#prodCatalogUuid#'
-    --iff orgUuid != null and orgUuid != ''
-        and org_uuid = '#orgUuid#'
+    --iff orgUuid != null and publicOrgUuid != null
+        and (org_uuid = '#orgUuid#' OR org_uuid='#publicOrgUuid#')
     --iff appSysUuid != null and appSysUuid != ''
         and app_sys_uuid = '#appSysUuid#'
+    --end
 
 --[saveGoodsDO]
 insert into product_goods

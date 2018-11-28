@@ -77,8 +77,8 @@ FROM
 LEFT JOIN product_category pc ON pc.product_category_uuid = pco.product_category_uuid
 AND pc.is_deleted = 'N'
 WHERE 1=1
-        --if organizationUuid !=null and organizationUuid != ''
-               AND pco.organization_uuid = '#organizationUuid#'
+        --if organizationUuid !=null and publicOrgUuid != null
+               AND (pco.organization_uuid = '#organizationUuid#' OR org_uuid='#publicOrgUuid#')
         --end
         --if prodCatalogUuid !=null and prodCatalogUuid != ''
                AND pco.prod_catalog_uuid = '#prodCatalogUuid#'
@@ -128,7 +128,7 @@ WHERE
         --end
 AND parent_category_uuid = '#parentCategoryUuid#'
         --if orgUuid !=null and publicOrgUuid != null
-               AND org_uuid='#publicOrgUuid#' OR org_uuid='#orgUuid#'
+               AND org_uuid='#orgUuid#' OR org_uuid='#publicOrgUuid#'
         --end
         --if appSysUuid !=null and appSysUuid != ''
             AND app_sys_uuid='#appSysUuid#'
@@ -527,6 +527,12 @@ FROM
 	product_category
 WHERE
 	is_deleted = 'N'
+ --if orgUuid !=null and orgUuid != ''
+             AND org_uuid = '#orgUuid#'
+ --end
+ --if appSysUuid !=null and appSysUuid != ''
+             AND app_sys_uuid = '#appSysUuid#'
+ --end
  AND product_category_uuid = '#productCategoryUuid#'
 
 

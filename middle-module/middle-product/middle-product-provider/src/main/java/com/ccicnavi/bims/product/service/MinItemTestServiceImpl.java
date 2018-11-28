@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.product.api.MinItemTestService;
 import com.ccicnavi.bims.product.dao.MinItemTestDao;
 import com.ccicnavi.bims.product.pojo.MinItemTestDO;
+import com.ccicnavi.bims.product.pojo.MinItemTestDTO;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,13 +46,13 @@ public class MinItemTestServiceImpl implements MinItemTestService {
 
     /**
      * 根据最小服务项ID查询出对应的检测指标信息
-     * @param minItemTestDO
+     * @param minItemTestDTO
      * @return
      */
     @Override
-    public List<TestItemDO> findTestItemByMinItemUuid(MinItemTestDO minItemTestDO) {
+    public List<TestItemDO> findTestItemByMinItemUuid(MinItemTestDTO minItemTestDTO) {
         try {
-            return minItemTestDao.findTestItemByMinItemUuid(minItemTestDO);
+            return minItemTestDao.findTestItemByMinItemUuid(minItemTestDTO);
         } catch (Exception e) {
             log.error("根据最小服务项ID查询出对应的检测指标信息失败~",e);
             return null;

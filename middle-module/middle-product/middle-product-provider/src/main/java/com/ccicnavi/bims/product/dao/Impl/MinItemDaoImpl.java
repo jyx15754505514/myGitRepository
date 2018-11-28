@@ -22,8 +22,8 @@ public class MinItemDaoImpl implements MinItemDao {
 
 
     @Override
-    public List<MinItemDO> listMinItem(MinItemDO minItem) {
-        return new Eql().select("listMinItem").returnType(MinItemDO.class).execute();
+    public List<MinItemDO> listMinItem(MinItemDTO minItemDTO) {
+        return new Eql().select("listMinItem").params(minItemDTO).returnType(MinItemDO.class).execute();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class MinItemDaoImpl implements MinItemDao {
     }
 
     @Override
-    public PageBean<MinItemDO> listMinItemPage(PageParameter<MinItemDO> pageParameter) {
+    public PageBean<MinItemDO> listMinItemPage(PageParameter<MinItemDTO> pageParameter) {
         //封装分页参数
         EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
         //执行查询

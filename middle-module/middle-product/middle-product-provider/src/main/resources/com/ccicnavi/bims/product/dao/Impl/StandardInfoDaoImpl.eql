@@ -177,6 +177,9 @@ where
     -- iff stdUuid != null and stdUuid != ''
         and std_uuid = '#stdUuid#'
     -- end
+     --if appSysUuid !=null and appSysUuid != ''
+                 AND app_sys_uuid='#appSysUuid#'
+     --end
 
 
 -- [listStandardInfo]
@@ -212,7 +215,14 @@ where
     --iff prodCatalogUuid != null and prodCatalogUuid != ''
         and prod_catalog_uuid = '#prodCatalogUuid#'
     -- end
+    --if orgUuid !=null and publicOrgUuid != ''
+                     AND (org_uuid='#orgUuid#' OR org_uuid='#publicOrgUuid#')
+    --end
     --iff stdName != null and stdName != ''
        and std_name like '#stdName:Like#'
     --end
+     --if appSysUuid !=null and appSysUuid != ''
+                 AND app_sys_uuid='#appSysUuid#'
+     --end
+
 

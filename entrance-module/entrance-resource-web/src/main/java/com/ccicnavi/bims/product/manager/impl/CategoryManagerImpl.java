@@ -7,10 +7,7 @@ import com.ccicnavi.bims.common.service.pojo.Constants;
 import com.ccicnavi.bims.product.api.CategoryService;
 import com.ccicnavi.bims.product.api.GoodsService;
 import com.ccicnavi.bims.product.manager.CategoryManager;
-import com.ccicnavi.bims.product.pojo.CategoryDO;
-import com.ccicnavi.bims.product.pojo.CategoryDTO;
-import com.ccicnavi.bims.product.pojo.GoodsDO;
-import com.ccicnavi.bims.product.pojo.GoodsVO;
+import com.ccicnavi.bims.product.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -30,10 +27,10 @@ import java.util.List;
 public class CategoryManagerImpl implements CategoryManager {
 
 
-    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     @Reference
     GoodsService goodsService;
-    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     @Reference
     CategoryService categoryService;
 
@@ -41,20 +38,20 @@ public class CategoryManagerImpl implements CategoryManager {
     /**
      * 根据商品名称获取到所有的商品分类信息
      *
-     * @param goodsDO
+     * @param goodsDTO
      * @return
      */
     @Override
-    public ResultT listCategoryByGoodName(GoodsDO goodsDO) {
+    public ResultT listCategoryByGoodName(GoodsDTO goodsDTO) {
         try {
             List<GoodsVO> goodsVOList = new ArrayList<GoodsVO>();
             //1.首先根据名称模糊查询到对应的商品信息
-            List<GoodsDO> goodsDOList = goodsService.listGoodsDO(goodsDO);
+            List<GoodsDO> goodsDOList = goodsService.listGoodsDO(goodsDTO);
             //封参
             CategoryDTO categoryDTO = new CategoryDTO();
-            categoryDTO.setAppSysUuid(goodsDO.getAppSysUuid());
-            categoryDTO.setOrgUuid(goodsDO.getOrgUuid());
-            categoryDTO.setProdCatalogUuid(goodsDO.getProdCatalogUuid());
+            categoryDTO.setAppSysUuid(goodsDTO.getAppSysUuid());
+            categoryDTO.setOrgUuid(goodsDTO.getOrgUuid());
+            categoryDTO.setProdCatalogUuid(goodsDTO.getProdCatalogUuid());
             categoryDTO.setPublicOrgUuid(Constants.PUBLIC_ORGUUID);
             //2.不为null的话则根据它的商品的分类ID查询出所有的父级分类
             if (!StringUtils.isEmpty(goodsDOList)) {

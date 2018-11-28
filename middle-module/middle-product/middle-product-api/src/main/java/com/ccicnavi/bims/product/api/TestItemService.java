@@ -3,6 +3,7 @@ package com.ccicnavi.bims.product.api;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.product.pojo.TestItemDO;
+import com.ccicnavi.bims.product.pojo.TestItemDTO;
 
 import java.util.List;
 
@@ -16,10 +17,10 @@ public interface TestItemService {
 
     /**
      * @description 查询全部检测指标信息
-     * @param testItemDO
+     * @param testItemDTO
      * @return List<TestItemDO>
      */
-    List<TestItemDO> listTestItem(TestItemDO testItemDO);
+    List<TestItemDO> listTestItem(TestItemDTO testItemDTO);
 
     /**
      * @description 新增检测指标信息
@@ -54,6 +55,6 @@ public interface TestItemService {
      * @param pageParameter
      * @return PageBean<TestItemDO>
      */
-    PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDO> pageParameter);
+    PageBean<TestItemDO> listTestItemPage(PageParameter<TestItemDTO> pageParameter);
 
 }
