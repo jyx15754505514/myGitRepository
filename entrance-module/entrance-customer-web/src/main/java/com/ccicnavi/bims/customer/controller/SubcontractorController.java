@@ -65,10 +65,10 @@ public class SubcontractorController {
      * @return: com.ccicnavi.bims.common.ResultT
      */
     @RequestMapping(value = "/saveSubcontractor",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT saveSubcontractor(@RequestBody SubcontractorDO subcontractorDO){
-        log.info("开始保存分包方信息 Param:" + JSON.toJSONString(subcontractorDO)  + " Time: " + new Date());
+    public ResultT saveSubcontractor(@RequestBody SubcontractorDTO subcontractorDTO){
+        log.info("开始保存分包方信息 Param:" + JSON.toJSONString(subcontractorDTO)  + " Time: " + new Date());
         try {
-            Integer count=subcontractorService.insertSubcontractor(subcontractorDO);
+            Integer count=subcontractorService.insertSubcontractor(subcontractorDTO);
             if(count >= 1){
                 log.info("保存分包方信息结果：保存数量" + count );
                 return ResultT.success();
