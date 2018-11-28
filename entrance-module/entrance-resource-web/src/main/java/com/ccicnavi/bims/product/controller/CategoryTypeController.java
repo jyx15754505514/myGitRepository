@@ -29,9 +29,10 @@ import java.util.List;
 @Slf4j
 public class CategoryTypeController {
 
-    @Reference(timeout = 30000)
+    @Reference
     CategoryTypeService categoryTypeService;
-    @Reference(timeout = 30000)
+
+    @Reference
     IdWorkerService idWorkerService;
 
     /**
