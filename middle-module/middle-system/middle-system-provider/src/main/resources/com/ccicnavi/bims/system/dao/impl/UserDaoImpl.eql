@@ -406,8 +406,8 @@
 -- [listauthUserList]
  SELECT
          su.user_uuid  as userUuid,
-         rp.first_name as firstName,
-         su.login_name as loginName,
+         su.real_name as realName,
+         su.nick_name as nickName,
  		 rp.skill_name as skillName,
  		 so.org_name as deptName,
  		 rp.phone as phone
@@ -427,8 +427,8 @@
 -- [selectunauthUserList]
 select
          s.user_uuid  as userUuid,
-		 r.first_name as firstName,
-         s.login_name as loginName,
+		 s.real_name as realName,
+         s.nick_name as nickName,
  		 r.skill_name as skillName,
  		 so.org_name as deptName,
  		 r.phone as phone
@@ -445,6 +445,6 @@ LEFT JOIN sys_organization so on s.dept_uuid=so.organization_uuid
     --if deptUuid != null and  deptUuid != ''
            and s.dept_uuid ='#deptUuid#'
     --end
-    --if firstName != null and  firstName != ''
-           and r.first_name like '#firstName:like#'
+    --if realName != null and  realName != ''
+           and s.real_name like '#realName:like#'
     --end

@@ -1,20 +1,19 @@
 package com.ccicnavi.bims.order.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
-
 /**
  * @program: bims-backend
  * @description: 委托服务项DO
  * @author: panyida
  * @create: 2018-11-19 15:39
  **/
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 public class OrderItemDO implements Serializable {
     /**
      *主键id

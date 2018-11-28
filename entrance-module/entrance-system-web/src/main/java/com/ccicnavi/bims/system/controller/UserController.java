@@ -226,9 +226,9 @@ public class UserController {
      */
     @RequestMapping(value = "/selectByRoleUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT selectByRoleUser(@RequestBody PageParameter<UserDTO> PageParameter) {
-        if(StringUtils.isEmpty(PageParameter.getParameter().getRoleUuid())){
+        /*if(StringUtils.isEmpty(PageParameter.getParameter().getRoleUuid())){
             return ResultT.failure(ResultCode.PARAM_IS_BLANK);
-        }
+        }*/
         try {
             UserDTO userDto = userService.selectByRoleUser(PageParameter);
             return ResultT.success(userDto);

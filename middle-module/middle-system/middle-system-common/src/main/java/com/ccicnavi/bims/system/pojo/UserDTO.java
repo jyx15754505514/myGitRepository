@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.system.pojo;
 
 import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,6 +21,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO implements Serializable {
 
     /**
@@ -109,6 +112,7 @@ public class UserDTO implements Serializable {
     /**
      * 用户禁用时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date disabledTime;
     /**
      * 用户禁用原因
@@ -137,6 +141,7 @@ public class UserDTO implements Serializable {
     /**
      * 用户最后登录时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date lastLoginTime;
     /**
      * 用户绑定登录IP
@@ -157,6 +162,7 @@ public class UserDTO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人
@@ -169,6 +175,7 @@ public class UserDTO implements Serializable {
     /**
      * 最后更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 最后更新人
@@ -200,7 +207,7 @@ public class UserDTO implements Serializable {
 
     private  List<String> userUuids;
 
-    private String firstName;
+
     private String skillName;
     private String deptName;
     private String phone;

@@ -528,7 +528,7 @@ where
 
 
 
--- [deleteOrderInfo]
+-- [removeOrderInfo]
 UPDATE order_info
     -- trim prefix=set suffixOverrides=,
         is_deleted = 'Y'

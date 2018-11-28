@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.system.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,6 +20,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDO implements Serializable {
 
     private List<RoleUserDO> roleList;
@@ -50,7 +53,7 @@ public class UserDO implements Serializable {
     private String isChangePassword;
 
     private String loginUsertype;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date disabledTime;
 
     private String disabledReason;
@@ -64,7 +67,7 @@ public class UserDO implements Serializable {
     private String lastLocal;
 
     private String lastLoginIp;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date lastLoginTime;
 
     private String bindLoginIp;
@@ -74,13 +77,13 @@ public class UserDO implements Serializable {
     private String comments;
 
     private String isDeleted;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
 
     private String createdUuid;
 
     private String createdName;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
 
     private String updatedName;
