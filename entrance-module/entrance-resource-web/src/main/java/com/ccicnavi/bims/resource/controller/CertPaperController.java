@@ -7,6 +7,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.CertPaperService;
 import com.ccicnavi.bims.resource.pojo.CertPaperDO;
+import com.ccicnavi.bims.resource.pojo.CertPaperDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -119,7 +120,7 @@ public class CertPaperController {
     *@return com.ccicnavi.bims.common.ResultT
     */
     @RequestMapping(value="/deleteCertPaper",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT deleteCertPaper(@RequestBody CertPaperDO certPaper){
+    public ResultT deleteCertPaper(@RequestBody CertPaperDTO certPaper){
         try {
             Integer num = certPaperService.deleteCertPaper(certPaper);
             if(num > 0){
