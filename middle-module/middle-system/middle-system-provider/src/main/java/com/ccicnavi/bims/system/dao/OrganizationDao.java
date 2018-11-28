@@ -20,10 +20,11 @@ public interface OrganizationDao {
 
     /**
      * 查询组织机构信息
-     * @param pageParameter
+     * @param organizationDTO
      * @return
      */
-    public PageBean<OrganizationDTO> listOrganization(PageParameter<OrganizationDTO> pageParameter) throws Exception;
+    //public PageBean<OrganizationDTO> listOrganization(PageParameter<OrganizationDTO> pageParameter) throws Exception;
+    public List<OrganizationDTO> listOrganization(OrganizationDTO organizationDTO) throws Exception;
 
     /**
      * 根据主键查询组织机构信息

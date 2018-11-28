@@ -37,23 +37,13 @@ from
     sys_organization
 where
     is_deleted = 'N'
-    --iff orgParentUuid != null and orgParentUuid != ''
-        and org_parent_uuid = '#orgParentUuid#'
-    --end
-    --iff orgCode != null and orgCode != ''
-        and org_code = '#orgCode#'
-    --end
+    and is_enabled = 'Y'
     --iff orgType != null and orgType != ''
         and org_type = '#orgType#'
     --end
-    --iff isEnabled != null and isEnabled != ''
-        and is_enabled = '#isEnabled#'
-    --end
-    --iff orgUuid != null and orgUuid != ''
-        and org_uuid = '#orgUuid#'
-    --end
-    --iff appSysUuid != null and appSysUuid != ''
-        and app_sys_uuid = '#appSysUuid#'
+    and organization_uuid in
+    -- for item=item index=index collection=uuids open=( separator=, close=)
+        '#item#'
     --end
 
 
@@ -118,6 +108,7 @@ where
         and app_sys_uuid = '#appSysUuid#'
     --end
 
+
 -- [insertOrganization]
     insert into sys_organization
     -- trim prefix=( suffix=) suffixOverrides=,
@@ -133,8 +124,6 @@ where
         org_short_name,
       --iff orgType != null
         org_type,
-      --iff ehrCode != null
-        ehr_code,
       --iff orgCode != null
         org_code,
       --iff topOrgUuid != null
@@ -195,8 +184,6 @@ where
         '#orgShortName#',
       --iff orgType != null
         '#orgType#',
-      --iff ehrCode != null
-        '#ehrCode#',
       --iff orgCode != null
         '#orgCode#',
       --iff topOrgUuid != null
@@ -245,6 +232,7 @@ where
         '#extend3#'
     --end
 
+
 -- [updateOrganization]
 update sys_organization
 -- trim prefix= set suffixOverrides=,
@@ -260,8 +248,6 @@ update sys_organization
     org_short_name = '#orgShortName#',
   --iff orgType != null
     org_type = '#orgType#',
-  --iff ehrCode != null
-    ehr_code = '#ehrCode#',
   --iff orgCode != null
     org_code = '#orgCode#',
   --iff topOrgUuid != null
@@ -304,7 +290,6 @@ update sys_organization
     updated_name = '#updatedName#',
   --iff prodCatalogUuid != null
     prod_catalog_uuid = '#prodCatalogUuid#',
-
   --iff appSysUuid != null
     app_sys_uuid = '#appSysUuid#',
   --iff extend1 != null
@@ -316,6 +301,7 @@ update sys_organization
 -- end
 where
 is_deleted = 'N'
+and (ehr_code is null or ehr_code = '')
 --iff organizationUuid != null and organizationUuid != ''
     and organization_uuid = '#organizationUuid#'
 --iff uuids != null
@@ -333,18 +319,12 @@ UPDATE
 -- end
 WHERE
     is_deleted = 'N'
-
+    and (ehr_code is null or ehr_code = '')
     and organization_uuid in
     -- for item=item index=index collection=uuids open=( separator=, close=)
         '#item#'
     --end
 
-
-    --屏蔽掉此部分
-    --iff organizationUuid != null and organizationUuid != ''
-        and organization_uuid = '#organizationUuid#'
-    --end
-    --屏蔽掉此部分
 
 
 --根据用户查询省公司
@@ -394,6 +374,7 @@ where
         and organization_uuid = '#organizationUuid#'
     --end
 
+
 --根据当前用户的orgUuid获取所有的当前机构和子机构
 -- [listOrgByUser]
 SELECT
@@ -441,16 +422,12 @@ where
     --iff orgParentUuid != null
         and org_parent_uuid = '#orgParentUuid#'
     --end
-    --iff orgType != null
-        and org_type = '#orgType#'
-    --end
     --iff uuids != null
         and organization_uuid in
         -- for item=item index=index collection=uuids open=( separator=, close=)
             '#item#'
         --end
     --end
-
 
 
 --根据当前机构查询下级机构（包括公司和部门：只查一级）
@@ -506,18 +483,10 @@ UPDATE
     is_enabled = '#isEnabled#'
 WHERE
     is_deleted = 'N'
+    and (ehr_code is null or ehr_code = '')
     --iff uuids != null
         and organization_uuid in
         -- for item=item index=index collection=uuids open=( separator=, close=)
             '#item#'
         --end
-    --end
-
-
--- 屏蔽掉此部分
-    --iff organizationUuid != null and organizationUuid != ''
-        and organization_uuid = '#organizationUuid#'
-    --end
-    --iff orgAllParentUuid != null and orgAllParentUuid != ''
-        or org_all_parent_uuid like '#orgAllParentUuid:like#'
     --end
