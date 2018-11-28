@@ -6,7 +6,9 @@ import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.api.OrderInfoService;
+import com.ccicnavi.bims.order.api.OrderItemService;
 import com.ccicnavi.bims.order.pojo.OrderInfoDO;
+import com.ccicnavi.bims.order.pojo.OrderItemDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,10 @@ public class OrderListController {
     //@Reference(timeout = 3000)
     @Reference(timeout = 3000, url="dubbo://127.0.0.1:20886")
     OrderInfoService orderInfoService;
+
+    //@Reference(timeout = 3000)
+    @Reference(timeout = 3000, url="dubbo://127.0.0.1:20886")
+    OrderItemService orderItemService;
 
     /*
      *@Param: [parameter]
@@ -44,16 +50,16 @@ public class OrderListController {
 
     /*
      *@Param: [parameter]
-     *@description: 获取委托单列表数据
+     *@description: 获取委托单业务列表数据
      *@return: com.ccicnavi.bims.common.ResultT
      *@author: WangGengXiang
      *@create: 2018/11/28 9:59
      */
     @RequestMapping(value = "/listBusinessOrder", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT listBusinessOrder(@RequestBody PageParameter<OrderInfoDO> parameter) {
+    public ResultT listBusinessOrder(@RequestBody PageParameter<OrderItemDTO> parameter) {
         try {
-            PageBean<OrderInfoDO> orderInfoDOPageBean = null;
-            return ResultT.success();
+            PageBean<OrderItemDTO> orderInfoDOPageBean = orderItemService.listOrderItemPage(parameter);
+            return ResultT.success(orderInfoDOPageBean);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultT.failure(ResultCode.LIST_FAILURE);
