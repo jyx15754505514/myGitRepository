@@ -299,9 +299,9 @@ UPDATE
 WHERE
   is_deleted = 'N'
 --iff orderUuid != null and orderUuid != ''
-and order_uuid = '#orderUuid#'
---iff orderUuidList != null
-and order_uuid in
--- for item=item index=index collection=orderUuidList open=( separator=, close=)
-    '#item#'
--- end
+    and order_uuid = '#orderUuid#'
+--iff orderUuids != null
+    and order_uuid in
+    -- for item=item index=index collection=orderUuids open=( separator=, close=)
+        '#item#'
+    -- end

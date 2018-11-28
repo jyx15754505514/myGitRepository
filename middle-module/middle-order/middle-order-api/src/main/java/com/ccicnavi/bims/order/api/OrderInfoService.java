@@ -68,6 +68,13 @@ public interface OrderInfoService {
      * @Return java.lang.Integer
      */
     Integer updateOrderStatus(OrderInfoDTO orderInfoDTO);
-
+    /**
+     * @Author MengZiJie
+     * @Description 删除委托单
+     * @Data 2018/11/28 9:39
+     * @Param [orderInfoDTO]
+     * @Return java.lang.Integer
+     */
+    Integer removeOrderInfo(OrderInfoDTO orderInfoDTO);
 
 }

@@ -1,8 +1,7 @@
 package com.ccicnavi.bims.order.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 /**
  * @Author songyateng
@@ -11,9 +10,8 @@ import java.io.Serializable;
  * @Param
  * @Return
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderTypeDO implements Serializable {
     /**
      * 主键

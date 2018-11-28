@@ -366,4 +366,44 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         }
         return -1;
     }
+    
+    /**
+     * @Author MengZiJie
+     * @Description 删除委托单
+     * @Data 2018/11/28 9:41
+     * @Param [orderInfoDTO]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer removeOrderInfo(OrderInfoDTO orderInfoDTO) {
+        EqlTran eqlTran = new Eql().newTran();
+        OrderInspectionDTO orderInspectionDTO = new OrderInspectionDTO();
+        Boolean status = true;
+        try {
+            eqlTran.start();
+            List<String> orderUuids = orderInfoDTO.getOrderUuids();
+            if (orderUuids.size() > 0) {
+                /**删除委托单信息*/
+                Integer orderInfo = orderInfoDao.removeOrderInfo(orderInfoDTO,eqlTran);
+                if (orderInfo <= 0) {
+                    status = false;
+                }
+                /**删除运输方式*/
+                orderInspectionDTO.setOrderUuids(orderUuids);
+                Integer orderInspection = orderInspectionDao.deleteOrderInspection(orderInspectionDTO, eqlTran);
+                if (orderInspection <= 0) {
+                    status = false;
+                }
+            }
+            if (status = true) {
+                return 1;
+            }
+        } catch (Exception e) {
+            log.error("删除失败",e);
+            eqlTran.rollback();
+        } finally {
+            eqlTran.close();
+        }
+        return -1;
+    }
 }

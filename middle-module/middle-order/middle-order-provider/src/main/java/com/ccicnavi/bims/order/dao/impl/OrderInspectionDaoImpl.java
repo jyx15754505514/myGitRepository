@@ -3,6 +3,7 @@ package com.ccicnavi.bims.order.dao.impl;
 import com.ccicnavi.bims.order.dao.OrderInspectionDao;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderInspectionDO;
+import com.ccicnavi.bims.order.pojo.OrderInspectionDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
@@ -59,5 +60,20 @@ public class OrderInspectionDaoImpl implements OrderInspectionDao {
             return eql.useTran(tran).update("updateInspection").params(orderInspectionDO).returnType(Integer.class).execute();
         }
         return eql.update("updateInspection").params(orderInspectionDO).returnType(Integer.class).execute();
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 删除运输方式
+     * @Data 2018/11/28 10:23
+     * @Param [orderInspectionDO, tran]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer deleteOrderInspection(OrderInspectionDTO orderInspectionDTO, EqlTran tran) throws Exception {
+        if (tran != null) {
+           return new Eql().useTran(tran).update("deleteOrderInspection").params(orderInspectionDTO).returnType(Integer.class).execute();
+        }
+        return new Eql().update("deleteOrderInspection").params(orderInspectionDTO).returnType(Integer.class).execute();
     }
 }
