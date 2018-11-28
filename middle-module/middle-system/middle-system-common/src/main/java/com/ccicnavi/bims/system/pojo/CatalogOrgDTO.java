@@ -21,6 +21,11 @@ public class CatalogOrgDTO implements Serializable {
     private String organizationUuid;
 
     /**
+     * 组织机构名称
+     */
+    private String orgName;
+
+    /**
      *产品线id
      */
     private String prodCatalogUuid;

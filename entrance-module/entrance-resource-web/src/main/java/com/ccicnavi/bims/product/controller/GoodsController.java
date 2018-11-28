@@ -11,13 +11,11 @@ import com.ccicnavi.bims.product.api.GoodsService;
 import com.ccicnavi.bims.product.pojo.GoodsDO;
 import com.ccicnavi.bims.product.pojo.GoodsDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -150,5 +148,7 @@ public class GoodsController {
            return ResultT.failure(ResultCode.LIST_FAILURE);
        }
    }
+
+
 
 }

@@ -8,6 +8,7 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.CertFlowService;
 import com.ccicnavi.bims.resource.pojo.CertFlowDO;
+import com.ccicnavi.bims.resource.pojo.CertFlowDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -74,7 +75,7 @@ public class CertFlowController {
                     StringUtils.isEmpty(pageParameter.getPageRows())   ){
                 return ResultT.failure(ResultCode.PARAM_IS_BLANK);
             }
-            PageBean<CertFlowDO> pageBean = certFlowService.listCertFlowPage(pageParameter);
+            PageBean<CertFlowDTO> pageBean = certFlowService.listCertFlowPage(pageParameter);
             if(null == pageBean){
                 log.info("获取证书流水号列表异常");
                 return ResultT.failure(ResultCode.LIST_FAILURE);

@@ -71,6 +71,19 @@ public class OrderItemDO implements Serializable {
      */
     private String isSubpkgMgr;
     /**
+     *派单人id
+     */
+    private String assignUserUuid;
+    /**
+     *派单时间
+     */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date assignTime;
+    /**
+     *派单说明
+     */
+    private String assignComments;
+    /**
      *接收任务机构id
      */
     private String receOrgUuid;
@@ -111,6 +124,16 @@ public class OrderItemDO implements Serializable {
      *退回原因
      */
     private String backReason;
+    /**
+     *计划开工日期
+     */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date planStartworkDate;
+    /**
+     *计划完工日期
+     */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date planFinishworkDate;
     /**
      *是Y否N退检
      */

@@ -37,6 +37,9 @@ WHERE
  --if appSysUuid !=null and appSysUuid != ''
              AND app_sys_uuid='#appSysUuid#'
  --end
+  --if minItemName !=null and minItemName != ''
+              AND min_item_name like '#minItemName:like#'
+  --end
 
 
 -- [insertMinItem]
