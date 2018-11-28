@@ -23,11 +23,11 @@ import java.util.List;
  * @Version 1.0
  */
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/custMgr")
 public class CustMgrController {
 
     private final static Logger log = LoggerFactory.getLogger(CustMgrController.class);
-    @Reference(timeout = 30000,url = "dubbo://127.0.0.1:20883")
+    @Reference(timeout = 30000)
     CustMgrService custMgrService;
 
     /**
@@ -57,7 +57,7 @@ public class CustMgrController {
      *@date: 2018/11/19
      */
 
-    @RequestMapping(value = "/listCustomer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/getCustMgrPageData", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listCustomer(@RequestBody PageParameter<CustMgrDO> pageParameter) {
         try {
             PageBean<CustMgrDO> custMgrPage = custMgrService.listCustMgrPage(pageParameter);
@@ -120,11 +120,8 @@ public class CustMgrController {
     public ResultT deleteCustomer(@RequestBody CustMgrDO custMgrDO) {
         try {
             Integer count = custMgrService.deleteCustMgr(custMgrDO);
-            if (count > 0) {
-                return ResultT.success("删除客户跟进人成功");
-            } else {
-                return ResultT.failure(ResultCode.ADD_FAILURE);
-            }
+            log.info("删除客户跟进人成功");
+            return ResultT.success("删除客户跟进人成功");
         } catch (Exception e) {
             log.error("删除客户跟进人失败", e);
             return ResultT.failure(ResultCode.ADD_FAILURE);

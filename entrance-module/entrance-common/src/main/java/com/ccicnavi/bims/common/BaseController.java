@@ -11,5 +11,7 @@ package com.ccicnavi.bims.common;
  * @version V1.0
  */
 
-public class BaseController {}
+public class BaseController {
+
+}
 

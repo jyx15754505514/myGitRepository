@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.resource.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -33,6 +34,7 @@ public class CertPaperDO  implements Serializable {
     /**
      * 入库时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date stromDate;
     /**
      * 领用单位
@@ -65,6 +67,7 @@ public class CertPaperDO  implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -77,6 +80,7 @@ public class CertPaperDO  implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid

@@ -1,37 +1,36 @@
 -- [listLinkman]
 SELECT
-	linkman_uuid,
-	cust_uuid,
-	linkman_name,
+	linkman_uuid as linkmanUuid,
+	cust_uuid as custUuid,
+	linkman_name as linkmanName,
 	gender,
 	phone,
 	email,
 	fax,
-	office_phone,
+	office_phone as officePhone,
 	addr,
-	is_default,
-	status_uuid,
+	is_default as isDefault,
+	status_uuid as statusUuid,
 	dept,
 	position,
 	role,
 	qq,
-	we_chat,
-	type_of_service,
+	we_chat as weChat,
+	type_of_service as typeOfService,
 	comments,
-	is_deleted,
-	created_time,
-	created_uuid,
-	created_name,
-	updated_time,
-	updated_name,
-	updated_uuid,
+	is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
 	extend1,
 	extend2,
 	extend3
 FROM
 	crm_customer_linkman
-WHERE
-	is_deleted = 'N'
+WHERE 1=1
         --iff linkmanName !=null and linkmanName != ''
             and linkman_name = '#linkmanName:like#'
         --end
@@ -41,38 +40,40 @@ WHERE
         --iff custUuid !=null and custUuid != ''
             and cust_uuid = '#custUuid#'
         --end
-
-
+        --iff isDeleted !=null and isDeleted != ''
+            and is_deleted = '#isDeleted#'
+        --end
+        order by created_time desc
 -- [getLinkman]
 SELECT
-	linkman_uuid,
-	cust_uuid,
-	linkman_name,
-	gender,
-	phone,
-	email,
-	fax,
-	office_phone,
-	addr,
-	is_default,
-	status_uuid,
-	dept,
-	position,
-	role,
-	qq,
-	we_chat,
-	type_of_service,
-	comments,
-	is_deleted,
-	created_time,
-	created_uuid,
-	created_name,
-	updated_time,
-	updated_name,
-	updated_uuid,
-	extend1,
-	extend2,
-	extend3
+	linkman_uuid as linkmanUuid,
+    cust_uuid as custUuid,
+    linkman_name as linkmanName,
+    gender,
+    phone,
+    email,
+    fax,
+    office_phone as officePhone,
+    addr,
+    is_default as isDefault,
+    status_uuid as statusUuid,
+    dept,
+    position,
+    role,
+    qq,
+    we_chat as weChat,
+    type_of_service as typeOfService,
+    comments,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
+    extend1,
+    extend2,
+    extend3
 FROM
 	crm_customer_linkman
 WHERE
@@ -307,10 +308,12 @@ WHERE
       -- iff updatedTime != null
         updated_time = '#updatedTime#'
 
-      -- iff updatedName != null
-        updated_name = '#updatedName#',
       -- iff updatedUuid != null
         updated_uuid = '#updatedUuid#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+
       -- iff extend1 != null
         extend1 = '#extend1#',
 

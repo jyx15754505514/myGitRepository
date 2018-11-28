@@ -1,12 +1,19 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.SpecialNeedService;
 import com.ccicnavi.bims.customer.dao.SpecialNeedDao;
+import com.ccicnavi.bims.customer.pojo.CustMgrDO;
 import com.ccicnavi.bims.customer.pojo.SpecialNeedDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +25,9 @@ import java.util.List;
 @Service
 @Slf4j
 public class SpecialNeedServiceImpl implements SpecialNeedService {
+
+    @Reference(timeout = 1000000)
+    IdWorkerService idWorkerService;
 
     @Autowired
     SpecialNeedDao specialNeedDao;
@@ -52,6 +62,8 @@ public class SpecialNeedServiceImpl implements SpecialNeedService {
     public int saveSpecialNeed(SpecialNeedDO specialNeed) {
         Integer count=0;
         try {
+            String needUuid = idWorkerService.getId(new Date());
+            specialNeed.setNeedUuid(needUuid);
             count=specialNeedDao.saveSpecialNeed(specialNeed);
         } catch (Exception e) {
             e.printStackTrace();
@@ -115,5 +127,20 @@ public class SpecialNeedServiceImpl implements SpecialNeedService {
             e.printStackTrace();
         }
         return specialNeedBean;
+    }
+    /**
+     * @Author congzhiyuan
+     * @Description 分页查询客户特殊需求信息
+     * @Date 20:00 2018/11/14
+     * @param pageParameter
+     * @return PageBean
+     */
+    public PageBean<SpecialNeedDO> getSpecialNeedPage(PageParameter<SpecialNeedDO> pageParameter) {
+        try {
+            return specialNeedDao.getSpecialNeedPage(pageParameter);
+        } catch (Exception e) {
+            log.error("分页查询客户特殊需求信息出错",e);
+        }
+        return new PageBean<>(0,0,0,0,0,new ArrayList<SpecialNeedDO>());
     }
 }

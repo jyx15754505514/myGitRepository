@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.order.api;
 
 import com.ccicnavi.bims.order.pojo.OrderItemDTO;
+import org.n3r.eql.EqlTran;
+
 /**
  * @Author MengZiJie
  * @Description 委托单服务项
@@ -40,5 +42,12 @@ public interface OrderItemService {
      * @Return java.lang.Integer
      */
     Integer outsourcOrderItem(OrderItemDTO orderItemDTO);
-
+    /**
+     * @Author songyateng
+     * @Description 删除服务项信息
+     * @Date 2018/11/28 10:39
+     * @Param [orderItemDTO]
+     * @Return java.lang.Integer
+     */
+    Integer deleteOrderItem(OrderItemDTO orderItemDTO);
 }

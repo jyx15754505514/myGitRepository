@@ -1,5 +1,8 @@
 package com.ccicnavi.bims.order.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,12 +14,11 @@ import java.util.List;
  * @Description 委托单DTO
  * @Date 9:23 2018/11/20
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderInfoDTO implements Serializable {
     /**
-     * 委托单id
+     *委托单主键
      */
     private String orderUuid;
     /**
@@ -24,25 +26,26 @@ public class OrderInfoDTO implements Serializable {
      */
     private String productCategoryUuid;
     /**
-     * 委托编号
+     *委托编号
      */
     private String orderNo;
     /**
-     * 委托单名称
+     *委托单名称
      */
     private String orderName;
     /**
      * 委托日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date orderDate;
     /**
-     * 客户号
-     */
-    private String orderCrmNo;
-    /**
-     *区域id
+     * 委托区域id
      */
     private String orderAreaId;
+    /**
+     * 外部编号
+     */
+    private String crmExternalNo;
     /**
      * 客户id
      */
@@ -64,17 +67,21 @@ public class OrderInfoDTO implements Serializable {
      */
     private String crmEmail;
     /**
-     * 合同编号
+     * 贸易合同编号
      */
     private String crmContractNo;
     /**
-     * 紧急联系人
+     * 联检方
      */
-    private String crmEmerName;
+    private String thirdOrgName;
     /**
-     * 紧急联系人电话
+     * 联检方联系人
      */
-    private String crmEmerTelphone;
+    private String thirdOrgLinkman;
+    /**
+     * 联检方联系人电话
+     */
+    private String thirdOrgTelphone;
     /**
      * 委托项目名称
      */
@@ -100,7 +107,7 @@ public class OrderInfoDTO implements Serializable {
      */
     private String orderItemQtyUnit;
     /**
-     *使用标准id
+     * 使用标准id
      */
     private String useStdUuid;
     /**
@@ -112,17 +119,22 @@ public class OrderInfoDTO implements Serializable {
      */
     private String useStdComment;
     /**
-     *总费用
+     * 总费用
      */
     private Integer totalFee;
     /**
      * 首次计费日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date firstFeeDate;
     /**
      * 是Y否N内部委托单
      */
     private String isInternal;
+    /**
+     * 委托人来源
+     */
+    private String orderCrmSource;
     /**
      * 委托单来源机构id
      */
@@ -134,11 +146,12 @@ public class OrderInfoDTO implements Serializable {
     /**
      * 计划检验时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date planInspectDate;
     /**
      * 计划检验地
      */
-    private Date planInspectAddr;
+    private String planInspectAddr;
     /**
      * 备注
      */
@@ -166,6 +179,7 @@ public class OrderInfoDTO implements Serializable {
     /**
      * 受理日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date acceptDate;
     /**
      * 受理机构id
@@ -206,6 +220,7 @@ public class OrderInfoDTO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -218,6 +233,7 @@ public class OrderInfoDTO implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid
@@ -335,4 +351,8 @@ public class OrderInfoDTO implements Serializable {
      *委托样品类型
      */
     private List<OrderSampleTypeDO> orderSampleTypeDO;
+    /**
+     * 运输信息
+     */
+    private OrderInspectionDO orderInspectionDO;
 }

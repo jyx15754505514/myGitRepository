@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.system.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,20 +19,9 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrganizationDTO implements Serializable{
 
-    /**
-     * 组织机构主键集合
-     */
-    private List<String> uuids;
-    /**
-     * 所在级别
-     */
-    private Long levels;
-    /**
-     * 组织机构子集
-     */
-    private List<OrganizationDTO> orgChildList;
     /**
      * 组织机构主键
      */
@@ -47,6 +38,10 @@ public class OrganizationDTO implements Serializable{
      * 组织机构名称
      */
     private String orgName;
+    /**
+     * 组织机构名称
+     */
+    private String title;
     /**
      * 简称
      */
@@ -118,6 +113,7 @@ public class OrganizationDTO implements Serializable{
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -130,6 +126,7 @@ public class OrganizationDTO implements Serializable{
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid
@@ -163,4 +160,16 @@ public class OrganizationDTO implements Serializable{
      * 预留字段3
      */
     private String extend3;
+    /**
+     * 组织机构主键集合
+     */
+    private List<String> uuids;
+    /**
+     * 所在级别
+     */
+    private Long levels;
+    /**
+     * 组织机构子集
+     */
+    private List<OrganizationDTO> children;
 }

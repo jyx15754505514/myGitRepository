@@ -17,6 +17,7 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MenuButtonDTO implements Serializable {
 
     /**

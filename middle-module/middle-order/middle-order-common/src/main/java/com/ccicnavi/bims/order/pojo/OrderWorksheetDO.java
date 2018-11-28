@@ -1,8 +1,8 @@
 package com.ccicnavi.bims.order.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,9 +11,8 @@ import java.util.Date;
  * @Description 工作单
  * @Date 15:14 2018/11/21
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderWorksheetDO implements Serializable {
     /**
      * 主键
@@ -26,6 +25,7 @@ public class OrderWorksheetDO implements Serializable {
     /**
      * 分配时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date assignTime;
     /**
      * 分配说明
@@ -34,10 +34,12 @@ public class OrderWorksheetDO implements Serializable {
     /**
      * 计划开始日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date planStartDate;
     /**
      * 计划完成日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date planEndDate;
     /**
      * 实施部门id
@@ -50,10 +52,12 @@ public class OrderWorksheetDO implements Serializable {
     /**
      * 实施开始日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date implStartDate;
     /**
      * 实施完成日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date implEndDate;
     /**
      * 备注
@@ -66,6 +70,7 @@ public class OrderWorksheetDO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -78,6 +83,7 @@ public class OrderWorksheetDO implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid

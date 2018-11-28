@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.resource.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.util.List;
  **/
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
+
 public class EquipUseDTO implements Serializable {
     /**
      * 领用记录主键uuid
@@ -26,6 +28,7 @@ public class EquipUseDTO implements Serializable {
     /**
      * 领用日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date useDate;
     /**
      * 领用人
@@ -38,6 +41,7 @@ public class EquipUseDTO implements Serializable {
     /**
      * 归还日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date backDate;
     /**
      * 备注
@@ -50,6 +54,7 @@ public class EquipUseDTO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人uuid
@@ -62,6 +67,7 @@ public class EquipUseDTO implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid

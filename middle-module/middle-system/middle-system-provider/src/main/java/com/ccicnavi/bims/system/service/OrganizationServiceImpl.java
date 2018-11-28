@@ -100,14 +100,15 @@ public class OrganizationServiceImpl implements OrganizationService {
             List<OrganizationDTO> orgList = new ArrayList<OrganizationDTO>();
             List<String> uuids = new ArrayList<String>();
             orgList = organizationDao.listOrgByUser(organizationDTO);
-            //禁用/启用 递归调用
+            //删除 递归调用
             if(orgList != null && orgList.size() > 0 ){
                 //递归调用，获取树形部门结构
                 listOrganiztionUuid(organizationDTO, orgList, uuids);
-                //System.out.println("uuids:::::"+uuids);
-                OrganizationDTO orgDTO = new OrganizationDTO();
-                orgDTO.setUuids(uuids);
-                return organizationDao.deleteOrganization(orgDTO);
+                System.out.println("uuids:::::"+uuids);
+                //OrganizationDTO orgDTO = new OrganizationDTO();
+                organizationDTO.setOrganizationUuid(null);
+                organizationDTO.setUuids(uuids);
+                return organizationDao.deleteOrganization(organizationDTO);
             }else{
                 return null;
             }
@@ -194,7 +195,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             childList = organizationDao.listOrgByUser(organizationDTO);
 
             if (childList != null && childList.size() > 0) {
-                org.setOrgChildList(childList);
+                org.setChildren(childList);
                 listChildOrg(organizationDTO, childList);
             }
         }
@@ -251,10 +252,10 @@ public class OrganizationServiceImpl implements OrganizationService {
             if(orgList != null && orgList.size() > 0 ){
                 //递归调用，获取树形部门结构
                 listOrganiztionUuid(organizationDTO, orgList, uuids);
-                //System.out.println("uuids:::::"+uuids);
-                OrganizationDTO orgDTO = new OrganizationDTO();
-                orgDTO.setUuids(uuids);
-                return organizationDao.updateOrgByEnable(orgDTO);
+                System.out.println("uuids:::::"+uuids);
+                organizationDTO.setOrganizationUuid(null);
+                organizationDTO.setUuids(uuids);
+                return organizationDao.updateOrgByEnable(organizationDTO);
             }else{
                 return null;
             }
@@ -265,7 +266,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     /**
-     *@Description: 禁用/启用 递归调用
+     *@Description: 删除、禁用/启用 递归调用
      *@Param: [departmentDO, deptList]
      *@return: void
      *@Author: zhangpengwei
@@ -278,11 +279,13 @@ public class OrganizationServiceImpl implements OrganizationService {
             String organizationUuid = org.getOrganizationUuid();
             organizationDTO.setOrgParentUuid(organizationUuid);
             organizationDTO.setOrgUuid(null);
+            organizationDTO.setUuids(null);
             uuids.add(org.getOrganizationUuid());
+
             childList = organizationDao.listOrgByUser(organizationDTO);
 
             if (childList != null && childList.size() > 0) {
-                org.setOrgChildList(childList);
+                org.setChildren(childList);
                 listOrganiztionUuid(organizationDTO, childList, uuids);
             }
         }

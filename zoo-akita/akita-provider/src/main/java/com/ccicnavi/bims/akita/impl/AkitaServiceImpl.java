@@ -39,7 +39,8 @@ public class AkitaServiceImpl implements AkitaService {
     @Autowired
     private TrackerClient trackerClient;
 
-    @Reference(url = "dubbo://192.168.125.12:20880")
+//    @Reference(url = "dubbo://192.168.125.12:20880")
+    @Reference
     IdWorkerService idWorkerService;
 
     @Autowired

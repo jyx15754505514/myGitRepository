@@ -2,6 +2,7 @@ package com.ccicnavi.bims.product.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.ccicnavi.bims.base.controller.BaseController;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
@@ -12,6 +13,7 @@ import com.ccicnavi.bims.product.api.CatalogService;
 import com.ccicnavi.bims.product.pojo.CatalogDO;
 import com.ccicnavi.bims.product.pojo.CatalogOrgDO;
 import com.ccicnavi.bims.product.pojo.CatalogOrgDTO;
+import com.ccicnavi.bims.sso.common.pojo.SSOUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +33,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/catalog")
 @Slf4j
-public class CatalogController {
+public class CatalogController extends BaseController {
 
     @Reference(timeout = 30000)
     CatalogService catalogService;

@@ -47,7 +47,7 @@ public class OrderSampleDaoImpl implements OrderSampleDao {
     }
     /**
       * @author songyateng
-      * @description
+      * @description 查询样品
       * @date 2018/11/23 14:46
       * @Param [orderSampleDO]
       * @return java.util.List<com.ccicnavi.bims.order.pojo.OrderSampleDO>
@@ -55,5 +55,20 @@ public class OrderSampleDaoImpl implements OrderSampleDao {
     @Override
     public List<OrderSampleDO> listOrderSample(OrderSampleDO orderSampleDO) throws Exception {
         return new Eql().select("listOrderSample").params(orderSampleDO).returnType(OrderSampleDO.class).execute();
+    }
+    /**
+     * @Author songyateng
+     * @Description 更新样品信息
+     * @Date 2018/11/27 23:30
+     * @Param [orderSampleDO, eqlTran]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer updateOrderSample(OrderSampleDO orderSampleDO,EqlTran tran) {
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).update("updateOrderSample").params(orderSampleDO).returnType(Integer.class).execute();
+        }
+        return eql.update("updateOrderSample").params(orderSampleDO).returnType(Integer.class).execute();
     }
 }

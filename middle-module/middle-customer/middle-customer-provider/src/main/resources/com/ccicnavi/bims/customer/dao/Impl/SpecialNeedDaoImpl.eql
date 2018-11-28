@@ -1,17 +1,18 @@
 -- [listSpecialNeed]
 SELECT
-    need_uuid,
-    cust_uuid,
-    need_type,
-    need_content,
-    dept_uuid,
+    need_uuid as needUuid,
+    cust_uuid as custUuid,
+    need_type as needType,
+    need_content as needContent,
+    dept_uuid as deptUuid,
     comments,
-    is_deleted,
-    created_time,
-    created_uuid,
-    created_name,
-    updated_time,
-    updated_name,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
     extend1,
     extend2,
     extend3
@@ -56,6 +57,9 @@ insert into crm_special_need
 
      -- iff updatedTime != null and updatedTime != ''
         updated_time,
+
+     -- iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
 
      -- iff updatedName != null and updatedName != ''
         updated_name,
@@ -103,6 +107,9 @@ insert into crm_special_need
 
      -- iff updatedTime != null and updatedTime != ''
         '#updatedTime#',
+
+     -- iff updatedUuid != null and updatedUuid != ''
+        '#updatedUuid#',
 
      -- iff updatedName != null and updatedName != ''
         '#updatedName#',
@@ -167,6 +174,9 @@ WHERE is_deleted='N'
       -- iff updatedTime != null
         updated_time = '#updatedTime#',
 
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
+
       -- iff updatedName != null
         updated_name = '#updatedName#',
 
@@ -185,18 +195,19 @@ WHERE is_deleted='N'
 
 -- [getSpecialNeed]
 SELECT
-    need_uuid,
-    cust_uuid,
-    need_type,
-    need_content,
-    dept_uuid,
+    need_uuid as needUuid,
+    cust_uuid as custUuid,
+    need_type as needType,
+    need_content as needContent,
+    dept_uuid as deptUuid,
     comments,
-    is_deleted,
-    created_time,
-    created_uuid,
-    created_name,
-    updated_time,
-    updated_name,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
     extend1,
     extend2,
     extend3
@@ -205,7 +216,7 @@ FROM
 WHERE
 	is_deleted = 'N'
         --iff custUuid !=null and custUuid != ''
-            and cust_uuid = '#custUuid:like#'
+            and cust_uuid = '#custUuid#'
         --end
         --iff needUuid !=null and needUuid != ''
             and need_uuid = '#needUuid#'

@@ -28,7 +28,7 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
     @Autowired
     SubcQualifiDao subcQualifiDao;
 
-    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    @Reference(timeout = 50000)
     IdWorkerService idWorkerService;
     /**
      * @Author FanDongSheng

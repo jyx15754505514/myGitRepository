@@ -198,29 +198,78 @@
             AND prod_catalog_uuid='#prodCatalogUuid#'
       -- end
      AND org_uuid='#orgUuid#'
-     AND app_sys_uuid='#appSysUuid#'
+     -- if appSysUuid != null and appSysUuid!=''
+               AND app_sys_uuid='#appSysUuid#'
+     -- end
+
 
 -- 根据父级类型uuid查询字典数据
 -- [listDictValue]
 SELECT
-    dict_value_uuid dictValueUuid,
-    dict_value_name dictValueName,
-    dict_value_code dictValueCode,
-    dict_parent_uuid dictParentUuid
-from
-    sys_dict_value
+	dict_value_uuid,
+	dict_value_name,
+	dict_value_code,
+	dict_parent_uuid,
+	sort_num,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_uuid,
+	updated_name,
+	prod_catalog_uuid,
+	org_uuid,
+	app_sys_uuid
+FROM
+	sys_dict_value
 WHERE
-    is_deleted = 'N'
-    and dict_parent_uuid = '#dictParentUuid#'
-    -- if orgUuid != null and orgUuid!=''
-               AND (org_uuid='#orgUuid#' or org_uuid='#publicOrgUuid#')
+	is_deleted = 'N'
+    -- if dictParentUuid != null and dictParentUuid != ''
+               AND dict_parent_uuid = '#dictParentUuid#'
     -- end
-    -- if appSysUuid != null and appSysUuid!=''
-              AND app_sys_uuid='#appSysUuid#'
+    -- if orgUuid != null and orgUuid != ''
+               AND (org_uuid='#orgUuid#' or org_uuid = '#publicOrgUuid#')
     -- end
-    -- if prodCatalogUuid != null and prodCatalogUuid!=''
-              AND prod_catalog_uuid='#prodCatalogUuid#'
+    -- if appSysUuid != null and appSysUuid != ''
+              AND app_sys_uuid = '#appSysUuid#'
     -- end
+    -- if prodCatalogUuid != null and prodCatalogUuid != ''
+              AND prod_catalog_uuid = '#prodCatalogUuid#'
+    -- end
+    -- if dictValueName != null and dictValueName != ''
+             AND dict_value_name like '#dictValueName:like#'
+     -- end
     order by sort_num
+
+
+-- [getDictValue]
+SELECT
+	dict_value_uuid,
+	dict_value_name,
+	dict_value_code,
+	dict_parent_uuid,
+	sort_num,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_uuid,
+	updated_name,
+	prod_catalog_uuid,
+	org_uuid,
+	app_sys_uuid
+FROM
+	sys_dict_value
+WHERE
+	is_deleted = 'N'
+AND dict_value_uuid='#dictValueUuid#'
+-- if appSysUuid != null and appSysUuid!=''
+          AND app_sys_uuid='#appSysUuid#'
+-- end
+
 
 

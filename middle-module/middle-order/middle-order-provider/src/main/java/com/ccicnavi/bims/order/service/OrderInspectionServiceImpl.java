@@ -5,11 +5,10 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.order.api.OrderInspectionService;
 import com.ccicnavi.bims.order.dao.OrderInspectionDao;
-import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
+import com.ccicnavi.bims.order.pojo.OrderInspectionDO;
 import lombok.extern.slf4j.Slf4j;
 import org.n3r.eql.EqlTran;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.Date;
 
 /**
  * @Author heibin
@@ -34,13 +33,10 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertOrderInspection(OrderInfoDTO orderInfoDTO) {
+    public Integer insertOrderInspection(OrderInspectionDO orderInspectionDO) {
         Integer inspection = null;
         try {
-            /**生成uuid*/
-            String shippingTypeId = idWorkerService.getId(new Date());
-            orderInfoDTO.setShippingTypeId(shippingTypeId);
-            inspection = orderInspectionDao.insertOrderInspection(orderInfoDTO, null);
+            inspection = orderInspectionDao.insertOrderInspection(orderInspectionDO, null);
             if(inspection > 0){
                 return  inspection;
             }
@@ -52,17 +48,17 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
 
     /**
      * @Author heibin
-     * @Description 更新委托单运输方式
+     * @Description 更新委托单运输方式（参数：OrderInfoDTO）
      * @Date 18:04 2018/11/19
      * @Param [orderShipmentDO]
      * @Return java.lang.Integer
      */
     @Override
-    public Integer updateOrderInspection(OrderInfoDTO orderInfoDTO) {
+    public Integer updateOrderInspection(OrderInspectionDO orderInspectionDO) {
         EqlTran eqlTran = null;
         Integer inspection = null;
         try {
-            inspection = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
+            inspection = orderInspectionDao.updateOrderInspection(orderInspectionDO, eqlTran);
             if (inspection > 0) {
                 return inspection;
             }

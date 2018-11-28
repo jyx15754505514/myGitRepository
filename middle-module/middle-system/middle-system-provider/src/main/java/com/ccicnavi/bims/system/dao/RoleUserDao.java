@@ -33,13 +33,22 @@ public interface RoleUserDao {
     public Integer updateRoleUser(UserDTO userDTO, EqlTran tran);
 
     /**
-    *@Description: 根据用户和角色主键删除用户角色信息
+    *@Description: 根据角色主键删除用户角色信息
     *@Param: [userDTO, tran]
     *@return: java.lang.Integer
     *@Author: zhangxingbiao
     *@date: 2018/11/22
     */
-    public Integer deleteRoleUsers(UserDTO userDTO, EqlTran tran);
+    public Integer deleteRoleUserByRole(UserDTO userDTO, EqlTran tran);
+
+    /**
+    *@Description: 根据用户主键删除用户角色信息
+    *@Param: [userDTO, tran]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/22
+    */
+    public Integer deleteRoleUserByUser(UserDTO userDTO, EqlTran tran);
 
     /**
     *@Description: 查询用户角色
@@ -50,12 +59,4 @@ public interface RoleUserDao {
     */
     public List<RoleUserDTO> listRoleUser(UserDTO userDTO);
 
-    /*
-    * 根据用户主键删除用户角色信息
-    * @Author zhaotao
-    * @Date  2018/11/27 9:45
-    * @Param [userDTO, tran]
-    * @return java.lang.Integer
-    **/
-    Integer deleteRoleByUser(UserDTO userDTO, EqlTran tran);
 }

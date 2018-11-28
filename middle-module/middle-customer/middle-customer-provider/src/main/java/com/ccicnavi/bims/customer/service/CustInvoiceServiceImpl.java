@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.CustInvoiceService;
@@ -10,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,6 +24,9 @@ import java.util.List;
 @Service
 @Slf4j
 public class CustInvoiceServiceImpl implements CustInvoiceService {
+
+    @Reference(timeout = 1000000)
+    IdWorkerService idWorkerService;
 
     @Autowired
     CustInvoiceDao custInvoiceDao;
@@ -38,6 +44,8 @@ public class CustInvoiceServiceImpl implements CustInvoiceService {
     @Override
     public int saveCustInvoice(CustInvoiceDO custInvoice) {
         try {
+            String invoiceUuid = idWorkerService.getId(new Date());
+            custInvoice.setInvoiceUuid(invoiceUuid);
              return custInvoiceDao.saveCustInvoice(custInvoice,null);
         } catch (Exception e) {
             log.error("保存客户发票失败", e);

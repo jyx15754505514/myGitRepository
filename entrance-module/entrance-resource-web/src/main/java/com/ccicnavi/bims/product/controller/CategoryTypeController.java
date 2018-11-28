@@ -29,11 +29,18 @@ import java.util.List;
 @Slf4j
 public class CategoryTypeController {
 
-    @Reference(timeout = 30000)
+    @Reference
     CategoryTypeService categoryTypeService;
-    @Reference(timeout = 30000)
+
+    @Reference
     IdWorkerService idWorkerService;
 
+    /**
+     * @description 查询全部产品类别的分类信息
+     * @param categoryTypeDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/listCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
@@ -45,6 +52,12 @@ public class CategoryTypeController {
         }
     }
 
+    /**
+     * @description 新增产品类别的分类信息
+     * @param categoryTypeDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/saveCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT saveCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         categoryTypeDO.setProductCategoryTypeUuid(idWorkerService.getId(new Date()));
@@ -67,6 +80,12 @@ public class CategoryTypeController {
         }
     }
 
+    /**
+     * @description 删除产品类别的分类信息
+     * @param categoryTypeDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/removeCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT removeCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
@@ -88,6 +107,12 @@ public class CategoryTypeController {
         }
     }
 
+    /**
+     * @description 修改产品类别的分类信息
+     * @param categoryTypeDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/updateCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT updateCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
@@ -109,6 +134,12 @@ public class CategoryTypeController {
         }
     }
 
+    /**
+     * @description 根据条件获取产品类别的分类信息
+     * @param categoryTypeDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/getCategoryType",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getCategoryType(@RequestBody CategoryTypeDO categoryTypeDO){
         try {
@@ -130,6 +161,12 @@ public class CategoryTypeController {
         }
     }
 
+    /**
+     * @description 分页查询产品类别的分类信息
+     * @param pageParameter
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/listCategoryTypePage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listCategoryTypePage(@RequestBody PageParameter<CategoryTypeDO> pageParameter){
         try {

@@ -1,9 +1,8 @@
 package com.ccicnavi.bims.order.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,9 +11,8 @@ import java.util.Date;
  * @Description 证书结果
  * @Date 14:35 2018/11/20
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderResultInfoDO implements Serializable {
     /**
      * 主键
@@ -35,6 +33,7 @@ public class OrderResultInfoDO implements Serializable {
     /**
      * 证书编制时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date certEditTime;
     /**
      * 证书核检人员id
@@ -43,6 +42,7 @@ public class OrderResultInfoDO implements Serializable {
     /**
      * 证书核检时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date certCheckTime;
     /**
      * 证书签发人员id
@@ -51,6 +51,7 @@ public class OrderResultInfoDO implements Serializable {
     /**
      * 证书签发时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date certSignTime;
     /**
      * 结果报告/证书是否上传
@@ -83,6 +84,7 @@ public class OrderResultInfoDO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      * 创建人id
@@ -95,6 +97,7 @@ public class OrderResultInfoDO implements Serializable {
     /**
      * 最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      * 更新人uuid

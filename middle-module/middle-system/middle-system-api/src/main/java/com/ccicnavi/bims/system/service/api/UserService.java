@@ -52,10 +52,10 @@ public interface UserService {
      *@Description: 根据角色查询用户
      *@Param: userDTO
      *@return: UserDTO
-     *@Author: 本人姓名
+     *@Author: zqq
      *@date: 2018/11/22
      */
-    public UserDTO selectByRoleUser(UserDTO userDTO);
+    public UserDTO selectByRoleUser(PageParameter<UserDTO> PageParameter);
 
 
     /**
@@ -83,7 +83,7 @@ public interface UserService {
     *@Author: zhangxingbiao
     *@date: 2018/11/23
     */
-    public UserDTO initialPassword(UserDTO userDTO);
+    public Integer initialPassword(UserDTO userDTO);
 
     /**
      *@Description: 用户登录

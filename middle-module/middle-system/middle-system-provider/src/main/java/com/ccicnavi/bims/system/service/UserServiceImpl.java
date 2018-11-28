@@ -24,6 +24,7 @@ import org.n3r.eql.EqlTran;
 import org.n3r.eql.util.Closes;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -169,7 +170,7 @@ public class UserServiceImpl implements UserService{
         try {
             tran.start();
             deleteUser = userDao.deleteUser(userDTO, tran);
-            deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
+            deleteRoleUser = roleUserDao.deleteRoleUserByUser(userDTO, tran);
             if(deleteUser != null && deleteRoleUser != null){
                 tran.commit();
             }
@@ -212,14 +213,26 @@ public class UserServiceImpl implements UserService{
     * @return com.ccicnavi.bims.system.pojo.UserDTO
     **/
     @Override
-    public UserDTO selectByRoleUser(UserDTO userDTO) {
+    public UserDTO selectByRoleUser(PageParameter<UserDTO> PageParameter) {
         //授权用户
+        List<String> userUuids = new ArrayList<String>();
         try {
+            UserDTO userdto =new UserDTO();
+            userdto.setRoleUuid(PageParameter.getParameter().getRoleUuid());
+            userdto.setOrgUuid(PageParameter.getParameter().getOrgUuid());
+            List<UserDTO> authUserList = userDao.listauthUserList(userdto);
+            if(authUserList !=null && authUserList.size() >0){
+                for(UserDTO user:authUserList){
+                    userUuids.add(user.getUserUuid());
+                }
+            }else{
+                userUuids =null;
+            }
+            PageParameter.getParameter().setUserUuids(userUuids);
+            PageBean<UserDTO> pageList = userDao.selectunauthUserList(PageParameter);
             UserDTO userDto =new UserDTO();
-            List<UserDTO> authUserList = userDao.listauthUserList(userDTO);
-            List<UserDTO> unauthUserList =userDao.selectunauthUserList(userDTO);
             userDto.setAuthUserList(authUserList);
-            userDto.setUnauthUserList(unauthUserList);
+            userDto.setUnauthUserList(pageList);
             return userDto;
         } catch (Exception e) {
             log.error("根据角色查询用户信息失败",e);
@@ -255,22 +268,23 @@ public class UserServiceImpl implements UserService{
     @Override
     public Integer addUserRole(UserDTO userDTO) {
         EqlTran tran = new Eql("DEFAULT").newTran();
-        Integer insertRole = null;
-        Integer deleteRoleUser = null;
+        Integer insertRole = 0;
+        Integer deleteRoleUser = 0;
         try {
             tran.start();
-            deleteRoleUser = roleUserDao.deleteRoleByUser(userDTO, tran);
+            deleteRoleUser = roleUserDao.deleteRoleUserByUser(userDTO, tran);
            /* List<String> deleteRoleList = userDTO.getDeleteRoleList();
             if(deleteRoleList != null && deleteRoleList.size() > 0){
                 deleteRoleUser = roleUserDao.deleteRoleUsers(userDTO, tran);
             }*/
+
             //添加角色的集合不为空就根据用户uuid添加用户和角色信息
             List<String> addRoleList = userDTO.getAddRoleList();
             if(addRoleList != null && addRoleList.size() > 0){
                 for(String roleUuid : addRoleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表
-                    insertRole = roleUserDao.insertRoleUsers(userDTO, tran);
+                    insertRole += roleUserDao.insertRoleUsers(userDTO, tran);
                 }
             }
             if((insertRole == null || insertRole != addRoleList.size())) {
@@ -314,7 +328,7 @@ public class UserServiceImpl implements UserService{
      *@date: 2018/11/23
      */
     @Override
-    public UserDTO initialPassword(UserDTO userDTO) {
+    public Integer initialPassword(UserDTO userDTO) {
         EqlTran tran = new Eql("DEFAULT").newTran();
         SettingDO settingDO = null;
         Integer updateUser = 0;
@@ -334,14 +348,14 @@ public class UserServiceImpl implements UserService{
                 //密码加密
                 String password = passwdService.getHash(initialpassword, salt);
                 //将密码返回
-                userDTO.setCurrentPassword(password);
-                userDTO.setSalt(salt);
+                user.setCurrentPassword(password);
+                user.setSalt(salt);
                 //更改用户密码
-                updateUser = userDao.updateUser(userDTO, tran);
+                updateUser = userDao.updateUser(user, tran);
             }
             if(userList != null && userList.size() > 0){
                 tran.commit();
-            }
+           }
         }catch (Exception e){
             log.error("恢复初始密码失败");
             tran.rollback();
@@ -349,6 +363,6 @@ public class UserServiceImpl implements UserService{
         }finally {
             Closes.closeQuietly(tran);
         }
-        return userDTO;
+        return updateUser;
     }
 }

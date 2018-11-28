@@ -22,7 +22,7 @@ where
 --iff appSysUuid != null and appSysUuid != ''
     and app_sys_uuid = '#appSysUuid#'
 --iff prodCatalogUuid != null and prodCatalogUuid != ''
-   and md.prod_catalog_uuid = '#prodCatalogUuid#'
+   and prod_catalog_uuid = '#prodCatalogUuid#'
 --iff prodCatalogList != null
      and prod_catalog_uuid in
      -- for item=item index=index collection=prodCatalogList open=( separator=, close=)

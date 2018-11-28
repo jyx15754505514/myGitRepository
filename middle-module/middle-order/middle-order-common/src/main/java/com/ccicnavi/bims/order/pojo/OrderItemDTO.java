@@ -1,8 +1,8 @@
 package com.ccicnavi.bims.order.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -11,9 +11,8 @@ import java.util.List;
  * @Description 委托单服务项DTO
  * @Date 9:30 2018/11/20
  */
-@Getter
-@Setter
-@ToString
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderItemDTO implements Serializable {
     /**
      *主键
@@ -86,6 +85,7 @@ public class OrderItemDTO implements Serializable {
     /**
      *接收到任务的时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date receUserTime;
     /**
      *使用标准id
@@ -134,6 +134,7 @@ public class OrderItemDTO implements Serializable {
     /**
      *创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     /**
      *创建人id
@@ -146,6 +147,7 @@ public class OrderItemDTO implements Serializable {
     /**
      *最后一次更新时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedTime;
     /**
      *更新人uuid

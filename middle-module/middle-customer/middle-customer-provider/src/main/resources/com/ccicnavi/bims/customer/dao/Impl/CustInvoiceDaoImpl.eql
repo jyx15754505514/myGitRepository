@@ -1,22 +1,22 @@
 -- [listCustInvoice]
 SELECT
-	invoice_uuid,
-	cust_uuid,
-	invoice_title,
-	invoice_type,
-	taxpayer_code,
-	bank_name,
-	bank_account,
+	invoice_uuid as invoiceUuid,
+	cust_uuid as custUuid,
+	invoice_title as invoiceTitle,
+	invoice_type as invoiceType,
+	taxpayer_code as taxpayerCode,
+	bank_name as bankName,
+	bank_account as bankAccount,
 	money,
-	is_taxpayer,
+	is_taxpayer as isTaxpayer,
 	comments,
-	is_deleted,
-	created_time,
-	created_uuid,
-	created_name,
-	updated_time,
-	updated_name,
-	updated_uuid,
+	is_deleted as isDeleted,
+	created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
 	extend1,
 	extend2,
 	extend3
@@ -189,11 +189,11 @@ update crm_customer_invoice
       -- iff updatedTime != null and updatedTime!= ''
         updated_time = '#updatedTime#',
 
-      -- iff updatedName != null
-        updated_name = '#updatedName#',
-
       -- iff updatedUuid != null
         updated_uuid = '#updatedUuid#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
 
       -- iff extend1 != null
         extend1 = '#extend1#',

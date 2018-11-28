@@ -94,7 +94,7 @@
           comments,
         --iff isDeleted != null
           is_deleted,
-        --iff createdTime != null
+        --iff createdTime == null
           created_time,
         --iff createdUuid != null
           created_uuid,
@@ -160,8 +160,8 @@
             '#comments#',
           --iff isDeleted != null
             '#isDeleted#',
-          --iff createdTime != null
-            '#createdTime#',
+          --iff createdTime == null
+            NOW(),
           --iff createdUuid != null
             '#createdUuid#',
           --iff createdName != null
@@ -406,8 +406,8 @@
 -- [listauthUserList]
  SELECT
          su.user_uuid  as userUuid,
-         rp.first_name as firstName,
-         su.login_name as nickName,
+         su.real_name as realName,
+         su.nick_name as nickName,
  		 rp.skill_name as skillName,
  		 so.org_name as deptName,
  		 rp.phone as phone
@@ -427,29 +427,24 @@
 -- [selectunauthUserList]
 select
          s.user_uuid  as userUuid,
-		 r.first_name as firstName,
-         s.login_name as nickName,
+		 s.real_name as realName,
+         s.nick_name as nickName,
  		 r.skill_name as skillName,
  		 so.org_name as deptName,
  		 r.phone as phone
 from sys_user s
 LEFT JOIN res_person r on s.user_uuid =r.user_uuid
-LEFT JOIN sys_organization so on s.dept_uuid=so.organization_uuid where s.user_uuid not in
-(SELECT
-        su.user_uuid
-    FROM
-        sys_user su
-    LEFT JOIN sys_role_user sr ON su.user_uuid = sr.user_uuid
-		LEFT JOIN res_person rp on su.user_uuid =rp.user_uuid
-		LEFT JOIN sys_organization so on su.dept_uuid=so.organization_uuid
-    WHERE
-           su.is_deleted = 'N'
-           and sr.role_uuid ='#roleUuid#'
-           and su.org_uuid ='#orgUuid#')
-           and s.org_uuid ='#orgUuid#'
+LEFT JOIN sys_organization so on s.dept_uuid=so.organization_uuid
+ where  s.org_uuid ='#orgUuid#'
+            -- if userUuids != null
+            and  s.user_uuid  not in
+                -- for item=item index=index collection=userUuids open=( separator=, close=)
+            		'#item#'
+            	-- end
+            --end
     --if deptUuid != null and  deptUuid != ''
            and s.dept_uuid ='#deptUuid#'
     --end
-    --if firstName != null and  firstName != ''
-           and rp.first_name like '#firstName:like#'
+    --if realName != null and  realName != ''
+           and s.real_name like '#realName:like#'
     --end

@@ -219,20 +219,18 @@ and order_uuid in
             is_open_cert = '#isOpenCert#',
         --iff comments != null and comments != ''
             comments = '#comments#',
-             --iff goodsValue != null and goodsValue != ''
-                                  goods_value = '#goodsValue#',
-                                    --iff goodsCurrency != null and goodsCurrency != ''
-                                                goods_currency = '#goodsCurrency#',
-                                                --iff weightBatch != null and weightBatch != ''
-                                                            weight_batch = '#weightBatch#',
-                                                            --iff weightBatchUnit != null and weightBatchUnit != ''
-                                                                        weight_batch_unit = '#weightBatchUnit#',
+        --iff goodsValue != null and goodsValue != ''
+              goods_value = '#goodsValue#',
+        --iff goodsCurrency != null and goodsCurrency != ''
+              goods_currency = '#goodsCurrency#',
+        --iff weightBatch != null and weightBatch != ''
+              weight_batch = '#weightBatch#',
+        --iff weightBatchUnit != null and weightBatchUnit != ''
+              weight_batch_unit = '#weightBatchUnit#',
     -- end
 where
-
     order_uuid = '#orderUuid#'
 -- end
-
 -- [deleteOrderInspection]
 UPDATE
     order_inspection
@@ -242,9 +240,9 @@ UPDATE
 WHERE
   is_deleted = 'N'
 --iff orderUuid != null and orderUuid != ''
-and order_uuid = '#orderUuid#'
---iff orderUuidList != null
-and order_uuid in
--- for item=item index=index collection=orderUuidList open=( separator=, close=)
-    '#item#'
--- end
+    and order_uuid = '#orderUuid#'
+--iff orderUuids != null
+    and order_uuid in
+    -- for item=item index=index collection=orderUuids open=( separator=, close=)
+        '#item#'
+    -- end

@@ -31,7 +31,7 @@ public class RoleServiceImpl implements RoleService {
     private RolePermissionDao rolePermissionDao;
     @Autowired
     private RoleUserDao roleUserDao;
-    @Reference(url = "dubbo://127.0.0.1:20880", timeout = 5000)
+    @Reference
     IdWorkerService idWorkerService;
     @Override
     public PageBean<RoleDO> listRole(PageParameter<RoleDO> pageParameter){
@@ -81,7 +81,7 @@ public class RoleServiceImpl implements RoleService {
                 userDTO.setOrgUuid(role.getOrgUuid());
                 List<RoleUserDTO> roleuserlist= roleUserDao.listRoleUser(userDTO);
                 if(roleuserlist !=null && roleuserlist.size()>0){
-                    roleusernum = roleUserDao.deleteRoleUsers(userDTO,tran);
+                    roleusernum = roleUserDao.deleteRoleUserByRole(userDTO,tran);
                 }else{
                     roleusernum=1;
                 }

@@ -35,11 +35,11 @@ import java.util.List;
 public class CategoryController {
 
 
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    @Reference
     CategoryService categoryService;
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    @Reference
     CategoryOrgService categoryOrgService;
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20880")
+    @Reference
     IdWorkerService idWorkerService;
 
     /**

@@ -34,6 +34,12 @@ public class TestItemController {
     @Reference(timeout = 30000)
     IdWorkerService idWorkerService;
 
+    /**
+     * @description 查询全部检测指标信息
+     * @param testItemDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/listTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listTestItem(@RequestBody TestItemDO testItemDO){
         try {
@@ -45,6 +51,12 @@ public class TestItemController {
         }
     }
 
+    /**
+     * @description 新增检测指标信息
+     * @param testItemDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/saveTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT saveTestItem(@RequestBody TestItemDO testItemDO){
         testItemDO.setItemUuid(idWorkerService.getId(new Date()));
@@ -67,6 +79,12 @@ public class TestItemController {
         }
     }
 
+    /**
+     * @description 删除检测指标信息
+     * @param testItemDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/removeTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT removeTestItem(@RequestBody TestItemDO testItemDO){
         try {
@@ -88,6 +106,12 @@ public class TestItemController {
         }
     }
 
+    /**
+     * @description 修改检测指标信息
+     * @param testItemDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/updateTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT updateTestItem(@RequestBody TestItemDO testItemDO){
         try {
@@ -98,7 +122,7 @@ public class TestItemController {
             Integer num=testItemService.updateTestItem(testItemDO);
             if (num>0)
             {
-                return ResultT.success(testItemDO);
+                return ResultT.success(num);
             }else
             {
                 return ResultT.failure(ResultCode.UPDATE_FAILURE);
@@ -109,6 +133,12 @@ public class TestItemController {
         }
     }
 
+    /**
+     * @description 根据条件获取检测指标信息
+     * @param testItemDO
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/getTestItem",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getTestItem(@RequestBody TestItemDO testItemDO){
         try {
@@ -127,6 +157,12 @@ public class TestItemController {
         return ResultT.failure(ResultCode.GET_FAILURE);
     }
 
+    /**
+     * @description 分页查询检测指标信息
+     * @param pageParameter
+     * @return com.ccicnavi.bims.common.ResultT
+     * @author WangYingLing
+     */
     @RequestMapping(value = "/listTestItemPage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listTestItemPage(@RequestBody PageParameter<TestItemDO> pageParameter){
         try {

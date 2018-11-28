@@ -36,23 +36,26 @@
          -- if userUuid != null
                  user_uuid = '#userUuid#'
          -- end
---删除用户角色信息
---[deleteRoleUsers]
+
+
+-- 根据角色删除信息
+--[deleteRoleUserByRole]
     DELETE
     FROM
         sys_role_user
     where
-      role_uuid = '#roleUuid#'
-      and org_uuid = '#orgUuid#'
+         org_uuid = '#orgUuid#'
+         and role_uuid = '#roleUuid#'
 
-
--- 根据用户删除用户角色
---[deleteRoleByUser]
+-- 根据用户删除信息
+--[deleteRoleUserByUser]
     DELETE
     FROM
         sys_role_user
     where
-      user_uuid = '#userUuid#'
+         org_uuid = '#orgUuid#'
+         and user_uuid = '#userUuid#'
+
 
 
 --查询用户角色信息

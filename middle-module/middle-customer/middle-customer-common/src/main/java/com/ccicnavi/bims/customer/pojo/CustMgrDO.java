@@ -1,8 +1,8 @@
 package com.ccicnavi.bims.customer.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
+import java.io.Serializable;
 
 /**
  * @Auther: congzhiyuan
@@ -10,10 +10,10 @@ import lombok.ToString;
  * @Description: TODO
  * @Version 1.0
  */
-@Setter
-@Getter
-@ToString
-public class CustMgrDO {
+
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CustMgrDO implements Serializable {
     /**
     客户uuid
     */
