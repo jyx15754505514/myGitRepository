@@ -90,7 +90,10 @@ public class SubcontractorServiceImpl implements SubcontractorService{
     public SubcontractorDTO getSubcontractorList(SubcontractorDTO subcontractorDTO){
         try {
             //得到分包方信息
-            subcontractorDTO = subcontractorDao.getSubcontractor(subcontractorDTO);
+            SubcontractorDTO subcontractorDTOExtend = subcontractorDao.getSubcontractor(subcontractorDTO);
+            if(subcontractorDTOExtend!=null){
+                subcontractorDTO = subcontractorDTOExtend;
+            }
             //添加资质信息
             List<SubcQualifiDO> subcQualifiDOList = subcQualifiDao.listSubcuQuali(subcontractorDTO);
             subcontractorDTO.setSubcQualifiDOList(subcQualifiDOList);
