@@ -22,12 +22,12 @@ public class OrderInspectionDaoImpl implements OrderInspectionDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertOrderInspection(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception {
+    public Integer insertOrderInspection(OrderInspectionDO orderInspectionDO, EqlTran tran) throws Exception {
         Eql eql = new Eql();
         if(tran != null){
-            return eql.useTran(tran).insert("insertOrderInspection").params(orderInfoDTO).returnType(Integer.class).execute();
+            return eql.useTran(tran).insert("insertOrderInspection").params(orderInspectionDO).returnType(Integer.class).execute();
         }
-        return eql.insert("insertOrderInspection").params(orderInfoDTO).returnType(Integer.class).execute();
+        return eql.insert("insertOrderInspection").params(orderInspectionDO).returnType(Integer.class).execute();
     }
 
     /**
@@ -38,12 +38,12 @@ public class OrderInspectionDaoImpl implements OrderInspectionDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer updateOrderInspection(OrderInfoDTO orderInfoDTO, EqlTran tran) throws Exception {
+    public Integer updateOrderInspection(OrderInspectionDO orderInspectionDO, EqlTran tran) throws Exception {
         Eql eql = new Eql();
         if(tran != null){
-            return eql.useTran(tran).update("updateOrderInspection").params(orderInfoDTO).returnType(Integer.class).execute();
+            return eql.useTran(tran).update("updateOrderInspection").params(orderInspectionDO).returnType(Integer.class).execute();
         }
-        return eql.update("updateOrderInspection").params(orderInfoDTO).returnType(Integer.class).execute();
+        return eql.update("updateOrderInspection").params(orderInspectionDO).returnType(Integer.class).execute();
     }
     /**
      * @Author songyateng

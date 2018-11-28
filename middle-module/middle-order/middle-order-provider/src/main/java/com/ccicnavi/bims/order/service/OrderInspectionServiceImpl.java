@@ -35,13 +35,10 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertOrderInspection(OrderInfoDTO orderInfoDTO) {
+    public Integer insertOrderInspection(OrderInspectionDO orderInspectionDO) {
         Integer inspection = null;
         try {
-            /**生成uuid*/
-            String shippingTypeId = idWorkerService.getId(new Date());
-            orderInfoDTO.setShippingTypeId(shippingTypeId);
-            inspection = orderInspectionDao.insertOrderInspection(orderInfoDTO, null);
+            inspection = orderInspectionDao.insertOrderInspection(orderInspectionDO, null);
             if(inspection > 0){
                 return  inspection;
             }
@@ -59,11 +56,11 @@ public class OrderInspectionServiceImpl implements OrderInspectionService {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer updateOrderInspection(OrderInfoDTO orderInfoDTO) {
+    public Integer updateOrderInspection(OrderInspectionDO orderInspectionDO) {
         EqlTran eqlTran = null;
         Integer inspection = null;
         try {
-            inspection = orderInspectionDao.updateOrderInspection(orderInfoDTO, eqlTran);
+            inspection = orderInspectionDao.updateOrderInspection(orderInspectionDO, eqlTran);
             if (inspection > 0) {
                 return inspection;
             }

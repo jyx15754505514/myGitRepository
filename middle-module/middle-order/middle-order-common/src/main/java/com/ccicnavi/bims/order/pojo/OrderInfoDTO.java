@@ -343,4 +343,8 @@ public class OrderInfoDTO implements Serializable {
      *委托样品类型
      */
     private List<OrderSampleTypeDO> orderSampleTypeDO;
+    /**
+     * 运输信息
+     */
+    private OrderInspectionDO orderInspectionDO;
 }
