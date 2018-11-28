@@ -46,9 +46,12 @@ public class CertFlowController {
             if(StringUtils.isEmpty(certlowDO.getFlowNum())){
                 return ResultT.failure(ResultCode.PARAM_IS_BLANK);
             }
-            Integer num = certFlowService.cancelCertFlow(certlowDO);
-            if(num >= 1){
-                log.info("作废证书流水号数量：" + num);
+            //目前暂定于作废两个状态
+            certlowDO.setEmptyCardStatus("Y");
+            certlowDO.setIsDeleted("Y");
+            Integer count = certFlowService.cancelCertFlow(certlowDO);
+            if(count >= 1){
+                log.info("作废证书流水号数量：作废数量" + count);
                 return ResultT.success();
             }
             log.info("作废证书流水号异常");
