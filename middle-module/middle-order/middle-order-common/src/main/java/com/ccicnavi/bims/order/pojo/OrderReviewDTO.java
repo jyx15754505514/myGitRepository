@@ -23,11 +23,14 @@ public class OrderReviewDTO {
      */
     private List<OrderReviewDO> orderReviewDOList;
 
-
     /**
      *委托编号
      */
     private String orderNo;
+    /**
+     *委托单主键
+     */
+    private String orderUuid;
     /**
      *委托单名称
      */
