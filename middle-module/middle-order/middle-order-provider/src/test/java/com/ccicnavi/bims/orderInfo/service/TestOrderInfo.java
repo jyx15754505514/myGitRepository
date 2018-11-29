@@ -103,7 +103,7 @@ public class TestOrderInfo {
         orderInfoDTO.setProdCatalogUuid("大宗线");
         orderInfoDTO.setOrgUuid("CCIC");
         orderInfoDTO.setAppSysUuid("BIMS");
-        //运输信息
+        //运输信息222
         OrderInspectionDO orderInspectionDO=new OrderInspectionDO();
         orderInspectionDO.setComments("1111");
         orderInspectionDO.setVesselName("泰坦尼克号");
