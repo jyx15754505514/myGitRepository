@@ -522,3 +522,27 @@ WHERE
     -- for item=item index=index collection=orderItemUuidList open=( separator=, close=)
         '#item#'
     -- end
+
+-- [updateOrderItemStatus]
+    update order_item
+    -- trim prefix= set suffixOverrides=,
+        --iff statusUuid != null and statusUuid != ''
+            status_uuid = '#statusUuid#',
+        --iff statusName != null and statusName != ''
+            status_name = '#statusName#',
+        --iff updatedTime != null
+            updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid != ''
+            updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName != ''
+            updated_name = '#updatedName#',
+    -- end
+where
+    is_deleted = 'N'
+--iff orderItemUuid != null and orderItemUuid != ''
+    and order_item_uuid = '#orderItemUuid#'
+--iff orderItemUuids != null
+    and order_item_uuid in
+    -- for item=item index=index collection=orderItemUuids open=( separator=, close=)
+        '#item#'
+    -- end
