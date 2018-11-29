@@ -57,11 +57,11 @@ public class OrderReviewDaoImpl implements OrderReviewDao {
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderReviewDO>
      */
     @Override
-    public PageBean<OrderReviewDO> listOrderReview(PageParameter<OrderReviewDO> pageParameter) {
+    public PageBean<OrderReviewDO> listOrderReviewPage(PageParameter<OrderReviewDO> pageParameter) {
         //封装分页参数
         EqlPage page = new EqlPage(pageParameter.getStartPage(), pageParameter.getPageRows());
         //执行查询
-        List<OrderReviewDO>  OrderReviewDOList= new Eql().select("listOrderReview").params(pageParameter.getParameter()).returnType(OrderReviewDO.class).limit(page).execute();
+        List<OrderReviewDO>  OrderReviewDOList= new Eql().select("listOrderReviewPage").params(pageParameter.getParameter()).returnType(OrderReviewDO.class).limit(page).execute();
         if(OrderReviewDOList != null) {
             return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),OrderReviewDOList);
         }else {
