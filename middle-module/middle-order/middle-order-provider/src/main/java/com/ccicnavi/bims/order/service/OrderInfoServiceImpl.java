@@ -230,6 +230,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         Integer itemSub = null;
         Integer orderInfo = null;
         Integer orderSampleTypeResult =null;
+        Integer updateOrderStatus=null;
         boolean result=true;
         try {
             eqlTran.start();
@@ -244,7 +245,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                     result=false;
                 }
             }
-         //委托单服务项
+            //委托单服务项
             List<OrderItemDTO> orderItemDTO = orderInfoDTO.getOrderItemDTO();
             if(orderItemDTO!=null){
                 for (int i = 0; i < orderItemDTO.size(); i++) {
@@ -271,7 +272,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                     }
                 }
             }
-            //添加委托样品类型
+          /*  //添加委托样品类型
             List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
             if(orderSampleTypeDO!=null){
                 for(OrderSampleTypeDO o :orderSampleTypeDO){
@@ -286,18 +287,26 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                         result=false;
                     }
                 }
-            }
+            }*/
             //添加委托单详情
             orderInfo = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
             if(orderInfo!=1){
                 result=false;
+            }
+            //提交操作执行修改状态
+            if("2".equals(orderInfoDTO.getFlag())){
+                 updateOrderStatus = orderInfoDao.updateOrderStatus(orderInfoDTO,eqlTran);
+                 if(updateOrderStatus!=1){
+                     result=false;
+                 }
+
             }
             if(result){
                 eqlTran.commit();
                 return ResultT.success();
              }
         } catch (Exception e) {
-            log.error("保存失败",e);
+            log.error("委托单保存失败",e);
             eqlTran.rollback();
         } finally {
             eqlTran.close();
@@ -339,7 +348,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
     /**
      * @Author MengZiJie
-     * @Description 作废委托单
+     * @Description 改变委托单状态
      * @Data 2018/11/27 17:19
      * @Param [orderInfoDTO]
      * @Return java.lang.Integer

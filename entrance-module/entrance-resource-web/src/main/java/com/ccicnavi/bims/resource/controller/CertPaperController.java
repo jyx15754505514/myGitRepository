@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.resource.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.fastjson.JSON;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
 
 /**
  * @ClassName: 证书纸
@@ -38,9 +41,11 @@ public class CertPaperController {
     */
     @RequestMapping(value="/listCertPaperPage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listCertPaperPage(@RequestBody PageParameter<CertPaperDO> pageParameter){
+        log.debug("开始分页查询空台账列表 Param:" + JSON.toJSONString(pageParameter)  + " Time: " + new Date());
         try {
             PageBean<CertPaperDO> pageBean = certPaperService.listCertPaperPage(pageParameter);
             if(pageBean != null){
+                log.debug("获取空台账列表结果：" + JSON.toJSONString(pageBean));
                 return ResultT.success(pageBean);
             }
         } catch (Exception e) {
@@ -58,12 +63,14 @@ public class CertPaperController {
     */
     @RequestMapping(value="/insertCertPaper",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT insertCertPaper(@RequestBody CertPaperDO certPaper){
+        log.debug("开始新增空证信息 Param:" + JSON.toJSONString(certPaper)  + " Time: " + new Date());
         try {
             if(certPaper.getProdCatalogUuid() == null || certPaper.getOrgUuid() == null || certPaper.getAppSysUuid() == null){
                 return ResultT.failure(ResultCode.PARAM_IS_BLANK);
             }
             Integer num = certPaperService.insertCertPaper(certPaper);
             if (num != null && num > 0){
+                log.debug("新增空证信息结果：保存数量" + num );
                 return ResultT.success("新增空证成功");
             }
         } catch (Exception e) {
@@ -81,9 +88,11 @@ public class CertPaperController {
     */
     @RequestMapping(value="/updateCertPaper",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT updateCertPaper(@RequestBody CertPaperDO certPaper){
+        log.debug("开始修改空证信息 Param:" + JSON.toJSONString(certPaper)  + " Time: " + new Date());
         try {
             Integer num = certPaperService.updateCertPaper(certPaper);
             if( num > 0){
+                log.debug("修改空证信息结果：保存数量" + num );
                 return ResultT.success("修改空证信息成功");
             }
         } catch (Exception e) {
@@ -101,9 +110,11 @@ public class CertPaperController {
     */
     @RequestMapping(value="/getCertPaper",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT getCertPaper(@RequestBody CertPaperDO certPaper){
+        log.debug("根据证书纸paperUuid找到证书纸信息 Param:" + JSON.toJSONString(certPaper)  + " Time: " + new Date());
         try {
             CertPaperDO resultBean = certPaperService.getCertPaper(certPaper);
             if(resultBean != null){
+                log.debug("根据证书纸paperUuid找到证书纸信息结果：" + resultBean );
                 return ResultT.success(resultBean);
             }
         } catch (Exception e) {
@@ -121,9 +132,11 @@ public class CertPaperController {
     */
     @RequestMapping(value="/deleteCertPaper",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT deleteCertPaper(@RequestBody CertPaperDTO certPaper){
+        log.debug("开始删除证书纸 Param:" + JSON.toJSONString(certPaper)  + " Time: " + new Date());
         try {
             Integer num = certPaperService.deleteCertPaper(certPaper);
             if(num > 0){
+                log.debug("删除证书纸结果：删除数量" + num );
                 return ResultT.success("删除证书纸成功");
             }
         } catch (Exception e) {
@@ -141,12 +154,14 @@ public class CertPaperController {
     */
     @RequestMapping(value = "/checkCertPaper",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT checkCertPaper(@RequestBody CertPaperDO certPaper){
+        log.debug("开始校验证书纸流水起始号和结束号 Param:" + JSON.toJSONString(certPaper)  + " Time: " + new Date());
         try {
             if(certPaper.getPaperStartNum() == null && certPaper.getPaperEndNum() == null){
                 return ResultT.failure(ResultCode.PARAM_IS_BLANK);
             }
             Boolean result = certPaperService.checkCertPaper(certPaper);
             if(result != null){
+                log.debug("校验证书纸流水起始号和结束号结果：" + result );
                 return ResultT.success(result);
             }
         } catch (Exception e) {
