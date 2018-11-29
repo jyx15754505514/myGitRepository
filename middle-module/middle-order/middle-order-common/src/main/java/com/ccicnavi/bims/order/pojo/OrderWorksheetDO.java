@@ -46,9 +46,17 @@ public class OrderWorksheetDO implements Serializable {
      */
     private String implDeptUuid;
     /**
+     * 实施部门名称
+     */
+    private String implDeptName;
+    /**
      * 实施负责人id
      */
     private String implMgrUuid;
+    /**
+     * 实施负责人名称
+     */
+    private String implMgrName;
     /**
      * 实施开始日期
      */
@@ -59,6 +67,22 @@ public class OrderWorksheetDO implements Serializable {
      */
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date implEndDate;
+    /**
+     * 核验人
+     */
+    private String checkMgrUuid;
+    /**
+     * 核验时间
+     */
+    private Date checkMgrTime;
+    /**
+     * 状态id
+     */
+    private String statusUuid;
+    /**
+     * 状态name
+     */
+    private String statusName;
     /**
      * 备注
      */
