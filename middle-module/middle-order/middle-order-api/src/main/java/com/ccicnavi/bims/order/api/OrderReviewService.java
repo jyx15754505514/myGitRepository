@@ -40,4 +40,13 @@ public interface OrderReviewService {
      * @Return com.ccicnavi.bims.common.ResultT
      */
     ResultT backOrderReview(OrderReviewDO orderReviewDO, OrderInfoDTO orderInfoDTO);
+
+    /**
+     * @Author songyateng
+     * @Description 评审列表（分页）
+     * @Date 2018/11/29 17:13
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderReviewDO>
+     */
+    PageBean<OrderReviewDO> listOrderReview(PageParameter<OrderReviewDO> pageParameter);
 }
