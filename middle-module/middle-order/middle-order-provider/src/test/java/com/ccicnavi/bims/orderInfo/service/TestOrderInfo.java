@@ -1,19 +1,13 @@
 package com.ccicnavi.bims.orderInfo.service;
 
-import com.ccicnavi.bims.breeder.api.IdWorkerService;
-import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.order.dao.OrderInfoDao;
-import com.ccicnavi.bims.order.dao.OrderInspectionDao;
 import com.ccicnavi.bims.order.dao.impl.*;
 import com.ccicnavi.bims.order.pojo.*;
-import com.ccicnavi.bims.order.service.OrderInfoServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +39,7 @@ public class TestOrderInfo {
             orderInfoDTO.setProdCatalogUuid("chanpinxianuuid");
             orderInfoDTO.setOrgUuid("guishujigouid");
             orderInfoDTO.setAppSysUuid("yingyongxitongid");
-            orderInfoDTO.setOrderName("AAA");
+            orderInfoDTO.setOrderName("bgbgbg");
             System.err.print(orderInfoDaoImpl.updateOrderInfo(orderInfoDTO, null));
         } catch (Exception e){
             e.printStackTrace();

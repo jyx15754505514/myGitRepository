@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,7 +43,6 @@ public class CategoryManagerImpl implements CategoryManager {
     @Override
     public ResultT listCategoryByGoodName(GoodsDTO goodsDTO) {
         try {
-            List<GoodsVO> goodsVOList = new ArrayList<GoodsVO>();
             //1.首先根据名称模糊查询到对应的商品信息
             List<GoodsDO> goodsDOList = goodsService.listGoodsDO(goodsDTO);
             //封参
@@ -57,19 +55,23 @@ public class CategoryManagerImpl implements CategoryManager {
             if (!StringUtils.isEmpty(goodsDOList)) {
                 for (GoodsDO goodsDOs : goodsDOList) {//获取到所有的商品
                     GoodsVO goodsVO = new GoodsVO();
-                    goodsVO.setGoodsDO(goodsDOs);
                     String productCategoryUuid = goodsDOs.getProductCategoryUuid();//获取到对应的直属上级产品分类ID
                     categoryDTO.setProductCategoryUuid(productCategoryUuid);//设置产品分类ID
                     CategoryDO categoryDOS = categoryService.getCategory(categoryDTO);
                     if (!StringUtils.isEmpty(categoryDOS) && !StringUtils.isEmpty(categoryDOS.getParentAllCategoryUuid())) {
                         //获取到所有上级产品分类ID
                         categoryDTO.setProductCategoryUuidList(Arrays.asList(categoryDOS.getParentAllCategoryUuid().trim().split("-")));
+                        categoryDTO.setOrderByDesc("Y");//降序方式、子级在前、默认升序
                         List<CategoryDO> allCategoryDO = categoryService.listCategory(categoryDTO);
-                        goodsVO.setCategoryDOList(allCategoryDO);
+                        String parentCategory = "-";
+                        for (int i = 0; i < allCategoryDO.size(); i++) {
+                            parentCategory += allCategoryDO.get(i).getCategoryName() + "-";
+                        }
+                        parentCategory = parentCategory.substring(0, parentCategory.length() - 1);//截取掉最后一位特殊字符
+                        goodsDOs.setGoodsName(goodsDOs.getGoodsName() + parentCategory);//重新组装
                     }
-                    goodsVOList.add(goodsVO);
                 }
-                return ResultT.success(goodsVOList);
+                return ResultT.success(goodsDOList);
             }
         } catch (Exception e) {
             e.printStackTrace();
