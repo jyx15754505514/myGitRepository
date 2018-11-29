@@ -11,12 +11,6 @@ SELECT
 	is_enabled,
 	comments,
 	is_deleted,
-	created_time,
-	created_uuid,
-	created_name,
-	updated_time,
-	updated_uuid,
-	updated_name,
 	prod_catalog_uuid,
 	org_uuid,
 	app_sys_uuid
@@ -39,7 +33,12 @@ WHERE
 --if appSysUuid !=null and appSysUuid != ''
             AND app_sys_uuid='#appSysUuid#'
 --end
-ORDER BY seq_num
+--if orderByDesc !=null and orderByDesc != ''
+            ORDER BY seq_num DESC
+--else
+    ORDER BY seq_num ASC
+--end
+
 
 
 

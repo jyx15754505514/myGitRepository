@@ -89,6 +89,11 @@ public class CategoryDTO implements Serializable {
      */
     private List<String> productCategoryUuidList;
 
+    /**
+     * 排序方式
+     */
+    private String orderByDesc;
+
 
 
 
