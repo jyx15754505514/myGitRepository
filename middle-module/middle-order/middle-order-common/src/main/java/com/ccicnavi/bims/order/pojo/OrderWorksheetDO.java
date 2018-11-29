@@ -84,6 +84,10 @@ public class OrderWorksheetDO implements Serializable {
      */
     private String statusName;
     /**
+     * 工作单类型
+     */
+    private String worksheetType;
+    /**
      * 备注
      */
     private String comments;
@@ -137,6 +141,4 @@ public class OrderWorksheetDO implements Serializable {
      * 预留字段3
      */
     private String extend3;
-
-
 }
