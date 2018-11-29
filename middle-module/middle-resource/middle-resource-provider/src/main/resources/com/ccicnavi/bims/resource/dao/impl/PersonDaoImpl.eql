@@ -1,13 +1,13 @@
 --[listPerson]
     select
-    person_uuid as personUuid,
+      person_uuid as personUuid,
       person_code as personCode,
-      name as name,
+      first_name as firstName,
       user_uuid as userUuid,
       person_type as personType,
       former_name as formerName,
       gender as gender,
-      birthday as birthday,
+      birthdate as birthdate,
       cert_type as certType,
       cert_no as certNo,
       age as age,
@@ -15,11 +15,14 @@
       nation as nation,
       birthplace as birthplace,
       native_place as nativePlace,
-      domicile_place as domicilePlace,
+      domi_place as domiPlace,
       home_address as homeAddress,
       politics_status as politicsStatus,
+      join_party_date as joinPartyDate,
       marital_status as maritalStatus,
       phone as phone,
+      emergency_person as exigencyPerson,
+      emergency_phone as exigencyPhone,
       study_experience as studyExperience,
       degree as degree,
       skill_name as skillName,
@@ -33,7 +36,7 @@
       updated_name as updatedName,
       org_uuid as orgUuid,
       app_sys_uuid as appSysUuid,
-      business_line as businessLine,
+      prod_catalog_uuid as prodCatalogUuid,
       extend1 as extend1,
       extend2 as extend2,
       extend3 as extend3
@@ -51,18 +54,20 @@
     -- trim prefix=( suffix=) suffixOverrides=,
         -- iff personUuid != null and  personUuid != ''
                 person_uuid,
+              -- iff userUuid != null and userUuid != ''
+                 user_uuid,
               -- iff personCode != null and personCode != ''
                 person_code,
-              -- iff name != null and name != ''
-                name,
+              -- iff firstName != null and firstName != ''
+                first_name,
               -- iff personType != null and personType != ''
                 person_type,
               -- iff formerName != null and formerName != ''
                 former_name,
               -- iff gender != null and gender != ''
                 gender,
-              -- iff birthday != null and birthday != ''
-                birthday,
+              -- iff birthdate != null and birthdate != ''
+                birthdate,
               -- iff certType != null and certType != ''
                 cert_type,
               -- iff certNo != null and certNo != ''
@@ -77,14 +82,14 @@
                 birthplace,
               -- iff nativePlace != null and nativePlace != ''
                 native_place,
-              -- iff domicilePlace != null and domicilePlace != ''
-                domicile_place,
+              -- iff domiPlace != null and domiPlace != ''
+                domi_place,
               -- iff homeAddress != null and homeAddress != ''
                 home_address,
               -- iff politicsStatus != null and politicsStatus != ''
                 politics_status,
-              -- iff joinPartyTime != null and joinPartyTime != ''
-                join_party_time,
+              -- iff joinPartyDate != null and joinPartyDate != ''
+                join_party_date,
               -- iff maritalStatus != null and maritalStatus != ''
                 marital_status,
               -- iff phone != null and phone != ''
@@ -111,18 +116,12 @@
                 created_uuid,
               -- iff createdName != null and createdName != ''
                 created_name,
-              -- iff updatedTime != null and updatedTime != ''
-                updated_time,
-              -- iff updatedName != null and updatedName != ''
-                updated_name,
               -- iff orgUuid != null and orgUuid != ''
                 org_uuid,
               -- iff appSysUuid != null and appSysUuid != ''
                 app_sys_uuid,
-              -- iff businessLine != null and businessLine != ''
-                business_line,
-            -- iff userUuid != null
-                  user_uuid,
+              -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+                prod_catalog_uuid,
               -- iff extend1 != null and extend1 != ''
                 extend1,
               -- iff extend2 != null and extend2 != ''
@@ -133,18 +132,20 @@
     -- trim prefix=values( suffix=) suffixOverrides=,
         -- iff personUuid != null and name != ''
               '#personUuid#',
+             -- iff userUuid != null and userUuid != ''
+               '#userUuid#',
              -- iff personCode != null and personCode != ''
               '#personCode#',
-             -- iff name != null and name != ''
-              '#name#',
+             -- iff firstName != null and firstName != ''
+              '#firstName#',
              -- iff personType != null and personType != ''
               '#personType#',
              -- iff formerName != null and formerName != ''
               '#formerName#',
              -- iff gender != null and gender != ''
               '#gender#',
-             -- iff birthday != null and birthday != ''
-              '#birthday#',
+             -- iff birthdate != null and birthdate != ''
+              '#birthdate#',
              -- iff certType != null and certType != ''
               '#certType#',
              -- iff certNo != null and certNo != ''
@@ -159,14 +160,14 @@
               '#birthplace#',
              -- iff nativePlace != null and nativePlace != ''
               '#nativePlace#',
-             -- iff domicilePlace != null and domicilePlace != ''
-              '#domicilePlace#',
+             -- iff domiPlace != null and domiPlace != ''
+              '#domiPlace#',
              -- iff homeAddress != null and homeAddress != ''
               '#homeAddress#',
              -- iff politicsStatus != null and politicsStatus != ''
               '#politicsStatus#',
-             -- iff joinPartyTime != null and joinPartyTime != ''
-              '#joinPartyTime#',
+             -- iff joinPartyDate != null and joinPartyDate != ''
+              '#joinPartyDate#',
              -- iff maritalStatus != null and maritalStatus != ''
               '#maritalStatus#',
              -- iff phone != null  and phone != ''
@@ -193,18 +194,12 @@
               '#createdUuid#',
              -- iff createdName != null and createdName != ''
               '#createdName#',
-             -- iff updatedTime != null and updatedTime != ''
-              '#updatedTime#',
-             -- iff updatedName != null and updatedName != ''
-              '#updatedName#',
              -- iff orgUuid != null and orgUuid != ''
               '#orgUuid#',
              -- iff appSysUuid != null and appSysUuid != ''
               '#appSysUuid#',
-             -- iff businessLine != null and businessLine != ''
-              '#businessLine#',
-              -- iff userUuid != null
-                '#userUuid#',
+             -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+              '#prodCatalogUuid#',
              -- iff extend1 != null and extend1 != ''
               '#extend1#',
              -- iff extend2 != null and extend2 != ''
@@ -219,42 +214,76 @@
    -- trim prefix= set suffixOverrides=,
         -- iff personUuid != null
           person_uuid = '#personUuid#',
-        -- iff startTime != null
-          start_time = '#startTime#',
-        -- iff endTime != null
-          end_time = '#endTime#',
-        -- iff cultName != null
-          cult_name = '#cultName#',
-        -- iff cultOrg != null
-          cult_org = '#cultOrg#',
-        -- iff qualificationCert != null
-          qualification_cert = '#qualificationCert#',
-        -- iff cultType != null
-          cult_type = '#cultType#',
-        -- iff isSign != null
-          is_sign = '#isSign#',
+        -- iff userUuid != null
+          user_uuid = '#userUuid#',
+        -- iff personCode != null
+          person_code = '#personCode#',
+        -- iff firstName != null
+          first_name = '#firstName#',
+        -- iff personType != null
+          person_type = '#personType#',
+        -- iff formerName != null
+          former_name = '#formerName#',
+        -- iff gender != null
+          gender = '#gender#',
+        -- iff birthdate != null
+          birthdate = '#birthdate#',
+        -- iff birthplace != null
+          birthplace = '#birthplace#',
+        -- iff certType != null
+          cert_type = '#certType#',
+        -- iff certNo != null
+          cert_no = '#certNo#',
+        -- iff age != null
+          age = '#age#',
+        -- iff nationality != null
+          nationality = '#nationality#',
+        -- iff nation != null
+          nation = '#nation#',
+        -- iff nativePlace != null
+          native_place = '#nativePlace#',
+        -- iff domiPlace != null
+          domi_place = '#domiPlace#',
+        -- iff homeAddress != null
+          home_address = '#homeAddress#',
+        -- iff politicsStatus != null
+          politics_status = '#politicsStatus#',
+        -- iff joinPartyDate != null
+          join_party_date = '#joinPartyDate#',
+        -- iff maritalStatus != null
+          marital_status = '#maritalStatus#',
+        -- iff phone != null
+          phone = '#phone#',
+        -- iff exigencyPerson != null
+          emergency_person = '#exigencyPerson#',
+        -- iff exigencyPhone != null
+          emergency_phone = '#exigencyPhone#',
+        -- iff studyExperience != null
+          study_experience = '#studyExperience#',
+        -- iff degree != null
+          degree = '#degree#',
+        -- iff skillName != null
+          skill_name = '#skillName#',
+        -- iff skillLevel != null
+          skill_level = '#skillLevel#',
+        -- iff skillLevel != null
+          skill_level = '#skillLevel#',
         -- iff comments != null
           comments = '#comments#',
         -- iff isDeleted != null
           is_deleted = '#isDeleted#',
-        -- iff createdTime != null
-          created_time = '#createdTime#',
-        -- iff createdUuid != null
-          created_uuid = '#createdUuid#',
-        -- iff createdName != null
-          created_name = '#createdName#',
         -- iff updatedTime != null
           updated_time = '#updatedTime#',
         -- iff updatedName != null
           updated_name = '#updatedName#',
+        -- iff updatedUuid != null
+           updated_uuid = '#updatedUuid#',
         -- iff orgUuid != null
           org_uuid = '#orgUuid#',
         -- iff appSysUuid != null
           app_sys_uuid = '#appSysUuid#',
-        -- iff businessLine != null
-          business_line = '#businessLine#',
-        -- iff userUuid != null
-          user_uuid = '#userUuid#',
+        -- iff prodCatalogUuid != null
+          prod_catalog_uuid = '#prodCatalogUuid#',
         -- iff extend1 != null
           extend1 = '#extend1#',
         -- iff extend2 != null
@@ -290,14 +319,14 @@
 
 -- [getPerson]
   SELECT
-     person_uuid as personUuid,
-     user_uuid as userUuid,
+          person_uuid as personUuid,
           person_code as personCode,
-          name as name,
+          first_name as firstName,
+          user_uuid as userUuid,
           person_type as personType,
           former_name as formerName,
           gender as gender,
-          birthday as birthday,
+          birthdate as birthdate,
           cert_type as certType,
           cert_no as certNo,
           age as age,
@@ -305,11 +334,14 @@
           nation as nation,
           birthplace as birthplace,
           native_place as nativePlace,
-          domicile_place as domicilePlace,
+          domi_place as domiPlace,
           home_address as homeAddress,
           politics_status as politicsStatus,
+          join_party_date as joinPartyDate,
           marital_status as maritalStatus,
           phone as phone,
+          emergency_person as exigencyPerson,
+          emergency_phone as exigencyPhone,
           study_experience as studyExperience,
           degree as degree,
           skill_name as skillName,
@@ -323,7 +355,7 @@
           updated_name as updatedName,
           org_uuid as orgUuid,
           app_sys_uuid as appSysUuid,
-          business_line as businessLine,
+          prod_catalog_uuid as prodCatalogUuid,
           extend1 as extend1,
           extend2 as extend2,
           extend3 as extend3
@@ -339,45 +371,50 @@
                    '#item#'
 
 --[getPagePerson]
-select
-    person_uuid as personUuid,
-      person_code as personCode,
-      name as name,
-      person_type as personType,
-      former_name as formerName,
-      gender as gender,
-      birthday as birthday,
-      cert_type as certType,
-      cert_no as certNo,
-      age as age,
-      nationality as nationality,
-      nation as nation,
-      birthplace as birthplace,
-      native_place as nativePlace,
-      domicile_place as domicilePlace,
-      home_address as homeAddress,
-      politics_status as politicsStatus,
-      marital_status as maritalStatus,
-      phone as phone,
-      study_experience as studyExperience,
-      degree as degree,
-      skill_name as skillName,
-      skill_level as skillLevel,
-      comments as comments,
-      is_deleted as isDeleted,
-      created_time as createdTime,
-      created_uuid as createdUuid,
-      created_name as createdName,
-      updated_time as updatedTime,
-      updated_name as updatedName,
-      org_uuid as orgUuid,
-      app_sys_uuid as appSysUuid,
-      business_line as businessLine,
-      extend1 as extend1,
-      extend2 as extend2,
-      extend3 as extend3
-    from
-    res_person
+
+    SELECT
+             person_uuid as personUuid,
+             person_code as personCode,
+             first_name as firstName,
+             user_uuid as userUuid,
+             person_type as personType,
+             former_name as formerName,
+             gender as gender,
+             birthdate as birthdate,
+             cert_type as certType,
+             cert_no as certNo,
+             age as age,
+             nationality as nationality,
+             nation as nation,
+             birthplace as birthplace,
+             native_place as nativePlace,
+             domi_place as domiPlace,
+             home_address as homeAddress,
+             politics_status as politicsStatus,
+             join_party_date as joinPartyDate,
+             marital_status as maritalStatus,
+             phone as phone,
+             emergency_person as exigencyPerson,
+             emergency_phone as exigencyPhone,
+             study_experience as studyExperience,
+             degree as degree,
+             skill_name as skillName,
+             skill_level as skillLevel,
+             comments as comments,
+             is_deleted as isDeleted,
+             created_time as createdTime,
+             created_uuid as createdUuid,
+             created_name as createdName,
+             updated_time as updatedTime,
+             updated_name as updatedName,
+             org_uuid as orgUuid,
+             app_sys_uuid as appSysUuid,
+             prod_catalog_uuid as prodCatalogUuid,
+             extend1 as extend1,
+             extend2 as extend2,
+             extend3 as extend3
+       from
+           res_person
     WHERE
        is_deleted = 'N'
     -- iff personUuid != null and personUuid != ''
