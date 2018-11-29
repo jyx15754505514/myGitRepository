@@ -32,7 +32,7 @@ public interface SubcQualifiDao {
      *@Author: WangYingLing
      *@date: 2018/11/15
      */
-    Integer insertSubcuQuali(SubcQualifiDO subcuQuali) throws Exception;
+    Integer insertSubcuQuali(SubcQualifiDTO subcQualifiDTO,EqlTran eqlTran) throws Exception;
 
     /**
      *@Description: 删除分包方资质信息

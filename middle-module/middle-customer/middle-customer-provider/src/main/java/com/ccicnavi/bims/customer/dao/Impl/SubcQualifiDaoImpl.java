@@ -41,8 +41,11 @@ public class SubcQualifiDaoImpl implements SubcQualifiDao {
      * @Return java.lang.Integer
      */
     @Override
-    public Integer insertSubcuQuali(SubcQualifiDO subcuQuali) {
-        return new Eql().insert("insertSubcuQuali").params(subcuQuali).returnType(Integer.class).execute();
+    public Integer insertSubcuQuali(SubcQualifiDTO subcQualifiDTO,EqlTran eqlTran) {
+        if (eqlTran != null) {
+            return new Eql().useTran(eqlTran).insert("insertSubcuQuali").params(subcQualifiDTO).returnType(Integer.class).execute();
+        }
+        return new Eql().insert("insertSubcuQuali").params(subcQualifiDTO).returnType(Integer.class).execute();
     }
 
     /** *

@@ -32,20 +32,20 @@ import java.util.List;
 @Slf4j
 public class MinItemController {
 
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
-    @Reference(timeout = 30000)
+//    @Reference(timeout = 30000)
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     MinItemService minItemService;
 
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
-    @Reference(timeout = 30000)
+//    @Reference(timeout = 30000)
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
     MinItemStdService minItemStdService;
 
-    //    @Reference(timeout = 30000)
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    //@Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+    @Reference(timeout = 30000)
     MinItemTestService minItemTestService;
 
-    //    @Reference(timeout = 30000)
-    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20884")
+//    @Reference(timeout = 30000, url = "dubbo://192.168.125.11:20880")
+    @Reference(timeout = 30000)
     IdWorkerService idWorkerService;
 
     /**

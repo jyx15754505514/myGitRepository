@@ -15,11 +15,11 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderItemDTO implements Serializable {
     /**
-     *主键
+     *主键id
      */
     private String orderItemUuid;
     /**
-     * 委托单id
+     *委托单id
      */
     private String orderUuid;
     /**
@@ -39,21 +39,25 @@ public class OrderItemDTO implements Serializable {
      */
     private String minItemType;
     /**
+     *参考金额（基准费用）
+     */
+    private Integer refAmount;
+    /**
      *应收金额
      */
     private Integer receivableAmount;
     /**
-     *参考金额
+     *应收折扣
      */
-    private Integer refAmount;
+    private Integer refDiscount;
+    /**
+     *折扣价
+     */
+    private Integer refDiscountPrice;
     /**
      *参考工时
      */
     private String refWorkhour;
-    /**
-     *应收折扣
-     */
-    private Integer refDiscount;
     /**
      *币种
      */
@@ -70,6 +74,19 @@ public class OrderItemDTO implements Serializable {
      *是Y否N分包管理，默认Y
      */
     private String isSubpkgMgr;
+    /**
+     *派单人id
+     */
+    private String assignUserUuid;
+    /**
+     *派单时间
+     */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date assignTime;
+    /**
+     *派单说明
+     */
+    private String assignComments;
     /**
      *接收任务机构id
      */
@@ -108,19 +125,6 @@ public class OrderItemDTO implements Serializable {
      */
     private String isBack;
     /**
-     *派单人id
-     */
-    private String assignUserUuid;
-    /**
-     *派单时间
-     */
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date assignTime;
-    /**
-     *派单说明
-     */
-    private String assignComments;
-    /**
      *退回原因
      */
     private String backReason;
@@ -132,6 +136,10 @@ public class OrderItemDTO implements Serializable {
      *退检原因
      */
     private String cancelReason;
+    /**
+     *是Y否N加急，默认N
+     */
+    private String isUrgent;
     /**
      *计划开工日期
      */
@@ -161,9 +169,9 @@ public class OrderItemDTO implements Serializable {
      */
     private String realFinishworkComments;
     /**
-     *是Y否N加急，默认N
+     *完工数量标记1/5
      */
-    private String isUrgent;
+    private String finishQtyLbl;
     /**
      *备注
      */

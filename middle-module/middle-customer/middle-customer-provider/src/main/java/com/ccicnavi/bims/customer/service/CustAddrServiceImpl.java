@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.CustAddrService;
@@ -10,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +25,8 @@ import java.util.List;
 @Slf4j
 public class CustAddrServiceImpl implements CustAddrService {
 
+    @Reference(timeout = 1000000)
+    IdWorkerService idWorkerService;
 
     @Autowired
     CustAddrDao custAddrDao;
@@ -39,6 +44,7 @@ public class CustAddrServiceImpl implements CustAddrService {
     @Override
     public int saveCustAddr(CustAddrDO custAddr) {
         try {
+            custAddr.setAddrUuid(idWorkerService.getId(new Date()));
             return custAddrDao.saveCustAddr(custAddr,null);
         } catch (Exception e) {
             log.error("保存客户地址信息失败",e);

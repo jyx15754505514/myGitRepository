@@ -279,8 +279,9 @@ public class UserServiceImpl implements UserService{
             }*/
 
             //添加角色的集合不为空就根据用户uuid添加用户和角色信息
-            List<String> addRoleList = userDTO.getAddRoleList();
-            if(addRoleList != null && addRoleList.size() > 0){
+            List<String> addRoleList = new ArrayList<String>();
+            addRoleList = userDTO.getAddRoleList();
+            if(addRoleList.size() > 0){
                 for(String roleUuid : addRoleList){
                     userDTO.setRoleUuid(roleUuid);
                     //新增用户角色中间表

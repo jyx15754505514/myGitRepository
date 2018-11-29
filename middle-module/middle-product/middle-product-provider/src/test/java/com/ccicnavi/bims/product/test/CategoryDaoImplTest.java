@@ -24,17 +24,19 @@ import java.util.List;
 public class CategoryDaoImplTest {
 
 
-    CategoryDaoImpl categoryDaoImpl=new CategoryDaoImpl();
+    CategoryDaoImpl categoryDaoImpl = new CategoryDaoImpl();
 
     @Test
     public void listCategory() {
-        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategory(new CategoryDTO());
+        CategoryDTO categoryDTO = new CategoryDTO();
+        //categoryDTO.setOrderByDesc("Y");
+        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategory(categoryDTO);
         System.out.println(categoryDOS);
     }
 
     @Test
     public void saveCategory() {
-        CategoryDO categoryDO=new CategoryDO();
+        CategoryDO categoryDO = new CategoryDO();
         categoryDO.setProductCategoryUuid("KC_MT_SM");
         categoryDO.setProductCategoryTypeUuid("PCT_GOODS");
         categoryDO.setParentCategoryUuid("KC_MT");
@@ -45,21 +47,21 @@ public class CategoryDaoImplTest {
         categoryDO.setOrgUuid("CCIC");
         categoryDO.setAppSysUuid("BIMS2.0");
         int i = categoryDaoImpl.saveCategory(categoryDO);
-        System.out.println("count:"+i);
+        System.out.println("count:" + i);
     }
 
     @Test
     public void removeCategory() {
-        CategoryDTO categoryDTO=new CategoryDTO();
-        String [] uuids={"KC_MT","KC_MT_FM","KC_MT_JM"};
+        CategoryDTO categoryDTO = new CategoryDTO();
+        String[] uuids = {"KC_MT", "KC_MT_FM", "KC_MT_JM"};
         categoryDTO.setUuids(uuids);
         int i = categoryDaoImpl.removeCategory(categoryDTO);
-        System.out.println("count:"+i);
+        System.out.println("count:" + i);
     }
 
     @Test
     public void updateCategory() {
-        CategoryDO categoryDO=new CategoryDO();
+        CategoryDO categoryDO = new CategoryDO();
         categoryDO.setProductCategoryUuid("KC_MT_SM");
         categoryDO.setProductCategoryTypeUuid("PCT_GOODS");
         categoryDO.setParentCategoryUuid("KC_MT");
@@ -70,12 +72,12 @@ public class CategoryDaoImplTest {
         categoryDO.setOrgUuid("CCIC");
         categoryDO.setAppSysUuid("BIMS2.0");
         int i = categoryDaoImpl.updateCategory(categoryDO);
-        System.out.println("count:"+i);
+        System.out.println("count:" + i);
     }
 
     @Test
     public void getCategory() {
-        CategoryDTO categoryDTO=new CategoryDTO();
+        CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setProductCategoryUuid("KC_MT_WYM");
         CategoryDO category = categoryDaoImpl.getCategory(categoryDTO);
         System.out.println(category);
@@ -83,7 +85,7 @@ public class CategoryDaoImplTest {
 
     @Test
     public void listCategoryPage() {
-        PageParameter<CategoryDTO> pageParameter=new PageParameter<CategoryDTO>();
+        PageParameter<CategoryDTO> pageParameter = new PageParameter<CategoryDTO>();
         pageParameter.setStartIndex(1);
         pageParameter.setPageRows(2);
         pageParameter.setStartPage(1);
@@ -106,11 +108,9 @@ public class CategoryDaoImplTest {
 //        List<CategoryDO> categoryDOS = categoryDaoImpl.listCategoryFirstByOrgAndProd(categoryDO);
 //        System.out.println(categoryDOS);
 //    }
-
-
     @Test
     public void listCategoryFirstByOrgAndProd2() {
-        CategoryDTO categoryDTO=new CategoryDTO();
+        CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setProdCatalogUuid("CATALOG_AGRI");//设置产品线——矿产
         categoryDTO.setOrganizationUuid("XN102");//设置公司机构
         categoryDTO.setProductCategoryTypeUuid("service_id");//设置产品分类
@@ -123,7 +123,7 @@ public class CategoryDaoImplTest {
 
     @Test
     public void listCategoryByParentUuid() {
-        CategoryDTO categoryDTO=new CategoryDTO();
+        CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setProdCatalogUuid("CATALOG_AGRI");//设置产品线——矿产
         categoryDTO.setOrganizationUuid("XN102");//设置公司机构
         //categoryDTO.setProductCategoryTypeUuid("PCT_GOODS");//设置产品分类
@@ -135,13 +135,13 @@ public class CategoryDaoImplTest {
     }
 
     @Test
-    public void listCategoryByPage(){
-        PageParameter<CategoryDTO> pageParameter =new PageParameter<CategoryDTO>();
+    public void listCategoryByPage() {
+        PageParameter<CategoryDTO> pageParameter = new PageParameter<CategoryDTO>();
         pageParameter.setPageRows(10);
         pageParameter.setStartPage(1);
-        CategoryDTO categoryDTO=new CategoryDTO();
+        CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setCategoryName("二");
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date parses = null;
         try {
             parses = sdf.parse("2018-11-22");
@@ -151,7 +151,7 @@ public class CategoryDaoImplTest {
         categoryDTO.setCreatedTime(parses);
         pageParameter.setParameter(categoryDTO);
         PageBean<CategoryDO> categoryDOPageBean = categoryDaoImpl.listCategoryPage(pageParameter);
-        System.out.println("分页信息如下："+categoryDOPageBean);
+        System.out.println("分页信息如下：" + categoryDOPageBean);
     }
 
 
@@ -159,8 +159,8 @@ public class CategoryDaoImplTest {
      * 根据所属机构和产品线ID查询其所有子级分类信息(省级公司)
      */
     @Test
-    public void findlistCategoryByOrgAndProdUuid(){
-        CategoryDTO categoryDTO=new CategoryDTO();
+    public void findlistCategoryByOrgAndProdUuid() {
+        CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setOrganizationUuid("XN102");
         categoryDTO.setAppSysUuid("BIMS2.0");
         categoryDTO.setProdCatalogUuid("CATALOG_MINERAL");
@@ -173,8 +173,8 @@ public class CategoryDaoImplTest {
      * 根据所属机构和产品线查询出其子级分类信息(子级公司)
      */
     @Test
-    public void listCategorySubByOrgAndProd(){
-        CategoryDTO categoryDTO=new CategoryDTO();
+    public void listCategorySubByOrgAndProd() {
+        CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setOrganizationUuid("XN102");
         categoryDTO.setAppSysUuid("BIMS2.0");
         categoryDTO.setProdCatalogUuid("CATALOG_MINERAL");
@@ -191,7 +191,7 @@ public class CategoryDaoImplTest {
      * 根据所属机构和产品分类ID查询出其下的子级产品分类信息
      */
     @Test
-    public void listCategoryOrgByOrgUuid(){
+    public void listCategoryOrgByOrgUuid() {
         CategoryOrgDTO categoryOrgDTO = new CategoryOrgDTO();
         categoryOrgDTO.setOrganizationUuid("XN102");
         categoryOrgDTO.setAppSysUuid("BIMS2.0");
@@ -203,26 +203,26 @@ public class CategoryDaoImplTest {
      * 根据多个产品分类的ID查询出对应的子级产品分类信息(区分公司)
      */
     @Test
-    public void listCategoryByParentAllUuids(){
+    public void listCategoryByParentAllUuids() {
         CategoryOrgDTO categoryOrgDTO = new CategoryOrgDTO();
         categoryOrgDTO.setOrganizationUuid("XN102");
         categoryOrgDTO.setAppSysUuid("BIMS2.0");
         categoryOrgDTO.setProdCatalogUuid("CATALOG_MINERAL");
         categoryOrgDTO.setPublicOrgUuid("CCIC");
-        List<String> list=new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
         list.add("energy_minerals_code");
         list.add("gricultural_products_code");
         System.out.println(list);
         //categoryOrgDO.setUuids(list);
-        String uuidss="";
+        String uuidss = "";
         for (int i = 0; i < list.size(); i++) {
-            uuidss+=list.get(i)+"|";
+            uuidss += list.get(i) + "|";
         }
-        uuidss=uuidss.substring(0,uuidss.length()-1);//截取掉最后一位特殊字符
+        uuidss = uuidss.substring(0, uuidss.length() - 1);//截取掉最后一位特殊字符
         System.out.println();
         categoryOrgDTO.setCategoryUuidList(uuidss);
-        List<CategoryDO> categoryOrgUuids=categoryDaoImpl.listCategoryByParentAllUuids(categoryOrgDTO);
-        System.out.println("categoryOrgUuids:"+categoryOrgUuids);
+        List<CategoryDO> categoryOrgUuids = categoryDaoImpl.listCategoryByParentAllUuids(categoryOrgDTO);
+        System.out.println("categoryOrgUuids:" + categoryOrgUuids);
     }
 
 

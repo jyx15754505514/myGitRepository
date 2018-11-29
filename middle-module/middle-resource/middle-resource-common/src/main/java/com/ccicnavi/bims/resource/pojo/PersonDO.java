@@ -18,8 +18,6 @@ public class PersonDO implements Serializable {
 
     private String personCode;
 
-    private String name;
-
     private String firstName;
 
     private String personType;
@@ -28,7 +26,7 @@ public class PersonDO implements Serializable {
 
     private String gender;
 
-    private Date birthday;
+    private Date birthdate;
 
     private String certType;
 
@@ -44,21 +42,21 @@ public class PersonDO implements Serializable {
 
     private String nativePlace;
 
-    private String domicilePlace;
+    private String domiPlace;
 
     private String homeAddress;
 
     private String politicsStatus;
 
-//    private Date joinPartyTime;
+    private Date joinPartyDate;
 
     private String maritalStatus;
 
     private String phone;
 
-//    private String exigencyPerson;
+    private String exigencyPerson;
 
-//    private String exigencyPhone;
+    private String exigencyPhone;
 
     private String studyExperience;
 
@@ -82,11 +80,13 @@ public class PersonDO implements Serializable {
 
     private String updatedName;
 
+    private String updatedUuid;
+
     private String orgUuid;
 
     private String appSysUuid;
 
-    private String businessLine;
+    private String prodCatalogUuid;
 
     private String extend1;
 
