@@ -421,7 +421,31 @@ where
 -- [updateOrderStatus]
 update order_info
     -- trim prefix=set suffixOverrides=,
+        --iff statusUuid != null and statusUuid !=''
+        	status_uuid = '#statusUuid#',
+        --iff statusName != null and statusName !=''
+        	status_name = '#statusName#',
+        --iff updatedTime != null
+        	updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid !=''
+        	updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName !=''
+        	updated_name = '#updatedName#',
+    -- end
+where
+    is_deleted = 'N'
 --iff orderUuid != null and orderUuid != ''
+    and order_uuid = '#orderUuid#'
+--iff orderUuids != null
+    and order_uuid in
+    -- for item=item index=index collection=orderUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
+-- [updateOrderInfo]
+update order_info
+-- trim prefix=SET suffixOverrides=,
+	--iff orderUuid != null and orderUuid != ''
 		order_uuid = '#orderUuid#',
 	--iff productCategoryUuid != null and productCategoryUuid != ''
 		product_category_uuid = '#productCategoryUuid#',
@@ -549,16 +573,18 @@ update order_info
 		org_uuid = '#orgUuid#',
 	--iff appSysUuid != null and appSysUuid != ''
 		app_sys_uuid = '#appSysUuid#',
-    -- end
+	--iff extend1 != null and extend1 != ''
+		extend1 = '#extend1#',
+	--iff extend2 != null and extend2 != ''
+		extend2 = '#extend2#',
+	--iff extend3 != null and extend3 != ''
+		extend3 = '#extend3#',
+-- end
 where
     is_deleted = 'N'
 --iff orderUuid != null and orderUuid != ''
     and order_uuid = '#orderUuid#'
---iff orderUuids != null
-    and order_uuid in
-    -- for item=item index=index collection=orderUuids open=( separator=, close=)
-        '#item#'
-    -- end
+-- end
 
 
 
