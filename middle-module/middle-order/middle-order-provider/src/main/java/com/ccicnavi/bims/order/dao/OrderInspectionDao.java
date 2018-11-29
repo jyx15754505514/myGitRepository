@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.order.dao;
 
+import com.ccicnavi.bims.order.pojo.OrderInfoDO;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderInspectionDO;
 import com.ccicnavi.bims.order.pojo.OrderInspectionDTO;
@@ -35,5 +36,14 @@ public interface OrderInspectionDao {
      * @Return java.lang.Integer
      */
     Integer deleteOrderInspection(OrderInspectionDTO orderInspectionDTO, EqlTran tran) throws Exception;
+    /**
+     * @Author heibin
+     * @Description 得到委托单运输方式
+     * @Date 20:07 2018/11/29
+     * @Param [orderInfoDO]
+     * @Return com.ccicnavi.bims.order.pojo.OrderInspectionDO
+     */
+    OrderInspectionDO getOrderInspection(OrderInfoDO orderInfoDO) throws Exception;
+
 
 }

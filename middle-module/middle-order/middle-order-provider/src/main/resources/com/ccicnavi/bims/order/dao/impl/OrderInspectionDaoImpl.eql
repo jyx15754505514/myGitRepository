@@ -31,7 +31,7 @@ from
 where
     is_deleted = 'N'
 
--- [getInspection]
+-- [getOrderInspection]
 select
     order_uuid orderUuid,
     shipping_type_id shippingTypeId,
