@@ -44,5 +44,5 @@ public interface OrderReviewService {
      * @Param [pageParameter]
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderReviewDO>
      */
-    PageBean<OrderReviewDO> listOrderReview(PageParameter<OrderReviewDO> pageParameter);
+    PageBean<OrderReviewDO> listOrderReviewPage(PageParameter<OrderReviewDO> pageParameter);
 }
