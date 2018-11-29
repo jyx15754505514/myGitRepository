@@ -412,11 +412,6 @@ insert into order_info
         	--iff appSysUuid != null and appSysUuid != ''
         		'#appSysUuid#',
     -- end
-where
-    is_deleted = 'N'
---iff orderUuid != null and orderUuid != ''
-    and order_uuid = '#orderUuid#'
-
 
 -- [updateOrderStatus]
 update order_info
