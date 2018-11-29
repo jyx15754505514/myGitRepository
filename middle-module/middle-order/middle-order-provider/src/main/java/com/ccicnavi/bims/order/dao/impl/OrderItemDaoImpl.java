@@ -97,4 +97,20 @@ public class OrderItemDaoImpl implements OrderItemDao {
             return null;
         }
     }
+
+    /**
+     * @Author MengZiJie
+     * @Description 更新服务项状态
+     * @Data 2018/11/29 16:31
+     * @Param [orderItemDTO, tran]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer updateOrderItemStatus(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception {
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).update("updateOrderItemStatus").params(orderItemDTO).returnType(Integer.class).execute();
+        }
+        return eql.update("updateOrderItemStatus").params(orderItemDTO).returnType(Integer.class).execute();
+    }
 }

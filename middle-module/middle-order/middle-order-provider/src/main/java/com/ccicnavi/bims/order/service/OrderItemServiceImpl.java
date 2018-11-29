@@ -33,7 +33,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Autowired
     private OrderItemCostDao orderItemCostDao;
 
-    @Reference(url = "dubbo://127.0.0.1:20880",timeout = 1000)
+    @Reference(timeout = 1000)
     IdWorkerService idWorkerService;
 
     /**
@@ -177,5 +177,24 @@ public class OrderItemServiceImpl implements OrderItemService {
             log.error("业务查询分页列表查询失败",e);
             return null;
         }
+    }
+    /**
+     * @Author MengZiJie
+     * @Description 更改服务项状态
+     * @Data 2018/11/29 16:26
+     * @Param [orderItemDTO]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer updateOrderItemStatus(OrderItemDTO orderItemDTO) {
+        try {
+            Integer itemStatus = orderItemDao.updateOrderItemStatus(orderItemDTO, null);
+            if (itemStatus > 0) {
+                return itemStatus;
+            }
+        } catch (Exception e) {
+            log.error("更新失败",e);
+        }
+        return -1;
     }
 }

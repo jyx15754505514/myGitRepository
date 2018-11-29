@@ -1,6 +1,6 @@
 -- [listOrderItemPage]
 select
-   a.order_item_uuid orderItemUuid,
+    a.order_item_uuid orderItemUuid,
     a.order_uuid orderUuid,
     a.order_item_no orderItemNo,
     a.min_item_name minItemName,
@@ -44,50 +44,50 @@ select
     a.updated_time updatedTime,
     a.updated_uuid updatedUuid,
     a.updated_name updatedName,
-        b.product_category_uuid productCategoryUuid,
-        b.order_no orderNo,
-        b.order_name orderName,
-        b.order_date orderDate,
-        b.order_area_id orderAreaId,
-        b.crm_external_no crmExternalNo,
-        b.crm_uuid crmUuid,
-        b.crm_name crmName,
-        b.crm_linkman crmLinkman,
-        b.crm_telphone crmTelphone,
-        b.crm_email crmEmail,
-        b.crm_contract_no crmContractNo,
-        b.third_org_name thirdOrgName,
-        b.third_org_linkman thirdOrgLinkman,
-        b.third_org_telphone thirdOrgTelphone,
-        b.order_item_name orderItemName,
-        b.order_item_type orderItemType,
-        b.order_item_spec orderItemSpec,
-        b.order_item_sign orderItemSign,
-        b.order_item_qty orderItemQty,
-        b.order_item_qty_unit orderItemQtyUnit,
-        b.use_std_comment useStdComment,
-        b.total_fee totalFee,
-        b.first_fee_date firstFeeDate,
-        b.is_internal isInternal,
-        b.order_crm_source orderCrmSource,
-        b.source_org_uuid sourceOrgUuid,
-        b.source_org_name sourceOrgName,
-        b.plan_inspect_date planInspectDate,
-        b.plan_inspect_addr planInspectAddr,
-        b.conclusion_type conclusionType,
-        b.cert_lang_uuid certLangUuid,
-        b.cert_qty certQty,
-        b.cert_copy_qty certCopyQty,
-        b.accept_date acceptDate,
-        b.accept_org_uuid acceptOrgUuid,
-        b.accept_org_name acceptOrgName,
-        b.lbl_subpkg lblSubpkg,
-        b.lbl_exec lblExec,
-        b.lbl_crm_capc lblCrmCapc,
-        b.is_review isReview,
-        b.prod_catalog_uuid prodCatalogUuid,
-        b.org_uuid orgUuid,
-        b.app_sys_uuid appSysUuid
+    b.product_category_uuid productCategoryUuid,
+    b.order_no orderNo,
+    b.order_name orderName,
+    b.order_date orderDate,
+    b.order_area_id orderAreaId,
+    b.crm_external_no crmExternalNo,
+    b.crm_uuid crmUuid,
+    b.crm_name crmName,
+    b.crm_linkman crmLinkman,
+    b.crm_telphone crmTelphone,
+    b.crm_email crmEmail,
+    b.crm_contract_no crmContractNo,
+    b.third_org_name thirdOrgName,
+    b.third_org_linkman thirdOrgLinkman,
+    b.third_org_telphone thirdOrgTelphone,
+    b.order_item_name orderItemName,
+    b.order_item_type orderItemType,
+    b.order_item_spec orderItemSpec,
+    b.order_item_sign orderItemSign,
+    b.order_item_qty orderItemQty,
+    b.order_item_qty_unit orderItemQtyUnit,
+    b.use_std_comment useStdComment,
+    b.total_fee totalFee,
+    b.first_fee_date firstFeeDate,
+    b.is_internal isInternal,
+    b.order_crm_source orderCrmSource,
+    b.source_org_uuid sourceOrgUuid,
+    b.source_org_name sourceOrgName,
+    b.plan_inspect_date planInspectDate,
+    b.plan_inspect_addr planInspectAddr,
+    b.conclusion_type conclusionType,
+    b.cert_lang_uuid certLangUuid,
+    b.cert_qty certQty,
+    b.cert_copy_qty certCopyQty,
+    b.accept_date acceptDate,
+    b.accept_org_uuid acceptOrgUuid,
+    b.accept_org_name acceptOrgName,
+    b.lbl_subpkg lblSubpkg,
+    b.lbl_exec lblExec,
+    b.lbl_crm_capc lblCrmCapc,
+    b.is_review isReview,
+    b.prod_catalog_uuid prodCatalogUuid,
+    b.org_uuid orgUuid,
+    b.app_sys_uuid appSysUuid
 from
     order_item a  LEFT JOIN order_info b
     on a.order_uuid=b.order_uuid
@@ -95,6 +95,7 @@ where
     a.is_deleted = 'N'
 --iff orderUuid != null and orderUuid != ''
     and a.order_uuid = '#orderUuid#'
+
 -- [listOrderItem]
 select
     order_item_uuid orderItemUuid,
@@ -405,8 +406,6 @@ where
 -- [updateOrderItem]
     update order_item
     -- trim prefix= set suffixOverrides=,
-        --iff orderItemUuid != null and orderItemUuid != ''
-            order_item_uuid = '#orderItemUuid#',
         --iff orderUuid != null and orderUuid != ''
             order_uuid = '#orderUuid#',
         --iff orderItemNo != null and orderItemNo != ''
@@ -506,6 +505,32 @@ where
     and order_item_uuid = '#orderItemUuid#'
 -- end
 
+
+-- [updateOrderItemStatus]
+    update order_item
+    -- trim prefix= set suffixOverrides=,
+        --iff statusUuid != null and statusUuid != ''
+            status_uuid = '#statusUuid#',
+        --iff statusName != null and statusName != ''
+            status_name = '#statusName#',
+        --iff updatedTime != null
+            updated_time = '#updatedTime#',
+        --iff updatedUuid != null and updatedUuid != ''
+            updated_uuid = '#updatedUuid#',
+        --iff updatedName != null and updatedName != ''
+            updated_name = '#updatedName#',
+    -- end
+where
+    is_deleted = 'N'
+--iff orderItemUuid != null and orderItemUuid != ''
+    and order_item_uuid = '#orderItemUuid#'
+--iff orderItemUuids != null
+    and order_item_uuid in
+    -- for item=item index=index collection=orderItemUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
+
 -- [deleteOrderItem]
 UPDATE
     order_item
@@ -516,10 +541,10 @@ WHERE
   is_deleted = 'N'
 --iff orderItemUuid != null and orderItemUuid != ''
     and order_item_uuid = '#orderItemUuid#'
-    --iff orderUuid != null and orderUuid != ''
-        and order_uuid = '#orderUuid#'
---iff orderItemUuidList != null
+--iff orderUuid != null and orderUuid != ''
+    and order_uuid = '#orderUuid#'
+--iff orderItemUuids != null
     and order_item_uuid in
-    -- for item=item index=index collection=orderItemUuidList open=( separator=, close=)
+    -- for item=item index=index collection=orderItemUuids open=( separator=, close=)
         '#item#'
     -- end
