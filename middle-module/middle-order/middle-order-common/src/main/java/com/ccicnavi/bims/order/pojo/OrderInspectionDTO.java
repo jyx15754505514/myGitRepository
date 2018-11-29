@@ -90,6 +90,10 @@ public class OrderInspectionDTO implements Serializable {
      */
     private String provideCertName;
     /**
+     * 删除标识（N正常Y删除）
+     */
+    private String isDeleted;
+    /**
      * 是Y否N出证，默认N
      */
     private String isOpenCert;
