@@ -84,7 +84,6 @@ select
         b.lbl_subpkg lblSubpkg,
         b.lbl_exec lblExec,
         b.lbl_crm_capc lblCrmCapc,
-        b.is_review isReview,
         b.prod_catalog_uuid prodCatalogUuid,
         b.org_uuid orgUuid,
         b.app_sys_uuid appSysUuid
