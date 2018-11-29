@@ -405,7 +405,7 @@ public class OrderItemDTO implements Serializable {
     /**
      * 是Y否N需要评审，默认为N
      */
-    private String isReview;
+    private String isReviewContract;
     /**
      * 产品线id
      */
