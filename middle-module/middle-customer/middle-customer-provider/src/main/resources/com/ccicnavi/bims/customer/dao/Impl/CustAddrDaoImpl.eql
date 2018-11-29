@@ -19,24 +19,26 @@ SELECT
 	extend3
 FROM
 	crm_customer_addr
-WHERE
-	is_deleted = 'N'
-        --iff custAddr !=null and custAddr != ''
-            and cust_addr = '#custAddr:like#'
-        --end
-        --iff addrUuid !=null and addrUuid != ''
-            and addr_uuid = '#addrUuid#'
-        --end
-         --iff orgUuid != null and  orgUuid != ''
-            and  org_uuid = '#orgUuid#'
-         --end
-         --iff appSysUuid != null and  appSysUuid != ''
-            and  app_sys_uuid = '#appSysUuid#'
-          --end
-         --iff custUuid !=null and custUuid != ''
-            and cust_uuid = '#custUuid#'
-         --end
-
+WHERE 1=1
+    --iff custAddr !=null and custAddr != ''
+        and cust_addr = '#custAddr:like#'
+    --end
+    --iff addrUuid !=null and addrUuid != ''
+        and addr_uuid = '#addrUuid#'
+    --end
+     --iff orgUuid != null and  orgUuid != ''
+        and  org_uuid = '#orgUuid#'
+     --end
+     --iff appSysUuid != null and  appSysUuid != ''
+        and  app_sys_uuid = '#appSysUuid#'
+      --end
+     --iff custUuid !=null and custUuid != ''
+        and cust_uuid = '#custUuid#'
+     --end
+     --iff isDeleted !=null and isDeleted != ''
+        and is_deleted = '#isDeleted#'
+     --end
+    order by created_time desc
 -- [insertCustAddr]
 insert into crm_customer_addr
     -- trim prefix=( suffix=) suffixOverrides=,
