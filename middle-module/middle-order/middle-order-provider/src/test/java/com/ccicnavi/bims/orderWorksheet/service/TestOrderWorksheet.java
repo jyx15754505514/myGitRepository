@@ -1,7 +1,7 @@
 package com.ccicnavi.bims.orderWorksheet.service;
 
 import com.ccicnavi.bims.order.dao.impl.OrderWorksheetDaoImpl;
-import com.ccicnavi.bims.order.pojo.OrderWorksheetDO;
+import com.ccicnavi.bims.order.pojo.OrderWorksheetDTO;
 import org.junit.Test;
 
 import java.util.Date;
@@ -21,28 +21,28 @@ public class TestOrderWorksheet {
     @Test
     public void insertOrderWorksheet() {
         try {
-            OrderWorksheetDO orderWorksheetDO = new OrderWorksheetDO();
-            orderWorksheetDO.setWorksheetUuid("bbbbb");
-            orderWorksheetDO.setAssignUserUuid("cccccc");
-            orderWorksheetDO.setAssignTime(new Date());
-            orderWorksheetDO.setAssignComments("分配说明");
-            orderWorksheetDO.setPlanStartDate(new Date());
-            orderWorksheetDO.setPlanEndDate(new Date());
-            orderWorksheetDO.setImplDeptUuid("bvc");
-            orderWorksheetDO.setImplMgrUuid("nnnn");
-            orderWorksheetDO.setImplStartDate(new Date());
-            orderWorksheetDO.setImplEndDate(new Date());
-            orderWorksheetDO.setComments("备注");
-            orderWorksheetDO.setIsDeleted("N");
-            orderWorksheetDO.setCreatedTime(new Date());
-            orderWorksheetDO.setCreatedUuid("chuangshirenid");
-            orderWorksheetDO.setCreatedName("创建人");
-            orderWorksheetDO.setUpdatedTime(new Date());
-            orderWorksheetDO.setUpdatedUuid("gengxinrenuuid");
-            orderWorksheetDO.setUpdatedName("更新人");
-            orderWorksheetDO.setOrgUuid("jigouuuid");
-            orderWorksheetDO.setAppSysUuid("xitongid");
-            System.err.print(order.insertOrderWorksheet(orderWorksheetDO, null));
+            OrderWorksheetDTO orderWorksheetDTO = new OrderWorksheetDTO();
+            orderWorksheetDTO.setWorksheetUuid("bbbbb");
+            orderWorksheetDTO.setAssignUserUuid("cccccc");
+            orderWorksheetDTO.setAssignTime(new Date());
+            orderWorksheetDTO.setAssignComments("分配说明");
+            orderWorksheetDTO.setPlanStartDate(new Date());
+            orderWorksheetDTO.setPlanEndDate(new Date());
+            orderWorksheetDTO.setImplDeptUuid("bvc");
+            orderWorksheetDTO.setImplMgrUuid("nnnn");
+            orderWorksheetDTO.setImplStartDate(new Date());
+            orderWorksheetDTO.setImplEndDate(new Date());
+            orderWorksheetDTO.setComments("备注");
+            orderWorksheetDTO.setIsDeleted("N");
+            orderWorksheetDTO.setCreatedTime(new Date());
+            orderWorksheetDTO.setCreatedUuid("chuangshirenid");
+            orderWorksheetDTO.setCreatedName("创建人");
+            orderWorksheetDTO.setUpdatedTime(new Date());
+            orderWorksheetDTO.setUpdatedUuid("gengxinrenuuid");
+            orderWorksheetDTO.setUpdatedName("更新人");
+            orderWorksheetDTO.setOrgUuid("jigouuuid");
+            orderWorksheetDTO.setAppSysUuid("xitongid");
+            System.err.print(order.insertOrderWorksheet(orderWorksheetDTO, null));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,9 +56,9 @@ public class TestOrderWorksheet {
     @Test
     public void deleteOrderWorksheet() {
         try {
-            OrderWorksheetDO orderWorksheetDO = new OrderWorksheetDO();
-            orderWorksheetDO.setWorksheetUuid("aaaaa");
-            System.err.print(order.deleteOrderWorksheet(orderWorksheetDO, null));
+            OrderWorksheetDTO orderWorksheetDTO = new OrderWorksheetDTO();
+            orderWorksheetDTO.setWorksheetUuid("aaaaa");
+            System.err.print(order.deleteOrderWorksheet(orderWorksheetDTO, null));
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -72,11 +72,11 @@ public class TestOrderWorksheet {
     @Test
     public void updateOrderWorksheet() {
         try {
-            OrderWorksheetDO orderWorksheetDO = new OrderWorksheetDO();
-            orderWorksheetDO.setWorksheetUuid("aaaaa");
-            orderWorksheetDO.setAssignUserUuid("123");
-            orderWorksheetDO.setAppSysUuid("666");
-            System.err.print(order.updateOrderWorksheet(orderWorksheetDO, null));
+            OrderWorksheetDTO orderWorksheetDTO = new OrderWorksheetDTO();
+            orderWorksheetDTO.setWorksheetUuid("aaaaa");
+            orderWorksheetDTO.setAssignUserUuid("123");
+            orderWorksheetDTO.setAppSysUuid("666");
+            System.err.print(order.updateOrderWorksheet(orderWorksheetDTO, null));
         } catch (Exception e){
             e.printStackTrace();
         }
