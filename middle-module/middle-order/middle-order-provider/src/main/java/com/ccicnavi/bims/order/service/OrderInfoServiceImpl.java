@@ -299,7 +299,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
                  if(updateOrderStatus!=1){
                      result=false;
                  }
-                 //55555555555
+
             }
             if(result){
                 eqlTran.commit();
