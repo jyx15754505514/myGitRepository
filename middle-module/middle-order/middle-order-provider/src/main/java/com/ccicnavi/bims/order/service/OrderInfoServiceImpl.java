@@ -198,6 +198,8 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
+
+
     /**
      * @Author MengZiJie
      * @Description 分页查看委托单
@@ -206,7 +208,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderInfoDO>
      */
     @Override
-    public PageBean<OrderInfoDO> listOrderInfo(PageParameter<OrderInfoDO> pageParameter) {
+    public PageBean<OrderInfoDO> listOrderInfoPage(PageParameter<OrderInfoDO> pageParameter) {
         try {
             return orderInfoDao.listOrderInfoPage(pageParameter);
         } catch (Exception e) {
@@ -327,6 +329,9 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             if(orderInfoDO.getOrderUuid()!=null){
                 //查询所有的委托单信息
                orderInfoDTO = orderInfoDao.getOrderInfo(orderInfoDO);
+               //查询所有的运输信息
+                OrderInspectionDO orderInspectionDO=orderInspectionDao.getOrderInspection(orderInfoDO);
+                orderInfoDTO.setOrderInspectionDO(orderInspectionDO);
                 //根据委托单主键查询服务项目信息 返回list
                List<OrderItemDTO> orderItemDTOList = orderItemDao.listOrderItemDTO(orderInfoDO);
                if(orderItemDTOList!=null){

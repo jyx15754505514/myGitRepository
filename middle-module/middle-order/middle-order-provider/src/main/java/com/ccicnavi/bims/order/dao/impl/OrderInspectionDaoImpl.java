@@ -1,6 +1,7 @@
 package com.ccicnavi.bims.order.dao.impl;
 
 import com.ccicnavi.bims.order.dao.OrderInspectionDao;
+import com.ccicnavi.bims.order.pojo.OrderInfoDO;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
 import com.ccicnavi.bims.order.pojo.OrderInspectionDO;
 import com.ccicnavi.bims.order.pojo.OrderInspectionDTO;
@@ -59,5 +60,16 @@ public class OrderInspectionDaoImpl implements OrderInspectionDao {
            return new Eql().useTran(tran).update("deleteOrderInspection").params(orderInspectionDTO).returnType(Integer.class).execute();
         }
         return new Eql().update("deleteOrderInspection").params(orderInspectionDTO).returnType(Integer.class).execute();
+    }
+    /**
+     * @Author heibin
+     * @Description 得到委托单运输方式
+     * @Date 20:07 2018/11/29
+     * @Param [orderInfoDO]
+     * @Return com.ccicnavi.bims.order.pojo.OrderInspectionDO
+     */
+    @Override
+    public OrderInspectionDO getOrderInspection(OrderInfoDO orderInfoDO) throws Exception {
+        return new Eql().selectFirst("getOrderInspection").params(orderInfoDO).returnType(OrderInspectionDO.class).execute();
     }
 }

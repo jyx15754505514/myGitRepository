@@ -118,7 +118,7 @@ public class TestOrderReview {
             pageParameter.setStartPage(1);
             orderReviewDO.setReviewUserUuid("pingshen");
             pageParameter.setParameter(orderReviewDO);
-            PageBean<OrderReviewDO> certPaperDOPageBean = orderReviewDaoImpl.listOrderReview(pageParameter);
+            PageBean<OrderReviewDO> certPaperDOPageBean = orderReviewDaoImpl.listOrderReviewPage(pageParameter);
             System.out.println(certPaperDOPageBean);
         } catch (Exception e) {
             log.error("评审列表分页失败",e);
