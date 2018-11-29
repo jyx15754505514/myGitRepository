@@ -7,10 +7,13 @@ import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.resource.api.PersonService;
 import com.ccicnavi.bims.resource.pojo.PersonDO;
+import com.ccicnavi.bims.resource.pojo.PersonDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -21,7 +24,7 @@ public class PersonController {
     private final static Logger log = LoggerFactory.getLogger(PersonController.class);
 
 
-    @Reference(timeout = 30000)
+    @Reference(timeout = 50000, url = "dubbo://127.0.0.1:20882")
     PersonService personService;
 
     /*
@@ -115,8 +118,23 @@ public class PersonController {
         }
     }
 
+    /**
+    *@Description: 根据公司部门查询人员信息
+    *@Param: pageParameter
+    *@return:  PageBean<PersonDTO>
+    *@Author: zqq
+    *@date: 2018/11/29
+    */
 
-
+    @RequestMapping(value = "/selectByOrgOrDept", method = RequestMethod.POST, produces = "application/json;charset:UTF-8")
+    public ResultT selectByOrgOrDept(@RequestBody PageParameter<PersonDTO> pageParameter) {
+        try {
+            PageBean<PersonDTO> pagePerson = personService.selectByOrgOrDept(pageParameter);
+            return ResultT.success(pagePerson);
+        } catch (Exception e) {
+            return  ResultT.failure(ResultCode.LIST_FAILURE);
+        }
+    }
 
 
 }

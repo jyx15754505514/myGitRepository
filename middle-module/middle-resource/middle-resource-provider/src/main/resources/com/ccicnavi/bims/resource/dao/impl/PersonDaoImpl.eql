@@ -420,6 +420,21 @@
     -- iff personUuid != null and personUuid != ''
     and person_uuid = '#personUuid#'
 
+--根据公司部门查询人员
+--[selectByOrgOrDept]
+select  rp.person_uuid as personUuid,
+        rp.first_name as firstName,
+		GROUP_CONCAT(rpce.qualification_cert)  as qualificationCert,
+        rp.phone as phone ,
+		rp.gender as gender,
+		rpw.position as position,
+		GROUP_CONCAT(rps.skill_job)  as skillName
+ from  res_person rp
+ left join res_person_work rpw   on rp.person_uuid=rpw.person_uuid
+ left join res_person_skill rps  on rp.person_uuid=rps.person_uuid
+ left join res_person_cult_expe rpce  on rp.person_uuid=rpce.person_uuid
+ group by rp.person_uuid
+
 
 
 
