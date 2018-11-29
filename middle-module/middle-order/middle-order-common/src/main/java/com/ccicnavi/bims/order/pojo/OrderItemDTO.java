@@ -230,7 +230,10 @@ public class OrderItemDTO implements Serializable {
      *flag
      */
     private String flag;
-
+    /**
+     * 主键uuids
+     */
+    private List<String> orderItemUuids;
 
 
 
