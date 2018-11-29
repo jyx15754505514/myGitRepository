@@ -40,7 +40,7 @@ public class OrderListController {
     @RequestMapping(value = "/listOrder", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResultT listOrder(@RequestBody PageParameter<OrderInfoDO> parameter) {
         try {
-            PageBean<OrderInfoDO> orderInfoDOPageBean = orderInfoService.listOrderInfo(parameter);
+            PageBean<OrderInfoDO> orderInfoDOPageBean = orderInfoService.listOrderInfoPage(parameter);
             return ResultT.success(orderInfoDOPageBean);
         } catch (Exception e) {
             e.printStackTrace();

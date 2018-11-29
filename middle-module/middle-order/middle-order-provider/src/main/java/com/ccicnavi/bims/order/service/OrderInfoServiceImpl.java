@@ -206,7 +206,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderInfoDO>
      */
     @Override
-    public PageBean<OrderInfoDO> listOrderInfo(PageParameter<OrderInfoDO> pageParameter) {
+    public PageBean<OrderInfoDO> listOrderInfoPage(PageParameter<OrderInfoDO> pageParameter) {
         try {
             return orderInfoDao.listOrderInfoPage(pageParameter);
         } catch (Exception e) {

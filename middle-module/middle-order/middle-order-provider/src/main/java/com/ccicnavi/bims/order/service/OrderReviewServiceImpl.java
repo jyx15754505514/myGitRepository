@@ -114,9 +114,9 @@ public class OrderReviewServiceImpl implements OrderReviewService {
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderReviewDO>
      */
     @Override
-    public PageBean<OrderReviewDO> listOrderReview(PageParameter<OrderReviewDO> pageParameter) {
+    public PageBean<OrderReviewDO> listOrderReviewPage(PageParameter<OrderReviewDO> pageParameter) {
         try {
-            return orderReviewDao.listOrderReview(pageParameter);
+            return orderReviewDao.listOrderReviewPage(pageParameter);
         } catch (Exception e) {
             log.error("业务查询分页列表查询失败",e);
             return null;
