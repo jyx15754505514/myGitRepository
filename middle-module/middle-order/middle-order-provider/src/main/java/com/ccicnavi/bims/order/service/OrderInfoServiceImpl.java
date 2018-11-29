@@ -198,6 +198,8 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
 
+
+
     /**
      * @Author MengZiJie
      * @Description 分页查看委托单
@@ -327,6 +329,9 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             if(orderInfoDO.getOrderUuid()!=null){
                 //查询所有的委托单信息
                orderInfoDTO = orderInfoDao.getOrderInfo(orderInfoDO);
+               //查询所有的运输信息
+                OrderInspectionDO orderInspectionDO=orderInspectionDao.getOrderInspection(orderInfoDO);
+                orderInfoDTO.setOrderInspectionDO(orderInspectionDO);
                 //根据委托单主键查询服务项目信息 返回list
                List<OrderItemDTO> orderItemDTOList = orderItemDao.listOrderItemDTO(orderInfoDO);
                if(orderItemDTOList!=null){

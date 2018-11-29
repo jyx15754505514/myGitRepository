@@ -49,23 +49,37 @@ public class TestOrderInfo {
     @Test
     public void getOrderInfo(){
         try {
+            OrderInfoDO orderInfoDO =new OrderInfoDO();
+            orderInfoDO.setOrderUuid("");
             OrderInfoDaoImpl orderInfoDaoImpl = new OrderInfoDaoImpl();
             OrderItemDaoImpl orderItemDaoImpl = new OrderItemDaoImpl();
             OrderItemSubDaoImpl orderItemSubDaoImpl = new OrderItemSubDaoImpl();
-            OrderInfoDO orderInfoDO = new OrderInfoDO();
-            orderInfoDO.setOrderUuid("orderUuid1");
-            OrderInfoDTO orderInfoDTO = orderInfoDaoImpl.getOrderInfo(orderInfoDO);//查询所有的委托单信息
-            List<OrderItemDTO> orderItemDTOList = orderItemDaoImpl.listOrderItemDTO(orderInfoDO);//根据委托单主键查询服务项目信息 返回list
-            if(orderItemDTOList!=null && orderInfoDTO!=null){
-                for(OrderItemDTO orderItemDTO:orderItemDTOList){
-                    List<OrderItemSubDO> orderItemSubDOList = orderItemSubDaoImpl.listOrderItemSub(orderItemDTO);
-                    if(orderItemSubDOList!=null){
-                        orderItemDTO.setOrderItemSubDO(orderItemSubDOList);
+            OrderInspectionDaoImpl orderInspectionDaoImpl=new OrderInspectionDaoImpl();
+            OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
+            try {
+                if(orderInfoDO.getOrderUuid()!=null){
+                    //查询所有的委托单信息
+                    orderInfoDTO = orderInfoDaoImpl.getOrderInfo(orderInfoDO);
+                    //查询所有的运输信息
+                    OrderInspectionDO orderInspectionDO=orderInspectionDaoImpl.getOrderInspection(orderInfoDO);
+                    orderInfoDTO.setOrderInspectionDO(orderInspectionDO);
+                    //根据委托单主键查询服务项目信息 返回list
+                    List<OrderItemDTO> orderItemDTOList = orderItemDaoImpl.listOrderItemDTO(orderInfoDO);
+                    if(orderItemDTOList!=null){
+                        for(int i=0;i<orderItemDTOList.size();i++){
+                            List<OrderItemSubDO> orderItemSubDOList = orderItemSubDaoImpl.listOrderItemSub(orderItemDTOList.get(i));
+                            if(orderItemSubDOList!=null){
+                                orderItemDTOList.get(i).setOrderItemSubDO(orderItemSubDOList);
+                            }
+                        }
+                        orderInfoDTO.setOrderItemDTO(orderItemDTOList);
                     }
                 }
-                orderInfoDTO.setOrderItemDTO(orderItemDTOList);
+            } catch (Exception e) {
+                log.error("委托单回显失败",e);
+              //  return null;
             }
-            System.err.println(orderInfoDTO);
+          //  return orderInfoDTO;
         } catch (Exception e) {
             e.printStackTrace();
         }
