@@ -102,7 +102,7 @@ public class NewEntrustOrderController {
         PageBean<OrderInfoDO> pageBean = null;
 
         try {
-            pageBean = orderInfoService.listOrderInfo(pageParameter);
+            pageBean = orderInfoService.listOrderInfoPage(pageParameter);
             if(pageBean != null){
                 return  ResultT.success(pageBean);
             }
