@@ -1,5 +1,6 @@
 package com.ccicnavi.bims.customer.pojo;
 
+import com.ccicnavi.bims.akita.common.pojo.EnclosureVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -9,7 +10,7 @@ import java.util.List;
 
 /**
  * @program: bims-backend
- * @description: 分包方资质信息实体DO
+ * @description: 分包方资质信息实体DTO
  * @author: WangYingLing
  * @create: 2018-11-15 09:16
  */
@@ -118,5 +119,10 @@ public class SubcQualifiDTO implements Serializable {
      * 预留字段3
      */
     private String extend3;
+
+    /**
+     * 文件对象
+     */
+    EnclosureVO enclosureVO;
 
 }
