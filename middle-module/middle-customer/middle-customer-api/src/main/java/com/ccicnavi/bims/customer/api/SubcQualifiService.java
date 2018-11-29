@@ -33,7 +33,7 @@ public interface SubcQualifiService {
      * @Param [subcQuali]
      * @Return java.lang.Integer
      */
-    Integer insertSubcQuali(SubcQualifiDO subcQuali) ;
+    Integer insertSubcQuali(SubcQualifiDTO subcQualifiDTO);
 
     /**
      * @Author FanDongSheng

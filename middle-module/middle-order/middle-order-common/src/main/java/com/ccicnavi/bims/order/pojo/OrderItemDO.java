@@ -39,21 +39,25 @@ public class OrderItemDO implements Serializable {
      */
     private String minItemType;
     /**
+     *参考金额（基准费用）
+     */
+    private Integer refAmount;
+    /**
      *应收金额
      */
     private Integer receivableAmount;
     /**
-     *参考金额
+     *应收折扣
      */
-    private Integer refAmount;
+    private Integer refDiscount;
+    /**
+     *折扣价
+     */
+    private Integer refDiscountPrice;
     /**
      *参考工时
      */
     private String refWorkhour;
-    /**
-     *应收折扣
-     */
-    private Integer refDiscount;
     /**
      *币种
      */
@@ -125,6 +129,18 @@ public class OrderItemDO implements Serializable {
      */
     private String backReason;
     /**
+     *是Y否N退检
+     */
+    private String isCancel;
+    /**
+     *退检原因
+     */
+    private String cancelReason;
+    /**
+     *是Y否N加急，默认N
+     */
+    private String isUrgent;
+    /**
      *计划开工日期
      */
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
@@ -153,17 +169,9 @@ public class OrderItemDO implements Serializable {
      */
     private String realFinishworkComments;
     /**
-     *是Y否N退检
+     *完工数量标记1/5
      */
-    private String isCancel;
-    /**
-     *退检原因
-     */
-    private String cancelReason;
-    /**
-     *是Y否N加急，默认N
-     */
-    private String isUrgent;
+    private String finishQtyLbl;
     /**
      *备注
      */

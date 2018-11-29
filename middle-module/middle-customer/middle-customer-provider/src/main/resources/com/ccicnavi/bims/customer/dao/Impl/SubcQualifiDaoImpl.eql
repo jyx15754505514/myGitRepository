@@ -13,10 +13,7 @@ SELECT
     created_uuid createdUuid,
     updated_time updatedTime,
     updated_uuid updatedUuid,
-    updated_name updatedName,
-    extend1 extend1,
-    extend2 extend2,
-    extend3 extend3
+    updated_name updatedName
 FROM
     crm_subc_qualification
 WHERE
@@ -27,57 +24,40 @@ INSERT INTO crm_subc_qualification
     -- trim prefix=( suffix=) suffixOverrides=,
      -- iff subcQualifiUuid != null and subcQualifiUuid != ''
         subc_qualifi_uuid,
-
      -- iff subcUuid != null and subcUuid != ''
         subc_uuid,
-
      -- iff qualifiRange != null and qualifiRange != ''
         qualifi_range,
-
      -- iff qualifiEnmUuid != null and qualifiEnmUuid != ''
         qualifi_enm_uuid,
-
      -- iff qualifiCode != null and qualifiCode != ''
         qualifi_code,
-
      -- iff qualifiDescribe != null and qualifiDescribe != ''
         qualifi_describe,
-
      -- iff isFile != null and isFile != ''
         is_file,
-
      -- iff isDeleted != null and isDeleted != ''
         is_deleted,
-
      -- iff comments != null and comments != ''
         comments,
-
-     -- iff createdTime != null and createdTime != ''
+     -- iff createdTime != null
         created_time,
-
      -- iff createdUuid != null and createdUuid != ''
         created_uuid,
-
      -- iff createdName != null and createdName != ''
         created_name,
-
-     -- iff updatedTime != null and updatedTime != ''
+     -- iff updatedTime != null
         updated_time,
-
      -- iff updatedName != null and updatedName != ''
         updated_name,
-
      -- iff updatedUuid != null and updatedUuid != ''
         updated_uuid,
      -- iff extend1 != null and extend1 != ''
         extend1,
-
      -- iff extend2 != null and extend2 != ''
         extend2,
-
      -- iff extend3 != null and extend3 != ''
         extend3,
-
     --end
     -- trim prefix=values( suffix=) suffixOverrides=,
      -- iff subcQualifiUuid != null and subcQualifiUuid != ''
@@ -98,13 +78,13 @@ INSERT INTO crm_subc_qualification
         '#comments#',
      -- iff isDeleted != null and isDeleted != ''
         '#isDeleted#',
-     -- iff createdTime != null and createdTime != ''
+     -- iff createdTime != null
         '#createdTime#',
     -- iff createdName != null and createdName != ''
         '#createdName#',
      -- iff createdUuid != null and createdUuid != ''
         '#createdUuid#',
-     -- iff updatedTime != null and updatedTime != ''
+     -- iff updatedTime != null
         '#updatedTime#',
      -- iff updatedUuid != null and updatedUuid != ''
         '#updatedUuid#',
@@ -148,10 +128,8 @@ WHERE
 	-- trim prefix=SET suffixOverrides=,
       -- iff subcQualifiUuid != null
         subc_qualifi_uuid = '#subcQualifiUuid#',
-
       -- iff subcUuid != null
         subc_uuid = '#subcUuid#',
-
       -- iff qualifiRange != null
         qualifi_range = '#qualifiRange#',
        -- iff qualifiEnmUuid != null
@@ -191,24 +169,22 @@ WHERE
 
 -- [getSubcQuali]
 SELECT
-       subc_qualifi_uuid subcQualifiUuid,
-       subc_uuid subcUuid,
-       qualifi_range qualifiRange,
-       qualifi_enm_uuid qualifiEnmUuid,
-       qualifi_code qualifiCode,
-       qualifi_describe qualifiDescribe,
-       is_file isFile,
-       is_deleted isDeleted,
-       comments comments,
-       created_time createdTime,
-       created_uuid createdUuid,
-       updated_time updatedTime,
-       updated_uuid updatedUuid,
-       updated_name updatedName,
-       extend1 extend1,
-       extend2 extend2,
-       extend3 extend3
-FROM crm_subc_qualification
+    subc_qualifi_uuid subcQualifiUuid,
+    subc_uuid subcUuid,
+    qualifi_range qualifiRange,
+    qualifi_enm_uuid qualifiEnmUuid,
+    qualifi_code qualifiCode,
+    qualifi_describe qualifiDescribe,
+    is_file isFile,
+    is_deleted isDeleted,
+    comments comments,
+    created_time createdTime,
+    created_uuid createdUuid,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName
+FROM
+    crm_subc_qualification
 WHERE
     is_deleted='N'
     --iff subcUuid !=null and subcUuid != ''

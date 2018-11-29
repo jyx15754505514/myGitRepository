@@ -80,6 +80,12 @@ insert into crm_customer_tail
      -- iff personName != null and   personName!= ''
         person_name,
 
+     -- iff linkmanUuid != null and linkmanUuid  != ''
+         linkman_uuid,
+
+     -- iff linkmanName != null and   linkmanName!= ''
+         linkman_name,
+
      -- iff statusUuid != null and statusUuid  != ''
         status_uuid,
 
@@ -135,6 +141,11 @@ insert into crm_customer_tail
 
      -- iff personName != null and personName  != ''
         '#personName#',
+     -- iff linkmanUuid != null and linkmanUuid  != ''
+        '#linkmanUuid#',
+
+     -- iff linkmanName != null and   linkmanName!= ''
+          '#linkmanName#',
 
      -- iff statusUuid != null and statusUuid  != ''
         '#statusUuid#',
@@ -202,6 +213,12 @@ WHERE
 
       -- iff personName != null
         person_name = '#personName#',
+
+      -- iff linkmanUuid != null and linkmanUuid  != ''
+        linkman_uuid='#linkmanUuid#',
+
+      -- iff linkmanName != null and   linkmanName!= ''
+        linkman_name='#linkmanName#',
 
       -- iff statusUuid != null
         status_uuid = '#statusUuid#',

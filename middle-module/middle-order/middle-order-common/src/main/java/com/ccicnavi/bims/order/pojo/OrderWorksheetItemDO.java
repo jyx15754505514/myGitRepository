@@ -16,15 +16,12 @@ public class OrderWorksheetItemDO implements Serializable {
      */
     private String worksheetItemUuid;
     /**
-     *工作单主键
+     *工作单id
      */
     private String worksheetUuid;
     /**
-     * 委托服务项主键
+     * 委托服务项目id
      */
     private String orderItemUuid;
-    /**
-     * 最小颗粒度主键
-     */
-    private String itemSubUuid;
+
 }

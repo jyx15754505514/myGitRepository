@@ -102,7 +102,7 @@ insert into crm_customer_linkman
      -- iff email != null and  email != ''
         email,
 
-     -- iff fax != null and faxfax  != ''
+     -- iff fax != null and fax  != ''
         fax,
 
      -- iff officePhone != null and officePhone  != ''
@@ -160,7 +160,7 @@ insert into crm_customer_linkman
         extend3,
 
     -- end
-    -- trim prefix="values (" suffix=) suffixOverrides=, and   != ''
+    -- trim prefix=values( suffix=) suffixOverrides=,
      -- iff linkmanUuid != null and  linkmanUuid != ''
         '#linkmanUuid#',
 

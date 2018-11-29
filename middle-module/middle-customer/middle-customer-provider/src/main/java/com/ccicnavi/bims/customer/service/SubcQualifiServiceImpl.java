@@ -52,16 +52,18 @@ public class SubcQualifiServiceImpl implements SubcQualifiService {
      * @Author WangYingling
      * @Description 新增分包方资质信息
      * @Date 20:00 2018/11/14
-     * @param subcQuali
+     * @param subcQualifiDTO
      * @return java.lang.Integer
      */
     @Override
-    public Integer insertSubcQuali(SubcQualifiDO subcQuali) {
+    public Integer insertSubcQuali(SubcQualifiDTO subcQualifiDTO) {
+        /**创建事务*/
+        EqlTran eqlTran = new Eql().newTran();
         Integer count=0;
         try {
             String subcQualifiUuid = idWorkerService.getId(new Date());
-            subcQuali.setSubcQualifiUuid(subcQualifiUuid);
-            count=subcQualifiDao.insertSubcuQuali(subcQuali);
+            subcQualifiDTO.setSubcQualifiUuid(subcQualifiUuid);
+            count=subcQualifiDao.insertSubcuQuali(subcQualifiDTO,eqlTran);
         } catch (Exception e) {
             log.error("新增分包方资质信息失败",e);
         }
