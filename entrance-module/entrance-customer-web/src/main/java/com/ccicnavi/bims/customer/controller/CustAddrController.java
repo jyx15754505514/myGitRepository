@@ -133,11 +133,7 @@ public class CustAddrController {
         try {
             if(!StringUtils.isEmpty(CustAddrDO.getAddrUuid())){
                 Integer count = custAddrService.updateCustAddr(CustAddrDO);
-                if (count > 0) {
-                    return ResultT.success("修改客户地址成功");
-                } else {
-                    return ResultT.failure(ResultCode.UPDATE_FAILURE);
-                }
+                return ResultT.success("修改客户地址成功");
             }else{
                     return ResultT.failure(ResultCode.PARAM_IS_BLANK);
             }
