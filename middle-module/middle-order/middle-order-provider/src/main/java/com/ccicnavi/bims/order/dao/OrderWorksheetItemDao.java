@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.order.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.pojo.OrderWorksheetItemDO;
 import org.n3r.eql.EqlTran;
 /**
@@ -16,7 +18,7 @@ public interface OrderWorksheetItemDao {
      * @Param [orderWorksheetItemDO, tran]
      * @Return java.lang.Integer
      */
-    Integer insertOrderWorksheet(OrderWorksheetItemDO orderWorksheetItemDO, EqlTran tran) throws Exception;
+    Integer insertOrderWorksheetItem(OrderWorksheetItemDO orderWorksheetItemDO, EqlTran tran) throws Exception;
 
     /**
      * @Author songyateng
@@ -25,6 +27,23 @@ public interface OrderWorksheetItemDao {
      * @Param [orderWorksheetItemDO, tran]
      * @Return java.lang.Integer
      */
-    Integer deleteOrderWorksheet(OrderWorksheetItemDO orderWorksheetItemDO,EqlTran tran) throws Exception;
+    Integer deleteOrderWorksheetItem(OrderWorksheetItemDO orderWorksheetItemDO,EqlTran tran) throws Exception;
 
+    /**
+    *@Description: 更新工作单与服务项关系
+    *@Param: [orderWorksheetItemDO, tran]
+    *@return: java.lang.Integer
+    *@Author: zhangxingbiao
+    *@date: 2018/11/29
+    */
+    Integer updateOrderWorksheetItem(OrderWorksheetItemDO orderWorksheetItemDO,EqlTran tran) throws Exception;
+
+    /**
+    *@Description: 查询工作单与服务项关系
+    *@Param: [pageParameter]
+    *@return: com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderWorksheetItemDO>
+    *@Author: zhangxingbiao
+    *@date: 2018/11/29
+    */
+    public PageBean<OrderWorksheetItemDO> listOrderWorksheetItem(PageParameter<OrderWorksheetItemDO> pageParameter) throws Exception;
 }

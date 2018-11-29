@@ -23,3 +23,28 @@ DELETE FROM
     order_worksheet_item
 WHERE
     worksheet_item_uuid = '#worksheetItemUuid#'
+
+-- 更改工作单与服务项的关系
+--[updateOrderWorksheetItem]
+UPDATE
+    order_worksheet_item
+    -- trim prefix= set suffixOverrides=,
+        --iff worksheetItemUuid != null and worksheetItemUuid != ''
+    		worksheet_item_uuid = '#worksheetItemUuid#',
+        --iff worksheetUuid != null and worksheetUuid != ''
+    		worksheet_uuid = '#worksheetUuid#',
+        --iff orderItemUuid != null and orderItemUuid != ''
+        	order_item_uuid = '#orderItemUuid#',
+    --end
+where
+      worksheet_item_uuid = '#worksheetItemUuid#'
+
+-- 查询工作单与服务项的关系
+--[listOrderWorksheetItem]
+    SELECT
+    	worksheet_item_uuid worksheetItemUuid,
+    	worksheet_uuid worksheetUuid,
+    	order_item_uuid orderItemUuid
+    from order_worksheet_item
+    where
+        worksheet_item_uuid = '#worksheetItemUuid#'
