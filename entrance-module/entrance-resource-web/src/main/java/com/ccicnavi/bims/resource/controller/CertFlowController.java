@@ -41,7 +41,7 @@ public class CertFlowController {
      **/
     @RequestMapping(value = "/cancelCertFlow",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT cancelCertFlow(@RequestBody CertFlowDO certlowDO) {
-        log.info("开始作废证书流水号 Param: " + JSON.toJSONString(certlowDO) + " Time: " + new Date());
+        log.debug("开始作废证书流水号 Param: " + JSON.toJSONString(certlowDO) + " Time: " + new Date());
         try {
             if(StringUtils.isEmpty(certlowDO.getFlowNum())){
                 return ResultT.failure(ResultCode.PARAM_IS_BLANK);
@@ -51,10 +51,10 @@ public class CertFlowController {
             certlowDO.setIsDeleted("Y");
             Integer count = certFlowService.cancelCertFlow(certlowDO);
             if(count >= 1){
-                log.info("作废证书流水号数量：作废数量" + count);
+                log.debug("作废证书流水号数量：作废数量" + count);
                 return ResultT.success();
             }
-            log.info("作废证书流水号异常");
+            log.debug("作废证书流水号异常");
             return ResultT.failure(ResultCode.DELETE_FAILURE);
         } catch (Exception e) {
             log.error("作废证书流水号异常" + e);
@@ -72,7 +72,7 @@ public class CertFlowController {
      **/
     @RequestMapping(value = "/listCertFlowPage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listCertFlowPage(@RequestBody PageParameter<CertFlowDO> pageParameter) {
-        log.info("开始获取证书流水号列表 Param: " + JSON.toJSONString(pageParameter) + " Time: " + new Date());
+        log.debug("开始获取证书流水号列表 Param: " + JSON.toJSONString(pageParameter) + " Time: " + new Date());
         try {
             if(StringUtils.isEmpty(pageParameter.getStartPage()) ||
                     StringUtils.isEmpty(pageParameter.getPageRows())   ){
@@ -80,10 +80,10 @@ public class CertFlowController {
             }
             PageBean<CertFlowDTO> pageBean = certFlowService.listCertFlowPage(pageParameter);
             if(null == pageBean){
-                log.info("获取证书流水号列表异常");
+                log.debug("获取证书流水号列表异常");
                 return ResultT.failure(ResultCode.LIST_FAILURE);
             }
-            log.info("获取证书流水号列表结果：" + JSON.toJSONString(pageBean));
+            log.debug("获取证书流水号列表结果：" + JSON.toJSONString(pageBean));
             return ResultT.success(pageBean);
 
         } catch (Exception e) {

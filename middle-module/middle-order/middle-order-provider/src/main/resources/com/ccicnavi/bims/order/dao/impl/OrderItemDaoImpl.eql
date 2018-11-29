@@ -84,7 +84,7 @@ select
         b.lbl_subpkg lblSubpkg,
         b.lbl_exec lblExec,
         b.lbl_crm_capc lblCrmCapc,
-        b.is_review isReview,
+        b.is_review_contract isReviewContract,
         b.prod_catalog_uuid prodCatalogUuid,
         b.org_uuid orgUuid,
         b.app_sys_uuid appSysUuid
@@ -115,19 +115,19 @@ select
     assign_user_uuid assignUserUuid,
     assign_time assignTime,
     assign_comments assignComments,
-    rece_org_uuid receOrgUuid,
-    rece_org_name receOrgName,
-    rece_user_uuid receUserUuid,
-    rece_user_time receUserTime,
-    use_std_uuid useStdUuid,
-    use_std_name useStdName,
-    status_uuid statusUuid,
-    status_name statusName,
-    is_back isBack,
-    back_reason backReason,
-    is_cancel isCancel,
-    cancel_reason cancelReason,
-    is_urgent isUrgent,
+     rece_org_uuid receOrgUuid,
+     rece_org_name receOrgName,
+     rece_user_uuid receUserUuid,
+     rece_user_time receUserTime,
+     use_std_uuid useStdUuid,
+     use_std_name useStdName,
+     status_uuid statusUuid,
+     status_name statusName,
+     is_back isBack,
+     back_reason backReason,
+     is_cancel isCancel,
+     cancel_reason cancelReason,
+     is_urgent isUrgent,
     plan_startwork_date planStartworkDate,
     plan_finishwork_date planFinishworkDate,
     plan_startwork_comments planStartworkComments,
@@ -153,52 +153,52 @@ where
 
 -- [getOrderItem]
 select
-    order_item_uuid orderItemUuid,
-    order_uuid orderUuid,
-    order_item_no orderItemNo,
-    min_item_name minItemName,
-    min_item_uuid minItemUuid,
-    min_item_type minItemType,
-    ref_amount refAmount,
-    receivable_amount receivableAmount,
-    ref_discount refDiscount,
-    ref_discount_price refDiscountPrice,
-    ref_workhour refWorkhour,
-    currency_type currencyType,
-    currency_amount currencyAmount,
-    is_subpkg isSubpkg,
-    is_subpkg_mgr isSubpkgMgr,
-    assign_user_uuid assignUserUuid,
-    assign_time assignTime,
-    assign_comments assignComments,
-    rece_org_uuid receOrgUuid,
-    rece_org_name receOrgName,
-    rece_user_uuid receUserUuid,
-    rece_user_time receUserTime,
-    use_std_uuid useStdUuid,
-    use_std_name useStdName,
-    status_uuid statusUuid,
-    status_name statusName,
-    is_back isBack,
-    back_reason backReason,
-    is_cancel isCancel,
-    cancel_reason cancelReason,
-    is_urgent isUrgent,
-    plan_startwork_date planStartworkDate,
-    plan_finishwork_date planFinishworkDate,
-    plan_startwork_comments planStartworkComments,
-    real_startwork_date realStartworkDate,
-    real_finisthwork_date realFinisthworkDate,
-    real_finishwork_comments realFinishworkComments,
-    finish_qty_lbl finishQtyLbl,
-    comments comments,
-    is_deleted isDeleted,
-    created_time createdTime,
-    created_uuid createdUuid,
-    created_name createdName,
-    updated_time updatedTime,
-    updated_uuid updatedUuid,
-    updated_name updatedName
+      order_item_uuid orderItemUuid,
+        order_uuid orderUuid,
+        order_item_no orderItemNo,
+        min_item_name minItemName,
+        min_item_uuid minItemUuid,
+        min_item_type minItemType,
+        ref_amount refAmount,
+        receivable_amount receivableAmount,
+        ref_discount refDiscount,
+        ref_discount_price refDiscountPrice,
+        ref_workhour refWorkhour,
+        currency_type currencyType,
+        currency_amount currencyAmount,
+        is_subpkg isSubpkg,
+        is_subpkg_mgr isSubpkgMgr,
+        assign_user_uuid assignUserUuid,
+        assign_time assignTime,
+        assign_comments assignComments,
+         rece_org_uuid receOrgUuid,
+         rece_org_name receOrgName,
+         rece_user_uuid receUserUuid,
+         rece_user_time receUserTime,
+         use_std_uuid useStdUuid,
+         use_std_name useStdName,
+         status_uuid statusUuid,
+         status_name statusName,
+         is_back isBack,
+         back_reason backReason,
+         is_cancel isCancel,
+         cancel_reason cancelReason,
+         is_urgent isUrgent,
+        plan_startwork_date planStartworkDate,
+        plan_finishwork_date planFinishworkDate,
+        plan_startwork_comments planStartworkComments,
+        real_startwork_date realStartworkDate,
+        real_finisthwork_date realFinisthworkDate,
+        real_finishwork_comments realFinishworkComments,
+        finish_qty_lbl finishQtyLbl,
+        comments comments,
+        is_deleted isDeleted,
+        created_time createdTime,
+        created_uuid createdUuid,
+        created_name createdName,
+        updated_time updatedTime,
+        updated_uuid updatedUuid,
+        updated_name updatedName
 from
     order_item
 where
@@ -215,97 +215,107 @@ where
     insert into order_item
     --trim prefix=( suffix=) suffixOverrides=,
         --iff orderItemUuid != null and orderItemUuid != ''
-        order_item_uuid,
+            order_item_uuid,
         --iff orderUuid != null and orderUuid != ''
-        order_uuid,
+            order_uuid,
         --iff orderItemNo != null and orderItemNo != ''
-        order_item_no,
+            order_item_no,
         --iff minItemName != null and minItemName != ''
-        min_item_name,
+            min_item_name,
         --iff minItemUuid != null and minItemUuid != ''
-        min_item_uuid,
+            min_item_uuid,
         --iff minItemType != null and minItemType != ''
-        min_item_type,
-        --iff refAmount != null and refAmount != ''
-        ref_amount,
-        --iff receivableAmount != null and receivableAmount != ''
-        receivable_amount,
+            min_item_type,
+            --iff refAmount != null and refAmount != ''
+                       ref_amount,
+                        --iff receivableAmount != null and receivableAmount != ''
+                                   receivable_amount,
+
         --iff refDiscount != null and refDiscount != ''
-        ref_discount,
+            ref_discount,
         --iff refDiscountPrice != null and refDiscountPrice != ''
-        ref_discount_price,
+            ref_discount_price,
         --iff refWorkhour != null and refWorkhour != ''
-        ref_workhour,
+            ref_workhour,
         --iff currencyType != null and currencyType != ''
-        currency_type,
+            currency_type,
         --iff currencyAmount != null and currencyAmount != ''
-        currency_amount,
-        --iff isSubpkg != null and isSubpkg != ''
-        is_subpkg,
-        --iff isSubpkgMgr != null and isSubpkgMgr != ''
-        is_subpkg_mgr,
+            currency_amount,
+       --iff isSubpkg != null and isSubpkg != ''
+                  is_subpkg,
+                   --iff isSubpkgMgr != null and isSubpkgMgr != ''
+                              is_subpkg_mgr,
+
         --iff assignUserUuid != null and assignUserUuid != ''
-        assign_user_uuid,
-        --iff assignTime != null
-        assign_time,
+            assign_user_uuid,
+        --iff assignTime != null and assignTime != ''
+            assign_time,
         --iff assignComments != null and assignComments != ''
-        assign_comments,
-        --iff receOrgUuid != null and receOrgUuid != ''
-        rece_org_uuid,
-        --iff receOrgName != null and receOrgName != ''
-        rece_org_name,
-        --iff receUserUuid != null and receUserUuid != ''
-        rece_user_uuid,
-        --iff receUserTime != null
-        rece_user_time,
-        --iff useStdUuid != null and useStdUuid != ''
-        use_std_uuid,
-        --iff useStdName != null and useStdName != ''
-        use_std_name,
-        --iff statusUuid != null and statusUuid != ''
-        status_uuid,
-        --iff statusName != null and statusName != ''
-        status_name,
-        --iff isBack != null and isBack != ''
-        is_back,
-        --iff backReason != null and backReason != ''
-        back_reason,
-        --iff isCancel != null and isCancel != ''
-        is_cancel,
-        --iff cancelReason != null and cancelReason != ''
-        cancel_reason,
-        --iff isUrgent != null and isUrgent != ''
-        is_urgent,
-        --iff planStartworkDate != null
-        plan_startwork_date,
-        --iff planFinishworkDate != null
-        plan_finishwork_date,
-        --iff planStartworkComments != null and planStartworkComments != ''
-        plan_startwork_comments,
-        --iff realStartworkDate != null
-        real_startwork_date,
-        --iff realFinisthworkDate != null
-        real_finisthwork_date,
-        --iff realFinishworkComments != null and realFinishworkComments != ''
-        real_finishwork_comments,
-        --iff finishQtyLbl != null and finishQtyLbl != ''
-        finish_qty_lbl,
+            assign_comments,
+            --iff receOrgUuid != null and receOrgUuid != ''
+                        rece_org_uuid,
+                    --iff receOrgName != null and receOrgName != ''
+                        rece_org_name,
+                    --iff receUserUuid != null and receUserUuid != ''
+                        rece_user_uuid,
+                    --iff receUserTime != null
+                        rece_user_time,
+                        --iff useStdUuid != null and useStdUuid != ''
+                                    use_std_uuid,
+                                --iff useStdName != null and useStdName != ''
+                                    use_std_name,
+                                    --iff statusUuid != null and statusUuid != ''
+                                                status_uuid,
+                                            --iff statusName != null and statusName != ''
+                                                status_name,
+                                            --iff isBack != null and isBack != ''
+                                                is_back,
+                                            --iff backReason != null and backReason != ''
+                                                back_reason,
+                                                 --iff isCancel != null and isCancel != ''
+                                                            is_cancel,
+                                                        --iff cancelReason != null and cancelReason != ''
+                                                            cancel_reason,
+                                                        --iff isUrgent != null and isUrgent != ''
+                                                            is_urgent,
+
+
+
+        --iff planStartworkDate != null and planStartworkDate != ''
+            plan_startwork_date,
+        --iff planFinishworkDate != null and planFinishworkDate != ''
+            plan_finishwork_date,
+	    --iff planStartworkComments != null and planStartworkComments != ''
+		    plan_startwork_comments,
+	    --iff realStartworkDate != null
+		    real_startwork_date,
+	    --iff realFinisthworkDate != null
+		    real_finisthwork_date,
+	    --iff realFinishworkComments != null and realFinishworkComments != ''
+		    real_finishwork_comments,
+
+
+
+
+
+
+
         --iff comments != null and comments != ''
-        comments,
+            comments,
         --iff isDeleted != null and isDeleted != ''
-        is_deleted,
+            is_deleted,
         --iff createdTime != null
-        created_time,
+            created_time,
         --iff createdUuid != null and createdUuid != ''
-        created_uuid,
+            created_uuid,
         --iff createdName != null and createdName != ''
-        created_name,
+            created_name,
         --iff updatedTime != null
-        updated_time,
+            updated_time,
         --iff updatedUuid != null and updatedUuid != ''
-        updated_uuid,
+            updated_uuid,
         --iff updatedName != null and updatedName != ''
-        updated_name,
+            updated_name,
     --end
     --trim prefix=values( suffix=) suffixOverrides=,
         --iff orderItemUuid != null and orderItemUuid != ''
@@ -321,29 +331,40 @@ where
         --iff minItemType != null and minItemType != ''
             '#minItemType#',
         --iff refAmount != null and refAmount != ''
-            '#refAmount#',
+                    '#refAmount#',
         --iff receivableAmount != null and receivableAmount != ''
             '#receivableAmount#',
-        --iff refDiscount != null and refDiscount != ''
-            '#refDiscount#',
-        --iff refDiscountPrice != null and refDiscountPrice != ''
-            '#refDiscountPrice#',
+
+        --iff assignUserUuid != null and assignUserUuid != ''
+            '#assignUserUuid#',
+        --iff assignTime != null and assignTime != ''
+            '#assignTime#',
+        --iff assignComments != null and assignComments != ''
+            '#assignComments#',
+        --iff planStartworkDate != null and planStartworkDate != ''
+            '#planStartworkDate#',
+        --iff planFinishworkDate != null and planFinishworkDate != ''
+            '#planFinishworkDate#',
+    	--iff planStartworkComments != null and planStartworkComments != ''
+    		'#planStartworkComments#',
+    	--iff realStartworkDate != null
+    		'#realStartworkDate#',
+    	--iff realFinisthworkDate != null
+    		'#realFinisthworkDate#',
+    	--iff realFinishworkComments != null and realFinishworkComments != ''
+    		'#realFinishworkComments#',
         --iff refWorkhour != null and refWorkhour != ''
             '#refWorkhour#',
+        --iff refDiscount != null and refDiscount != ''
+            '#refDiscount#',
         --iff currencyType != null and currencyType != ''
             '#currencyType#',
         --iff currencyAmount != null and currencyAmount != ''
             '#currencyAmount#',
         --iff isSubpkg != null and isSubpkg != ''
-            '#isSubpkg#',
+            'N',
         --iff isSubpkgMgr != null and isSubpkgMgr != ''
-            '#isSubpkgMgr#',
-        --iff assignUserUuid != null and assignUserUuid != ''
-            '#assignUserUuid#',
-        --iff assignTime != null
-            '#assignTime#',
-        --iff assignComments != null and assignComments != ''
-            '#assignComments#',
+            'Y',
         --iff receOrgUuid != null and receOrgUuid != ''
             '#receOrgUuid#',
         --iff receOrgName != null and receOrgName != ''
@@ -370,24 +391,10 @@ where
             '#cancelReason#',
         --iff isUrgent != null and isUrgent != ''
             '#isUrgent#',
-        --iff planStartworkDate != null
-            '#planStartworkDate#',
-        --iff planFinishworkDate != null
-            '#planFinishworkDate#',
-        --iff planStartworkComments != null and planStartworkComments != ''
-            '#planStartworkComments#',
-        --iff realStartworkDate != null
-            '#realStartworkDate#',
-        --iff realFinisthworkDate != null
-            '#realFinisthworkDate#',
-        --iff realFinishworkComments != null and realFinishworkComments != ''
-            '#realFinishworkComments#',
-        --iff finishQtyLbl != null and finishQtyLbl != ''
-            '#finishQtyLbl#',
         --iff comments != null and comments != ''
             '#comments#',
         --iff isDeleted != null and isDeleted != ''
-            '#isDeleted#',
+            'N',
         --iff createdTime != null
             '#createdTime#',
         --iff createdUuid != null and createdUuid != ''
@@ -405,8 +412,6 @@ where
 -- [updateOrderItem]
     update order_item
     -- trim prefix= set suffixOverrides=,
-        --iff orderItemUuid != null and orderItemUuid != ''
-            order_item_uuid = '#orderItemUuid#',
         --iff orderUuid != null and orderUuid != ''
             order_uuid = '#orderUuid#',
         --iff orderItemNo != null and orderItemNo != ''
@@ -417,16 +422,32 @@ where
             min_item_uuid = '#minItemUuid#',
         --iff minItemType != null and minItemType != ''
             min_item_type = '#minItemType#',
-        --iff refAmount != null and refAmount != ''
-            ref_amount = '#refAmount#',
         --iff receivableAmount != null and receivableAmount != ''
             receivable_amount = '#receivableAmount#',
-        --iff refDiscount != null and refDiscount != ''
-            ref_discount = '#refDiscount#',
-        --iff refDiscountPrice != null and refDiscountPrice != ''
-            ref_discount_price = '#refDiscountPrice#',
+        --iff refAmount != null and refAmount != ''
+            ref_amount = '#refAmount#',
+        --iff assignUserUuid != null and assignUserUuid != ''
+            assign_user_uuid = '#assignUserUuid#',
+        --iff assignTime != null and assignTime != ''
+            assign_time = '#assignTime#',
+        --iff assignComments != null and assignComments != ''
+            assign_comments = '#assignComments#',
+        --iff planStartworkDate != null and planStartworkDate != ''
+            plan_startwork_date = '#planStartworkDate#',
+        --iff planFinishworkDate != null and planFinishworkDate != ''
+            plan_finishwork_date = '#planFinishworkDate#',
+    	--iff planStartworkComments != null and planStartworkComments != ''
+    		plan_startwork_comments = '#planStartworkComments#',
+    	--iff realStartworkDate != null
+    		real_startwork_date = '#realStartworkDate#',
+    	--iff realFinisthworkDate != null
+    		real_finisthwork_date = '#realFinisthworkDate#',
+    	--iff realFinishworkComments != null and realFinishworkComments != ''
+    		real_finishwork_comments = '#realFinishworkComments#',
         --iff refWorkhour != null and refWorkhour != ''
             ref_workhour = '#refWorkhour#',
+        --iff refDiscount != null and refDiscount != ''
+            ref_discount = '#refDiscount#',
         --iff currencyType != null and currencyType != ''
             currency_type = '#currencyType#',
         --iff currencyAmount != null and currencyAmount != ''
@@ -435,12 +456,6 @@ where
             is_subpkg = '#isSubpkg#',
         --iff isSubpkgMgr != null and isSubpkgMgr != ''
             is_subpkg_mgr = '#isSubpkgMgr#',
-        --iff assignUserUuid != null and assignUserUuid != ''
-            assign_user_uuid = '#assignUserUuid#',
-        --iff assignTime != null
-            assign_time = '#assignTime#',
-        --iff assignComments != null and assignComments != ''
-            assign_comments = '#assignComments#',
         --iff receOrgUuid != null and receOrgUuid != ''
             rece_org_uuid = '#receOrgUuid#',
         --iff receOrgName != null and receOrgName != ''
@@ -467,20 +482,6 @@ where
             cancel_reason = '#cancelReason#',
         --iff isUrgent != null and isUrgent != ''
             is_urgent = '#isUrgent#',
-        --iff planStartworkDate != null
-            plan_startwork_date = '#planStartworkDate#',
-        --iff planFinishworkDate != null
-            plan_finishwork_date = '#planFinishworkDate#',
-        --iff planStartworkComments != null and planStartworkComments != ''
-            plan_startwork_comments = '#planStartworkComments#',
-        --iff realStartworkDate != null
-            real_startwork_date = '#realStartworkDate#',
-        --iff realFinisthworkDate != null
-            real_finisthwork_date = '#realFinisthworkDate#',
-        --iff realFinishworkComments != null and realFinishworkComments != ''
-            real_finishwork_comments = '#realFinishworkComments#',
-        --iff finishQtyLbl != null and finishQtyLbl != ''
-            finish_qty_lbl = '#finishQtyLbl#',
         --iff comments != null and comments != ''
             comments = '#comments#',
         --iff isDeleted != null and isDeleted != ''
