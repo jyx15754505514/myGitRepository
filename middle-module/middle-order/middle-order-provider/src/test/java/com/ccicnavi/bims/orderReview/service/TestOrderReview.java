@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.orderReview.service;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.dao.impl.OrderInfoDaoImpl;
 import com.ccicnavi.bims.order.dao.impl.OrderReviewDaoImpl;
 import com.ccicnavi.bims.order.pojo.OrderInfoDTO;
@@ -99,6 +101,32 @@ public class TestOrderReview {
             eqlTran.close();
         }
     }
+    /**
+     * @Author songyateng
+     * @Description 评审列表（分页）
+     * @Date 2018/11/29 17:26
+     */
+    @Test
+    public void listOrderReview(){
+        EqlTran eqlTran = new Eql("DEFAULT").newTran();
+        try {
+            OrderReviewDaoImpl orderReviewDaoImpl = new OrderReviewDaoImpl();//委托评审
+            PageParameter<OrderReviewDO> pageParameter = new PageParameter();
+            OrderReviewDO orderReviewDO = new OrderReviewDO();
+            pageParameter.setStartIndex(1);
+            pageParameter.setPageRows(2);
+            pageParameter.setStartPage(1);
+            orderReviewDO.setReviewUserUuid("pingshen");
+            pageParameter.setParameter(orderReviewDO);
+            PageBean<OrderReviewDO> certPaperDOPageBean = orderReviewDaoImpl.listOrderReview(pageParameter);
+            System.out.println(certPaperDOPageBean);
+        } catch (Exception e) {
+            log.error("评审列表分页失败",e);
+        }
+    }
+
+
+
 
 
 }
