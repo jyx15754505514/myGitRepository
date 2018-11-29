@@ -7,7 +7,6 @@ import com.ccicnavi.bims.customer.api.SubcQualifiService;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
 import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
-import org.n3r.eql.EqlTran;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +30,7 @@ public class SubcQualifiController {
     private final static Logger log= LoggerFactory.getLogger(SubcQualifiController.class);
 
     @Reference(timeout = 30000)
+
     SubcQualifiService subcQualifiService;
 
     /**
@@ -52,16 +52,17 @@ public class SubcQualifiController {
     }
 
     /**
-     * @author WangYingLing
-     * @description 新增分包方资质信息
-     * @param subcQualifiDO
-     * @return com.ccicnavi.bims.common.ResultT
-     */
+    *@Description: 新增分包方资质信息
+    *@Author: ChaiYanShun
+    *@Create: 2018/11/29 14:06
+    *@Param [subcQualifiDTO]
+    *@return com.ccicnavi.bims.common.ResultT
+    */
     @RequestMapping(value = "/saveSubcQuali",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public ResultT saveSubcQuali(@RequestBody SubcQualifiDO subcQualifiDO){
+    public ResultT saveSubcQuali(@RequestBody SubcQualifiDTO subcQualifiDTO){
         int count=0;
         try {
-            count=subcQualifiService.insertSubcQuali(subcQualifiDO);
+            count=subcQualifiService.insertSubcQuali(subcQualifiDTO);
             if(count>0){
                 return ResultT.success("新增分包方资质信息成功");
              }

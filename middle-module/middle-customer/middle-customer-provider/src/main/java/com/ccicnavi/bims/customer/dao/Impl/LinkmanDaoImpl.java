@@ -40,7 +40,7 @@ public class LinkmanDaoImpl implements LinkmanDao {
         if(tran != null){
             eql.useTran(tran);
         }
-        return eql.update("deleteLinkman").params(linkmanDO).returnType(int.class).execute();
+        return eql.update("deleteSubLinkman").params(linkmanDO).returnType(int.class).execute();
     }
 
     @Override

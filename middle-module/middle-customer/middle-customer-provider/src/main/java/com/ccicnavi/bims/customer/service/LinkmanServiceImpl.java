@@ -1,6 +1,8 @@
 package com.ccicnavi.bims.customer.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.ccicnavi.bims.breeder.api.IdWorkerService;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.customer.api.LinkmanService;
@@ -10,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,6 +24,9 @@ import java.util.List;
 @Service
 @Slf4j
 public class LinkmanServiceImpl implements LinkmanService {
+
+    @Reference(timeout = 1000000)
+    IdWorkerService idWorkerService;
 
     @Autowired
     LinkmanDao linkmanDao;
@@ -38,6 +44,7 @@ public class LinkmanServiceImpl implements LinkmanService {
     @Override
     public int saveLinkman(LinkmanDO linkmanDO) {
         try {
+            linkmanDO.setLinkmanUuid(idWorkerService.getId(new Date()));
             return linkmanDao.saveLinkman(linkmanDO,null);
         } catch (Exception e) {
             log.error("保存客户联系人信息失败~", e);

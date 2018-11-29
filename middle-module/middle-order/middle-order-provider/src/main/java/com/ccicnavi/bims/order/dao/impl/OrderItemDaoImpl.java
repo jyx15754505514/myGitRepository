@@ -88,7 +88,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
     @Override
     public PageBean<OrderItemDTO> listOrderItemPage(PageParameter<OrderItemDTO> pageParameter) {
         //封装分页参数
-        EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        EqlPage page = new EqlPage(pageParameter.getStartPage(), pageParameter.getPageRows());
         //执行查询
         List<OrderItemDTO> orderItemDTOList = new Eql().select("listOrderItemPage").params(pageParameter.getParameter()).returnType(OrderItemDTO.class).limit(page).execute();
         if(orderItemDTOList != null) {
@@ -96,5 +96,21 @@ public class OrderItemDaoImpl implements OrderItemDao {
         }else {
             return null;
         }
+    }
+
+    /**
+     * @Author MengZiJie
+     * @Description 更新服务项状态
+     * @Data 2018/11/29 16:31
+     * @Param [orderItemDTO, tran]
+     * @Return java.lang.Integer
+     */
+    @Override
+    public Integer updateOrderItemStatus(OrderItemDTO orderItemDTO, EqlTran tran) throws Exception {
+        Eql eql = new Eql();
+        if(tran != null){
+            return eql.useTran(tran).update("updateOrderItemStatus").params(orderItemDTO).returnType(Integer.class).execute();
+        }
+        return eql.update("updateOrderItemStatus").params(orderItemDTO).returnType(Integer.class).execute();
     }
 }

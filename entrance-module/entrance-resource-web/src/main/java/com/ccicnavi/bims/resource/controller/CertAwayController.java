@@ -40,9 +40,9 @@ public class CertAwayController {
     **/
     @RequestMapping(value = "/insertCertAway",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT insertCertAway(@RequestBody CertAwayDO certAwayDO) {
-        log.info("开始保存空证书纸分发记录 Param: " + JSON.toJSONString(certAwayDO) + " Time: " + new Date());
+        log.debug("开始保存空证书纸分发记录 Param: " + JSON.toJSONString(certAwayDO) + " Time: " + new Date());
         try {
-            log.info("保存空证书纸分发成功记录");
+            log.debug("保存空证书纸分发成功记录");
             return certAwayService.insertCertAway(certAwayDO);
         } catch (Exception e) {
             log.error("保存空证书纸分发记录失败" + e);
@@ -60,7 +60,7 @@ public class CertAwayController {
      **/
     @RequestMapping(value = "/listCertAwayPage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResultT listCertAwayPage(@RequestBody PageParameter<CertAwayDO> pageParameter) {
-        log.info("开始获取分发记录列表 Param: " + JSON.toJSONString(pageParameter) + " Time: " + new Date());
+        log.debug("开始获取分发记录列表 Param: " + JSON.toJSONString(pageParameter) + " Time: " + new Date());
         try {
             if(StringUtils.isEmpty(pageParameter.getPageRows()) ||
                StringUtils.isEmpty(pageParameter.getStartPage())){
@@ -68,10 +68,10 @@ public class CertAwayController {
             }
             PageBean<CertAwayDO> pageBean = certAwayService.listCertAwayPage(pageParameter);
             if(null == pageBean ){
-                log.info("获取分发记录列表异常");
+                log.debug("获取分发记录列表异常");
                 return ResultT.failure(ResultCode.LIST_FAILURE);
             }
-            log.info("获取分发记录列表结果：" + JSON.toJSONString(pageBean));
+            log.debug("获取分发记录列表结果：" + JSON.toJSONString(pageBean));
             return ResultT.success(pageBean);
         } catch (Exception e) {
             log.error("获取分发记录列表失败" + e);

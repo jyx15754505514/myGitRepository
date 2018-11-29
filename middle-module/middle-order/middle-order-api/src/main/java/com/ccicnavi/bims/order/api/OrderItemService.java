@@ -59,5 +59,12 @@ public interface OrderItemService {
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderItemDTO>
      */
     PageBean<OrderItemDTO> listOrderItemPage(PageParameter<OrderItemDTO> pageParameter);
-
+    /**
+     * @Author MengZiJie
+     * @Description 更改服务项状态
+     * @Data 2018/11/29 16:24
+     * @Param [orderItemDTO]
+     * @Return java.lang.Integer
+     */
+    Integer updateOrderItemStatus(OrderItemDTO orderItemDTO);
 }
