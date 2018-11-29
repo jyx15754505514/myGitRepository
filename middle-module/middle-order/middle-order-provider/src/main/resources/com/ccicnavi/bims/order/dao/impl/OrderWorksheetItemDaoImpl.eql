@@ -7,8 +7,6 @@ Insert into order_worksheet_item
             order_item_uuid,
         --iff worksheetItemUuid != null and worksheetItemUuid != ''
             worksheet_item_uuid,
-        --iff itemSubUuid != null and itemSubUuid != ''
-            item_sub_uuid,
 
 	-- end
     -- trim prefix=values( suffix=) suffixOverrides=,
@@ -18,8 +16,6 @@ Insert into order_worksheet_item
             '#orderItemUuid#',
         --iff worksheetItemUuid != null and worksheetItemUuid != ''
             '#worksheetItemUuid#',
-        --iff itemSubUuid != null and itemSubUuid != ''
-            '#itemSubUuid#',
 	-- end
 
 -- [deleteOrderWorksheetItem]
