@@ -88,7 +88,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
     @Override
     public PageBean<OrderItemDTO> listOrderItemPage(PageParameter<OrderItemDTO> pageParameter) {
         //封装分页参数
-        EqlPage page = new EqlPage(pageParameter.getStartIndex(), pageParameter.getPageRows());
+        EqlPage page = new EqlPage(pageParameter.getStartPage(), pageParameter.getPageRows());
         //执行查询
         List<OrderItemDTO> orderItemDTOList = new Eql().select("listOrderItemPage").params(pageParameter.getParameter()).returnType(OrderItemDTO.class).limit(page).execute();
         if(orderItemDTOList != null) {
