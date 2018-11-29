@@ -2,6 +2,7 @@ package com.ccicnavi.bims.resource.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.ccicnavi.bims.base.controller.BaseController;
+import com.ccicnavi.bims.common.ConstantCode;
 import com.ccicnavi.bims.common.ResultCode;
 import com.ccicnavi.bims.common.ResultT;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
@@ -22,12 +23,12 @@ import java.util.Date;
 @RequestMapping("/equipLedger")
 public class EquipmentLedgerController extends BaseController {
 
-    @Reference(timeout = 30000)
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
+    //@Reference(timeout = 30000)
+    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20882")
     EquipService equipService;
 
-    @Reference(timeout = 30000)
-//    @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
+    //@Reference(timeout = 30000)
+   @Reference(timeout = 30000, url = "dubbo://127.0.0.1:20881")
     RemindService remindService;
 
     /*
@@ -160,6 +161,7 @@ public class EquipmentLedgerController extends BaseController {
             SSOUser SSOUser = getUserInfo();
             //获取设置的提醒天数
             RemindDTO remindDTO = new RemindDTO();
+            remindDTO.setRemindType(ConstantCode.VERIFICATION_EXPIRED);
             remindDTO.setOrgUuid(SSOUser.getOrgUuid());
             RemindDTO remindDTO1 = remindService.getRemind(remindDTO);
             //获取到期设备信息
@@ -180,11 +182,12 @@ public class EquipmentLedgerController extends BaseController {
      *@create: 2018/11/26 21:45
      */
     @RequestMapping(value = "/setUpRemindDay", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public ResultT expireListEquip(@RequestBody(required = true) Integer days) {
+    public ResultT expireListEquip(@RequestBody RemindDTO remindDTO) {
         try {
-            RemindDTO remindDTO = new RemindDTO();
-            remindDTO.setNum(days.toString());
-            
+            //获取当前登录人员信息
+            SSOUser SSOUser = getUserInfo();
+            remindDTO.setRemindType(ConstantCode.VERIFICATION_EXPIRED);
+            remindDTO.setOrgUuid(SSOUser.getOrgUuid());
             Integer num = remindService.updateRemind(remindDTO);
             if (num > 0) {
                 return ResultT.success("更新提醒天数成功");

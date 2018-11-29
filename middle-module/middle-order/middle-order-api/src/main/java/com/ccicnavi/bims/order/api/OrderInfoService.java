@@ -35,9 +35,9 @@ public interface OrderInfoService {
      * @Param [pageParameter]
      * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderInfoDO>
      */
-    PageBean<OrderInfoDO> listOrderInfo(PageParameter<OrderInfoDO> pageParameter);
+    PageBean<OrderInfoDO> listOrderInfoPage(PageParameter<OrderInfoDO> pageParameter);
     /**
-     * @Author MengZiJie
+     * @Author heibin
      * @Description 保存委托单
      * @Date 15:30 2018/11/19
      * @Param [orderInfoDTO]

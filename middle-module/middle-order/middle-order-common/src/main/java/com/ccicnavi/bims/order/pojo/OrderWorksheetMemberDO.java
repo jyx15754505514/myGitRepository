@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OrderWorksheetMember implements Serializable {
+public class OrderWorksheetMemberDO implements Serializable {
     /**
      * 主键
      */

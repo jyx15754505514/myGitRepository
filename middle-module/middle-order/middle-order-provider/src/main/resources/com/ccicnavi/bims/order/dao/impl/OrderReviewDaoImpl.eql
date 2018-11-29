@@ -1,4 +1,4 @@
--- [listOrderReview]
+-- [listOrderReviewPage]
 	SELECT
         order_review_uuid orderReviewUuid,
         order_uuid orderUuid,

@@ -123,6 +123,6 @@ public class SubcQualifiDTO implements Serializable {
     /**
      * 文件对象
      */
-    EnclosureVO enclosureVO;
+    private EnclosureVO enclosureVO;
 
 }

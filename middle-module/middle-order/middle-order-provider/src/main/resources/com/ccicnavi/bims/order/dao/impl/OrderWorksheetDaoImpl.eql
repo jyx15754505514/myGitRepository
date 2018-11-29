@@ -30,6 +30,8 @@ select
 from order_worksheet
 where
     is_deleted = 'N'
+--iff worksheetUuid != null and worksheetUuid != ''
+    and worksheet_uuid = '#worksheetUuid#'
 --iff orgUuid != null and orgUuid != ''
     and org_uuid = '#orgUuid#'
 --iff appSysUuid != null and appSysUuid != ''
@@ -251,9 +253,9 @@ where
     is_deleted = 'N'
 --iff worksheetUuid != null and worksheetUuid != ''
     and worksheet_uuid = '#worksheetUuid#'
---iff worksheetUuids != null
+--iff uuids != null
     and worksheet_uuid in
-    -- for item=item index=index collection=worksheetUuids open=( separator=, close=)
+    -- for item=item index=index collection=uuids open=( separator=, close=)
         '#item#'
     -- end
 
@@ -272,8 +274,8 @@ where
     is_deleted = 'N'
 --iff worksheetUuid != null and worksheetUuid != ''
     and worksheet_uuid = '#worksheetUuid#'
---iff worksheetUuids != null
+--iff uuids != null
     and worksheet_uuid in
-    -- for item=item index=index collection=worksheetUuids open=( separator=, close=)
+    -- for item=item index=index collection=uuids open=( separator=, close=)
         '#item#'
     -- end

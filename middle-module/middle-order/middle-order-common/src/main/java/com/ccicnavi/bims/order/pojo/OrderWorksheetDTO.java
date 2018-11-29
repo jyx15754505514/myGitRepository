@@ -9,6 +9,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  *@program: bims-backend
@@ -19,6 +20,10 @@ import java.util.Date;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderWorksheetDTO implements Serializable{
+    /**
+     * 工作单主键集合
+     */
+    private List<String> uuids;
     /**
      * 主键
      */

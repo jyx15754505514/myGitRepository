@@ -106,4 +106,20 @@ public class OrderReviewServiceImpl implements OrderReviewService {
         }
         return ResultT.failure(ResultCode.UPDATE_FAILURE);
     }
+    /**
+     * @Author songyateng
+     * @Description 评审列表（分页）
+     * @Date 2018/11/29 17:15
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderReviewDO>
+     */
+    @Override
+    public PageBean<OrderReviewDO> listOrderReview(PageParameter<OrderReviewDO> pageParameter) {
+        try {
+            return orderReviewDao.listOrderReview(pageParameter);
+        } catch (Exception e) {
+            log.error("业务查询分页列表查询失败",e);
+            return null;
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package com.ccicnavi.bims.order.dao;
 
+import com.ccicnavi.bims.common.service.pojo.PageBean;
+import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.pojo.OrderReviewDO;
 import org.n3r.eql.EqlTran;
 
@@ -26,4 +28,16 @@ public interface OrderReviewDao {
      * @Return java.lang.Integer
      */
     Integer updateOrderReview(OrderReviewDO orderReviewDO, EqlTran tran) throws Exception;
+    /**
+     * @Author songyateng
+     * @Description 评审列表（分页）
+     * @Date 2018/11/29 17:17
+     * @Param [pageParameter]
+     * @Return com.ccicnavi.bims.common.service.pojo.PageBean<com.ccicnavi.bims.order.pojo.OrderReviewDO>
+     */
+    PageBean<OrderReviewDO> listOrderReviewPage(PageParameter<OrderReviewDO> pageParameter);
+
+
+
+
 }
