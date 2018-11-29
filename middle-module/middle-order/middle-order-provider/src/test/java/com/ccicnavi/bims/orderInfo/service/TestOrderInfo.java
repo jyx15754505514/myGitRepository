@@ -98,12 +98,19 @@ public class TestOrderInfo {
         EqlTran eqlTran = new Eql("DEFAULT").newTran();
         //委托单
         OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
+        orderInfoDTO.setFlag("1");
         orderInfoDTO.setOrderName("委托名称Q");
         orderInfoDTO.setProdCatalogUuid("大宗线");
         orderInfoDTO.setOrgUuid("CCIC");
         orderInfoDTO.setAppSysUuid("BIMS");
-        List<OrderItemDTO> orderItemDTOList = new ArrayList<>();
+        //运输信息222
+        OrderInspectionDO orderInspectionDO=new OrderInspectionDO();
+        orderInspectionDO.setComments("1111");
+        orderInspectionDO.setVesselName("泰坦尼克号");
+        orderInfoDTO.setOrderInspectionDO(orderInspectionDO);
         //最小服务项目
+        List<OrderItemDTO> orderItemDTOList = new ArrayList<>();
+
         for(int j=0;j<3;j++){
             OrderItemDTO orderItemDTO = new OrderItemDTO();
             orderItemDTO.setOrderItemNo("服务单编号Q"+j);//服务单编号
@@ -119,7 +126,7 @@ public class TestOrderInfo {
             orderItemDTOList.add(orderItemDTO);
         }
         orderInfoDTO.setOrderItemDTO(orderItemDTOList);
-        //委托样品类型
+       /* //委托样品类型
         List<OrderSampleTypeDO> orderSampleTypeDOList=new ArrayList<OrderSampleTypeDO>();
         for(int k=1;k<4;k++){
             OrderSampleTypeDO orderSampleTypeDO=new OrderSampleTypeDO();
@@ -127,12 +134,13 @@ public class TestOrderInfo {
             orderSampleTypeDO.setSplPurposeQty(k);
             orderSampleTypeDOList.add(orderSampleTypeDO);
         }
-        orderInfoDTO.setOrderSampleTypeDO(orderSampleTypeDOList);
+        orderInfoDTO.setOrderSampleTypeDO(orderSampleTypeDOList);*/
         Integer shipment = null;
         Integer orderItem = null;
         Integer itemSub = null;
         Integer orderInfo = null;
         Integer orderSampleTypeResult = null;
+        Integer updateOrderStatus=null;
         boolean result=true;
         OrderInspectionDaoImpl orderInspectionDaoImpl = new OrderInspectionDaoImpl();
         OrderItemSubDaoImpl orderItemSubDaoImpl=new OrderItemSubDaoImpl();
@@ -145,9 +153,9 @@ public class TestOrderInfo {
             Date currentTime = new Date();
             String orderUuid = timeFormat.format(currentTime);
             orderInfoDTO.setOrderUuid(orderUuid);
-            OrderInspectionDO orderInspectionDO = orderInfoDTO.getOrderInspectionDO();
+            orderInfoDTO.getOrderInspectionDO().setOrderUuid(orderUuid);
             //添加委托单运输信息
-            shipment = orderInspectionDaoImpl.insertOrderInspection(orderInspectionDO,eqlTran);
+            shipment = orderInspectionDaoImpl.insertOrderInspection( orderInfoDTO.getOrderInspectionDO(),eqlTran);
             if(shipment!=1){
                 result=false;
             }
@@ -180,7 +188,7 @@ public class TestOrderInfo {
                     }
                 }
             }
-            //添加委托样品类型
+            /*//添加委托样品类型
             List<OrderSampleTypeDO> orderSampleTypeDO=orderInfoDTO.getOrderSampleTypeDO();
             if(orderSampleTypeDO.size()>0){
                 for(OrderSampleTypeDO o :orderSampleTypeDO){
@@ -195,12 +203,19 @@ public class TestOrderInfo {
                         result=false;
                     }
                 }
-            }
+            }*/
             orderInfoDTO.setOrderNo("");//生成委托单号
             //添加委托单详情
             orderInfo = orderInfoDao.insertOrderInfo(orderInfoDTO,eqlTran);
             if(orderInfo!=1){
                 result=false;
+            }
+            //提交操作执行修改状态
+            if("2".equals(orderInfoDTO.getFlag())){
+                updateOrderStatus = orderInfoDao.updateOrderStatus(orderInfoDTO,eqlTran);
+                if(updateOrderStatus!=1){
+                    result=false;
+                }
             }
             if(result){
                 eqlTran.commit();

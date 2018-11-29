@@ -3,11 +3,11 @@ package com.ccicnavi.bims.resource.dao.impl;
 import com.ccicnavi.bims.common.service.com.ccicnavi.bims.common.util.EqlUtils;
 import com.ccicnavi.bims.common.service.pojo.PageBean;
 import com.ccicnavi.bims.common.service.pojo.PageParameter;
-import com.ccicnavi.bims.resource.pojo.PersonDO;
 import com.ccicnavi.bims.resource.dao.PersonDao;
+import com.ccicnavi.bims.resource.pojo.PersonDO;
+import com.ccicnavi.bims.resource.pojo.PersonDTO;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlPage;
-import org.n3r.eql.EqlTran;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -87,11 +87,12 @@ public class PersonDaoImpl  implements PersonDao {
         return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),personDOS);
     }
 
-
-
-
-
-
+    @Override
+    public PageBean<PersonDTO> selectByOrgOrDept(PageParameter<PersonDTO> pageParameter) {
+        EqlPage page = new EqlPage(pageParameter.getStartIndex(),pageParameter.getPageRows());
+        List<PersonDTO> personDOS = EqlUtils.getInstance("DEFAULT").id("selectByOrgOrDept").params(pageParameter.getParameter()).limit(page).execute();
+        return new PageBean<>(page.getTotalRows(),page.getTotalPages(),page.getCurrentPage(),page.getPageRows(),page.getStartIndex(),personDOS);
+    }
 
 
 }

@@ -374,4 +374,8 @@ public class OrderInfoDTO implements Serializable {
      * 运输信息
      */
     private OrderInspectionDO orderInspectionDO;
+    /**
+     * 标识用来判断操作1：保存    2：提交
+     */
+    private String flag;
 }
