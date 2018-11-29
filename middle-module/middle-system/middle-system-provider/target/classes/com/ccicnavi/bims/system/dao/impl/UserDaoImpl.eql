@@ -1,0 +1,447 @@
+-- 查询登录用户信息
+-- [listUser]
+    SELECT
+       u.user_uuid as  userUuid,
+       u.nick_name as nickName,
+       u.login_name as loginName,
+       u.login_email as loginEmail,
+       u.login_phone as loginPhone,
+       u.current_password as currentPassword,
+       u.login_method as loginMethod,
+       u.last_login_ip as lastLoginIp,
+       u.last_login_time as lastLoginTime,
+       u.is_enabled as isEnabled,
+       u.comments,
+       u.dept_uuid as deptUuid,
+       u.created_time as createdTime,
+       u.created_uuid as createdUuid,
+       u.created_name as createdName,
+       u.org_uuid as orgUuid,
+       o.org_name as orgName,
+       d.org_name as deptName,
+       u.real_name as realName,
+       GROUP_CONCAT(r.role_name) as roleName,
+       u.extend2,
+       u.extend3
+     FROM
+        sys_user u
+        LEFT JOIN sys_role_user ru ON ru.user_uuid = u.user_uuid
+        LEFT JOIN sys_role r ON r.role_uuid = ru.role_uuid
+        LEFT JOIN sys_organization o ON u.org_uuid = o.organization_uuid
+        LEFT JOIN sys_organization d ON u.dept_uuid = d.organization_uuid
+     WHERE
+     u.is_deleted = 'N'
+     --iff loginName != null and loginName != ''
+         and u.login_name like '#loginName:like#'
+     --end
+     --iff orgType != null and orgType == 'DEPT'
+         and u.dept_uuid = '#organizationUuid#'
+     -- end
+      --iff orgType != null and orgType == 'ORG'
+         and u.org_uuid = '#organizationUuid#'
+      -- end
+     GROUP BY u.user_uuid
+
+
+-- 新增登录用户信息
+-- [insertUser]
+    INSERT INTO sys_user
+    --trim prefix=( suffix=) suffixOverrides=,
+         --iff userUuid != null 
+          user_uuid,
+        --iff nickName != null
+          nick_name,
+        --iff loginName != null
+          login_name,
+        --iff loginEmail != null
+          login_email,
+        --iff loginPhone != null
+          login_phone,
+        --iff currentPassword != null
+          current_password,
+        --iff salt != null
+            salt,
+        --iff passwordHints != null
+          password_hints,
+        --iff isChangePassword != null
+          is_change_password,
+        --iff loginUsertype != null
+          login_usertype,
+        --iff disabledTime != null
+          disabled_time,
+        --iff disabledReason != null
+          disabled_reason,
+        --iff failedLogins != null
+          failed_logins,
+        --iff loginMethod != null
+          login_method,
+        --iff lastTimeZone != null
+          last_time_zone,
+        --iff lastLocal != null
+          last_local,
+        --iff lastLoginIp != null
+          last_login_ip,
+        --iff lastLoginTime != null
+          last_login_time,
+        --iff bindLoginIp != null
+          bind_login_ip,
+        --iff isEnabled != null
+          is_enabled,
+        --iff comments != null
+          comments,
+        --iff isDeleted != null
+          is_deleted,
+        --iff createdTime == null
+          created_time,
+        --iff createdUuid != null
+          created_uuid,
+        --iff createdName != null
+          created_name,
+        --iff orgUuid != null
+          org_uuid,
+        --iff appSysUuid != null
+          app_sys_uuid,
+        --iff prodCatalogUuid != null
+          prod_catalog_uuid,
+      --iff deptUuid != null and deptUuid != ''
+            dept_uuid,
+        --iff realName != null
+          real_name,
+        --iff extend2 != null
+          extend2,
+        --iff extend3 != null
+          extend3,
+        --end
+        --trim prefix= values( suffix=) suffixOverrides=,
+          --iff userUuid != null and userUuid !=''
+            '#userUuid#',
+          --iff nickName != null
+            '#nickName#',
+          --iff loginName != null
+             '#loginName#',
+          --iff loginEmail != null
+             '#loginEmail#',
+          --iff loginPhone != null
+            '#loginPhone#',
+            --iff currentPassword != null
+            '#currentPassword#',
+          --iff salt != null
+            '#salt#',
+          --iff passwordHints != null
+             '#passwordHints#',
+          --iff isChangePassword != null
+            '#isChangePassword#'
+          --iff loginUsertype != null
+            '#loginUsertype#',
+          --iff disabledTime != null
+            '#disabledTime#',
+          --iff disabledReason != null
+            '#disabledReason#',
+          --iff failedLogins != null
+            '#failedLogins#',
+          --iff loginMethod != null
+            '#loginMethod#',
+          --iff lastTimeZone != null
+            '#lastTimeZone#',
+          --iff lastLocal != null
+            '#lastLocal#',
+          --iff lastLoginIp != null
+            '#lastLoginIp#',
+          --iff lastLoginTime != null
+            '#lastLoginTime#',
+          --iff bindLoginIp != null
+            '#bindLoginIp#',
+          --iff isEnabled != null
+             '#isenabled#',
+          --iff comments != null
+            '#comments#',
+          --iff isDeleted != null
+            '#isDeleted#',
+          --iff createdTime == null
+            NOW(),
+          --iff createdUuid != null
+            '#createdUuid#',
+          --iff createdName != null
+            '#createdName#',
+          --iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+          --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+          --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
+         --iff deptUuid != null and deptUuid != ''
+             '#deptUuid#',
+          --iff realName != null
+            '#realName#',
+          --iff extend2 != null
+            '#extend2#',
+          --iff extend3 != null
+            '#extend3#',
+        --end
+
+
+
+-- 更新登录用户信息
+-- [updateUser]
+    UPDATE
+        sys_user
+    -- trim prefix= set suffixOverrides=,
+         --iff userUuid != null 
+          user_uuid = '#userUuid#',
+        --iff nickName != null
+          nick_name = '#nickName#',
+        --iff loginName != null
+          login_name = '#loginName#',
+        --iff loginEmail != null
+          login_email = '#loginEmail#',
+        --iff loginPhone != null
+          login_phone = '#loginPhone#',
+        --iff currentPassword != null
+          current_password = '#currentPassword#',
+        --iff passwordHints != null
+          password_hints = '#passwordHints#',
+        --iff salt != null
+           salt = '#salt#',
+        --iff deptUuid != null
+           dept_uuid = '#deptUuid#',
+        --iff isChangePassword != null
+          is_change_password = '#isChangePassword#',
+        --iff loginUsertype != null
+          login_usertype = '#loginUsertype#',
+        --iff disabledTime != null
+          disabled_time = '#disabledTime#',
+        --iff disabledReason != null
+          disabled_reason = '#disabledReason#',
+        --iff failedLogins != null
+          failed_logins = '#failedLogins#',
+        --iff loginMethod != null
+          login_method = '#loginMethod#',
+        --iff lastTimeZone != null
+          last_time_zone = '#lastTimeZone#',
+        --iff lastLocal != null
+          last_local = '#lastLocal#',
+        --iff lastLoginIp != null
+          last_login_ip = '#lastLoginIp#',
+        --iff lastLoginTime != null
+          last_login_time = '#lastLoginTime#',
+        --iff bindLoginIp != null
+          bind_login_ip = '#bindLoginIp#',
+        --iff isEnabled != null 
+          is_enabled = '#isEnabled#',
+        --iff comments != null 
+          comments = '#comments#',
+        --iff isDeleted != null
+          is_deleted = '#isDeleted#',
+        --iff updatedTime != null
+          updated_time = '#updatedTime#',
+        --iff updatedName != null
+          updated_name = '#updatedName#',
+        --iff orgUuid != null
+          org_uuid = '#orgUuid#',
+        --iff appSysUuid != null
+          app_sys_uuid = '#appSysUuid#',
+        --iff prodCatalogUuid != null
+          prod_catalog_uuid = '#prodCatalogUuid#',
+        --iff realName != null
+          real_name = '#realName#',
+        --iff extend2 != null
+          extend2 = '#extend2#',
+        --iff extend3 != null
+          extend3 = '#extend3#',
+        --end
+        where
+         -- if userUuid != null
+                user_uuid = '#userUuid#'
+         -- end
+         -- if uuids != null
+                user_uuid in
+             -- for item=item index=index collection=uuids open=( separator=, close=)
+                 '#item#'
+             -- end
+          -- end
+
+-- 删除登录用户信息
+-- [deleteUser]
+   UPDATE
+        sys_user
+   SET
+        is_deleted = 'Y'
+   where
+        -- if userUuid != null and userUuid != ''
+        	user_uuid = '#userUuid#'
+        -- end
+        -- if uuids != null
+        	user_uuid in
+            -- for item=item index=index collection=uuids open=( separator=, close=)
+                    '#item#'
+            -- end
+        -- end
+
+-- 根据主键查询登录用户
+-- [getUser]
+    SELECT
+           user_uuid as  userUuid,
+           nick_name as nickName,
+           login_name as loginName,
+           login_email as loginEmail,
+           login_phone as loginPhone,
+           current_password as currentPassword,
+           password_hints as passwordHints,
+           is_change_password as isChangePassword,
+           login_usertype as loginUsertype,
+           disabled_time as disabledTime,
+           disabled_reason as disabledReason,
+           failed_logins as failedLogins,
+           login_method as loginMethod,
+           last_time_zone as lastTimeZone,
+           last_local as lastLocal,
+           last_login_ip as lastLoginIp,
+           last_login_time as lastLoginTime,
+           bind_login_ip as bindLoginIp,
+           is_enabled as isEnabled,
+           comments,
+           salt,
+           dept_uuid as deptUuid,
+           is_deleted as isDeleted,
+           created_time as createdTime,
+           created_uuid as createdUuid,
+           created_name as createdName,
+           updated_time as updatedTime,
+           updated_name as updatedName,
+           org_uuid as orgUuid,
+           app_sys_uuid as appSysUuid,
+           prod_catalog_uuid as prodCatalogUuid,
+           real_name as realName,
+           extend2,
+           extend3
+     FROM
+        sys_user
+     WHERE
+        is_deleted = 'N'
+        --if userUuid != null and  userUuid != ''
+             and  user_uuid = '#userUuid#'
+        --end
+        --if loginName != null and  loginName != ''
+             and  login_name = '#loginName#'
+        --end
+
+
+
+-- 用户登录查询登录用户
+-- [login]
+    SELECT
+       u.user_uuid as  userUuid,
+       u.nick_name as nickName,
+       u.login_name as loginName,
+       u.login_email as loginEmail,
+       u.login_phone as loginPhone,
+       u.current_password as currentPassword,
+       u.password_hints as passwordHints,
+       u.is_change_password as isChangePassword,
+       u.login_usertype as loginUsertype,
+       u.disabled_time as disabledTime,
+       u.disabled_reason as disabledReason,
+       u.failed_logins as failedLogins,
+       u.login_method as loginMethod,
+       u.last_time_zone as lastTimeZone,
+       u.last_local as lastLocal,
+       u.last_login_ip as lastLoginIp,
+       u.last_login_time as lastLoginTime,
+       u.bind_login_ip as bindLoginIp,
+       u.is_enabled as isEnabled,
+       u.comments,
+       u.salt,
+       u.dept_uuid as deptUuid,
+       u.is_deleted as isDeleted,
+       u.created_time as createdTime,
+       u.created_uuid as createdUuid,
+       u.created_name as createdName,
+       u.updated_time as updatedTime,
+       u.updated_name as updatedName,
+       u.org_uuid as orgUuid,
+       u.app_sys_uuid as appSysUuid,
+       u.prod_catalog_uuid as prodCatalogUuid,
+       o.org_name as orgName,
+       o.org_code as orgCode,
+       o.is_enabled as orgIsEnabled,
+       o.is_deleted as orgIsDeleted,
+       d.org_name as deptName,
+       d.org_code as deptCode,
+       d.is_enabled as deptIsEnabled,
+       d.is_deleted as deptIsDeleted,
+       u.real_name as realName,
+       u.extend2,
+       u.extend3
+     FROM
+        sys_user u
+        LEFT JOIN sys_organization o ON u.org_uuid = o.organization_uuid
+        LEFT JOIN sys_organization d ON u.dept_uuid = d.organization_uuid
+     WHERE
+         u.login_name = '#loginName#'
+
+
+
+-- 启用禁用
+--[updateIsEnabled]
+   UPDATE
+    sys_user
+    SET
+         is_enabled = '#isEnabled#'
+    where
+          -- if userUuid != null and userUuid != ''
+            	user_uuid = '#userUuid#'
+          -- end
+          -- if uuids != null
+             user_uuid in
+          -- for item=item index=index collection=uuids open=( separator=, close=)
+                  '#item#'
+             -- end
+          -- end
+
+
+-- 查询已授权的用户
+-- [listauthUserList]
+ SELECT
+         su.user_uuid  as userUuid,
+         su.real_name as realName,
+         su.nick_name as nickName,
+ 		 rp.skill_name as skillName,
+ 		 so.org_name as deptName,
+ 		 rp.phone as phone
+     FROM
+         sys_user su
+        LEFT JOIN sys_role_user sr ON su.user_uuid = sr.user_uuid
+ 		LEFT JOIN res_person rp on su.user_uuid =rp.user_uuid
+ 		LEFT JOIN sys_organization so on su.dept_uuid=so.organization_uuid
+     WHERE
+      su.is_deleted = 'N'
+           and sr.role_uuid ='#roleUuid#'
+           and su.org_uuid ='#orgUuid#'
+
+
+
+-- 查询未授权用户
+-- [selectunauthUserList]
+select
+         s.user_uuid  as userUuid,
+		 s.real_name as realName,
+         s.nick_name as nickName,
+ 		 r.skill_name as skillName,
+ 		 so.org_name as deptName,
+ 		 r.phone as phone
+from sys_user s
+LEFT JOIN res_person r on s.user_uuid =r.user_uuid
+LEFT JOIN sys_organization so on s.dept_uuid=so.organization_uuid
+ where  s.org_uuid ='#orgUuid#'
+            -- if userUuids != null
+            and  s.user_uuid  not in
+                -- for item=item index=index collection=userUuids open=( separator=, close=)
+            		'#item#'
+            	-- end
+            --end
+    --if deptUuid != null and  deptUuid != ''
+           and s.dept_uuid ='#deptUuid#'
+    --end
+    --if realName != null and  realName != ''
+           and s.real_name like '#realName:like#'
+    --end

@@ -1,0 +1,262 @@
+-- [getEquipUse]
+SELECT
+    equip_use_uuid equipUseUuid,
+    equip_uuid equipUuid,
+    use_date useDate,
+    use_person usePerson,
+    use_dept useDept,
+    back_date backDate,
+    prod_catalog_uuid prodCatalogUuid,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+from
+    res_equip_use
+where
+    is_deleted = 'N'
+-- iff equipUseUuid != null and equipUseUuid != ''
+    and equip_use_uuid = '#equipUseUuid#'
+
+
+-- [getEquipUseList]
+SELECT
+    equip_use_uuid equipUseUuid,
+    equip_uuid equipUuid,
+    use_date useDate,
+    use_person usePerson,
+    use_dept useDept,
+    back_date backDate,
+    prod_catalog_uuid prodCatalogUuid,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+from
+    res_equip_use
+where
+    is_deleted = 'N'
+--iff equipUseUuids != null
+    and equip_use_uuid in
+    -- for item=item index=index collection=equipUseUuids open=( separator=, close=)
+        '#item#'
+    -- end
+--iff equipUuid != null and equipUuid != ''
+    and equip_uuid = '#equipUuid#'
+
+
+-- [listEquipUse]
+  SELECT
+    equip_use_uuid equipUseUuid,
+    equip_uuid equipUuid,
+    use_date useDate,
+    use_person usePerson,
+    use_dept useDept,
+    back_date backDate,
+    prod_catalog_uuid prodCatalogUuid,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+  from
+        res_equip_use
+  where
+    is_deleted = 'N'
+  --iff orgUuid != null and orgUuid != ''
+      and org_uuid = '#orgUuid#'
+  --iff appSysUuid != null and appSysUuid !=''
+      and app_sys_uuid = '#appSysUuid#'
+
+-- [insertEquipUse]
+    insert into res_equip_use
+    -- trim prefix=( suffix=) suffixOverrides=,
+      --iff equipUseUuid != null and equipUseUuid != ''
+        equip_use_uuid,
+      --iff equipUuid != null and equipUuid != ''
+        equip_uuid,
+      --iff useDate != null
+        use_date,
+      --iff usePerson != null and usePerson != ''
+        use_person,
+      --iff useDept != null and useDept != ''
+        use_dept,
+      --iff backDate != null
+        back_date,
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+      --iff comments != null and comments != ''
+        comments,
+      --iff isDeleted != null and isDeleted != ''
+        is_deleted,
+      --iff createdTime != null
+        created_time,
+      --iff createdUuid != null and createdUuid != ''
+        created_uuid,
+      --iff createdName != null and createdName != ''
+        created_name,
+      --iff updatedTime != null
+        updated_time,
+      --iff updatedUuid != null and updatedUuid != ''
+        updated_uuid,
+      --iff updatedName != null and updatedName != ''
+        updated_name,
+      --iff orgUuid != null and orgUuid != ''
+        org_uuid,
+      --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid,
+    --end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      --iff equipUseUuid != null and equipUseUuid != ''
+        '#equipUseUuid#',
+      --iff equipUuid != null and equipUseUuid != ''
+        '#equipUuid#',
+      --iff useDate != null
+        '#useDate#',
+      --iff usePerson != null and usePerson != ''
+        '#usePerson#',
+      --iff useDept != null and useDept != ''
+        '#useDept#',
+      --iff backDate != null
+        '#backDate#',
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+      --iff comments != null and comments != ''
+        '#comments#',
+      --iff isDeleted != null and isDeleted != ''
+        '#isDeleted#',
+      --iff createdTime != null
+        '#createdTime#',
+      --iff createdUuid != null and createdUuid != ''
+        '#createdUuid#',
+      --iff createdName != null and createdName != ''
+        '#createdName#',
+      --iff updatedTime != null
+        '#updatedTime#',
+      --iff updatedUuid != null and updatedUuid != ''
+        '#updatedUuid#',
+      --iff updatedName != null and updatedName != ''
+        '#updatedName#',
+      --iff orgUuid != null and orgUuid != ''
+        '#orgUuid#',
+      --iff appSysUuid != null and appSysUuid != ''
+        '#appSysUuid#',
+    --end
+
+-- [updateEquipUse]
+    update res_equip_use
+    -- trim prefix= set suffixOverrides=,
+      --iff equipUuid != null and equipUuid != ''
+        equip_uuid = '#equipUuid#',
+      --iff useDate != null
+        use_date = '#useDate#',
+      --iff usePerson != null and usePerson != ''
+        use_person = '#usePerson#',
+      --iff useDept != null and useDept != ''
+        use_dept = '#useDept#',
+      --iff backDate != null
+        back_date = '#backDate#',
+      --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
+      --iff comments != null and comments != ''
+        comments = '#comments#',
+      --iff isDeleted != null and isDeleted != ''
+        is_deleted = '#isDeleted#',
+      --iff createdTime != null
+        created_time = '#createdTime#',
+      --iff createdUuid != null and createdUuid != ''
+        created_uuid = '#createdUuid#',
+      --iff createdName != null and createdName != ''
+        created_name = '#createdName#',
+      --iff updatedTime != null
+        updated_time = '#updatedTime#',
+      --iff updatedUuid != null and updatedUuid != ''
+        updated_uuid = '#updatedUuid#',
+      --iff updatedName != null and updatedName != ''
+        updated_name = '#updatedName#',
+      --iff orgUuid != null and orgUuid != ''
+        org_uuid = '#orgUuid#',
+      --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
+  -- end
+where
+    is_deleted = 'N'
+--iff equipUseUuid != null and equipUseUuid != ''
+    and equip_use_uuid = '#equipUseUuid#'
+--iff equipUuid != null and equipUuid != ''
+    and equip_uuid = '#equipUuid#'
+
+
+-- [deleteEquipUse]
+UPDATE
+    res_equip_use
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'
+-- end
+WHERE
+    is_deleted = 'N'
+--iff equipUuid != null and equipUuid != ''
+    and equip_uuid = '#equipUuid#'
+--iff equipUuids != null
+    and equip_uuid in
+    -- for item=item index=index collection=equipUuids open=( separator=, close=)
+        '#item#'
+    -- end
+-- iff equipUseUuid != null and equipUseUuid != ''
+    and equip_use_uuid = '#equipUseUuid#'
+-- iff equipUseUuids != null
+    and equip_use_uuid in
+    -- for item=item index=index collection=equipUseUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
+
+-- [listEquipUseDTO]
+  SELECT
+    eu.equip_use_uuid equipUseUuid,
+    eu.equip_uuid equipUuid,
+    eu.use_date useDate,
+    eu.use_person usePerson,
+    eu.use_dept useDept,
+    eu.back_date backDate,
+    eu.prod_catalog_uuid prodCatalogUuid,
+    eu.comments comments,
+    eu.is_deleted isDeleted,
+    eu.created_time createdTime,
+    eu.created_uuid createdUuid,
+    eu.created_name createdName,
+    eu.updated_time updatedTime,
+    eu.updated_name updatedName,
+    eu.org_uuid orgUuid,
+    eu.app_sys_uuid appSysUuid,
+    e.equip_name equipName,
+    e.equip_name_en equipNameEn,
+    e.equip_spec equipSpec,
+    e.factory_no factoryNo,
+    e.manufacture manufacture,
+    e.dept_uuid deptUuid
+  from
+        res_equip_use eu
+  LEFT JOIN res_equip e ON e.equip_uuid = eu.equip_uuid
+  where
+    eu.is_deleted = 'N'
+  --iff orgUuid != null and orgUuid != ''
+      and eu.org_uuid = '#orgUuid#'
+  --iff appSysUuid != null and appSysUuid !=''
+      and eu.app_sys_uuid = '#appSysUuid#'

@@ -1,0 +1,45 @@
+-- 根据按钮查询
+-- [selectRolePermission]
+    select
+       role_uuid,
+       btn_uuid,
+       app_sys_uuid,
+       prod_catalog_uuid
+from
+    sys_role_permission
+   where
+    role_uuid = '#roleUuid#'
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+    and app_sys_uuid ='#appSysUuid#'
+
+-- 新增角色按钮
+-- [insertRolePermission]
+     INSERT into sys_role_permission
+      -- trim prefix=( suffix=) suffixOverrides=,
+         --iff roleUuid != null and roleUuid != ''
+           role_uuid,
+         --iff butUuid != null and butUuid != ''
+           btn_uuid,
+         --iff appSysUuid != null and appSysUuid != ''
+           app_sys_uuid,
+         --iff prodCatalogUuid != null and prodCatalogUuid != ''
+           prod_catalog_uuid,
+      --end
+      --trim prefix= values( suffix=) suffixOverrides=,
+         --iff roleUuid != null and roleUuid !=''
+            '#roleUuid#',
+         --iff butUuid != null and butUuid !=''
+            '#butUuid#',
+         --iff appSysUuid != null and appSysUuid !=''
+            '#appSysUuid#',
+         --iff prodCatalogUuid != null and prodCatalogUuid !=''
+            '#prodCatalogUuid#',
+      --end
+
+-- 删除角色按钮
+-- [deleteRolePermission]
+    delete from sys_role_permission
+    where
+     role_uuid = '#roleUuid#'
+          and prod_catalog_uuid = '#prodCatalogUuid#'
+          and app_sys_uuid ='#appSysUuid#'

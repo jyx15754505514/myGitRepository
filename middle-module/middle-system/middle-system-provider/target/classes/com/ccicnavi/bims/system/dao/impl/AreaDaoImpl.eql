@@ -1,0 +1,101 @@
+-- [listArea]
+SELECT
+    area_uuid areaUuid,
+    area_parent_uuid areaParentUuid,
+    area_name areaName,
+    area_code areaCode
+from
+    sys_area
+where
+    is_deleted = 'N'
+--iff areaName != null and areaName != ''
+    and area_name like '#areaName:Like#'
+--end
+--iff areaParentUuid != null and areaParentUuid != ''
+    and area_parent_uuid = '#areaParentUuid#'
+--end
+ORDER BY area_code
+
+-- [getArea]
+SELECT
+    area_uuid areaUuid,
+    area_parent_uuid areaParentUuid,
+    area_name areaName,
+    area_en_name areaEnName,
+    area_code areaCode
+from
+    sys_area
+where
+    is_deleted = 'N'
+--if areaUuid != null and areaUuid !=''
+    and area_uuid = '#areaUuid#'
+--end
+
+-- [insertArea]
+INSERT INTO sys_area
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff areaUuid != null and areaUuid != ''
+            area_uuid,
+        --iff areaParentUuid != null and areaParentUuid != ''
+            area_parent_uuid,
+        --iff areaName != null and areaName != ''
+            area_name,
+        --iff areaEnName != null and areaEnName != ''
+            area_en_name,
+        --iff areaCode != null and areaCode != ''
+            area_code,
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff areaUuid != null and areaUuid != ''
+        	'#areaUuid#',
+        --iff areaParentUuid != null and areaParentUuid != ''
+            '#areaParentUuid#',
+        --iff areaName != null and areaName != ''
+            '#areaName#',
+        --iff areaEnName != null and areaEnName != ''
+            '#areaEnName#',
+        --iff areaCode != null and areaCode != ''
+            '#areaCode#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+    -- end
+
+-- [updateArea]
+UPDATE
+    sys_area
+    -- trim prefix= set suffixOverrides=,
+        --iff areaParentUuid != null and areaParentUuid != ''
+            area_parent_uuid = '#areaParentUuid#',
+        --iff areaName != null and areaName != ''
+            area_name = '#areaName#',
+        --iff areaEnName != null and areaEnName != ''
+            area_en_name = '#areaEnName#',
+        --iff areaCode != null and areaCode != ''
+            area_code = '#areaCode#',
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted = '#isDeleted#',
+    -- end
+where
+    is_deleted = 'N'
+    --iff areaUuid != null and areaUuid != ''
+        and area_uuid = '#areaUuid#'
+
+
+
+-- [deleteArea]
+UPDATE
+    sys_area
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'
+-- end
+WHERE
+    is_deleted = 'N'
+    --iff areaUuid != null and areaUuid != ''
+        and area_uuid = '#areaUuid#'
+    --iff areaUuids != null
+        and area_uuid in
+        -- for item=item index=index collection=areaUuids open=( separator=, close=)
+            '#item#'
+        -- end

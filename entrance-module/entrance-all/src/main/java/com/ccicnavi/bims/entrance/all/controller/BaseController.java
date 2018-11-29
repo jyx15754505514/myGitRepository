@@ -31,6 +31,4 @@ public class BaseController {
         SSOUser SSOUser = logincheck.getData();
         return SSOUser;
     }
-
-
 }

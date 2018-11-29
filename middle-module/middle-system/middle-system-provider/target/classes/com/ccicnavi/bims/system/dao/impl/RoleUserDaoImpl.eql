@@ -1,0 +1,73 @@
+-- 根据角色查询用户角色
+-- [selectRoleUser]
+  select
+        role_uuid,
+        user_uuid,
+        org_uuid
+  from sys_role_user
+ where
+  where role_uuid = '#roleUuid#'
+
+-- 新增角色用户
+-- [insertRoleUser]
+    INSERT INTO
+    sys_role_user
+        (role_uuid,
+         user_uuid,
+          org_uuid)
+    values
+         ('#roleUuid#',
+         '#userUuid#',
+          '#orgUuid#')
+
+-- 更新用户角色信息
+-- [updateRoleUser]
+     UPDATE
+        sys_role_user
+          -- trim  prefix= set suffixOverrides=,
+            --iff roleUuid != null and roleUuid != ''
+              role_uuid = '#roleUuid#',
+            --iff userUuid != null and userUuid != ''
+               user_uuid = '#userUuid#',
+            --iff orgUuid != null and orgUuid != ''
+               org_uuid = '#orgUuid#',
+          --end
+     where
+         -- if userUuid != null
+                 user_uuid = '#userUuid#'
+         -- end
+
+
+-- 根据角色删除信息
+--[deleteRoleUserByRole]
+    DELETE
+    FROM
+        sys_role_user
+    where
+         org_uuid = '#orgUuid#'
+         and role_uuid = '#roleUuid#'
+
+-- 根据用户删除信息
+--[deleteRoleUserByUser]
+    DELETE
+    FROM
+        sys_role_user
+    where
+         org_uuid = '#orgUuid#'
+         and user_uuid = '#userUuid#'
+
+
+
+--查询用户角色信息
+--[listRoleUser]
+    SELECT
+        user_uuid userUuid,
+        org_uuid orgUuid,
+        role_uuid roleUuid
+    FROM
+        sys_role_user
+    where
+       role_uuid = '#roleUuid#'
+      and org_uuid = '#orgUuid#'
+
+

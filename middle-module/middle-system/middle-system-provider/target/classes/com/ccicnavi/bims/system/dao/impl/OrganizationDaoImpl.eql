@@ -1,0 +1,492 @@
+-- [listOrganization]
+SELECT
+    organization_uuid as organizationUuid,
+    org_parent_uuid as orgParentUuid,
+    org_all_parent_uuid as orgAllParentUuid,
+    org_name as orgName,
+    org_short_name as orgShortName,
+    org_type as orgType,
+    ehr_code as ehrCode,
+    org_code as orgCode,
+    top_org_uuid as topOrgUuid,
+    org_tel as orgTel,
+    org_tel_ext as orgTelExt,
+    org_fax as orgFax,
+    org_url as orgUrl,
+    org_addr as orgAddr,
+    area_province_uuid as areaProvinceUuid,
+    area_city_uuid as areaCityUuid,
+    is_enabled as isEnabled,
+    sort_num as sortNum,
+    is_virtual as isVirtual,
+    comments as comments,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
+    prod_catalog_uuid as prodCatalogUuid,
+    org_uuid as orgUuid,
+    app_sys_uuid as appSysUuid,
+    extend1 as extend1,
+    extend2 as extend2,
+    extend3 as extend3
+from
+    sys_organization
+where
+    is_deleted = 'N'
+    and is_enabled = 'Y'
+    --iff orgType != null and orgType != ''
+        and org_type = '#orgType#'
+    --end
+    and organization_uuid in
+    -- for item=item index=index collection=uuids open=( separator=, close=)
+        '#item#'
+    --end
+
+
+-- [getOrganization]
+SELECT
+    organization_uuid as organizationUuid,
+    org_parent_uuid as orgParentUuid,
+    org_all_parent_uuid as orgAllParentUuid,
+    org_name as orgName,
+    org_short_name as orgShortName,
+    org_type as orgType,
+    ehr_code as ehrCode,
+    org_code as orgCode,
+    top_org_uuid as topOrgUuid,
+    org_tel as orgTel,
+    org_tel_ext as orgTelExt,
+    org_fax as orgFax,
+    org_url as orgUrl,
+    org_addr as orgAddr,
+    area_province_uuid as areaProvinceUuid,
+    area_city_uuid as areaCityUuid,
+    is_enabled as isEnabled,
+    sort_num as sortNum,
+    is_virtual as isVirtual,
+    comments as comments,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
+    prod_catalog_uuid as prodCatalogUuid,
+    org_uuid as orgUuid,
+    app_sys_uuid as appSysUuid,
+    extend1 as extend1,
+    extend2 as extend2,
+    extend3 as extend3
+from
+    sys_organization
+where
+    is_deleted = 'N'
+    --iff organizationUuid != null and organizationUuid != ''
+        and organization_uuid = '#organizationUuid#'
+    --end
+    --iff orgParentUuid != null and orgParentUuid != ''
+        and org_parent_uuid = '#orgParentUuid#'
+    --end
+    --iff orgCode != null and orgCode != ''
+        and org_code = '#orgCode#'
+    --end
+    --iff orgType != null and orgType != ''
+        and org_type = '#orgType#'
+    --end
+    --iff isEnabled != null and isEnabled != ''
+        and is_enabled = '#isEnabled#'
+    --end
+    --iff orgUuid != null and orgUuid != ''
+        and org_uuid = '#orgUuid#'
+    --end
+    --iff appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid = '#appSysUuid#'
+    --end
+
+
+-- [insertOrganization]
+    insert into sys_organization
+    -- trim prefix=( suffix=) suffixOverrides=,
+      --iff organizationUuid != null
+        organization_uuid,
+      --iff orgParentUuid != null
+        org_parent_uuid,
+      --iff orgAllParentUuid != null
+        org_all_parent_uuid,
+      --iff orgName != null
+        org_name,
+      --iff orgShortName != null
+        org_short_name,
+      --iff orgType != null
+        org_type,
+      --iff orgCode != null
+        org_code,
+      --iff topOrgUuid != null
+        top_org_uuid,
+      --iff orgTel != null
+        org_tel,
+      --iff orgTelExt != null
+        org_tel_ext,
+      --iff orgFax != null
+        org_fax,
+      --iff orgUrl != null
+        org_url,
+      --iff orgAddr != null
+        org_addr,
+      --iff areaProvinceUuid != null
+        area_province_uuid,
+      --iff areaCityUuid != null
+        area_city_uuid,
+      --iff isEnabled != null
+        is_enabled,
+      --iff sortNum != null
+        sort_num,
+      --iff isVirtual != null
+        is_virtual,
+      --iff comments != null
+        comments,
+      --iff isDeleted != null
+        is_deleted,
+      --iff createdTime == null
+        created_time,
+      --iff createdUuid != null
+        created_uuid,
+      --iff createdName != null
+        created_name,
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid,
+      --iff orgUuid != null
+        org_uuid,
+      --iff appSysUuid != null
+        app_sys_uuid,
+      --iff extend1 != null
+        extend1,
+      --iff extend2 != null
+        extend2,
+      --iff extend3 != null
+        extend3
+    --end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      --iff organizationUuid != null
+        '#organizationUuid#',
+      --iff orgParentUuid != null
+        '#orgParentUuid#',
+      --iff orgAllParentUuid != null
+        '#orgAllParentUuid#',
+      --iff orgName != null
+        '#orgName#',
+      --iff orgShortName != null
+        '#orgShortName#',
+      --iff orgType != null
+        '#orgType#',
+      --iff orgCode != null
+        '#orgCode#',
+      --iff topOrgUuid != null
+        '#topOrgUuid#',
+      --iff orgTel != null
+        '#orgTel#',
+      --iff orgTelExt != null
+        '#orgTelExt#',
+      --iff orgFax != null
+        '#orgFax#',
+      --iff orgUrl != null
+        '#orgUrl#',
+      --iff orgAddr != null
+        '#orgAddr#',
+      --iff areaProvinceUuid != null
+        '#areaProvinceUuid#',
+      --iff areaCityUuid != null
+        '#areaCityUuid#',
+      --iff isEnabled != null
+        '#isEnabled#',
+      --iff sortNum != null
+        '#sortNum#',
+      --iff isVirtual != null
+        '#isVirtual#',
+      --iff comments != null
+        '#comments#',
+      --iff isDeleted != null
+        '#isDeleted#',
+      --iff createdTime == null
+        NOW(),
+      --iff createdUuid != null
+        '#createdUuid#',
+      --iff createdName != null
+        '#createdName#',
+      --iff prodCatalogUuid != null
+        '#prodCatalogUuid#',
+      --iff orgUuid != null
+        '#orgUuid#',
+      --iff appSysUuid != null
+        '#appSysUuid#',
+      --iff extend1 != null
+        '#extend1#',
+      --iff extend2 != null
+        '#extend2#',
+      --iff extend3 != null
+        '#extend3#'
+    --end
+
+
+-- [updateOrganization]
+update sys_organization
+-- trim prefix= set suffixOverrides=,
+  --iff organizationUuid != null
+    organization_uuid = '#organizationUuid#',
+  --iff orgParentUuid != null
+    org_parent_uuid = '#orgParentUuid#',
+  --iff orgAllParentUuid != null
+    org_all_parent_uuid = '#orgAllParentUuid#',
+  --iff orgName != null
+    org_name = '#orgName#',
+  --iff orgShortName != null
+    org_short_name = '#orgShortName#',
+  --iff orgType != null
+    org_type = '#orgType#',
+  --iff orgCode != null
+    org_code = '#orgCode#',
+  --iff topOrgUuid != null
+    top_org_uuid = '#topOrgUuid#',
+  --iff orgTel != null
+    org_tel = '#orgTel#',
+  --iff orgTelExt != null
+    org_tel_ext = '#orgTelExt#',
+  --iff orgFax != null
+    org_fax = '#orgFax#',
+  --iff orgUrl != null
+    org_url = '#orgUrl#',
+  --iff orgAddr != null
+    org_addr = '#orgAddr#',
+  --iff areaProvinceUuid != null
+    area_province_uuid = '#areaProvinceUuid#',
+  --iff areaCityUuid != null
+    area_city_uuid = '#areaCityUuid#',
+  --iff isEnabled != null
+    is_enabled = '#isEnabled#',
+  --iff sortNum != null
+    sort_num = '#sortNum#',
+  --iff isVirtual != null
+    is_virtual = '#isVirtual#',
+  --iff comments != null
+    comments = '#comments#',
+  --iff isDeleted != null
+    is_deleted = '#isDeleted#',
+  --iff createdTime != null
+    created_time = '#createdTime#',
+  --iff createdUuid != null
+    created_uuid = '#createdUuid#',
+  --iff createdName != null
+    created_name = '#createdName#',
+  --iff updatedTime != null
+    updated_time = '#updatedTime#',
+  --iff updatedUuid != null
+    updated_uuid = '#updatedUuid#',
+  --iff updatedName != null
+    updated_name = '#updatedName#',
+  --iff prodCatalogUuid != null
+    prod_catalog_uuid = '#prodCatalogUuid#',
+  --iff appSysUuid != null
+    app_sys_uuid = '#appSysUuid#',
+  --iff extend1 != null
+    extend1 = '#extend1#',
+  --iff extend2 != null
+    extend2 = '#extend2#',
+  --iff extend3 != null
+    extend3 = '#extend3#'
+-- end
+where
+is_deleted = 'N'
+and (ehr_code is null or ehr_code = '')
+--iff organizationUuid != null and organizationUuid != ''
+    and organization_uuid = '#organizationUuid#'
+--iff uuids != null
+    and organization_uuid in
+    -- for item=item index=index collection=uuids open=( separator=, close=)
+        '#item#'
+    --end
+-- end
+
+-- [deleteOrganization]
+UPDATE
+    sys_organization
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'
+-- end
+WHERE
+    is_deleted = 'N'
+    and (ehr_code is null or ehr_code = '')
+    and organization_uuid in
+    -- for item=item index=index collection=uuids open=( separator=, close=)
+        '#item#'
+    --end
+
+
+
+--根据用户查询省公司
+ -- [getOrgByUser]
+SELECT
+    organization_uuid as organizationUuid,
+    org_parent_uuid as orgParentUuid,
+    org_all_parent_uuid as orgAllParentUuid,
+    org_name as orgName,
+    org_short_name as orgShortName,
+    org_type as orgType,
+    ehr_code as ehrCode,
+    org_code as orgCode,
+    top_org_uuid as topOrgUuid,
+    org_tel as orgTel,
+    org_tel_ext as orgTelExt,
+    org_fax as orgFax,
+    org_url as orgUrl,
+    org_addr as orgAddr,
+    area_province_uuid as areaProvinceUuid,
+    area_city_uuid as areaCityUuid,
+    is_enabled as isEnabled,
+    sort_num as sortNum,
+    is_virtual as isVirtual,
+    comments as comments,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
+    prod_catalog_uuid as prodCatalogUuid,
+    org_uuid as orgUuid,
+    app_sys_uuid as appSysUuid,
+    extend1 as extend1,
+    extend2 as extend2,
+    extend3 as extend3
+from
+    sys_organization
+where
+    is_deleted = 'N'
+    --iff orgUuid != null and orgUuid != ''
+        and org_uuid = '#orgUuid#'
+    --end
+    --iff organizationUuid != null and organizationUuid != ''
+        and organization_uuid = '#organizationUuid#'
+    --end
+
+
+--根据当前用户的orgUuid获取所有的当前机构和子机构
+-- [listOrgByUser]
+SELECT
+    organization_uuid as organizationUuid,
+    org_parent_uuid as orgParentUuid,
+    org_all_parent_uuid as orgAllParentUuid,
+    org_name as orgName,
+    org_name as title,
+    org_short_name as orgShortName,
+    org_type as orgType,
+    ehr_code as ehrCode,
+    org_code as orgCode,
+    top_org_uuid as topOrgUuid,
+    org_tel as orgTel,
+    org_tel_ext as orgTelExt,
+    org_fax as orgFax,
+    org_url as orgUrl,
+    org_addr as orgAddr,
+    area_province_uuid as areaProvinceUuid,
+    area_city_uuid as areaCityUuid,
+    is_enabled as isEnabled,
+    sort_num as sortNum,
+    is_virtual as isVirtual,
+    comments as comments,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
+    prod_catalog_uuid as prodCatalogUuid,
+    org_uuid as orgUuid,
+    app_sys_uuid as appSysUuid,
+    extend1 as extend1,
+    extend2 as extend2,
+    extend3 as extend3
+from
+    sys_organization
+where
+    is_deleted = 'N'
+    --iff orgUuid != null
+        and org_uuid = '#orgUuid#'
+    --end
+    --iff orgParentUuid != null
+        and org_parent_uuid = '#orgParentUuid#'
+    --end
+    --iff uuids != null
+        and organization_uuid in
+        -- for item=item index=index collection=uuids open=( separator=, close=)
+            '#item#'
+        --end
+    --end
+
+
+--根据当前机构查询下级机构（包括公司和部门：只查一级）
+-- [listOrgByOrg]
+SELECT
+    organization_uuid as organizationUuid,
+    org_parent_uuid as orgParentUuid,
+    org_all_parent_uuid as orgAllParentUuid,
+    org_name as orgName,
+    org_short_name as orgShortName,
+    org_type as orgType,
+    ehr_code as ehrCode,
+    org_code as orgCode,
+    top_org_uuid as topOrgUuid,
+    org_tel as orgTel,
+    org_tel_ext as orgTelExt,
+    org_fax as orgFax,
+    org_url as orgUrl,
+    org_addr as orgAddr,
+    area_province_uuid as areaProvinceUuid,
+    area_city_uuid as areaCityUuid,
+    is_enabled as isEnabled,
+    sort_num as sortNum,
+    is_virtual as isVirtual,
+    comments as comments,
+    is_deleted as isDeleted,
+    created_time as createdTime,
+    created_uuid as createdUuid,
+    created_name as createdName,
+    updated_time as updatedTime,
+    updated_uuid as updatedUuid,
+    updated_name as updatedName,
+    prod_catalog_uuid as prodCatalogUuid,
+    org_uuid as orgUuid,
+    app_sys_uuid as appSysUuid,
+    extend1 as extend1,
+    extend2 as extend2,
+    extend3 as extend3
+from
+    sys_organization
+where
+    is_deleted = 'N'
+    and org_parent_uuid = '#orgUuid#'
+    --iff orgAllParentUuid != null and orgAllParentUuid != ''
+        or org_all_parent_uuid like '#orgAllParentUuid:like#'
+    --end
+
+--禁用/启用机构
+-- [updateOrgByEnable]
+UPDATE
+    sys_organization
+    set
+    is_enabled = '#isEnabled#'
+WHERE
+    is_deleted = 'N'
+    and (ehr_code is null or ehr_code = '')
+    --iff uuids != null
+        and organization_uuid in
+        -- for item=item index=index collection=uuids open=( separator=, close=)
+            '#item#'
+        --end
+    --end

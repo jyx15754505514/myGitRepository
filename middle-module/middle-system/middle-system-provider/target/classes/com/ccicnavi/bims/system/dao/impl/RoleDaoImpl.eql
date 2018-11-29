@@ -1,0 +1,280 @@
+-- [insertRole]
+    insert into sys_role
+-- trim prefix=( suffix=) suffixOverrides=,
+  -- if roleUuid != null and roleUuid != ''
+        role_uuid,
+  -- end
+  -- if parentRoleUuid != null and parentRoleUuid != ''
+        parent_role_uuid,
+  -- end
+  -- if roleName != null and roleName != ''
+        role_name,
+  -- end
+  -- if roleCode != null and roleCode != ''
+        role_code,
+  -- end
+  -- if isSystem != null and isSystem != ''
+        is_system,
+  -- end
+  -- if isEnabled != null and isEnabled != ''
+        is_enabled,
+  -- end
+  -- if comments != null and comments != ''
+        comments,
+  -- end
+  -- if createdTime == null
+        created_time,
+  -- end
+  -- if createdUuid != null and createdUuid != ''
+        created_uuid,
+  -- end
+  -- if createdName != null and uuid != ''
+        created_name,
+  -- end
+  -- if orgUuid != null and orgUuid != ''
+        org_uuid,
+  -- end
+  -- if appSysUuid != null and appSysUuid != ''
+        app_sys_uuid,
+  -- end
+  -- if prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+  -- end
+  -- if extend1 != null and extend1 != ''
+        extend1,
+  -- end
+  -- if extend2 != null and extend2 != ''
+        extend2,
+  -- end
+  -- if extend3 != null and extend3 != ''
+        extend3,
+  -- end
+-- end
+-- trim prefix=values( suffix=) suffixOverrides=,
+  -- if roleUuid != null and roleUuid != ''
+        '#roleUuid#',
+  -- end
+  -- if parentRoleUuid != null and parentRoleUuid != ''
+        '#parentRoleUuid#',
+  -- end
+  -- if roleName != null and roleName != ''
+        '#roleName#',
+  -- end
+  -- if roleCode != null and roleCode != ''
+        '#roleCode#',
+  -- end
+  -- if isSystem != null and isSystem != ''
+        '#isSystem#',
+  -- end
+  -- if isEnabled != null and isEnabled != ''
+        '#isEnabled#',
+  -- end
+  -- if comments != null and comments != ''
+        '#comments#',
+  -- end
+  -- if isDeleted != null and isDeleted != ''
+        '#isDeleted#',
+  -- end
+  -- if createdTime == null
+        NOW(),
+  -- end
+  -- if createdUuid != null and createdUuid != ''
+        '#createdUuid#',
+  -- end
+  -- if createdName != null and createdName != ''
+        '#createdName#',
+  -- end
+  -- if orgUuid != null and orgUuid != ''
+        '#orgUuid#',
+  -- end
+  -- if appSysUuid != null and appSysUuid != ''
+        '#appSysUuid#',
+  -- end
+  -- if prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+  -- end
+  -- if extend1 != null and extend1 != ''
+        '#extend1#',
+  -- end
+  -- if extend2 != null and extend2 != ''
+        '#extend2#',
+  -- end
+  -- if extend3 != null and extend3 != ''
+        '#extend3#',
+  -- end
+-- end
+
+-- [updateRole]
+    update sys_role
+-- trim prefix=SET suffixOverrides=,
+  -- if parentRoleUuid != null
+        parent_role_uuid = '#parentRoleUuid#',
+  -- end
+  -- if roleName != null
+        role_name = '#roleName#',
+  -- end
+  -- if roleCode != null
+        role_code = '#roleCode#',
+  -- end
+  -- if isSystem != null
+        is_system = '#isSystem#',
+  -- end
+  -- if isEnabled != null
+        is_enabled = '#isEnabled#',
+  -- end
+  -- if comments != null
+        comments = '#comments#',
+  -- end
+  -- if isDeleted != null
+        is_deleted = '#isDeleted#',
+  -- end
+  -- if updatedTime == null
+        updated_time =  NOW(),
+  -- end
+  -- if updatedName != null
+        updated_name = '#updatedName#',
+  -- end
+  -- if updatedUuid != null
+        updated_uuid = '#updatedUuid#',
+   -- end
+  -- if prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
+   -- end
+  -- if appSysUuid != null
+        app_sys_uuid = '#appSysUuid#',
+   -- end
+  -- if orgUuid != null
+          org_uuid = '#orgUuid#',
+  -- end
+  -- if extend1 != null
+        extend1 = '#extend1#',
+  -- end
+  -- if extend2 != null
+        extend2 = '#extend2#',
+  -- end
+  -- if extend3 != null
+        extend3 = '#extend3#',
+  -- end
+-- end
+    where role_uuid = '#roleUuid#'
+
+-- [listRole]
+	SELECT
+        role_uuid as roleUuid,
+        parent_role_uuid as parentRoleUuid,
+        role_name as roleName,
+        role_code as roleCode,
+        is_system as isSystem,
+        is_enabled as isEnabled,
+        comments,
+        is_deleted as isDeleted,
+        created_time as createdTime,
+        created_uuid as createdUuid,
+        created_name as createdName,
+        updated_time as updatedTime,
+        updated_name as updatedName,
+        updated_uuid as updatedUuid,
+        org_uuid as orgUuid,
+        app_sys_uuid as appSysUuid,
+        prod_catalog_uuid as prodCatalogUuid,
+        extend1,
+        extend2,
+        extend3
+	FROM
+		sys_role
+	WHERE
+		is_deleted = 'N'
+		-- iff orgUuid != null and orgUuid != ''
+               and org_uuid = '#orgUuid#'
+        -- end
+        -- iff appSysUuid != null and appSysUuid != ''
+                and app_sys_uuid = '#appSysUuid#'
+        -- end
+        -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+                and prod_catalog_uuid = '#prodCatalogUuid#'
+        -- end
+        -- iff roleName != null and roleName != ''
+                and role_name like   '#roleName:like#'
+        -- end
+        -- iff roleCode != null and roleCode != ''
+                and role_code like   '#roleCode:like#'
+        -- end
+    ORDER BY created_time desc
+
+
+
+-- [getRole]
+	SELECT
+         role_uuid as roleUuid,
+               parent_role_uuid as parentRoleUuid,
+               role_name as roleName,
+               role_code as roleCode,
+               is_system as isSystem,
+               is_enabled as isEnabled,
+               comments,
+               is_deleted as isDeleted,
+               created_time as createdTime,
+               created_uuid as createdUuid,
+               created_name as createdName,
+               updated_time as updatedTime,
+               updated_name as updatedName,
+               updated_uuid as updatedUuid,
+               org_uuid as orgUuid,
+               app_sys_uuid as appSysUuid,
+               prod_catalog_uuid as prodCatalogUuid,
+               extend1,
+               extend2,
+               extend3
+	FROM
+		sys_role
+	WHERE  is_deleted = 'N'
+	-- if roleUuid != null and roleUuid != ''
+    	and	role_uuid = '#roleUuid#'
+    -- end
+    -- if orgUuid != null and orgUuid != ''
+       and org_uuid = '#orgUuid#'
+    -- end
+    -- if appSysUuid != null and appSysUuid != ''
+       and app_sys_uuid = '#appSysUuid#'
+    -- end
+    -- if prodCatalogUuid != null and prodCatalogUuid != ''
+       and prod_catalog_uuid = '#prodCatalogUuid#'
+    -- end
+
+-- [deleteRole]
+ delete from sys_role
+    WHERE
+			role_uuid in
+			-- for item=item index=index collection=roleUuids open=( separator=, close=)
+				'#item#'
+			-- end
+
+-- 根据用户UUID获取所有角色UUID
+-- [listRoleByUser]
+   SELECT
+        r.role_uuid as roleUuid,
+        r.role_name as roleName,
+        r.role_code as roleCode,
+        r.is_system as isSystem,
+        r.is_enabled as isEnabled,
+        r.org_uuid as orgUuid,
+        o.org_name as orgName
+   FROM
+        sys_role r
+        -- if userUuid != null and userUuid != ''
+            LEFT JOIN sys_role_user ru ON ru.role_uuid = r.role_uuid
+        -- end
+        LEFT JOIN sys_organization o ON o.organization_uuid = r.org_uuid
+   WHERE
+        r.is_enabled = 'Y'
+        and r.is_deleted = 'N'
+        -- if userUuid != null and userUuid != ''
+            AND ru.user_uuid = '#userUuid#'
+        -- end
+        -- if orgUuid != null and orgUuid != ''
+            AND r.org_uuid = '#orgUuid#'
+        -- end
+
+
+
+

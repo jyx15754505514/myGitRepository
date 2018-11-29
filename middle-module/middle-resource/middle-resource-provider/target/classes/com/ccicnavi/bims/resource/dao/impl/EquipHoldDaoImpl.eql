@@ -1,0 +1,246 @@
+-- [listEquipHold]
+  SELECT
+    equip_hold_uuid equipHoldUuid,
+    equip_uuid equipUuid,
+    use_date useDate,
+    assets_code assetsCode,
+    use_dept_uuid useDeptUuid,
+    use_dept_name useDeptName,
+    purchase_date purchaseDate,
+    purchase_price purchasePrice,
+    purchase_count purchaseCount,
+    agency_uuid agencyUuid,
+    agency_name agencyName,
+    dept_uuid deptUuid,
+    dept_name deptName,
+    mgr_uuid mgrUuid,
+    mgr_name mgrName,
+    location_addr locationAddr,
+    prod_catalog_uuid prodCatalogUuid,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid
+    from
+    res_equip_hold
+where
+    is_deleted = 'N'
+
+-- [getEquipHold]
+  SELECT
+    equip_hold_uuid equipHoldUuid,
+    equip_uuid equipUuid,
+    use_date useDate,
+    assets_code assetsCode,
+    use_dept_uuid useDeptUuid,
+    use_dept_name useDeptName,
+    purchase_date purchaseDate,
+    purchase_price purchasePrice,
+    purchase_count purchaseCount,
+    agency_uuid agencyUuid,
+    agency_name agencyName,
+    dept_uuid deptUuid,
+    dept_name deptName,
+    mgr_uuid mgrUuid,
+    mgr_name mgrName,
+    location_addr locationAddr,
+    prod_catalog_uuid prodCatalogUuid,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_name updatedName,
+    org_uuid orgUuid
+    from
+    res_equip_hold
+where
+    is_deleted = 'N'
+--iff equipHoldUuid != null and equipHoldUuid != ''
+    and equip_hold_uuid = '#equipHoldUuid#'
+
+-- [insertEquipHold]
+    insert into res_equip_hold
+    -- trim prefix=( suffix=) suffixOverrides=,
+      --iff equipHoldUuid != null
+        equip_hold_uuid,
+      --iff equipUuid != null
+        equip_uuid,
+      --iff useDate != null
+        use_date,
+      --iff assetsCode != null
+        assets_code,
+      --iff useDeptUuid != null
+        use_dept_uuid,
+      --iff useDeptName != null
+        use_dept_name,
+      --iff purchaseDate != null
+        purchase_date,
+      --iff purchasePrice != null
+        purchase_price,
+      --iff purchaseCount != null
+        purchase_count,
+      --iff agencyUuid != null
+        agency_uuid,
+      --iff agencyName != null
+        agency_name,
+      --iff deptUuid != null
+        dept_uuid,
+      --iff deptName != null
+        dept_name,
+      --iff mgrUuid != null
+        mgr_uuid,
+      --iff mgrName != null
+        mgr_name,
+      --iff locationAddr != null
+        location_addr,
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid,
+      --iff comments != null
+        comments,
+      --iff isDeleted != null
+        is_deleted,
+      --iff createdTime != null
+        created_time,
+      --iff createdUuid != null
+        created_uuid,
+      --iff createdName != null
+        created_name,
+      --iff updatedTime != null
+        updated_time,
+      --iff updatedName != null
+        updated_name,
+      --iff orgUuid != null
+        org_uuid,
+      --iff appSysUuid != null
+        app_sys_uuid
+    --end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      --iff equipHoldUuid != null
+        '#equipHoldUuid#',
+      --iff equipUuid != null
+        '#equipUuid#',
+      --iff useDate != null
+        '#useDate#',
+      --iff assetsCode != null
+        '#assetsCode#',
+      --iff useDeptUuid != null
+        '#useDeptUuid#',
+      --iff useDeptName != null
+        '#useDeptName#',
+      --iff purchaseDate != null
+        '#purchaseDate#',
+      --iff purchasePrice != null
+        '#purchasePrice#',
+      --iff purchaseCount != null
+        '#purchaseCount#',
+      --iff agencyUuid != null
+        '#agencyUuid#',
+      --iff agencyName != null
+        '#agencyName#',
+      --iff deptUuid != null
+        '#deptUuid#',
+      --iff deptName != null
+        '#deptName#',
+      --iff mgrUuid != null
+        '#mgrUuid#',
+      --iff mgrName != null
+        '#mgrName#',
+      --iff locationAddr != null
+        '#locationAddr#',
+      --iff prodCatalogUuid != null
+        '#prodCatalogUuid#',
+      --iff comments != null
+        '#comments#',
+      --iff isDeleted != null
+        '#isDeleted#',
+      --iff createdTime != null
+        '#createdTime#',
+      --iff createdUuid != null
+        '#createdUuid#',
+      --iff createdName != null
+        '#createdName#',
+      --iff updatedTime != null
+        '#updatedTime#',
+      --iff updatedName != null
+        '#updatedName#',
+      --iff orgUuid != null
+        '#orgUuid#',
+      --iff appSysUuid != null
+        '#appSysUuid#'
+    --end
+
+  -- [updateEquipHold]
+    update res_equip_hold
+    -- trim prefix= set suffixOverrides=,
+      --iff equipUuid != null
+        equip_uuid = '#equipUuid#',
+      --iff useDate != null
+        use_date = '#useDate#',
+      --iff assetsCode != null
+        assets_code = '#assetsCode#',
+      --iff useDeptUuid != null
+        use_dept_uuid = '#useDeptUuid#',
+      --iff useDeptName != null
+        use_dept_name = '#useDeptName#',
+      --iff purchaseDate != null
+        purchase_date = '#purchaseDate#',
+      --iff purchasePrice != null
+        purchase_price = '#purchasePrice#',
+      --iff purchaseCount != null
+        purchase_count = '#purchaseCount#',
+      --iff agencyUuid != null
+        agency_uuid = '#agencyUuid#',
+      --iff agencyName != null
+        agency_name = '#agencyName#',
+      --iff deptUuid != null
+        dept_uuid = '#deptUuid#',
+      --iff deptName != null
+        dept_name = '#deptName#',
+      --iff mgrUuid != null
+        mgr_uuid = '#mgrUuid#',
+      --iff mgrName != null
+        mgr_name = '#mgrName#',
+      --iff locationAddr != null
+        location_addr = '#locationAddr#',
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
+      --iff comments != null
+        comments = '#comments#',
+      --iff isDeleted != null
+        is_deleted = '#isDeleted#',
+      --iff createdTime != null
+        created_time = '#createdTime#',
+      --iff createdUuid != null
+        created_uuid = '#createdUuid#',
+      --iff createdName != null
+        created_name = '#createdName#',
+      --iff updatedTime != null
+        updated_time = '#updatedTime#',
+      --iff updatedName != null
+        updated_name = '#updatedName#',
+      --iff orgUuid != null
+        org_uuid = '#orgUuid#',
+      --iff appSysUuid != null
+        app_sys_uuid = '#appSysUuid#'
+    -- end
+    where
+    is_deleted = 'N'
+    and equip_hold_uuid = '#equipHoldUuid#'
+-- end
+
+-- [deleteEquipHold]
+UPDATE
+    res_equip_hold
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'.
+-- end
+WHERE
+    is_deleted = 'N'
+    and equip_hold_uuid = '#equipHoldUuid#'
+-- end

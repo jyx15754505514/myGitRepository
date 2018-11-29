@@ -1,0 +1,389 @@
+-- 部门信息表查询
+-- [listDepartment]
+    SELECT
+          dept_uuid as deptUuid,
+          dept_code as deptCode,
+          dept_name as deptName,
+          dept_type as deptType,
+          parent_name as parentName,
+          parent_uuid as parentUuid,
+          dept_tel as deptTel,
+          dept_sort as deptSort,
+          manager,
+          business,
+          is_enabled as isEnabled,
+          comments,
+          is_deleted as isDeleted,
+          created_time as createdTime,
+          created_uuid as createdUuid,
+          created_name as createdName,
+          updated_time as updatedTime,
+          updated_name as updatedName,
+          org_uuid as orgUuid,
+          app_sys_uuid as appSysUuid,
+          prod_catalog_uuid as prodCatalogUuid,
+          extend1,
+          extend2,
+          extend3
+    FROM
+        sys_department
+    WHERE
+        is_deleted = 'N'
+        --iff deptCode != null and deptCode != ''
+            and dept_code like '#deptCode:like#'
+        --end
+        --iff deptName != null and deptName != ''
+            and dept_name like '#deptName:like#'
+        --end
+        --iff deptUuid != null and deptUuid != ''
+            and dept_uuid = '#deptUuid#'
+        --end
+
+-- 部门信息新增
+-- [insertDepartment]
+    INSERT INTO sys_department
+    --trim prefix=( suffix=) suffixOverrides= ,
+          --if deptUuid != null and deptUuid != ''
+            dept_uuid,
+          --end
+          --if deptCode != null and deptCode != ''
+            dept_code,
+          --end
+          --if deptName != null and deptName != ''
+            dept_name,
+          --end
+          --if deptType != null and deptType != ''
+            dept_type,
+          --end
+          --if parentName != null and parentName != ''
+            parent_name,
+          --end
+          --if parentUuid != null and parentUuid != ''
+            parent_uuid,
+          --end
+          --if deptTel != null and deptTel != ''
+            dept_tel,
+          --end
+          --if deptSort != null and deptSort != ''
+            dept_sort,
+          --end
+          --if manager != null and manager != ''
+            manager,
+          --end
+          --if business != null and business != ''
+            business,
+          --end
+          --if isEnabled != null and isEnabled != ''
+            is_enabled,
+          --end
+          --if comments != null and comments != ''
+            comments,
+          --end
+          --if isDeleted != null and isDeleted != ''
+            is_deleted,
+          --end
+          --if createdTime != null and createdTime != ''
+            created_time,
+          --end
+          --if createdUuid != null and createdUuid != ''
+            created_uuid,
+          --end
+          --if createdName != null and createdName != ''
+            created_name,
+          --end
+          --if orgUuid != null and  orgUuid != ''
+            org_uuid,
+          --end
+          --if appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
+          --end
+          --if prodCatalogUuid != null  and prodCatalogUuid != ''
+            prod_catalog_uuid,
+          --end
+          --if extend1 != null and  extend1 != ''
+            extend1,
+          --end
+          --if extend2 != null  and extend2 != ''
+            extend2,
+          --end
+          --if extend3 != null  and extend3 != ''
+            extend3,
+          --end
+      --end
+      --trim prefix= values( suffix=) suffixOverrides= ,
+          --if deptUuid != null and deptUuid != ''
+            '#deptUuid#',
+          --end
+          --if deptCode != null and deptCode != ''
+            '#deptCode#',
+          --end
+          --if deptName != null and deptName != ''
+            '#deptName#',
+          --end
+          --if deptType != null and deptType != ''
+            '#deptType#',
+          --end
+          --if parentName != null and parentName != ''
+            '#parentName#',
+          --end
+          --if parentUuid != null  and parentUuid != ''
+            '#parentUuid#',
+          --end
+          --if deptTel != null  and deptTel != ''
+            '#deptTel#',
+          --end
+          --if deptSort != null and deptSort != ''
+            '#deptSort#',
+          --end
+          --if manager != null and manager != ''
+            '#manager#',
+          --end
+          --if business != null and business != ''
+            '#business#',
+          --end
+          --if isEnabled != null  and isEnabled != ''
+            '#isEnabled#',
+          --end
+          --if comments != null  and comments != ''
+            '#comments#',
+          --end
+          --if isDeleted != null  and isDeleted != ''
+            '#isDeleted#',
+          --end
+          --if createdTime != null  and createdTime != ''
+            '#createdTime#',
+          --end
+          --if createdUuid != null  and createdUuid != ''
+            '#createdUuid#',
+          --end
+          --if createdName != null  and createdName != ''
+            '#createdName#',
+          --end
+          --if orgUuid != null  and orgUuid != ''
+            '#orgUuid#',
+          --end
+          --if appSysUuid != null  and appSysUuid != ''
+            '#appSysUuid#',
+          --end
+          --if prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
+          --end
+          --if extend1 != null and extend1 != ''
+            '#extend1#',
+          --end
+          --if extend2 != null and extend2 != ''
+            '#extend2#',
+          --end
+          --if extend3 != null and extend3 != ''
+            '#extend3#',
+          --end
+       --end
+
+-- 修改部门信息
+-- [updateDepartment]
+     UPDATE
+        sys_department
+          -- trim  prefix= set suffixOverrides=,
+            --iff deptCode != null and deptCode != ''
+              dept_code = '#deptCode#',
+            --iff deptName != null and deptName != ''
+              dept_name = '#deptName#',
+            --iff deptType != null and deptType != ''
+              dept_type = '#deptType#',
+            --iff parentName != null and parentName != ''
+              parent_name = '#parentName#',
+            --iff parentUuid != null and parentUuid != ''
+              parent_uuid = '#parentUuid#',
+            --iff deptTel != null and deptTel != ''
+              dept_tel = '#deptTel#',
+            --iff deptSort != null and deptSort != ''
+              dept_sort = '#deptSort#',
+            --iff manager != null and manager != ''
+              manager = '#manager#',
+            --iff business != null and business != ''
+              business = '#business#',
+            --iff isEnabled != null and isEnabled != ''
+              is_enabled = '#isEnabled#',
+            --iff comments != null and comments != ''
+              comments = '#comments#',
+            --iff isDeleted != null and isDeleted != ''
+              is_deleted = '#isDeleted#',
+            --iff updatedTime != null and updatedTime != ''
+              updated_time = '#updatedTime#',
+            --iff updatedName != null and updatedName != ''
+              updated_name = '#updatedName#',
+            --iff orgUuid != null and orgUuid != ''
+              org_uuid = '#orgUuid#',
+            --iff appSysUuid != null and appSysUuid != ''
+              app_sys_uuid = '#appSysUuid#',
+            --iff prodCatalogUuid != null and prodCatalogUuid != ''
+              prod_catalog_uuid = '#prodCatalogUuid#',
+            --iff extend1 != null and extend1 != ''
+              extend1 = '#extend1#',
+            --iff extend2 != null and extend2 != ''
+              extend2 = '#extend2#',
+            --iff extend3 != null and extend3 != ''
+              extend3 = '#extend3#',
+        --end
+        where
+          -- if deptUuid != null
+          		dept_uuid = '#deptUuid#'
+          -- end
+          -- if uuids != null
+          		dept_uuid in
+          -- for item=item index=index collection=uuids open=( separator=, close=)
+          		'#item#'
+          	-- end
+         -- end
+
+-- 删除部门信息
+-- [deleteDepartment]
+    UPDATE
+        sys_department
+        -- trim prefix= set suffixOverrides=,
+                is_deleted = 'Y'
+        -- end
+    where
+
+         -- if deptUuid != null and deptUuid != ''
+                 	dept_uuid = '#deptUuid#'
+         -- end
+          -- if uuids != null
+               	dept_uuid in
+            -- for item=item index=index collection=uuids open=( separator=, close=)
+                 '#item#'
+            -- end
+          -- end
+
+-- 根据主键查询部门信息
+-- [getDepartment]
+    SELECT
+         dept_uuid as deptUuid,
+         dept_code as deptCode,
+         dept_name as deptName,
+         dept_type as deptType,
+         parent_name as parentName,
+         parent_uuid as parentUuid,
+         dept_tel as deptTel,
+         dept_sort as deptSort,
+         manager,
+         business,
+         is_enabled as isEnabled,
+         comments,
+         is_deleted as isDeleted,
+         created_time as createdTime,
+         created_uuid as createdUuid,
+         created_name as createdName,
+         updated_time as updatedTime,
+         updated_name as updatedName,
+         org_uuid as orgUuid,
+         app_sys_uuid as appSysUuid,
+         prod_catalog_uuid as prodCatalogUuid,
+         extend1,
+         extend2,
+         extend3
+    FROM
+        sys_department
+    WHERE
+        is_deleted = 'N'
+        --if deptUuid != null and deptUuid !=''
+               and dept_uuid = '#deptUuid#'
+        --end
+
+-- 根据用户的UUID查询所有的部门信息
+-- [listDeptByUser]
+SELECT
+	dp.dept_uuid as deptUuid,
+	dp.dept_code as deptCode,
+	dp.dept_name as deptName,
+	dp.dept_type as deptType,
+	dp.parent_name as parentName,
+	dp.parent_uuid as parentUuid,
+	dp.dept_tel as deptTel,
+	dp.dept_sort as deptSort,
+	dp.manager,
+    dp.is_enabled as isEnabled,
+    dp.is_deleted as isDeleted,
+	dp.is_business,
+	dp.comments,
+	dp.prod_catalog_uuid as prodCatalogUuid,
+	dp.org_uuid as orgUuid,
+	dp.app_sys_uuid as appSysUuid
+FROM
+	sys_department dp
+	LEFT JOIN sys_user_authdata ua ON ua.auth_uuid = dp.dept_uuid AND ua.auth_type = 'DEPT'
+WHERE
+	dp.is_enabled = 'Y'
+	AND dp.is_deleted = 'N'
+	AND ua.user_uuid = '#userUuid#'
+
+
+-- 根据部门类型查询部门信息
+-- [listDeptByDeptType]
+    SELECT
+        dept_uuid as deptUuid,
+        dept_code as deptCode,
+        dept_name as deptName,
+        dept_type as deptType,
+        parent_name as parentName,
+        parent_uuid as parentUuid,
+        dept_tel as deptTel,
+        dept_sort as deptSort,
+        manager,
+        is_business,
+        is_enabled as isEnabled,
+        comments,
+        is_deleted as isDeleted,
+        created_time as createdTime,
+        created_uuid as createdUuid,
+        created_name as createdName,
+        updated_time as updatedTime,
+        updated_uuid as updatedUuid,
+        updated_name as updatedName,
+        prod_catalog_uuid as prodCatalogUuid,
+        org_uuid as orgUuid,
+        app_sys_uuid as appSysUuid,
+        extend1,
+        extend2,
+        extend3
+    FROM
+        sys_department
+    WHERE
+        is_deleted = 'N'
+        and dept_type = '#deptType#'
+
+
+-- 根据orgUuid和parentUuid查询部门
+-- [listDept]
+    SELECT
+        dept_uuid as deptUuid,
+        dept_code as deptCode,
+        dept_name as deptName,
+        dept_type as deptType,
+        parent_name as parentName,
+        parent_uuid as parentUuid,
+        dept_tel as deptTel,
+        dept_sort as deptSort,
+        manager,
+        is_business,
+        is_enabled as isEnabled,
+        comments,
+        is_deleted as isDeleted,
+        created_time as createdTime,
+        created_uuid as createdUuid,
+        created_name as createdName,
+        updated_time as updatedTime,
+        updated_uuid as updatedUuid,
+        updated_name as updatedName,
+        prod_catalog_uuid as prodCatalogUuid,
+        org_uuid as orgUuid,
+        app_sys_uuid as appSysUuid,
+        extend1,
+        extend2,
+        extend3
+    FROM
+        sys_department
+    WHERE
+        is_deleted = 'N'
+        and parent_uuid = '#parentUuid#'
+        and org_uuid = '#orgUuid#'

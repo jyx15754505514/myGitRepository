@@ -1,0 +1,122 @@
+-- [getLogDetail]
+SELECT
+    log.log_uuid logUuid,
+    log.oper_name operName,
+    log.oper_time operTime,
+    log.oper_content operContent,
+    log.oper_module operModule,
+    log.comments comments,
+    log.is_deleted isDeleted,
+    log.org_uuid orgUuid,
+    log.app_sys_uuid appSysUuid,
+    log.prod_catalog_uuid prodCatalogUuid
+from
+    sys_log_detail as log
+where
+    log.is_deleted = 'N'
+--iff logUuid != null and logUuid != ''
+    and log.log_uuid = '#logUuid#'
+--iff orgUuid != null and orgUuid != ''
+    and log.org_uuid = '#orgUuid#'
+--iff appSysUuid != null and appSysUuid != ''
+    and log.app_sys_uuid = '#appSysUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and log.prod_catalog_uuid = '#prodCatalogUuid#'
+
+-- [insertLogDetail]
+INSERT INTO sys_log_detail
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff logUuid != null and ifflogUuid !=''
+            log_uuid,
+        --iff operName != null and iffoperName !=''
+            oper_name,
+        --iff operTime != null
+            oper_time,
+        --iff operContent != null and iffoperContent !=''
+            oper_content,
+        --iff operModule != null and iffoperModule !=''
+            oper_module,
+        --iff comments != null and iffcomments != ''
+            comments,
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted,
+        --iff orgUuid != null and ifforgUuid != ''
+            org_uuid,
+        --iff appSysUuid != null and iffappSysUuid != ''
+            app_sys_uuid,
+        --iff prodCatalogUuid != null and iffprodCatalogUuid != ''
+            prod_catalog_uuid,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff logUuid != null and ifflogUuid != ''
+            '#logUuid#',
+        --iff operName != null and iffoperName != ''
+            '#operName#',
+        --iff operTime != null
+            '#operTime#',
+        --iff operContent != null and iffoperContent != ''
+            '#operContent#',
+        --iff operModule != null and iffoperModule != ''
+            '#operModule#',
+        --iff comments != null and iffcomments != ''
+            '#comments#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+        --iff orgUuid != null and ifforgUuid != ''
+            '#orgUuid#',
+        --iff appSysUuid != null and iffappSysUuid != ''
+            '#appSysUuid#',
+        --iff prodCatalogUuid != null and iffprodCatalogUuid != ''
+            '#prodCatalogUuid#',
+    -- end
+
+-- [updateLogDetail]
+UPDATE
+    sys_log_detail
+-- trim prefix= set suffixOverrides=,
+    --iff logUuid != null and ifflogUuid != ''
+        log_uuid = '#logUuid#',
+    --iff operName != null and iffoperName != ''
+        oper_name = '#operName#',
+    --iff operTime != null
+        oper_time = '#operTime#',
+    --iff operContent != null and iffoperContent != ''
+        oper_content = '#operContent#',
+    --iff operModule != null and iffoperModule != ''
+        oper_module = '#operModule#',
+    --iff comments != null and iffcomments != ''
+        comments = '#comments#',
+    --iff isDeleted != null and isDeleted != ''
+        is_deleted = '#isDeleted#',
+    --iff orgUuid != null and ifforgUuid != ''
+        org_uuid = '#orgUuid#',
+    --iff appSysUuid != null and iffappSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
+    --iff prodCatalogUuid != null and iffprodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
+-- end
+where
+    is_deleted = 'N'
+--iff logUuid != null and logUuid != ''
+    and log_uuid = '#logUuid#'
+--iff logUuids != null
+    and log_uuid in
+    -- for item=item index=index collection=logUuids open=( separator=, close=)
+        '#item#'
+    -- end
+
+-- [deleteLogDetail]
+UPDATE
+    sys_log_detail
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'
+-- end
+where
+    is_deleted = 'N'
+--iff logUuid != null and logUuid != ''
+    and log_uuid = '#logUuid#'
+--iff logUuids != null
+    and log_uuid in
+    -- for item=item index=index collection=logUuids open=( separator=, close=)
+        '#item#'
+    -- end

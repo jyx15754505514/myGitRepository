@@ -1,0 +1,275 @@
+-- 新增数据字典数值
+--[insertDictValue]
+ insert into sys_dict_value
+    -- trim prefix=( suffix=) suffixOverrides=,
+      -- iff dictValueUuid != null and dictValueUuid  !=''
+        dict_value_uuid,
+
+      -- iff dictValueName != null and dictValueName  !=''
+        dict_value_name,
+
+      -- iff dictValueCode != null and  dictValueCode !=''
+        dict_value_code,
+
+      -- iff dictParentUuid != null and dictParentUuid  !=''
+        dict_parent_uuid,
+
+      -- iff sortNum != null and  sortNum !=''
+        sort_num,
+
+      -- iff comments != null and  comments !=''
+        comments,
+
+      -- iff isDeleted != null and  isDeleted !=''
+        is_deleted,
+
+      -- iff createdTime != null and createdTime  !=''
+        created_time,
+
+      -- iff createdUuid != null and createdUuid  !=''
+        created_uuid,
+
+      -- iff createdName != null and createdName  !=''
+        created_name,
+
+      -- iff updatedTime != null and  updatedTime !=''
+        updated_time,
+
+      -- iff updatedUuid != null and updatedUuid  !=''
+        updated_uuid,
+
+      -- iff updatedName != null and  updatedName !=''
+        updated_name,
+
+      -- iff prodCatalogUuid != null and prodCatalogUuid  !=''
+        prod_catalog_uuid,
+
+      -- iff orgUuid != null and  orgUuid !=''
+        org_uuid,
+
+      -- iff appSysUuid != null and  appSysUuid !=''
+        app_sys_uuid,
+
+      -- iff extend1 != null and  extend1 !=''
+        extend1,
+
+      -- iff extend2 != null and  extend2 !=''
+        extend2,
+
+      -- iff extend3 != null and  extend3 !=''
+        extend3,
+
+    -- end
+    -- trim prefix=values( suffix=)  suffixOverrides=,
+      -- iff dictValueUuid != null and  dictValueUuid !=''
+        '#dictValueUuid#',
+
+      -- iff dictValueName != null and  dictValueName !=''
+        '#dictValueName#',
+
+      -- iff dictValueCode != null and  dictValueCode !=''
+        '#dictValueCode#',
+
+      -- iff dictParentUuid != null and  dictParentUuid !=''
+        '#dictParentUuid#',
+
+      -- iff sortNum != null and  sortNum !=''
+        '#sortNum#',
+
+      -- iff comments != null and comments  !=''
+        '#comments#',
+
+      -- iff isDeleted != null and isDeleted  !=''
+        '#isDeleted#',
+
+      -- iff createdTime != null and createdTime  !=''
+        '#createdTime#',
+
+      -- iff createdUuid != null and  createdUuid !=''
+        '#createdUuid#',
+
+      -- iff createdName != null and  createdName !=''
+        '#createdName#',
+
+      -- iff updatedTime != null and updatedTime  !=''
+        '#updatedTime#',
+
+      -- iff updatedUuid != null and  updatedUuid !=''
+        '#updatedUuid#',
+
+      -- iff updatedName != null and updatedName  !=''
+        '#updatedName#',
+
+      -- iff prodCatalogUuid != null and  prodCatalogUuid !=''
+        '#prodCatalogUuid#',
+
+      -- iff orgUuid != null and  orgUuid !=''
+        '#orgUuid#',
+
+      -- iff appSysUuid != null and appSysUuid  !=''
+        '#appSysUuid#',
+
+      -- iff extend1 != null and extend1  !=''
+        '#extend1#',
+
+      -- iff extend2 != null and extend2  !=''
+        '#extend2#',
+
+      -- iff extend3 != null and extend3  !=''
+        '#extend3#',
+  --end
+
+ --更改数据字典数值
+  --[updateDictValue]
+ update sys_dict_value
+    -- trim prefix=SET suffixOverrides=,
+      -- iff dictValueName != null
+        dict_value_name = '#dictValueName#',
+
+      -- iff dictValueCode != null
+        dict_value_code = '#dictValueCode#',
+
+      -- iff dictParentUuid != null
+        dict_parent_uuid = '#dictParentUuid#',
+
+      -- iff sortNum != null
+        sort_num = '#sortNum#',
+
+      -- iff comments != null
+        comments = '#comments#',
+
+      -- iff isDeleted != null
+        is_deleted = '#isDeleted#',
+
+      -- iff createdTime != null
+        created_time = '#createdTime#',
+
+      -- iff createdUuid != null
+        created_uuid = '#createdUuid#',
+
+      -- iff createdName != null
+        created_name = '#createdName#',
+
+      -- iff updatedTime != null
+        updated_time = '#updatedTime#',
+
+      -- iff updatedUuid != null
+        updated_uuid = '#updatedUuid#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+
+      -- iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
+
+      -- iff orgUuid != null
+        org_uuid = '#orgUuid#',
+
+      -- iff appSysUuid != null
+        app_sys_uuid = '#appSysUuid#',
+
+      -- iff extend1 != null
+        extend1 = '#extend1#',
+
+      -- iff extend2 != null
+        extend2 = '#extend2#',
+
+      -- iff extend3 != null
+        extend3 = '#extend3#',
+    --end
+    where dict_value_uuid = '#dictValueUuid#'
+
+
+ -- 删除数据字典数值
+ --[deleteDictValue]
+     UPDATE
+         sys_dict_value
+         -- trim prefix= set suffixOverrides=,
+                 is_deleted = 'Y'
+         -- end
+     where
+           -- if valueUuids != null
+                	dict_value_uuid in
+                 -- for item=item index=index collection=valueUuids open=( separator=, close=)
+                                '#item#'
+                 -- end
+           -- end
+      -- if prodCatalogUuid != null and prodCatalogUuid!=''
+            AND prod_catalog_uuid='#prodCatalogUuid#'
+      -- end
+     AND org_uuid='#orgUuid#'
+     -- if appSysUuid != null and appSysUuid!=''
+               AND app_sys_uuid='#appSysUuid#'
+     -- end
+
+
+-- 根据父级类型uuid查询字典数据
+-- [listDictValue]
+SELECT
+	dict_value_uuid,
+	dict_value_name,
+	dict_value_code,
+	dict_parent_uuid,
+	sort_num,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_uuid,
+	updated_name,
+	prod_catalog_uuid,
+	org_uuid,
+	app_sys_uuid
+FROM
+	sys_dict_value
+WHERE
+	is_deleted = 'N'
+    -- if dictParentUuid != null and dictParentUuid != ''
+               AND dict_parent_uuid = '#dictParentUuid#'
+    -- end
+    -- if orgUuid != null and orgUuid != ''
+               AND (org_uuid='#orgUuid#' or org_uuid = '#publicOrgUuid#')
+    -- end
+    -- if appSysUuid != null and appSysUuid != ''
+              AND app_sys_uuid = '#appSysUuid#'
+    -- end
+    -- if prodCatalogUuid != null and prodCatalogUuid != ''
+              AND prod_catalog_uuid = '#prodCatalogUuid#'
+    -- end
+    -- if dictValueName != null and dictValueName != ''
+             AND dict_value_name like '#dictValueName:like#'
+     -- end
+    order by sort_num
+
+
+-- [getDictValue]
+SELECT
+	dict_value_uuid,
+	dict_value_name,
+	dict_value_code,
+	dict_parent_uuid,
+	sort_num,
+	comments,
+	is_deleted,
+	created_time,
+	created_uuid,
+	created_name,
+	updated_time,
+	updated_uuid,
+	updated_name,
+	prod_catalog_uuid,
+	org_uuid,
+	app_sys_uuid
+FROM
+	sys_dict_value
+WHERE
+	is_deleted = 'N'
+AND dict_value_uuid='#dictValueUuid#'
+-- if appSysUuid != null and appSysUuid!=''
+          AND app_sys_uuid='#appSysUuid#'
+-- end
+
+
+

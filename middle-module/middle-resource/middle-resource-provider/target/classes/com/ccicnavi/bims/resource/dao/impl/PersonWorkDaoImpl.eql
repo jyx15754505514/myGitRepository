@@ -1,0 +1,431 @@
+--[listPersonWorkDO]
+select
+    work_uuid workUuid,
+    person_uuid personUuid,
+    person_type personType,
+    dept_uuid deptUuid,
+    position position,
+    join_job_time joinJobTime,
+    regular_time regularTime,
+    join_app_time joinAppTime,
+    join_org_time joinOrgTime,
+    post_time postTime,
+    post_name postName,
+    email email,
+    fax fax,
+    office_phone officePhone,
+    work_addr workAddr,
+    is_upload_file isUploadFile,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
+from
+    res_person_work
+where
+    is_deleted = 'N'
+    --iff personUuid != null and personUuid != ''
+        and person_uuid like '#personUuid:like#'
+    --end
+    --iff workUuid != null and workUuid != ''
+        and work_uuid like '#workUuid:like#'
+    --end
+
+-- [insertPersonWorkDO]
+    insert into res_person_work
+    --trim prefix=( suffix=) suffixOverrides=,
+        -- if  workUuid != null and workUuid != ''
+            work_uuid,
+        -- end
+        -- if  personUuid != null and personUuid != ''
+            person_uuid,
+        -- end
+
+        -- if  personType != null and personType != ''
+            person_type,
+        -- end
+        -- if  deptUuid != null and deptUuid != ''
+            dept_uuid,
+        -- end
+        -- if  position != null and position != ''
+            position,
+        -- end
+        -- if  joinJobTime != null and joinJobTime != ''
+            join_job_time,
+        -- end
+        -- if  regularTime != null and regularTime != ''
+            regular_time,
+        -- end
+        -- if  joinAppTime != null and joinAppTime != ''
+            join_app_time,
+        -- end
+        -- if  joinOrgTime != null and joinOrgTime != ''
+            join_org_time,
+        -- end
+        -- if  postTime != null and postTime != ''
+            post_time,
+        -- end
+        -- if  postName != null and postName != ''
+            post_name,
+        -- end
+        -- if  email != null and email != ''
+            email,
+        -- end
+        -- if  fax != null and fax != ''
+            fax,
+        -- end
+        -- if  officePhone != null and officePhone != ''
+            office_phone,
+        -- end
+        -- if  workAddr != null and workAddr != ''
+            work_addr,
+        -- end
+        -- if  isUploadFile !=  null and isUploadFile != ''
+            is_upload_file,
+        -- end
+        -- if  comments !=  null and comments != ''
+            comments,
+        -- end
+        -- if  isDeleted !=  null and isDeleted != ''
+            is_deleted,
+        -- end
+        -- if  createdTime !=  null and createdTime != ''
+            created_time,
+        -- end
+        -- if  createdUuid !=  null and createdUuid != ''
+            created_uuid,
+        -- end
+        -- if  createdName !=  null and createdName != ''
+            created_name,
+        -- end
+        -- if  updatedTime !=  null and updatedTime != ''
+            updated_time,
+        -- end
+        -- if  updatedUuid !=  null and updatedUuid != ''
+            updated_uuid,
+        -- end
+        -- if  updatedName !=  null and updatedName != ''
+            updated_name,
+        -- end
+        -- if  prodCatalogUuid !=  null and prodCatalogUuid != ''
+            prod_catalog_uuid,
+        -- end
+        -- if  orgUuid !=  null and orgUuid != ''
+            org_uuid,
+        -- end
+        -- if  appSysUuid !=  null and appSysUuid != ''
+            app_sys_uuid,
+        -- end
+        -- if  extend1 !=  null and extend1 != ''
+            extend1,
+        -- end
+        -- if  extend2 !=  null and extend2 != ''
+            extend2,
+        -- end
+        -- if  extend3 !=  null and extend3 != ''
+            extend3
+        -- end
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+
+        -- if  workUuid != null and workUuid != ''
+           '#workUuid#',
+        -- end
+        -- if  personUuid != null and personUuid != ''
+           '#personUuid#',
+        -- end
+        -- if  personType != null and personType != ''
+           '#personType#',
+        -- end
+        -- if  deptUuid != null and deptUuid != ''
+           '#deptUuid#',
+        -- end
+        -- if  position != null and position != ''
+           '#position#',
+        -- end
+        -- if  joinJobTime != null and joinJobTime != ''
+           '#joinJobTime#',
+        -- end
+        -- if  regularTime != null and regularTime != ''
+           '#regularTime#',
+        -- end
+        -- if  joinAppTime !=  null and joinAppTime != ''
+           '#joinAppTime#',
+        -- end
+        -- if  joinOrgTime != null and joinOrgTime != ''
+           '#joinOrgTime#',
+        -- end
+        -- if  postTime != null and postTime != ''
+           '#postTime#',
+        -- end
+        -- if  postName != null and postName != ''
+           '#postName#',
+        -- end
+        -- if  email != null and email != ''
+           '#email#',
+        -- end
+        -- if  fax != null and fax != ''
+           '#fax#',
+        -- end
+        -- if  officePhone !=  null and officePhone != ''
+           '#officePhone#',
+        -- end
+        -- if  workAddr != null and workAddr != ''
+           '#workAddr#',
+        -- end
+        -- if  isUploadFile != null and isUploadFile != ''
+           '#isUploadFile#',
+        -- end
+        -- if  comments != null and comments != ''
+           '#comments#',
+        -- end
+        -- if  isDeleted != null and isDeleted != ''
+           '#isDeleted#',
+        -- end
+        -- if  createdTime != null and createdTime != ''
+           '#createdTime#',
+        -- end
+        -- if  createdUuid != null and createdUuid != ''
+           '#createdUuid#',
+        -- end
+        -- if  createdName != null and createdName != ''
+           '#createdName#',
+        -- end
+        -- if  updatedTime != null and updatedTime != ''
+           '#updatedTime#',
+        -- end
+        -- if  updatedUuid != null and updatedUuid != ''
+           '#updatedUuid#',
+        -- end
+        -- if  updatedName != null and updatedName != ''
+           '#updatedName#',
+        -- end
+        -- if  prodCatalogUuid !=  null and prodCatalogUuid != ''
+           '#prodCatalogUuid#',
+        -- end
+        -- if  orgUuid != null and orgUuid != ''
+           '#orgUuid#',
+        -- end
+        -- if  appSysUuid != null and appSysUuid != ''
+           '#appSysUuid#',
+        -- end
+        -- if  extend1 != null and extend1 != ''
+           '#extend1#',
+        -- end
+        -- if  extend2 != null and extend2 != ''
+           '#extend2#',
+        -- end
+        -- if  extend3 != null and extend3 != ''
+           '#extend3#',
+        -- end
+    -- end
+
+-- [updatePersonWorkDO]
+    update res_person_work
+   -- trim prefix=set suffixOverrides=,
+     -- if workUuid != null and workUuid !=  ''
+            work_uuid ='#workUuid#',
+    -- end
+    -- if personUuid != null and personUuid !=  ''
+            person_uuid ='#personUuid#',
+    -- end
+     -- if personType != null and personType !=  ''
+            person_type ='#personType#',
+    -- end
+     -- if deptUuid != null and deptUuid !=  ''
+            dept_uuid ='#deptUuid#',
+    -- end
+     -- if position != null and position !=  ''
+            position ='#position#',
+    -- end
+     -- if joinJobTime != null and joinJobTime !=  ''
+            join_job_time ='#joinJobTime#',
+    -- end
+     -- if regularTime != null and regularTime !=  ''
+            regular_time ='#regularTime#',
+    -- end
+     -- if joinAppTime != null and joinAppTime !=  ''
+            join_app_time ='#joinAppTime#',
+    -- end
+     -- if joinOrgTime != null and joinOrgTime !=  ''
+            join_org_time ='#joinOrgTime#',
+    -- end
+     -- if postTime != null and postTime !=  ''
+            post_time ='#postTime#',
+    -- end
+     -- if postName != null and postName !=  ''
+            post_name ='#postName#',
+    -- end
+     -- if email != null and email !=  ''
+            email ='#email#',
+    -- end
+     -- if fax != null and fax !=  ''
+            fax ='#fax#',
+    -- end
+     -- if officePhone != null and officePhone !=  ''
+            office_phone ='#officePhone#',
+    -- end
+     -- if workAddr != null and workAddr !=  ''
+            work_addr ='#workAddr#',
+    -- end
+     -- if isUploadFile != null and isUploadFile !=  ''
+            is_upload_file ='#isUploadFile#',
+    -- end
+     -- if comments != null and comments !=  ''
+            comments ='#comments#',
+    -- end
+     -- if isDeleted != null and isDeleted !=  ''
+            is_deleted ='#isDeleted#',
+    -- end
+     -- if createdTime != null and createdTime !=  ''
+            created_time ='#createdTime#',
+    -- end
+     -- if createdUuid != null and createdUuid !=  ''
+            created_uuid ='#createdUuid#',
+    -- end
+     -- if createdName != null and createdName !=  ''
+            created_name ='#createdName#',
+    -- end
+     -- if updatedTime != null and updatedTime !=  ''
+            updated_time ='#updatedTime#',
+    -- end
+     -- if updatedUuid != null and updatedUuid !=  ''
+            updated_uuid ='#updatedUuid#',
+    -- end
+     -- if updatedName != null and updatedName !=  ''
+            updated_name ='#updatedName#',
+    -- end
+    -- if prodCatalogUuid != null and prodCatalogUuid !=  ''
+            prod_catalog_uuid ='#prodCatalogUuid#',
+    -- end
+     -- if orgUuid != null and orgUuid !=  ''
+            org_uuid ='#orgUuid#',
+    -- end
+     -- if appSysUuid != null and appSysUuid !=  ''
+            app_sys_uuid ='#appSysUuid#',
+    -- end
+     -- if extend1 != null and extend1 !=  ''
+            extend1 ='#extend1#',
+    -- end
+     -- if extend2 != null and extend2 !=  ''
+            extend2 ='#extend2#',
+    -- end
+     -- if extend3 != null and extend3 !=  ''
+            extend3 ='#extend3#',
+    -- end
+  -- end
+  where
+      is_deleted = 'N'
+      --iff workUuid != null and workUuid != ''
+          and work_uuid = '#workUuid#'
+      --iff uuids != null
+          and work_uuid in
+          -- for item=item index=index collection=uuids open=( separator=, close=)
+              '#item#'
+  -- end
+
+
+
+--[deletePersonWorkDO]
+ UPDATE
+     res_person_work
+ -- trim prefix= set suffixOverrides=,
+     is_deleted = 'Y'
+ -- end
+ WHERE
+     --if workUuid != null and workUuid !=  ''
+         work_uuid = '#workUuid#'
+     --end
+     --if workUuids != null
+         and work_uuid in
+         -- for item=item index=index collection=workUuids open=( separator=, close=)
+             '#item#'
+         -- end
+     -- end
+
+ --[getPersonWorkDO]
+select
+    work_uuid workUuid,
+    person_uuid personUuid,
+    person_type personType,
+    dept_uuid deptUuid,
+    position position,
+    join_job_time joinJobTime,
+    regular_time regularTime,
+    join_app_time joinAppTime,
+    join_org_time joinOrgTime,
+    post_time postTime,
+    post_name postName,
+    email email,
+    fax fax,
+    office_phone officePhone,
+    work_addr workAddr,
+    is_upload_file isUploadFile,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
+ from
+     res_person_work
+ where
+    is_deleted = 'N'
+    --if workUuid !=  null and  workUuid !=  ''
+        and  work_uuid = '#workUuid#'
+    --end
+
+--[getPersonWorkPage]
+SELECT
+    work_uuid workUuid,
+    person_uuid personUuid,
+    person_type personType,
+    dept_uuid deptUuid,
+    position position,
+    join_job_time joinJobTime,
+    regular_time regularTime,
+    join_app_time joinAppTime,
+    join_org_time joinOrgTime,
+    post_time postTime,
+    post_name postName,
+    email email,
+    fax fax,
+    office_phone officePhone,
+    work_addr workAddr,
+    is_upload_file isUploadFile,
+    comments comments,
+    is_deleted isDeleted,
+    created_time createdTime,
+    created_uuid createdUuid,
+    created_name createdName,
+    updated_time updatedTime,
+    updated_uuid updatedUuid,
+    updated_name updatedName,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid,
+    extend1 extend1,
+    extend2 extend2,
+    extend3 extend3
+from
+     res_person_work
+    -- iff workUuid != null and workUuid != ""
+        WHERE work_uuid = '#workUuid#'

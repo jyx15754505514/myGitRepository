@@ -1,0 +1,243 @@
+-- 新增提醒设置
+-- [insertsysremind]
+   INSERT INTO sys_remind
+   -- trim prefix=( suffix=) suffixOverrides=,
+     -- iff remindUuid != null and remindUuid != ''
+        remind_uuid,
+     -- iff remindContent != null and remindContent != ''
+        remind_content,
+     -- iff remindType != null and remindType != ''
+        remind_type,
+     -- iff num != null and num != ''
+        num,
+     -- iff unit != null and unit != ''
+        unit,
+     -- iff warnType != null and warnType != ''
+        warn_type,
+     -- iff comments != null and comments != ''
+        comments,
+     -- iff isDeleted != null and isDeleted != ''
+        is_deleted,
+     -- iff createdTime == null
+        created_time,
+     -- iff createdUuid != null and createdUuid != ''
+        created_uuid,
+     -- iff createdName != null
+        created_name,
+     -- iff orgUuid != null and orgUuid != ''
+        org_uuid,
+     -- iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid,
+     -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+     -- iff extend1 != null and extend1 != ''
+        extend1,
+     -- iff extend2 != null and extend2 != ''
+        extend2,
+     -- iff extend3 != null and extend3 != ''
+        extend3,
+   -- end
+
+    -- trim prefix=values( suffix=) suffixOverrides=,
+         -- iff remindUuid != null and remindUuid != ''
+            '#remindUuid#',
+         -- iff remindContent != null and remindContent != ''
+            '#remindContent#',
+         -- iff remindType != null and remindType != ''
+           '#remindType#',
+         -- iff num != null and num != ''
+            '#num#',
+         -- iff unit != null and unit != ''
+            '#unit#',
+         -- iff warnType != null and warnType != ''
+            '#warnType#',
+         -- iff comments != null and comments != ''
+            '#comments#',
+         -- iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+         -- iff createdTime == null
+            NOW(),
+         -- iff createdUuid != null and createdUuid != ''
+            '#createdUuid#',
+         -- iff createdName != null and createdName != ''
+            '#createdName#',
+         -- iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+         -- iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+         -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
+         -- iff extend1 != null and extend1 != ''
+            '#extend1#',
+         -- iff extend2 != null and extend2 != ''
+            '#extend2#',
+         -- iff extend3 != null and extend3 != ''
+            '#extend3#',
+    -- end
+
+-- 更新提醒设置
+-- [updatesysremind]
+   UPDATE sys_remind
+       -- trim prefix=SET suffixOverrides=,
+          -- iff remindContent != null and remindContent != ''
+             remind_content = '#remindContent#',
+          -- iff remindType != null and remindType != ''
+             remind_type = '#remindType#',
+          -- iff num != null and num != ''
+             num = '#num#',
+          -- iff unit != null and unit != ''
+             unit = '#unit#',
+          -- iff warnType != null and warnType != ''
+             warn_type = '#warnType#',
+          -- iff comments != null and comments != ''
+             comments = '#comments#',
+          -- iff isDeleted != null and isDeleted != ''
+             is_deleted = '#isDeleted#',
+          -- iff updatedTime == null
+             updated_time = NOW(),
+          -- iff updatedName != null and updatedName != ''
+             updated_name = '#updatedName#',
+          -- iff orgUuid != null and orgUuid != ''
+             org_uuid = '#orgUuid#',
+          -- iff appSysUuid != null and appSysUuid != ''
+             app_sys_uuid = '#appSysUuid#',
+          -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+             prod_catalog_uuid = '#prodCatalogUuid#',
+          -- iff extend1 != null and extend1 != ''
+             extend1 = '#extend1#',
+          -- iff extend2 != null and extend2 != ''
+             extend2 =  '#extend2#',
+          -- iff extend3 != null and extend3 != ''
+             extend3 = '#extend3#',
+        -- end
+   WHERE
+       remind_uuid = '#remindUuid#'
+
+-- 删除提醒设置
+-- [deletesysremind]
+    UPDATE
+        sys_remind
+    -- trim prefix= set suffixOverrides=,
+        is_deleted = 'Y'
+    -- end
+    WHERE
+		-- if remindUuid != null and remindUuid != ''
+			remind_uuid = '#remindUuid#'
+		-- end
+		-- if uuids != null
+			and remind_uuid in
+			-- for item=item index=index collection=uuids open=( separator=, close=)
+				'#item#'
+			-- end
+		-- end
+
+-- 根据主键查询提醒设置
+-- [getsysremind]
+     SELECT
+                remind_uuid as remindUuid,
+                remind_content as remindContent,
+                remind_type as remindType,
+                num as num,
+                unit as unit,
+                warn_type as warnType,
+                comments as comments,
+                is_deleted as isDeleted,
+                created_time as createdTime,
+                created_uuid as createdUuid,
+                created_name as createdName,
+                updated_time as updatedTime,
+                updated_name as updatedName,
+                org_uuid as orgUuid,
+                app_sys_uuid as appSysUuid,
+                prod_catalog_uuid as prodCatalogUuid,
+                extend1,
+                extend2,
+                extend3
+     from
+         sys_remind
+     WHERE
+             is_deleted = 'N'
+             and  org_uuid = '#orgUuid#'
+             and  remind_type ='#remindType#'
+             --if remindUuid != null and  remindUuid != ''
+                      and  remind_uuid = '#remindUuid#'
+             --end
+             --if appSysUuid != null and  appSysUuid != ''
+                      and  app_sys_uuid = '#appSysUuid#'
+             --end
+
+-- 查询提醒设置
+-- [listsysremind]
+ select
+ 				   sd.dict_value_name as remindTypeName,
+ 				   sd.dict_value_uuid as remindType,
+ 				   sr.remind_uuid as remindUuid,
+                   sr.remind_content as remindContent,
+                   sr.num as num,
+                   sr.unit as unit,
+                   sr.warn_type as warnType,
+                   sr.comments as comments,
+                   sr.is_deleted as isDeleted,
+                   sr.created_time as createdTime,
+                   sr.created_uuid as createdUuid,
+                   sr.created_name as createdName,
+                   sr.updated_time as updatedTime,
+                   sr.updated_name as updatedName,
+                   sr.org_uuid as orgUuid,
+                   sr.app_sys_uuid as appSysUuid,
+                   sr.prod_catalog_uuid as prodCatalogUuid,
+                   sr.extend1,
+                   sr.extend2,
+                   sr.extend3
+    from sys_dict_value sd
+    left join sys_remind sr
+ on sd.dict_value_uuid=sr.remind_type
+ and sr.is_deleted='N'
+ and  sr.org_uuid ='#orgUuid#'
+  --if appSysUuid != null and  appSysUuid != ''
+       and  sr.app_sys_uuid = '#appSysUuid#'
+  --end
+   --if appSysUuid != null and  appSysUuid != ''
+         and  sr.prod_catalog_uuid = '#prodCatalogUuid#'
+   --end
+ where
+ sd.dict_parent_uuid ='#dictParentUuid#'
+
+
+-- 查询提醒设置连组织机构表
+-- [listremindorg]
+    SELECT
+                  sr.remind_uuid as remindUuid,
+                  sr.remind_content as remindContent,
+                  sr.remind_type as remindType,
+                  sr.num as num,
+                  sr.unit as unit,
+                  sr.warn_type as warnType,
+                  sr.comments as comments,
+                  sr.is_deleted as isDeleted,
+                  sr.created_time as createdTime,
+                  sr.created_uuid as createdUuid,
+                  sr.created_name as createdName,
+                  sr.updated_time as updatedTime,
+                  sr.updated_name as updatedName,
+                  sr.org_uuid as orgUuid,
+                  sr.app_sys_uuid as appSysUuid,
+                  sr.prod_catalog_uuid as prodCatalogUuid,
+                  sr.extend1,
+                  sr.extend2,
+                  sr.extend3,
+                  so.org_name as orgName
+    FROM
+           sys_remind sr LEFT JOIN sys_organization so
+           on sr.org_uuid = so.organization_uuid
+    WHERE
+                 sr.is_deleted = 'N'
+                 --if orgUuid != null and  orgUuid != ''
+                       and  sr.org_uuid = '#orgUuid#'
+                 --end
+                 --if appSysUuid != null and  appSysUuid != ''
+                       and  sr.app_sys_uuid = '#appSysUuid#'
+                 --end
+                 --if remindContent != null and  remindContent != ''
+                       and sr.remind_content like '#remindContent:like#'
+                  --end

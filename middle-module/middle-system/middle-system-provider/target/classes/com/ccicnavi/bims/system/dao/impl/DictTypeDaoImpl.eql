@@ -1,0 +1,136 @@
+-- 新增字典类型
+--[insertDictType]
+INSERT INTO
+    sys_dict_type
+ --trim prefix=( suffix=) suffixOverrides= ,
+       --if dictTypeUuid != null and dictTypeUuid != ''
+            dict_type_uuid,
+       --end
+       --if dictTypeName != null and dictTypeName != ''
+            dict_type_name,
+       --end
+       --if dictTypeCode != null and dictTypeCode != ''
+            dict_type_code,
+       --end
+       --if sortNum != null and sortNum != ''
+            sort_num,
+       --end
+       --if comments != null and comments != ''
+            comments,
+       --end
+       --if isDeleted != null and isDeleted != ''
+            is_deleted,
+       --end
+       --if orgUuid != null and orgUuid != ''
+             org_uuid,
+       --end
+       --if appSysUuid != null and appSysUuid != ''
+             app_sys_uuid,
+       --end
+       --if prodCatalogUuid != null and prodCatalogUuid != ''
+             prod_catalog_uuid,
+       --end
+ --end
+ --trim prefix= values( suffix=) suffixOverrides= ,
+           --if dictTypeUuid != null and dictTypeUuid != ''
+             '#dictTypeUuid#',
+           --end
+           --if dictTypeName != null and dictTypeName != ''
+             '#dictTypeName#',
+           --end
+           --if dictTypeCode != null and dictTypeCode != ''
+             '#dictTypeCode#',
+           --end
+           --if sortNum != null and sortNum != ''
+             '#sortNum#',
+           --end
+           --if comments != null and comments != ''
+             '#comments#',
+           --end
+           --if isDeleted != null  and isDeleted != ''
+             '#isDeleted#',
+           --end
+           --if orgUuid != null  and orgUuid != ''
+             '#orgUuid#',
+           --end
+           --if appSysUuid != null and appSysUuid != ''
+             '#appSysUuid#',
+           --end
+           --if prodCatalogUuid != null and prodCatalogUuid != ''
+             '#prodCatalogUuid#',
+           --end
+ --end
+
+ --更改字典类型
+ --[updateDictType]
+    UPDATE
+        sys_dict_type
+    -- trim  prefix= set suffixOverrides=,
+                --iff dictTypeUuid != null and dictTypeUuid != ''
+                  dict_type_uuid = '#dictTypeUuid#',
+                --iff dictTypeName != null and dictTypeName != ''
+                  dict_type_name = '#dictTypeName#',
+                --iff dictTypeCode != null and dictTypeCode != ''
+                  dict_type_code = '#dictTypeCode#',
+                --iff sortNum != null and sortNum != ''
+                  sort_num = '#sortNum#',
+                --iff comments != null and comments != ''
+                  comments = '#comments#',
+                --iff isDeleted != null and isDeleted != ''
+                  is_deleted = '#isDeleted#',
+                --iff prodCatalogUuid != null and prodCatalogUuid != ''
+                  prod_catalog_uuid = '#prodCatalogUuid#',
+                --iff orgUuid != null and orgUuid != ''
+                  org_uuid = '#orgUuid#',
+                --iff appSysUuid != null and appSysUuid != ''
+                  app_sys_uuid = '#appSysUuid#',
+                --iff extend1 != null and extend1 != ''
+                  extend1 = '#extend1#',
+                --iff extend2 != null and extend2 != ''
+                  extend2 = '#extend2#',
+                --iff extend3 != null and extend3 != ''
+                  extend3 = '#extend3#',
+    --end
+      where
+              -- if dictTypeUuid != null
+              		dict_type_uuid = '#dictTypeUuid#'
+              -- end
+              -- if uuids != null
+              		dict_type_uuid in
+              -- for item=item index=index collection=uuids open=( separator=, close=)
+              		'#item#'
+              	-- end
+             -- end
+-- 删除字典类型
+--[deleteDictType]
+    UPDATE
+        sys_dict_type
+        -- trim prefix= set suffixOverrides=,
+                is_deleted = 'Y'
+        -- end
+    where
+          -- if uuids != null
+               	dict_type_uuid in
+            -- for item=item index=index collection=uuids open=( separator=, close=)
+                 '#item#'
+            -- end
+          -- end
+           -- if prodCatalogUuid != null and prodCatalogUuid!=''
+                      AND prod_catalog_uuid='#prodCatalogUuid#'
+           -- end
+           AND org_uuid='#orgUuid#'
+           AND app_sys_uuid='#appSysUuid#'
+
+-- 列表查询字典类型
+--[listDictType]
+ select
+    dict_type_uuid, dict_type_name, dict_type_code, sort_num, comments, is_deleted, prod_catalog_uuid,
+    org_uuid, app_sys_uuid, extend1, extend2, extend3
+    from sys_dict_type
+    WHERE
+    	is_deleted='N'
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+    and (org_uuid = '#orgUuid#' or org_uuid='#publicOrgUuid#')
+    -- if appSysUuid != null and appSysUuid!=''
+                       AND app_sys_uuid = '#appSysUuid#'
+    -- end

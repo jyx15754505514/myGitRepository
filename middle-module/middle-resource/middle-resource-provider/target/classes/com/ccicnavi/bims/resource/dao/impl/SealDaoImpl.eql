@@ -1,0 +1,331 @@
+-- [listSeal]
+SELECT
+    sel_uuid as selUuid, sel_name as selName, sel_eng_name as selEngName, sel_cert_name as selCertName, sel_enm_uuid as selEnmUuid,
+    sel_count as selCount, sel_batch_no as selBatchNo, sel_start_number as selStartNumber, sel_end_number as selEndNumber,
+    sel_person as selPerson, sel_keeper as selKeeper, is_deleted as isDeleted, created_time as createdTime,created_uuid as createdUuid,
+    updated_time as updatedTime, updated_name as updatedName, prod_catalog_uuid as prodCatalogUuid, org_uuid as orgUuid, app_sys_uuid as appSysUuid,
+    extend1 as extend1, extend2 as extend2, extend3 as extend3
+FROM
+    res_seal
+WHERE
+    is_deleted = 'N'
+      --iff selName != null
+      and sel_name like '#selName:like#'
+
+      --iff selEngName != null
+      and sel_eng_name like '#selEngName:leftLike#'
+
+      --iff selCertName != null
+      and sel_cert_name like '#selCertName:rightLike#'
+
+      --iff selEnmUuid != null
+      and sel_enm_uuid = '#selEnmUuid#'
+
+      --iff selCount != null
+      and sel_count = '#selCount#'
+
+      --iff selBatchNo != null
+      and sel_batch_no like '#selBatchNo:like#'
+
+      --iff selStartNumber != null
+      and sel_start_number like '#selStartNumber:like#'
+
+      --iff selEndNumber != null
+      and sel_end_number = '#selEndNumber#'
+
+      --iff selPerson != null
+      and sel_person = '#selPerson#'
+
+      --iff selKeeper != null
+      and sel_keeper = '#selKeeper#'
+
+      --iff isDeleted != null
+      and is_deleted = '#isDeleted#'
+
+      --iff createdTime != null
+      and created_time = '#createdTime#'
+
+      --iff createdUuid != null
+      and created_uuid = '#createdUuid#'
+
+      --iff updatedTime != null
+      and updated_time = '#updatedTime#'
+
+      --iff updatedName != null
+      and updated_name = '#updatedName#'
+
+      --iff prodCatalogUuid != null
+      and prod_catalog_uuid = '#prodCatalogUuid#'
+
+      --iff orgUuid != null
+      and org_uuid = '#orgUuid#'
+
+      --iff appSysUuid != null
+      and app_sys_uuid = '#appSysUuid#'
+
+      --iff extend1 != null
+      and extend1 = '#extend1#'
+
+      --iff extend2 != null
+      and extend2 = '#extend2#'
+
+      --iff extend3 != null
+      and extend3 = '#extend3#'
+
+      --iff orderBy == null or orderBy == ''
+      ORDER BY created_time DESC
+
+      --iff orderBy != null and orderBy != ''
+      ORDER BY '#orderBy#'
+
+
+--[insertSeal]
+insert into res_seal
+    -- trim prefix=( suffix=) suffixOverrides=,
+      --iff selUuid != null
+        sel_uuid,
+
+      --iff selName != null
+        sel_name,
+
+      --iff selEngName != null
+        sel_eng_name,
+
+      --iff selCertName != null
+        sel_cert_name,
+
+      --iff selEnmUuid != null
+        sel_enm_uuid,
+
+      --iff selCount != null
+        sel_count,
+
+      --iff selBatchNo != null
+        sel_batch_no,
+
+      --iff selStartNumber != null
+        sel_start_number,
+
+      --iff selEndNumber != null
+        sel_end_number,
+
+      --iff selPerson != null
+        sel_person,
+
+      --iff selKeeper != null
+        sel_keeper,
+
+      --iff isDeleted != null
+        is_deleted,
+
+      --iff createdTime != null
+        created_time,
+
+      --iff createdUuid != null
+        created_uuid,
+
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid,
+
+      --iff orgUuid != null
+        org_uuid,
+
+      --iff appSysUuid != null
+        app_sys_uuid,
+
+      --iff extend1 != null
+        extend1,
+
+      --iff extend2 != null
+        extend2,
+
+      --iff extend3 != null
+        extend3,
+
+    --end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      --iff selUuid != null
+        '#selUuid#',
+
+      --iff selName != null
+        '#selName#',
+
+      --iff selEngName != null
+        '#selEngName#',
+
+      --iff selCertName != null
+        '#selCertName#',
+
+      --iff selEnmUuid != null
+        '#selEnmUuid#',
+
+      --iff selCount != null
+        '#selCount#',
+
+      --iff selBatchNo != null
+        '#selBatchNo#',
+
+      --iff selStartNumber != null
+        '#selStartNumber#',
+
+      --iff selEndNumber != null
+        '#selEndNumber#',
+
+      --iff selPerson != null
+        '#selPerson#',
+
+      --iff selKeeper != null
+        '#selKeeper#',
+
+      --iff isDeleted != null
+        '#isDeleted#',
+
+      --iff createdTime != null
+        '#createdTime#',
+
+      --iff createdUuid != null
+        '#createdUuid#',
+
+      --iff prodCatalogUuid != null
+        '#prodCatalogUuid#',
+
+      --iff orgUuid != null
+        '#orgUuid#',
+
+      --iff appSysUuid != null
+        '#appSysUuid#',
+
+      --iff extend1 != null
+        '#extend1#',
+
+      --iff extend2 != null
+        '#extend2#',
+
+      --iff extend3 != null
+        '#extend3#',
+
+    --end
+
+--[updateSeal]
+update res_seal
+    -- trim prefix=SET suffixOverrides=,
+      --iff selName != null
+        sel_name = '#selName#',
+
+      --iff selEngName != null
+        sel_eng_name = '#selEngName#',
+
+      --iff selCertName != null
+        sel_cert_name = '#selCertName#',
+
+      --iff selEnmUuid != null
+        sel_enm_uuid = '#selEnmUuid#',
+
+      --iff selCount != null
+        sel_count = '#selCount#',
+
+      --iff selBatchNo != null
+        sel_batch_no = '#selBatchNo#',
+
+      --iff selStartNumber != null
+        sel_start_number = '#selStartNumber#',
+
+      --iff selEndNumber != null
+        sel_end_number = '#selEndNumber#',
+
+      --iff selPerson != null
+        sel_person = '#selPerson#',
+
+      --iff selKeeper != null
+        sel_keeper = '#selKeeper#',
+
+      --iff isDeleted != null
+        is_deleted = '#isDeleted#',
+
+      --iff createdTime != null
+        created_time = '#createdTime#',
+
+      --iff createdUuid != null
+        created_uuid = '#createdUuid#',
+
+      --iff updatedTime != null
+        updated_time = '#updatedTime#',
+
+      --iff updatedName != null
+        updated_name = '#updatedName#',
+
+      --iff prodCatalogUuid != null
+        prod_catalog_uuid = '#prodCatalogUuid#',
+
+      --iff orgUuid != null
+        org_uuid = '#orgUuid#',
+
+      --iff appSysUuid != null
+        app_sys_uuid = '#appSysUuid#',
+
+      --iff extend1 != null
+        extend1 = '#extend1#',
+
+      --iff extend2 != null
+        extend2 = '#extend2#',
+
+      --iff extend3 != null
+        extend3 = '#extend3#',
+
+    -- end
+    where is_deleted = 'N' and sel_uuid = '#selUuid#'
+
+--[deleteSeal]
+    UPDATE
+        res_seal
+     -- trim prefix= set suffixOverrides=,
+            is_deleted = 'Y'
+      -- end
+      where
+            --iff selUuid != null and  selUuid != ''
+                sel_uuid = '#selUuid#'
+            --end
+
+            --iff uuids != null
+                sel_uuid  in
+                -- for item=item index=index collection=uuids open=( separator=, close=)
+                    '#item#'
+                -- end
+            --end
+
+
+
+--[getSeal]
+    SELECT
+        sel_uuid as selUuid, sel_name as selName, sel_eng_name as selEngName, sel_cert_name as selCertName, sel_enm_uuid as selEnmUuid,
+        sel_count as selCount, sel_batch_no as selBatchNo, sel_start_number as selStartNumber, sel_end_number as selEndNumber,
+        sel_person as selPerson, sel_keeper as selKeeper, is_deleted as isDeleted, created_time as createdTime,created_uuid as createdUuid,
+        updated_time as updatedTime, updated_name as updatedName, prod_catalog_uuid as prodCatalogUuid, org_uuid as orgUuid, app_sys_uuid as appSysUuid,
+        extend1 as extend1, extend2 as extend2, extend3 as extend3
+     FROM
+        res_seal
+     WHERE
+        is_deleted = 'N'
+        --if selUuid != null and  templayeUuid != ''
+               and  sel_uuid = '#selUuid#'
+        --end
+        --if selName != null and selName != ''
+                and sel_name = '#selName#'
+        --end
+
+--[insertCopy]
+INSERT INTO res_seal
+        (sel_uuid, sel_name, sel_eng_name, sel_cert_name, sel_enm_uuid, sel_count, sel_batch_no,
+         sel_start_number, sel_end_number, sel_person, sel_keeper, is_deleted, created_time,
+         created_uuid, updated_time, updated_name, prod_catalog_uuid, org_uuid, app_sys_uuid,
+         extend1, extend2, extend3)
+
+	   	(SELECT
+	   	    '123456788', sel_name, sel_eng_name, sel_cert_name, sel_enm_uuid, sel_count, sel_batch_no,
+            sel_start_number, sel_end_number, sel_person, sel_keeper, is_deleted, created_time,
+            '#createdUuid#', updated_time, updated_name, prod_catalog_uuid, org_uuid, app_sys_uuid,
+            extend1, extend2, extend3
+	    FROM
+	     	res_seal
+        WHERE
+            sel_uuid = '#selUuid#' )

@@ -1,0 +1,194 @@
+-- 根据条件查询模板;
+-- [listTemplate]
+	SELECT
+        template_uuid as templateUuid, dict_type_uuid as dictTypeUuid, template_name as templateName, template_file_uuid as templateFileUuid,
+		created_time as createdTime, created_uuid as createdUuid, created_name as createdName,
+		updated_time as updatedTime, updated_name as updatedName, comments, is_deleted as isDeleted, org_uuid as orgUuid,
+		app_sys_uuid as appSysUuid, prod_catalog_uuid as prodCatalogUuid, extend1, extend2, extend3
+	FROM
+		res_template
+	WHERE
+		is_deleted = 'N'
+
+		and org_uuid = '#orgUuid#'
+		and app_sys_uuid = '#appSysUuid#'
+	    and prod_catalog_uuid = '#prodCatalogUuid#'
+
+
+-- 根据主键查询模板
+-- [getTemplate]
+	SELECT
+        template_uuid as templateUuid, dict_type_uuid as dictTypeUuid, template_name as templateName, template_file_uuid as templateFileUuid,
+		created_time as createdTime, created_uuid as createdUuid, created_name as createdName,
+		updated_time as updatedTime, updated_name as updatedName, comments, is_deleted as isDeleted, org_uuid as orgUuid,
+		app_sys_uuid as appSysUuid, prod_catalog_uuid as prodCatalogUuid, extend1, extend2, extend3
+	FROM
+		res_template
+	WHERE
+		template_uuid = '#templateUuid#'
+		and is_deleted = 'N'
+	    and org_uuid = '#orgUuid#'
+    	and app_sys_uuid = '#appSysUuid#'
+    	and prod_catalog_uuid = '#prodCatalogUuid#'
+
+
+
+-- 批量或删除指定模板信息
+-- [deleteTemplate]
+    UPDATE
+        res_template
+    SET
+        is_deleted = 'Y'
+    WHERE
+		-- if templateUuid != null and templateUuid != ''
+			template_uuid = '#templateUuid#'
+		-- end
+		-- if uuids != null
+			 template_uuid in
+			-- for item=item index=index collection=uuids open=( separator=, close=)
+				'#item#'
+			-- end
+		-- end
+
+
+
+-- 新增模板信息
+-- [insertTemplate]
+    INSERT INTO res_template
+    -- trim prefix=( suffix=) suffixOverrides=,
+      -- iff templateUuid != null and templateUuid != ''
+        template_uuid,
+      -- iff dictTypeUuid != null and dictTypeUuid != ''
+        dict_type_uuid,
+      -- iff templateName != null and templateName != ''
+        template_name,
+      -- iff templateFileUuid != null and templateFileUuid != ''
+        template_file_uuid,
+      -- iff comments != null and comments != ''
+        comments,
+      -- iff isDeleted != null and isDeleted != ''
+        is_deleted,
+      -- iff createdTime != null
+        created_time,
+      -- iff createdUuid != null and createdUuid != ''
+        created_uuid,
+      -- iff createdName != null and createdName != ''
+        created_name,
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+      -- iff orgUuid != null and orgUuid != ''
+        org_uuid,
+      -- iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid,
+      -- iff extend1 != null and extend1 != ''
+        extend1,
+      -- iff extend2 != null and extend2 != ''
+        extend2,
+      -- iff extend3 != null and extend3 != ''
+        extend3,
+      -- iff businessType != null and businessType != ''
+        business_type,
+      -- iff isEnabled != null and isEnabled != ''
+        is_enabled,
+
+	-- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      -- iff templateUuid != null and templateUuid != ''
+        '#templateUuid#',
+      -- iff dictTypeUuid != null and dictTypeUuid != ''
+        '#dictTypeUuid#',
+      -- iff templateName != null and templateName != ''
+        '#templateName#',
+      -- iff templateFileUuid != null and templateFileUuid != ''
+        '#templateFileUuid#',
+      -- iff comments != null and comments != ''
+        '#comments#',
+      -- iff isDeleted != null and isDeleted != ''
+        '#isDeleted#',
+      -- iff createdTime != null
+        '#createdTime#',
+      -- iff createdUuid != null and createdUuid != ''
+        '#createdUuid#',
+      -- iff createdName != null and createdName != ''
+        '#createdName#',
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+      -- iff orgUuid != null and orgUuid != ''
+        '#orgUuid#',
+      -- iff appSysUuid != null and appSysUuid != ''
+        '#appSysUuid#',
+      -- iff extend1 != null and extend1 != ''
+        '#extend1#',
+      -- iff extend2 != null and extend2 != ''
+        '#extend2#',
+      -- iff extend3 != null and extend3 != ''
+        '#extend3#',
+      -- iff businessType != null and businessType != ''
+        '#businessType#',
+      -- iff isEnabled != null and isEnabled != ''
+        '#isEnabled#',
+	-- end
+
+
+-- 模板更新
+-- [updateTemplate]
+    UPDATE
+    res_template
+    -- trim  prefix= set suffixOverrides=,
+      -- iff dictTypeUuid != null and dictTypeUuid != ''
+        dict_type_uuid = '#dictTypeUuid#',
+
+      -- iff templateName != null and templateName != ''
+        template_name = '#templateName#',
+
+      -- iff templateFileUuid != null and templateFileUuid != ''
+        template_file_uuid = '#templateFileUuid#',
+
+      -- iff comments != null
+        comments = '#comments#',
+
+      -- iff isDeleted != null
+        is_deleted = '#isDeleted#',
+
+      -- iff updatedTime != null
+        updated_time = '#updatedTime#',
+
+      -- iff updatedName != null
+        updated_name = '#updatedName#',
+
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
+
+      -- iff orgUuid != null and orgUuid != ''
+        org_uuid = '#orgUuid#',
+
+      -- iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
+
+      -- iff extend1 != null and extend1 != ''
+        extend1 = '#extend1#',
+
+      -- iff extend2 != null and extend2 != ''
+        extend2 = '#extend2#',
+
+      -- iff extend3 != null and extend3 != ''
+        extend3 = '#extend3#',
+
+      -- iff businessType != null and businessType != ''
+        business_type = '#businessType#',
+
+      -- iff isEnabled != null and isEnabled != ''
+        is_enabled = '#isEnabled#',
+	-- end
+    WHERE
+		-- if templateUuid != null
+			template_uuid = '#templateUuid#'
+		-- end
+		-- if uuids != null
+			  template_uuid in
+			-- for item=item index=index collection=uuids open=( separator=, close=)
+				'#item#'
+			-- end
+		-- end
+
+

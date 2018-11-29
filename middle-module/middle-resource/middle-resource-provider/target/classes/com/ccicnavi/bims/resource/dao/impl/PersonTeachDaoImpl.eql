@@ -1,0 +1,294 @@
+--[listPersonTeach]
+ SELECT
+   teach_uuid as teachUuid,
+   person_uuid as personUuid,
+   start_time as startTime,
+   end_time as endTime,
+   school as school,
+   major as major,
+   student_type as studentType,
+   school_system as schoolSystem,
+   education as education,
+   degree as degree,
+   hot_degree as hotDegree,
+   witness as witness,
+   graduation as graduation,
+   comments as comments,
+   is_deleted as isDeleted,
+   created_time as createdTime,
+   created_uuid as createdUuid,
+   created_name as createdName,
+   updated_time as updatedTime,
+   updated_name as updatedName,
+   org_uuid as orgUuid,
+   app_sys_uuid as appSysUuid,
+   business_line as businessLine,
+   extend1 as extend1,
+   extend2 as extend2,
+   extend3 as extend3
+   FROM
+   res_person_teach
+   WHERE is_deleted = 'N'
+
+
+--[insertPersonTeach]
+    insert into res_person_teach
+    --trim prefix=( suffix=) suffixOverrides=,
+      --iff  teachUuid != null 
+        teach_uuid,
+      --iff  personUuid != null 
+        person_uuid,
+      --iff  startTime != null 
+        start_time,
+      --iff  endTime != null 
+        end_time,
+      --iff  school != null 
+        school,
+      --iff  major != null 
+        major,
+      --iff  studentType != null 
+        student_type,
+      --iff  schoolSystem != null 
+        school_system,
+      --iff  education != null 
+        education,
+      --iff  degree != null 
+        degree,
+      --iff  hotDegree != null 
+        hot_degree,
+      --iff  witness != null 
+        witness,
+      --iff  graduation != null 
+        graduation,
+      --iff  comments != null 
+        comments,
+      --iff  isDeleted != null 
+        is_deleted,
+      --iff  createdTime != null 
+        created_time,
+      --iff  createdUuid != null 
+        created_uuid,
+      --iff  createdName != null 
+        created_name,
+      --iff  updatedTime != null 
+        updated_time,
+      --iff  updatedName != null 
+        updated_name,
+      --iff  orgUuid != null 
+        org_uuid,
+      --iff  appSysUuid != null 
+        app_sys_uuid,
+      --iff  businessLine != null 
+        business_line,
+      --iff  extend1 != null 
+        extend1,
+      --iff  extend2 != null 
+        extend2,
+      --iff  extend3 != null 
+        extend3,
+ --end
+    --trim prefix=values( suffix=) suffixOverrides=,
+      --iff  teachUuid != null 
+        '#teachUuid#',
+      --iff  personUuid != null 
+        '#personUuid#',
+      --iff  startTime != null 
+        '#startTime#',
+      --iff  endTime != null 
+        '#endTime#',
+      --iff  school != null 
+        '#school#',
+      --iff  major != null
+        '#major#',
+      --iff  studentType != null
+        '#studentType#',
+      --iff  schoolSystem != null
+        '#schoolSystem#',
+      --iff  education != null
+        '#education#',
+      --iff  degree != null
+        '#degree#',
+      --iff  hotDegree != null
+        '#hotDegree#',
+      --iff  witness != null
+        '#witness#',
+      --iff  graduation != null
+        '#graduation#',
+      --iff  comments != null
+        '#comments#',
+      --iff  isDeleted != null
+        '#isDeleted#',
+      --iff  createdTime != null
+        '#createdTime#',
+      --iff  createdUuid != null
+        '#createdUuid#',
+      --iff  createdName != null
+        '#createdName#',
+      --iff  updatedTime != null
+        '#updatedTime#',
+      --iff  updatedName != null
+        '#updatedName#',
+      --iff  orgUuid != null
+        '#orgUuid#',
+      --iff  appSysUuid != null
+        '#appSysUuid#',
+      --iff  businessLine != null
+        '#businessLine#',
+      --iff  extend1 != null
+        '#extend1#',
+      --iff  extend2 != null
+        '#extend2#',
+      --iff  extend3 != null
+        '#extend3#',
+ --end
+  
+--[updatePersonTeach]
+update res_person_teach
+    -- trim prefix= set suffixOverrides=,
+      --iff  teachUuid != null 
+        teach_uuid = '#teachUuid#',
+      --iff  personUuid != null
+        person_uuid = '#personUuid#',
+      --iff  startTime != null
+        start_time = '#startTime#',
+      --iff  endTime != null
+        end_time = '#endTime#',
+      --iff  school != null
+        school = '#school#',
+      --iff  major != null
+        major = '#major#',
+      --iff  studentType != null
+        student_type = '#studentType#',
+      --iff  schoolSystem != null
+        school_system ='#schoolSystem#',
+      --iff  education != null
+        education = '#education#',
+      --iff  degree != null
+        degree = '#degree#',
+      --iff  hotDegree != null
+        hot_degree = '#hotDegree#',
+      --iff  witness != null
+        witness = '#witness#',
+      --iff  graduation != null
+        graduation = '#graduation#',
+      --iff  comments != null
+        comments = '#comments#',
+      --iff  isDeleted != null
+        is_deleted = '#isDeleted#',
+      --iff  createdTime != null
+        created_time = '#createdTime#',
+      --iff  createdUuid != null
+        created_uuid = '#createdUuid#',
+      --iff  createdName != null
+        created_name = '#createdName#',
+      --iff  updatedTime != null
+        updated_time = '#updatedTime#',
+      --iff  updatedName != null
+        updated_name = '#updatedName#',
+      --iff  orgUuid != null
+        org_uuid = '#orgUuid#',
+      --iff  appSysUuid != null
+        app_sys_uuid = '#appSysUuid#',
+      --iff  businessLine != null
+        business_line = '#businessLine#',
+      --iff  extend1 != null
+        extend1 = '#extend1#',
+      --iff  extend2 != null
+        extend2 = '#extend2#',
+      --iff  extend3 != null
+        extend3 = '#extend3#',
+       -- end
+         WHERE
+            is_deleted = 'N'
+        -- iff teachUuid != null and teachUuid != ''
+            and teach_uuid = '#teachUuid#'
+        -- iff teachUuids != null
+            and teach_uuid in
+        -- for item=item index = index collection=teachUuids open=( separator=, close=)
+             '#item#'
+
+--[deletePersonTeach]
+update res_person_teach
+       SET is_deleted = 'Y'
+             WHERE
+                is_deleted = 'N'
+            -- iff teachUuid != null and teachUuid != ''
+                and teach_uuid = '#teachUuid#'
+            -- iff teachUuids != null
+                and teach_uuid in
+            -- for item=item index = index collection=teachUuids open=( separator=, close=)
+                 '#item#'
+
+
+--[getPersonTeach]
+SELECT
+   teach_uuid as teachUuid,
+   person_uuid as personUuid,
+   start_time as startTime,
+   end_time as endTime,
+   school as school,
+   major as major,
+   student_type as studentType,
+   school_system as schoolSystem,
+   education as education,
+   degree as degree,
+   hot_degree as hotDegree,
+   witness as witness,
+   graduation as graduation,
+   comments as comments,
+   is_deleted as isDeleted,
+   created_time as createdTime,
+   created_uuid as createdUuid,
+   created_name as createdName,
+   updated_time as updatedTime,
+   updated_name as updatedName,
+   org_uuid as orgUuid,
+   app_sys_uuid as appSysUuid,
+   business_line as businessLine,
+   extend1 as extend1,
+   extend2 as extend2,
+   extend3 as extend3
+   FROM
+   res_person_teach
+  WHERE
+   is_deleted = 'N'
+            -- iff teachUuid != null and teachUuid != ''
+                and teach_uuid = '#teachUuid#'
+            -- iff teachUuids != null
+                and teach_uuid in
+            -- for item=item index = index collection=teachUuids open=( separator=, close=)
+                 '#item#'
+
+--[getPage]
+SELECT
+   teach_uuid as teachUuid,
+   person_uuid as personUuid,
+   start_time as startTime,
+   end_time as endTime,
+   school as school,
+   major as major,
+   student_type as studentType,
+   school_system as schoolSystem,
+   education as education,
+   degree as degree,
+   hot_degree as hotDegree,
+   witness as witness,
+   graduation as graduation,
+   comments as comments,
+   is_deleted as isDeleted,
+   created_time as createdTime,
+   created_uuid as createdUuid,
+   created_name as createdName,
+   updated_time as updatedTime,
+   updated_name as updatedName,
+   org_uuid as orgUuid,
+   app_sys_uuid as appSysUuid,
+   business_line as businessLine,
+   extend1 as extend1,
+   extend2 as extend2,
+   extend3 as extend3
+   FROM
+   res_person_teach
+   WHERE is_deleted = 'N'
+     -- iff teachUuid != null and teachUuid != ''
+                   and teach_uuid = '#teachUuid#'

@@ -1,0 +1,279 @@
+-- 查询系统设置信息
+-- [listSetting]
+    SELECT
+            setting_uuid settingUuid,
+            login_title loginTitle,
+            login_file_uuid loginFileUuid,
+            main_title mainTitle,
+            main_file_uuid mainFileUuid,
+            main_window_style mainWindowStyle,
+            initial_password initialPassword,
+            is_force isForce,
+            start_password_length startPasswordLength ,
+            end_password_length endPasswordLength,
+            password_strength passwordStrength,
+            comments,
+            is_deleted isDeleted,
+            created_time createdTime,
+            created_uuid createdUuid,
+            created_name createdName,
+            updated_time updatedTime,
+            updated_name updatedName,
+            org_uuid orgUuid,
+            app_sys_uuid appSysUuid,
+            prod_catalog_uuid prodCatalogUuid,
+            extend1,
+            extend2,
+            extend3
+    FROM
+        sys_setting
+    WHERE
+     is_deleted = 'N'
+     --iff settingUuid != null and settingUuid != ''
+        and setting_uuid like '#settingUuid:like#'
+     --end
+     -- if appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid='#appSysUuid#',
+     -- end
+
+-- 新增系统设置信息
+-- [insertSetting]
+    INSERT INTO sys_setting
+    --trim prefix=( suffix=) suffixOverrides=,
+          --iff settingUuid != null and settingUuid != ''
+            setting_uuid,
+          --iff loginTitle != null
+            login_title,
+          --iff loginFileUuid != null
+            login_file_uuid,
+          --iff mainTitle != null
+            main_title,
+          --iff mainFileUuid != null
+            main_file_uuid,
+          --iff mainWindowStyle != null
+            main_window_style,
+          --iff initialPassword != null
+            initial_password,
+          --iff isForce != null
+            is_force,
+          --iff startPasswordLength != null
+            start_password_length,
+          --iff endPasswordLength != null
+            end_password_length,
+          --iff passwordStrength != null
+            password_strength,
+          --iff comments != null
+            comments,
+          --iff isDeleted != null
+            is_deleted,
+          --iff createdTime == null
+            created_time,
+          --iff createdUuid != null
+            created_uuid,
+          --iff createdName != null
+            created_name,
+          --iff orgUuid != null and orgUuid != ''
+            org_uuid,
+          --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
+          --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            prod_catalog_uuid,
+          --iff extend1 != null
+            extend1,
+          --iff extend2 != null
+             extend2,
+          --iff extend3 != null
+            extend3,
+        --end
+        --trim prefix= values( suffix=) suffixOverrides=,
+          --iff settingUuid != null and settingUuid !=''
+            '#settingUuid#',
+
+          --iff loginTitle != null
+            '#loginTitle#',
+
+          --iff loginFileUuid != null
+            '#loginFileUuid#',
+
+          --iff mainTitle != null
+            '#mainTitle#',
+
+          --iff mainFileUuid != null
+            '#mainFileUuid#',
+
+          --iff mainWindowStyle != null
+            '#mainWindowStyle#',
+
+          --iff initialPassword != null
+            '#initialPassword#',
+
+          --iff isForce != null
+            '#isForce#',
+
+          --iff startPasswordLength != null
+            '#startPasswordLength#',
+
+          --iff endPasswordLength != null
+            '#endPasswordLength#',
+
+          --iff passwordStrength != null
+            '#passwordStrength#',
+
+          --iff comments != null
+            '#comments#',
+
+          --iff isDeleted != null
+            '#isDeleted#',
+
+          --iff createdTime == null
+            NOW(),
+
+          --iff createdUuid != null
+            '#createdUuid#',
+
+          --iff createdName != null
+            '#createdName#',
+
+          --iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+
+          --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+
+          --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
+
+          --iff extend1 != null
+            '#extend1#',
+
+          --iff extend2 != null
+            '#extend2#',
+
+          --iff extend3 != null
+            '#extend3#',
+        --end
+
+-- 更新系统设置信息
+-- [updateSetting]
+    UPDATE
+        sys_setting
+    -- trim prefix= set suffixOverrides=,
+          --iff  loginTitle != null
+            login_title =  '#loginTitle#',
+
+          --iff  loginFileUuid != null
+            login_file_uuid =  '#loginFileUuid#',
+
+          --iff  mainTitle != null
+            main_title =  '#mainTitle#',
+
+          --iff  mainFileUuid != null
+            main_file_uuid =  '#mainFileUuid#',
+
+          --iff  mainWindowStyle != null
+            main_window_style =  '#mainWindowStyle#',
+
+          --iff  initialPassword != null
+            initial_password =  '#initialPassword#',
+
+          --iff  isForce != null
+            is_force =  '#isForce#',
+
+          --iff  startPasswordLength != null
+            start_password_length =  '#startPasswordLength#',
+
+          --iff  endPasswordLength != null
+            end_password_length =  '#endPasswordLength#',
+
+          --iff  passwordStrength != null
+            password_strength =  '#passwordStrength#',
+
+          --iff  comments != null
+            comments =  '#comments#',
+
+          --iff  isDeleted != null
+            is_deleted =  '#isDeleted#',
+
+          --iff  updatedTime != null
+            updated_time =  '#updatedTime#',
+
+          --iff  updatedName != null
+            updated_name =  '#updatedName#',
+
+          --iff  orgUuid != null
+            org_uuid =  '#orgUuid#',
+
+          --iff  appSysUuid != null and appSysUuid != ''
+            app_sys_uuid =  '#appSysUuid#',
+
+          --iff  prodCatalogUuid != null and prodCatalogUuid != ''
+            prod_catalog_uuid =  '#prodCatalogUuid#',
+
+          --iff  extend1 != null
+            extend1 =  '#extend1#',
+
+          --iff  extend2 != null
+            extend2 =  '#extend2#',
+
+          --iff  extend3 != null
+            extend3 =  '#extend3#',
+        --end
+        where
+         -- if settingUuid != null
+                  setting_uuid = '#settingUuid#'
+         -- end
+         -- if uuids != null
+                  		setting_uuid in
+             -- for item=item index=index collection=uuids open=( separator=, close=)
+                  		'#item#'
+             -- end
+          -- end
+
+-- 删除系统设置信息
+-- [deleteSetting]
+   UPDATE
+        sys_setting
+   set is_deleted = 'Y'
+   where 1=1
+        and setting_uuid in
+        -- for item=item index=index collection=uuids open=( separator=, close=)
+                '#item#'
+        -- end
+
+-- 根据主键查询系统设置
+-- [getSetting]
+    SELECT
+               setting_uuid  settingUuid,
+               login_title loginTitle,
+               login_file_uuid loginFileUuid,
+               main_title mainTitle,
+               main_file_uuid mainFileUuid,
+               main_window_style mainWindowStyle,
+               initial_password initialPassword,
+               is_force isForce,
+               start_password_length startPasswordLength ,
+               end_password_length endPasswordLength,
+               password_strength passwordStrength,
+               comments,
+               is_deleted isDeleted,
+               created_time createdTime,
+               created_uuid createdUuid,
+               created_name createdName,
+               updated_time updatedTime,
+               updated_name updatedName,
+               org_uuid orgUuid,
+               app_sys_uuid appSysUuid,
+               prod_catalog_uuid prodCatalogUuid,
+               extend1,
+               extend2,
+               extend3
+     FROM
+        sys_setting
+     WHERE
+        is_deleted = 'N'
+        --if settingUuid != null and settingUuid != ''
+              and  setting_uuid = '#settingUuid#'
+        --end
+        --if orgUuid != null and  orgUuid != ''
+              and  org_uuid = '#orgUuid#'
+        --end

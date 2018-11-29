@@ -1,0 +1,164 @@
+-- 新增非工作日
+-- [insertNotworkday]
+    INSERT INTO sys_notworkday
+    -- trim prefix=( suffix=) suffixOverrides=,
+      -- iff notworkdayUuid != null and notworkdayUuid != ''
+        notworkday_uuid,
+      -- iff year != null and year != ''
+        year,
+      -- iff month != null and month != ''
+        month,
+      -- iff day != null and day != ''
+        day,
+      -- iff startAm != null and startAm != ''
+        start_am,
+      -- iff endAm != null and endAm != ''
+        end_am,
+      -- iff startPm != null and startPm != ''
+        start_pm,
+      -- iff endPm != null and endPm != ''
+        end_pm,
+      -- iff comments != null and comments != ''
+        comments,
+      -- iff isDeleted != null and isDeleted != ''
+        is_deleted,
+      -- iff orgUuid != null and orgUuid != ''
+        org_uuid,
+      -- iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid,
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid,
+      -- iff extend1 != null and extend1 != ''
+        extend1,
+      -- iff extend2 != null and extend2 != ''
+        extend2,
+      -- iff extend3 != null and extend3 != ''
+        extend3,
+   -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+      -- iff notworkdayUuid != null and notworkdayUuid != ''
+        '#notworkdayUuid#',
+      -- iff year != null and year != ''
+        '#year#',
+      -- iff month != null and month != ''
+        '#month#',
+      -- iff day != null and day != ''
+        '#day#',
+      -- iff startAm != null and startAm != ''
+        '#startAm#',
+      -- iff endAm != null and endAm != ''
+        '#endAm#',
+      -- iff startPm != null and startPm != ''
+        '#startPm#',
+      -- iff endPm != null and endPm != ''
+        '#endPm#',
+      -- iff comments != null and comments != ''
+        '#comments#',
+      -- iff isDeleted != null and isDeleted != ''
+        '#isDeleted#',
+      -- iff orgUuid != null and orgUuid != ''
+        '#orgUuid#',
+      -- iff appSysUuid != null and appSysUuid != ''
+        '#appSysUuid#',
+      -- iff prodCatalogUuid != null and prodCatalogUuid != ''
+        '#prodCatalogUuid#',
+      -- iff extend1 != null and extend1 != ''
+        '#extend1#',
+      -- iff extend2 != null and extend2 != ''
+        '#extend2#',
+      -- iff extend3 != null and extend3 != ''
+        '#extend3#',
+    -- end
+
+
+
+-- 更新非工作日
+-- [updateNotworkday]
+    UPDATE sys_notworkday
+		-- trim prefix=SET suffixOverrides=,
+		  -- iff year != null
+			year = '#year#',
+		  -- iff month != null
+			month = '#month#',
+		  -- iff day != null
+			day = '#day#',
+		  -- iff startAm != null
+			start_am = '#startAm#',
+		  -- iff endAm != null
+			end_am = '#endAm#',
+		  -- iff startPm != null
+			start_pm = '#startPm#',
+		  -- iff endPm != null
+			end_pm = '#endPm#',
+		  -- iff comments != null
+			comments = '#comments#',
+		  -- iff isDeleted != null
+			is_deleted = '#isDeleted#',
+		  -- iff orgUuid != null and orgUuid != ''
+			org_uuid = '#orgUuid#',
+		  -- iff appSysUuid != null and appSysUuid != ''
+			app_sys_uuid = '#appSysUuid#',
+		  -- iff prodCatalogUuid != null
+			prod_catalog_uuid = '#prodCatalogUuid#',
+		  -- iff extend1 != null
+			extend1 = '#extend1#',
+		  -- iff extend2 != null
+			extend2 = '#extend2#',
+		  -- iff extend3 != null
+			extend3 = '#extend3#',
+		-- end
+	WHERE
+		notworkday_uuid = '#notworkdayUuid#'
+
+
+-- 根据条件查询非工作日
+-- [listNotworkday]
+	SELECT
+        notworkday_uuid as notworkdayUuid, year, month, day, start_am as startAm, end_am as endAm,
+		start_pm as startPm, end_pm as endPm, comments, is_deleted as isDeleted, org_uuid as orgUuid,
+		app_sys_uuid as appSysUuid, prod_catalog_uuid as prodCatalogUuid, extend1, extend2, extend3
+	FROM
+		sys_notworkday
+	WHERE
+		is_deleted = 'N'
+        AND org_uuid = '#orgUuid#'
+        AND app_sys_uuid = '#appSysUuid#'
+        AND prod_catalog_uuid = '#prodCatalogUuid#'
+		-- if endPm != null and endPm != ''
+		    AND end_pm = '#endPm#'
+        -- end
+
+-- 根据主键查询非工作日
+-- [getNotworkday]
+	SELECT
+        notworkday_uuid as notworkdayUuid, year, month, day, start_am as startAm, end_am as endAm,
+		start_pm as startPm, end_pm as endPm, comments, is_deleted as isDeleted, org_uuid as orgUuid,
+		app_sys_uuid as appSysUuid, prod_catalog_uuid as prodCatalogUuid, extend1, extend2, extend3
+	FROM
+		sys_notworkday
+	WHERE
+		notworkday_uuid = '#notworkdayUuid#'
+		AND is_deleted = 'N'
+		AND org_uuid = '#orgUuid#'
+		AND app_sys_uuid = '#appSysUuid#'
+		AND prod_catalog_uuid = '#prodCatalogUuid#'
+
+
+
+-- 批量或删除指定非工作日信息
+-- [deleteNotworkday]
+    UPDATE
+        sys_notworkday
+    SET
+        is_deleted = 'Y'
+    WHERE
+		-- if notworkdayUuid != null and notworkdayUuid != ''
+			notworkday_uuid = '#notworkdayUuid#'
+		-- end
+		-- if uuids != null
+			    notworkday_uuid in
+			-- for item=item index=index collection=uuids open=( separator=, close=)
+				'#item#'
+			-- end
+		-- end
+

@@ -1,0 +1,269 @@
+-- [listMenu]
+SELECT
+    menu_uuid menuUuid,
+    parent_uuid parentUuid,
+    menu_name menuName,
+    menu_url menuUrl,
+    menu_icon menuIcon,
+    menu_fontcolor menuFontcolor,
+    menu_level menuLevel,
+    sort_num sortNum,
+    org_uuid orgUuid
+from
+    sys_menu
+where
+    is_deleted = 'N'
+    and is_enabled = 'Y'
+--iff appSysUuid != null and appSysUuid != ''
+    and app_sys_uuid = '#appSysUuid#'
+--iff menuName != null and menuName != ''
+    and menu_name like '#menuName:Like#'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff parentUuid != null and parentUuid != ''
+    and parent_uuid = '#parentUuid#'
+--iff prodCatalogUuid != null and prodCatalogUuid != ''
+    and prod_catalog_uuid = '#prodCatalogUuid#'
+--iff prodCatalogList != null
+      and prod_catalog_uuid in
+      -- for item=item index=index collection=prodCatalogList open=( separator=, close=)
+          '#item#'
+      -- end
+  -- end
+
+
+-- [listMenuWithSort]
+SELECT
+    menu_uuid menuUuid,
+    menu_name menuName,
+    menu_level menuLevel,
+    sort_num sortNum,
+    is_deleted isDeleted
+from
+    sys_menu
+where
+    is_deleted = 'N'
+--iff menuUuidList != null
+    and menu_uuid in
+    -- for item=item index=index collection=menuUuidList open=( separator=, close=)
+        '#item#'
+    -- end
+ORDER BY sort_num asc
+
+
+-- 查询所有拥有按钮的菜单
+-- [listMenuButton]
+select
+	md.menu_uuid,
+	m.parent_all_uuid
+from
+	sys_menu_button md
+	LEFT JOIN sys_role_permission rp ON rp.btn_uuid = md.btn_uuid
+	LEFT JOIN sys_menu m ON md.menu_uuid = m.menu_uuid
+
+where
+    m.is_deleted = 'N'
+    --iff roleUuids != null
+        and rp.role_uuid in
+        -- for item=item index=index collection=roleUuids open=( separator=, close=)
+            '#item#'
+    -- end
+	--iff prodCatalogUuid != null and prodCatalogUuid != ''
+        and md.prod_catalog_uuid = '#prodCatalogUuid#'
+
+
+-- [getMenu]
+SELECT
+    menu_uuid menuUuid,
+    app_sys_uuid appSysUuid
+    parent_uuid parentUuid,
+    menu_name menuName,
+    menu_url menuUrl,
+    menu_icon menuIcon,
+    menu_fontcolor menuFontcolor,
+    menu_level menuLevel,
+    parent_all_uuid parentAllUuid,
+    is_enabled isEnabled,
+    sort_num sortNum,
+    is_deleted isDeleted,
+    prod_catalog_uuid prodCatalogUuid,
+    org_uuid orgUuid,
+    app_sys_uuid appSysUuid
+from
+    sys_menu
+where
+    is_deleted = 'N'
+--iff appSysUuid != null and appSysUuid != ''
+    and app_sys_uuid = '#appSysUuid#'
+--iff menuUuid != null and menuUuid != ''
+    and menu_uuid = '#menuUuid#'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+
+
+-- [insertMenu]
+INSERT INTO sys_menu
+    -- trim prefix=( suffix=) suffixOverrides=,
+        --iff menuUuid != null and menuUuid != ''
+        	menu_uuid,
+        --iff appSysUuid != null and appSysUuid != ''
+        	app_sys_uuid,
+        --iff parentUuid != null and parentUuid != ''
+        	parent_uuid,
+        --iff menuName != null and menuName != ''
+        	menu_name,
+        --iff menuUrl != null and menuUrl != ''
+        	menu_url,
+        --iff menuIcon != null and menuIcon != ''
+        	menu_icon,
+        --iff menuFontcolor != null and menuFontcolor != ''
+        	menu_fontcolor,
+        --iff menuLevel != null and menuLevel != ''
+        	menu_level,
+        --iff parentAllUuid != null and parentAllUuid != ''
+        	parent_all_uuid,
+        --iff isEnabled != null and isEnabled != ''
+        	is_enabled,
+        --iff sortNum != null and sortNum != ''
+        	sort_num,
+        --iff isDeleted != null and isDeleted != ''
+        	is_deleted,
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        	prod_catalog_uuid,
+        --iff orgUuid != null and orgUuid != ''
+            org_uuid,
+        --iff appSysUuid != null and appSysUuid != ''
+            app_sys_uuid,
+    -- end
+    -- trim prefix=values( suffix=) suffixOverrides=,
+        --iff menuUuid != null and menuUuid != ''
+            '#menuUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+        --iff parentUuid != null and parentUuid != ''
+            '#parentUuid#',
+        --iff menuName != null and menuName != ''
+            '#menuName#',
+        --iff menuUrl != null and menuUrl != ''
+            '#menuUrl#',
+        --iff menuIcon != null and menuIcon != ''
+            '#menuIcon#',
+        --iff menuFontcolor != null and menuFontcolor != ''
+            '#menuFontcolor#',
+        --iff menuLevel != null and menuLevel != ''
+            '#menuLevel#',
+        --iff parentAllUuid != null and parentAllUuid != ''
+            '#parentAllUuid#',
+        --iff isEnabled != null and isEnabled != ''
+            '#isEnabled#',
+        --iff sortNum != null and sortNum != ''
+            '#sortNum#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
+        --iff prodCatalogUuid != null and prodCatalogUuid != ''
+            '#prodCatalogUuid#',
+        --iff orgUuid != null and orgUuid != ''
+            '#orgUuid#',
+        --iff appSysUuid != null and appSysUuid != ''
+            '#appSysUuid#',
+    -- end
+
+
+-- [updateMenu]
+UPDATE
+    sys_menu
+-- trim prefix= set suffixOverrides=,
+     --iff menuUuid != null and menuUuid != ''
+        menu_uuid = '#menuUuid#',
+    --iff parentUuid != null and parentUuid != ''
+        parent_uuid = '#parentUuid#',
+    --iff menuName != null and menuName != ''
+        menu_name = '#menuName#',
+    --iff menuUrl != null and menuUrl != ''
+        menu_url = '#menuUrl#',
+    --iff menuIcon != null and menuIcon != ''
+        menu_icon = '#menuIcon#',
+    --iff menuFontcolor != null and menuFontcolor != ''
+        menu_fontcolor = '#menuFontcolor#',
+    --iff menuLevel != null and menuLevel != ''
+        menu_level = '#menuLevel#',
+    --iff parentAllUuid != null and parentAllUuid != ''
+        parent_all_uuid = '#parentAllUuid#',
+    --iff isEnabled != null and isEnabled != ''
+        is_enabled = '#isEnabled#',
+    --iff sortNum != null and sortNum != ''
+        sort_num = '#sortNum#',
+    --iff isDeleted != null and isDeleted != ''
+        is_deleted = '#isDeleted#',
+    --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
+    --iff prodCatalogUuid != null and prodCatalogUuid != ''
+        prod_catalog_uuid = '#prodCatalogUuid#',
+    --iff orgUuid != null and orgUuid != ''
+        org_uuid = '#orgUuid#',
+    --iff appSysUuid != null and appSysUuid != ''
+        app_sys_uuid = '#appSysUuid#',
+-- end
+where
+    is_deleted = 'N'
+    --iff appSysUuid != null and appSysUuid != ''
+        and app_sys_uuid = '#appSysUuid#'
+    --iff menuUuid != null and menuUuid != ''
+        and menu_uuid = '#menuUuid#'
+    --iff menuUuids != null
+        and menu_uuid in
+        -- for item=item index=index collection=list open=( separator=, close=)
+            '#item#'
+        -- end
+
+-- [deleteMenu]
+UPDATE
+    sys_menu
+-- trim prefix= set suffixOverrides=,
+    is_deleted = 'Y'
+-- end
+WHERE
+    is_deleted = 'N'
+    --iff menuUuid != null and menuUuid != ''
+        and menu_uuid = '#menuUuid#'
+    --iff menuUuids != null
+        and menu_uuid in
+        -- for item=item index=index collection=list open=( separator=, close=)
+            '#item#'
+        -- end
+
+-- 查询菜单一级
+-- [listMenuRoleUuid]
+SELECT
+    menu_uuid menuUuid,
+    menu_name menuName,
+    menu_url menuUrl,
+    menu_icon menuIcon,
+    menu_fontcolor menuFontcolor,
+    menu_level menuLevel,
+    sort_num sortNum,
+    prod_catalog_uuid prodCatalogUuid,
+    app_sys_uuid appSysUuid,
+    org_uuid orgUuid
+from
+    sys_menu
+where
+    is_deleted = 'N'
+    and is_enabled = 'Y'
+    and parent_uuid  is null
+--iff appSysUuid != null and appSysUuid != ''
+    and app_sys_uuid = '#appSysUuid#'
+--iff menuName != null and menuName != ''
+    and menu_name like '#menuName:Like#'
+--iff orgUuid != null and orgUuid != ''
+    and org_uuid = '#orgUuid#'
+--iff menuUuid != null and menuUuid != ''
+    and menu_uuid = '#menuUuid#'
+ --iff prodCatalogList != null
+      and prod_catalog_uuid in
+      -- for item=item index=index collection=prodCatalogList open=( separator=, close=)
+          '#item#'
+      -- end
+  -- end
+
+
