@@ -3,15 +3,9 @@ package com.ccicnavi.bims.subContractor.service;
 import com.ccicnavi.bims.customer.dao.Impl.SubcQualifiDaoImpl;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDO;
 import com.ccicnavi.bims.customer.pojo.SubcQualifiDTO;
-import com.ccicnavi.bims.customer.pojo.SubcontractorDTO;
-import com.ccicnavi.bims.customer.util.EqlUtils;
 import org.junit.jupiter.api.Test;
 import org.n3r.eql.Eql;
 import org.n3r.eql.EqlTran;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @program: bims-backend
@@ -33,16 +27,16 @@ public class SubcQualifiTest {
      */
     @Test
     public void insertSubcuQuali(){
-        SubcQualifiDO subcQualifiDO=new SubcQualifiDO();
+        SubcQualifiDTO subcQualifiDTO=new SubcQualifiDTO();
         for (int i=1;i<=5;i++)
         {
-            subcQualifiDO.setSubcQualifiUuid("000"+i);
+            subcQualifiDTO.setSubcQualifiUuid("000"+i);
             //指定的分包方的uuid
-            subcQualifiDO.setSubcUuid("88881");
-            subcQualifiDO.setQualifiRange("资质范围"+i);
-            subcQualifiDO.setQualifiEnmUuid("资质类型UUID"+i);
-            subcQualifiDO.setQualifiDescribe("资质描述"+i);
-            int count=subcQualifiDaoTest.insertSubcuQuali(subcQualifiDO);
+            subcQualifiDTO.setSubcUuid("88881");
+            subcQualifiDTO.setQualifiRange("资质范围"+i);
+            subcQualifiDTO.setQualifiEnmUuid("资质类型UUID"+i);
+            subcQualifiDTO.setQualifiDescribe("资质描述"+i);
+            int count=subcQualifiDaoTest.insertSubcuQuali(subcQualifiDTO,null);
             System.out.println(count);
         }
     }
