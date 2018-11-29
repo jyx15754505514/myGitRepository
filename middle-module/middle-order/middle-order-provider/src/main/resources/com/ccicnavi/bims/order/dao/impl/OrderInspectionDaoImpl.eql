@@ -19,6 +19,7 @@ select
     consignee_name consigneeName,
     provide_cert_uuid provideCertUuid,
     provide_cert_name provideCertName,
+    is_deleted isDeleted,
     is_open_cert isOpenCert,
     comments comments,
     goods_value goodsValue,
@@ -51,12 +52,13 @@ select
     consignee_name consigneeName,
     provide_cert_uuid provideCertUuid,
     provide_cert_name provideCertName,
+    is_deleted isDeleted,
     is_open_cert isOpenCert,
     comments comments,
-     goods_value goodsValue,
-        goods_currency goodsCurrency,
-        weight_batch weightBatch,
-        weight_batch_unit weightBatchUnit
+    goods_value goodsValue,
+    goods_currency goodsCurrency,
+    weight_batch weightBatch,
+    weight_batch_unit weightBatchUnit
 from
     order_inspection
 where
@@ -110,18 +112,20 @@ and order_uuid in
             provide_cert_uuid,
         --iff provideCertName != null and provideCertName != ''
             provide_cert_name,
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted,
         --iff isOpenCert != null and isOpenCert != ''
             is_open_cert,
         --iff comments != null and comments != ''
             comments,
-            --iff goodsValue != null and goodsValue != ''
-                        goods_value,
-                        --iff goodsCurrency != null and goodsCurrency != ''
-                                    goods_currency,
-                                    --iff weightBatch != null and weightBatch != ''
-                                                weight_batch,
-                                                --iff weightBatchUnit != null and weightBatchUnit != ''
-                                                            weight_batch_unit,
+        --iff goodsValue != null and goodsValue != ''
+            goods_value,
+        --iff goodsCurrency != null and goodsCurrency != ''
+            goods_currency,
+        --iff weightBatch != null and weightBatch != ''
+            weight_batch,
+        --iff weightBatchUnit != null and weightBatchUnit != ''
+            weight_batch_unit,
     --end
     --trim prefix=values( suffix=) suffixOverrides=,
         --iff orderUuid != null and orderUuid != ''
@@ -162,18 +166,20 @@ and order_uuid in
             '#provideCertUuid#',
         --iff provideCertName != null and provideCertName != ''
             '#provideCertName#',
+        --iff isDeleted != null and isDeleted != ''
+            '#isDeleted#',
         --iff isOpenCert != null and isOpenCert != ''
             '#isOpenCert#',
         --iff comments != null and comments != ''
             '#comments#',
-              --iff goodsValue != null and goodsValue != ''
-                                    '#goodsValue#',
-                                    --iff goodsCurrency != null and goodsCurrency != ''
-                                                '#goodsCurrency#',
-                                                --iff weightBatch != null and weightBatch != ''
-                                                            '#weightBatch#',
-                                                            --iff weightBatchUnit != null and weightBatchUnit != ''
-                                                                       '#weightBatchUnit#',
+        --iff goodsValue != null and goodsValue != ''
+            '#goodsValue#',
+        --iff goodsCurrency != null and goodsCurrency != ''
+            '#goodsCurrency#',
+        --iff weightBatch != null and weightBatch != ''
+            '#weightBatch#',
+        --iff weightBatchUnit != null and weightBatchUnit != ''
+            '#weightBatchUnit#',
     --end
 
 -- [updateOrderInspection]
@@ -215,22 +221,26 @@ and order_uuid in
             provide_cert_uuid = '#provideCertUuid#',
         --iff provideCertName != null and provideCertName != ''
             provide_cert_name = '#provideCertName#',
+        --iff isDeleted != null and isDeleted != ''
+            is_deleted = '#isDeleted#',
         --iff isOpenCert != null and isOpenCert != ''
             is_open_cert = '#isOpenCert#',
         --iff comments != null and comments != ''
             comments = '#comments#',
         --iff goodsValue != null and goodsValue != ''
-              goods_value = '#goodsValue#',
+            goods_value = '#goodsValue#',
         --iff goodsCurrency != null and goodsCurrency != ''
-              goods_currency = '#goodsCurrency#',
+            goods_currency = '#goodsCurrency#',
         --iff weightBatch != null and weightBatch != ''
-              weight_batch = '#weightBatch#',
+            weight_batch = '#weightBatch#',
         --iff weightBatchUnit != null and weightBatchUnit != ''
-              weight_batch_unit = '#weightBatchUnit#',
+            weight_batch_unit = '#weightBatchUnit#',
     -- end
 where
     order_uuid = '#orderUuid#'
 -- end
+
+
 -- [deleteOrderInspection]
 UPDATE
     order_inspection
