@@ -13,7 +13,6 @@ import com.ccicnavi.bims.order.pojo.OrderReviewDO;
 public interface OrderReviewService {
 
     PageBean<OrderReviewDO> testPage(PageParameter<OrderReviewDO> pageParameter);
-
     /**
      * @Author MengZiJie
      * @Description 新增评审
@@ -22,7 +21,6 @@ public interface OrderReviewService {
      * @Return java.lang.Integer
      */
     Integer insertOrderReview(OrderReviewDO orderReviewDO);
-
     /**
      * @Author MengZiJie
      * @Description 通过
@@ -31,7 +29,6 @@ public interface OrderReviewService {
      * @Return com.ccicnavi.bims.common.ResultT
      */
     ResultT passOrderReview(OrderReviewDO orderReviewDO, OrderInfoDTO orderInfoDTO);
-
     /**
      * @Author MengZiJie
      * @Description 驳回
@@ -40,7 +37,6 @@ public interface OrderReviewService {
      * @Return com.ccicnavi.bims.common.ResultT
      */
     ResultT backOrderReview(OrderReviewDO orderReviewDO, OrderInfoDTO orderInfoDTO);
-
     /**
      * @Author songyateng
      * @Description 评审列表（分页）
