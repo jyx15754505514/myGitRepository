@@ -1,12 +1,8 @@
 package com.ccicnavi.bims.orderWorksheet.service;
 
-import com.ccicnavi.bims.order.dao.impl.OrderWorksheetDaoImpl;
 import com.ccicnavi.bims.order.dao.impl.OrderWorksheetItemDaoImpl;
-import com.ccicnavi.bims.order.pojo.OrderWorksheetDO;
 import com.ccicnavi.bims.order.pojo.OrderWorksheetItemDO;
 import org.junit.Test;
-
-import java.util.Date;
 
 /**
  * @Author songyateng
@@ -24,10 +20,9 @@ public class TestOrderWorksheetItem {
     public void insertOrderWorksheetItem(){
         try {
              OrderWorksheetItemDO orderWorksheetItemDO = new OrderWorksheetItemDO();
-             orderWorksheetItemDO.setItemSubUuid("zuixiaokeliduid");
+            orderWorksheetItemDO.setWorksheetItemUuid("zhujian");
              orderWorksheetItemDO.setWorksheetUuid("gongzuodanid");
              orderWorksheetItemDO.setOrderItemUuid("uuid");
-             orderWorksheetItemDO.setWorksheetItemUuid("zhujian");
              System.err.print(order.insertOrderWorksheet(orderWorksheetItemDO, null));
         } catch (Exception e){
                 e.printStackTrace();
@@ -43,7 +38,7 @@ public class TestOrderWorksheetItem {
     public void deleteOrderWorksheet(){
             try {
             OrderWorksheetItemDO orderWorksheetItemDO = new OrderWorksheetItemDO();
-            orderWorksheetItemDO.setWorksheetItemUuid("zhujian1");
+            orderWorksheetItemDO.setWorksheetItemUuid("zhujian");
             System.err.print(order.deleteOrderWorksheet(orderWorksheetItemDO, null));
             }catch (Exception e){
                  e.printStackTrace();
