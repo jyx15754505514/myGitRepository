@@ -6,10 +6,7 @@ import com.ccicnavi.bims.common.service.pojo.PageParameter;
 import com.ccicnavi.bims.order.dao.OrderReviewDao;
 import com.ccicnavi.bims.order.pojo.OrderReviewDO;
 import org.n3r.eql.Eql;
-import org.n3r.eql.EqlPage;
 import org.n3r.eql.EqlTran;
-
-import java.util.List;
 
 /**
  * @Auther: fandongsheng
@@ -51,6 +48,11 @@ public class OrderReviewDaoImpl implements OrderReviewDao {
     }
 
     @Override
+    public PageBean<OrderReviewDO> listOrderReviewPage(PageParameter<OrderReviewDO> pageParameter) {
+        return null;
+    }
+
+   /* @Override
     public PageBean<OrderReviewDO> listOrderReview(PageParameter<OrderReviewDO> pageParameter) {
         //封装分页参数
         EqlPage page = new EqlPage(pageParameter.getStartPage(), pageParameter.getPageRows());
@@ -61,7 +63,7 @@ public class OrderReviewDaoImpl implements OrderReviewDao {
         }else {
             return null;
         }
-    }
+    }*/
 
 
 }
